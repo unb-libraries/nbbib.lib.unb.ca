@@ -1,0 +1,22 @@
+{
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "name": "unb-libraries/nbbib.lib.unb.ca",
+  "description": "Scaffold and provision local development for nbbib.lib.unb.ca",
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    }
+  },
+  "require": {
+    "unb-libraries/unb_lib_theme": "dev-8.x-bootstrap-3.x"
+  },
+  "require-dev": {
+    "unb-libraries/dockworker": "^8.0.0"
+  },
+  "scripts": {
+    "post-update-cmd": [
+      "vendor/bin/dockworker git:setup-hooks"
+    ]
+  }
+}

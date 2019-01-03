@@ -61,6 +61,8 @@
         "drupal/features": "3.7",
         "drupal/google_analytics": "2.2",
         "drupal/ldap": "3.0-beta3",
+        "drupal/migrate_plus": "4.0",
+        "drupal/migrate_tools": "4.0",
         "drupal/pathauto": "1.1",
         "drupal/redis": "1.0-rc2",
         "drupal/search_api": "1.7",

@@ -1,0 +1,30 @@
+add bibliographic reference entities:
+  title: 'Create new Bibliographic Reference entities'
+
+administer bibliographic reference entities:
+  title: 'Administer Bibliographic Reference entities'
+  description: 'Allow to access the administration form to configure Bibliographic Reference entities.'
+  restrict access: true
+
+delete bibliographic reference entities:
+  title: 'Delete Bibliographic Reference entities'
+
+edit bibliographic reference entities:
+  title: 'Edit Bibliographic Reference entities'
+
+view published bibliographic reference entities:
+  title: 'View published Bibliographic Reference entities'
+
+view unpublished bibliographic reference entities:
+  title: 'View unpublished Bibliographic Reference entities'
+
+view all bibliographic reference revisions:
+  title: 'View all Bibliographic Reference revisions'
+
+revert all bibliographic reference revisions:
+  title: 'Revert all Bibliographic Reference revisions'
+  description: 'Role requires permission <em>view Bibliographic Reference revisions</em> and <em>edit rights</em> for bibliographic reference entities in question or <em>administer bibliographic reference entities</em>.'
+
+delete all bibliographic reference revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Bibliographic Reference revisions</em> and <em>delete rights</em> for bibliographic reference entities in question or <em>administer bibliographic reference entities</em>.'

@@ -6,3 +6,11 @@ $DRUSH_COMMAND cr
 
 # Squash update emails.
 $DRUSH_COMMAND config-set update.settings notification.emails.0 ''
+
+if [ "$DEPLOY_ENV" == "local" ]; then
+    $DRUSH_COMMAND en yabrm
+
+    $DRUSH_COMMAND en nbbib_lib_unb_ca
+    $DRUSH_COMMAND config-set system.theme default nbbib_lib_unb_ca
+    $DRUSH_COMMAND cr
+fi

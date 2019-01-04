@@ -1,0 +1,34 @@
+uuid: 81a7386c-7c83-4bcf-89ab-eb600cf840ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_person
+    - field.field.paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_role
+    - paragraphs.paragraphs_type.yabrm_bibliographic_contributor
+id: paragraph.yabrm_bibliographic_contributor.default
+targetEntityType: paragraph
+bundle: yabrm_bibliographic_contributor
+mode: default
+content:
+  field_yabrm_contributor_person:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_yabrm_contributor_role:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

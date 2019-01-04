@@ -223,7 +223,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['title'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Title'))
       ->setSettings([
-        'max_length' => 512,
+        'max_length' => 1024,
         'text_processing' => 0,
       ])
       ->setDefaultValue('')

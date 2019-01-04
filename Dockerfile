@@ -8,6 +8,7 @@ LABEL vcs-url="https://github.com/unb-libraries/nbbib.lib.unb.ca"
 # Universal environment variables.
 ENV DEPLOY_ENV prod
 ENV DRUPAL_DEPLOY_CONFIGURATION TRUE
+ENV DRUPAL_IMPORT_CONTENT FALSE
 ENV DRUPAL_SITE_ID nbbib
 ENV DRUPAL_SITE_URI nbbib.lib.unb.ca
 ENV DRUPAL_SITE_UUID NULL

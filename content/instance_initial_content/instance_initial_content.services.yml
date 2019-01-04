@@ -1,0 +1,6 @@
+services:
+  instance_initial_content.0_reference_migrate_subscriber:
+    class: Drupal\instance_initial_content\Event\ReferenceMigrateEvent
+    tags:
+      - { name: event_subscriber }
+

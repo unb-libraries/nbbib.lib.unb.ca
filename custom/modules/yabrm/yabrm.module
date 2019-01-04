@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains yabrm.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function yabrm_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the yabrm module.
+    case 'help.page.yabrm':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Yet Another Bibliographic Reference Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}

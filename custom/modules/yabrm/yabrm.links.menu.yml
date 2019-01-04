@@ -1,0 +1,14 @@
+
+# Bibliographic Reference menu items definition
+entity.yabrm_biblio_reference.collection:
+  title: 'Bibliographic Reference list'
+  route_name: entity.yabrm_biblio_reference.collection
+  description: 'List Bibliographic Reference entities'
+  parent: system.admin_structure
+  weight: 100
+
+yabrm_biblio_reference.admin.structure.settings:
+  title: 'Bibliographic Reference settings'
+  description: 'Configure Bibliographic Reference entities'
+  route_name: yabrm_biblio_reference.settings
+  parent: system.admin_structure

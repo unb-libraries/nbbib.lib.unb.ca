@@ -1,0 +1,27 @@
+# Bibliographic Reference routing definition
+yabrm_biblio_reference.settings_tab:
+  route_name: yabrm_biblio_reference.settings
+  title: 'Settings'
+  base_route: yabrm_biblio_reference.settings
+
+entity.yabrm_biblio_reference.canonical:
+  route_name: entity.yabrm_biblio_reference.canonical
+  base_route: entity.yabrm_biblio_reference.canonical
+  title: 'View'
+
+entity.yabrm_biblio_reference.edit_form:
+  route_name: entity.yabrm_biblio_reference.edit_form
+  base_route: entity.yabrm_biblio_reference.canonical
+  title: 'Edit'
+
+entity.yabrm_biblio_reference.version_history:
+  route_name: entity.yabrm_biblio_reference.version_history
+  base_route: entity.yabrm_biblio_reference.canonical
+  title: 'Revisions'
+
+entity.yabrm_biblio_reference.delete_form:
+  route_name:  entity.yabrm_biblio_reference.delete_form
+  base_route:  entity.yabrm_biblio_reference.canonical
+  title: Delete
+  weight: 10
+

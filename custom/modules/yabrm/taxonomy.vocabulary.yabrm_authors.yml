@@ -1,0 +1,9 @@
+uuid: f306f2c6-8c15-44a1-8704-e7dc0a213166
+langcode: en
+status: true
+dependencies: {  }
+name: 'YABRM Authors'
+vid: yabrm_authors
+description: 'YABRM Authors'
+hierarchy: 0
+weight: 0

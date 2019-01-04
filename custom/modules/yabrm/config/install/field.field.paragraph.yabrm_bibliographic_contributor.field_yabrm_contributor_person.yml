@@ -1,0 +1,29 @@
+uuid: 85a73e1c-03e2-4982-a9f4-357f8230a22e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_yabrm_contributor_person
+    - paragraphs.paragraphs_type.yabrm_bibliographic_contributor
+    - taxonomy.vocabulary.yabrm_contributors
+id: paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_person
+field_name: field_yabrm_contributor_person
+entity_type: paragraph
+bundle: yabrm_bibliographic_contributor
+label: Contributor
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      yabrm_contributors: yabrm_contributors
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

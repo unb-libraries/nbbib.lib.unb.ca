@@ -1,0 +1,5 @@
+entity.yabrm_biblio_reference.add_form:
+  route_name: entity.yabrm_biblio_reference.add_form
+  title: 'Add Bibliographic Reference'
+  appears_on:
+    - entity.yabrm_biblio_reference.collection

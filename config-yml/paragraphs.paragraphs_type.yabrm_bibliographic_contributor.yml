@@ -1,0 +1,11 @@
+uuid: 822dc1db-a89b-491b-b899-9f3646313a6d
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: KXQPjjz2xHl9FhN7d-wlDQtTz9LBhKSpffEw0bmfIFk
+id: yabrm_bibliographic_contributor
+label: Contributor
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

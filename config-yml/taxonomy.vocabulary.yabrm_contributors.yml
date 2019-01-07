@@ -1,0 +1,11 @@
+uuid: a091c708-5cd0-4235-93cb-2e4c9785dc3b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ZHdHXzsnwS3YyMMyt7WDCU58kYLLpDa2bwpVVtYUFhQ
+name: 'YABRM Contributors'
+vid: yabrm_contributors
+description: ''
+hierarchy: 0
+weight: 0

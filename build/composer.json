@@ -64,7 +64,9 @@
         "drupal/pathauto": "1.1",
         "drupal/paragraphs": "1.5",
         "drupal/redis": "1.0-rc2",
-        "drupal/search_api": "1.7",
+        "drupal/search_api": "1.11",
+        "drupal/search_api_autocomplete": "1.1",
+        "drupal/search_api_solr": "2.3",
         "drupal/token": "1.0",
         "unb-libraries/unb_lib_theme": "dev-8.x-bootstrap-3.x",
         "unb-libraries/drupal-builder": "^8.0.0"

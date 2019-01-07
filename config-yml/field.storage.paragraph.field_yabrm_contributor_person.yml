@@ -1,0 +1,22 @@
+uuid: aad5e2f0-d378-4eb8-a9a1-add4b69d735d
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+_core:
+  default_config_hash: gdm3mHKRsxR4dvjk4-3urpF0Yyd15bFhvIRhfZZMWNY
+id: paragraph.field_yabrm_contributor_person
+field_name: field_yabrm_contributor_person
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,26 @@
+uuid: 471de25b-052b-4a2b-aba6-2dcd04f47235
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - nbbib_lib_unb_ca
+_core:
+  default_config_hash: qUx_9B1_-QXEYb2YlewFc8xxzX0sL5jmETFM3VfW6pE
+id: useraccountmenu
+theme: nbbib_lib_unb_ca
+region: footer
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

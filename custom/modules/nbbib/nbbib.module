@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains nbbib.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function nbbib_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the nbbib module.
+    case 'help.page.nbbib':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Core functions for nbbib.lib.unb.ca') . '</p>';
+      return $output;
+
+    default:
+  }
+}

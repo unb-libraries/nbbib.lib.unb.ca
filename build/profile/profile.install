@@ -13,11 +13,7 @@
  * @see system_install()
  */
 function nbbib_lib_unb_ca_install() {
-  // Set our default theme
-  \Drupal::configFactory()
-  ->getEditable('system.theme')
-  ->set('default', 'bartik')
-  ->save();
-
-  // Can add code in here to make nodes, terms, etc.
+  $config = \Drupal::service('config.factory')->getEditable('system.theme');
+  $config->set('default', 'bartik')->save();
+  $config->set('admin', 'seven')->save();
 }

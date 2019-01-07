@@ -25,3 +25,30 @@ entity.yabrm_biblio_reference.delete_form:
   title: Delete
   weight: 10
 
+# Bibliographic Contributor routing definition
+yabrm_contributor.settings_tab:
+  route_name: yabrm_contributor.settings
+  title: 'Settings'
+  base_route: yabrm_contributor.settings
+
+entity.yabrm_contributor.canonical:
+  route_name: entity.yabrm_contributor.canonical
+  base_route: entity.yabrm_contributor.canonical
+  title: 'View'
+
+entity.yabrm_contributor.edit_form:
+  route_name: entity.yabrm_contributor.edit_form
+  base_route: entity.yabrm_contributor.canonical
+  title: 'Edit'
+
+entity.yabrm_contributor.version_history:
+  route_name: entity.yabrm_contributor.version_history
+  base_route: entity.yabrm_contributor.canonical
+  title: 'Revisions'
+
+entity.yabrm_contributor.delete_form:
+  route_name:  entity.yabrm_contributor.delete_form
+  base_route:  entity.yabrm_contributor.canonical
+  title: Delete
+  weight: 10
+

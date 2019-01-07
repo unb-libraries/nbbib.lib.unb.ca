@@ -1,0 +1,116 @@
+<?php
+
+namespace Drupal\yabrm\Entity;
+
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\RevisionLogInterface;
+use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\user\EntityOwnerInterface;
+
+/**
+ * Provides an interface for defining Bibliographic Contributor entities.
+ *
+ * @ingroup yabrm
+ */
+interface BibliographicContributorInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityOwnerInterface {
+
+  // Add get/set methods for your configuration properties here.
+
+  /**
+   * Gets the Bibliographic Contributor name.
+   *
+   * @return string
+   *   Name of the Bibliographic Contributor.
+   */
+  public function getName();
+
+  /**
+   * Sets the Bibliographic Contributor name.
+   *
+   * @param string $name
+   *   The Bibliographic Contributor name.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setName($name);
+
+  /**
+   * Gets the Bibliographic Contributor creation timestamp.
+   *
+   * @return int
+   *   Creation timestamp of the Bibliographic Contributor.
+   */
+  public function getCreatedTime();
+
+  /**
+   * Sets the Bibliographic Contributor creation timestamp.
+   *
+   * @param int $timestamp
+   *   The Bibliographic Contributor creation timestamp.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setCreatedTime($timestamp);
+
+  /**
+   * Returns the Bibliographic Contributor published status indicator.
+   *
+   * Unpublished Bibliographic Contributor are only visible to restricted users.
+   *
+   * @return bool
+   *   TRUE if the Bibliographic Contributor is published.
+   */
+  public function isPublished();
+
+  /**
+   * Sets the published status of a Bibliographic Contributor.
+   *
+   * @param bool $published
+   *   TRUE to set this Bibliographic Contributor to published, FALSE to set it to unpublished.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setPublished($published);
+
+  /**
+   * Gets the Bibliographic Contributor revision creation timestamp.
+   *
+   * @return int
+   *   The UNIX timestamp of when this revision was created.
+   */
+  public function getRevisionCreationTime();
+
+  /**
+   * Sets the Bibliographic Contributor revision creation timestamp.
+   *
+   * @param int $timestamp
+   *   The UNIX timestamp of when this revision was created.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setRevisionCreationTime($timestamp);
+
+  /**
+   * Gets the Bibliographic Contributor revision author.
+   *
+   * @return \Drupal\user\UserInterface
+   *   The user entity for the revision author.
+   */
+  public function getRevisionUser();
+
+  /**
+   * Sets the Bibliographic Contributor revision author.
+   *
+   * @param int $uid
+   *   The user ID of the revision author.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setRevisionUserId($uid);
+
+}

@@ -5,8 +5,6 @@ dependencies:
   config:
     - field.storage.paragraph.field_yabrm_contributor_role
     - paragraphs.paragraphs_type.yabrm_bibliographic_contributor
-_core:
-  default_config_hash: Xg2_HzmmKkYR1RjBFgNfbPe77pXpD47eyYaWklBZCTY
 id: paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_role
 field_name: field_yabrm_contributor_role
 entity_type: paragraph

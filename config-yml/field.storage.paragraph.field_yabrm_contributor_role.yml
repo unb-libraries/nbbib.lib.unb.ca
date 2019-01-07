@@ -4,8 +4,6 @@ status: true
 dependencies:
   module:
     - paragraphs
-_core:
-  default_config_hash: G6QId_CUdCQzfdwAKkuXuWIIYn-FUY0QXwwPZ7praKc
 id: paragraph.field_yabrm_contributor_role
 field_name: field_yabrm_contributor_role
 entity_type: paragraph

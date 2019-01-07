@@ -3,3 +3,8 @@ entity.yabrm_biblio_reference.add_form:
   title: 'Add Bibliographic Reference'
   appears_on:
     - entity.yabrm_biblio_reference.collection
+entity.yabrm_contributor.add_form:
+  route_name: entity.yabrm_contributor.add_form
+  title: 'Add Bibliographic Contributor'
+  appears_on:
+    - entity.yabrm_contributor.collection

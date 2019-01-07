@@ -28,3 +28,33 @@ revert all bibliographic reference revisions:
 delete all bibliographic reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Bibliographic Reference revisions</em> and <em>delete rights</em> for bibliographic reference entities in question or <em>administer bibliographic reference entities</em>.'
+add bibliographic contributor entities:
+  title: 'Create new Bibliographic Contributor entities'
+
+administer bibliographic contributor entities:
+  title: 'Administer Bibliographic Contributor entities'
+  description: 'Allow to access the administration form to configure Bibliographic Contributor entities.'
+  restrict access: true
+
+delete bibliographic contributor entities:
+  title: 'Delete Bibliographic Contributor entities'
+
+edit bibliographic contributor entities:
+  title: 'Edit Bibliographic Contributor entities'
+
+view published bibliographic contributor entities:
+  title: 'View published Bibliographic Contributor entities'
+
+view unpublished bibliographic contributor entities:
+  title: 'View unpublished Bibliographic Contributor entities'
+
+view all bibliographic contributor revisions:
+  title: 'View all Bibliographic Contributor revisions'
+
+revert all bibliographic contributor revisions:
+  title: 'Revert all Bibliographic Contributor revisions'
+  description: 'Role requires permission <em>view Bibliographic Contributor revisions</em> and <em>edit rights</em> for bibliographic contributor entities in question or <em>administer bibliographic contributor entities</em>.'
+
+delete all bibliographic contributor revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Bibliographic Contributor revisions</em> and <em>delete rights</em> for bibliographic contributor entities in question or <em>administer bibliographic contributor entities</em>.'

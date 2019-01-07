@@ -6,8 +6,6 @@ dependencies:
     - field.field.paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_person
     - field.field.paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_role
     - paragraphs.paragraphs_type.yabrm_bibliographic_contributor
-_core:
-  default_config_hash: KcIAs6AoZ3Zp0u23js4YvWj-S5DaJpCbqep4Ol8vwG4
 id: paragraph.yabrm_bibliographic_contributor.default
 targetEntityType: paragraph
 bundle: yabrm_bibliographic_contributor

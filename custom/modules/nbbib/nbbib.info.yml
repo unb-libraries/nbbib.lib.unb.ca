@@ -1,5 +1,0 @@
-name: 'nbbib'
-type: module
-description: 'Core functions for nbbib.lib.unb.ca'
-core: 8.x
-package: 'Custom'

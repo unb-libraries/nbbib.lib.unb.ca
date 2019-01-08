@@ -65,9 +65,169 @@ display:
           quantity: 9
       style:
         type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            date_display: date_display
+            date_sort: date_sort
+            title: title
+            bibliographic_authors: bibliographic_authors
+          info:
+            date_display:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            date_sort:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            title:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            bibliographic_authors:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: date_sort
+          empty_table: false
       row:
         type: fields
       fields:
+        date_display:
+          id: date_display
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: date_display
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Reference Date'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          link_to_item: false
+          use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
+          plugin_id: search_api
+        date_sort:
+          id: date_sort
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: date_sort
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Date
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ date_display }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: Unknown
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ','
+          format_plural: false
+          format_plural_string: !!binary Aw==
+          prefix: ''
+          suffix: ''
+          link_to_item: false
+          use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
+          format_plural_values: {  }
+          plugin_id: search_api_numeric
         title:
           id: title
           table: search_api_index_references_nbbib_lib_unb_ca
@@ -75,7 +235,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Title (indexed field)'
+          label: Title
           exclude: false
           alter:
             alter_text: false
@@ -140,6 +300,59 @@ display:
           entity_type: null
           entity_field: null
           plugin_id: search_api_field
+        bibliographic_authors:
+          id: bibliographic_authors
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: bibliographic_authors
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Author(s)
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          link_to_item: false
+          use_highlighting: false
+          multi_type: ul
+          multi_separator: ', '
+          plugin_id: search_api
       filters:
         search_api_fulltext:
           id: search_api_fulltext
@@ -190,7 +403,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      use_ajax: true
+      use_ajax: false
     cache_metadata:
       max-age: -1
       contexts:

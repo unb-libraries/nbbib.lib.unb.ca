@@ -2,12 +2,12 @@
 
 namespace Drupal\yabrm\Entity;
 
+use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Entity\RevisionableInterface;
-use Drupal\Core\Entity\EntityChangedTrait;
-use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\user\UserInterface;
 
 /**
@@ -65,6 +65,8 @@ use Drupal\user\UserInterface;
 class BibliographicReference extends RevisionableContentEntityBase implements BibliographicReferenceInterface {
 
   use EntityChangedTrait;
+
+  const NO_DATE_INFO_TIMESTAMP = -2208973536;
 
   /**
    * {@inheritdoc}
@@ -187,6 +189,91 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
   public function setPublished($published) {
     $this->set('status', $published ? TRUE : FALSE);
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getContributors($role = NULL) {
+    $contributors = [];
+    $paragraphs = $this->get('contributors')->referencedEntities();
+
+    foreach ($paragraphs as $paragraph) {
+      $person = $paragraph->get('field_yabrm_contributor_person')->entity;
+      $person_role = $paragraph->get('field_yabrm_contributor_role')->value;
+      if (empty($person_role) || strtolower($role) == strtolower($person_role)) {
+        $contributors[] = $person;
+      }
+    }
+
+    return $contributors;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSortTimestamp() {
+    $year = $this->getPublicationYear();
+    $month = $this->getPublicationMonth();
+    $day = $this->getPublicationDay();
+
+    if (!empty($year) && !empty($month) && !empty($day)) {
+      return mktime(1, 1, 1, $month, $day, $year);
+    }
+
+    if (!empty($year) && !empty($month) && empty($day)) {
+      return mktime(1, 1, 1, $month, 1, $year);
+    }
+
+    if (!empty($year) && empty($month) && empty($day)) {
+      return mktime(1, 1, 1, 1, 1, $year);
+    }
+
+    return self::NO_DATE_INFO_TIMESTAMP;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDisplayDate() {
+    $year = $this->getPublicationYear();
+    $month = $this->getPublicationMonth();
+    $day = $this->getPublicationDay();
+
+    if (!empty($year) && !empty($month) && !empty($day)) {
+      return "$year-$month-$day";
+    }
+
+    if (!empty($year) && !empty($month) && empty($day)) {
+      return "$year-$month";
+    }
+
+    if (!empty($year) && empty($month) && empty($day)) {
+      return $year;
+    }
+
+    return NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPublicationYear() {
+    return $this->get('publication_year')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPublicationMonth() {
+    return $this->get('publication_month')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPublicationDay() {
+    return $this->get('publication_day')->value;
   }
 
   /**

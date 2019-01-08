@@ -14,8 +14,6 @@ use Drupal\user\EntityOwnerInterface;
  */
 interface BibliographicReferenceInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityOwnerInterface {
 
-  // Add get/set methods for your configuration properties here.
-
   /**
    * Gets the Bibliographic Reference name.
    *
@@ -95,7 +93,7 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function setRevisionCreationTime($timestamp);
 
   /**
-   * Gets the Bibliographic Reference revision author.
+   * Get the Bibliographic Reference revision author.
    *
    * @return \Drupal\user\UserInterface
    *   The user entity for the revision author.
@@ -112,5 +110,56 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
    *   The called Bibliographic Reference entity.
    */
   public function setRevisionUserId($uid);
+
+  /**
+   * Gets the contributors associated with this bibliographic reference.
+   *
+   * @param string $role
+   *   Only return contributors matching this role. Ignored if NULL.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributor[]
+   *   The contributors.
+   */
+  public function getContributors($role);
+
+  /**
+   * Gets the sortable timestamp of the reference.
+   *
+   * @return int
+   *   The UNIX epoch timestamp approximation for the reference date.
+   */
+  public function getSortTimestamp();
+
+  /**
+   * Gets the display date of the reference.
+   *
+   * @return string
+   *   The constructed display date of the reference.
+   */
+  public function getDisplayDate();
+
+  /**
+   * Gets the publication year of the reference.
+   *
+   * @return int
+   *   The publication year of the reference.
+   */
+  public function getPublicationYear();
+
+  /**
+   * Gets the numeric publication month of the reference.
+   *
+   * @return int
+   *   The numeric publication month of the reference.
+   */
+  public function getPublicationMonth();
+
+  /**
+   * Gets the numeric publication day of the reference.
+   *
+   * @return int
+   *   The numeric publication day of the reference.
+   */
+  public function getPublicationDay();
 
 }

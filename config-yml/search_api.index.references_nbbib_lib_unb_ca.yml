@@ -35,6 +35,18 @@ name: references.nbbib.lib.unb.ca
 description: ''
 read_only: false
 field_settings:
+  bibliographic_authors:
+    label: Author(s)
+    property_path: bibliographic_authors
+    type: text
+  date_display:
+    label: 'Reference Date'
+    property_path: date_display
+    type: string
+  date_sort:
+    label: 'Sortable Date'
+    property_path: date_sort
+    type: integer
   title:
     label: Title
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -48,6 +60,7 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  index_bibliographic_info: {  }
   rendered_item: {  }
   solr_date_range: {  }
 tracker_settings:

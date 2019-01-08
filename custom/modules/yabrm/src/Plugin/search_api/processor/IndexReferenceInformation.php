@@ -56,6 +56,22 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         'processor_id' => $this->getPluginId(),
       ];
       $properties['bibliographic_authors'] = new ProcessorProperty($definition);
+
+      $definition = [
+        'label' => $this->t('Sortable Date'),
+        'description' => $this->t('A sortable date field based on incomplete dates'),
+        'type' => 'integer',
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['date_sort'] = new ProcessorProperty($definition);
+
+      $definition = [
+        'label' => $this->t('Reference Date'),
+        'description' => $this->t('A formatted date field used for display'),
+        'type' => 'string',
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['date_display'] = new ProcessorProperty($definition);
     }
 
     return $properties;
@@ -77,6 +93,20 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         foreach ($authors as $author) {
           $field->addValue($author->toLink()->toString());
         }
+      }
+
+      // Sortable date.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'date_sort');
+      foreach ($fields as $field) {
+        $field->addValue($yabrm_entity->getSortTimestamp());
+      }
+
+      // Display date.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'date_display');
+      foreach ($fields as $field) {
+        $field->addValue($yabrm_entity->getDisplayDate());
       }
     }
   }

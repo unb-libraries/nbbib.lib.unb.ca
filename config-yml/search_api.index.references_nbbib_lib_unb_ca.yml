@@ -39,6 +39,14 @@ field_settings:
     label: Author(s)
     property_path: bibliographic_authors
     type: text
+  date_display:
+    label: 'Reference Date'
+    property_path: date_display
+    type: string
+  date_sort:
+    label: 'Sortable Date'
+    property_path: date_sort
+    type: integer
   title:
     label: Title
     datasource_id: 'entity:yabrm_biblio_reference'

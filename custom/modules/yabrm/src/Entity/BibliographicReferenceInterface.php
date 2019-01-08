@@ -14,8 +14,6 @@ use Drupal\user\EntityOwnerInterface;
  */
 interface BibliographicReferenceInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityOwnerInterface {
 
-  // Add get/set methods for your configuration properties here.
-
   /**
    * Gets the Bibliographic Reference name.
    *
@@ -112,5 +110,16 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
    *   The called Bibliographic Reference entity.
    */
   public function setRevisionUserId($uid);
+
+  /**
+   * Gets the contributors associated with this bibliographic reference.
+   *
+   * @param string $role
+   *   Only return contributors matching this role. Ignored if NULL.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributor[]
+   *   The contributors.
+   */
+  public function getContributors($role);
 
 }

@@ -2,12 +2,12 @@
 
 namespace Drupal\yabrm\Entity;
 
+use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Entity\RevisionableInterface;
-use Drupal\Core\Entity\EntityChangedTrait;
-use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\user\UserInterface;
 
 /**
@@ -187,6 +187,24 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
   public function setPublished($published) {
     $this->set('status', $published ? TRUE : FALSE);
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getContributors($role = NULL) {
+    $contributors = [];
+    $paragraphs = $this->get('contributors')->referencedEntities();
+
+    foreach ($paragraphs as $paragraph) {
+      $person = $paragraph->get('field_yabrm_contributor_person')->entity;
+      $person_role = $paragraph->get('field_yabrm_contributor_role')->value;
+      if (empty($person_role) || strtolower($role) == strtolower($person_role)) {
+        $contributors[] = $person;
+      }
+    }
+
+    return $contributors;
   }
 
   /**

@@ -26,3 +26,17 @@ yabrm_contributor.admin.structure.settings:
   description: 'Configure Bibliographic Contributor entities'
   route_name: yabrm_contributor.settings
   parent: system.admin_structure
+
+# Bibliographic Collection menu items definition
+entity.yabrm_collection.collection:
+  title: 'Bibliographic Collection list'
+  route_name: entity.yabrm_collection.collection
+  description: 'List Bibliographic Collection entities'
+  parent: system.admin_structure
+  weight: 100
+
+yabrm_collection.admin.structure.settings:
+  title: 'Bibliographic Collection settings'
+  description: 'Configure Bibliographic Collection entities'
+  route_name: yabrm_collection.settings
+  parent: system.admin_structure

@@ -52,3 +52,30 @@ entity.yabrm_contributor.delete_form:
   title: Delete
   weight: 10
 
+# Bibliographic Collection routing definition
+yabrm_collection.settings_tab:
+  route_name: yabrm_collection.settings
+  title: 'Settings'
+  base_route: yabrm_collection.settings
+
+entity.yabrm_collection.canonical:
+  route_name: entity.yabrm_collection.canonical
+  base_route: entity.yabrm_collection.canonical
+  title: 'View'
+
+entity.yabrm_collection.edit_form:
+  route_name: entity.yabrm_collection.edit_form
+  base_route: entity.yabrm_collection.canonical
+  title: 'Edit'
+
+entity.yabrm_collection.version_history:
+  route_name: entity.yabrm_collection.version_history
+  base_route: entity.yabrm_collection.canonical
+  title: 'Revisions'
+
+entity.yabrm_collection.delete_form:
+  route_name:  entity.yabrm_collection.delete_form
+  base_route:  entity.yabrm_collection.canonical
+  title: Delete
+  weight: 10
+

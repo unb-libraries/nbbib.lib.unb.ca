@@ -613,6 +613,32 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
         'weight' => -3,
       ]);
 
+    $fields['collection'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Collection(s)'))
+      ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setSettings(
+        [
+          'target_type' => 'yabrm_collection',
+          'handler' => 'default',
+        ]
+      )
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'author',
+        'weight' => 0,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 5,
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'size' => '60',
+          'placeholder' => '',
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
       ->setDescription(t('The time that the entity was created.'));

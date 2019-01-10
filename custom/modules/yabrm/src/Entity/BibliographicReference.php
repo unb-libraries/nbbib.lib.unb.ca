@@ -367,6 +367,12 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['publication_year'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Publication Year'))
+      ->addPropertyConstraints('value', [
+        'Range' => [
+          'min' => 0,
+          'max' => 2048,
+        ],
+      ])
       ->setDisplayOptions('view', [
         'label' => 'above',
         'weight' => 4,
@@ -379,6 +385,12 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['publication_month'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Publication Month'))
+      ->addPropertyConstraints('value', [
+        'Range' => [
+          'min' => 1,
+          'max' => 12,
+        ],
+      ])
       ->setDisplayOptions('view', [
         'label' => 'above',
         'weight' => 4,
@@ -391,6 +403,12 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['publication_day'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Publication Day'))
+      ->addPropertyConstraints('value', [
+        'Range' => [
+          'min' => 1,
+          'max' => 31,
+        ],
+      ])
       ->setDisplayOptions('view', [
         'label' => 'above',
         'weight' => 4,

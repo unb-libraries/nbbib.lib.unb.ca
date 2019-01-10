@@ -88,3 +88,33 @@ revert all bibliographic collection revisions:
 delete all bibliographic collection revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Bibliographic Collection revisions</em> and <em>delete rights</em> for bibliographic collection entities in question or <em>administer bibliographic collection entities</em>.'
+add journal article reference entities:
+  title: 'Create new Journal Article Reference entities'
+
+administer journal article reference entities:
+  title: 'Administer Journal Article Reference entities'
+  description: 'Allow to access the administration form to configure Journal Article Reference entities.'
+  restrict access: true
+
+delete journal article reference entities:
+  title: 'Delete Journal Article Reference entities'
+
+edit journal article reference entities:
+  title: 'Edit Journal Article Reference entities'
+
+view published journal article reference entities:
+  title: 'View published Journal Article Reference entities'
+
+view unpublished journal article reference entities:
+  title: 'View unpublished Journal Article Reference entities'
+
+view all journal article reference revisions:
+  title: 'View all Journal Article Reference revisions'
+
+revert all journal article reference revisions:
+  title: 'Revert all Journal Article Reference revisions'
+  description: 'Role requires permission <em>view Journal Article Reference revisions</em> and <em>edit rights</em> for journal article reference entities in question or <em>administer journal article reference entities</em>.'
+
+delete all journal article reference revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Journal Article Reference revisions</em> and <em>delete rights</em> for journal article reference entities in question or <em>administer journal article reference entities</em>.'

@@ -40,3 +40,17 @@ yabrm_collection.admin.structure.settings:
   description: 'Configure Bibliographic Collection entities'
   route_name: yabrm_collection.settings
   parent: system.admin_structure
+
+# Journal Article Reference menu items definition
+entity.yabrm_journal_article.collection:
+  title: 'Journal Article Reference list'
+  route_name: entity.yabrm_journal_article.collection
+  description: 'List Journal Article Reference entities'
+  parent: system.admin_structure
+  weight: 100
+
+yabrm_journal_article.admin.structure.settings:
+  title: 'Journal Article Reference settings'
+  description: 'Configure Journal Article Reference entities'
+  route_name: yabrm_journal_article.settings
+  parent: system.admin_structure

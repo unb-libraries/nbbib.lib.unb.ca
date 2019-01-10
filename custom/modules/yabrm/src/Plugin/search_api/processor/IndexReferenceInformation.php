@@ -24,7 +24,15 @@ use Drupal\search_api\Processor\ProcessorProperty;
  */
 class IndexReferenceInformation extends ProcessorPluginBase {
 
-  const APPLIES_ENTITY_TYPE = 'yabrm_biblio_reference';
+  const APPLIES_ENTITY_TYPES = [
+    'yabrm_biblio_reference',
+    'yabrm_journal_article',
+  ];
+
+  const ENTITY_TYPE_LABELS = [
+    'Drupal\yabrm\Entity\BibliographicReference' => 'Reference',
+    'Drupal\yabrm\Entity\JournalArticleReference' => 'Journal Article',
+  ];
 
   /**
    * Only enabled for an index that indexes the yabrm_biblio_reference entity.
@@ -32,7 +40,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
    * {@inheritdoc}
    */
   public static function supportsIndex(IndexInterface $index) {
-    $supported_entity_types = [self::APPLIES_ENTITY_TYPE];
+    $supported_entity_types = self::APPLIES_ENTITY_TYPES;
     foreach ($index->getDatasources() as $datasource) {
       if (in_array($datasource->getEntityTypeId(), $supported_entity_types)) {
         return TRUE;
@@ -48,6 +56,24 @@ class IndexReferenceInformation extends ProcessorPluginBase {
     $properties = [];
 
     if (!$datasource) {
+      $definition = [
+        'label' => $this->t('Reference Type'),
+        'description' => $this->t('The type of the bibliographic reference.'),
+        'type' => 'string',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['biblioigraphic_type'] = new ProcessorProperty($definition);
+
+      $definition = [
+        'label' => $this->t('Reference Title'),
+        'description' => $this->t('The title of the bibliographic reference, regardless of type.'),
+        'type' => 'search_api_html',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['biblioigraphic_title'] = new ProcessorProperty($definition);
+
       $definition = [
         'label' => $this->t('Author(s)'),
         'description' => $this->t('All contributors identified as Author for this bibliographic reference'),
@@ -82,8 +108,27 @@ class IndexReferenceInformation extends ProcessorPluginBase {
    */
   public function addFieldValues(ItemInterface $item) {
     $entity = $item->getDatasource();
-    if ($entity->getEntityTypeId() == self::APPLIES_ENTITY_TYPE) {
+    if (in_array($entity->getEntityTypeId(), self::APPLIES_ENTITY_TYPES)) {
       $yabrm_entity = $item->getOriginalObject()->getValue();
+
+      // The type of reference.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'biblioigraphic_type');
+      foreach ($fields as $field) {
+        $class_name = get_class($yabrm_entity);
+        if (!empty(self::ENTITY_TYPE_LABELS[$class_name])) {
+          $field->addValue(
+            self::ENTITY_TYPE_LABELS[$class_name]
+          );
+        }
+      }
+
+      // The common title field.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'biblioigraphic_title');
+      foreach ($fields as $field) {
+        $field->addValue($yabrm_entity->getName());
+      }
 
       // Contributors with role 'Author'.
       $fields = $this->getFieldsHelper()
@@ -91,7 +136,9 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       foreach ($fields as $field) {
         $authors = $yabrm_entity->getContributors('Author');
         foreach ($authors as $author) {
-          $field->addValue($author->toLink()->toString());
+          if (!empty($author)) {
+            $field->addValue($author->toLink()->toString());
+          }
         }
       }
 

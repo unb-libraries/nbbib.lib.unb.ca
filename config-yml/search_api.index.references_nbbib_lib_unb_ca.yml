@@ -39,6 +39,14 @@ field_settings:
     label: Author(s)
     property_path: bibliographic_authors
     type: text
+  biblioigraphic_title:
+    label: Title
+    property_path: biblioigraphic_title
+    type: text
+  biblioigraphic_type:
+    label: 'Reference Type'
+    property_path: biblioigraphic_type
+    type: string
   date_display:
     label: 'Reference Date'
     property_path: date_display
@@ -47,16 +55,9 @@ field_settings:
     label: 'Sortable Date'
     property_path: date_sort
     type: integer
-  title:
-    label: Title
-    datasource_id: 'entity:yabrm_biblio_reference'
-    property_path: title
-    type: text
-    dependencies:
-      module:
-        - yabrm
 datasource_settings:
   'entity:yabrm_biblio_reference': {  }
+  'entity:yabrm_journal_article': {  }
 processor_settings:
   add_url: {  }
   aggregated_field: {  }

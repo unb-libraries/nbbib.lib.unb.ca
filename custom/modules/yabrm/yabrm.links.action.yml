@@ -13,3 +13,8 @@ entity.yabrm_collection.add_form:
   title: 'Add Bibliographic Collection'
   appears_on:
     - entity.yabrm_collection.collection
+entity.yabrm_journal_article.add_form:
+  route_name: entity.yabrm_journal_article.add_form
+  title: 'Add Journal Article Reference'
+  appears_on:
+    - entity.yabrm_journal_article.collection

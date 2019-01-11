@@ -225,7 +225,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setDescription(t('The name of the Bibliographic Contributor entity.'))
       ->setRevisionable(TRUE)
       ->setSettings([
-        'max_length' => 50,
+        'max_length' => 256,
         'text_processing' => 0,
       ])
       ->setDefaultValue('')

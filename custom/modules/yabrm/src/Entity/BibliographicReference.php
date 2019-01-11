@@ -212,6 +212,14 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
   /**
    * {@inheritdoc}
    */
+  public function setContributors(array $contributors) {
+    $this->set('contributors', $contributors);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getSortTimestamp() {
     $year = $this->getPublicationYear();
     $month = $this->getPublicationMonth();

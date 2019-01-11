@@ -123,6 +123,17 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function getContributors($role);
 
   /**
+   * Sets the Bibliographic contributors.
+   *
+   * @param \Drupal\paragraphs\Entity\Paragraph[] $contributors
+   *   An array of contributor paragraphs entities.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setContributors(array $contributors);
+
+  /**
    * Gets the sortable timestamp of the reference.
    *
    * @return int

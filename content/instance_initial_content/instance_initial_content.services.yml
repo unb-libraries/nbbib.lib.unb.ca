@@ -3,4 +3,7 @@ services:
     class: Drupal\instance_initial_content\Event\ReferenceMigrateEvent
     tags:
       - { name: event_subscriber }
-
+  instance_initial_content.0_reference_migrate_subscriber_pargraphs:
+    class: Drupal\instance_initial_content\Event\ReferenceMigrateParagraphEvent
+    tags:
+      - { name: event_subscriber }

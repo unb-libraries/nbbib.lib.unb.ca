@@ -68,7 +68,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
     // Create contrib.
     foreach ($contrib_names as $contrib_name) {
       // Trim whitespace and remove periods.
-      $contrib_name = trim(str_replace('.', '', $contrib_name));
+      $contrib_name = trim($contrib_name, "\x2E");
 
       if (!empty($contrib_name)) {
         $contrib_id = $this->entitySearch('yabrm_contributor', 'name', $contrib_name)[0];

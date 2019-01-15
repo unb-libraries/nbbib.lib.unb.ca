@@ -22,17 +22,17 @@ source:
       author: Author
     4:
       title: Title
-    42:
+    41:
       editor: Editor
-    43:
+    42:
       series_editor: Series Editor
-    44:
+    43:
       translator: Translator
-    45:
+    44:
       contributor: Contributor
-    47:
+    46:
       book_author: Book Author
-    56:
+    55:
       reviewed_author: Reviewed Author
 
 process:

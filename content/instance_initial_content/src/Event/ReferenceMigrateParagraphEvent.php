@@ -38,7 +38,25 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $row = $event->getRow();
       $destination_ids = $event->getDestinationIdValues();
       $reference_id = $destination_ids[0];
-      $contributors = $this->createParagraphs($row);
+
+      $authors = $this->createContributors($row, 'author');
+      $editors = $this->createContributors($row, 'editor');
+      $series_editors = $this->createContributors($row, 'series_editor');
+      $translators = $this->createContributors($row, 'translator');
+      $src_contributors = $this->createContributors($row, 'contributor');
+
+      $book_authors = $this->createContributors($row, 'book_author');
+      $reviewed_authors = $this->createContributors($row, 'reviewed_author');
+
+      $contributors = array_merge(
+        $authors,
+        $editors,
+        $series_editors,
+        $translators,
+        $src_contributors,
+        $book_authors,
+        $reviewed_authors
+      );
 
       $reference = \Drupal::entityTypeManager()
         ->getStorage('yabrm_biblio_reference')
@@ -53,16 +71,17 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
    *
    * @param \Drupal\migrate\Row $row
    *   The row of the migration.
+   * @param string $contrib_role
+   *   The contributor role.
    *
    * @return \Drupal\paragraphs\Entity\Paragraph[]
    *   The created paragraph entities
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function createParagraphs(Row $row) {
+  public function createContributors(Row $row, $contrib_role) {
     // Contributors.
     $contrib_ids = [];
-    $contrib_role = 'author';
     $contrib_names = explode(";", $row->getSourceProperty($contrib_role));
 
     // Create contrib.

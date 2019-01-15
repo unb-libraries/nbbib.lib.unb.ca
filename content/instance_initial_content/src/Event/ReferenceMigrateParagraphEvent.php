@@ -39,12 +39,12 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $destination_ids = $event->getDestinationIdValues();
       $reference_id = $destination_ids[0];
 
+      // Contributors.
       $authors = $this->createContributors($row, 'author');
       $editors = $this->createContributors($row, 'editor');
       $series_editors = $this->createContributors($row, 'series_editor');
       $translators = $this->createContributors($row, 'translator');
       $src_contributors = $this->createContributors($row, 'contributor');
-
       $book_authors = $this->createContributors($row, 'book_author');
       $reviewed_authors = $this->createContributors($row, 'reviewed_author');
 
@@ -57,11 +57,21 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         $book_authors,
         $reviewed_authors
       );
+      // End Contributors.
+
+      // Publication Date.
+      $pub_date = explode('-', $row->getSourceProperty('publication_date'));
+      // End Publication Date.
 
       $reference = \Drupal::entityTypeManager()
         ->getStorage('yabrm_biblio_reference')
         ->load($reference_id);
+
       $reference->setContributors($contributors);
+      $reference->setPublicationYear((int) $pub_date[0]);
+      $reference->setPublicationMonth((int) $pub_date[1]);
+      $reference->setPublicationDay((int) $pub_date[2]);
+
       $reference->save();
     }
   }

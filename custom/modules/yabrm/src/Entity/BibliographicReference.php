@@ -273,6 +273,14 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
   /**
    * {@inheritdoc}
    */
+  public function setPublicationYear($year) {
+    $this->set('publication_year', $year);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getPublicationMonth() {
     return $this->get('publication_month')->value;
   }
@@ -280,8 +288,24 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
   /**
    * {@inheritdoc}
    */
+  public function setPublicationMonth($month) {
+    $this->set('publication_month', $month);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getPublicationDay() {
     return $this->get('publication_day')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPublicationDay($day) {
+    $this->set('publication_day', $day);
+    return $this;
   }
 
   /**

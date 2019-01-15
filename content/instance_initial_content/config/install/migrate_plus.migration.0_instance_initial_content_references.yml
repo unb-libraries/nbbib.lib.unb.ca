@@ -22,6 +22,8 @@ source:
       author: Author
     4:
       title: Title
+    11:
+      publication_date: Publication Date
     41:
       editor: Editor
     42:

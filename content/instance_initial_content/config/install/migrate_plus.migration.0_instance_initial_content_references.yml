@@ -22,8 +22,28 @@ source:
       author: Author
     4:
       title: Title
+    9:
+      url: URL
+    10:
+      abstract_note: Abstract Note
     11:
       publication_date: Publication Date
+    21:
+      short_title: Short Title
+    28:
+      language: Language
+    29:
+      rights: Rights
+    31:
+      archive: Archive
+    32:
+      archive_location: Archive Location
+    33:
+      library_catalog: Library Catalog
+    34:
+      call_number: Call Number
+    35:
+      extra: Extra
     41:
       editor: Editor
     42:
@@ -38,7 +58,17 @@ source:
       reviewed_author: Reviewed Author
 
 process:
+  external_key_ref: key
   title: title
+  url: url
+  abstract_note: abstract_note
+  short_title: short_title
+  rights: rights
+  archive: archive
+  archive_location: archive_location
+  library_catalog: library_catalog
+  call_number: call_number
+  extra: extra
 
 destination:
   plugin: entity:yabrm_biblio_reference

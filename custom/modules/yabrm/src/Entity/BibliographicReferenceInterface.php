@@ -158,6 +158,17 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function getPublicationYear();
 
   /**
+   * Sets the publication year of the reference.
+   *
+   * @param int $year
+   *   Integer publication year.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setPublicationYear(int $year);
+
+  /**
    * Gets the numeric publication month of the reference.
    *
    * @return int
@@ -166,11 +177,33 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function getPublicationMonth();
 
   /**
+   * Sets the publication month of the reference.
+   *
+   * @param int $month
+   *   Integer publication month.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setPublicationMonth(int $month);
+
+  /**
    * Gets the numeric publication day of the reference.
    *
    * @return int
    *   The numeric publication day of the reference.
    */
   public function getPublicationDay();
+
+  /**
+   * Sets the publication day of the reference.
+   *
+   * @param int $day
+   *   Integer publication day.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setPublicationDay(int $day);
 
 }

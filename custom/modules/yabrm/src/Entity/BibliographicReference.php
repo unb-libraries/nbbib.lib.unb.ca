@@ -311,6 +311,21 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
   /**
    * {@inheritdoc}
    */
+  public function getLanguage() {
+    return $this->get('language')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setLanguage($language) {
+    $this->set('language', $language);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 

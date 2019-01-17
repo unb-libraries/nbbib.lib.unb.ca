@@ -62,7 +62,11 @@ process:
   title: title
   url: url
   abstract_note: abstract_note
+  publication_year: publication_year
+  publication_month: publication_month
+  publication_day: publication_day
   short_title: short_title
+  language: language
   rights: rights
   archive: archive
   archive_location: archive_location

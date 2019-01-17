@@ -4,3 +4,10 @@
  * @file
  * Contains cv_util.module.
  */
+
+/**
+ * {@inheritdoc}
+ */
+function cv_util_yabrm_biblio_reference_load($entities) {
+  kint($entities);
+}

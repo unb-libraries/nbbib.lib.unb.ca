@@ -57,21 +57,13 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         $book_authors,
         $reviewed_authors
       );
-      // End Contributors.
 
-      // Publication Date.
-      $pub_date = explode('-', $row->getSourceProperty('publication_date'));
-      // End Publication Date.
-
+      // Instance and update reference.
       $reference = \Drupal::entityTypeManager()
         ->getStorage('yabrm_biblio_reference')
         ->load($reference_id);
 
       $reference->setContributors($contributors);
-      $reference->setPublicationYear((int) $pub_date[0]);
-      $reference->setPublicationMonth((int) $pub_date[1]);
-      $reference->setPublicationDay((int) $pub_date[2]);
-
       $reference->save();
     }
   }

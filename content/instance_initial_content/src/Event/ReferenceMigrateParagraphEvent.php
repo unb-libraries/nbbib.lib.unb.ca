@@ -92,7 +92,12 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $contrib_name = trim($contrib_name, "\x2E");
 
       if (!empty($contrib_name)) {
-        $contrib_id = $this->entitySearch('yabrm_contributor', 'name', $contrib_name)[0];
+        $existing = \Drupal::entityQuery('yabrm_contributor')
+          ->condition('name', $contrib_name)
+          ->execute();
+
+        reset($existing);
+        $contrib_id = key($existing);
 
         // Create contributor if doesn't exist.
         if (empty($contrib_id)) {

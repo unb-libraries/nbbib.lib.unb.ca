@@ -44,6 +44,8 @@ source:
       call_number: Call Number
     35:
       extra: Extra
+    36:
+      notes: Notes
     41:
       editor: Editor
     42:
@@ -73,6 +75,7 @@ process:
   library_catalog: library_catalog
   call_number: call_number
   extra: extra
+  notes: notes
 
 destination:
   plugin: entity:yabrm_biblio_reference

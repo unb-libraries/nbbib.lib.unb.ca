@@ -668,6 +668,27 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['notes'] = BaseFieldDefinition::create('text_long')
+      ->setLabel(t('Notes'))
+      ->setDescription(t('Notes.'))
+      ->setSettings([
+        'default_value' => '',
+        'max_length' => 2048,
+        'text_processing' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'text_long',
+        'weight' => -3,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'text_long',
+        'text_processing' => 0,
+        'weight' => -3,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
       ->setDescription(t('Published.'))

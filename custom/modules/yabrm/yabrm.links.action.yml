@@ -18,3 +18,8 @@ entity.yabrm_journal_article.add_form:
   title: 'Add Journal Article Reference'
   appears_on:
     - entity.yabrm_journal_article.collection
+entity.yabrm_book.add_form:
+  route_name: entity.yabrm_book.add_form
+  title: 'Add Book reference'
+  appears_on:
+    - entity.yabrm_book.collection

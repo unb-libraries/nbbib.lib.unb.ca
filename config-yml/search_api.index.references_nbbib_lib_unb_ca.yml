@@ -57,6 +57,7 @@ field_settings:
     type: integer
 datasource_settings:
   'entity:yabrm_biblio_reference': {  }
+  'entity:yabrm_book': {  }
   'entity:yabrm_journal_article': {  }
 processor_settings:
   add_url: {  }

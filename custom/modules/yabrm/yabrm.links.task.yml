@@ -106,3 +106,30 @@ entity.yabrm_journal_article.delete_form:
   title: Delete
   weight: 10
 
+# Book reference routing definition
+yabrm_book.settings_tab:
+  route_name: yabrm_book.settings
+  title: 'Settings'
+  base_route: yabrm_book.settings
+
+entity.yabrm_book.canonical:
+  route_name: entity.yabrm_book.canonical
+  base_route: entity.yabrm_book.canonical
+  title: 'View'
+
+entity.yabrm_book.edit_form:
+  route_name: entity.yabrm_book.edit_form
+  base_route: entity.yabrm_book.canonical
+  title: 'Edit'
+
+entity.yabrm_book.version_history:
+  route_name: entity.yabrm_book.version_history
+  base_route: entity.yabrm_book.canonical
+  title: 'Revisions'
+
+entity.yabrm_book.delete_form:
+  route_name:  entity.yabrm_book.delete_form
+  base_route:  entity.yabrm_book.canonical
+  title: Delete
+  weight: 10
+

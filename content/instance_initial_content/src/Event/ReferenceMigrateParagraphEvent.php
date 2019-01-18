@@ -16,10 +16,12 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
   const APPLICABLE_MIGRATION_IDS = [
     '1_journal_article_references',
+    '2_book_references',
   ];
 
   const REFERENCE_TYPE_MAPPING = [
     'journalArticle' => 'yabrm_journal_article',
+    'book' => 'yabrm_book',
   ];
 
   /**

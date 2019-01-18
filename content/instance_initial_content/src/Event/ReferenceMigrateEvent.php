@@ -13,6 +13,7 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
 
   const APPLICABLE_MIGRATION_IDS = [
     '1_journal_article_references',
+    '2_book_references',
   ];
 
   /**

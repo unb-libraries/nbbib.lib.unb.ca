@@ -118,3 +118,33 @@ revert all journal article reference revisions:
 delete all journal article reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Journal Article Reference revisions</em> and <em>delete rights</em> for journal article reference entities in question or <em>administer journal article reference entities</em>.'
+add book reference entities:
+  title: 'Create new Book reference entities'
+
+administer book reference entities:
+  title: 'Administer Book reference entities'
+  description: 'Allow to access the administration form to configure Book reference entities.'
+  restrict access: true
+
+delete book reference entities:
+  title: 'Delete Book reference entities'
+
+edit book reference entities:
+  title: 'Edit Book reference entities'
+
+view published book reference entities:
+  title: 'View published Book reference entities'
+
+view unpublished book reference entities:
+  title: 'View unpublished Book reference entities'
+
+view all book reference revisions:
+  title: 'View all Book reference revisions'
+
+revert all book reference revisions:
+  title: 'Revert all Book reference revisions'
+  description: 'Role requires permission <em>view Book reference revisions</em> and <em>edit rights</em> for book reference entities in question or <em>administer book reference entities</em>.'
+
+delete all book reference revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Book reference revisions</em> and <em>delete rights</em> for book reference entities in question or <em>administer book reference entities</em>.'

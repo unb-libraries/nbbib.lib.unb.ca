@@ -27,11 +27,13 @@ class IndexReferenceInformation extends ProcessorPluginBase {
   const APPLIES_ENTITY_TYPES = [
     'yabrm_biblio_reference',
     'yabrm_journal_article',
+    'yabrm_book',
   ];
 
   const ENTITY_TYPE_LABELS = [
     'Drupal\yabrm\Entity\BibliographicReference' => 'Reference',
     'Drupal\yabrm\Entity\JournalArticleReference' => 'Journal Article',
+    'Drupal\yabrm\Entity\BookReference' => 'Book',
   ];
 
   /**

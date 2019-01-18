@@ -1,0 +1,22 @@
+{#
+/**
+ * @file yabrm_book.html.twig
+ * Default theme implementation to present Book reference data.
+ *
+ * This template is used when viewing Book reference pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_yabrm_book()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('yabrm_book') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

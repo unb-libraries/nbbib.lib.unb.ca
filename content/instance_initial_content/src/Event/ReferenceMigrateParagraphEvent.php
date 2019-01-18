@@ -14,13 +14,19 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
-  const MIGRATION_ID = '0_instance_initial_content_references';
+  const APPLICABLE_MIGRATION_IDS = [
+    '1_journal_article_references',
+  ];
+
+  const REFERENCE_TYPE_MAPPING = [
+    'journalArticle' => 'yabrm_journal_article',
+  ];
 
   /**
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
-    return [MigrateEvents::POST_ROW_SAVE => [['onPostRowSave']]];
+    return [MigrateEvents::POST_ROW_SAVE => [['onPostRowSave', 0]]];
   }
 
   /**
@@ -34,7 +40,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
     $migration_id = $migration->id();
 
     // Only act on rows for this migration.
-    if ($migration_id == self::MIGRATION_ID) {
+    if (in_array($migration_id, self::APPLICABLE_MIGRATION_IDS)) {
       $row = $event->getRow();
       $destination_ids = $event->getDestinationIdValues();
       $reference_id = $destination_ids[0];
@@ -59,8 +65,11 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       );
 
       // Instance and update reference.
+      $item_type = $row->getSourceProperty('item_type');
+      $entity_type = self::REFERENCE_TYPE_MAPPING[$item_type];
+
       $reference = \Drupal::entityTypeManager()
-        ->getStorage('yabrm_biblio_reference')
+        ->getStorage($entity_type)
         ->load($reference_id);
 
       $reference->setContributors($contributors);

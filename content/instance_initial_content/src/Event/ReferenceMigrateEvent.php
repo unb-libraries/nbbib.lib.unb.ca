@@ -11,7 +11,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class ReferenceMigrateEvent implements EventSubscriberInterface {
 
-  const MIGRATION_ID = '0_instance_initial_content_references';
+  const APPLICABLE_MIGRATION_IDS = [
+    '1_journal_article_references',
+  ];
 
   /**
    * {@inheritdoc}
@@ -33,8 +35,7 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
     $migration_id = $migration->id();
 
     // Only act on rows for this migration.
-    if ($migration_id == self::MIGRATION_ID) {
-
+    if (in_array($migration_id, self::APPLICABLE_MIGRATION_IDS)) {
       // Publication Date.
       $pub_date = explode('-', $row->getSourceProperty('publication_date'));
 

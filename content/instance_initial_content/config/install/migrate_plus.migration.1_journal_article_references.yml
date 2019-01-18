@@ -1,13 +1,13 @@
-id: 0_instance_initial_content_references
-label: Visual regression testing content for References
+id: 1_journal_article_references
+label: Journal article references from Zotero from NBBIB
 
 migration_tags:
   - CSV
-  - Visual Regression Content
+  - NBBIB Zotero
 
 source:
   plugin: csv
-  path: '/app/html/modules/custom/instance_initial_content/data/csv/0_instance_initial_content_references.csv'
+  path: '/app/html/modules/custom/instance_initial_content/data/csv/1_journal_article_references.csv'
   header_row_count: 1
   keys:
     - key
@@ -60,6 +60,12 @@ source:
       reviewed_author: Reviewed Author
 
 process:
+  type:
+    plugin: skip_on_value
+    method: row
+    not_equals: true
+    value: journalArticle
+    source: item_type
   external_key_ref: key
   title: title
   url: url
@@ -78,7 +84,7 @@ process:
   notes: notes
 
 destination:
-  plugin: entity:yabrm_biblio_reference
+  plugin: entity:yabrm_journal_article
 
 dependencies:
   module:

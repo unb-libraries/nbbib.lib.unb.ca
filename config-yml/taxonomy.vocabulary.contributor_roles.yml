@@ -1,0 +1,9 @@
+uuid: a797d4ed-f245-4201-aa80-3dc8b4a05b31
+langcode: en
+status: true
+dependencies: {  }
+name: 'Contributor Roles'
+vid: contributor_roles
+description: 'Contributor Roles'
+hierarchy: 0
+weight: 0

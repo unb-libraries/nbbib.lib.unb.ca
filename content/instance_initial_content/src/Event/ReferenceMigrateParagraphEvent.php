@@ -130,7 +130,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
     // Create contrib Paragraph references using ids.
     $contributors = [];
-    $voc = 'contributor_roles';
+    $voc = 'yabrm_contributor_roles';
     $field = 'name';
 
     foreach ($contrib_ids as $contrib_id) {

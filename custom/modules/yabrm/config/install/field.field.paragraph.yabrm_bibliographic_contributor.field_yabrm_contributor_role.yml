@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_yabrm_contributor_role
     - paragraphs.paragraphs_type.yabrm_bibliographic_contributor
-    - taxonomy.vocabulary.contributor_roles
+    - taxonomy.vocabulary.yabrm_contributor_roles
 id: paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_role
 field_name: field_yabrm_contributor_role
 entity_type: paragraph
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      contributor_roles: contributor_roles
+      yabrm_contributor_roles: yabrm_contributor_roles
     sort:
       field: name
       direction: asc

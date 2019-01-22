@@ -63,6 +63,156 @@ class JournalArticleReference extends BibliographicReference implements JournalA
   /**
    * {@inheritdoc}
    */
+  public function getPublicationTitle() {
+    return $this->get('publication_title')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPublicationTitle($publication_title) {
+    $this->set('publication_title', $publication_title);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getIssn() {
+    return $this->get('issn')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setIssn($issn) {
+    $this->set('issn', $issn);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDoi() {
+    return $this->get('doi')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setDoi($doi) {
+    $this->set('doi', $doi);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getNumberOfPages() {
+    return $this->get('num_pages')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setNumberOfPages($num_pages) {
+    $this->set('num_pages', $num_pages);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getIssue() {
+    return $this->get('issue')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setIssue($issue) {
+    $this->set('issue', $issue);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getVolume() {
+    return $this->get('volume')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setVolume($volume) {
+    $this->set('volume', $volume);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getJournalAbbreviation() {
+    return $this->get('journal_abbr')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setJournalAbbreviation($journal_abbr) {
+    $this->set('journal_abbr', $journal_abbr);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSeries() {
+    return $this->get('series')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSeries($series) {
+    $this->set('series', $series);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSeriesText() {
+    return $this->get('series_text')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSeriesText($series_text) {
+    $this->set('series_text', $series_text);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSeriesTitle() {
+    return $this->get('series_title')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSeriesTitle($series_title) {
+    $this->set('series_title', $series_title);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 

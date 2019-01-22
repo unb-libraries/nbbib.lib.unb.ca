@@ -103,7 +103,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       // Trim whitespace and remove periods.
       $contrib_name = trim($contrib_name, "\x2E");
       // Ensure consistent name casing.
-      $contrib_name = ucwords($contrib_name);
+      $contrib_name = ucwords(mb_strtolower($contrib_name));
 
       if (!empty($contrib_name)) {
         $existing = \Drupal::entityQuery('yabrm_contributor')

@@ -81,446 +81,6 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
   /**
    * {@inheritdoc}
    */
-  protected function urlRouteParameters($rel) {
-    $uri_route_parameters = parent::urlRouteParameters($rel);
-
-    if ($rel === 'revision_revert' && $this instanceof RevisionableInterface) {
-      $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
-    }
-    elseif ($rel === 'revision_delete' && $this instanceof RevisionableInterface) {
-      $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
-    }
-
-    return $uri_route_parameters;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function preSave(EntityStorageInterface $storage) {
-    parent::preSave($storage);
-
-    foreach (array_keys($this->getTranslationLanguages()) as $langcode) {
-      $translation = $this->getTranslation($langcode);
-
-      // If no owner has been set explicitly, make the anonymous user the owner.
-      if (!$translation->getOwner()) {
-        $translation->setOwnerId(0);
-      }
-    }
-
-    // If no revision author has been set explicitly, make the yabrm_biblio_reference owner the
-    // revision author.
-    if (!$this->getRevisionUser()) {
-      $this->setRevisionUserId($this->getOwnerId());
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getName() {
-    return $this->get('title')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setName($name) {
-    $this->set('title', $name);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCreatedTime() {
-    return $this->get('created')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setCreatedTime($timestamp) {
-    $this->set('created', $timestamp);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOwner() {
-    return $this->get('user_id')->entity;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOwnerId() {
-    return $this->get('user_id')->target_id;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setOwnerId($uid) {
-    $this->set('user_id', $uid);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setOwner(UserInterface $account) {
-    $this->set('user_id', $account->id());
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isPublished() {
-    return (bool) $this->getEntityKey('status');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setPublished($published) {
-    $this->set('status', $published ? TRUE : FALSE);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getContributors($role = NULL) {
-    $contributors = [];
-    $paragraphs = $this->get('contributors')->referencedEntities();
-
-    foreach ($paragraphs as $paragraph) {
-      $person = $paragraph->get('field_yabrm_contributor_person')->entity;
-      $person_role = $paragraph->get('field_yabrm_contributor_role')->value;
-      if (empty($person_role) || strtolower($role) == strtolower($person_role)) {
-        $contributors[] = $person;
-      }
-    }
-
-    return $contributors;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setContributors(array $contributors) {
-    $this->set('contributors', $contributors);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getSortTimestamp() {
-    $year = $this->getPublicationYear();
-    $month = $this->getPublicationMonth();
-    $day = $this->getPublicationDay();
-
-    if (!empty($year) && !empty($month) && !empty($day)) {
-      return mktime(1, 1, 1, $month, $day, $year);
-    }
-
-    if (!empty($year) && !empty($month) && empty($day)) {
-      return mktime(1, 1, 1, $month, 1, $year);
-    }
-
-    if (!empty($year) && empty($month) && empty($day)) {
-      return mktime(1, 1, 1, 1, 1, $year);
-    }
-
-    return self::NO_DATE_INFO_TIMESTAMP;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getDisplayDate() {
-    $year = $this->getPublicationYear();
-    $month = $this->getPublicationMonth();
-    $day = $this->getPublicationDay();
-
-    if (!empty($year) && !empty($month) && !empty($day)) {
-      return "$year-$month-$day";
-    }
-
-    if (!empty($year) && !empty($month) && empty($day)) {
-      return "$year-$month";
-    }
-
-    if (!empty($year) && empty($month) && empty($day)) {
-      return $year;
-    }
-
-    return NULL;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getPublicationYear() {
-    return $this->get('publication_year')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setPublicationYear($year) {
-    $this->set('publication_year', $year);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getPublicationMonth() {
-    return $this->get('publication_month')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setPublicationMonth($month) {
-    $this->set('publication_month', $month);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getPublicationDay() {
-    return $this->get('publication_day')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setPublicationDay($day) {
-    $this->set('publication_day', $day);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getLanguage() {
-    return $this->get('language')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setLanguage($language) {
-    $this->set('language', $language);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getTitle() {
-    return $this->get('title')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setTitle($title) {
-    $this->set('title', $title);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getShortTitle() {
-    return $this->get('short_title')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setShortTitle($short_title) {
-    $this->set('short_title', $short_title);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getExternalKeyRef() {
-    return $this->get('short_title')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setExternalKeyRef($external_key_ref) {
-    $this->set('external_key_ref', $external_key_ref);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getUrl() {
-    return $this->get('url')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setUrl($url) {
-    $this->set('url', $url);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getAbstractNote() {
-    return $this->get('abstract_note')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setAbstractNote($abstract_note) {
-    $this->set('abstract_note', $abstract_note);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getRights() {
-    return $this->get('url')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setRights($rights) {
-    $this->set('rights', $rights);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getArchive() {
-    return $this->get('archive')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setArchive($archive) {
-    $this->set('archive', $archive);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getArchiveLocation() {
-    return $this->get('archive_location')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setArchiveLocation($archive_location) {
-    $this->set('archive_location', $archive_location);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getLibraryCatalog() {
-    return $this->get('library_catalog')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setLibraryCatalog($library_catalog) {
-    $this->set('library_catalog', $library_catalog);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCallNumber() {
-    return $this->get('call_number')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setCallNumber($call_number) {
-    $this->set('call_number', $call_number);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getExtra() {
-    return $this->get('extra')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setExtra($extra) {
-    $this->set('extra', $extra);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getNotes() {
-    return $this->get('extra')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setNotes($notes) {
-    $this->set('notes', $notes);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCollections() {
-    return $this->get('collections')->referencedEntities();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setCollections(array $collections) {
-    $this->set('collections', $collections);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
@@ -929,6 +489,446 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDescription(t('The time that the entity was last edited.'));
 
     return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preSave(EntityStorageInterface $storage) {
+    parent::preSave($storage);
+
+    foreach (array_keys($this->getTranslationLanguages()) as $langcode) {
+      $translation = $this->getTranslation($langcode);
+
+      // If no owner has been set explicitly, make the anonymous user the owner.
+      if (!$translation->getOwner()) {
+        $translation->setOwnerId(0);
+      }
+    }
+
+    // If no revision author has been set explicitly, make the yabrm_biblio_reference owner the
+    // revision author.
+    if (!$this->getRevisionUser()) {
+      $this->setRevisionUserId($this->getOwnerId());
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOwnerId() {
+    return $this->get('user_id')->target_id;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getName() {
+    return $this->get('title')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setName($name) {
+    $this->set('title', $name);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCreatedTime() {
+    return $this->get('created')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCreatedTime($timestamp) {
+    $this->set('created', $timestamp);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOwner() {
+    return $this->get('user_id')->entity;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setOwnerId($uid) {
+    $this->set('user_id', $uid);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setOwner(UserInterface $account) {
+    $this->set('user_id', $account->id());
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isPublished() {
+    return (bool) $this->getEntityKey('status');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPublished($published) {
+    $this->set('status', $published ? TRUE : FALSE);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getContributors($role = NULL) {
+    $contributors = [];
+    $paragraphs = $this->get('contributors')->referencedEntities();
+
+    foreach ($paragraphs as $paragraph) {
+      $person = $paragraph->get('field_yabrm_contributor_person')->entity;
+      $person_role = $paragraph->get('field_yabrm_contributor_role')->value;
+      if (empty($person_role) || strtolower($role) == strtolower($person_role)) {
+        $contributors[] = $person;
+      }
+    }
+
+    return $contributors;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setContributors(array $contributors) {
+    $this->set('contributors', $contributors);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSortTimestamp() {
+    $year = $this->getPublicationYear();
+    $month = $this->getPublicationMonth();
+    $day = $this->getPublicationDay();
+
+    if (!empty($year) && !empty($month) && !empty($day)) {
+      return mktime(1, 1, 1, $month, $day, $year);
+    }
+
+    if (!empty($year) && !empty($month) && empty($day)) {
+      return mktime(1, 1, 1, $month, 1, $year);
+    }
+
+    if (!empty($year) && empty($month) && empty($day)) {
+      return mktime(1, 1, 1, 1, 1, $year);
+    }
+
+    return self::NO_DATE_INFO_TIMESTAMP;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPublicationYear() {
+    return $this->get('publication_year')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPublicationMonth() {
+    return $this->get('publication_month')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPublicationDay() {
+    return $this->get('publication_day')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDisplayDate() {
+    $year = $this->getPublicationYear();
+    $month = $this->getPublicationMonth();
+    $day = $this->getPublicationDay();
+
+    if (!empty($year) && !empty($month) && !empty($day)) {
+      return "$year-$month-$day";
+    }
+
+    if (!empty($year) && !empty($month) && empty($day)) {
+      return "$year-$month";
+    }
+
+    if (!empty($year) && empty($month) && empty($day)) {
+      return $year;
+    }
+
+    return NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPublicationYear($year) {
+    $this->set('publication_year', $year);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPublicationMonth($month) {
+    $this->set('publication_month', $month);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPublicationDay($day) {
+    $this->set('publication_day', $day);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLanguage() {
+    return $this->get('language')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setLanguage($language) {
+    $this->set('language', $language);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTitle() {
+    return $this->get('title')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setTitle($title) {
+    $this->set('title', $title);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getShortTitle() {
+    return $this->get('short_title')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setShortTitle($short_title) {
+    $this->set('short_title', $short_title);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getExternalKeyRef() {
+    return $this->get('short_title')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setExternalKeyRef($external_key_ref) {
+    $this->set('external_key_ref', $external_key_ref);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getUrl() {
+    return $this->get('url')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setUrl($url) {
+    $this->set('url', $url);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getAbstractNote() {
+    return $this->get('abstract_note')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setAbstractNote($abstract_note) {
+    $this->set('abstract_note', $abstract_note);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getRights() {
+    return $this->get('url')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setRights($rights) {
+    $this->set('rights', $rights);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getArchive() {
+    return $this->get('archive')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setArchive($archive) {
+    $this->set('archive', $archive);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getArchiveLocation() {
+    return $this->get('archive_location')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setArchiveLocation($archive_location) {
+    $this->set('archive_location', $archive_location);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLibraryCatalog() {
+    return $this->get('library_catalog')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setLibraryCatalog($library_catalog) {
+    $this->set('library_catalog', $library_catalog);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCallNumber() {
+    return $this->get('call_number')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCallNumber($call_number) {
+    $this->set('call_number', $call_number);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getExtra() {
+    return $this->get('extra')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setExtra($extra) {
+    $this->set('extra', $extra);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getNotes() {
+    return $this->get('extra')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setNotes($notes) {
+    $this->set('notes', $notes);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCollections() {
+    return $this->get('collections')->referencedEntities();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCollections(array $collections) {
+    $this->set('collections', $collections);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function urlRouteParameters($rel) {
+    $uri_route_parameters = parent::urlRouteParameters($rel);
+
+    if ($rel === 'revision_revert' && $this instanceof RevisionableInterface) {
+      $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
+    }
+    elseif ($rel === 'revision_delete' && $this instanceof RevisionableInterface) {
+      $uri_route_parameters[$this->getEntityTypeId() . '_revision'] = $this->getRevisionId();
+    }
+
+    return $uri_route_parameters;
   }
 
 }

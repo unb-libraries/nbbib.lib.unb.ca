@@ -326,6 +326,201 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
   /**
    * {@inheritdoc}
    */
+  public function getTitle() {
+    return $this->get('title')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setTitle($title) {
+    $this->set('title', $title);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getShortTitle() {
+    return $this->get('short_title')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setShortTitle($short_title) {
+    $this->set('short_title', $short_title);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getExternalKeyRef() {
+    return $this->get('short_title')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setExternalKeyRef($external_key_ref) {
+    $this->set('external_key_ref', $external_key_ref);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getUrl() {
+    return $this->get('url')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setUrl($url) {
+    $this->set('url', $url);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getAbstractNote() {
+    return $this->get('abstract_note')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setAbstractNote($abstract_note) {
+    $this->set('abstract_note', $abstract_note);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getRights() {
+    return $this->get('url')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setRights($rights) {
+    $this->set('rights', $rights);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getArchive() {
+    return $this->get('archive')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setArchive($archive) {
+    $this->set('archive', $archive);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getArchiveLocation() {
+    return $this->get('archive_location')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setArchiveLocation($archive_location) {
+    $this->set('archive_location', $archive_location);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLibraryCatalog() {
+    return $this->get('library_catalog')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setLibraryCatalog($library_catalog) {
+    $this->set('library_catalog', $library_catalog);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCallNumber() {
+    return $this->get('call_number')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCallNumber($call_number) {
+    $this->set('call_number', $call_number);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getExtra() {
+    return $this->get('extra')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setExtra($extra) {
+    $this->set('extra', $extra);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getNotes() {
+    return $this->get('extra')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setNotes($notes) {
+    $this->set('notes', $notes);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCollections() {
+    return $this->get('collections')->referencedEntities();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCollections(array $collections) {
+    $this->set('collections', $collections);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
@@ -699,7 +894,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
         'weight' => -3,
       ]);
 
-    $fields['collection'] = BaseFieldDefinition::create('entity_reference')
+    $fields['collections'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Collection(s)'))
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setSettings(

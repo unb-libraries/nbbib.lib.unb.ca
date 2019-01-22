@@ -166,7 +166,7 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.
    */
-  public function setPublicationYear(int $year);
+  public function setPublicationYear($year);
 
   /**
    * Gets the numeric publication month of the reference.
@@ -185,7 +185,7 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.
    */
-  public function setPublicationMonth(int $month);
+  public function setPublicationMonth($month);
 
   /**
    * Gets the numeric publication day of the reference.
@@ -204,7 +204,7 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.
    */
-  public function setPublicationDay(int $day);
+  public function setPublicationDay($day);
 
   /**
    * Gets the Bibliographic Reference language.
@@ -223,6 +223,253 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.
    */
-  public function setlanguage($language);
+  public function setLanguage($language);
+
+  /**
+   * Gets the Bibliographic Reference title.
+   *
+   * @return string
+   *   Title of the Bibliographic Reference.
+   */
+  public function getTitle();
+
+  /**
+   * Sets the Bibliographic Reference title.
+   *
+   * @param string $title
+   *   The Bibliographic Reference title.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setTitle($title);
+
+  /**
+   * Gets the Bibliographic Reference short title.
+   *
+   * @return string
+   *   Short title of the Bibliographic Reference.
+   */
+  public function getShortTitle();
+
+  /**
+   * Sets the Bibliographic Reference title.
+   *
+   * @param string $short_title
+   *   The Bibliographic Reference short title.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setShortTitle($short_title);
+
+  /**
+   * Gets the Bibliographic Reference external key reference.
+   *
+   * @return string
+   *   External key reference of the Bibliographic Reference.
+   */
+  public function getExternalKeyRef();
+
+  /**
+   * Sets the Bibliographic Reference external key reference.
+   *
+   * @param string $external_key_ref
+   *   The Bibliographic Reference external key reference.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setExternalKeyRef($external_key_ref);
+
+  /**
+   * Gets the Bibliographic Reference URL.
+   *
+   * @return string
+   *   URL of the Bibliographic Reference.
+   */
+  public function getUrl();
+
+  /**
+   * Sets the Bibliographic Reference URL.
+   *
+   * @param string $url
+   *   The Bibliographic Reference URL.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setUrl($url);
+
+  /**
+   * Gets the Bibliographic Reference Abstract Note.
+   *
+   * @return string
+   *   Abstract note of the Bibliographic Reference.
+   */
+  public function getAbstractNote();
+
+  /**
+   * Sets the Bibliographic Reference Abstract Note.
+   *
+   * @param string $abstract_note
+   *   The Bibliographic Reference Abstract Note.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setAbstractNote($abstract_note);
+
+  /**
+   * Gets the Bibliographic Reference Rights.
+   *
+   * @return string
+   *   Rights of the Bibliographic Reference.
+   */
+  public function getRights();
+
+  /**
+   * Sets the Bibliographic Reference Rights.
+   *
+   * @param string $rights
+   *   The Bibliographic Reference Rights.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setRights($rights);
+
+  /**
+   * Gets the Bibliographic Reference Archive.
+   *
+   * @return string
+   *   The archive of the Bibliographic Reference.
+   */
+  public function getArchive();
+
+  /**
+   * Sets the Bibliographic Reference Archive.
+   *
+   * @param string $archive
+   *   The Bibliographic Reference archive.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setArchive($archive);
+
+  /**
+   * Gets the Bibliographic Reference Archive Location.
+   *
+   * @return string
+   *   The archive location of the Bibliographic Reference.
+   */
+  public function getArchiveLocation();
+
+  /**
+   * Sets the Bibliographic Reference Archive Location.
+   *
+   * @param string $archive_location
+   *   The Bibliographic Reference archive location.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setArchiveLocation($archive_location);
+
+  /**
+   * Gets the Bibliographic Reference Archive Library Catalog.
+   *
+   * @return string
+   *   The library catalog of the Bibliographic Reference.
+   */
+  public function getLibraryCatalog();
+
+  /**
+   * Sets the Bibliographic Reference Archive Library Catalog.
+   *
+   * @param string $library_catalog
+   *   The Bibliographic Reference archive location.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setLibraryCatalog($library_catalog);
+
+  /**
+   * Gets the Bibliographic Reference Archive Call Number.
+   *
+   * @return string
+   *   The call number of the Bibliographic Reference.
+   */
+  public function getCallNumber();
+
+  /**
+   * Sets the Bibliographic Reference Archive call number.
+   *
+   * @param string $call_number
+   *   The Bibliographic Reference call number.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setCallNumber($call_number);
+
+  /**
+   * Gets the Bibliographic Reference Extra Information.
+   *
+   * @return string
+   *   The extra information of the Bibliographic Reference.
+   */
+  public function getExtra();
+
+  /**
+   * Sets the Bibliographic Reference Extra Information.
+   *
+   * @param string $extra
+   *   The Bibliographic Reference extra.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setExtra($extra);
+
+  /**
+   * Gets the Bibliographic Reference Notes.
+   *
+   * @return string
+   *   The notes of the Bibliographic Reference.
+   */
+  public function getNotes();
+
+  /**
+   * Sets the Bibliographic Reference Notes.
+   *
+   * @param string $notes
+   *   The Bibliographic Reference notes.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setNotes($notes);
+
+  /**
+   * Gets the Bibliographic Reference Collections.
+   *
+   * @return \Drupal\taxonomy\TermInterface[]
+   *   The collections of the bibliographic reference.
+   */
+  public function getCollections();
+
+  /**
+   * Sets the Bibliographic Reference Notes.
+   *
+   * @param \Drupal\taxonomy\TermInterface[] $collections
+   *   An array of taxonomy terms.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setCollections(array $collections);
 
 }

@@ -58,6 +58,26 @@ source:
       book_author: Book Author
     55:
       reviewed_author: Reviewed Author
+    5:
+      publication_title: Publication Title
+    7:
+      issn: ISSN
+    8:
+      doi: DOI
+    15:
+      num_pages: Number of Pages
+    17:
+      issue: Issue
+    18:
+      volume: Volume
+    20:
+      journal_abbr: Journal Abbreviation
+    22:
+      series: Series
+    24:
+      series_text: Series Text
+    25:
+      series_title: Series Title
 
 process:
   type:
@@ -82,6 +102,16 @@ process:
   call_number: call_number
   extra: extra
   notes: notes
+  publication_title: publication_title
+  issn: issn
+  doi: doi
+  num_pages: num_pages
+  issue: issue
+  volume: volume
+  journal_abbr: journal_abbr
+  series: series
+  series_text: series_text
+  series_title: series_title
 
 destination:
   plugin: entity:yabrm_journal_article

@@ -2,13 +2,8 @@
 
 namespace Drupal\yabrm\Entity;
 
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Entity\RevisionableContentEntityBase;
-use Drupal\Core\Entity\RevisionableInterface;
-use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\user\UserInterface;
 use Drupal\yabrm\Entity\BibliographicReference;
 
 /**
@@ -71,6 +66,25 @@ class JournalArticleReference extends BibliographicReference implements JournalA
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
+    $fields['publication_title'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Publication Title'))
+      ->setSettings([
+        'max_length' => 512,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['issn'] = BaseFieldDefinition::create('string')
       ->setLabel(t('ISSN'))
       ->setSettings([
@@ -109,6 +123,25 @@ class JournalArticleReference extends BibliographicReference implements JournalA
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['num_pages'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Number of Pages'))
+      ->setSettings([
+        'max_length' => 512,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['issue'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Issue'))
       ->setSettings([
@@ -127,7 +160,6 @@ class JournalArticleReference extends BibliographicReference implements JournalA
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
-
 
     $fields['volume'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Volume'))
@@ -167,26 +199,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['short_title'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Short Title'))
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['series_text'] = BaseFieldDefinition::create('string')
+    $fields['series'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Series Text'))
       ->setSettings([
         'max_length' => 512,
@@ -226,25 +239,6 @@ class JournalArticleReference extends BibliographicReference implements JournalA
 
     $fields['series_title'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Series Title'))
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['archive'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Archive'))
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,

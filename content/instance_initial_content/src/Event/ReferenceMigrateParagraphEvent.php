@@ -6,6 +6,7 @@ use Drupal\migrate\Event\MigrateEvents;
 use Drupal\migrate\Event\MigratePostRowSaveEvent;
 use Drupal\migrate\Row;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\yabrm\Entity\BibliographicContributor;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -129,8 +130,24 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
     // Create contrib Paragraph references using ids.
     $contributors = [];
+    $voc = 'contributor_roles';
+    $field = 'name';
 
     foreach ($contrib_ids as $contrib_id) {
+      // Retrieve contributor role ID, or create term.
+      $role_term = ucwords(str_replace('_', ' ', $contrib_role));
+      $role_tid = $this->taxTermExists($role_term, $field, $voc);
+
+      if (!$role_tid) {
+        $term = Term::create([
+          'vid' => $voc,
+          $field => $role_term,
+        ]);
+        $term->save();
+
+        $role_tid = $term->id();
+      }
+
       // Create Paragraph.
       $values = [
         [
@@ -139,7 +156,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         ],
         [
           'field' => 'field_yabrm_contributor_role',
-          'value' => $contrib_role,
+          'value' => $role_tid,
         ],
       ];
 
@@ -188,6 +205,32 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
     $paragraph->save();
     return $paragraph;
+  }
+
+  /**
+   * Check if a taxonomy term exists.
+   *
+   * @param string $value
+   *   The name of the term.
+   * @param string $field
+   *   The field to match when validating.
+   * @param string $vocabulary
+   *   The vid to match.
+   *
+   * @return mixed
+   *   Contains an INT of the tid if exists, FALSE otherwise.
+   */
+  public function taxTermExists($value, $field, $vocabulary) {
+    $query = \Drupal::entityQuery('taxonomy_term');
+    $query->condition('vid', $vocabulary);
+    $query->condition($field, $value);
+    $tids = $query->execute();
+    if (!empty($tids)) {
+      foreach ($tids as $tid) {
+        return $tid;
+      }
+    }
+    return FALSE;
   }
 
 }

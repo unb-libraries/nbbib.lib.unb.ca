@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: yabrm_bibliographic_contributor
-label: 'Contributor'
+label: Contributor
 icon_uuid: null
 description: ''
 behavior_plugins: {  }

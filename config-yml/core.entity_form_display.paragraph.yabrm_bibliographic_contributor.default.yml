@@ -23,10 +23,11 @@ content:
   field_yabrm_contributor_role:
     weight: 1
     settings:
+      match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: entity_reference_autocomplete
     region: content
 hidden:
   created: true

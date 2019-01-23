@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Link\LinkItemInterface;
 use Drupal\user\UserInterface;
 
 /**
@@ -257,12 +258,18 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['url'] = BaseFieldDefinition::create('uri')
+    $fields['url'] = BaseFieldDefinition::create('link')
       ->setLabel(t('URL'))
       ->setDescription(t('The fully-qualified URL of the feed.'))
       ->setDisplayOptions('form', [
-        'type' => 'uri',
+        'type' => 'link',
         'weight' => -3,
+      ])
+      ->setSettings([
+        'default_value' => '',
+        'max_length' => 560,
+        'link_type' => LinkItemInterface::LINK_GENERIC,
+        'title' => DRUPAL_DISABLED,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
@@ -405,6 +412,27 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['extra'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Extra'))
+      ->setSettings([
+        'default_value' => '',
+        'max_length' => 2048,
+        'text_processing' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'text_long',
+        'weight' => -3,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'text_long',
+        'text_processing' => 0,
+        'weight' => -3,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['notes_private'] = BaseFieldDefinition::create('text_long')
+      ->setLabel(t('Notes (private/Zotero)'))
+      ->setDescription(t('Notes (private/Zotero).'))
       ->setSettings([
         'default_value' => '',
         'max_length' => 2048,
@@ -882,6 +910,21 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    */
   public function setExtra($extra) {
     $this->set('extra', $extra);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getNotesPrivate() {
+    return $this->get('extra')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setNotesPrivate($notes) {
+    $this->set('notes', $notes);
     return $this;
   }
 

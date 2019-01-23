@@ -435,6 +435,25 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function setExtra($extra);
 
   /**
+   * Gets the Bibliographic Reference Private Notes.
+   *
+   * @return string
+   *   The notes of the Bibliographic Reference.
+   */
+  public function getNotesPrivate();
+
+  /**
+   * Sets the Bibliographic Reference Private Notes.
+   *
+   * @param string $notes
+   *   The Bibliographic Reference notes.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setNotesPrivate($notes);
+
+  /**
    * Gets the Bibliographic Reference Notes.
    *
    * @return string

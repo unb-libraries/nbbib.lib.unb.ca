@@ -66,6 +66,18 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
       }
 
       $row->setSourceProperty('language', $language);
+
+      // URL.
+      $url = $row->getSourceProperty('url');
+      $uri = $url;
+
+      $url = [
+        'uri' => $uri,
+        'title' => "Zotero URL",
+        'options' => [],
+      ];
+
+      $row->setSourceProperty('url', $url);
     }
   }
 

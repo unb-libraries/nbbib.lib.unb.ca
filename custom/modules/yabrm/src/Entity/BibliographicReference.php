@@ -261,6 +261,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['url'] = BaseFieldDefinition::create('link')
       ->setLabel(t('URL'))
       ->setDescription(t('The fully-qualified URL of the feed.'))
+      ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setDisplayOptions('form', [
         'type' => 'link',
         'weight' => -3,
@@ -269,7 +270,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
         'default_value' => '',
         'max_length' => 560,
         'link_type' => LinkItemInterface::LINK_GENERIC,
-        'title' => DRUPAL_DISABLED,
+        'title' => DRUPAL_ENABLED,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);

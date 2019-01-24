@@ -270,7 +270,6 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
         'default_value' => '',
         'max_length' => 560,
         'link_type' => LinkItemInterface::LINK_GENERIC,
-        'title' => DRUPAL_ENABLED,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);

@@ -7,7 +7,7 @@ migration_tags:
 
 source:
   plugin: csv
-  path: '/app/html/modules/custom/instance_initial_content/data/csv/1_journal_article_references.csv'
+  path: '/app/html/modules/custom/instance_initial_content/data/csv/3_book_section_references.csv'
   header_row_count: 1
   keys:
     - key

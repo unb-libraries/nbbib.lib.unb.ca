@@ -118,6 +118,7 @@ revert all journal article reference revisions:
 delete all journal article reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Journal Article Reference revisions</em> and <em>delete rights</em> for journal article reference entities in question or <em>administer journal article reference entities</em>.'
+
 add book reference entities:
   title: 'Create new Book reference entities'
 
@@ -148,3 +149,34 @@ revert all book reference revisions:
 delete all book reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Book reference revisions</em> and <em>delete rights</em> for book reference entities in question or <em>administer book reference entities</em>.'
+
+add book section reference entities:
+  title: 'Create new Book Section reference entities'
+
+administer book section reference entities:
+  title: 'Administer Book Section reference entities'
+  description: 'Allow to access the administration form to configure Book Section reference entities.'
+  restrict access: true
+
+delete book section reference entities:
+  title: 'Delete Book Section reference entities'
+
+edit book section reference entities:
+  title: 'Edit Book Section reference entities'
+
+view published book section reference entities:
+  title: 'View published Book Section reference entities'
+
+view unpublished book section reference entities:
+  title: 'View unpublished Book Section reference entities'
+
+view all book section reference revisions:
+  title: 'View all Book Section reference revisions'
+
+revert all book section reference revisions:
+  title: 'Revert all Book Section reference revisions'
+  description: 'Role requires permission <em>view Book Section reference revisions</em> and <em>edit rights</em> for book section reference entities in question or <em>administer book section reference entities</em>.'
+
+delete all book section reference revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Book Section reference revisions</em> and <em>delete rights</em> for book section reference entities in question or <em>administer book section reference entities</em>.'

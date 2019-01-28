@@ -68,3 +68,17 @@ yabrm_book.admin.structure.settings:
   description: 'Configure Book reference entities'
   route_name: yabrm_book.settings
   parent: system.admin_structure
+
+# Book Section reference menu items definition
+entity.yabrm_book_section.collection:
+  title: 'Book Section reference list'
+  route_name: entity.yabrm_book_section.collection
+  description: 'List Book Section reference entities'
+  parent: system.admin_structure
+  weight: 100
+
+yabrm_book_section.admin.structure.settings:
+  title: 'Book Section reference settings'
+  description: 'Configure Book Section reference entities'
+  route_name: yabrm_book_section.settings
+  parent: system.admin_structure

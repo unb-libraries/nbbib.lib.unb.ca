@@ -101,7 +101,7 @@ process:
   library_catalog: library_catalog
   call_number: call_number
   extra: extra
-  notes: notes
+  notes_private: notes
   publication_title: publication_title
   issn: issn
   doi: doi

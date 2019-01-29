@@ -97,7 +97,7 @@ process:
   library_catalog: library_catalog
   call_number: call_number
   extra: extra
-  notes: notes
+  notes_private: notes
   isbn: isbn
   num_pages: num_pages
   volume: volume

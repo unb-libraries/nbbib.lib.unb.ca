@@ -133,29 +133,3 @@ entity.yabrm_book.delete_form:
   title: Delete
   weight: 10
 
-# Book Section reference routing definition
-yabrm_book_section.settings_tab:
-  route_name: yabrm_book_section.settings
-  title: 'Settings'
-  base_route: yabrm_book_section.settings
-
-entity.yabrm_book_section.canonical:
-  route_name: entity.yabrm_book_section.canonical
-  base_route: entity.yabrm_book_section.canonical
-  title: 'View'
-
-entity.yabrm_book_section.edit_form:
-  route_name: entity.yabrm_book_section.edit_form
-  base_route: entity.yabrm_book_section.canonical
-  title: 'Edit'
-
-entity.yabrm_book_section.version_history:
-  route_name: entity.yabrm_book_section.version_history
-  base_route: entity.yabrm_book_section.canonical
-  title: 'Revisions'
-
-entity.yabrm_book_section.delete_form:
-  route_name:  entity.yabrm_book_section.delete_form
-  base_route:  entity.yabrm_book_section.canonical
-  title: Delete
-  weight: 10

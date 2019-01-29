@@ -28,14 +28,12 @@ class IndexReferenceInformation extends ProcessorPluginBase {
     'yabrm_biblio_reference',
     'yabrm_journal_article',
     'yabrm_book',
-    'yabrm_book_section',
   ];
 
   const ENTITY_TYPE_LABELS = [
     'Drupal\yabrm\Entity\BibliographicReference' => 'Reference',
     'Drupal\yabrm\Entity\JournalArticleReference' => 'Journal Article',
     'Drupal\yabrm\Entity\BookReference' => 'Book',
-    'Drupal\yabrm\Entity\BookSectionReference' => 'Book Section',
   ];
 
   /**

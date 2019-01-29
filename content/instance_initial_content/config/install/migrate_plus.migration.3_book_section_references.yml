@@ -82,7 +82,7 @@ process:
     plugin: skip_on_value
     method: row
     not_equals: true
-    value: bookSection
+    value: book_section
     source: item_type
   external_key_ref: key
   title: title

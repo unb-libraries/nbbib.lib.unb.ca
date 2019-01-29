@@ -5,9 +5,9 @@ namespace Drupal\yabrm\Entity;
 use Drupal\views\EntityViewsData;
 
 /**
- * Provides Views data for Journal Article Reference entities.
+ * Provides Views data for Book section reference entities.
  */
-class JournalArticleReferenceViewsData extends EntityViewsData {
+class BookSectionReferenceViewsData extends EntityViewsData {
 
   /**
    * {@inheritdoc}
@@ -17,6 +17,7 @@ class JournalArticleReferenceViewsData extends EntityViewsData {
 
     // Additional information for Views integration, such as table joins, can be
     // put here.
+
     return $data;
   }
 

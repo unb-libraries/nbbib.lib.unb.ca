@@ -23,3 +23,8 @@ entity.yabrm_book.add_form:
   title: 'Add Book reference'
   appears_on:
     - entity.yabrm_book.collection
+entity.yabrm_book_section.add_form:
+  route_name: entity.yabrm_book_section.add_form
+  title: 'Add Book section reference'
+  appears_on:
+    - entity.yabrm_book_section.collection

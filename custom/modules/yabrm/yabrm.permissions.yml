@@ -148,3 +148,33 @@ revert all book reference revisions:
 delete all book reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Book reference revisions</em> and <em>delete rights</em> for book reference entities in question or <em>administer book reference entities</em>.'
+add book section reference entities:
+  title: 'Create new Book section reference entities'
+
+administer book section reference entities:
+  title: 'Administer Book section reference entities'
+  description: 'Allow to access the administration form to configure Book section reference entities.'
+  restrict access: true
+
+delete book section reference entities:
+  title: 'Delete Book section reference entities'
+
+edit book section reference entities:
+  title: 'Edit Book section reference entities'
+
+view published book section reference entities:
+  title: 'View published Book section reference entities'
+
+view unpublished book section reference entities:
+  title: 'View unpublished Book section reference entities'
+
+view all book section reference revisions:
+  title: 'View all Book section reference revisions'
+
+revert all book section reference revisions:
+  title: 'Revert all Book section reference revisions'
+  description: 'Role requires permission <em>view Book section reference revisions</em> and <em>edit rights</em> for book section reference entities in question or <em>administer book section reference entities</em>.'
+
+delete all book section reference revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Book section reference revisions</em> and <em>delete rights</em> for book section reference entities in question or <em>administer book section reference entities</em>.'

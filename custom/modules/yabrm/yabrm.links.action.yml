@@ -28,3 +28,8 @@ entity.yabrm_book_section.add_form:
   title: 'Add Book section reference'
   appears_on:
     - entity.yabrm_book_section.collection
+entity.yabrm_thesis.add_form:
+  route_name: entity.yabrm_thesis.add_form
+  title: 'Add Thesis reference'
+  appears_on:
+    - entity.yabrm_thesis.collection

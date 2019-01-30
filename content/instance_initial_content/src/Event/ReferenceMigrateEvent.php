@@ -15,6 +15,7 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
     '1_journal_article_references',
     '2_book_references',
     '3_book_section_references',
+    '4_thesis_references',
   ];
 
   /**

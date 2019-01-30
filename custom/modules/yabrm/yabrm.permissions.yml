@@ -178,3 +178,33 @@ revert all book section reference revisions:
 delete all book section reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Book section reference revisions</em> and <em>delete rights</em> for book section reference entities in question or <em>administer book section reference entities</em>.'
+add thesis reference entities:
+  title: 'Create new Thesis reference entities'
+
+administer thesis reference entities:
+  title: 'Administer Thesis reference entities'
+  description: 'Allow to access the administration form to configure Thesis reference entities.'
+  restrict access: true
+
+delete thesis reference entities:
+  title: 'Delete Thesis reference entities'
+
+edit thesis reference entities:
+  title: 'Edit Thesis reference entities'
+
+view published thesis reference entities:
+  title: 'View published Thesis reference entities'
+
+view unpublished thesis reference entities:
+  title: 'View unpublished Thesis reference entities'
+
+view all thesis reference revisions:
+  title: 'View all Thesis reference revisions'
+
+revert all thesis reference revisions:
+  title: 'Revert all Thesis reference revisions'
+  description: 'Role requires permission <em>view Thesis reference revisions</em> and <em>edit rights</em> for thesis reference entities in question or <em>administer thesis reference entities</em>.'
+
+delete all thesis reference revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Thesis reference revisions</em> and <em>delete rights</em> for thesis reference entities in question or <em>administer thesis reference entities</em>.'

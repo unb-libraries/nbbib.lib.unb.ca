@@ -82,3 +82,17 @@ yabrm_book_section.admin.structure.settings:
   description: 'Configure Book section reference entities'
   route_name: yabrm_book_section.settings
   parent: system.admin_structure
+
+# Thesis reference menu items definition
+entity.yabrm_thesis.collection:
+  title: 'Thesis reference list'
+  route_name: entity.yabrm_thesis.collection
+  description: 'List Thesis reference entities'
+  parent: system.admin_structure
+  weight: 100
+
+yabrm_thesis.admin.structure.settings:
+  title: 'Thesis reference settings'
+  description: 'Configure Thesis reference entities'
+  route_name: yabrm_thesis.settings
+  parent: system.admin_structure

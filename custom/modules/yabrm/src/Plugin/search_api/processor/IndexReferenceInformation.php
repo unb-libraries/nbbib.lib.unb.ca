@@ -29,6 +29,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
     'yabrm_journal_article',
     'yabrm_book',
     'yabrm_book_section',
+    'yabrm_thesis',
   ];
 
   const ENTITY_TYPE_LABELS = [
@@ -36,6 +37,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
     'Drupal\yabrm\Entity\JournalArticleReference' => 'Journal Article',
     'Drupal\yabrm\Entity\BookReference' => 'Book',
     'Drupal\yabrm\Entity\BookSectionReference' => 'Book Section',
+    'Drupal\yabrm\Entity\ThesisReference' => 'Thesis',
   ];
 
   /**

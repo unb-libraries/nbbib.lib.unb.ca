@@ -160,3 +160,30 @@ entity.yabrm_book_section.delete_form:
   title: Delete
   weight: 10
 
+# Thesis reference routing definition
+yabrm_thesis.settings_tab:
+  route_name: yabrm_thesis.settings
+  title: 'Settings'
+  base_route: yabrm_thesis.settings
+
+entity.yabrm_thesis.canonical:
+  route_name: entity.yabrm_thesis.canonical
+  base_route: entity.yabrm_thesis.canonical
+  title: 'View'
+
+entity.yabrm_thesis.edit_form:
+  route_name: entity.yabrm_thesis.edit_form
+  base_route: entity.yabrm_thesis.canonical
+  title: 'Edit'
+
+entity.yabrm_thesis.version_history:
+  route_name: entity.yabrm_thesis.version_history
+  base_route: entity.yabrm_thesis.canonical
+  title: 'Revisions'
+
+entity.yabrm_thesis.delete_form:
+  route_name:  entity.yabrm_thesis.delete_form
+  base_route:  entity.yabrm_thesis.canonical
+  title: Delete
+  weight: 10
+

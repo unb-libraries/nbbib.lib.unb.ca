@@ -60,6 +60,7 @@ datasource_settings:
   'entity:yabrm_book': {  }
   'entity:yabrm_book_section': {  }
   'entity:yabrm_journal_article': {  }
+  'entity:yabrm_thesis': {  }
 processor_settings:
   add_url: {  }
   aggregated_field: {  }

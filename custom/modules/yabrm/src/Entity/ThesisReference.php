@@ -38,7 +38,7 @@ use Drupal\yabrm\Entity\BibliographicReference;
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",
- *     "label" = "name",
+ *     "label" = "title",
  *     "uuid" = "uuid",
  *     "uid" = "user_id",
  *     "langcode" = "langcode",

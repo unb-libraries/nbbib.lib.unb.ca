@@ -30,8 +30,8 @@ source:
       abstract_note: Abstract Note
     11:
       publication_date: Publication Date
-    15:
-      pages: Pages
+    16:
+      num_pages: Number of Pages
     21:
       short_title: Short Title
     26:
@@ -78,7 +78,7 @@ process:
   publication_month: publication_month
   publication_day: publication_day
   publication_title: publication_title
-  pages: pages
+  num_pages: num_pages
   short_title: short_title
   publisher: publisher
   place: place

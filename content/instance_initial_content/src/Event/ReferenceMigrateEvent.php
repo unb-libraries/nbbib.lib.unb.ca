@@ -41,15 +41,24 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
     if (in_array($migration_id, self::APPLICABLE_MIGRATION_IDS)) {
       // Publication Date.
       $pub_date = explode('-', $row->getSourceProperty('publication_date'));
+      $src_year = $row->getSourceProperty('src_publication_year');
 
-      if (!empty($pub_date[0])) {
-        $row->setSourceProperty('publication_year', (int) $pub_date[0]);
+      if (!empty($pub_date)) {
+        if (!empty($pub_date[0])) {
+          $row->setSourceProperty('publication_year', (int) $pub_date[0]);
+        }
+        if (!empty($pub_date[1])) {
+          $row->setSourceProperty('publication_month', (int) $pub_date[1]);
+        }
+        if (!empty($pub_date[2])) {
+          $row->setSourceProperty('publication_day', (int) $pub_date[2]);
+        }
       }
-      if (!empty($pub_date[1])) {
-        $row->setSourceProperty('publication_month', (int) $pub_date[1]);
-      }
-      if (!empty($pub_date[2])) {
-        $row->setSourceProperty('publication_day', (int) $pub_date[2]);
+      else {
+        // Try source publication year.
+        if (!empty($src_year)) {
+          $row->setSourceProperty('publication_year', (int) $src_year);
+        }
       }
 
       // Language.

@@ -17,7 +17,7 @@ source:
     1:
       item_type: Item Type
     2:
-      publication_year: Publication Year
+      src_publication_year: Publication Year
     3:
       author: Author
     4:

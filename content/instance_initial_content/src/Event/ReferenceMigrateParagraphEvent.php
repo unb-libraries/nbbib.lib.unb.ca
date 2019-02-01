@@ -79,6 +79,15 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         ->getStorage($entity_type)
         ->load($reference_id);
 
+      // Use source publication year if empty from publication date.
+      $pub_year = trim($row->getSourceProperty('publication_year'));
+      $src_year = $row->getSourceProperty('src_publication_year');
+
+      if (empty($pub_year)) {
+        $pub_year = !empty($src_year) ? $src_year : NULL;
+      }
+
+      $reference->setPublicationYear($pub_year);
       $reference->setContributors($contributors);
       $reference->save();
     }

@@ -43,6 +43,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  abstract_note_1:
+    label: 'Abstract Note'
+    datasource_id: 'entity:yabrm_book'
+    property_path: abstract_note
+    type: text
+    dependencies:
+      module:
+        - yabrm
   archive:
     label: Archive
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -51,9 +59,25 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  archive_1:
+    label: Archive
+    datasource_id: 'entity:yabrm_book'
+    property_path: archive
+    type: text
+    dependencies:
+      module:
+        - yabrm
   archive_location:
     label: 'Archive Location'
     datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: archive_location
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  archive_location_1:
+    label: 'Archive Location'
+    datasource_id: 'entity:yabrm_book'
     property_path: archive_location
     type: text
     dependencies:
@@ -79,9 +103,25 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  call_number_1:
+    label: 'Call Number'
+    datasource_id: 'entity:yabrm_book'
+    property_path: call_number
+    type: text
+    dependencies:
+      module:
+        - yabrm
   collections:
     label: Collection(s)
     datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: collections
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  collections_1:
+    label: Collection(s)
+    datasource_id: 'entity:yabrm_book'
     property_path: collections
     type: text
     dependencies:
@@ -95,6 +135,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  contributors_1:
+    label: Contributor(s)
+    datasource_id: 'entity:yabrm_book'
+    property_path: contributors
+    type: text
+    dependencies:
+      module:
+        - yabrm
   date_display:
     label: 'Reference Date'
     property_path: date_display
@@ -103,9 +151,33 @@ field_settings:
     label: 'Sortable Date'
     property_path: date_sort
     type: integer
+  edition:
+    label: Edition
+    datasource_id: 'entity:yabrm_book'
+    property_path: edition
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  isbn:
+    label: ISBN
+    datasource_id: 'entity:yabrm_book'
+    property_path: isbn
+    type: text
+    dependencies:
+      module:
+        - yabrm
   language:
     label: Language
     datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: language
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  language_1:
+    label: Language
+    datasource_id: 'entity:yabrm_book'
     property_path: language
     type: text
     dependencies:
@@ -119,9 +191,25 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  library_catalog_1:
+    label: 'Library Catalog'
+    datasource_id: 'entity:yabrm_book'
+    property_path: library_catalog
+    type: text
+    dependencies:
+      module:
+        - yabrm
   publication_day:
     label: 'Publication Day'
     datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: publication_day
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_day_1:
+    label: 'Publication Day'
+    datasource_id: 'entity:yabrm_book'
     property_path: publication_day
     type: text
     dependencies:
@@ -135,9 +223,25 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  publication_month_1:
+    label: 'Publication Month'
+    datasource_id: 'entity:yabrm_book'
+    property_path: publication_month
+    type: text
+    dependencies:
+      module:
+        - yabrm
   publication_year:
     label: 'Publication Year'
     datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: publication_year
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_year_1:
+    label: 'Publication Year'
+    datasource_id: 'entity:yabrm_book'
     property_path: publication_year
     type: text
     dependencies:
@@ -151,9 +255,33 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  rights_1:
+    label: Rights
+    datasource_id: 'entity:yabrm_book'
+    property_path: rights
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  series:
+    label: Series
+    datasource_id: 'entity:yabrm_book'
+    property_path: series
+    type: text
+    dependencies:
+      module:
+        - yabrm
   short_title:
     label: 'Short Title'
     datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: short_title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  short_title_1:
+    label: 'Short Title'
+    datasource_id: 'entity:yabrm_book'
     property_path: short_title
     type: text
     dependencies:
@@ -167,9 +295,25 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  title_1:
+    label: Title
+    datasource_id: 'entity:yabrm_book'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - yabrm
   url:
     label: URL
     datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: url
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  url_1:
+    label: URL
+    datasource_id: 'entity:yabrm_book'
     property_path: url
     type: text
     dependencies:

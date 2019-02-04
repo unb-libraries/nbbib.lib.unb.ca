@@ -35,18 +35,66 @@ name: references.nbbib.lib.unb.ca
 description: ''
 read_only: false
 field_settings:
+  abstract_note:
+    label: 'Abstract Note'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: abstract_note
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  archive:
+    label: Archive
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: archive
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  archive_location:
+    label: 'Archive Location'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: archive_location
+    type: text
+    dependencies:
+      module:
+        - yabrm
   bibliographic_authors:
     label: Author(s)
     property_path: bibliographic_authors
     type: text
-  biblioigraphic_title:
+  bibliographic_title:
     label: Title
     property_path: biblioigraphic_title
     type: text
-  biblioigraphic_type:
+  bibliographic_type:
     label: 'Reference Type'
-    property_path: biblioigraphic_type
+    property_path: bibliographic_type
     type: string
+  call_number:
+    label: 'Call Number'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: call_number
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  collections:
+    label: Collection(s)
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: collections
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  contributors:
+    label: Contributor(s)
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: contributors
+    type: text
+    dependencies:
+      module:
+        - yabrm
   date_display:
     label: 'Reference Date'
     property_path: date_display
@@ -55,6 +103,78 @@ field_settings:
     label: 'Sortable Date'
     property_path: date_sort
     type: integer
+  language:
+    label: Language
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: language
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  library_catalog:
+    label: 'Library Catalog'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: library_catalog
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_day:
+    label: 'Publication Day'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: publication_day
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_month:
+    label: 'Publication Month'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: publication_month
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_year:
+    label: 'Publication Year'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: publication_year
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  rights:
+    label: Rights
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: rights
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  short_title:
+    label: 'Short Title'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: short_title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  title:
+    label: Title
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  url:
+    label: URL
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: url
+    type: text
+    dependencies:
+      module:
+        - yabrm
 datasource_settings:
   'entity:yabrm_biblio_reference': {  }
   'entity:yabrm_book': {  }

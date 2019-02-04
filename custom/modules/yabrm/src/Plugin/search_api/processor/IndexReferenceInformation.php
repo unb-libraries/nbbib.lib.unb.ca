@@ -69,7 +69,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         'is_list' => TRUE,
         'processor_id' => $this->getPluginId(),
       ];
-      $properties['biblioigraphic_type'] = new ProcessorProperty($definition);
+      $properties['bibliographic_type'] = new ProcessorProperty($definition);
 
       $definition = [
         'label' => $this->t('Reference Title'),
@@ -119,7 +119,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
 
       // The type of reference.
       $fields = $this->getFieldsHelper()
-        ->filterForPropertyPath($item->getFields(), NULL, 'biblioigraphic_type');
+        ->filterForPropertyPath($item->getFields(), NULL, 'bibliographic_type');
       foreach ($fields as $field) {
         $class_name = get_class($yabrm_entity);
         if (!empty(self::ENTITY_TYPE_LABELS[$class_name])) {

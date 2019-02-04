@@ -91,6 +91,25 @@ interface BookReferenceInterface extends ContentEntityInterface, RevisionLogInte
   public function setNumberOfVolumes($num_volumes);
 
   /**
+   * Gets the series of the book.
+   *
+   * @return string
+   *   The series of the book.
+   */
+  public function getSeries();
+
+  /**
+   * Sets the series of the book.
+   *
+   * @param string $series
+   *   The series of the book.
+   *
+   * @return \Drupal\yabrm\Entity\BookReferenceInterface
+   *   The called Book Reference entity.
+   */
+  public function setSeries($series);
+
+  /**
    * Gets the series number of the book.
    *
    * @return string

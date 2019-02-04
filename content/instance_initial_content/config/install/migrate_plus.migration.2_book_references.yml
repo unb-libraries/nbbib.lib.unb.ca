@@ -66,6 +66,8 @@ source:
       volume: Volume Number
     19:
       num_volumes: Number of Volumes
+    22:
+      series: Series
     23:
       series_number: Series Number
     26:
@@ -102,6 +104,7 @@ process:
   num_pages: num_pages
   volume: volume
   num_volumes: num_volumes
+  series: series
   series_number: series_number
   publisher: publisher
   place: place

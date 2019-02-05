@@ -108,6 +108,21 @@ class BookSectionReference extends BibliographicReference implements BookSection
   /**
    * {@inheritdoc}
    */
+  public function getSeries() {
+    return $this->get('series')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSeries($series) {
+    $this->set('series', $series);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getSeriesNumber() {
     return $this->get('series_number')->value;
   }
@@ -279,6 +294,25 @@ class BookSectionReference extends BibliographicReference implements BookSection
 
     $fields['num_volumes'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Number of Volumes'))
+      ->setSettings([
+        'max_length' => 512,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['series'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Series'))
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,

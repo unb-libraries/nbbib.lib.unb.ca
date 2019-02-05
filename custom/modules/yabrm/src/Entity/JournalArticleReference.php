@@ -108,15 +108,15 @@ class JournalArticleReference extends BibliographicReference implements JournalA
   /**
    * {@inheritdoc}
    */
-  public function getNumberOfPages() {
-    return $this->get('num_pages')->value;
+  public function getPages() {
+    return $this->get('pages')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setNumberOfPages($num_pages) {
-    $this->set('num_pages', $num_pages);
+  public function setPages($pages) {
+    $this->set('pages', $pages);
     return $this;
   }
 
@@ -273,8 +273,8 @@ class JournalArticleReference extends BibliographicReference implements JournalA
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['num_pages'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Number of Pages'))
+    $fields['pages'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Pages'))
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -350,7 +350,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['series'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Series Text'))
+      ->setLabel(t('Series'))
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,

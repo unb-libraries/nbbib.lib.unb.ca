@@ -64,8 +64,8 @@ source:
       issn: ISSN
     8:
       doi: DOI
-    16:
-      num_pages: Number of Pages
+    15:
+      pages: Pages
     17:
       issue: Issue
     18:
@@ -105,7 +105,7 @@ process:
   publication_title: publication_title
   issn: issn
   doi: doi
-  num_pages: num_pages
+  pages: pages
   issue: issue
   volume: volume
   journal_abbr: journal_abbr

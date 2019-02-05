@@ -72,23 +72,23 @@ interface JournalArticleReferenceInterface extends ContentEntityInterface, Revis
   public function setDoi($doi);
 
   /**
-   * Gets the journal article number of pages.
+   * Gets the journal article pages.
    *
    * @return string
-   *   The number of pages of the journal article.
+   *   The pages of the journal article.
    */
-  public function getNumberOfPages();
+  public function getPages();
 
   /**
-   * Sets the journal article number of pages.
+   * Sets the journal article pages.
    *
-   * @param string $num_pages
-   *   The number of pages of the journal article.
+   * @param string $pages
+   *   The pages of the journal article.
    *
    * @return \Drupal\yabrm\Entity\JournalArticleReferenceInterface
    *   The called Journal Article Reference entity.
    */
-  public function setNumberOfPages($num_pages);
+  public function setPages($pages);
 
   /**
    * Gets the journal article issue.

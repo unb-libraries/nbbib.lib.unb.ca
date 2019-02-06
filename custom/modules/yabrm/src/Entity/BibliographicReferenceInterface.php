@@ -481,7 +481,7 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function getCollections();
 
   /**
-   * Sets the Bibliographic Reference Notes.
+   * Sets the Bibliographic Reference Collections.
    *
    * @param \Drupal\taxonomy\TermInterface[] $collections
    *   An array of taxonomy terms.
@@ -490,5 +490,24 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
    *   The called Bibliographic Reference entity.
    */
   public function setCollections(array $collections);
+
+  /**
+   * Gets the Bibliographic Reference NB Imprint.
+   *
+   * @return bool
+   *   The NB Imprint of the Bibliographic Reference.
+   */
+  public function getNbImprint();
+
+  /**
+   * Sets the Bibliographic Reference NB Imprint.
+   *
+   * @param bool $nb_imprint
+   *   The NB Imprint of the Bibliographic Reference.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReference
+   *   The called Bibliographic Reference entity.
+   */
+  public function setNbImprint($nb_imprint);
 
 }

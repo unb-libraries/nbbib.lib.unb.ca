@@ -516,6 +516,29 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the entity was last edited.'));
 
+    $fields['nb_imprint'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('NB Imprint'))
+      ->setDescription(t('Is this an NB imprint?'))
+      ->setRevisionable(TRUE)
+      ->setDefaultValue('0')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'weight' => 0,
+      ])
+      ->setDisplayOptions(
+       'form',
+       [
+         'type' => 'boolean_checkbox',
+         'weight' => 0,
+         'settings' => [
+           'default_value' => 0,
+           'display_label' => TRUE,
+         ],
+       ]
+      )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     return $fields;
   }
 
@@ -955,6 +978,21 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    */
   public function setCollections(array $collections) {
     $this->set('collections', $collections);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getNbImprint() {
+    return $this->get('nb_imprint')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setNbImprint($nb_imprint) {
+    $this->set('nb_imprint', $nb_imprint);
     return $this;
   }
 

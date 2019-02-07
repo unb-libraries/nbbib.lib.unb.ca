@@ -8,6 +8,7 @@ use Drupal\migrate\Row;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\yabrm\Entity\BibliographicContributor;
+use Drupal\yabrm\Entity\BibliographicCollection;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -28,6 +29,8 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
     'bookSection' => 'yabrm_book_section',
     'thesis' => 'yabrm_thesis',
   ];
+
+  const COLLECTION_NAME = "Test Collection";
 
   /**
    * {@inheritdoc}
@@ -87,8 +90,33 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         $pub_year = !empty($src_year) ? $src_year : NULL;
       }
 
-      $reference->setPublicationYear($pub_year);
+      // Default collection.
+      $default_col = self::COLLECTION_NAME;
+
+      if (!empty($default_col)) {
+        $existing = \Drupal::entityQuery('yabrm_collection')
+          ->condition('name', $default_col)
+          ->execute();
+
+        reset($existing);
+        $col_id = key($existing);
+
+        // Create collection if doesn't exist.
+        if (empty($col_id)) {
+          $collection = BibliographicCollection::create([
+            'name' => $default_col,
+          ]);
+
+          $collection->save();
+          $col_id = $collection->id();
+        }
+      }
+
+      $collections[] = $col_id ? $col_id : NULL;
+
       $reference->setContributors($contributors);
+      $reference->setPublicationYear($pub_year);
+      $reference->setCollections($collections);
       $reference->save();
     }
   }

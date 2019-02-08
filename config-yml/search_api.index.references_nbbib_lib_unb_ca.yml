@@ -447,11 +447,27 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  num_pages_1:
+    label: 'Number of Pages'
+    datasource_id: 'entity:yabrm_book'
+    property_path: num_pages
+    type: string
+    dependencies:
+      module:
+        - yabrm
   num_volumes:
     label: 'Number of Volumes'
     datasource_id: 'entity:yabrm_book'
     property_path: num_volumes
     type: text
+    dependencies:
+      module:
+        - yabrm
+  num_volumes_1:
+    label: 'Number of Volumes'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: num_volumes
+    type: string
     dependencies:
       module:
         - yabrm
@@ -484,6 +500,22 @@ field_settings:
     datasource_id: 'entity:yabrm_thesis'
     property_path: place
     type: text
+    dependencies:
+      module:
+        - yabrm
+  place_2:
+    label: Place
+    datasource_id: 'entity:yabrm_book'
+    property_path: place
+    type: string
+    dependencies:
+      module:
+        - yabrm
+  place_3:
+    label: Place
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: place
+    type: string
     dependencies:
       module:
         - yabrm
@@ -636,6 +668,14 @@ field_settings:
     datasource_id: 'entity:yabrm_thesis'
     property_path: publisher
     type: text
+    dependencies:
+      module:
+        - yabrm
+  publisher_2:
+    label: Publisher
+    datasource_id: 'entity:yabrm_book'
+    property_path: publisher
+    type: string
     dependencies:
       module:
         - yabrm
@@ -876,6 +916,14 @@ field_settings:
     datasource_id: 'entity:yabrm_journal_article'
     property_path: volume
     type: text
+    dependencies:
+      module:
+        - yabrm
+  volume_2:
+    label: Volume
+    datasource_id: 'entity:yabrm_book'
+    property_path: volume
+    type: string
     dependencies:
       module:
         - yabrm

@@ -30,7 +30,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
     'thesis' => 'yabrm_thesis',
   ];
 
-  const COLLECTION_NAME = "Test Collection";
+  const COLLECTION_NAME = "Religion: Anglican";
 
   /**
    * {@inheritdoc}

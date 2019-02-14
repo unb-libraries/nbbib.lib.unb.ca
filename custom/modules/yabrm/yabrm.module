@@ -22,3 +22,60 @@ function yabrm_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ * Implements hook_theme().
+ */
+function yabrm_theme() {
+  $theme = [];
+
+  // Set up to use custom Book entity template.
+  $theme['yabrm_book'] = [
+    'render element' => 'elements',
+    'file' => 'yabrm_book.page.inc',
+    'template' => 'yabrm_book',
+  ];
+  $theme['yabrm_book_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'yabrm_book.page.inc',
+  ];
+
+  // Set up to use custom Book Section entity template.
+  $theme['yabrm_book_section'] = [
+    'render element' => 'elements',
+    'file' => 'yabrm_book_section.page.inc',
+    'template' => 'yabrm_book_section',
+  ];
+  $theme['yabrm_book_section_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'yabrm_book_section.page.inc',
+  ];
+
+  // Set up to use custom Journal Article entity template.
+  $theme['yabrm_journal_article'] = [
+    'render element' => 'elements',
+    'file' => 'yabrm_journal_article.page.inc',
+    'template' => 'yabrm_journal_article',
+  ];
+  $theme['yabrm_journal_article_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'yabrm_journal_article.page.inc',
+  ];
+
+  // Set up to use custom Thesis entity template.
+  $theme['yabrm_thesis'] = [
+    'render element' => 'elements',
+    'file' => 'yabrm_thesis.page.inc',
+    'template' => 'yabrm_thesis',
+  ];
+  $theme['yabrm_thesis_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'yabrm_thesis.page.inc',
+  ];
+
+  return $theme;
+}

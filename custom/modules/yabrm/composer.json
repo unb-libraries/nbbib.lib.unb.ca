@@ -11,6 +11,7 @@
     "source": "http://cgit.drupalcode.org/yabrm"
   },
   "require": {
-    "drupal/paragraphs": "1.5"
+    "drupal/paragraphs": "1.5",
+    "drupal/twig_field_value": "1.2"
   }
 }

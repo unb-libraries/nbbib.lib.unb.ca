@@ -17,6 +17,25 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
   // Add get/set methods for your configuration properties here.
 
   /**
+   * Gets the Bibliographic Contributor name.
+   *
+   * @return string
+   *   Name of the Bibliographic Contributor.
+   */
+  public function getName();
+
+  /**
+   * Sets the Bibliographic Contributor name.
+   *
+   * @param string $name
+   *   The Bibliographic Contributor name.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setFirstName($name);
+
+  /**
    * Gets the Bibliographic Contributor first name.
    *
    * @return string
@@ -53,6 +72,44 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
    *   The called Bibliographic Contributor entity.
    */
   public function setLastName($last_name);
+
+  /**
+   * Gets the Bibliographic Contributor institution name.
+   *
+   * @return string
+   *   Institution name of the Bibliographic Contributor.
+   */
+  public function getInstitutionName();
+
+  /**
+   * Sets the Bibliographic Contributor institution name.
+   *
+   * @param string $institution_name
+   *   The Bibliographic Contributor institution name.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setInstitutionName($institution_name);
+
+  /**
+   * Gets the Bibliographic Contributor sort name.
+   *
+   * @return string
+   *   Sort name of the Bibliographic Contributor.
+   */
+  public function getSortName();
+
+  /**
+   * Sets the Bibliographic Contributor sort name.
+   *
+   * @param string $sort_name
+   *   The Bibliographic Contributor sort name.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setSortName($sort_name);
 
   /**
    * Gets the Bibliographic Contributor creation timestamp.

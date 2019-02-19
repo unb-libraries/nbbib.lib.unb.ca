@@ -117,6 +117,21 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
   /**
    * {@inheritdoc}
    */
+  public function getName() {
+    return $this->get('name')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setName($name) {
+    $this->set('name', $name);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getFirstName() {
     return $this->get('first_name')->value;
   }
@@ -141,6 +156,36 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
    */
   public function setLastName($last_name) {
     $this->set('last_name', $last_name);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getInstitutionName() {
+    return $this->get('institution_name')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setInstitutionName($institution_name) {
+    $this->set('institution_name', $institution_name);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSortName() {
+    return $this->get('sort_name')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSortName($sort_name) {
+    $this->set('sort_name', $sort_name);
     return $this;
   }
 
@@ -235,6 +280,28 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['name'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Name'))
+      ->setDescription(t('The name of the Bibliographic Contributor entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 256,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
     $fields['first_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('First Name'))
       ->setDescription(t('The first name of the Bibliographic Contributor entity.'))
@@ -260,6 +327,50 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
     $fields['last_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Last Name'))
       ->setDescription(t('The last name of the Bibliographic Contributor entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 256,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
+    $fields['institution_name'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Institution Name'))
+      ->setDescription(t('The institution name of the Bibliographic Contributor entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 256,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
+    $fields['sort_name'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Sort Name'))
+      ->setDescription(t('The sort name of the Bibliographic Contributor entity.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 256,

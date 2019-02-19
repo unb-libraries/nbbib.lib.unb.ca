@@ -117,15 +117,30 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
   /**
    * {@inheritdoc}
    */
-  public function getName() {
-    return $this->get('name')->value;
+  public function getFirstName() {
+    return $this->get('first_name')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setName($name) {
-    $this->set('name', $name);
+  public function setFirstName($first_name) {
+    $this->set('first_name', $first_name);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLastName() {
+    return $this->get('last_name')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setLastName($last_name) {
+    $this->set('last_name', $last_name);
     return $this;
   }
 
@@ -220,9 +235,31 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Name'))
-      ->setDescription(t('The name of the Bibliographic Contributor entity.'))
+    $fields['first_name'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('First Name'))
+      ->setDescription(t('The first name of the Bibliographic Contributor entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 256,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
+
+    $fields['last_name'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Last Name'))
+      ->setDescription(t('The last name of the Bibliographic Contributor entity.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 256,

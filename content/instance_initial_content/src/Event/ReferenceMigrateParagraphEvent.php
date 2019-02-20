@@ -156,8 +156,29 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
         // Create contributor if doesn't exist.
         if (empty($contrib_id)) {
+          $institution_name = NULL;
+          $first_name = NULL;
+          $last_name = NULL;
+          $sort_name = NULL;
+
+          $split_name = explode(',', $contrib_name);
+
+          if ($split_name[0] == $contrib_name) {
+            $institution_name = $contrib_name;
+            $sort_name = $institution_name;
+          }
+          else {
+            $last_name = trim($split_name[0]);
+            $first_name = trim($split_name[1]);
+            $sort_name = $last_name;
+          }
+
           $contrib = BibliographicContributor::create([
             'name' => $contrib_name,
+            'institution_name' => $institution_name,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'sort_name' => $sort_name,
           ]);
 
           $contrib->save();

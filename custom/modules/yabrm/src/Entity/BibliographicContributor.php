@@ -322,7 +322,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
-      ->setRequired(TRUE);
+      ->setRequired(FALSE);
 
     $fields['last_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Last Name'))
@@ -344,7 +344,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
-      ->setRequired(TRUE);
+      ->setRequired(FALSE);
 
     $fields['institution_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Institution Name'))
@@ -366,7 +366,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
-      ->setRequired(TRUE);
+      ->setRequired(FALSE);
 
     $fields['sort_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Sort Name'))

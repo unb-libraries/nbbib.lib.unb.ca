@@ -44,17 +44,6 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
   public function getFirstName();
 
   /**
-   * Sets the Bibliographic Contributor first name.
-   *
-   * @param string $first_name
-   *   The Bibliographic Contributor first name.
-   *
-   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
-   *   The called Bibliographic Contributor entity.
-   */
-  public function setFirstName($first_name);
-
-  /**
    * Gets the Bibliographic Contributor last name.
    *
    * @return string

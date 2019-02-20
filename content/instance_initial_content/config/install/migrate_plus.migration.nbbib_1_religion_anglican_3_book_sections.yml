@@ -1,5 +1,5 @@
-id: 2_book_references
-label: Book references from Zotero from NBBIB
+id: nbbib_1_religion_anglican_3_book_sections
+label: Religion/Anglican Book Section references from Zotero for NBBIB
 
 migration_tags:
   - CSV
@@ -7,7 +7,7 @@ migration_tags:
 
 source:
   plugin: csv
-  path: '/app/html/modules/custom/instance_initial_content/data/csv/1_journal_article_references.csv'
+  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_1_religion_anglican.csv'
   header_row_count: 1
   keys:
     - key
@@ -22,14 +22,32 @@ source:
       author: Author
     4:
       title: Title
+    5:
+      publication_title: Publication Title
+    6:
+      isbn: ISBN
     9:
       url: URL
     10:
       abstract_note: Abstract Note
     11:
       publication_date: Publication Date
+    15:
+      pages: Pages
+    18:
+      volume: Volume
+    19:
+      num_volumes: Number of Volumes
     21:
       short_title: Short Title
+    22:
+      series: Series
+    23:
+      series_number: Series Number
+    26:
+      publisher: Publisher
+    27:
+      place: Place
     28:
       language: Language
     29:
@@ -56,24 +74,6 @@ source:
       contributor: Contributor
     46:
       book_author: Book Author
-    55:
-      reviewed_author: Reviewed Author
-    6:
-      isbn: ISBN
-    16:
-      num_pages: Number of Pages
-    18:
-      volume: Volume Number
-    19:
-      num_volumes: Number of Volumes
-    22:
-      series: Series
-    23:
-      series_number: Series Number
-    26:
-      publisher: Publisher
-    27:
-      place: Place
     60:
       edition: Edition
 
@@ -82,16 +82,25 @@ process:
     plugin: skip_on_value
     method: row
     not_equals: true
-    value: book
+    value: bookSection
     source: item_type
   external_key_ref: key
   title: title
+  isbn: isbn
   url: url
   abstract_note: abstract_note
   publication_year: publication_year
   publication_month: publication_month
   publication_day: publication_day
+  publication_title: publication_title
+  pages: pages
+  volume: volume
+  num_volumes: num_volumes
   short_title: short_title
+  series: series
+  series_number: series_number
+  publisher: publisher
+  place: place
   language: language
   rights: rights
   archive: archive
@@ -100,18 +109,13 @@ process:
   call_number: call_number
   extra: extra
   notes_private: notes
-  isbn: isbn
-  num_pages: num_pages
-  volume: volume
-  num_volumes: num_volumes
-  series: series
-  series_number: series_number
-  publisher: publisher
-  place: place
+  editor: editor
+  series_editor: series_editor
+  translator: translator
   edition: edition
 
 destination:
-  plugin: entity:yabrm_book
+  plugin: entity:yabrm_book_section
 
 dependencies:
   module:

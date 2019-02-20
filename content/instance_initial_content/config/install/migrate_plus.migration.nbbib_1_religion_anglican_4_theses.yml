@@ -1,5 +1,5 @@
-id: 1_journal_article_references
-label: Journal article references from Zotero from NBBIB
+id: nbbib_1_religion_anglican_4_theses
+label: Religion/Anglican Thesis references from Zotero for NBBIB
 
 migration_tags:
   - CSV
@@ -7,7 +7,7 @@ migration_tags:
 
 source:
   plugin: csv
-  path: '/app/html/modules/custom/instance_initial_content/data/csv/1_journal_article_references.csv'
+  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_1_religion_anglican.csv'
   header_row_count: 1
   keys:
     - key
@@ -22,18 +22,28 @@ source:
       author: Author
     4:
       title: Title
+    5:
+      publication_title: Publication Title
     9:
       url: URL
     10:
       abstract_note: Abstract Note
     11:
       publication_date: Publication Date
+    16:
+      num_pages: Number of Pages
     21:
       short_title: Short Title
+    26:
+      publisher: Publisher
+    27:
+      place: Place
     28:
       language: Language
     29:
       rights: Rights
+    30:
+      thesis_type: Thesis Type
     31:
       archive: Archive
     32:
@@ -46,47 +56,20 @@ source:
       extra: Extra
     36:
       notes: Notes
-    41:
-      editor: Editor
-    42:
-      series_editor: Series Editor
     43:
       translator: Translator
     44:
       contributor: Contributor
     46:
       book_author: Book Author
-    55:
-      reviewed_author: Reviewed Author
-    5:
-      publication_title: Publication Title
-    7:
-      issn: ISSN
-    8:
-      doi: DOI
-    15:
-      pages: Pages
-    17:
-      issue: Issue
-    18:
-      volume: Volume
-    20:
-      journal_abbr: Journal Abbreviation
-    22:
-      series: Series
-    24:
-      series_text: Series Text
-    25:
-      series_title: Series Title
 
 process:
   type:
     plugin: skip_on_value
     method: row
     not_equals: true
-    value: journalArticle
+    value: thesis
     source: item_type
-
   external_key_ref: key
   title: title
   url: url
@@ -94,28 +77,24 @@ process:
   publication_year: publication_year
   publication_month: publication_month
   publication_day: publication_day
+  publication_title: publication_title
+  num_pages: num_pages
   short_title: short_title
+  publisher: publisher
+  place: place
   language: language
   rights: rights
+  thesis_type: thesis_type
   archive: archive
   archive_location: archive_location
   library_catalog: library_catalog
   call_number: call_number
   extra: extra
   notes_private: notes
-  publication_title: publication_title
-  issn: issn
-  doi: doi
-  pages: pages
-  issue: issue
-  volume: volume
-  journal_abbr: journal_abbr
-  series: series
-  series_text: series_text
-  series_title: series_title
+  translator: translator
 
 destination:
-  plugin: entity:yabrm_journal_article
+  plugin: entity:yabrm_thesis
 
 dependencies:
   module:

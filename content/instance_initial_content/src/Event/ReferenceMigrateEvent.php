@@ -2,6 +2,7 @@
 
 namespace Drupal\instance_initial_content\Event;
 
+use Drupal\instance_initial_content\NbBibMigrationTrait;
 use Drupal\migrate_plus\Event\MigrateEvents;
 use Drupal\migrate_plus\Event\MigratePrepareRowEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -11,12 +12,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class ReferenceMigrateEvent implements EventSubscriberInterface {
 
-  const APPLICABLE_MIGRATION_IDS = [
-    '1_journal_article_references',
-    '2_book_references',
-    '3_book_section_references',
-    '4_thesis_references',
-  ];
+  use NbBibMigrationTrait;
 
   /**
    * {@inheritdoc}
@@ -38,7 +34,7 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
     $migration_id = $migration->id();
 
     // Only act on rows for this migration.
-    if (in_array($migration_id, self::APPLICABLE_MIGRATION_IDS)) {
+    if (array_key_exists($migration_id, self::getMigrations())) {
       // Publication Date.
       $pub_date = explode('-', $row->getSourceProperty('publication_date'));
       $src_year = $row->getSourceProperty('src_publication_year');

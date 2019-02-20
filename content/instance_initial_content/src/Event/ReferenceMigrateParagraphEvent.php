@@ -2,6 +2,7 @@
 
 namespace Drupal\instance_initial_content\Event;
 
+use Drupal\instance_initial_content\NbBibMigrationTrait;
 use Drupal\migrate\Event\MigrateEvents;
 use Drupal\migrate\Event\MigratePostRowSaveEvent;
 use Drupal\migrate\Row;
@@ -16,21 +17,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
-  const APPLICABLE_MIGRATION_IDS = [
-    '1_journal_article_references',
-    '2_book_references',
-    '3_book_section_references',
-    '4_thesis_references',
-  ];
-
-  const REFERENCE_TYPE_MAPPING = [
-    'journalArticle' => 'yabrm_journal_article',
-    'book' => 'yabrm_book',
-    'bookSection' => 'yabrm_book_section',
-    'thesis' => 'yabrm_thesis',
-  ];
-
-  const COLLECTION_NAME = "Religion: Anglican";
+  use NbBibMigrationTrait;
 
   /**
    * {@inheritdoc}
@@ -50,7 +37,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
     $migration_id = $migration->id();
 
     // Only act on rows for this migration.
-    if (in_array($migration_id, self::APPLICABLE_MIGRATION_IDS)) {
+    if (array_key_exists($migration_id, self::getMigrations())) {
       $row = $event->getRow();
       $destination_ids = $event->getDestinationIdValues();
       $reference_id = $destination_ids[0];
@@ -76,7 +63,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
       // Instance and update reference.
       $item_type = $row->getSourceProperty('item_type');
-      $entity_type = self::REFERENCE_TYPE_MAPPING[$item_type];
+      $entity_type = self::getZoteroTypeMappings()[$item_type];
 
       $reference = \Drupal::entityTypeManager()
         ->getStorage($entity_type)
@@ -91,11 +78,11 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       }
 
       // Default collection.
-      $default_col = self::COLLECTION_NAME;
+      $collection_name = self::getMigrations()[$migration_id];
 
-      if (!empty($default_col)) {
+      if (!empty($collection_name)) {
         $existing = \Drupal::entityQuery('yabrm_collection')
-          ->condition('name', $default_col)
+          ->condition('name', $collection_name)
           ->execute();
 
         reset($existing);
@@ -104,7 +91,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         // Create collection if doesn't exist.
         if (empty($col_id)) {
           $collection = BibliographicCollection::create([
-            'name' => $default_col,
+            'name' => $collection_name,
           ]);
 
           $collection->save();

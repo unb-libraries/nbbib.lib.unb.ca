@@ -78,7 +78,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         'is_list' => TRUE,
         'processor_id' => $this->getPluginId(),
       ];
-      $properties['biblioigraphic_title'] = new ProcessorProperty($definition);
+      $properties['bibliographic_title'] = new ProcessorProperty($definition);
 
       $definition = [
         'label' => $this->t('Author(s)'),
@@ -131,7 +131,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
 
       // The common title field.
       $fields = $this->getFieldsHelper()
-        ->filterForPropertyPath($item->getFields(), NULL, 'biblioigraphic_title');
+        ->filterForPropertyPath($item->getFields(), NULL, 'bibliographic_title');
       foreach ($fields as $field) {
         $field->addValue($yabrm_entity->getName());
       }

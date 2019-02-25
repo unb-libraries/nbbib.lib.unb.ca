@@ -161,7 +161,7 @@ field_settings:
     type: text
   bibliographic_title:
     label: Title
-    property_path: biblioigraphic_title
+    property_path: bibliographic_title
     type: text
   bibliographic_type:
     label: 'Reference Type'

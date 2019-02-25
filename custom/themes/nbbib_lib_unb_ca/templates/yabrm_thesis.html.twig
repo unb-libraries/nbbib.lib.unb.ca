@@ -1,0 +1,91 @@
+{#
+/**
+ * @file yabrm_thesis.html.twig
+ * Default theme implementation to present Thesis reference data.
+ *
+ * This template is used when viewing Thesis reference pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_yabrm_thesis()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('yabrm_thesis') }}>
+  {% if content %}
+    <dl>
+      <div>
+        <dt>Item Type</dt>
+        <dd>Thesis</dd>
+      </div>
+      <div>
+        <dt>{{ content.title|field_label }}</dt>
+        <dd>{{ content.title|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.contributors|field_label }}</dt>
+        <dd>{{ content.contributors|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.abstract_note|field_label }}</dt>
+        <dd>{{ content.abstract_note|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.place|field_label }}</dt>
+        <dd>{{ content.place|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.publisher|field_label }}</dt>
+        <dd>{{ content.publisher|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.publication_year|field_label }}</dt>
+        <dd>{{ content.publication_year|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.publication_month|field_label }}</dt>
+        <dd>{{ content.publication_month|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.publication_day|field_label }}</dt>
+        <dd>{{ content.publication_day|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.physical_description|field_label }}</dt>
+        <dd>{{ content.physical_description|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.language|field_label }}</dt>
+        <dd>{{ content.language|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.url|field_label }}</dt>
+        <dd>{{ content.url|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.archive|field_label }}</dt>
+        <dd>{{ content.archive|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.archive_location|field_label }}</dt>
+        <dd>{{ content.archive_location|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.nb_imprint|field_label }}</dt>
+        <dd>{{ content.nb_imprint|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.notes|field_label }}</dt>
+        <dd>{{ content.notes|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.notes_private|field_label }}</dt>
+        <dd>{{ content.notes_private|field_value }}</dd>
+      </div>
+    </dl>
+  {% endif %}
+</div>

@@ -430,6 +430,27 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['physical_description'] = BaseFieldDefinition::create('text_long')
+      ->setLabel(t('Physical Description'))
+      ->setDescription(t('Physical Description.'))
+      ->setSettings([
+        'default_value' => '',
+        'max_length' => 2048,
+        'text_processing' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'text_long',
+        'weight' => -3,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'text_long',
+        'text_processing' => 0,
+        'weight' => -3,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['notes_private'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Notes (private/Zotero)'))
       ->setDescription(t('Notes (private/Zotero).'))
@@ -598,6 +619,21 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    */
   public function setCreatedTime($timestamp) {
     $this->set('created', $timestamp);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getChangedTime() {
+    return $this->get('changed')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setChangedTime($timestamp) {
+    $this->set('changed', $timestamp);
     return $this;
   }
 
@@ -939,15 +975,30 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
   /**
    * {@inheritdoc}
    */
-  public function getNotesPrivate() {
-    return $this->get('extra')->value;
+  public function getPhysicalDescription() {
+    return $this->get('physical_description')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setNotesPrivate($notes) {
-    $this->set('notes', $notes);
+  public function setPhysicalDescription($physical_description) {
+    $this->set('physical_description', $physical_description);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getNotesPrivate() {
+    return $this->get('notes_private')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setNotesPrivate($notes_private) {
+    $this->set('notes_private', $notes_private);
     return $this;
   }
 
@@ -955,7 +1006,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    * {@inheritdoc}
    */
   public function getNotes() {
-    return $this->get('extra')->value;
+    return $this->get('notes')->value;
   }
 
   /**

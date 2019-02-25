@@ -53,6 +53,25 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function setCreatedTime($timestamp);
 
   /**
+   * Gets the Bibliographic Reference creation timestamp.
+   *
+   * @return int
+   *   Change timestamp of the Bibliographic Reference.
+   */
+  public function getChangedTime();
+
+  /**
+   * Sets the Bibliographic Reference change timestamp.
+   *
+   * @param int $timestamp
+   *   The Bibliographic Reference change timestamp.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setChangedTime($timestamp);
+
+  /**
    * Returns the Bibliographic Reference published status indicator.
    *
    * Unpublished Bibliographic Reference are only visible to restricted users.
@@ -435,6 +454,25 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function setExtra($extra);
 
   /**
+   * Gets the Bibliographic Reference Physical Description.
+   *
+   * @return string
+   *   The notes of the Bibliographic Reference.
+   */
+  public function getPhysicalDescription();
+
+  /**
+   * Sets the Bibliographic Reference Physical Description.
+   *
+   * @param string $physical_description
+   *   The Bibliographic Reference Physical Description.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setPhysicalDescription($physical_description);
+
+  /**
    * Gets the Bibliographic Reference Private Notes.
    *
    * @return string
@@ -445,13 +483,13 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   /**
    * Sets the Bibliographic Reference Private Notes.
    *
-   * @param string $notes
+   * @param string $notes_private
    *   The Bibliographic Reference notes.
    *
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.
    */
-  public function setNotesPrivate($notes);
+  public function setNotesPrivate($notes_private);
 
   /**
    * Gets the Bibliographic Reference Notes.

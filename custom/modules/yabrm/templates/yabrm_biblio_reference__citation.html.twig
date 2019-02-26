@@ -1,0 +1,24 @@
+{#
+/**
+ * @file yabrm_biblio_reference__citation.html.twig
+ * Citation view mode theme implementation for Bibliographic Reference data.
+ *
+ * This template is used when viewing Bibliographic Reference pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_yabrm_biblio_reference()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('yabrm_biblio_reference') }}>
+  {% if content %}
+    <p>
+      Test citation view mode.
+    </p>
+  {% endif %}
+</div>

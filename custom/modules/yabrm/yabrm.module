@@ -29,6 +29,18 @@ function yabrm_help($route_name, RouteMatchInterface $route_match) {
 function yabrm_theme() {
   $theme = [];
 
+  // Set up to use custom Biblio Reference entity template.
+  $theme['yabrm_biblio_reference'] = [
+    'render element' => 'elements',
+    'file' => 'yabrm_biblio_reference.page.inc',
+    'template' => 'yabrm_biblio_reference',
+  ];
+  $theme['yabrm_biblio_reference_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'yabrm_biblio_reference.page.inc',
+  ];
+
   // Set up to use custom Book entity template.
   $theme['yabrm_book'] = [
     'render element' => 'elements',
@@ -75,6 +87,12 @@ function yabrm_theme() {
     'render element' => 'content',
     'variables' => ['content' => NULL],
     'file' => 'yabrm_thesis.page.inc',
+  ];
+
+  // Set up to use custom Biblio Reference entity Citation view mode.
+  $theme['yabrm_biblio_reference__citation'] = [
+    'template'  => 'yabrm-biblio-reference--citation',
+    'base hook' => 'yabrm_biblio_reference',
   ];
 
   return $theme;

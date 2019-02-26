@@ -104,6 +104,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         'processor_id' => $this->getPluginId(),
       ];
       $properties['date_display'] = new ProcessorProperty($definition);
+
+      $definition = [
+        'label' => $this->t('Reference Citation'),
+        'description' => $this->t('The citation of the reference.'),
+        'type' => 'search_api_html',
+        'is_list' => FALSE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['bibliographic_citation'] = new ProcessorProperty($definition);
     }
 
     return $properties;
@@ -160,6 +169,18 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         ->filterForPropertyPath($item->getFields(), NULL, 'date_display');
       foreach ($fields as $field) {
         $field->addValue($yabrm_entity->getDisplayDate());
+      }
+
+      // Citation view mode.
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder($yabrm_entity->getType());
+      $storage = \Drupal::entityTypeManager()->getStorage($yabrm_entity->getType());
+      $build = $view_builder->view($yabrm_entity, 'citation');
+
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'bibliographic_citation');
+
+      foreach ($fields as $field) {
+        $field->addValue(render($build));
       }
     }
   }

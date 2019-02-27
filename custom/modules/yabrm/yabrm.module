@@ -95,5 +95,11 @@ function yabrm_theme() {
     'base hook' => 'yabrm_biblio_reference',
   ];
 
+  // Set up to use custom Book entity Citation view mode.
+  $theme['yabrm_book__citation'] = [
+    'template'  => 'yabrm-biblio-reference--citation',
+    'base hook' => 'yabrm_book',
+  ];
+
   return $theme;
 }

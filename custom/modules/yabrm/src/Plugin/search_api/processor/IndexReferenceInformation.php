@@ -172,8 +172,8 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       }
 
       // Citation view mode.
-      $view_builder = \Drupal::entityTypeManager()->getViewBuilder($yabrm_entity->getType());
-      $storage = \Drupal::entityTypeManager()->getStorage($yabrm_entity->getType());
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder($yabrm_entity->getEntityTypeId());
+      $storage = \Drupal::entityTypeManager()->getStorage($yabrm_entity->getEntityTypeId());
       $build = $view_builder->view($yabrm_entity, 'citation');
 
       $fields = $this->getFieldsHelper()

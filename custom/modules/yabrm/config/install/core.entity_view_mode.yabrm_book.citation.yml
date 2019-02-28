@@ -1,0 +1,10 @@
+uuid: cca67a85-6bb0-4beb-87ba-a17b02edfd93
+langcode: en
+status: true
+dependencies:
+  module:
+    - yabrm
+id: yabrm_book.citation
+label: Citation
+targetEntityType: yabrm_book
+cache: true

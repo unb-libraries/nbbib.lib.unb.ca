@@ -16,9 +16,15 @@
  */
 #}
 <div{{ attributes.addClass('yabrm_biblio_reference') }}>
-<p>
-  Test <b>citation</b> view mode.
-</p>
   {% if content %}
+    <p>
+      {{ content.author_last_name }},
+      {{ content.author_first_name|slice(1,1) }}
+      ({{ content.publication_year }}). {{ content.title }}
+      ({{ Content.edition }} ed., Vol. {{ content.volume }},
+      {{ content.series }}). {{ content.place }}: {{ content.publisher }}.
+      doi: {{ content.doi }}
+      {{ content.notes }}
+    </p>
   {% endif %}
 </div>

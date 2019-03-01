@@ -24,6 +24,19 @@ function yabrm_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
+ * Implements hook_theme_suggestions_alter().
+ */
+function yabrm_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  $entity_types = [
+    'yabrm_book'
+  ];
+  if (in_array($hook, $entity_types)) {
+    $view_mode = $variables['elements']['#view_mode'];
+    $suggestions[] = "{$hook}__" . $view_mode;
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function yabrm_theme() {
@@ -97,7 +110,7 @@ function yabrm_theme() {
 
   // Set up to use custom Book entity Citation view mode.
   $theme['yabrm_book__citation'] = [
-    'template'  => 'yabrm-biblio-reference--citation',
+    'template'  => 'yabrm_biblio_reference__citation',
     'base hook' => 'yabrm_book',
   ];
 

@@ -180,7 +180,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         ->filterForPropertyPath($item->getFields(), NULL, 'bibliographic_citation');
 
       foreach ($fields as $field) {
-        $field->addValue(render($build));
+        $field->addValue(\Drupal::service('renderer')->renderPlain($build));
       }
     }
   }

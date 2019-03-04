@@ -16,15 +16,62 @@
  */
 #}
 <div{{ attributes.addClass('yabrm_biblio_reference') }}>
+
   {% if content %}
     <p>
-      {{ content.author_last_name }},
-      {{ content.author_first_name|slice(1,1) }}
-      ({{ content.publication_year }}). {{ content.title }}
-      ({{ content.edition }} ed., Vol. {{ content.volume }},
-      {{ content.series }}). {{ content.place }}: {{ content.publisher }}.
-      doi: {{ content.doi }}
-      {{ content.notes }}
+      {% set authors = content.authors %}
+      {% set first_aut = true %}
+
+      {% for author in authors %}
+
+        {% if first_aut %}
+          {% set first_aut = false %}
+        {% else %}
+           ,
+        {% endif %}
+
+        {{ author['last_name'] }}
+
+        {% if author['first_name'] %}
+          , {{ author['first_name']|slice(1,1) }}
+        {% endif %}.
+      {% endfor %}
+
+      {% if content.publication_year|field_value %}
+        ({{ content.publication_year|field_value }}).
+      {% endif %}
+
+      {% if content.title|field_value %}
+        {{ content.title|field_value }}
+      {% endif %}
+
+      {% if content.edition|field_value %}
+        ({{ content.edition|field_value }} ed.
+
+        {% if content.volume|field_value %}
+          , Vol. {{ content.volume|field_value }}
+        {% endif %}
+
+        {% if content.series|field_value %}
+          , {{ content.series|field_value }}
+        {% endif %}).
+      {% endif %}
+
+      {% if content.place|field_value %}
+        {{ content.place|field_value }}
+      {% endif %}
+
+      {% if content.publisher|field_value %}
+       : {{ content.publisher|field_value }}.
+      {% endif %}
+
+      {% if content.doi|field_value %}
+        doi: {{ content.doi|field_value }}.
+      {% endif %}<br>
+
+      {% if content.notes|field_value %}
+        {{ content.notes|field_value }}
+      {% endif %}
     </p>
   {% endif %}
 </div>

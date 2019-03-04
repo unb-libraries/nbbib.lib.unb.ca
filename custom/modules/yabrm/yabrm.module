@@ -102,12 +102,6 @@ function yabrm_theme() {
     'file' => 'yabrm_thesis.page.inc',
   ];
 
-  // Set up to use custom Biblio Reference entity Citation view mode.
-  $theme['yabrm_biblio_reference__citation'] = [
-    'template'  => 'yabrm-biblio-reference--citation',
-    'base hook' => 'yabrm_biblio_reference',
-  ];
-
   // Set up to use custom Book entity Citation view mode.
   $theme['yabrm_book__citation'] = [
     'template'  => 'yabrm_biblio_reference__citation',

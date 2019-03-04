@@ -27,4 +27,9 @@ function template_preprocess_yabrm_book(array &$variables) {
   foreach (Element::children($variables['elements']) as $key) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
+
+  $variables['content']['authors'] = [
+    ['first_name' => 'First', 'last_name' => 'Last'],
+    ['first_name' => 'First2', 'last_name' => 'Last2'],
+  ];
 }

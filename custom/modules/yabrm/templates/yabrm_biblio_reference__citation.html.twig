@@ -20,57 +20,70 @@
   {% if content %}
     <p>
       {% set authors = content.authors %}
-      {% set first_aut = true %}
+      {% set publication_year = content.publication_year|field_value %}
+      {% set title = content.title|field_value %}
+      {% set edition = content.edition|field_value %}
+      {% set volume = content.volume|field_value %}
+      {% set series = content.series|field_value %}
+      {% set place = content.place|field_value %}
+      {% set publisher = content.publisher|field_value %}
+      {% set doi = content.doi|field_value %}
+      {% set notes = content.notes|field_value %}
 
       {% for author in authors %}
+        {{ author['last_name'] -}}
 
-        {% if first_aut %}
-          {% set first_aut = false %}
-        {% else %}
-           ,
-        {% endif %}
+        {% if author['first_name'] -%}
+          {{ ', ' }}{{ author['first_name']|slice(0,1) }}{{- '.' -}}
+        {% endif -%}
 
-        {{ author['last_name'] }}
-
-        {% if author['first_name'] %}
-          , {{ author['first_name']|slice(1,1) }}
-        {% endif %}.
+        {{- not loop.last ? ', ' }}
       {% endfor %}
 
-      {% if content.publication_year|field_value %}
-        ({{ content.publication_year|field_value }}).
+      {% if publication_year %}
+        ({{ publication_year }}).
       {% endif %}
 
-      {% if content.title|field_value %}
-        {{ content.title|field_value }}
+      {% if title %}
+        {{ title }}
       {% endif %}
 
-      {% if content.edition|field_value %}
-        ({{ content.edition|field_value }} ed.
+      {% if edition or volume or series %}{{ '(' -}}
+        {%- if edition -%}
+          {{- edition -}}{{- ' ed.' -}}
+        {%- endif -%}
 
-        {% if content.volume|field_value %}
-          , Vol. {{ content.volume|field_value }}
-        {% endif %}
+        {%- if edition and volume -%}
+          {{- ', ' -}}
+        {%- endif -%}
 
-        {% if content.series|field_value %}
-          , {{ content.series|field_value }}
-        {% endif %}).
+        {%- if volume -%}
+          {{- 'Vol. ' -}}{{- volume -}}
+        {%- endif -%}
+
+        {%- if volume and series -%}
+          {{- ', ' -}}
+        {%- endif -%}
+
+        {%- if series -%}
+          {{- series -}}
+        {%- endif -%}{{- ').' -}}
       {% endif %}
 
       {% if content.place|field_value %}
         {{ content.place|field_value }}
       {% endif %}
 
-      {% if content.publisher|field_value %}
-       : {{ content.publisher|field_value }}.
+      {% if publisher %}
+       {{ ':' }}{{ publisher }}{{ '.' }}
       {% endif %}
 
-      {% if content.doi|field_value %}
-        doi: {{ content.doi|field_value }}.
+      {% if doi %}
+        {{ 'doi: ' }}{{ doi }}{{ '.' }}
       {% endif %}<br>
 
-      {% if content.notes|field_value %}
-        {{ content.notes|field_value }}
+      {% if notes %}
+        {{ notes }}
       {% endif %}
     </p>
   {% endif %}

@@ -158,19 +158,19 @@ field_settings:
   bibliographic_authors:
     label: Author(s)
     property_path: bibliographic_authors
-    type: solr_string_storage
+    type: string
   bibliographic_citation:
     label: 'Reference Citation'
     property_path: bibliographic_citation
-    type: solr_string_storage
+    type: string
   bibliographic_title:
     label: Title
     property_path: bibliographic_title
-    type: solr_string_storage
+    type: string
   bibliographic_type:
     label: 'Reference Type'
     property_path: bibliographic_type
-    type: solr_string_storage
+    type: string
   call_number:
     label: 'Call Number'
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -294,7 +294,7 @@ field_settings:
   date_display:
     label: 'Reference Date'
     property_path: date_display
-    type: solr_string_storage
+    type: string
   date_sort:
     label: 'Sortable Date'
     property_path: date_sort

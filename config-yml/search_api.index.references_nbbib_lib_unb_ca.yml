@@ -158,7 +158,7 @@ field_settings:
   bibliographic_authors:
     label: Author(s)
     property_path: bibliographic_authors
-    type: string
+    type: text
   bibliographic_citation:
     label: 'Reference Citation'
     property_path: bibliographic_citation
@@ -166,7 +166,7 @@ field_settings:
   bibliographic_title:
     label: Title
     property_path: bibliographic_title
-    type: string
+    type: text
   bibliographic_type:
     label: 'Reference Type'
     property_path: bibliographic_type

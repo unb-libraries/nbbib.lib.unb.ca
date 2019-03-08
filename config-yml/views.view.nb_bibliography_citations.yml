@@ -249,6 +249,49 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_text
+        place_4:
+          id: place_4
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: place_4
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: place_4_op
+            label: 'Publication Place'
+            description: ''
+            use_operator: false
+            operator: place_4_op
+            identifier: place_4
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
       sorts: {  }
       title: 'NB Bibliography Citations'
       header: {  }

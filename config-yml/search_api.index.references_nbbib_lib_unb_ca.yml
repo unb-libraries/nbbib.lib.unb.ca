@@ -523,6 +523,10 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  place_4:
+    label: 'Publication Place'
+    property_path: place
+    type: text
   publication_day:
     label: 'Publication Day'
     datasource_id: 'entity:yabrm_biblio_reference'

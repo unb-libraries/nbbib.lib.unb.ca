@@ -148,25 +148,6 @@ interface BookSectionReferenceInterface extends ContentEntityInterface, Revision
   public function setSeriesNumber($series_number);
 
   /**
-   * Gets the publisher of the book.
-   *
-   * @return string
-   *   The publisher of the book.
-   */
-  public function getPublisher();
-
-  /**
-   * Sets the publisher of the book.
-   *
-   * @param string $publisher
-   *   The publisher of the book.
-   *
-   * @return \Drupal\yabrm\Entity\BookSectionReferenceInterface
-   *   The called Book Section Reference entity.
-   */
-  public function setPublisher($publisher);
-
-  /**
    * Gets the place of the book.
    *
    * @return string
@@ -178,7 +159,7 @@ interface BookSectionReferenceInterface extends ContentEntityInterface, Revision
    * Sets the place of the book.
    *
    * @param string $place
-   *   The publisher of the book.
+   *   The place of the book.
    *
    * @return \Drupal\yabrm\Entity\BookSectionReferenceInterface
    *   The called Book Section Reference entity.

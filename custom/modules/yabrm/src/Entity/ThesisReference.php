@@ -63,21 +63,6 @@ class ThesisReference extends BibliographicReference implements ThesisReferenceI
   /**
    * {@inheritdoc}
    */
-  public function getPublisher() {
-    return $this->get('publisher')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setPublisher($publisher) {
-    $this->set('publisher', $publisher);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getPlace() {
     return $this->get('place')->value;
   }
@@ -128,25 +113,6 @@ class ThesisReference extends BibliographicReference implements ThesisReferenceI
 
     $fields['num_pages'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Number of Pages'))
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['publisher'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Publisher'))
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,

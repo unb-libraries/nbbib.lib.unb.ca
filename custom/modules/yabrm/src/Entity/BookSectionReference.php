@@ -63,21 +63,6 @@ class BookSectionReference extends BibliographicReference implements BookSection
   /**
    * {@inheritdoc}
    */
-  public function getPublisher() {
-    return $this->get('publisher')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setPublisher($publisher) {
-    $this->set('publisher', $publisher);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getPlace() {
     return $this->get('place')->value;
   }
@@ -332,25 +317,6 @@ class BookSectionReference extends BibliographicReference implements BookSection
 
     $fields['series_number'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Series Number'))
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['publisher'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Publisher'))
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,

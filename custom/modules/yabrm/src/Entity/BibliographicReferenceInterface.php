@@ -340,6 +340,25 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function setAbstractNote($abstract_note);
 
   /**
+   * Gets the publisher of the reference.
+   *
+   * @return string
+   *   The publisher of the reference.
+   */
+  public function getPublisher();
+
+  /**
+   * Sets the publisher of the reference.
+   *
+   * @param string $publisher
+   *   The publisher of the reference.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Book Reference entity.
+   */
+  public function setPublisher($publisher);
+
+  /**
    * Gets the Bibliographic Reference Rights.
    *
    * @return string

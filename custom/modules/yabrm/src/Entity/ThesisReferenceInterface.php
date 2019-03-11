@@ -34,25 +34,6 @@ interface ThesisReferenceInterface extends ContentEntityInterface, RevisionLogIn
   public function setNumberOfPages($num_pages);
 
   /**
-   * Gets the publisher of the book.
-   *
-   * @return string
-   *   The publisher of the book.
-   */
-  public function getPublisher();
-
-  /**
-   * Sets the publisher of the book.
-   *
-   * @param string $publisher
-   *   The publisher of the book.
-   *
-   * @return \Drupal\yabrm\Entity\BookReferenceInterface
-   *   The called Book Reference entity.
-   */
-  public function setPublisher($publisher);
-
-  /**
    * Gets the place of the book.
    *
    * @return string
@@ -64,7 +45,7 @@ interface ThesisReferenceInterface extends ContentEntityInterface, RevisionLogIn
    * Sets the place of the book.
    *
    * @param string $place
-   *   The publisher of the book.
+   *   The place of the book.
    *
    * @return \Drupal\yabrm\Entity\BookReferenceInterface
    *   The called Book Reference entity.

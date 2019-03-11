@@ -295,6 +295,27 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['publisher'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Publisher'))
+      ->setDescription(t('Publisher.'))
+      ->setSettings([
+        'max_length' => 1024,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setRequired(TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['language'] = BaseFieldDefinition::create('list_string')
       ->setSettings([
         'allowed_values' => ['eng' => 'English', 'fre' => 'French'],
@@ -879,6 +900,21 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    */
   public function setAbstractNote($abstract_note) {
     $this->set('abstract_note', $abstract_note);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPublisher() {
+    return $this->get('publisher')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPublisher($publisher) {
+    $this->set('abstract_note', $publisher);
     return $this;
   }
 

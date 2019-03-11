@@ -116,7 +116,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          link_to_item: false
+          link_to_item: true
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
@@ -270,6 +270,49 @@ display:
             use_operator: false
             operator: place_4_op
             identifier: place_4
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_text
+        publisher:
+          id: publisher
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: publisher
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: publisher_op
+            label: Publisher
+            description: ''
+            use_operator: false
+            operator: publisher_op
+            identifier: publisher
             required: false
             remember: false
             multiple: false

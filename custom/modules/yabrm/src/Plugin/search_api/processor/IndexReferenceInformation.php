@@ -87,7 +87,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         'is_list' => TRUE,
         'processor_id' => $this->getPluginId(),
       ];
-      $properties['place'] = new ProcessorProperty($definition);
+      $properties['publisher'] = new ProcessorProperty($definition);
 
       $definition = [
         'label' => $this->t('Publication Place'),

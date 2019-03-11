@@ -665,28 +665,8 @@ field_settings:
         - yabrm
   publisher:
     label: Publisher
-    datasource_id: 'entity:yabrm_book_section'
     property_path: publisher
     type: text
-    dependencies:
-      module:
-        - yabrm
-  publisher_1:
-    label: Publisher
-    datasource_id: 'entity:yabrm_thesis'
-    property_path: publisher
-    type: text
-    dependencies:
-      module:
-        - yabrm
-  publisher_2:
-    label: Publisher
-    datasource_id: 'entity:yabrm_book'
-    property_path: publisher
-    type: string
-    dependencies:
-      module:
-        - yabrm
   rights:
     label: Rights
     datasource_id: 'entity:yabrm_biblio_reference'

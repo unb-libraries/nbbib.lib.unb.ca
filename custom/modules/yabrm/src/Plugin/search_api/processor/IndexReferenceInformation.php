@@ -81,6 +81,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $properties['bibliographic_title'] = new ProcessorProperty($definition);
 
       $definition = [
+        'label' => $this->t('Publisher'),
+        'description' => $this->t('The publisher of the referenced item.'),
+        'type' => 'search_api_html',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['place'] = new ProcessorProperty($definition);
+
+      $definition = [
         'label' => $this->t('Publication Place'),
         'description' => $this->t('The place of publication of the referenced item.'),
         'type' => 'search_api_html',
@@ -150,6 +159,13 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       // The common title field.
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'bibliographic_title');
+      foreach ($fields as $field) {
+        $field->addValue($yabrm_entity->getName());
+      }
+
+      // Publisher field.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'publisher');
       foreach ($fields as $field) {
         $field->addValue($yabrm_entity->getName());
       }

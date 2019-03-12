@@ -30,6 +30,8 @@ source:
       publication_date: Publication Date
     21:
       short_title: Short Title
+    26:
+      publisher: Publisher
     28:
       language: Language
     29:
@@ -113,6 +115,8 @@ process:
   series: series
   series_text: series_text
   series_title: series_title
+  publisher: publisher
+
 
 destination:
   plugin: entity:yabrm_journal_article

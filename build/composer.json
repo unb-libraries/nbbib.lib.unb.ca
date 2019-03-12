@@ -44,9 +44,9 @@
         "patches": {}
     },
     "license": "MIT",
-    "minimum-stability": "stable",
-    "name": "unb-libraries/nbbib.lib.unb.ca",
+    "minimum-stability": "dev",
     "prefer-stable": true,
+    "name": "unb-libraries/nbbib.lib.unb.ca",
     "repositories": [
         {
             "type": "composer",

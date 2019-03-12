@@ -1,0 +1,91 @@
+{#
+/**
+ * @file yabrm_biblio_reference__citation.html.twig
+ * Citation view mode theme implementation for Bibliographic Reference data.
+ *
+ * This template is used when viewing Bibliographic Reference pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_yabrm_biblio_reference()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('yabrm_biblio_reference') }}>
+
+  {% if content %}
+
+    <p>
+      {% set authors = content.authors %}
+      {% set publication_year = content.publication_year|field_value %}
+      {% set title = content.title|field_value %}
+      {% set edition = content.edition|field_value %}
+      {% set volume = content.volume|field_value %}
+      {% set series = content.series|field_value %}
+      {% set place = content.place|field_value %}
+      {% set publisher = content.publisher|field_value %}
+      {% set doi = content.doi|field_value %}
+      {% set notes = content.notes|field_value %}
+
+      {% for author in authors %}
+        {{ author['last_name'] -}}
+
+        {% if author['first_name'] -%}
+          {{ ', ' }}{{ author['first_name']|slice(0,1) }}{{- '.' -}}
+        {% endif -%}
+
+        {{- not loop.last ? ', ' }}
+      {% endfor %}
+
+      {% if publication_year %}
+        ({{ publication_year }}).
+      {% endif %}
+
+      {% if title %}
+        {{ title }}
+      {% endif %}
+
+      {% if edition or volume or series %}{{ '(' -}}
+        {%- if edition -%}
+          {{- edition -}}{{- ' ed.' -}}
+        {%- endif -%}
+
+        {%- if edition and volume -%}
+          {{- ', ' -}}
+        {%- endif -%}
+
+        {%- if volume -%}
+          {{- 'Vol. ' -}}{{- volume -}}
+        {%- endif -%}
+
+        {%- if volume and series -%}
+          {{- ', ' -}}
+        {%- endif -%}
+
+        {%- if series -%}
+          {{- series -}}
+        {%- endif -%}{{- ').' -}}
+      {% endif %}
+
+      {% if content.place|field_value %}
+        {{ content.place|field_value }}
+      {% endif %}
+
+      {% if publisher %}
+       {{ ':' }}{{ publisher }}{{ '.' }}
+      {% endif %}
+
+      {% if doi %}
+        {{ 'doi: ' }}{{ doi }}{{ '.' }}
+      {% endif %}<br>
+
+      {% if notes %}
+        {{ notes }}
+      {% endif %}
+    </p>
+  {% endif %}
+</div>

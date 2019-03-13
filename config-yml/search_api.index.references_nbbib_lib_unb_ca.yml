@@ -663,6 +663,10 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  publication_year_5:
+    label: 'Publication Year'
+    property_path: publication_year
+    type: integer
   publisher:
     label: Publisher
     property_path: publisher

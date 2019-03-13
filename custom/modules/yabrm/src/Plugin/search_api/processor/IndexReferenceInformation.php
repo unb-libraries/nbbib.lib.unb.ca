@@ -99,6 +99,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $properties['place'] = new ProcessorProperty($definition);
 
       $definition = [
+        'label' => $this->t('Publication Year'),
+        'description' => $this->t('The place of publication of the referenced item.'),
+        'type' => 'search_api_html',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['publication_year'] = new ProcessorProperty($definition);
+
+      $definition = [
         'label' => $this->t('Author(s)'),
         'description' => $this->t('All contributors identified as Author for this bibliographic reference'),
         'type' => 'search_api_html',
@@ -182,6 +191,13 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         ->filterForPropertyPath($item->getFields(), NULL, 'place');
       foreach ($fields as $field) {
         $field->addValue($place);
+      }
+
+      // Publication year field.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'publication_year');
+      foreach ($fields as $field) {
+        $field->addValue(intval($yabrm_entity->getPublicationYear()));
       }
 
       // Contributors with role 'Author'.

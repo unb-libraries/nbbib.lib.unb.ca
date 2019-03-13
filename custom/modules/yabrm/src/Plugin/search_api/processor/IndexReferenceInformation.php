@@ -171,10 +171,17 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       }
 
       // Publication place field.
+      if (method_exists($yabrm_entity, 'getPlace')) {
+        $place = $yabrm_entity->getPlace();
+      }
+      else {
+        $place = NULL;
+      }
+
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'place');
       foreach ($fields as $field) {
-        $field->addValue($yabrm_entity->getName());
+        $field->addValue($place);
       }
 
       // Contributors with role 'Author'.

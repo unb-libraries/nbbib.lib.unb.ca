@@ -170,7 +170,7 @@ field_settings:
   bibliographic_type:
     label: 'Reference Type'
     property_path: bibliographic_type
-    type: string
+    type: text
   call_number:
     label: 'Call Number'
     datasource_id: 'entity:yabrm_biblio_reference'

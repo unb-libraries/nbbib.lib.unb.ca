@@ -167,7 +167,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'publisher');
       foreach ($fields as $field) {
-        $field->addValue($yabrm_entity->getName());
+        $field->addValue($yabrm_entity->getPublisher());
       }
 
       // Publication place field.

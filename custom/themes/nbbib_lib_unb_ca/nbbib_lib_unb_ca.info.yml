@@ -1,6 +1,6 @@
 core: 8.x
 type: theme
-base theme: unb_lib_theme
+base theme: bootstrap
 
 name: 'nbbib_lib_unb_ca'
 description: 'For nbbib_lib_unb_ca'

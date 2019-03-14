@@ -17,75 +17,76 @@
 #}
 <div{{ attributes.addClass('yabrm_biblio_reference') }}>
 
-  {% if content %}
+  {%- if content -%}
 
     <p>
-      {% set authors = content.authors %}
-      {% set publication_year = content.publication_year|field_value %}
-      {% set title = content.title|field_value %}
-      {% set edition = content.edition|field_value %}
-      {% set volume = content.volume|field_value %}
-      {% set series = content.series|field_value %}
-      {% set place = content.place|field_value %}
-      {% set publisher = content.publisher|field_value %}
-      {% set doi = content.doi|field_value %}
-      {% set notes = content.notes|field_value %}
+      {%- set months = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+      ] -%}
 
-      {% for author in authors %}
-        {{ author['last_name'] -}}
+      {%- set authors = content.authors -%}
+      {%- set publication_year = content.publication_year|field_value -%}
+      {%- set publication_month = content.publication_month|field_value|number_format -%}
+      {%- set publication_day = content.publication_day|field_value -%}
+      {%- set title = content.title|field_value -%}
+      {%- set publisher = content.publisher|field_value -%}
+      {%- set notes = content.notes|field_value -%}
 
-        {% if author['first_name'] -%}
-          {{ ', ' }}{{ author['first_name']|slice(0,1) }}{{- '.' -}}
-        {% endif -%}
-
-        {{- not loop.last ? ', ' }}
-      {% endfor %}
-
-      {% if publication_year %}
-        ({{ publication_year }}).
-      {% endif %}
-
-      {% if title %}
-        {{ title }}
-      {% endif %}
-
-      {% if edition or volume or series %}{{ '(' -}}
-        {%- if edition -%}
-          {{- edition -}}{{- ' ed.' -}}
+      {%- for author in authors -%}
+        {%- if not loop.first -%}
+          {{ ', ' }}
+          {%- if loop.last -%}
+            {{ 'and ' }}
+          {%- endif -%}
         {%- endif -%}
 
-        {%- if edition and volume -%}
-          {{- ', ' -}}
+        {{ author['last_name'] }}
+
+        {%- if author['first_name'] -%}
+          {{ ', ' }}{{ author['first_name']|slice(0,1) }}
         {%- endif -%}
 
-        {%- if volume -%}
-          {{- 'Vol. ' -}}{{- volume -}}
+        {{ '.' }}
+      {%- endfor -%}
+
+      {%- if title -%}
+        {{ ' "' }}{{ title }}{{ '"' }}
+      {%- endif -%}
+
+      {%- if publisher -%}
+       {{ ' ' }}{{ publisher }}
+      {%- endif -%}
+
+      {%- if publication_year -%}
+        {{ ', ' }}{{ publication_day }}
+
+        {%- if publication_month > 0 and publication_month < 13 -%}
+          {{ ' ' }}{{ months[publication_month] }}{{ '.' }}
         {%- endif -%}
 
-        {%- if volume and series -%}
-          {{- ', ' -}}
-        {%- endif -%}
+        {{ publication_year }}
+      {%- endif -%}
 
-        {%- if series -%}
-          {{- series -}}
-        {%- endif -%}{{- ').' -}}
-      {% endif %}
+      {%- if url -%}
+        {{ ', ' }}{{ url }}
+      {%- else -%}
+        {{ '.' }}
+      {%- endif -%}<br>
 
-      {% if content.place|field_value %}
-        {{ content.place|field_value }}
-      {% endif %}
-
-      {% if publisher %}
-       {{ ':' }}{{ publisher }}{{ '.' }}
-      {% endif %}
-
-      {% if doi %}
-        {{ 'doi: ' }}{{ doi }}{{ '.' }}
-      {% endif %}<br>
-
-      {% if notes %}
+      {%- if notes -%}
         {{ notes }}
-      {% endif %}
+      {%- endif -%}
     </p>
-  {% endif %}
+  {%- endif -%}
 </div>

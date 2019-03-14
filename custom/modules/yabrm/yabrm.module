@@ -28,7 +28,10 @@ function yabrm_help($route_name, RouteMatchInterface $route_match) {
  */
 function yabrm_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
   $entity_types = [
-    'yabrm_book'
+    'yabrm_book',
+    'yabrm_book_section',
+    'yabrm_journal_article',
+    'yabrm_thesis',
   ];
   if (in_array($hook, $entity_types)) {
     $view_mode = $variables['elements']['#view_mode'];
@@ -102,10 +105,28 @@ function yabrm_theme() {
     'file' => 'yabrm_thesis.page.inc',
   ];
 
-  // Set up to use custom Book entity Citation view mode.
+  // Set up to use custom reference Citation view mode for books.
   $theme['yabrm_book__citation'] = [
     'template'  => 'yabrm_biblio_reference__citation',
     'base hook' => 'yabrm_book',
+  ];
+
+  // Set up to use custom reference Citation view mode for book sections.
+  $theme['yabrm_book_section__citation'] = [
+    'template'  => 'yabrm_biblio_reference__citation',
+    'base hook' => 'yabrm_book_section',
+  ];
+
+  // Set up to use custom reference Citation view mode for jornal articles.
+  $theme['yabrm_journal_article__citation'] = [
+    'template'  => 'yabrm_biblio_reference__citation',
+    'base hook' => 'yabrm_journal_article',
+  ];
+
+  // Set up to use custom reference Citation view mode for thesis.
+  $theme['yabrm_thesis__citation'] = [
+    'template'  => 'yabrm_biblio_reference__citation',
+    'base hook' => 'yabrm_thesis',
   ];
 
   return $theme;

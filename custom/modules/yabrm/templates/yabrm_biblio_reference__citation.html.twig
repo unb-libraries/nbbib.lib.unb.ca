@@ -37,6 +37,7 @@
       ] -%}
 
       {%- set authors = content.authors -%}
+      {%- set editors = content.editors -%}
       {%- set publication_year = content.publication_year|field_value -%}
       {%- set publication_month = content.publication_month|field_value|number_format -%}
       {%- set publication_day = content.publication_day|field_value -%}
@@ -62,8 +63,30 @@
       {%- endfor -%}
 
       {%- if title -%}
-        {{ ' "' }}{{ title }}{{ '"' }}
+        {{ ' ' }}<i>{{ title }}</i>
       {%- endif -%}
+
+      {%- for editor in editors -%}
+        {%- if not loop.first -%}
+          {{ ', ' }}
+          {%- if loop.last -%}
+            {{ 'and ' }}
+          {%- endif -%}
+        {%- else -%}
+          {%- if title|last not in '.?!' -%}
+            {{ '.' }}
+          {%- endif -%}
+          {{ ' Edited by '}}
+        {%- endif -%}
+
+        {{ editor['last_name'] }}
+
+        {%- if editor['first_name'] -%}
+          {{ ', ' }}{{ editor['first_name']|slice(0,1) }}
+        {%- endif -%}
+
+        {{ '.' }}
+      {%- endfor -%}
 
       {%- if publisher -%}
        {{ ' ' }}{{ publisher }}

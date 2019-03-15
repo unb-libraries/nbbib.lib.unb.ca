@@ -79,12 +79,6 @@ function template_preprocess_yabrm_book(array &$variables) {
         'last_name' => $last_name,
       ];
     }
-    elseif (strtolower($role) == 'translator') {
-      $variables['content']['translators'][] = [
-        'first_name' => $first_name,
-        'last_name' => $last_name,
-      ];
-    }
 
     $i++;
   }

@@ -66,7 +66,7 @@ function template_preprocess_yabrm_book(array &$variables) {
     $last_name = $c_iname ? $c_iname : $c_lname;
     $first_name = $c_fname;
 
-    // Pass author and editor names.
+    // Pass names for different roles.
     if (strtolower($role) == 'author') {
       $variables['content']['authors'][] = [
         'first_name' => $first_name,
@@ -75,6 +75,12 @@ function template_preprocess_yabrm_book(array &$variables) {
     }
     elseif (strtolower($role) == 'editor') {
       $variables['content']['editors'][] = [
+        'first_name' => $first_name,
+        'last_name' => $last_name,
+      ];
+    }
+    elseif (strtolower($role) == 'translator') {
+      $variables['content']['translators'][] = [
         'first_name' => $first_name,
         'last_name' => $last_name,
       ];

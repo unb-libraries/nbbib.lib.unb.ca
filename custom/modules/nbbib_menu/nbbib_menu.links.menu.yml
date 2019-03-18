@@ -1,0 +1,21 @@
+nbbib_menu.home:
+  title: 'Home'
+  description: 'Home'
+  parent: main
+  menu_name: main
+  url: internal:/
+  weight: 10
+nbbib_menu.about:
+  title: 'About'
+  description: 'About'
+  parent: main
+  menu_name: main
+  url: internal:/about
+  weight: 20
+nbbib_menu.biblio:
+  title: 'Bibliography'
+  description: 'Bibliography'
+  parent: main
+  menu_name: main
+  url: internal:/bibliography
+  weight: 30

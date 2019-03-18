@@ -1,0 +1,5 @@
+name: NB Bibliography Main Menu
+type: module
+description: Main menu for nbbib.lib.unb.ca
+core: 8.x
+package: Custom

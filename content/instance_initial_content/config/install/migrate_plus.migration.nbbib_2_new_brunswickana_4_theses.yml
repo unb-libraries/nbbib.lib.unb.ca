@@ -1,0 +1,104 @@
+id: nbbib_2_new_brunswickana_4_theses
+label: New Brunswickana Thesis references from Zotero for NBBIB
+
+migration_tags:
+  - CSV
+  - NBBIB Zotero
+
+source:
+  plugin: csv
+  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_2_new_brunswickana.csv'
+  header_row_count: 1
+  keys:
+    - key
+  column_names:
+    0:
+      key: Key
+    1:
+      item_type: Item Type
+    2:
+      src_publication_year: Publication Year
+    3:
+      author: Author
+    4:
+      title: Title
+    5:
+      publication_title: Publication Title
+    9:
+      url: URL
+    10:
+      abstract_note: Abstract Note
+    11:
+      publication_date: Publication Date
+    16:
+      num_pages: Number of Pages
+    21:
+      short_title: Short Title
+    26:
+      publisher: Publisher
+    27:
+      place: Place
+    28:
+      language: Language
+    29:
+      rights: Rights
+    30:
+      thesis_type: Thesis Type
+    31:
+      archive: Archive
+    32:
+      archive_location: Archive Location
+    33:
+      library_catalog: Library Catalog
+    34:
+      call_number: Call Number
+    35:
+      extra: Extra
+    36:
+      notes: Notes
+    43:
+      translator: Translator
+    44:
+      contributor: Contributor
+    46:
+      book_author: Book Author
+
+process:
+  type:
+    plugin: skip_on_value
+    method: row
+    not_equals: true
+    value: thesis
+    source: item_type
+  external_key_ref: key
+  title: title
+  url: url
+  abstract_note: abstract_note
+  publication_year: publication_year
+  publication_month: publication_month
+  publication_day: publication_day
+  publication_title: publication_title
+  num_pages: num_pages
+  short_title: short_title
+  publisher: publisher
+  place: place
+  language: language
+  rights: rights
+  thesis_type: thesis_type
+  archive: archive
+  archive_location: archive_location
+  library_catalog: library_catalog
+  call_number: call_number
+  extra: extra
+  notes_private: notes
+  translator: translator
+
+destination:
+  plugin: entity:yabrm_thesis
+
+dependencies:
+  module:
+    - instance_initial_content
+  enforced:
+    module:
+    - instance_initial_content

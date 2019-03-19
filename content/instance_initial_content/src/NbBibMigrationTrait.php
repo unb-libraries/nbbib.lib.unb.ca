@@ -19,6 +19,10 @@ trait NbBibMigrationTrait {
       'nbbib_1_religion_anglican_2_books' => 'Religion: Anglican',
       'nbbib_1_religion_anglican_3_book_sections' => 'Religion: Anglican',
       'nbbib_1_religion_anglican_4_theses' => 'Religion: Anglican',
+      'nbbib_2_new_brunswickana_1_journal_articles' => 'New Brunswickana',
+      'nbbib_2_new_brunswickana_2_books' => 'New Brunswickana',
+      'nbbib_2_new_brunswickana_3_book_sections' => 'New Brunswickana',
+      'nbbib_2_new_brunswickana_4_theses' => 'New Brunswickana',
     ];
   }
 

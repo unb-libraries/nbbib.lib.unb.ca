@@ -1,2 +1,29 @@
 // If you wish to compile/extend Bootstrap then uncomment line below and disable subtheme CDN
 // @import '../../../../../vendor/unb-libraries/unb_lib_theme/assets/stylesheets/unblib';
+
+// Bibliography citation view - filter form.
+// Full form.
+form#views-exposed-form-nb-bibliography-citations-page-1 {
+  margin-bottom: 30px;
+}
+@media screen and (min-width: 768px) {
+  // Filter (label + input).
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div {
+    margin-bottom: 4px;
+    width: 48%;
+  }
+  // Label.
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > label {
+    margin-right: .5%;
+    width: 34%;
+  }
+  // Input.
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > input {
+    margin-right: .5%;
+    width: 60%;
+  }
+  // Button.
+  form#views-exposed-form-nb-bibliography-citations-page-1 div#edit-actions {
+    margin-top: 10px;
+  }
+}

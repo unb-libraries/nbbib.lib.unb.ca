@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Contains nbbib_core.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function nbbib_core_theme($existing, $type, $theme, $path) {
+  return [
+    'nbbib_intro' => [
+      'variables' => [],
+    ],
+    'nbbib_about' => [
+      'variables' => [],
+    ],
+  ];
+}

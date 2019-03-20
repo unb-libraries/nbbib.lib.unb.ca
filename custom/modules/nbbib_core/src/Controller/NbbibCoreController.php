@@ -21,4 +21,16 @@ class NbbibCoreController extends ControllerBase {
     return $element;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function about() {
+    $element = [
+      '#theme' => 'nbbib_about',
+      '#attributes' => [],
+    ];
+
+    return $element;
+  }
+
 }

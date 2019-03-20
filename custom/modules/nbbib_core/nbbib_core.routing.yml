@@ -4,3 +4,11 @@ nbbib_core.home:
     _controller: '\Drupal\nbbib_core\Controller\NbbibCoreController:home'
   requirements:
     _permission: 'access content'
+nbbib_core.bibliography:
+  path: '/bibliography'
+nbbib_core.about:
+  path: '/about'
+  defaults:
+    _controller: '\Drupal\nbbib_core\Controller\NbbibCoreController:about'
+  requirements:
+    _permission: 'access content'

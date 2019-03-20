@@ -23,7 +23,7 @@ module:
   language: 0
   link: 0
   menu_ui: 0
-  nbbib_menu: 0
+  nbbib_core: 0
   node: 0
   options: 0
   page_cache: 0

@@ -1,0 +1,6 @@
+nbbib_core.home:
+  path: '/intro'
+  defaults:
+    _controller: '\Drupal\nbbib_core\Controller\NbbibCoreController:home'
+  requirements:
+    _permission: 'access content'

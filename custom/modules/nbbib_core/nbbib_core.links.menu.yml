@@ -1,18 +1,18 @@
-nbbib_menu.home:
+nbbib_core.home:
   title: 'Home'
   description: 'Home'
   parent: main
   menu_name: main
-  url: internal:/
+  route_name: nbbib_core.home
   weight: 10
-nbbib_menu.about:
+nbbib_core.about:
   title: 'About'
   description: 'About'
   parent: main
   menu_name: main
   url: internal:/about
   weight: 20
-nbbib_menu.biblio:
+nbbib_core.biblio:
   title: 'Bibliography'
   description: 'Bibliography'
   parent: main

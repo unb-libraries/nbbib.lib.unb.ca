@@ -26,10 +26,17 @@ form#views-exposed-form-nb-bibliography-citations-page-1 {
     margin-right: .5%;
     width: 34%;
   }
-  // Input.
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > input {
+  // Input and select wrapper.
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > input,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div >
+  div.select-wrapper {
     margin-right: .5%;
     width: 60%;
+  }
+  // Select.
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > div >
+  select {
+    width: 100%;
   }
   // Button.
   form#views-exposed-form-nb-bibliography-citations-page-1 div#edit-actions {

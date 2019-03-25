@@ -1,0 +1,27 @@
+uuid: d69340f6-3cac-46d5-b170-cdc306db4368
+langcode: en
+status: true
+dependencies: {  }
+id: nb_bibliography_contributor
+label: 'NB Bibliography Contributor'
+weight: 2
+is_admin: null
+permissions:
+  - 'add book reference entities'
+  - 'add book section reference entities'
+  - 'add journal article reference entities'
+  - 'add thesis reference entities'
+  - 'delete book reference entities'
+  - 'delete book section reference entities'
+  - 'delete journal article reference entities'
+  - 'delete thesis reference entities'
+  - 'edit book reference entities'
+  - 'edit book section reference entities'
+  - 'edit journal article reference entities'
+  - 'edit thesis reference entities'
+  - 'view published bibliographic collection entities'
+  - 'view published bibliographic contributor entities'
+  - 'view published book reference entities'
+  - 'view published book section reference entities'
+  - 'view published journal article reference entities'
+  - 'view published thesis reference entities'

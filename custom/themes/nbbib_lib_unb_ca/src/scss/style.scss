@@ -43,3 +43,20 @@ form#views-exposed-form-nb-bibliography-citations-page-1 {
     margin-top: 10px;
   }
 }
+
+// Navigation tabs.
+.tabs--primary.nav.nav-tabs {
+  margin-bottom: 10px;
+}
+
+// Edit reference forms - publication date fields.
+@media screen and (min-width: 768px) {
+  div#edit-publication-year-wrapper,
+  div#edit-publication-month-wrapper,
+  div#edit-publication-day-wrapper {
+    > div > label {
+      margin-right: 1%;
+      width: 15%;
+    }
+  }
+}

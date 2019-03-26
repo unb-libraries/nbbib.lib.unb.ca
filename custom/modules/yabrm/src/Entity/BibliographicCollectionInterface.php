@@ -36,6 +36,25 @@ interface BibliographicCollectionInterface extends ContentEntityInterface, Revis
   public function setName($name);
 
   /**
+   * Gets the Bibliographic Collection description.
+   *
+   * @return string
+   *   Description of the Bibliographic Collection.
+   */
+  public function getDescription();
+
+  /**
+   * Sets the Bibliographic Collection description.
+   *
+   * @param string $description
+   *   The Bibliographic Collection description.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicCollectionInterface
+   *   The called Bibliographic Collection entity.
+   */
+  public function setDescription($description);
+
+  /**
    * Gets the Bibliographic Collection creation timestamp.
    *
    * @return int

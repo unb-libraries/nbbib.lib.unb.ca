@@ -12,10 +12,17 @@ nbbib_core.biblio:
   menu_name: main
   route_name: nbbib_core.bibliography
   weight: 20
+nbbib_core.collections:
+  title: 'Collections'
+  description: 'Collections'
+  parent: main
+  menu_name: main
+  route_name: nbbib_core.collections
+  weight: 30
 nbbib_core.about:
   title: 'About'
   description: 'About'
   parent: main
   menu_name: main
   route_name: nbbib_core.about
-  weight: 30
+  weight: 40

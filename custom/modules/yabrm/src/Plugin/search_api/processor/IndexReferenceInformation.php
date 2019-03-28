@@ -140,6 +140,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         'processor_id' => $this->getPluginId(),
       ];
       $properties['bibliographic_citation'] = new ProcessorProperty($definition);
+
+      $definition = [
+        'label' => $this->t('Collection(s)'),
+        'description' => $this->t('All collections associated with this bibliographic reference'),
+        'type' => 'search_api_html',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['collections'] = new ProcessorProperty($definition);
     }
 
     return $properties;
@@ -233,6 +242,18 @@ class IndexReferenceInformation extends ProcessorPluginBase {
 
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'bibliographic_citation');
+
+      // Collections.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'collections');
+      foreach ($fields as $field) {
+        $collections = $yabrm_entity->getCollections();
+        foreach ($collections as $collection) {
+          if (!empty($collection)) {
+            $field->addValue($collection->toLink()->toString());
+          }
+        }
+      }
 
       foreach ($fields as $field) {
         $field->addValue(\Drupal::service('renderer')->renderRoot($build));

@@ -62,7 +62,7 @@
         "drupal/google_analytics": "2.2",
         "drupal/ldap": "3.0-beta5",
         "drupal/pathauto": "1.1",
-        "drupal/paragraphs": "1.7",
+        "drupal/paragraphs": "1.8",
         "drupal/redis": "1.0-rc2",
         "drupal/search_api": "1.12",
         "drupal/search_api_autocomplete": "1.2",

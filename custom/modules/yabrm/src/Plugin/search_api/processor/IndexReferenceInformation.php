@@ -117,6 +117,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $properties['bibliographic_authors'] = new ProcessorProperty($definition);
 
       $definition = [
+        'label' => $this->t('Collection(s)'),
+        'description' => $this->t('All associated with this bibliographic reference'),
+        'type' => 'search_api_html',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['collections'] = new ProcessorProperty($definition);
+
+      $definition = [
         'label' => $this->t('Sortable Date'),
         'description' => $this->t('A sortable date field based on incomplete dates'),
         'type' => 'integer',
@@ -208,6 +217,18 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         foreach ($authors as $author) {
           if (!empty($author)) {
             $field->addValue($author->toLink()->toString());
+          }
+        }
+      }
+
+      // Collections.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'collections');
+      foreach ($fields as $field) {
+        $collections = $yabrm_entity->getCollections();
+        foreach ($collections as $collection) {
+          if (!empty($collection)) {
+            $field->addValue($collection->toLink()->toString());
           }
         }
       }

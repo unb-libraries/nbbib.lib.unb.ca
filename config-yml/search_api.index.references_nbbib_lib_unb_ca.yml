@@ -251,6 +251,10 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  collections_5:
+    label: Collection(s)
+    property_path: collections
+    type: text
   contributors:
     label: Contributor(s)
     datasource_id: 'entity:yabrm_biblio_reference'

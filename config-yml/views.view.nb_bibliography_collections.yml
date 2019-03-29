@@ -83,8 +83,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ name }}{{ '' ['' }}<a href="/bibliography?search_api_fulltext=&collections_5={{ name|striptags }}">View all items</a>{{ '']'' }}'
             make_link: false
             path: ''
             absolute: false

@@ -27,7 +27,7 @@ backend_config:
     solr_version: ''
     http_method: AUTO
     jmx: false
-  retrieve_data: false
+  retrieve_data: true
   highlight_data: false
   skip_schema_check: false
   server_prefix: ''

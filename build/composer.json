@@ -41,11 +41,7 @@
                 "type:drupal-theme"
             ]
         },
-        "patches": {
-          "drupal/core": {
-            "To correct schema update error on build": "https://www.drupal.org/files/issues/2019-03-21/paragraphs-update-endless-loop-3041868-23.patch"
-          }
-        }
+        "patches": {}
     },
     "license": "MIT",
     "minimum-stability": "dev",

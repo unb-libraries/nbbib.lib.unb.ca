@@ -15,6 +15,8 @@ permissions:
   - 'delete book section reference entities'
   - 'delete journal article reference entities'
   - 'delete thesis reference entities'
+  - 'edit bibliographic collection entities'
+  - 'edit bibliographic contributor entities'
   - 'edit book reference entities'
   - 'edit book section reference entities'
   - 'edit journal article reference entities'

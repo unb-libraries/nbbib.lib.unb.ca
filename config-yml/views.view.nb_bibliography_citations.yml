@@ -390,11 +390,12 @@ display:
             operator: bibliographic_type_op
             identifier: bibliographic_type
             required: false
-            remember: true
+            remember: false
             multiple: false
             remember_roles:
               anonymous: '0'
               authenticated: '0'
+              nb_bibliography_contributor: '0'
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
@@ -410,7 +411,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: terms
+          parse_mode: phrase
           min_length: ''
           fields:
             bibliographic_type: bibliographic_type

@@ -10,3 +10,10 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'view published bibliographic collection entities'
+  - 'view published bibliographic contributor entities'
+  - 'view published bibliographic reference entities'
+  - 'view published book reference entities'
+  - 'view published book section reference entities'
+  - 'view published journal article reference entities'
+  - 'view published thesis reference entities'

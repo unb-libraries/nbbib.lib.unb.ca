@@ -234,11 +234,11 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Collection:'
+          label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: '{{ collections_5 }}<br><br>'
+            alter_text: true
+            text: 'Collection(s): {{ collections_5 }}'
             make_link: false
             path: ''
             absolute: false

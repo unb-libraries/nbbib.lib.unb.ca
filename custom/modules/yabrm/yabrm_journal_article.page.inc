@@ -35,7 +35,7 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
   $contribs = $variables['content']['contributors'];
   $i = 0;
 
-  while (!empty($contribs[$i])) {
+  while (!empty($contribs[$i]['#paragraph'])) {
     // Paragraph.
     $paragraph = $contribs[$i]['#paragraph'];
 

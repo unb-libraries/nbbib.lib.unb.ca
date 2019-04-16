@@ -38,9 +38,10 @@ function template_preprocess_yabrm_book(array &$variables) {
   while (!empty($contribs[$i]['#paragraph'])) {
 
     // Paragraph.
-    $paragraph = $contribs[$i];
+    $paragraph = $contribs[$i]['#paragraph'];
 
     // Role ID and role.
+    dump($paragraph);
     $rid =
       isset($paragraph->get('field_yabrm_contributor_role')->getValue()[0]['target_id']) ?
       $paragraph->get('field_yabrm_contributor_role')->getValue()[0]['target_id'] : NULL;

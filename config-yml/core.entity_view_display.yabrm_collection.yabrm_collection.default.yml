@@ -1,0 +1,37 @@
+uuid: 06d858d3-0753-4e1d-bab7-91a307ba900a
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+    - yabrm
+id: yabrm_collection.yabrm_collection.default
+targetEntityType: yabrm_collection
+bundle: yabrm_collection
+mode: default
+content:
+  description:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  name:
+    label: hidden
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

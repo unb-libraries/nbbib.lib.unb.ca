@@ -41,5 +41,20 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
 
     $form['bibliographic_type']['#default_value'] =
       $form['bibliographic_type']['#options']['All'];
+
+    $form['collections_5']['#type'] = "select";
+    $form['collections_5']['#size'] = NULL;
+    $form['collections_5']['#validated'] = TRUE;
+
+    // Override collections input to dropdown.
+    $form['collections_5']['#options'] = [
+      'All' => t('- Any -'),
+      'Religion: Anglican' => t('Religion: Anglican'),
+      'New Brunswickana' => t('New Brunswickana'),
+    ];
+
+    $form['collections_5']['#default_value'] =
+      $form['collections_5']['#options']['All'];
+
   }
 }

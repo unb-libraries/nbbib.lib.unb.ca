@@ -60,7 +60,7 @@
         "drupal/externalauth": "1.1",
         "drupal/features": "3.7",
         "drupal/google_analytics": "2.2",
-        "drupal/ldap": "3.0-beta5",
+        "drupal/ldap": "3.0-beta6",
         "drupal/pathauto": "1.1",
         "drupal/paragraphs": "1.8",
         "drupal/redis": "1.0-rc2",

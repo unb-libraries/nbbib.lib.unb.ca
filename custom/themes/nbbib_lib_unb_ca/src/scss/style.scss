@@ -43,6 +43,12 @@ form#views-exposed-form-nb-bibliography-citations-page-1 {
     margin-top: 10px;
   }
 }
+// Hide collections filter input.
+.form-item-collections-5.js-form-item-collections-5.form-group {
+  max-width: 0px;
+  max-height: 0px;
+  visibility: hidden;
+}
 
 // Navigation tabs.
 .tabs--primary.nav.nav-tabs {

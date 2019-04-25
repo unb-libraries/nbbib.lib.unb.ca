@@ -718,55 +718,7 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_text
-      sorts:
-        collections:
-          id: collections
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: collections
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: search_api
-        publication_year_1:
-          id: publication_year_1
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: publication_year_1
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: search_api
-        title:
-          id: title
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: search_api
-        bibliographic_type:
-          id: bibliographic_type
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: search_api
+      sorts: {  }
       title: 'New Brunswick Bibliography'
       header: {  }
       footer: {  }

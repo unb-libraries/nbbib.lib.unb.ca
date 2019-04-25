@@ -35,7 +35,7 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   $contribs = $variables['content']['contributors'];
   $i = 0;
 
-  while (!empty($contribs[$i]['#paragraph'])) {
+  while (!empty($contribs[$i])) {
     // Paragraph.
     $paragraph = $contribs[$i]['#paragraph'];
 

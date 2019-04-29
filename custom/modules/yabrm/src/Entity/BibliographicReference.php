@@ -561,6 +561,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['nb_imprint'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('NB Imprint'))
       ->setDescription(t('Is this an NB imprint?'))
+      ->setSettings(['on_label' => 'Yes', 'off_label' => 'No'])
       ->setRevisionable(TRUE)
       ->setDefaultValue('0')
       ->setDisplayOptions('view', [

@@ -40,8 +40,8 @@ display:
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Ascending
+          sort_desc_label: Descending
       pager:
         type: full
         options:
@@ -721,18 +721,6 @@ display:
             group_items: {  }
           plugin_id: search_api_text
       sorts:
-        bibliographic_authors:
-          id: bibliographic_authors
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_authors
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: ASC
-          exposed: true
-          expose:
-            label: Author(s)
-          plugin_id: search_api
         publication_year_5:
           id: publication_year_5
           table: search_api_index_references_nbbib_lib_unb_ca
@@ -744,6 +732,18 @@ display:
           exposed: true
           expose:
             label: 'Publication Year'
+          plugin_id: search_api
+        bibliographic_authors:
+          id: bibliographic_authors
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: bibliographic_authors
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: Author(s)
           plugin_id: search_api
         bibliographic_title:
           id: bibliographic_title

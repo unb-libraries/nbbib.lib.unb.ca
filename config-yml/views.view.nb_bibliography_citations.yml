@@ -720,7 +720,43 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_text
-      sorts: {  }
+      sorts:
+        bibliographic_authors:
+          id: bibliographic_authors
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: bibliographic_authors
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: Author(s)
+          plugin_id: search_api
+        publication_year_5:
+          id: publication_year_5
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: publication_year_5
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: 'Publication Year'
+          plugin_id: search_api
+        bibliographic_title:
+          id: bibliographic_title
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: bibliographic_title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: Title
+          plugin_id: search_api
       title: 'New Brunswick Bibliography'
       header: {  }
       footer: {  }
@@ -738,6 +774,8 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
       tags: {  }
   page_1:
     display_plugin: page
@@ -753,4 +791,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
       tags: {  }

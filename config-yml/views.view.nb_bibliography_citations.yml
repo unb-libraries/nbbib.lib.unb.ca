@@ -604,7 +604,7 @@ display:
           exposed: true
           expose:
             operator_id: publication_year_5_op
-            label: 'Pub. Year (from)'
+            label: 'Publication Year'
             description: ''
             use_operator: false
             operator: publication_year_5_op
@@ -615,6 +615,7 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              nb_bibliography_contributor: '0'
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
@@ -647,7 +648,7 @@ display:
           exposed: true
           expose:
             operator_id: publication_year_5_1_op
-            label: 'Pub. Year (to)'
+            label: To
             description: ''
             use_operator: false
             operator: publication_year_5_1_op
@@ -658,6 +659,7 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              nb_bibliography_contributor: '0'
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''

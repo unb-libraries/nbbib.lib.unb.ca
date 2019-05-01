@@ -32,6 +32,7 @@ function yabrm_theme_suggestions_alter(array &$suggestions, array $variables, $h
     'yabrm_book_section',
     'yabrm_journal_article',
     'yabrm_thesis',
+    'yabrm_collection',
   ];
   if (in_array($hook, $entity_types)) {
     $view_mode = $variables['elements']['#view_mode'];
@@ -44,6 +45,18 @@ function yabrm_theme_suggestions_alter(array &$suggestions, array $variables, $h
  */
 function yabrm_theme() {
   $theme = [];
+
+  // Set up to use custom Collection entity template.
+  $theme['yabrm_collection'] = [
+    'render element' => 'elements',
+    'file' => 'yabrm_collection.page.inc',
+    'template' => 'yabrm_collection',
+  ];
+  $theme['yabrm_collection_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'yabrm_collection.page.inc',
+  ];
 
   // Set up to use custom Biblio Reference entity template.
   $theme['yabrm_biblio_reference'] = [

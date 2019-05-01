@@ -475,7 +475,7 @@ display:
           exposed: true
           expose:
             operator_id: bibliographic_authors_op
-            label: Author(s)
+            label: Author/Editor(s)
             description: ''
             use_operator: false
             operator: bibliographic_authors_op
@@ -486,6 +486,7 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              nb_bibliography_contributor: '0'
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''

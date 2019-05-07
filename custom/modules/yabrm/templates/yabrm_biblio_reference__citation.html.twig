@@ -38,6 +38,7 @@
 
       {%- set authors = content.authors -%}
       {%- set editors = content.editors -%}
+      {%- set place = content.place|field_value -%}
       {%- set publication_year = content.publication_year|field_value -%}
       {%- set publication_month = content.publication_month|field_value|number_format -%}
       {%- set publication_day = content.publication_day|field_value -%}
@@ -87,6 +88,10 @@
 
         {{ '.' }}
       {%- endfor -%}
+
+      {%- if place -%}
+        {{ ". " }}{{ place }}{{ ": " }}
+      {%- endif -%}
 
       {%- if publisher -%}
        {{ ' ' }}{{ publisher }}

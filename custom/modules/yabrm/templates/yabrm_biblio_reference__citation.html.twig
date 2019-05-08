@@ -36,9 +36,12 @@
         'Dec',
       ] -%}
 
+      {%- set eid = content.eid -%}
+      {%- set type_name = content.type_name -%}
       {%- set authors = content.authors -%}
       {%- set editors = content.editors -%}
       {%- set place = content.place|field_value -%}
+      {%- set pub_year = content.pub_year -%}
       {%- set publication_year = content.publication_year|field_value -%}
       {%- set publication_month = content.publication_month|field_value|number_format -%}
       {%- set publication_day = content.publication_day|field_value -%}
@@ -56,15 +59,17 @@
 
         {{ author['last_name'] }}
 
-        {%- if author['first_name'] -%}
-          {{ ', ' }}{{ author['first_name']|slice(0,1) }}
+        {%- if loop.last -%}
+          {{ '.' }}
         {%- endif -%}
 
-        {{ '.' }}
       {%- endfor -%}
 
       {%- if title -%}
-        {{ ' ' }}<i>{{ title }}</i>
+        {{ ' ' }}
+        <a href="/yabrm/{{ type_name }}/{{ eid }}">
+          {{ title }}{{ '.' }}
+        </a>
       {%- endif -%}
 
       {%- for editor in editors -%}
@@ -74,9 +79,6 @@
             {{ 'and ' }}
           {%- endif -%}
         {%- else -%}
-          {%- if title|last not in '.?!' -%}
-            {{ '.' }}
-          {%- endif -%}
           {{ ' Edited by '}}
         {%- endif -%}
 
@@ -90,31 +92,33 @@
       {%- endfor -%}
 
       {%- if place -%}
-        {{ ". " }}{{ place }}{{ ": " }}
+        {{ ' ' }}{{ place -}}{{ ':' }}
       {%- endif -%}
 
       {%- if publisher -%}
-       {{ ' ' }}{{ publisher }}
+        {{ ' ' }}{{ publisher }}
+
+        {%- if pub_year -%}
+          {{ ', ' }}
+        {%- endif -%}
       {%- endif -%}
 
-      {%- if publication_year -%}
-        {{ ', ' }}{{ publication_day }}
+      {%- if pub_year -%}
+        {{ publication_day }}
 
         {%- if publication_month > 0 and publication_month < 13 -%}
           {{ ' ' }}{{ months[publication_month] }}{{ '.' }}
         {%- endif -%}
 
-        {{ publication_year }}
+        {{ publication_year }}{{ '.' }}
       {%- endif -%}
 
       {%- if url -%}
-        {{ ', ' }}{{ url }}
-      {%- else -%}
-        {{ '.' }}
+        {{ ', ' }}{{ url }}{{ '.' }}
       {%- endif -%}<br>
 
       {%- if notes -%}
-        {{ notes }}
+        {{ ' ' }}{{ notes }}{{ '.' }}
       {%- endif -%}
     </p>
   {%- endif -%}

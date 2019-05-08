@@ -30,6 +30,13 @@ function template_preprocess_yabrm_book(array &$variables) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
 
+  // Extract and pass Entity ID.
+  $eid = $yabrm_book->id();
+  $variables['content']['eid'] = $eid;
+
+  // Pass reference type machine name.
+  $variables['content']['type_name'] = 'yabrm_book';
+
   // Extract and pass author and editor names.
   // Get contributors.
   $contribs = $variables['content']['contributors'];
@@ -83,4 +90,8 @@ function template_preprocess_yabrm_book(array &$variables) {
     $i++;
   }
 
+  // Sanitize and strong-type publication_year.
+  $pub_year =
+    empty($yabrm_book->get('publication_year')->getValue()[0]['value']) ? NULL : $yabrm_book->get('publication_year')->getValue()[0]['value'];
+  $variables['content']['pub_year'] = $pub_year;
 }

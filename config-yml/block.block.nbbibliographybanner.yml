@@ -9,7 +9,7 @@ dependencies:
 id: nbbibliographybanner
 theme: nbbib_lib_unb_ca
 region: highlighted
-weight: 0
+weight: -4
 provider: null
 plugin: nbbib_banner
 settings:

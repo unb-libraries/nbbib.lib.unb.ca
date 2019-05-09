@@ -1,0 +1,29 @@
+uuid: 361f1c32-c37c-4bc5-9215-82cee51d4a11
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.nb_bibliography_citations
+  module:
+    - system
+    - views
+  theme:
+    - nbbib_lib_unb_ca
+id: exposedformnb_bibliography_citationspage_2
+theme: nbbib_lib_unb_ca
+region: highlighted
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:nb_bibliography_citations-page_2'
+settings:
+  id: 'views_exposed_filter_block:nb_bibliography_citations-page_2'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

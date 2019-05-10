@@ -11,7 +11,7 @@ dependencies:
     - nbbib_lib_unb_ca
 id: exposedformnb_bibliography_citationspage_2
 theme: nbbib_lib_unb_ca
-region: highlighted
+region: content
 weight: 0
 provider: null
 plugin: 'views_exposed_filter_block:nb_bibliography_citations-page_2'

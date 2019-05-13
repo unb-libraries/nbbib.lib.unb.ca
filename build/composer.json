@@ -54,6 +54,7 @@
         }
     ],
     "require": {
+        "drupal/better_exposed_filters": "3.0-alpha6",
         "drupal/bootstrap": "3.19",
         "drupal/config_update": "1.5",
         "drupal/core": "8.7.1",

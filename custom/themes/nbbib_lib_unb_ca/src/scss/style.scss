@@ -7,6 +7,11 @@ div.field--name-user-id {
   display: none;
 }
 
+// Search button.
+div#edit-actions {
+  vertical-align: top;
+}
+
 // Banner.
 div#nbbib-banner {
   margin-bottom: 20px;
@@ -43,10 +48,6 @@ form#views-exposed-form-nb-bibliography-citations-page-1 {
   form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > div >
   select {
     width: 100%;
-  }
-  // Button.
-  form#views-exposed-form-nb-bibliography-citations-page-1 div#edit-actions {
-    margin-top: 10px;
   }
 }
 

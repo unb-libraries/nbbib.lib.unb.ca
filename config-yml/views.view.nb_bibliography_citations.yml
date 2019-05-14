@@ -1171,7 +1171,7 @@ display:
             description: 'Search by author, collection, title, etc.'
             use_operator: false
             operator: search_api_fulltext_op
-            identifier: homepage_search
+            identifier: search_api_fulltext
             required: false
             remember: false
             multiple: false

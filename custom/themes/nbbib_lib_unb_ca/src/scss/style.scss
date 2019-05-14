@@ -27,15 +27,32 @@ form#views-exposed-form-nb-bibliography-citations-page-1 {
   margin-bottom: 30px;
 }
 @media screen and (min-width: 768px) {
+  // Filter (label + input) - First (Keywords).
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:first-of-type {
+    width: 96%;
+  }
   // Filter (label + input).
   form#views-exposed-form-nb-bibliography-citations-page-1 > div > div {
     margin-bottom: 4px;
     width: 48%;
   }
+  // Label - First (Keywords).
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:first-of-type > label {
+    margin-right: .3%;
+    width: 17%;
+  }
   // Label.
   form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > label {
     margin-right: .5%;
     width: 34%;
+  }
+  // Input - First (Keywords).
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:first-of-type > input {
+    margin-right: 0;
+    width: 80.5%;
   }
   // Input and select wrapper.
   form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > input,

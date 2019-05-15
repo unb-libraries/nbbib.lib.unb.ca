@@ -143,10 +143,22 @@
         {# Content #}
         {% block content %}
           <a id="main-content"></a>
-          {{ page.content }}
-          {{ '[' }}<a href="/bibliography?search_api_fulltext=&collections_5={{ content.name.0['#context']['value'] }}">
-            View all items for this collection
-          </a>{{ ']' }}
+          <div>
+            {{ '[' }}<a href="/bibliography?search_api_fulltext=&collections_5={{ content.name.0['#context']['value'] }}">
+              View all items for this collection
+            </a>{{ ']' }}
+          </div>
+          <br>
+          <div{{ attributes.addClass('yabrm_collection') }}>
+            {% if content %}
+              <dl>
+                <div>
+                  <dt>{{ content.description|field_label }}</dt>
+                  <dd>{{ content.description|field_value }}</dd>
+                </div>
+              </dl>
+            {% endif %}
+          </div>
         {% endblock %}
       </section>
 

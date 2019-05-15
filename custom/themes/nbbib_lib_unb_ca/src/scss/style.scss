@@ -34,7 +34,7 @@ form#views-exposed-form-nb-bibliography-citations-page-1 {
   }
   // Filter (label + input).
   form#views-exposed-form-nb-bibliography-citations-page-1 > div > div {
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     width: 48%;
   }
   // Label - First (Keywords).
@@ -65,6 +65,10 @@ form#views-exposed-form-nb-bibliography-citations-page-1 {
   form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > div >
   select {
     width: 100%;
+  }
+  // Button
+  form#views-exposed-form-nb-bibliography-citations-page-1 div#edit-actions {
+    margin-top: 8px;
   }
 }
 

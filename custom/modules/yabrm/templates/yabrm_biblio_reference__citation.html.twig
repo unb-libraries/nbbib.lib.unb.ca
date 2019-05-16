@@ -59,6 +59,10 @@
 
         {{ author['last_name'] }}
 
+        {%- if author['first_name'] -%}
+          {{ ', ' }}{{ author['first_name']|slice(0,1) }}
+        {%- endif -%}
+
         {%- if loop.last -%}
           {{ '.' }}
         {%- endif -%}
@@ -88,7 +92,10 @@
           {{ ', ' }}{{ editor['first_name']|slice(0,1) }}
         {%- endif -%}
 
-        {{ '.' }}
+        {%- if loop.last -%}
+          {{ '.' }}
+        {%- endif -%}
+
       {%- endfor -%}
 
       {%- if place -%}

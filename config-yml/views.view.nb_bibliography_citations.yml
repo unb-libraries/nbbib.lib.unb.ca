@@ -706,7 +706,12 @@ display:
             label: Title
           plugin_id: search_api
       title: 'New Brunswick Bibliography'
-      header: {  }
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          plugin_id: result
       footer: {  }
       empty: {  }
       relationships: {  }
@@ -1132,10 +1137,24 @@ display:
       defaults:
         filters: false
         filter_groups: false
+        footer: false
+        header: false
       filter_groups:
         operator: AND
         groups:
           1: AND
+      footer: {  }
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          content: 'Displaying @start - @end of @total'
+          plugin_id: result
     cache_metadata:
       max-age: -1
       contexts:

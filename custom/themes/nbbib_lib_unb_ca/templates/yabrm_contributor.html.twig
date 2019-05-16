@@ -1,0 +1,38 @@
+{#
+/**
+ * @file yabrm_contributor.html.twig
+ * Default theme implementation to present Book Section reference data.
+ *
+ * This template is used when viewing Contributor pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_yabrm_book_section()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('yabrm_contributor') }}>
+  {% if content %}
+    <dl>
+      <div>
+        <dt>{{ content.first_name|field_label }}</dt>
+        <dd>{{ content.first_name|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.last_name|field_label }}</dt>
+        <dd>{{ content.last_name|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.institution_name|field_label }}</dt>
+        <dd>{{ content.institution_name|field_value }}</dd>
+      </div>
+      <div>
+        <dt>{{ content.sort_name|field_label }}</dt>
+        <dd>{{ content.sort_name|field_value }}</dd>
+      </div>
+  {% endif %}
+</div>

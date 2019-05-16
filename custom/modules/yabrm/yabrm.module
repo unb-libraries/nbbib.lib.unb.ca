@@ -33,6 +33,7 @@ function yabrm_theme_suggestions_alter(array &$suggestions, array $variables, $h
     'yabrm_journal_article',
     'yabrm_thesis',
     'yabrm_collection',
+    'yabrm_contributor',
   ];
   if (in_array($hook, $entity_types)) {
     $view_mode = $variables['elements']['#view_mode'];
@@ -56,6 +57,18 @@ function yabrm_theme() {
     'render element' => 'content',
     'variables' => ['content' => NULL],
     'file' => 'yabrm_collection.page.inc',
+  ];
+
+  // Set up to use custom Contributor entity template.
+  $theme['yabrm_contributor'] = [
+    'render element' => 'elements',
+    'file' => 'yabrm_contributor.page.inc',
+    'template' => 'yabrm_contributor',
+  ];
+  $theme['yabrm_contributor_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'yabrm_contributor.page.inc',
   ];
 
   // Set up to use custom Biblio Reference entity template.

@@ -34,5 +34,17 @@
         <dt>{{ content.sort_name|field_label }}</dt>
         <dd>{{ content.sort_name|field_value }}</dd>
       </div>
+    </dl>
+    <div id="contributor-works">
+      {{ "[ "}}
+      {% if content.institution_name|field_value %}
+        <a href="/bibliography?search_api_fulltext_contributor={{ content.sort_name|field_value }}">
+      {% else %}
+        <a href="/bibliography?search_api_fulltext_contributor={{ content.first_name|field_value }}+{{ content.last_name|field_value }}">
+      {% endif %}
+          View all items for this contributor
+        </a>
+      {{ " ]"}}
+    </div>
   {% endif %}
 </div>

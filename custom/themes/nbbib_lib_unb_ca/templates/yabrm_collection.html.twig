@@ -151,12 +151,9 @@
           <br>
           <div{{ attributes.addClass('yabrm_collection') }}>
             {% if content %}
-              <dl>
                 <div>
-                  <dt>{{ content.description|field_label }}</dt>
-                  <dd>{{ content.description|field_value }}</dd>
+                  {{ content.description|field_value }}
                 </div>
-              </dl>
             {% endif %}
           </div>
         {% endblock %}

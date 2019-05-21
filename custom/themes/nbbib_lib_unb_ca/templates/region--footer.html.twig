@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row clearfix">
+
+    <div id="logo-div" class="col-md-3">
+      <a href="">
+        <img id="logo-img" class="footer-logo left-block"
+        src="/themes/custom/nbbib_lib_unb_ca/images/UNB_Lib_Black_Red.png">
+      </a>
+    </div>
+
+    <div class="col-md-3">
+    </div>
+
+    <div class="col-md-6">
+    </div>
+  </div>
+</div>
+
+{% if content %}
+<div id="{{ id }}-wrapper"><footer id="{{ id }}" class="row" role="contentinfo">
+  <div{{ attributes }}>
+    {{ content }}
+  </div>
+</footer><div><!-- /#{{ id }}, /#{{ id }}-wrapper -->
+{% endif %}
+
+{% if logged_in %}
+  <br>
+  <a href="/user/logout">Log Out</a>
+  | <a href="">Menu 1</a>
+  | <a href="">Menu 2</a>
+  | <a href="">Menu 3</a>
+{% else %}
+  <a href="">Log in</a>
+{% endif %}

@@ -1,24 +1,22 @@
-uuid: 471de25b-052b-4a2b-aba6-2dcd04f47235
+uuid: 5fd3e41a-784d-4fa1-97f4-37877b8ed665
 langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.account
+    - system.menu.footer
   module:
     - system
   theme:
     - nbbib_lib_unb_ca
-_core:
-  default_config_hash: qUx_9B1_-QXEYb2YlewFc8xxzX0sL5jmETFM3VfW6pE
-id: useraccountmenu
+id: footer
 theme: nbbib_lib_unb_ca
 region: footer
 weight: 0
 provider: null
-plugin: 'system_menu_block:account'
+plugin: 'system_menu_block:footer'
 settings:
-  id: 'system_menu_block:account'
-  label: 'User account menu'
+  id: 'system_menu_block:footer'
+  label: Footer
   provider: system
   label_display: '0'
   level: 1

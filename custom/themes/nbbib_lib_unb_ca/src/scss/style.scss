@@ -66,7 +66,7 @@ form#views-exposed-form-nb-bibliography-citations-page-1 {
   select {
     width: 100%;
   }
-  // Button
+  // Button.
   form#views-exposed-form-nb-bibliography-citations-page-1 div#edit-actions {
     margin-top: 8px;
   }
@@ -76,6 +76,18 @@ form#views-exposed-form-nb-bibliography-citations-page-1 {
 .tabs--primary.nav.nav-tabs {
   margin-bottom: 10px;
 }
+
+// Footer.
+div#logo-div {
+  padding-left: 0;
+}
+img#logo-img {
+  max-width: 260px;
+}
+footer.footer.container {
+  padding-top: 15px;
+}
+
 
 // Edit reference forms - publication date fields.
 @media screen and (min-width: 768px) {

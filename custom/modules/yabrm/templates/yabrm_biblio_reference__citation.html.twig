@@ -41,7 +41,6 @@
       {%- set authors = content.authors -%}
       {%- set editors = content.editors -%}
       {%- set place = content.place|field_value -%}
-      {%- set pub_year = content.pub_year -%}
       {%- set publication_year = content.publication_year|field_value -%}
       {%- set publication_month = content.publication_month|field_value|number_format -%}
       {%- set publication_day = content.publication_day|field_value -%}
@@ -62,70 +61,67 @@
         {%- if author['first_name'] -%}
           {{ ', ' }}{{ author['first_name']|slice(0,1) }}
         {%- endif -%}
-
-        {%- if loop.last -%}
-          {{ '.' }}
-        {%- endif -%}
-
       {%- endfor -%}
 
-      {%- if title -%}
-        {{ ' ' }}
-        <a href="/yabrm/{{ type_name }}/{{ eid }}">
-          {{ title }}{{ '.' }}
-        </a>
+      {{ '. ' }}
+
+      <a href="/yabrm/{{ type_name }}/{{ eid }}">
+        {{ title }}{{ '.' }}
+      </a>
+
+      {%- if editors -%}
+        {%- for editor in editors -%}
+          {%- if not loop.first -%}
+            {{ ', ' }}
+            {%- if loop.last -%}
+              {{ 'and ' }}
+            {%- endif -%}
+          {%- else -%}
+            {{ ' Edited by '}}
+          {%- endif -%}
+
+          {{ editor['last_name'] }}
+
+          {%- if editor['first_name'] -%}
+            {{ ', ' }}{{ editor['first_name']|slice(0,1) }}
+          {%- endif -%}
+
+        {%- endfor -%}
+      {%- else -%}
+        {{ '.' }}
       {%- endif -%}
 
-      {%- for editor in editors -%}
-        {%- if not loop.first -%}
-          {{ ', ' }}
-          {%- if loop.last -%}
-            {{ 'and ' }}
-          {%- endif -%}
-        {%- else -%}
-          {{ ' Edited by '}}
-        {%- endif -%}
-
-        {{ editor['last_name'] }}
-
-        {%- if editor['first_name'] -%}
-          {{ ', ' }}{{ editor['first_name']|slice(0,1) }}
-        {%- endif -%}
-
-        {%- if loop.last -%}
-          {{ '.' }}
-        {%- endif -%}
-
-      {%- endfor -%}
-
       {%- if place -%}
-        {{ ' ' }}{{ place -}}{{ ':' }}
+        {{ ' ' }}{{ place -}}
       {%- endif -%}
 
       {%- if publisher -%}
         {{ ' ' }}{{ publisher }}
-
-        {%- if pub_year -%}
-          {{ ', ' }}
-        {%- endif -%}
       {%- endif -%}
 
-      {%- if pub_year -%}
-        {{ publication_day }}
+      {%- if publication_year -%}
+        {{ ',' }}
 
-        {%- if publication_month > 0 and publication_month < 13 -%}
-          {{ ' ' }}{{ months[publication_month] }}{{ '.' }}
+        {%- if publication_day -%}
+          {{ ' ' }}{{ publication_day }}
         {%- endif -%}
 
-        {{ publication_year }}{{ '.' }}
+        {%- if publication_month > 0 and publication_month < 13 -%}
+          {{ ' ' }}{{ months[publication_month] }}
+        {%- endif -%}
+
+        {{ ', ' }}{{ publication_year }}
       {%- endif -%}
 
       {%- if url -%}
-        {{ ', ' }}{{ url }}{{ '.' }}
-      {%- endif -%}<br>
+        {{ ', ' }}{{ url }}
+      {%- endif -%}
+      <br>
 
       {%- if notes -%}
-        {{ ' ' }}{{ notes }}{{ '.' }}
+        {{ '. ' }}{{ notes }}{{ '.' }}
+      {%- else -%}
+        {{ '.' }}
       {%- endif -%}
     </p>
   {%- endif -%}

@@ -36,23 +36,29 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
     // Only act on rows for this migration.
     if (array_key_exists($migration_id, self::getMigrations())) {
       // Publication Date.
-      $pub_date = explode('-', $row->getSourceProperty('publication_date'));
-      $src_year = $row->getSourceProperty('src_publication_year');
+      $pub_date_raw = $row->getSourceProperty('publication_date');
 
-      if (!empty($pub_date[0])) {
-        $pub_year = (int) $pub_date[0];
-        $pub_year = $pub_year > 0 ? $pub_year : NULL;
-        $row->setSourceProperty('publication_year', $pub_year);
+      if (!is_numeric(str_replace("-", "", $pub_date_raw))) {
+        $row->setSourceProperty('notes', $pub_date_raw);
       }
-      if (!empty($pub_date[1])) {
-        $pub_mon = (int) $pub_date[1];
-        $pub_mon = $pub_mon > 0 ? $pub_mon : NULL;
-        $row->setSourceProperty('publication_month', $pub_mon);
-      }
-      if (!empty($pub_date[2])) {
-        $pub_day = (int) $pub_date[2];
-        $pub_day = $pub_day > 0 ? $pub_day : NULL;
-        $row->setSourceProperty('publication_day', $pub_day);
+      else {
+        $pub_date = explode('-', $pub_date_raw);
+
+        if (!empty($pub_date[0])) {
+          $pub_year = (int) $pub_date[0];
+          $pub_year = $pub_year > 0 ? $pub_year : NULL;
+          $row->setSourceProperty('publication_year', $pub_year);
+        }
+        if (!empty($pub_date[1])) {
+          $pub_mon = (int) $pub_date[1];
+          $pub_mon = $pub_mon > 0 ? $pub_mon : NULL;
+          $row->setSourceProperty('publication_month', $pub_mon);
+        }
+        if (!empty($pub_date[2])) {
+          $pub_day = (int) $pub_date[2];
+          $pub_day = $pub_day > 0 ? $pub_day : NULL;
+          $row->setSourceProperty('publication_day', $pub_day);
+        }
       }
 
       // Language.

@@ -55,7 +55,7 @@ source:
     35:
       extra: Extra
     36:
-      notes: Notes
+      notes_private: Notes
     43:
       translator: Translator
     44:
@@ -90,7 +90,8 @@ process:
   library_catalog: library_catalog
   call_number: call_number
   extra: extra
-  notes_private: notes
+  notes: notes
+  notes_private: notes_private
   translator: translator
 
 destination:

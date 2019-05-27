@@ -21,108 +21,16 @@
   {%- if content -%}
 
     <p>
-      {%- set months = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ] -%}
-
-      {%- set eid = content.eid -%}
-      {%- set type_name = content.type_name -%}
-      {%- set authors = content.authors -%}
-      {%- set editors = content.editors -%}
-      {%- set place = content.place|field_value -%}
-      {%- set publication_year = content.publication_year|field_value -%}
-      {%- set publication_month = content.publication_month|field_value|number_format -%}
-      {%- set publication_day = content.publication_day|field_value -%}
-      {%- set title = content.title|field_value -%}
-      {%- set publisher = content.publisher|field_value -%}
-      {%- set notes = content.notes|field_value -%}
-
-      {%- for author in authors -%}
-        {%- if not loop.first -%}
-          {{ ', ' }}
-          {%- if loop.last -%}
-            {{ 'and ' }}
-          {%- endif -%}
-        {%- endif -%}
-
-        {{ author['last_name'] }}
-
-        {%- if author['first_name'] -%}
-          {{ ', ' }}{{ author['first_name']|slice(0,1) }}
-        {%- endif -%}
-      {%- endfor -%}
-
-      {{ '. ' }}
-
-      <a href="/yabrm/{{ type_name }}/{{ eid }}">
-        {{ title }}{{ '.' }}
+      {{ content.authors_wad }}
+      <a href="/yabrm/{{ content.type_name ~ '/' ~ content.eid }}">
+        <i>{{ ' ' ~ content.title_wad }}</i>
       </a>
-
-      {%- if editors -%}
-        {%- for editor in editors -%}
-          {%- if not loop.first -%}
-            {{ ', ' }}
-            {%- if loop.last -%}
-              {{ 'and ' }}
-            {%- endif -%}
-          {%- else -%}
-            {{ ' Edited by '}}
-          {%- endif -%}
-
-          {{ editor['last_name'] }}
-
-          {%- if editor['first_name'] -%}
-            {{ ', ' }}{{ editor['first_name']|slice(0,1) }}
-          {%- endif -%}
-
-        {%- endfor -%}
-      {%- else -%}
-        {{ '.' }}
-      {%- endif -%}
-
-      {%- if place -%}
-        {{ ' ' }}{{ place -}}
-      {%- endif -%}
-
-      {%- if publisher -%}
-        {{ ' ' }}{{ publisher }}
-      {%- endif -%}
-
-      {%- if publication_year -%}
-        {{ ',' }}
-
-        {%- if publication_day -%}
-          {{ ' ' }}{{ publication_day }}
-        {%- endif -%}
-
-        {%- if publication_month > 0 and publication_month < 13 -%}
-          {{ ' ' }}{{ months[publication_month] }}
-        {%- endif -%}
-
-        {{ ', ' }}{{ publication_year }}
-      {%- endif -%}
-
-      {%- if url -%}
-        {{ ', ' }}{{ url }}
-      {%- endif -%}
-      <br>
-
-      {%- if notes -%}
-        {{ '. ' }}{{ notes }}{{ '.' }}
-      {%- else -%}
-        {{ '.' }}
-      {%- endif -%}
+      {{ content.editors_wad }}
+      {{ content.pub_wad }}
+      {{ content.notes_wad }}
+      <a href="{{ url_wad }}">
+        {{ content.url_wad }}
+      </a>
     </p>
   {%- endif -%}
 </div>

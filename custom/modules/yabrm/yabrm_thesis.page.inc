@@ -94,4 +94,125 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   $pub_year =
     empty($yabrm_thesis->get('publication_year')->getValue()[0]['value']) ? NULL : $yabrm_thesis->get('publication_year')->getValue()[0]['value'];
   $variables['content']['pub_year'] = $pub_year;
+
+  // Build citation elements.
+  $authors = empty($variables['content']['authors']) ? NULL
+    : $variables['content']['authors'];
+  $editors = empty($variables['content']['editors']) ? NULL
+    : $variables['content']['editors'];
+  $place = empty($variables['content']['place']['0']['#context']['value']) ? NULL
+    : $variables['content']['place']['0']['#context']['value'];
+  $publication_year =
+    empty($variables['content']['publication_year']['0']['#markup']) ? NULL
+    : $variables['content']['publication_year']['0']['#markup'];
+  $publication_month =
+    empty($variables['content']['publication_month']['0']['#markup']) ? NULL
+    : $variables['content']['publication_month']['0']['#markup'];
+  $publication_day =
+    empty($variables['content']['publication_day']['0']['#markup']) ? NULL
+    : $variables['content']['publication_day']['0']['#markup'];
+  $title =
+    empty($variables['content']['title']['0']['#context']['value']) ? NULL
+    : $variables['content']['title']['0']['#context']['value'];
+  $publisher =
+    empty($variables['content']['publisher']['#context']['value']) ? NULL
+    : $variables['content']['publisher']['#context']['value'];
+  $notes = empty($variables['content']['notes']['0']['#text']) ? NULL
+    : $variables['content']['notes']['0']['#text'];
+  $url = empty($yabrm_thesis->get('url')->getValue()[0]['uri']) ? NULL
+    : $yabrm_thesis->get('url')->getValue()[0]['uri'];
+
+  $authors_wad = '';
+  $title_wad = '';
+  $editors_wad = '';
+  $pub_wad = '';
+
+  // Authors.
+  if ($authors) {
+    $authors_wad = contribs_wad($authors);
+    $variables['content']['authors_wad'] = $authors_wad;
+  }
+
+  // Title.
+  if ($title) {
+    $title_wad .= $title;
+    // Only add period if last character is not punctuation.
+    if (!preg_match("/[.!?,;:]$/", $title_wad)) $title_wad .= '.';
+    $variables['content']['title_wad'] = $title_wad;
+  }
+  // Editors.
+  if ($editors) {
+    $editors_wad = 'Edited by: ' . contribs_wad($editors);
+    $variables['content']['editors_wad'] = $editors_wad;
+  }
+
+  // Publishing.
+  if ($place) {
+    $pub_wad .= $place;
+  }
+  // Only add colon if there's publisher or publication year.
+  if ($publisher || $publication_year) $pub_wad .= ':';
+
+  if ($publisher) {
+    $pub_wad .= ' ' . $publisher;
+    if ($publication_year) $pub_wad .= ',';
+  }
+
+  if ($publication_year) {
+    $months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May.', 'Jun.', 'Jul.', 'Aug.',
+      'Sep.', 'Oct.', 'Nov.', 'Dec.'];
+    // Only add day if month is present.
+    if ($publication_month) {
+      if ($publication_day) $pub_wad .= ' ' . $publication_day;
+      // Month number converted to 3-character name.
+      $pub_wad .= ' ' . $months[(int)$publication_month - 1];
+    }
+    $pub_wad .= ' ' . $publication_year . '.';
+    $variables['content']['pub_wad'] = $pub_wad;
+  }
+
+  // Notes.
+  $notes_wad = ' ' . $notes;
+  $notes_wad .= !preg_match("/[.!?,;:]$/", $notes) ? '.' : '';
+  $variables['content']['notes_wad'] = $notes_wad;
+
+  // URL.
+  $url_wad = ' ' . $url;
+  $variables['content']['url_wad'] = $url_wad;
+}
+
+function contribs_wad($contributors) {
+  $period = FALSE;
+  $contribs_wad = '';
+
+  foreach ($contributors as $contributor) {
+    // Only act if there's a last name.
+    if (!empty($contributor['last_name'])) {
+      // If not first.
+      if ($contributor != reset($contributors)) {
+        // Leading punctuation.
+        // If not last.
+        if ($contributor === end($contributors)) {
+          $contribs_wad .= ', and ';
+        }
+        // Somewhere in between.
+        else {
+          $contribs_wad .= ', ';
+        }
+      }
+      // Content.
+      $contribs_wad .= $contributor['last_name'];
+      // If there's a first name.
+      if (!empty($contributor['first_name'])) {
+        // First name initial.
+        $contribs_wad .= ', ' . substr($contributor['first_name'], 0, 1) . '.';
+        // If last author, the initial period is final.
+        $period = ($contributor === end($contributors));
+      }
+    }
+  }
+  // If no final period, add it.
+  if (!$period) $contribs_wad .= '.';
+
+  return $contribs_wad;
 }

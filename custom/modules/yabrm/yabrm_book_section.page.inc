@@ -129,7 +129,7 @@ function template_preprocess_yabrm_book_section(array &$variables) {
 
   // Authors.
   if ($authors) {
-    $authors_wad = contribs_wad($authors);
+    $authors_wad = book_section_contribs_wad($authors);
     $variables['content']['authors_wad'] = $authors_wad;
   }
 
@@ -137,12 +137,14 @@ function template_preprocess_yabrm_book_section(array &$variables) {
   if ($title) {
     $title_wad .= $title;
     // Only add period if last character is not punctuation.
-    if (!preg_match("/[.!?,;:]$/", $title_wad)) $title_wad .= '.';
+    if (!preg_match("/[.!?,;:]$/", $title_wad)) {
+      $title_wad .= '.';
+    }
     $variables['content']['title_wad'] = $title_wad;
   }
   // Editors.
   if ($editors) {
-    $editors_wad = 'Edited by: ' . contribs_wad($editors);
+    $editors_wad = 'Edited by: ' . book_section_contribs_wad($editors);
     $variables['content']['editors_wad'] = $editors_wad;
   }
 
@@ -151,37 +153,56 @@ function template_preprocess_yabrm_book_section(array &$variables) {
     $pub_wad .= $place;
   }
   // Only add colon if there's publisher or publication year.
-  if ($publisher || $publication_year) $pub_wad .= ':';
+  if ($place && ($publisher || $publication_year)) {
+    $pub_wad .= ':';
+  }
 
   if ($publisher) {
     $pub_wad .= ' ' . $publisher;
-    if ($publication_year) $pub_wad .= ',';
+    if ($publication_year) {
+      $pub_wad .= ',';
+    }
   }
 
   if ($publication_year) {
     $months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May.', 'Jun.', 'Jul.', 'Aug.',
-      'Sep.', 'Oct.', 'Nov.', 'Dec.'];
+      'Sep.', 'Oct.', 'Nov.', 'Dec.',
+    ];
     // Only add day if month is present.
     if ($publication_month) {
-      if ($publication_day) $pub_wad .= ' ' . $publication_day;
+      if ($publication_day) {
+        $pub_wad .= ' ' . $publication_day;
+      }
       // Month number converted to 3-character name.
-      $pub_wad .= ' ' . $months[(int)$publication_month - 1];
+      $pub_wad .= ' ' . $months[(int) $publication_month - 1];
     }
     $pub_wad .= ' ' . $publication_year . '.';
     $variables['content']['pub_wad'] = $pub_wad;
   }
 
   // Notes.
-  $notes_wad = ' ' . $notes;
-  $notes_wad .= !preg_match("/[.!?,;:]$/", $notes) ? '.' : '';
-  $variables['content']['notes_wad'] = $notes_wad;
+  if ($notes) {
+    $notes_wad = ' ' . $notes;
+    $notes_wad .= !preg_match("/[.!?,;:]$/", $notes) ? '.' : '';
+    $variables['content']['notes_wad'] = $notes_wad;
+  }
 
   // URL.
-  $url_wad = ' ' . $url;
-  $variables['content']['url_wad'] = $url_wad;
+  if ($url) {
+    $url_wad = ' ' . $url;
+    $variables['content']['url_wad'] = $url_wad;
+  }
 }
 
-function contribs_wad($contributors) {
+/**
+ * Prepares contributors for passing to template.
+ *
+ * @param array $contributors
+ *   An associative array containing:
+ *   - first_name: Contributor first name.
+ *   - last_name: Contributor last name.
+ */
+function book_section_contribs_wad(array $contributors) {
   $period = FALSE;
   $contribs_wad = '';
 
@@ -212,7 +233,9 @@ function contribs_wad($contributors) {
     }
   }
   // If no final period, add it.
-  if (!$period) $contribs_wad .= '.';
+  if (!$period) {
+    $contribs_wad .= '.';
+  }
 
   return $contribs_wad;
 }

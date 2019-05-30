@@ -36,12 +36,10 @@
       </div>
     </dl>
     <div id="contributor-works">
+      {% set cid = content.name['#object'].id() %}
+
       {{ "[ "}}
-      {% if content.institution_name|field_value %}
-        <a href="/bibliography?search_api_fulltext_contributor={{ content.sort_name|field_value }}">
-      {% else %}
-        <a href="/bibliography?search_api_fulltext_contributor={{ content.first_name|field_value }}+{{ content.last_name|field_value }}">
-      {% endif %}
+        <a href="/bibliography?id_1={{ cid }}&id_2={{ cid }}&id_3={{ cid }}&id_4={{ cid }}">
           View all items for this contributor
         </a>
       {{ " ]"}}

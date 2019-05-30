@@ -144,7 +144,7 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   }
   // Editors.
   if ($editors) {
-    $editors_wad = 'Edited by: ' . thesis_contribs_wad($editors);
+    $editors_wad = 'Edited by ' . thesis_contribs_wad($editors);
     $variables['content']['editors_wad'] = $editors_wad;
   }
 

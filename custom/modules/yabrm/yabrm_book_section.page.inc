@@ -144,7 +144,7 @@ function template_preprocess_yabrm_book_section(array &$variables) {
   }
   // Editors.
   if ($editors) {
-    $editors_wad = 'Edited by: ' . book_section_contribs_wad($editors);
+    $editors_wad = 'Edited by ' . book_section_contribs_wad($editors);
     $variables['content']['editors_wad'] = $editors_wad;
   }
 

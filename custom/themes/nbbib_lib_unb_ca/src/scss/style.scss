@@ -26,6 +26,15 @@ div#nbbib-banner {
 form#views-exposed-form-nb-bibliography-citations-page-1 {
   margin-bottom: 30px;
 }
+// Hide contributor context filters.
+form#views-exposed-form-nb-bibliography-citations-page-1 > div > div.js-form-type-textfield.form-item-id-1,
+form#views-exposed-form-nb-bibliography-citations-page-1 > div > div.js-form-type-textfield.form-item-id-2,
+form#views-exposed-form-nb-bibliography-citations-page-1 > div > div.js-form-type-textfield.form-item-id-3,
+form#views-exposed-form-nb-bibliography-citations-page-1 > div > div.js-form-type-textfield.form-item-id-4
+{
+  display: none;
+}
+// Responsive.
 @media screen and (min-width: 768px) {
   // Filter (label + input) - First (Keywords).
   form#views-exposed-form-nb-bibliography-citations-page-1 > div >

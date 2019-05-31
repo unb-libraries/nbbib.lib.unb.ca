@@ -34,6 +34,14 @@ form#views-exposed-form-nb-bibliography-citations-page-1 > div > div.js-form-typ
 {
   display: none;
 }
+// Navbar toggle.
+button.navbar-toggle:after {
+  font-size: 1.2em;
+  font-weight: 600;
+  position: relative;
+  left: -60px;
+  content: "Menu";
+}
 // Responsive.
 @media screen and (min-width: 768px) {
   // Filter (label + input) - First (Keywords).

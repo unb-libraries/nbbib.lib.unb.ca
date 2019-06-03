@@ -115,8 +115,8 @@ function template_preprocess_yabrm_thesis(array &$variables) {
     empty($variables['content']['title']['0']['#context']['value']) ? NULL
     : $variables['content']['title']['0']['#context']['value'];
   $publisher =
-    empty($variables['content']['publisher']['#context']['value']) ? NULL
-    : $variables['content']['publisher']['#context']['value'];
+    empty($variables['content']['publisher']['0']['#context']['value']) ? NULL
+    : $variables['content']['publisher']['0']['#context']['value'];
   $notes = empty($variables['content']['notes']['0']['#text']) ? NULL
     : $variables['content']['notes']['0']['#text'];
   $url = empty($yabrm_thesis->get('url')->getValue()[0]['uri']) ? NULL
@@ -162,6 +162,9 @@ function template_preprocess_yabrm_thesis(array &$variables) {
     if ($publication_year) {
       $pub_wad .= ',';
     }
+    else {
+      $pub_wad .= '.';
+    }
   }
 
   if ($publication_year) {
@@ -177,8 +180,9 @@ function template_preprocess_yabrm_thesis(array &$variables) {
       $pub_wad .= ' ' . $months[(int) $publication_month - 1];
     }
     $pub_wad .= ' ' . $publication_year . '.';
-    $variables['content']['pub_wad'] = $pub_wad;
   }
+
+  $variables['content']['pub_wad'] = $pub_wad;
 
   // Notes.
   if ($notes) {

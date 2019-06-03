@@ -55,3 +55,15 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
     $form['collections_5']['#default_value'] = 'All';
   }
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nbbib_core_views_pre_render($view) {
+  if ($view->id() == 'nb_bibliography_citations') {
+    // Include current collection in view title.
+    if (!empty($view->getExposedInput()['collections_5'])) {
+      $view->setTitle($view->getTitle() . ' - ' . $view->getExposedInput()['collections_5']);
+    }
+  }
+}

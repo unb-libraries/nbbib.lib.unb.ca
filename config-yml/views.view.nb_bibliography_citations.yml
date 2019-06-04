@@ -2014,6 +2014,7 @@ display:
         fields: false
         arguments: false
         query: false
+        sorts: false
       filter_groups:
         operator: AND
         groups: {  }
@@ -2699,6 +2700,19 @@ display:
           bypass_access: 0
           preserve_facet_query_args: false
           contextual_filters_or: 1
+      sorts:
+        publication_year_5:
+          id: publication_year_5
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: publication_year_5
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: 'Publication Year'
+          plugin_id: search_api
     cache_metadata:
       max-age: -1
       contexts:
@@ -2706,6 +2720,4 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
       tags: {  }

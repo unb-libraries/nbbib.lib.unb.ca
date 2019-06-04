@@ -38,11 +38,10 @@
     <div id="contributor-works">
       {% set cid = content.name['#object'].id() %}
 
-      {{ "[ "}}
-        <a href="/bibliography?id_1={{ cid }}&id_2={{ cid }}&id_3={{ cid }}&id_4={{ cid }}">
-          View all items for this contributor
-        </a>
-      {{ " ]"}}
+      <b>Bibliography items associated with this contributor:</b>
+      <br>
+      <br>
+      {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
     </div>
   {% endif %}
 </div>

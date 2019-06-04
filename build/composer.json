@@ -69,6 +69,7 @@
         "drupal/search_api_solr": "2.7",
         "drupal/token": "1.0",
         "drupal/twig_field_value": "1.2",
+        "drupal/views_contextual_filters_or": "1.1",
         "unb-libraries/unb_lib_theme": "dev-8.x-bootstrap-3.x",
         "unb-libraries/drupal-builder": "^8.0.0"
     },

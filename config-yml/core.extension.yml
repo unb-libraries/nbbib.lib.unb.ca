@@ -46,6 +46,7 @@ module:
   twig_field_value: 0
   update: 0
   user: 0
+  views_contextual_filters_or: 0
   views_ui: 0
   yabrm: 0
   menu_link_content: 1

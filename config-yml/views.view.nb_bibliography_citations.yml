@@ -2698,7 +2698,7 @@ display:
           skip_access: 0
           bypass_access: 0
           preserve_facet_query_args: false
-          contextual_filters_or: 0
+          contextual_filters_or: 1
     cache_metadata:
       max-age: -1
       contexts:

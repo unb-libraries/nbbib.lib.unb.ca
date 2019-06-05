@@ -41,7 +41,6 @@ button.navbar-toggle {
 
   &:after {
     font-size: 1.2em;
-    font-weight: 600;
     position: relative;
     top: -16px;
     left: -60px;
@@ -114,10 +113,10 @@ label[for='edit-search-api-fulltext'] {
 }
 
 // Footer.
-div#logo-div {
+div#footer-logo-div, div#footer-menu-div {
   padding-left: 0;
 }
-img#logo-img {
+img#footer-logo-img {
   max-width: 260px;
 }
 footer.footer.container {

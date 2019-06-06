@@ -67,7 +67,7 @@
         "drupal/search_api": "1.13",
         "drupal/search_api_autocomplete": "1.2",
         "drupal/search_api_solr": "2.7",
-        "drupal/token": "1.0",
+        "drupal/token": "1.5",
         "drupal/twig_field_value": "1.2",
         "drupal/twig_tweak": "2.3",
         "drupal/views_contextual_filters_or": "1.1",

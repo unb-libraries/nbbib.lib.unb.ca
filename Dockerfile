@@ -7,7 +7,7 @@ LABEL vcs-url="https://github.com/unb-libraries/nbbib.lib.unb.ca"
 
 ENV DRUPAL_SITE_ID nbbib
 ENV DRUPAL_SITE_URI nbbib.lib.unb.ca
-ENV DRUPAL_SITE_UUID NULL
+ENV DRUPAL_SITE_UUID 8c0eeb11-ba32-495f-9e90-4b4eafb796f8
 
 # Deploy upstream scripts, and then override with any local.
 RUN curl -sSL https://raw.githubusercontent.com/unb-libraries/CargoDock/drupal-8.x-1.x/container/deploy.sh | sh

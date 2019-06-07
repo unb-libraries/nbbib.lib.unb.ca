@@ -1,7 +1,7 @@
 version: '3.6'
 
 services:
-  mysql:
+  drupal-mysql-lib-unb-ca:
     image: mysql:5.7
     restart: always
     command: mysqld --skip-name-resolve --max_allowed_packet=64M

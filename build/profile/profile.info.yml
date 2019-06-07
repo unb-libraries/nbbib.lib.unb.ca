@@ -42,10 +42,31 @@ dependencies:
   - views_ui
 
   # nbbib.lib.unb.ca
+  - ctools
+  - entity_reference_revisions
+  - externalauth
+  - language
+  - ldap
+  - ldap_authentication
+  - ldap_servers
+  - ldap_user
+  - nbbib_core
+  - paragraphs
+  - pathauto
   - redis
+  - search_api
+  - search_api_autocomplete
+  - search_api_solr
+  - token
+  - twig_field_value
+  - twig_tweak
+  - views_contextual_filters_or
+  - yabrm
+
 
 themes:
-  - seven
   - bartik
-  - stark
   - nbbib_lib_unb_ca
+  - seven
+  - stark
+  - unb_lib_theme

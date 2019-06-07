@@ -42,6 +42,7 @@ dependencies:
   - views_ui
 
   # nbbib.lib.unb.ca
+  - redis
 
 themes:
   - seven

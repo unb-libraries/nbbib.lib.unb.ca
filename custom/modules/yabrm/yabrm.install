@@ -20,5 +20,5 @@ function yabrm_update_8701(&$sandbox) {
   ];
 
   $schema = Database::getConnection()->schema();
-  $schema->addField('mytable1', 'newcol', $spec);
+  $schema->addField('yabrm_collection', 'description_v2', $spec);
 }

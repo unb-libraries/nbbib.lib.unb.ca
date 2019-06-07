@@ -4,6 +4,7 @@ dockworker:
     project_prefix: NBBIB
     name: nbbib.lib.unb.ca
     upstream_image:
+      - mailhog/mailhog
       - mysql:5.7
       - unblibraries/drupal:8.x-1.x
       - unblibraries/solr-drupal:7.x

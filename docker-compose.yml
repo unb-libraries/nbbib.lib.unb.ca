@@ -32,6 +32,16 @@ services:
       - docker-entrypoint-multiple.sh
       - references.nbbib.lib.unb.ca:/solr-conf
 
+  mailhog:
+    image: mailhog/mailhog
+    expose:
+      - "1025"
+      - "8025"
+    ports:
+      - "4097:8025"
+    networks:
+      - nbbib.lib.unb.ca
+
   nbbib.lib.unb.ca:
     build:
       context: .

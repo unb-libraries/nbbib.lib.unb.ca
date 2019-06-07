@@ -1,0 +1,34 @@
+uuid: 5d58f4de-1ce8-4ab0-92fa-988979b97ee9
+langcode: en
+status: true
+dependencies:
+  module:
+    - text
+    - yabrm
+id: yabrm_collection.yabrm_collection.default
+targetEntityType: yabrm_collection
+bundle: yabrm_collection
+mode: default
+content:
+  description_v2:
+    type: text_textarea
+    text_processing: 0
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true
+  user_id: true

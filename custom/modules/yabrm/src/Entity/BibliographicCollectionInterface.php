@@ -15,6 +15,7 @@ use Drupal\user\EntityOwnerInterface;
 interface BibliographicCollectionInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityOwnerInterface {
 
   // Add get/set methods for your configuration properties here.
+
   /**
    * Gets the Bibliographic Collection name.
    *
@@ -52,6 +53,25 @@ interface BibliographicCollectionInterface extends ContentEntityInterface, Revis
    *   The called Bibliographic Collection entity.
    */
   public function setDescription($description);
+
+  /**
+   * Gets the Bibliographic Collection description.
+   *
+   * @return string
+   *   Description of the Bibliographic Collection.
+   */
+  public function getDescriptionV2();
+
+  /**
+   * Sets the Bibliographic Collection description.
+   *
+   * @param string $description
+   *   The Bibliographic Collection description.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicCollectionInterface
+   *   The called Bibliographic Collection entity.
+   */
+  public function setDescriptionV2($description);
 
   /**
    * Gets the Bibliographic Collection creation timestamp.

@@ -74,7 +74,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $definition = [
         'label' => $this->t('Reference Title'),
         'description' => $this->t('The title of the bibliographic reference, regardless of type.'),
-        'type' => 'search_api_html',
+        'type' => 'string',
         'is_list' => TRUE,
         'processor_id' => $this->getPluginId(),
       ];
@@ -100,8 +100,8 @@ class IndexReferenceInformation extends ProcessorPluginBase {
 
       $definition = [
         'label' => $this->t('Publication Year'),
-        'description' => $this->t('The place of publication of the referenced item.'),
-        'type' => 'search_api_html',
+        'description' => $this->t('The publication year.'),
+        'type' => 'string',
         'is_list' => TRUE,
         'processor_id' => $this->getPluginId(),
       ];

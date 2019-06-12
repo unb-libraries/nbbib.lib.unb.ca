@@ -677,7 +677,7 @@ display:
           group_type: group
           admin_label: ''
           order: ASC
-          exposed: false
+          exposed: true
           expose:
             label: 'Publication Year'
           plugin_id: search_api

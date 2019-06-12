@@ -53,6 +53,8 @@ services:
       - drupal-mysql-lib-unb-ca
     expose:
       - "80"
+    environment:
+      - DRUPAL_IMPORT_CONTENT=TRUE
     networks:
       - nbbib.lib.unb.ca
     ports:

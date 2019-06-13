@@ -230,7 +230,7 @@ function book_section_contribs_wad(array $contributors) {
       // If there's a first name.
       if (!empty($contributor['first_name'])) {
         // First name initial.
-        $contribs_wad .= ', ' . substr($contributor['first_name'], 0, 1) . '.';
+        $contribs_wad .= ', ' . $contributor['first_name'] . '.';
         // If last author, the initial period is final.
         $period = ($contributor === end($contributors));
       }

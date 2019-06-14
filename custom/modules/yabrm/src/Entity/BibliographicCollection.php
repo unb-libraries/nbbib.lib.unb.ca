@@ -147,21 +147,6 @@ class BibliographicCollection extends RevisionableContentEntityBase implements B
   /**
    * {@inheritdoc}
    */
-  public function getDescriptionV2() {
-    return $this->get('description_v2')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setDescriptionV2($description) {
-    $this->set('description_v2', $description);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getCreatedTime() {
     return $this->get('created')->value;
   }
@@ -293,27 +278,6 @@ class BibliographicCollection extends RevisionableContentEntityBase implements B
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(FALSE);
-
-    $fields['description_v2'] = BaseFieldDefinition::create('text_long')
-      ->setLabel(t('Description'))
-      ->setDescription(t('Description  of the Bibliographic Collection entity.'))
-      ->setSettings([
-        'default_value' => '',
-        'max_length' => 2048,
-        'text_processing' => 0,
-      ])
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'text_long',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'text_long',
-        'text_processing' => 0,
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))

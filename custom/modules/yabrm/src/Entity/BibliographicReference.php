@@ -582,6 +582,34 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['topics'] = BaseFieldDefinition::create('entity_reference')
+      ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setLabel(t('Topics'))
+      ->setDescription(t('The topics attributed to the reference.'))
+      ->setSetting('target_type', 'taxonomy_term')
+      ->setSetting('handler', 'default:taxonomy_term')
+      ->setSetting('handler_settings', [
+        'target_bundles' => [
+          'yabrm_reference_topics' => 'yabrm_reference_topics'
+        ]
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'weight' => 0,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 3,
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'size' => '10',
+          'autocomplete_type' => 'tags',
+          'placeholder' => '',
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     return $fields;
   }
 
@@ -1051,6 +1079,21 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    */
   public function setNotes($notes) {
     $this->set('notes', $notes);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTopics() {
+    return $this->get('topics')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setTopics($topics) {
+    $this->set('topics', $topics);
     return $this;
   }
 

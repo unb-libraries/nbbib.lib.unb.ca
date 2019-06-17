@@ -530,6 +530,25 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function setNotes($notes);
 
   /**
+   * Gets the Bibliographic Reference Topics.
+   *
+   * @return string
+   *   The topics of the Bibliographic Reference.
+   */
+  public function getTopics();
+
+  /**
+   * Sets the Bibliographic Reference Topics.
+   *
+   * @param string $topics
+   *   The Bibliographic Reference topics.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setTopics($topics);
+
+  /**
    * Gets the Bibliographic Reference Collections.
    *
    * @return \Drupal\taxonomy\TermInterface[]

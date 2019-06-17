@@ -257,27 +257,26 @@ class BibliographicCollection extends RevisionableContentEntityBase implements B
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
 
-    $fields['description'] = BaseFieldDefinition::create('string')
+    $fields['description'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Description'))
-      ->setDescription(t('Brief description of the Bibliographic Collection entity.'))
-      ->setRevisionable(TRUE)
+      ->setDescription(t('Description of the Bibliographic Collection entity.'))
       ->setSettings([
-        'max_length' => 512,
+        'default_value' => '',
+        'max_length' => 2048,
         'text_processing' => 0,
       ])
-      ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
+        'type' => 'text_long',
+        'weight' => -3,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
+        'type' => 'text_long',
+        'text_processing' => 0,
+        'weight' => -3,
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-      ->setRequired(FALSE);
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))

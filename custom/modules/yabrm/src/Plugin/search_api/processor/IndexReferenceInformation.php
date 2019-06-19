@@ -149,6 +149,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         'processor_id' => $this->getPluginId(),
       ];
       $properties['bibliographic_citation'] = new ProcessorProperty($definition);
+
+      $definition = [
+        'label' => $this->t('Topics'),
+        'description' => $this->t('Topics associated with the reference.'),
+        'type' => 'search_api_html',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['topics'] = new ProcessorProperty($definition);
     }
 
     return $properties;
@@ -229,6 +238,18 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         foreach ($collections as $collection) {
           if (!empty($collection)) {
             $field->addValue($collection->toLink()->toString());
+          }
+        }
+      }
+
+      // Topics.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'topics');
+      foreach ($fields as $field) {
+        $topics = $yabrm_entity->getTopics();
+        foreach ($topics as $topic) {
+          if (!empty($topic)) {
+            $field->addValue($topic->toLink()->toString());
           }
         }
       }

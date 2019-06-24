@@ -582,31 +582,44 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['topics'] = BaseFieldDefinition::create('entity_reference')
-      ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+      $fields['topics'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Topics'))
       ->setDescription(t('The topics attributed to the reference.'))
-      ->setSetting('target_type', 'taxonomy_term')
-      ->setSetting('handler', 'default:taxonomy_term')
-      ->setSetting('handler_settings', [
-        'target_bundles' => [
-          'yabrm_reference_topics' => 'yabrm_reference_topics'
+      ->setSettings(
+        [
+          'target_type' => 'taxonomy_term',
+          'handler' => 'default:taxonomy_term',
+          'handler_settings' => [
+            'target_bundles' => [
+              'yabrm_reference_topic' => 'yabrm_reference_topic',
+            ],
+            'auto_create' => TRUE,
+          ],
         ]
-      ])
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 3,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '10',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ],
-      ])
+      )
+      ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setRequired(FALSE)
+      ->setRevisionable(FALSE)
+      ->setDisplayOptions(
+        'view',
+        [
+          'label' => 'above',
+          'weight' => 0,
+        ]
+      )
+      ->setDisplayOptions(
+        'form',
+        [
+          'type' => 'entity_reference_autocomplete',
+          'weight' => 0,
+          'settings' => [
+            'match_operator' => 'CONTAINS',
+            'size' => '10',
+            'autocomplete_type' => 'tags',
+            'placeholder' => '',
+          ],
+        ]
+      )
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 

@@ -532,7 +532,7 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   /**
    * Gets the Bibliographic Reference Topics.
    *
-   * @return string
+   * @return \Drupal\taxonomy\TermInterface[]
    *   The topics of the Bibliographic Reference.
    */
   public function getTopics();
@@ -540,13 +540,13 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   /**
    * Sets the Bibliographic Reference Topics.
    *
-   * @param string $topics
-   *   The Bibliographic Reference topics.
+   * @param \Drupal\taxonomy\TermInterface[] $topics
+   *   An array of taxonomy topics.
    *
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.
    */
-  public function setTopics($topics);
+  public function setTopics(array $topics);
 
   /**
    * Gets the Bibliographic Reference Collections.

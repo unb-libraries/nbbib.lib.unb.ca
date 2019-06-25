@@ -582,7 +582,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-      $fields['topics'] = BaseFieldDefinition::create('entity_reference')
+    $fields['topics'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Topics'))
       ->setDescription(t('The topics attributed to the reference.'))
       ->setSettings(
@@ -1099,13 +1099,13 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    * {@inheritdoc}
    */
   public function getTopics() {
-    return $this->get('topics')->value;
+    return $this->get('topics')->referencedEntities();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setTopics($topics) {
+  public function setTopics(array $topics) {
     $this->set('topics', $topics);
     return $this;
   }

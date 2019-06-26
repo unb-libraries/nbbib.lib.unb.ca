@@ -926,6 +926,10 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  topics:
+    label: Topics
+    property_path: topics
+    type: text
   url:
     label: URL
     datasource_id: 'entity:yabrm_biblio_reference'

@@ -19,10 +19,17 @@ nbbib_core.collections:
   menu_name: main
   route_name: nbbib_core.collections
   weight: 30
+nbbib_core.contributors:
+  title: 'Cotributors'
+  description: 'Cotributors'
+  parent: main
+  menu_name: main
+  route_name: nbbib_core.contributors
+  weight: 40
 nbbib_core.about:
   title: 'About'
   description: 'About'
   parent: main
   menu_name: main
   route_name: nbbib_core.about
-  weight: 40
+  weight: 50

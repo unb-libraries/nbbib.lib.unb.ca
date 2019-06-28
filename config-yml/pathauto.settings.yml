@@ -1,5 +1,10 @@
 enabled_entity_types:
+  - yabrm_book
   - yabrm_collection
+  - yabrm_journal_article
+  - yabrm_thesis
+  - yabrm_book_section
+  - yabrm_contributor
 verbose: false
 separator: _
 case: true

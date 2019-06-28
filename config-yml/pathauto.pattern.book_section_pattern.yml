@@ -1,0 +1,14 @@
+uuid: a4ac2711-8117-4931-9910-48680a9959b8
+langcode: en
+status: true
+dependencies:
+  module:
+    - yabrm
+id: book_section_pattern
+label: 'Book Section Pattern'
+type: 'canonical_entities:yabrm_book_section'
+pattern: 'book_section/[yabrm_book_section:id]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

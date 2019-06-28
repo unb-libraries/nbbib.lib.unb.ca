@@ -1,0 +1,14 @@
+uuid: c82292d3-d70f-43cd-a95c-b17e059619d6
+langcode: en
+status: true
+dependencies:
+  module:
+    - yabrm
+id: journal_article_pattern
+label: 'Journal Article Pattern'
+type: 'canonical_entities:yabrm_journal_article'
+pattern: 'journal_article/[yabrm_journal_article:id]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

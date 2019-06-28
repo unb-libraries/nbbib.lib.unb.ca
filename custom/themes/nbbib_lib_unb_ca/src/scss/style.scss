@@ -26,12 +26,9 @@ div#nbbib-banner {
 form#views-exposed-form-nb-bibliography-citations-page-1 {
   margin-bottom: 30px;
 }
-// Hide contributor context filters.
-form#views-exposed-form-nb-bibliography-citations-page-1 > div > div.js-form-type-textfield.form-item-id-1,
-form#views-exposed-form-nb-bibliography-citations-page-1 > div > div.js-form-type-textfield.form-item-id-2,
-form#views-exposed-form-nb-bibliography-citations-page-1 > div > div.js-form-type-textfield.form-item-id-3,
-form#views-exposed-form-nb-bibliography-citations-page-1 > div > div.js-form-type-textfield.form-item-id-4
-{
+// Hide contributor sort initial filter.
+form#views-exposed-form-nb-bibliography-contributors-page-1 >
+div.form--inline.form-inline.clearfix {
   display: none;
 }
 // Navbar toggle.

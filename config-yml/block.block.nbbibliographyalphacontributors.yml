@@ -1,0 +1,26 @@
+uuid: 1fbc4c87-43a6-4812-bb61-a5efa634c8fe
+langcode: en
+status: true
+dependencies:
+  module:
+    - nbbib_core
+    - system
+  theme:
+    - nbbib_lib_unb_ca
+id: nbbibliographyalphacontributors
+theme: nbbib_lib_unb_ca
+region: content
+weight: -3
+provider: null
+plugin: nbbib_alpha_contributors
+settings:
+  id: nbbib_alpha_contributors
+  label: 'NB Bibliography Alpha Contributors'
+  provider: nbbib_core
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '/contributors*'
+    negate: false
+    context_mapping: {  }

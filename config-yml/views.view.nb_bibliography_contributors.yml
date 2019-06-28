@@ -189,7 +189,48 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
-      filters: {  }
+      filters:
+        sort_name:
+          id: sort_name
+          table: yabrm_contributor
+          field: sort_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: starts
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: sort_name_op
+            label: 'Sort Name'
+            description: ''
+            use_operator: false
+            operator: sort_name_op
+            identifier: sort-initial
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              nb_bibliography_contributor: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: yabrm_contributor
+          entity_field: sort_name
+          plugin_id: string
       sorts:
         sort_name:
           id: sort_name
@@ -217,6 +258,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
       tags: {  }
   page_1:
@@ -232,5 +274,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
       tags: {  }

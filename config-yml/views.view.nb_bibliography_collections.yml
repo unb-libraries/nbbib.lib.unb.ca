@@ -150,7 +150,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ description__value|truncate(1024, true) ~ ''...'' }}'
+            text: '{{ description__value|striptags|truncate(1024, true) ~ ''...'' }}'
             make_link: false
             path: ''
             absolute: false

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - text
     - yabrm
 id: nb_bibliography_collections
 label: 'NB Bibliography Collections'
@@ -138,18 +139,18 @@ display:
           entity_type: null
           entity_field: name
           plugin_id: field
-        description:
-          id: description
+        description__value:
+          id: description__value
           table: yabrm_collection
-          field: description
+          field: description__value
           relationship: none
           group_type: group
           admin_label: ''
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ description__value|truncate(1024, true) ~ ''...'' }}'
             make_link: false
             path: ''
             absolute: false
@@ -187,9 +188,8 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
+          type: text_default
+          settings: {  }
           group_column: value
           group_columns: {  }
           group_rows: true

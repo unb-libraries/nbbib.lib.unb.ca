@@ -7,7 +7,7 @@ dependencies:
 id: book_pattern
 label: 'Book Pattern'
 type: 'canonical_entities:yabrm_book'
-pattern: 'book/[yabrm_book:id]'
+pattern: 'book/[yabrm_book:title]'
 selection_criteria: {  }
 selection_logic: and
 weight: 0

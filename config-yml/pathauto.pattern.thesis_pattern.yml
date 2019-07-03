@@ -7,7 +7,7 @@ dependencies:
 id: thesis_pattern
 label: 'Thesis Pattern'
 type: 'canonical_entities:yabrm_thesis'
-pattern: 'thesis/[yabrm_thesis:id]'
+pattern: 'thesis/[yabrm_thesis:title]'
 selection_criteria: {  }
 selection_logic: and
 weight: 0

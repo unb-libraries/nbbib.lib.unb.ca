@@ -6,12 +6,12 @@ enabled_entity_types:
   - yabrm_book_section
   - yabrm_contributor
 verbose: false
-separator: _
+separator: '-'
 case: true
-max_length: null
-max_component_length: null
+max_length: 100
+max_component_length: 100
 update_action: 2
-transliterate: false
+transliterate: true
 reduce_ascii: true
 ignore_words: ''
 safe_tokens: {  }

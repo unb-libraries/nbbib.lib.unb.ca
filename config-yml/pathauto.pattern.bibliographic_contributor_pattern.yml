@@ -7,7 +7,7 @@ dependencies:
 id: bibliographic_contributor_pattern
 label: 'Bibliographic Contributor Pattern'
 type: 'canonical_entities:yabrm_contributor'
-pattern: 'contributor/[yabrm_contributor:id]'
+pattern: 'contributor/[yabrm_contributor:name]'
 selection_criteria: {  }
 selection_logic: and
 weight: 0

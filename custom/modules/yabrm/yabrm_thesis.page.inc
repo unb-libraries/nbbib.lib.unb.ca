@@ -128,7 +128,7 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   $pub_wad = '';
 
   // URL alias.
-  $variables['content']['url_alias'] = $yabrm_book->url();
+  $variables['content']['url_alias'] = $yabrm_thesis->url();
 
   // Authors.
   if ($authors) {

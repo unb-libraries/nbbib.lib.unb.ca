@@ -133,6 +133,9 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
     $variables['content']['authors_wad'] = $authors_wad;
   }
 
+  // URL alias.
+  $variables['content']['url_alias'] = $yabrm_book->url();
+
   // Title.
   if ($title) {
     $title_wad .= $title;
@@ -141,6 +144,8 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
       $title_wad .= '.';
     }
     $variables['content']['title_wad'] = $title_wad;
+
+    $variables['content']['url_alias'] = $yabrm_book->url();
   }
   // Editors.
   if ($editors) {

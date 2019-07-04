@@ -96,7 +96,8 @@ function template_preprocess_yabrm_book_section(array &$variables) {
   $variables['content']['pub_year'] = $pub_year;
 
   // Build citation elements.
-  $authors = empty($variables['content']['authors']) ? NULL
+  $authors = empty($variables['content']['au    $variables['content']['url_alias'] = $yabrm_book->url();
+thors']) ? NULL
     : $variables['content']['authors'];
   $editors = empty($variables['content']['editors']) ? NULL
     : $variables['content']['editors'];
@@ -132,6 +133,9 @@ function template_preprocess_yabrm_book_section(array &$variables) {
     $authors_wad = book_section_contribs_wad($authors);
     $variables['content']['authors_wad'] = $authors_wad;
   }
+
+  // URL alias.
+  $variables['content']['url_alias'] = $yabrm_book->url();
 
   // Title.
   if ($title) {

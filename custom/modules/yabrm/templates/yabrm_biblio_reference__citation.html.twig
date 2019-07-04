@@ -22,7 +22,7 @@
 
     <p>
       {{ content.authors_wad }}
-      <a href="/{{ content.type_name[6:] ~ '/' ~ content.eid }}">
+      <a href="{{ content.url_alias }}">
         <i>{{ ' ' ~ content.title_wad }}</i>
       </a>
       {{ content.editors_wad }}

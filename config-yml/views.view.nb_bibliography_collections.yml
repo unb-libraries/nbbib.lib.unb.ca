@@ -67,7 +67,7 @@ display:
         options:
           grouping: {  }
           row_class: ''
-          default_row_class: true
+          default_row_class: false
           type: ul
           wrapper_class: item-list
           class: ''

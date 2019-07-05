@@ -64,9 +64,21 @@ display:
             offset_label: Offset
           quantity: 9
       style:
-        type: default
+        type: html_list
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: false
+          type: ul
+          wrapper_class: item-list
+          class: ''
       row:
         type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
       fields:
         bibliographic_type:
           id: bibliographic_type

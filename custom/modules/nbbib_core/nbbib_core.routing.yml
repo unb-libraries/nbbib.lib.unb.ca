@@ -8,8 +8,6 @@ nbbib_core.bibliography:
   path: '/bibliography'
 nbbib_core.collections:
   path: '/collections'
-nbbib_core.contributors:
-  path: '/contributors'
 nbbib_core.about:
   path: '/about'
   defaults:

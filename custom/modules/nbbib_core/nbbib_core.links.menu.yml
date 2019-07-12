@@ -24,7 +24,7 @@ nbbib_core.contributors:
   description: 'Contributors'
   parent: main
   menu_name: main
-  route_name: nbbib_core.contributors
+  url: internal:/contributors/all
   weight: 40
 nbbib_core.about:
   title: 'About'

@@ -19,19 +19,8 @@ class NbbibAlphaContributors extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $text = '<nav class="pager-nav text-center" role="navigation"">' .
-      '<ul class="pagination js-pager__items">';
-
-    foreach (range('A', 'Z') as $letter) {
-      $text .= '<li class="pager__item initial-' . $letter . '">
-        <a href="/contributors?sort-initial='
-          . $letter . '" class="alpha-page">' . $letter . '</a></li>';
-    }
-
-    $text .= '</ul></nav>';
 
     return [
-      '#markup' => $this->t($text),
       '#attached' => [
         'library' => [
           'nbbib_core/contrib-alpha-pager',

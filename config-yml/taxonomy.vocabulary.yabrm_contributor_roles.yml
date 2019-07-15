@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'YABRM Contributor Roles'
 vid: yabrm_contributor_roles
 description: 'YABRM Contributor Roles'
-hierarchy: 0
 weight: 0

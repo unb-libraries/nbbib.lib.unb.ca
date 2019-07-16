@@ -129,7 +129,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
     // Create contrib.
     foreach ($contrib_names as $contrib_name) {
       // Trim whitespace and remove periods.
-      $contrib_name = trim($contrib_name, "\x2E");
+      $contrib_name = trim($contrib_name, " \t\n\r\0\x0B\x2E");
       // Ensure consistent name casing.
       $contrib_name = ucwords(mb_strtolower($contrib_name));
 

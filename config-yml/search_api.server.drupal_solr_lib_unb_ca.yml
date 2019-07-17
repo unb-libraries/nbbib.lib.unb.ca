@@ -37,4 +37,4 @@ backend_config:
   server_prefix: ''
   domain: generic
   optimize: false
-  site_hash: false
+  site_hash: true

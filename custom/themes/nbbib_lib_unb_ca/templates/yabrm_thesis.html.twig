@@ -17,75 +17,96 @@
 #}
 <div{{ attributes.addClass('yabrm_thesis') }}>
   {% if content %}
-    <dl>
-      <div>
-        <dt>Item Type</dt>
-        <dd>Thesis</dd>
-      </div>
-      <div>
-        <dt>{{ content.collections|field_label }}</dt>
-        <dd>{{ content.collections|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.contributors|field_label }}</dt>
-        <dd>{{ content.contributors|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.abstract_note|field_label }}</dt>
-        <dd>{{ content.abstract_note|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.place|field_label }}</dt>
-        <dd>{{ content.place|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.publisher|field_label }}</dt>
-        <dd>{{ content.publisher|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.publication_year|field_label }}</dt>
-        <dd>{{ content.publication_year|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.publication_month|field_label }}</dt>
-        <dd>{{ content.publication_month|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.publication_day|field_label }}</dt>
-        <dd>{{ content.publication_day|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.physical_description|field_label }}</dt>
-        <dd>{{ content.physical_description|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.language|field_label }}</dt>
-        <dd>{{ content.language|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.url|field_label }}</dt>
-        <dd>{{ content.url|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.archive|field_label }}</dt>
-        <dd>{{ content.archive|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.archive_location|field_label }}</dt>
-        <dd>{{ content.archive_location|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.nb_imprint|field_label }}</dt>
-        <dd>{{ content.nb_imprint|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.notes|field_label }}</dt>
-        <dd>{{ content.notes|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.notes_private|field_label }}</dt>
-        <dd>{{ content.notes_private|field_value }}</dd>
-      </div>
-    </dl>
+  <dl>
+    <div>
+      <dt>{{ content.contributors|field_label }}</dt>
+      <dd>{{ content.contributors|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.title|field_label }}</dt>
+      <dd>{{ content.title|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.url|field_label }}</dt>
+      <dd>{{ content.url|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.abstract_note|field_label }}</dt>
+      <dd>{{ content.abstract_note|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.publication_year|field_label }}</dt>
+      <dd>{{ content.publication_year|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.publication_month|field_label }}</dt>
+      <dd>{{ content.publication_month|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.publication_day|field_label }}</dt>
+      <dd>{{ content.publication_day|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.num_pages|field_label }}</dt>
+      <dd>{{ content.num_pages|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.short_title|field_label }}</dt>
+      <dd>{{ content.short_title|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.publisher|field_label }}</dt>
+      <dd>{{ content.publisher|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.place|field_label }}</dt>
+      <dd>{{ content.place|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.language|field_label }}</dt>
+      <dd>{{ content.language|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.thesis_type|field_label }}</dt>
+      <dd>{{ content.thesis_type|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.rights|field_label }}</dt>
+      <dd>{{ content.rights|field_value }}</dd>
+    </div>
+    <div>
+    <div>
+      <dt>{{ content.archive|field_label }}</dt>
+      <dd>{{ content.archive|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.archive_location|field_label }}</dt>
+      <dd>{{ content.archive_location|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.library_catalog|field_label }}</dt>
+      <dd>{{ content.library_catalog|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.call_number|field_label }}</dt>
+      <dd>{{ content.call_number|field_value }}</dd>
+    <div>
+    <div>
+      <dt>{{ content.extra|field_label }}</dt>
+      <dd>{{ content.extra|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.notes_private|field_label }}</dt>
+      <dd>{{ content.notes_private|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.notes|field_label }}</dt>
+      <dd>{{ content.notes|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.topics|field_label }}</dt>
+      <dd>{{ content.topics|field_value }}</dd>
+    </div>
+  </dl>
   {% endif %}
 </div>

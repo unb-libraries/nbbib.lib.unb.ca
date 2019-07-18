@@ -22,6 +22,7 @@ permissions:
   - 'edit book section reference entities'
   - 'edit journal article reference entities'
   - 'edit thesis reference entities'
+  - 'use text format restricted_html'
   - 'view published bibliographic collection entities'
   - 'view published bibliographic contributor entities'
   - 'view published book reference entities'

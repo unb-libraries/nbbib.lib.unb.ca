@@ -149,8 +149,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: true
-            text: '{{ description__value|striptags|truncate(1024, true) ~ ''...'' }}'
+            alter_text: false
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -165,14 +165,14 @@ display:
             suffix: ''
             target: ''
             nl2br: false
-            max_length: 0
+            max_length: 150
             word_boundary: true
             ellipsis: true
             more_link: false
             more_link_text: ''
             more_link_path: ''
             strip_tags: false
-            trim: false
+            trim: true
             preserve_tags: ''
             html: false
           element_type: ''

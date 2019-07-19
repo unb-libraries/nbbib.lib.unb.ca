@@ -30,11 +30,11 @@
       <dt>{{ content.publication_title|field_label }}</dt>
       <dd>{{ content.publication_title|field_value }}</dd>
     </div>
-    </div>
+    <div>
       <dt>{{ content.isbn|field_label }}</dt>
       <dd>{{ content.isbn|field_value }}</dd>
     </div>
-    </div>
+    <div>
       <dt>{{ content.url|field_label }}</dt>
       <dd>{{ content.url|field_value }}</dd>
     </div>
@@ -58,7 +58,6 @@
       <dt>{{ content.pages|field_label }}</dt>
       <dd>{{ content.pages|field_value }}</dd>
     </div>
-    <div>
     <div>
       <dt>{{ content.volume|field_label }}</dt>
       <dd>{{ content.volume|field_value }}</dd>
@@ -96,7 +95,6 @@
       <dd>{{ content.rights|field_value }}</dd>
     </div>
     <div>
-    <div>
       <dt>{{ content.archive|field_label }}</dt>
       <dd>{{ content.archive|field_value }}</dd>
     </div>
@@ -111,7 +109,7 @@
     <div>
       <dt>{{ content.call_number|field_label }}</dt>
       <dd>{{ content.call_number|field_value }}</dd>
-    <div>
+    </div>
     <div>
       <dt>{{ content.extra|field_label }}</dt>
       <dd>{{ content.extra|field_value }}</dd>
@@ -130,7 +128,22 @@
     </div>
     <div>
       <dt>{{ content.topics|field_label }}</dt>
-      <dd>{{ content.topics|field_value }}</dd>
+
+      {% set full_topics = "" %}
+
+      {%- for topic in content.topics|field_value -%}
+        {% set topic_title = topic['#title'] %}
+
+        {%- if loop.last -%}
+          {% set separator = "." %}
+        {%- else -%}
+          {% set separator = ", " %}
+        {%- endif -%}
+
+        {% set full_topics = full_topics ~ topic_title ~ separator %}
+      {%- endfor -%}
+
+      <dd>{{ full_topics }}</dd>
     </div>
   </dl>
   {% endif %}

@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_help().
@@ -156,4 +157,11 @@ function yabrm_theme() {
   ];
 
   return $theme;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function yabrm_form_yabrm_collection_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['description']['widget'][0]['#format'] = "restricted_html";
 }

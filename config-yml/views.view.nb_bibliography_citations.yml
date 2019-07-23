@@ -1052,8 +1052,11 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: and
-          value: ''
+          operator: '='
+          value:
+            value: ''
+            min: ''
+            max: ''
           group: 1
           exposed: true
           expose:
@@ -1085,7 +1088,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: terms
+          parse_mode: phrase
           min_length: ''
           fields:
             bibliographic_type: bibliographic_type

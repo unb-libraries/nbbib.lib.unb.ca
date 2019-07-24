@@ -33,3 +33,39 @@ nbbib_core.about:
   menu_name: main
   route_name: nbbib_core.about
   weight: 50
+nbbib_core.add:
+  title: 'Add'
+  description: 'Add'
+  parent: main
+  menu_name: main
+  route_name: nbbib_core.add
+  expanded: TRUE
+  weight: 11
+nbbib_core.add_book:
+  title: 'Book'
+  description: 'Book'
+  parent: nbbib_core.add
+  menu_name: main
+  url: internal:/yabrm/yabrm_book/add
+  weight: 10
+nbbib_core.add_book_section:
+  title: 'Book Section'
+  description: 'Book Section'
+  parent: nbbib_core.add
+  menu_name: main
+  url: internal:/yabrm/yabrm_book_section/add
+  weight: 20
+nbbib_core.add_thesis:
+  title: 'Thesis'
+  description: 'Thesis'
+  parent: nbbib_core.add
+  menu_name: main
+  url: internal:/yabrm/yabrm_thesis/add
+  weight: 30
+nbbib_core.add_journal_article:
+  title: 'Journal Article'
+  description: 'Journal Article'
+  parent: nbbib_core.add
+  menu_name: main
+  url: internal:/yabrm/yabrm_journal_article/add
+  weight: 40

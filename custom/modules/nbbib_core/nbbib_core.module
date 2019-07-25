@@ -112,7 +112,6 @@ function nbbib_core_form_yabrm_journal_article_edit_form_alter(&$form, FormState
  */
 function clr_blank_contribs(&$form, FormStateInterface $form_state) {
   $contribs = $form_state->getValue('contributors');
-  kint($contribs);
 
   foreach ($contribs as $key => $contrib) {
     if (empty($contrib['subform']['field_yabrm_contributor_person']['entities'])) {

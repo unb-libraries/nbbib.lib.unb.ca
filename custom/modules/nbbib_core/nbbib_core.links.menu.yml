@@ -40,7 +40,7 @@ nbbib_core.add:
   menu_name: main
   route_name: nbbib_core.add
   expanded: TRUE
-  weight: 11
+  weight: 60
 nbbib_core.add_book:
   title: 'Book'
   description: 'Book'

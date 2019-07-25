@@ -34,8 +34,8 @@ nbbib_core.about:
   route_name: nbbib_core.about
   weight: 50
 nbbib_core.add:
-  title: 'Add'
-  description: 'Add'
+  title: 'Add New Reference'
+  description: 'Add New Reference'
   parent: main
   menu_name: main
   route_name: nbbib_core.add

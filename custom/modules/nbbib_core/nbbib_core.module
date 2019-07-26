@@ -89,7 +89,6 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
 
   if (in_array($form_id, $target_forms)) {
     top_submit_handler($form, 'clr_blank_contribs');
-    kint($form['contributors']['widget'][0]['subform']['field_yabrm_contributor_person']);
   }
 }
 

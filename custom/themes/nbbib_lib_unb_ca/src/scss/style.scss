@@ -120,6 +120,15 @@ footer.footer.container {
   padding-top: 15px;
 }
 
+// Add/Edit reference forms.
+// Add/Edit contributor buttons.
+button[data-drupal-selector='edit-contributors-0-subform-field-yabrm-contributor-person-actions-ief-add-existing'] {
+  margin-left: 10px;
+}
+
+button[data-drupal-selector='edit-contributors-1-subform-field-yabrm-contributor-person-actions-ief-add-existing'] {
+  margin-left: 10px;
+}
 
 // Edit reference forms - publication date fields.
 @media screen and (min-width: 768px) {

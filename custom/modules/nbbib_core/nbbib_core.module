@@ -60,50 +60,36 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Adds a top priority handler to the 'submit' action of the specified form.
  */
-function nbbib_core_form_yabrm_book_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function top_submit_handler(&$form, $handler) {
   foreach (array_keys($form['actions']) as $action) {
     if ($action != 'preview' && isset($form['actions'][$action]['#type']) &&
     $form['actions'][$action]['#type'] === 'submit') {
-      array_unshift($form['actions'][$action]['#submit'], 'clr_blank_contribs');
+      array_unshift($form['actions'][$action]['#submit'], $handler);
     }
   }
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implements hook_form_alter().
  */
-function nbbib_core_form_yabrm_book_section_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  foreach (array_keys($form['actions']) as $action) {
-    if ($action != 'preview' && isset($form['actions'][$action]['#type']) &&
-    $form['actions'][$action]['#type'] === 'submit') {
-      array_unshift($form['actions'][$action]['#submit'], 'clr_blank_contribs');
-    }
-  }
-}
+function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Target all reference add/edit forms.
+  $target_forms = [
+    'yabrm_book_add_form',
+    'yabrm_book_edit_form',
+    'yabrm_book_section_add_form',
+    'yabrm_book_section_edit_form',
+    'yabrm_thesis_add_form',
+    'yabrm_thesis_edit_form',
+    'yabrm_journal_article_add_form',
+    'yabrm_journal_article_edit_form',
+  ];
 
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function nbbib_core_form_yabrm_thesis_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  foreach (array_keys($form['actions']) as $action) {
-    if ($action != 'preview' && isset($form['actions'][$action]['#type']) &&
-    $form['actions'][$action]['#type'] === 'submit') {
-      array_unshift($form['actions'][$action]['#submit'], 'clr_blank_contribs');
-    }
-  }
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function nbbib_core_form_yabrm_journal_article_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  foreach (array_keys($form['actions']) as $action) {
-    if ($action != 'preview' && isset($form['actions'][$action]['#type']) &&
-    $form['actions'][$action]['#type'] === 'submit') {
-      array_unshift($form['actions'][$action]['#submit'], 'clr_blank_contribs');
-    }
+  if (in_array($form_id, $target_forms)) {
+    top_submit_handler($form, 'clr_blank_contribs');
+    kint($form['contributors']['widget'][0]['subform']['field_yabrm_contributor_person']);
   }
 }
 

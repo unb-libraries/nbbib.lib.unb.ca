@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Implements hook_theme().
@@ -93,7 +94,7 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
 }
 
 /**
- * Submit handler for yabrm_book_edit. Removes empty contributors before saving to avoid warnings.
+ * Submit handler for yabrm_book_edit. Removes empty contributors before saving to avoid errors.
  */
 function clr_blank_contribs(&$form, FormStateInterface $form_state) {
   $contribs = $form_state->getValue('contributors');
@@ -107,6 +108,69 @@ function clr_blank_contribs(&$form, FormStateInterface $form_state) {
   }
 
   $form_state->setValue('contributors', $contribs);
+}
+
+/**
+ * Implements hook_inline_entity_form_entity_form_alter().
+ */
+function nbbib_core_inline_entity_form_entity_form_alter(&$entity_form, &$form_state) {
+  // Contributor inline_entity_form hook. Add after-build handler.
+  $entity_form['#after_build'][] = 'format_contrib_subform';
+}
+
+/**
+ * After-build handler for contributors. Adds conditional state formatting.
+ */
+function format_contrib_subform($form, &$form_state) {
+  // Institution name only enabled if both first and last names are empty.
+  $form['institution_name']['#states'] = [
+    'enabled' => [
+      ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][first_name][0][value]"]' => ['empty' => TRUE],
+      ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][last_name][0][value]"]' => ['empty' => TRUE],
+    ],
+  ];
+
+  // First and last name only enabled if institution name is empty.
+  $form['first_name']['#states'] = $form['last_name']['#states'] = [
+    'enabled' => [
+      ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][institution_name][0][value]"]' => ['filled' => FALSE],
+    ],
+  ];
+
+  // Name and sort name are hidden.
+  $form['name']['#attributes']['class'][] = 'hidden';
+  $form['sort_name']['#attributes']['class'][] = 'hidden';
+
+  return $form;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_ID_presave().
+ */
+function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
+  // Pupulate name (display) and sort name on save.
+  $first_name = trim($entity->getFirstName());
+  $last_name = trim($entity->getLastName());
+  $institution_name = trim($entity->getInstitutionName());
+  $name = $sort_name = '';
+
+  if (!empty($institution_name)) {
+    $name = $sort_name = $institution_name;
+  }
+  elseif (!empty($last_name)) {
+    $name .= $last_name;
+    $sort_name .= $last_name;
+
+    if (!empty($first_name)) {
+      $name .= ', ' . $first_name;
+    }
+  }
+  elseif (!empty($first_name)) {
+    $name = $sort_name = $first_name;
+  }
+
+  $entity->setName($name);
+  $entity->setSortName($sort_name);
 }
 
 /**

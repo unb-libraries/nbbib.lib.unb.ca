@@ -299,8 +299,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
         'weight' => -4,
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-      ->setRequired(TRUE);
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['first_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('First Name'))
@@ -387,8 +386,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
         'weight' => -4,
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-      ->setRequired(TRUE);
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))

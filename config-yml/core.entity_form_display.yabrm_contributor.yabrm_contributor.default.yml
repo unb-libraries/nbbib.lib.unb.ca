@@ -1,0 +1,41 @@
+uuid: 678418e9-b80e-4e66-b109-ddbdca64dba6
+langcode: en
+status: true
+dependencies:
+  module:
+    - yabrm
+id: yabrm_contributor.yabrm_contributor.default
+targetEntityType: yabrm_contributor
+bundle: yabrm_contributor
+mode: default
+content:
+  first_name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  institution_name:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  last_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  name: true
+  path: true
+  sort_name: true
+  user_id: true

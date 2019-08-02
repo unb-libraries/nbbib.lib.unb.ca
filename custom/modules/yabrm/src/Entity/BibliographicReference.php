@@ -559,8 +559,8 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDescription(t('The time that the entity was last edited.'));
 
     $fields['nb_imprint'] = BaseFieldDefinition::create('boolean')
-      ->setLabel(t('NB Imprint'))
-      ->setDescription(t('Is this an NB imprint?'))
+      ->setLabel(t('New Brunswick imprint'))
+      ->setDescription(t('Was this item printed in New Brunswick?'))
       ->setSettings(['on_label' => 'Yes', 'off_label' => 'No'])
       ->setRevisionable(TRUE)
       ->setDefaultValue('0')

@@ -116,13 +116,37 @@ function clr_blank_contribs(&$form, FormStateInterface $form_state) {
 function nbbib_core_inline_entity_form_entity_form_alter(&$entity_form, &$form_state) {
   // Contributor inline_entity_form hook. Add after-build handler.
   $entity_form['#after_build'][] = 'format_contrib_subform';
+  // Add custom element validation.
+  $entity_form['#element_validate'][] = 'validate_contrib_subform';
+}
+
+/**
+ * Custom validation handler for contributors. Adds conditional state formatting.
+ */
+function validate_contrib_subform($element, &$form_state) {
+  $first_name = $element['first_name']['widget'][0]['value']['#value'];
+  $last_name = $element['last_name']['widget'][0]['value']['#value'];
+  $institution_name = $element['institution_name']['widget'][0]['value']['#value'];
+
+  if (empty($institution_name)) {
+    if (empty($first_name) and empty($last_name)) {
+      $form_state->setErrorByName('Contributor Name', t('Either institution or individual names are required.'));
+    }
+    elseif (empty($first_name) or empty($last_name)) {
+      $form_state->setErrorByName('Contributor Name', t('Full names are required for individual contributors.'));
+    }
+  }
+  elseif (!empty($last_name) or !empty($last_name)) {
+    $form_state->setErrorByName('Contributor Name', t('Either institution or individual names are allowed. Not both.'));
+  }
 }
 
 /**
  * After-build handler for contributors. Adds conditional state formatting.
  */
 function format_contrib_subform($form, &$form_state) {
-  // Institution name only enabled if both first and last names are empty.
+  /*
+  // Institution name only visible if both first and last names are empty.
   $form['institution_name']['#states'] = [
     'enabled' => [
       ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][first_name][0][value]"]' => ['empty' => TRUE],
@@ -130,16 +154,15 @@ function format_contrib_subform($form, &$form_state) {
     ],
   ];
 
-  // First and last name only enabled if institution name is empty.
+  // First and last name only visible if institution name is empty.
   $form['first_name']['#states'] = $form['last_name']['#states'] = [
     'enabled' => [
-      ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][institution_name][0][value]"]' => ['filled' => FALSE],
+      ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][institution_name][0][value]"]' => ['empty' => TRUE],
     ],
   ];
+  */
 
   // Name and sort name are hidden.
-  $form['name']['#attributes']['class'][] = 'hidden';
-  $form['sort_name']['#attributes']['class'][] = 'hidden';
 
   return $form;
 }

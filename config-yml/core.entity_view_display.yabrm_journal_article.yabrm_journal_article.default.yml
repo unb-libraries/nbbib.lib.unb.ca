@@ -1,4 +1,4 @@
-uuid: 1b410b3a-3864-4d8f-a375-ee81ed4127cc
+uuid: fb68f979-7f76-488f-a6dc-a473656bbc07
 langcode: en
 status: true
 dependencies:
@@ -8,22 +8,22 @@ dependencies:
     - paragraphs
     - text
     - yabrm
-id: yabrm_book.yabrm_book.default
-targetEntityType: yabrm_book
-bundle: yabrm_book
+id: yabrm_journal_article.yabrm_journal_article.default
+targetEntityType: yabrm_journal_article
+bundle: yabrm_journal_article
 mode: default
 content:
   abstract_note:
     label: above
     type: text_default
-    weight: 26
+    weight: 28
     region: content
     settings: {  }
     third_party_settings: {  }
   archive:
     label: above
     type: string
-    weight: 21
+    weight: 23
     region: content
     settings:
       link_to_entity: false
@@ -31,7 +31,7 @@ content:
   archive_location:
     label: above
     type: string
-    weight: 22
+    weight: 24
     region: content
     settings:
       link_to_entity: false
@@ -39,7 +39,7 @@ content:
   call_number:
     label: above
     type: string
-    weight: 19
+    weight: 21
     region: content
     settings:
       link_to_entity: false
@@ -47,7 +47,7 @@ content:
   collections:
     label: hidden
     type: entity_reference_label
-    weight: 17
+    weight: 19
     region: content
     settings:
       link: true
@@ -59,10 +59,10 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  edition:
+  doi:
     label: above
     type: string
-    weight: 8
+    weight: 15
     region: content
     settings:
       link_to_entity: false
@@ -70,14 +70,30 @@ content:
   extra:
     label: above
     type: text_default
-    weight: 27
+    weight: 29
     region: content
     settings: {  }
     third_party_settings: {  }
-  isbn:
+  issn:
     label: above
     type: string
-    weight: 7
+    weight: 6
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  issue:
+    label: above
+    type: string
+    weight: 11
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  journal_abbr:
+    label: above
+    type: string
+    weight: 14
     region: content
     settings:
       link_to_entity: false
@@ -85,21 +101,21 @@ content:
   language:
     label: above
     type: list_key
-    weight: 9
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   library_catalog:
     label: above
     type: string
-    weight: 20
+    weight: 22
     region: content
     settings:
       link_to_entity: false
     third_party_settings: {  }
   nb_imprint:
     label: above
-    weight: 18
+    weight: 20
     region: content
     settings:
       format: default
@@ -110,29 +126,21 @@ content:
   notes:
     label: above
     type: text_default
-    weight: 29
+    weight: 31
     region: content
     settings: {  }
     third_party_settings: {  }
   notes_private:
     label: above
     type: text_default
-    weight: 28
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
-  num_pages:
+  pages:
     label: above
     type: string
-    weight: 12
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  num_volumes:
-    label: above
-    type: string
-    weight: 14
+    weight: 13
     region: content
     settings:
       link_to_entity: false
@@ -140,21 +148,13 @@ content:
   physical_description:
     label: above
     type: text_default
-    weight: 23
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
-  place:
-    label: above
-    type: string
-    weight: 3
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   publication_day:
     label: above
-    weight: 4
+    weight: 3
     region: content
     settings:
       thousand_separator: ''
@@ -163,16 +163,24 @@ content:
     type: number_integer
   publication_month:
     label: above
-    weight: 5
+    weight: 4
     region: content
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
+  publication_title:
+    label: above
+    type: string
+    weight: 10
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   publication_year:
     label: above
-    weight: 6
+    weight: 5
     region: content
     settings:
       thousand_separator: ''
@@ -190,7 +198,7 @@ content:
   rights:
     label: above
     type: string
-    weight: 25
+    weight: 27
     region: content
     settings:
       link_to_entity: false
@@ -198,15 +206,23 @@ content:
   series:
     label: above
     type: string
-    weight: 15
+    weight: 16
     region: content
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  series_number:
+  series_text:
     label: above
     type: string
-    weight: 16
+    weight: 18
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  series_title:
+    label: above
+    type: string
+    weight: 17
     region: content
     settings:
       link_to_entity: false
@@ -214,7 +230,7 @@ content:
   short_title:
     label: above
     type: string
-    weight: 11
+    weight: 9
     region: content
     settings:
       link_to_entity: false
@@ -229,7 +245,7 @@ content:
     third_party_settings: {  }
   topics:
     label: above
-    weight: 10
+    weight: 8
     region: content
     settings:
       link: true
@@ -237,7 +253,7 @@ content:
     type: entity_reference_label
   url:
     type: link
-    weight: 24
+    weight: 26
     region: content
     label: above
     settings:
@@ -250,7 +266,7 @@ content:
   volume:
     label: above
     type: string
-    weight: 13
+    weight: 12
     region: content
     settings:
       link_to_entity: false

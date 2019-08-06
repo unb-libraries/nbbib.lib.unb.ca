@@ -85,7 +85,7 @@ content:
   language:
     label: above
     type: list_key
-    weight: 11
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -237,7 +237,7 @@ content:
     third_party_settings: {  }
   topics:
     label: above
-    weight: 10
+    weight: 11
     region: content
     settings:
       link: true

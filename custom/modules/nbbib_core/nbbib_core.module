@@ -142,32 +142,6 @@ function validate_contrib_subform($element, &$form_state) {
 }
 
 /**
- * After-build handler for contributors. Adds conditional state formatting.
- */
-function format_contrib_subform($form, &$form_state) {
-  /*
-  // Institution name only visible if both first and last names are empty.
-  $form['institution_name']['#states'] = [
-    'enabled' => [
-      ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][first_name][0][value]"]' => ['empty' => TRUE],
-      ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][last_name][0][value]"]' => ['empty' => TRUE],
-    ],
-  ];
-
-  // First and last name only visible if institution name is empty.
-  $form['first_name']['#states'] = $form['last_name']['#states'] = [
-    'enabled' => [
-      ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][institution_name][0][value]"]' => ['empty' => TRUE],
-    ],
-  ];
-  */
-
-  // Name and sort name are hidden.
-
-  return $form;
-}
-
-/**
  * Implements hook_ENTITY_TYPE_ID_presave().
  */
 function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {

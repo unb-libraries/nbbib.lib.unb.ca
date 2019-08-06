@@ -44,7 +44,8 @@ function template_preprocess_yabrm_book_section(array &$variables) {
 
   while (!empty($contribs[$i])) {
     // Paragraph.
-    $paragraph = $contribs[$i]['#paragraph'];
+    $paragraph = !empty($contribs[$i]['#paragraph']) ?
+      $contribs[$i]['#paragraph'] : NULL;
 
     if (!empty($paragraph)) {
       // Role ID and role.

@@ -114,8 +114,6 @@ function clr_blank_contribs(&$form, FormStateInterface $form_state) {
  * Implements hook_inline_entity_form_entity_form_alter().
  */
 function nbbib_core_inline_entity_form_entity_form_alter(&$entity_form, &$form_state) {
-  // Contributor inline_entity_form hook. Add after-build handler.
-  $entity_form['#after_build'][] = 'format_contrib_subform';
   // Add custom element validation.
   $entity_form['#element_validate'][] = 'validate_contrib_subform';
 }

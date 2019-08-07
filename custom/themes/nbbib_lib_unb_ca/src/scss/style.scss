@@ -2,8 +2,18 @@
 // @import '../../../../../vendor/unb-libraries/unb_lib_theme/assets/stylesheets/unblib';
 
 // Global.
-// Hide user-id.
-div.field--name-user-id {
+
+// Hide global things:
+// User ID field.
+// 'Show row height' buttons.
+// Form field descriptions.
+// Language (yabrm) field description.
+// Text format help.
+div.field--name-user-id,
+button.tabledrag-toggle-weight,
+div.description.help-block,
+div#edit-language--wrapper--description,
+div.form-item + div.filter-wrapper.form-inline.form-group.js-form-wrapper {
   display: none;
 }
 
@@ -109,6 +119,15 @@ label[for='edit-search-api-fulltext'] {
   margin-bottom: 10px;
 }
 
+// Hide unused form controls.
+// Publishing status and revision log message for contributors.
+div.field--type-entity-reference.field--name-field-yabrm-contributor-person
+div.field--name-status,
+div.field--type-entity-reference.field--name-field-yabrm-contributor-person
+div.field--name-revision-log-message,
+{
+  display: none;
+}
 // Footer.
 div#footer-logo-div, div#footer-menu-div {
   padding-left: 0;

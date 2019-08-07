@@ -303,7 +303,6 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
         'text_processing' => 0,
       ])
       ->setDefaultValue('')
-      ->setRequired(TRUE)
       ->setDisplayOptions('view', [
         'label' => 'above',
         'type' => 'string',
@@ -321,7 +320,6 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
         'allowed_values' => ['eng' => 'English', 'fre' => 'French'],
       ])
       ->setLabel('Language')
-      ->setRequired(TRUE)
       ->setDescription('Select the language of this reference')
       ->setDisplayOptions('form', [
         'type' => 'options_buttons',

@@ -61,6 +61,15 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
         }
       }
 
+      // Make sure no zero publication dates get passed.
+      $pub_year_out = (int) $row->getSourceProperty('publication_year');
+
+      if ($pub_year_out == 0) {
+        $row->setSourceProperty('publication_year', NULL);
+        $row->setSourceProperty('publication_month', NULL);
+        $row->setSourceProperty('publication_day', NULL);
+      }
+
       // Language.
       $language = strtolower($row->getSourceProperty('language'));
 
@@ -79,8 +88,8 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
       $row->setSourceProperty('language', $language);
 
       // URL.
-      $url = $row->getSourceProperty('url');
-      $uri = $url;
+      $source_url = $row->getSourceProperty('url');
+      $uri = strpos($source_url, 'http') ? $source_url : NULL;
 
       $url = [
         'uri' => $uri,

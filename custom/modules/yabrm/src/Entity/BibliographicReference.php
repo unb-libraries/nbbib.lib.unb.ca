@@ -172,7 +172,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setLabel(t('Publication Year'))
       ->addPropertyConstraints('value', [
         'Range' => [
-          'min' => 0,
+          'min' => 800,
           'max' => 2048,
         ],
       ])

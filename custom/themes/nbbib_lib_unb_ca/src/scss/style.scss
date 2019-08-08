@@ -14,7 +14,7 @@ button.tabledrag-toggle-weight,
 div.description.help-block,
 div#edit-language--wrapper--description,
 div.form-item + div.filter-wrapper.form-inline.form-group.js-form-wrapper {
-  display: none;
+  visibility: hidden;
 }
 
 // Search button.

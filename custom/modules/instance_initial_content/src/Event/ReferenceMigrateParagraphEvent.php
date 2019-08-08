@@ -77,6 +77,10 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         $pub_year = !empty($src_year) ? $src_year : NULL;
       }
 
+      if ((int) $pub_year == 0) {
+        $pub_year = NULL;
+      }
+
       // Default collection.
       $collection_name = self::getMigrations()[$migration_id];
 

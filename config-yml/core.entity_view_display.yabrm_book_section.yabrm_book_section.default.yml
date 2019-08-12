@@ -3,9 +3,9 @@ langcode: en
 status: true
 dependencies:
   module:
+    - entity_reference_revisions
     - link
     - options
-    - paragraphs
     - text
     - yabrm
 id: yabrm_book_section.yabrm_book_section.default
@@ -54,10 +54,12 @@ content:
     third_party_settings: {  }
   contributors:
     label: above
-    type: paragraph_summary
+    type: entity_reference_revisions_entity_view
     weight: 2
     region: content
-    settings: {  }
+    settings:
+      view_mode: default
+      link: ''
     third_party_settings: {  }
   edition:
     label: above

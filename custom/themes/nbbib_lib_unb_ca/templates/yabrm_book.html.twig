@@ -114,14 +114,16 @@
         <dt>{{ content.extra|field_label }}</dt>
         <dd>{{ content.extra|field_value }}</dd>
       </div>
-      <div>
-        <dt>{{ content.notes_private|field_label }}</dt>
-        <dd>{{ content.notes_private|field_value }}</dd>
-      </div>
+      {% if logged_in %}
+        <div>
+          <dt>{{ content.notes_private|field_label }}</dt>
+          <dd>{{ content.notes_private|field_value }}</dd>
+        </div>
+      {% endif %}
       <div>
         <dt>{{ content.notes|field_label }}</dt>
         <dd>{{ content.notes|field_value }}</dd>
-      </div>  
+      </div>
       <div>
         <dt>{{ content.edition|field_label }}</dt>
         <dd>{{ content.edition|field_value }}</dd>

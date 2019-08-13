@@ -169,6 +169,24 @@ function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_ID_presave().
+ */
+function nbbib_core_entity_insert(EntityInterface $entity) {
+  $entity_storage = \Drupal::entityTypeManager()->getStorage($entity->getEntityTypeId());
+  $stored_entity = $entity_storage->load($entity->id());
+  \Drupal::service('pathauto.generator')->updateEntityAlias($stored_entity, 'update');
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_ID_presave().
+ */
+function nbbib_core_entity_update(EntityInterface $entity) {
+  $entity_storage = \Drupal::entityTypeManager()->getStorage($entity->getEntityTypeId());
+  $stored_entity = $entity_storage->load($entity->id());
+  \Drupal::service('pathauto.generator')->updateEntityAlias($stored_entity, 'update');
+}
+
+/**
  * Implements hook_views_pre_render().
  */
 function nbbib_core_views_pre_render($view) {

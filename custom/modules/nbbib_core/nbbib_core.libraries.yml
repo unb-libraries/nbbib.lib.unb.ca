@@ -4,3 +4,10 @@ contrib-alpha-pager:
     js/contrib-alpha-pager.js: {}
   dependencies:
     - core/jquery
+
+contrib-ief:
+  version: 1.x
+  js:
+    js/contrib-ief.js: {}
+  dependencies:
+    - core/jquery

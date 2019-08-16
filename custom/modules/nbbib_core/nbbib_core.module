@@ -76,6 +76,8 @@ function top_submit_handler(&$form, $handler) {
  * Implements hook_form_alter().
  */
 function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Attach JS library.
+  $form['#attached']['library'][] = 'nbbib_core/contrib-ief';
   // Target all reference add/edit forms.
   $target_forms = [
     'yabrm_book_add_form',
@@ -114,8 +116,38 @@ function clr_blank_contribs(&$form, FormStateInterface $form_state) {
  * Implements hook_inline_entity_form_entity_form_alter().
  */
 function nbbib_core_inline_entity_form_entity_form_alter(&$entity_form, &$form_state) {
+  // Contributor inline_entity_form hook. Add after-build handler.
+  $entity_form['#after_build'][] = 'format_contrib_subform';
+  // Attach JS library.
+  $entity_form['#attached']['library'][] = 'nbbib_core/contrib-ief';
   // Add custom element validation.
   $entity_form['#element_validate'][] = 'validate_contrib_subform';
+}
+
+/**
+ * After-build handler for contributors. Adds conditional state formatting.
+ */
+function format_contrib_subform($form, &$form_state) {
+  // Institution name only enabled if both first and last names are empty.
+  $form['institution_name']['#states'] = [
+    'enabled' => [
+      ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][first_name][0][value]"]' => ['empty' => TRUE],
+      ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][last_name][0][value]"]' => ['empty' => TRUE],
+    ],
+  ];
+
+  // First and last name only enabled if institution name is empty.
+  $form['first_name']['#states'] = $form['last_name']['#states'] = [
+    'enabled' => [
+      ':input[name="contributors[0][subform][field_yabrm_contributor_person][form][inline_entity_form][entities][0][form][institution_name][0][value]"]' => ['filled' => FALSE],
+    ],
+  ];
+
+  // Name and sort name are hidden.
+  $form['name']['#attributes']['class'][] = 'hidden';
+  $form['sort_name']['#attributes']['class'][] = 'hidden';
+
+  return $form;
 }
 
 /**

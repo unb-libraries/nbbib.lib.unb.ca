@@ -119,8 +119,6 @@ function nbbib_core_inline_entity_form_entity_form_alter(&$entity_form, &$form_s
   // Contributor inline_entity_form hook. Add after-build handler.
   $entity_form['#after_build'][] = 'format_contrib_subform';
   // Attach JS library.
-  $entity_form['#attached']['library'][] = 'nbbib_core/contrib-ief';
-  // Add custom element validation.
   $entity_form['#element_validate'][] = 'validate_contrib_subform';
 }
 

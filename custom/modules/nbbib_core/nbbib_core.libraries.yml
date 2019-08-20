@@ -3,12 +3,12 @@ contrib-alpha-pager:
   js:
     js/contrib-alpha-pager.js: {}
   dependencies:
-    - core/jquery
+    - core/jquery,
 
 modal-forms:
   version: 1.x
   js:
     js/modal-forms.js: {}
   dependencies:
-    - core/jquery.form
-    - core/drupal.dialog.ajax
+    - core/jquery.form,
+    - core/drupal.dialog.ajax,

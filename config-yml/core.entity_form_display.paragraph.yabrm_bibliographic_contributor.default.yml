@@ -6,8 +6,6 @@ dependencies:
     - field.field.paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_person
     - field.field.paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_role
     - paragraphs.paragraphs_type.yabrm_bibliographic_contributor
-  module:
-    - inline_entity_form
 id: paragraph.yabrm_bibliographic_contributor.default
 targetEntityType: paragraph
 bundle: yabrm_bibliographic_contributor
@@ -16,18 +14,11 @@ content:
   field_yabrm_contributor_person:
     weight: 0
     settings:
-      form_mode: default
-      label_singular: ''
-      label_plural: ''
-      allow_new: true
-      allow_existing: true
       match_operator: CONTAINS
-      override_labels: false
-      collapsible: false
-      collapsed: false
-      allow_duplicate: false
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: inline_entity_form_complex
+    type: entity_reference_autocomplete
     region: content
   field_yabrm_contributor_role:
     weight: 1

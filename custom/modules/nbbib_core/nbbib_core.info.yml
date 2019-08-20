@@ -3,3 +3,7 @@ type: module
 description: Core custom functionality for nbbib.lib.unb.ca
 core: 8.x
 package: Custom
+
+libraries:
+  - nbbib_core/contrib-alpha-pager
+  - nbbib_core/modal-forms

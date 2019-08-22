@@ -7,8 +7,6 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\CloseModalDialogCommand;
 
 /**
  * Implements hook_theme().
@@ -79,7 +77,7 @@ function top_submit_handler(&$form, $handler) {
  */
 function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Target all reference add/edit forms.
-  $reference_forms = [
+  $target_forms = [
     'yabrm_book_add_form',
     'yabrm_book_edit_form',
     'yabrm_book_section_add_form',
@@ -90,54 +88,23 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
     'yabrm_journal_article_edit_form',
   ];
 
-  // Target contributor add/edit forms.
-  $contrib_forms = [
-    'yabrm_contributor_add_form',
-    'yabrm_contributor_edit_form',
-  ];
-
-  // For all reference forms.
-  if (in_array($form_id, $reference_forms)) {
-    // Attach modal-forms library.
-    $form['#attached']['library'][] = 'nbbib_core/modal-forms';
-    // Add top priority submit handler to clear empty contrib widgets.
+  if (in_array($form_id, $target_forms)) {
+    // For all reference edit and add forms.
+    // Add validation.
+    $form['#validate'][] = 'validate_contrib_subform';
+    // Add a top priority submit handler.
     top_submit_handler($form, 'clr_blank_contribs');
-    // Add [New Contributor] button.
-    $form['new_contrib'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'a',
-      '#weight' => 1,
-      '#value' => t("New Contributor"),
-      '#attributes' => [
-        'class' => ['use-ajax', 'button', 'btn-success', 'btn'],
-        'name' => 'new_contrib',
-        'onclick' => 'location.href="/yabrm/yabrm_contributor/add"',
-        'data-dialog-type' => 'modal',
-        'data-dialog-options' => "{'width':800, 'height':500}",
-        'data-drupal-selector' => NULL,
-      ],
-    ];
-  }
-
-  // For contributor forms.
-  if (in_array($form_id, $contrib_forms)) {
-    // Attach modal-forms library.
-    $form['#attached']['library'][] = 'nbbib_core/modal-forms';
-    // Add top priority submit handler to close and redirect after modal.
-    top_submit_handler($form, 'modal_form_submit');
-    // Add custom validation for contributors.
-    $form['#validate'][] = 'validate_contrib_form';
   }
 }
 
 /**
- * Submit handler for yabrm_reference_add/edit. Removes empty contributors before saving to avoid errors.
+ * Submit handler for yabrm_book_edit. Removes empty contributors before saving to avoid errors.
  */
 function clr_blank_contribs(&$form, FormStateInterface $form_state) {
   $contribs = $form_state->getValue('contributors');
 
   foreach ($contribs as $key => $contrib) {
-    if (empty($contrib['subform']['field_yabrm_contributor_person']['entities'])) {
+    if (empty($contrib['subform']['field_yabrm_contributor_person'])) {
       if (is_int($key)) {
         unset($contribs[$key]);
       }
@@ -148,37 +115,33 @@ function clr_blank_contribs(&$form, FormStateInterface $form_state) {
 }
 
 /**
- * Close the contributor modal and redirect the user to the homepage.
- *
- * @param array $form
- *   The form that will be altered.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   FormState Object.
+ * Custom validation handler for contributors.
  */
-function modal_form_submit(array $form, FormStateInterface &$form_state) {
-  $response = new AjaxResponse();
-  $response->addCommand(new CloseModalDialogCommand());
-  $form_state->setResponse($response);
-}
+function validate_contrib_subform($element, &$form_state) {
+  $i = 0;
 
-/**
- * Custom validation handler for contributors. Adds conditional state formatting.
- */
-function validate_contrib_form($element, &$form_state) {
-  $first_name = $element['first_name']['widget'][0]['value']['#value'];
-  $last_name = $element['last_name']['widget'][0]['value']['#value'];
-  $institution_name = $element['institution_name']['widget'][0]['value']['#value'];
+  // Get updated contributor values.
+  while (!empty($form_state->getCompleteForm()['contributors']['widget'][$i]['subform']['field_yabrm_contributor_person']['widget']['entities'][0])) {
+    $first_name = $form_state->getCompleteForm()['contributors']['widget'][$i]['subform']['field_yabrm_contributor_person']['widget']['entities'][0]['#entity']->getFirstName();
+    $last_name = $form_state->getCompleteForm()['contributors']['widget'][$i]['subform']['field_yabrm_contributor_person']['widget']['entities'][0]['#entity']->getLastName();
+    $institution_name = $form_state->getCompleteForm()['contributors']['widget'][$i]['subform']['field_yabrm_contributor_person']['widget']['entities'][0]['#entity']->getInstitutionName();
+    $i++;
+  }
 
+  // Validation rules and errors.
   if (empty($institution_name)) {
     if (empty($first_name) and empty($last_name)) {
-      $form_state->setErrorByName('Contributor Name', t('Either institution or individual names are required.'));
+      $form_state->setErrorByName('Contributor Name', t('Either institution or individual names are required for contributors.'));
     }
     elseif (empty($first_name) or empty($last_name)) {
       $form_state->setErrorByName('Contributor Name', t('Full names are required for individual contributors.'));
     }
   }
-  elseif (!empty($last_name) or !empty($last_name)) {
-    $form_state->setErrorByName('Contributor Name', t('Either institution or individual names are allowed. Not both.'));
+  elseif (!empty($last_name)) {
+    $form_state->setErrorByName('Contributor Name', t('Either institution or individual names are allowed for contributors. Not both.'));
+  }
+  elseif (!empty($first_name)) {
+    $form_state->setErrorByName('Contributor Name', t('Either institution or individual names are allowed for contributors. Not both.'));
   }
 }
 

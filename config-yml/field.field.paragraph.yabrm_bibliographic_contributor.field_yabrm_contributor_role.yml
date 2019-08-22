@@ -12,7 +12,7 @@ entity_type: paragraph
 bundle: yabrm_bibliographic_contributor
 label: Role
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

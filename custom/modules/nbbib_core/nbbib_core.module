@@ -146,6 +146,21 @@ function validate_contrib_subform($element, &$form_state) {
 }
 
 /**
+ * Implements hook_inline_entity_form_entity_form_alter().
+ */
+function nbbib_core_inline_entity_form_entity_form_alter(&$entity_form, FormStateInterface $form_state) {
+
+  $entity_form['#entity_builders'][] = 'save_contrib';
+}
+
+/**
+ * Force entity save on contributor IEF collapse.
+ */
+function save_contrib($entity_type, $entity, $entity_form, &$form_state) {
+  $entity->save();
+}
+
+/**
  * Implements hook_ENTITY_TYPE_ID_presave().
  */
 function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {

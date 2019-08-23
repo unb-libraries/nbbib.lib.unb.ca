@@ -131,17 +131,17 @@ function validate_contrib_subform($element, &$form_state) {
   // Validation rules and errors.
   if (empty($institution_name)) {
     if (empty($first_name) and empty($last_name)) {
-      $form_state->setErrorByName('Contributor Name', t('Either institution or individual names are required for contributors.'));
+      $form_state->setErrorByName('contributors', t('Either institution or individual names are required for contributors.'));
     }
     elseif (empty($first_name) or empty($last_name)) {
-      $form_state->setErrorByName('Contributor Name', t('Full names are required for individual contributors.'));
+      $form_state->setErrorByName('contributors', t('Full names are required for individual contributors.'));
     }
   }
   elseif (!empty($last_name)) {
-    $form_state->setErrorByName('Contributor Name', t('Either institution or individual names are allowed for contributors. Not both.'));
+    $form_state->setErrorByName('contributors', t('Either institution or individual names are allowed for contributors. Not both.'));
   }
   elseif (!empty($first_name)) {
-    $form_state->setErrorByName('Contributor Name', t('Either institution or individual names are allowed for contributors. Not both.'));
+    $form_state->setErrorByName('contributors', t('Either institution or individual names are allowed for contributors. Not both.'));
   }
 }
 
@@ -149,25 +149,27 @@ function validate_contrib_subform($element, &$form_state) {
  * Implements hook_inline_entity_form_entity_form_alter().
  */
 function nbbib_core_inline_entity_form_entity_form_alter(&$entity_form, FormStateInterface $form_state) {
-
-  $entity_form['#entity_builders'][] = 'save_contrib';
+  $entity_form['#entity_builders'][] = 'update_names';
 }
 
 /**
- * Force entity save on contributor IEF collapse.
+ * Update display and sort names on contributor IEF collapse.
  */
-function save_contrib($entity_type, $entity, $entity_form, &$form_state) {
-  $entity->save();
+function update_names($entity_type, $entity, $entity_form, &$form_state) {
+  $first_name = $entity->getFirstName();
+  $last_name = $entity->getLastName();
+  $institution_name = $entity->getInstitutionName();
+
+  $names = generate_names($first_name, $last_name, $institution_name);
+
+  $entity->setName($names['name']);
+  $entity->setSortName($names['sort_name']);
 }
 
 /**
- * Implements hook_ENTITY_TYPE_ID_presave().
+ * Generate display and sort names.
  */
-function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
-  // Pupulate name (display) and sort name on save.
-  $first_name = trim($entity->getFirstName());
-  $last_name = trim($entity->getLastName());
-  $institution_name = trim($entity->getInstitutionName());
+function generate_names($first_name, $last_name, $institution_name) {
   $name = $sort_name = '';
 
   if (!empty($institution_name)) {
@@ -185,8 +187,27 @@ function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
     $name = $sort_name = $first_name;
   }
 
-  $entity->setName($name);
-  $entity->setSortName($sort_name);
+  $names = [
+    'name' => $name,
+    'sort_name' => $sort_name,
+  ];
+
+  return $names;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_ID_presave().
+ */
+function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
+  // Pupulate name (display) and sort name on save.
+  $first_name = trim($entity->getFirstName());
+  $last_name = trim($entity->getLastName());
+  $institution_name = trim($entity->getInstitutionName());
+
+  $names = generate_names($first_name, $last_name, $institution_name);
+
+  $entity->setName($names['name']);
+  $entity->setSortName($names['sort_name']);
 }
 
 /**

@@ -9,7 +9,7 @@ id: paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_person
 field_name: field_yabrm_contributor_person
 entity_type: paragraph
 bundle: yabrm_bibliographic_contributor
-label: Person
+label: Person/Institution
 description: ''
 required: false
 translatable: false

@@ -173,7 +173,12 @@ function generate_names($first_name, $last_name, $institution_name) {
   $name = $sort_name = '';
 
   if (!empty($institution_name)) {
-    $name = $sort_name = $institution_name;
+    if (!empty($first_name) or !empty($last_name)) {
+      $name = $sort_name = 'Warning: Contributor has both institution and individula names. Please review.';
+    }
+    else {
+      $name = $sort_name = $institution_name;
+    }
   }
   elseif (!empty($last_name)) {
     $name .= $last_name;
@@ -183,8 +188,8 @@ function generate_names($first_name, $last_name, $institution_name) {
       $name .= ', ' . $first_name;
     }
   }
-  elseif (!empty($first_name)) {
-    $name = $sort_name = $first_name;
+  else {
+    $name = $sort_name = 'Warning: Contributor is missing one or more names. Please review.';
   }
 
   $names = [

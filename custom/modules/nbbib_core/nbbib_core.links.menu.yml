@@ -26,13 +26,20 @@ nbbib_core.contributors:
   menu_name: main
   url: internal:/contributors/all
   weight: 40
+nbbib_core.topics:
+  title: 'Topics'
+  description: 'Topics'
+  parent: main
+  menu_name: main
+  url: internal:/topics
+  weight: 50
 nbbib_core.about:
   title: 'About'
   description: 'About'
   parent: main
   menu_name: main
   route_name: nbbib_core.about
-  weight: 50
+  weight: 60
 nbbib_core.add:
   title: 'Add New Reference'
   description: 'Add New Reference'
@@ -40,7 +47,7 @@ nbbib_core.add:
   menu_name: main
   route_name: nbbib_core.add
   expanded: TRUE
-  weight: 60
+  weight: 70
 nbbib_core.add_book:
   title: 'Book'
   description: 'Book'

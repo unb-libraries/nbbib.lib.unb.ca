@@ -1,0 +1,23 @@
+uuid: 9eae6a55-7ba5-4c64-9ca1-dfed96ba7ec9
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: topics_pattern
+label: 'Topics Pattern'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'topic/[term:name]'
+selection_criteria:
+  d9aa3567-3eac-4330-b5db-24e02d72cbba:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      yabrm_reference_topic: yabrm_reference_topic
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: d9aa3567-3eac-4330-b5db-24e02d72cbba
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,0 +1,23 @@
+uuid: e7b08da9-2e0d-4b54-9605-8a802cc1a958
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: contributor_roles_pattern
+label: 'Contributor Roles Pattern'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'contributor-role/[term:name]'
+selection_criteria:
+  3bae5c67-001b-466c-aa5e-f03bfa769fe5:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      yabrm_contributor_roles: yabrm_contributor_roles
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 3bae5c67-001b-466c-aa5e-f03bfa769fe5
+selection_logic: and
+weight: -5
+relationships: {  }

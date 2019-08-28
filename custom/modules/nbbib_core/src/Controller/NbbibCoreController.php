@@ -3,6 +3,8 @@
 namespace Drupal\nbbib_core\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Controller for Nbbib navigation.

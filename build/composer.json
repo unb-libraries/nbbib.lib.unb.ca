@@ -66,6 +66,7 @@
         "drupal/pathauto": "1.4",
         "drupal/redis": "1.1",
         "drupal/redirect": "1.4",
+        "drupal/redirect_after_login": "2.5",
         "drupal/search_api": "1.14",
         "drupal/search_api_autocomplete": "1.2",
         "drupal/search_api_solr": "3.2",

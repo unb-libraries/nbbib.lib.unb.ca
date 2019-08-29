@@ -31,6 +31,19 @@ div#nbbib-banner {
   background-image: url("/themes/custom/nbbib_lib_unb_ca/images/banner.jpg");
 }
 
+// Page title.
+// Remove bottom padding/margins in contributors view.
+h1.page-header {
+  margin-bottom: 0px;
+}
+// Don't display space reserved for contextual filters.
+div.view-id-nb_bibliography_contributors.view-display-id-page_1 > div.view-filters.form-group {
+  display: none;
+}
+form#views-exposed-form-nb-bibliography-contributors-page-1 {
+  display: none;
+}
+
 // Bibliography citation view - filter form.
 // Full form.
 form#views-exposed-form-nb-bibliography-citations-page-1 {
@@ -55,6 +68,9 @@ button.navbar-toggle {
   }
 }
 // Exposed form.
+form.views-exposed-form:not(#views-exposed-form-nb-bibliography-contributors-page-1) {
+  margin-top: 20px;
+}
 // Apply sr-only CSS to main search label. Out of sight but screen-reader hit.
 form#views-exposed-form-nb-bibliography-citations-page-2
 label[for='edit-search-api-fulltext'] {
@@ -128,6 +144,13 @@ div.field--name-revision-log-message,
 {
   display: none;
 }
+
+// Reference entity display.
+// All references.
+div.yabrm-reference > dl > div {
+  margin-top: 1em;
+}
+
 // Footer.
 div#footer-logo-div, div#footer-menu-div {
   padding-left: 0;

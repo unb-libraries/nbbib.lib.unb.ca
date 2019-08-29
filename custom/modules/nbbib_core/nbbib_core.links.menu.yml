@@ -24,14 +24,15 @@ nbbib_core.contributors:
   description: 'Contributors'
   parent: main
   menu_name: main
-  url: internal:/contributors/all
+  route_name: nbbib_core.contributors
+  route_parameters: { filter: 'all' }
   weight: 40
 nbbib_core.topics:
   title: 'Topics'
   description: 'Topics'
   parent: main
   menu_name: main
-  url: internal:/topics
+  route_name: view.nb_bibliography_topics.page_1
   weight: 50
 nbbib_core.about:
   title: 'About'

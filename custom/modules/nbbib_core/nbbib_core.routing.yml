@@ -18,3 +18,5 @@ nbbib_core.add:
   path: '/'
   requirements:
     _role: nb_bibliography_contributor
+nbbib_core.contributors:
+  path: '/contributors/{filter}'

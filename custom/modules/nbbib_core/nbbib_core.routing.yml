@@ -21,4 +21,4 @@ nbbib_core.add:
 nbbib_core.contributors:
   path: '/contributors/{filter}'
   defaults:
-    filtyer: 'all'
+    filter: 'all'

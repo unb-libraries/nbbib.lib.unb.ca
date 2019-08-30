@@ -135,6 +135,13 @@ label[for='edit-search-api-fulltext'] {
   margin-bottom: 10px;
 }
 
+// Contributors alpha pager.
+div.view-id-nb_bibliography_contributors.view-display-id-page_1 >
+div.attachment-before {
+  margin: auto;
+  width: 96%;
+}
+
 // Hide unused form controls.
 // All revision log messages.
 [id*='revision-log-message-']

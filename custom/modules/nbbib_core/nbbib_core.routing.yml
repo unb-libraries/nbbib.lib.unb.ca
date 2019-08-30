@@ -20,5 +20,3 @@ nbbib_core.add:
     _role: nb_bibliography_contributor
 nbbib_core.contributors:
   path: '/contributors/{filter}'
-  defaults:
-    filter: 'all'

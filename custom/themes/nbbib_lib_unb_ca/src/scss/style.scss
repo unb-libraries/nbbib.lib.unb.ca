@@ -136,11 +136,8 @@ label[for='edit-search-api-fulltext'] {
 }
 
 // Hide unused form controls.
-// Publishing status and revision log message for contributors.
-div.field--type-entity-reference.field--name-field-yabrm-contributor-person
-div.field--name-status,
-div.field--type-entity-reference.field--name-field-yabrm-contributor-person
-div.field--name-revision-log-message,
+// All revision log messages.
+[id*='revision-log-message-']
 {
   display: none;
 }

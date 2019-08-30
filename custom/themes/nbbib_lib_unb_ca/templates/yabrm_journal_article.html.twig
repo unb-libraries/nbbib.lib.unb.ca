@@ -15,7 +15,7 @@
  * @ingroup themeable
  */
 #}
-<div{{ attributes.addClass('yabrm_journal_article') }}>
+<div{{ attributes.addClass('yabrm_journal_article', 'yabrm-reference') }}>
   {% if content %}
   <dl>
     <div>
@@ -27,12 +27,24 @@
       <dd>{{ content.contributors|field_value }}</dd>
     </div>
     <div>
-      <dt>{{ content.title|field_label }}</dt>
-      <dd>{{ content.title|field_value }}</dd>
+      <dt>{{ content.publisher|field_label }}</dt>
+      <dd>{{ content.publisher|field_value }}</dd>
     </div>
     <div>
-      <dt>{{ content.publication_title|field_label }}</dt>
-      <dd>{{ content.publication_title|field_value }}</dd>
+      <dt>{{ content.place|field_label }}</dt>
+      <dd>{{ content.place|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.publication_day|field_label }}</dt>
+      <dd>{{ content.publication_day|field_value }}</dd>
+    </div>
+    <div class="dl-grouped">
+      <dt>{{ content.publication_month|field_label }}</dt>
+      <dd>{{ content.publication_month|field_value }}</dd>
+    </div>
+    <div class="dl-grouped">
+      <dt>{{ content.publication_year|field_label }}</dt>
+      <dd>{{ content.publication_year|field_value }}</dd>
     </div>
     <div>
       <dt>{{ content.issn|field_label }}</dt>
@@ -42,97 +54,9 @@
       <dt>{{ content.doi|field_label }}</dt>
       <dd>{{ content.doi|field_value }}</dd>
     </div>
-    </div>
-      <dt>{{ content.url|field_label }}</dt>
-      <dd>{{ content.url|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.abstract_note|field_label }}</dt>
-      <dd>{{ content.abstract_note|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.publication_year|field_label }}</dt>
-      <dd>{{ content.publication_year|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.publication_month|field_label }}</dt>
-      <dd>{{ content.publication_month|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.publication_day|field_label }}</dt>
-      <dd>{{ content.publication_day|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.pages|field_label }}</dt>
-      <dd>{{ content.pages|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.issue|field_label }}</dt>
-      <dd>{{ content.issue|field_value }}</dd>
-    </div>
-    <div>
-    <div>
-      <dt>{{ content.volume|field_label }}</dt>
-      <dd>{{ content.volume|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.short_title|field_label }}</dt>
-      <dd>{{ content.short_title|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.journal_abbreviation|field_label }}</dt>
-      <dd>{{ content.journal_abbreviation|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.series|field_label }}</dt>
-      <dd>{{ content.series|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.series_text|field_label }}</dt>
-      <dd>{{ content.series_text|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.series_title|field_label }}</dt>
-      <dd>{{ content.series_title|field_value }}</dd>
-    </div>
     <div>
       <dt>{{ content.language|field_label }}</dt>
       <dd>{{ content.language|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.rights|field_label }}</dt>
-      <dd>{{ content.rights|field_value }}</dd>
-    </div>
-    <div>
-    <div>
-      <dt>{{ content.archive|field_label }}</dt>
-      <dd>{{ content.archive|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.archive_location|field_label }}</dt>
-      <dd>{{ content.archive_location|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.library_catalog|field_label }}</dt>
-      <dd>{{ content.library_catalog|field_value }}</dd>
-    </div>
-    <div>
-      <dt>{{ content.call_number|field_label }}</dt>
-      <dd>{{ content.call_number|field_value }}</dd>
-    <div>
-    <div>
-      <dt>{{ content.extra|field_label }}</dt>
-      <dd>{{ content.extra|field_value }}</dd>
-    </div>
-    {% if logged_in %}
-      <div>
-        <dt>{{ content.notes_private|field_label }}</dt>
-        <dd>{{ content.notes_private|field_value }}</dd>
-      </div>
-    {% endif %}
-    <div>
-      <dt>{{ content.notes|field_label }}</dt>
-      <dd>{{ content.notes|field_value }}</dd>
     </div>
     <div>
       <dt>{{ content.topics|field_label }}</dt>
@@ -152,6 +76,106 @@
       {%- endfor -%}
 
       <dd>{{ full_topics }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.short_title|field_label }}</dt>
+      <dd>{{ content.short_title|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.publication_title|field_label }}</dt>
+      <dd>{{ content.publication_title|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.issue|field_label }}</dt>
+      <dd>{{ content.issue|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.volume|field_label }}</dt>
+      <dd>{{ content.volume|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.pages|field_label }}</dt>
+      <dd>{{ content.pages|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.journal_abbr|field_label }}</dt>
+      <dd>{{ content.journal_abbr|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.series|field_label }}</dt>
+      <dd>{{ content.series|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.series_title|field_label }}</dt>
+      <dd>{{ content.series_title|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.series_text|field_label }}</dt>
+      <dd>{{ content.series_text|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.collections|field_label }}</dt>
+      <dd>
+      {%- for collection in content.collections|field_value -%}
+        {{ collection }}
+        <br>
+      {%- endfor -%}
+      </dd>
+    </div>
+    <div>
+      <dt>{{ content.nb_imprint|field_label }}</dt>
+      <dd>{{ content.nb_imprint|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.call_number|field_label }}</dt>
+      <dd>{{ content.call_number|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.library_catalog|field_label }}</dt>
+      <dd>{{ content.library_catalog|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.archive|field_label }}</dt>
+      <dd>{{ content.archive|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.archive_location|field_label }}</dt>
+      <dd>{{ content.archive_location|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.physical_description|field_label }}</dt>
+      <dd>{{ content.physical_description|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.url|field_label }}</dt>
+      <dd>
+      {%- for url in content.url|field_value -%}
+        {{ url }}
+        <br>
+      {%- endfor -%}
+      </dd>
+    </div>
+    <div>
+      <dt>{{ content.rights|field_label }}</dt>
+      <dd>{{ content.rights|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.abstract_note|field_label }}</dt>
+      <dd>{{ content.abstract_note|field_value }}</dd>
+    </div>
+    <div>
+      <dt>{{ content.extra|field_label }}</dt>
+      <dd>{{ content.extra|field_value }}</dd>
+    </div>
+    {% if logged_in %}
+      <div>
+        <dt>{{ content.notes_private|field_label }}</dt>
+        <dd>{{ content.notes_private|field_value }}</dd>
+      </div>
+    {% endif %}
+    <div>
+      <dt>{{ content.notes|field_label }}</dt>
+      <dd>{{ content.notes|field_value }}</dd>
     </div>
   </dl>
   {% endif %}

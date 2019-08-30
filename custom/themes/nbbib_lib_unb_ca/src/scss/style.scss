@@ -146,8 +146,8 @@ div.field--name-revision-log-message,
 }
 
 // Reference entity display.
-// All references.
-div.yabrm-reference > dl > div {
+// All reference fields except when grouped.
+div.yabrm-reference > dl > div:not(.dl-grouped) {
   margin-top: 1em;
 }
 

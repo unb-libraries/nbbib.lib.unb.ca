@@ -35,16 +35,16 @@
         <dd>{{ content.place|field_value }}</dd>
       </div>
       <div>
-        <dt>{{ content.publication_year|field_label }}</dt>
-        <dd>{{ content.publication_year|field_value }}</dd>
+        <dt>{{ content.publication_day|field_label }}</dt>
+        <dd>{{ content.publication_day|field_value }}</dd>
       </div>
-      <div>
+      <div class="dl-grouped">
         <dt>{{ content.publication_month|field_label }}</dt>
         <dd>{{ content.publication_month|field_value }}</dd>
       </div>
-      <div>
-        <dt>{{ content.publication_day|field_label }}</dt>
-        <dd>{{ content.publication_day|field_value }}</dd>
+      <div class="dl-grouped">
+        <dt>{{ content.publication_year|field_label }}</dt>
+        <dd>{{ content.publication_year|field_value }}</dd>
       </div>
       <div>
         <dt>{{ content.isbn|field_label }}</dt>
@@ -76,14 +76,6 @@
         {%- endfor -%}
 
         <dd>{{ full_topics }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.short_title|field_label }}</dt>
-        <dd>{{ content.short_title|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.num_pages|field_label }}</dt>
-        <dd>{{ content.num_pages|field_value }}</dd>
       </div>
       <div>
         <dt>{{ content.volume|field_label }}</dt>

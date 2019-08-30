@@ -56,7 +56,7 @@ content:
     third_party_settings: {  }
   contributors:
     type: paragraphs
-    weight: 2
+    weight: 1
     region: content
     settings:
       title: Paragraph
@@ -74,7 +74,7 @@ content:
     third_party_settings: {  }
   edition:
     type: string_textfield
-    weight: 9
+    weight: 8
     region: content
     settings:
       size: 60
@@ -91,7 +91,7 @@ content:
     third_party_settings: {  }
   isbn:
     type: string_textfield
-    weight: 8
+    weight: 7
     region: content
     settings:
       size: 60
@@ -99,7 +99,7 @@ content:
     third_party_settings: {  }
   language:
     type: options_buttons
-    weight: 10
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -163,21 +163,21 @@ content:
     third_party_settings: {  }
   place:
     type: string_textfield
-    weight: 4
+    weight: 3
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   publication_day:
-    weight: 5
+    weight: 4
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
   publication_month:
-    weight: 6
+    weight: 5
     region: content
     settings:
       placeholder: ''
@@ -185,14 +185,14 @@ content:
     type: number
   publication_title:
     type: string_textfield
-    weight: 1
+    weight: 12
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   publication_year:
-    weight: 7
+    weight: 6
     region: content
     settings:
       placeholder: ''
@@ -200,7 +200,7 @@ content:
     type: number
   publisher:
     type: string_textfield
-    weight: 3
+    weight: 2
     region: content
     settings:
       size: 60
@@ -232,7 +232,7 @@ content:
     third_party_settings: {  }
   short_title:
     type: string_textfield
-    weight: 12
+    weight: 11
     region: content
     settings:
       size: 60
@@ -248,7 +248,7 @@ content:
     third_party_settings: {  }
   topics:
     type: entity_reference_autocomplete
-    weight: 11
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 10

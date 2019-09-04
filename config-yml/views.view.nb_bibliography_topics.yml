@@ -214,7 +214,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"container\">\r\n<div class=\"row\">\r\n<div class =\"col-sm-3\">{{ name }}</div>\r\n<div class =\"col-sm-9\">\r\n{{ '[' }}<a href=\"/taxonomy/term/{{ tid }}/edit?destination=/topics\">Edit</a>{{ ']' }}\r\n{{ '[' }}<a href=\"/taxonomy/term/{{ tid }}/delete?destination=/topics\">Delete</a>{{ ']' }}\r\n</div>\r\n</div>\r\n"
+            text: "<div class=\"container\">\r\n<div class=\"row\">\r\n<div class =\"col-sm-3\">{{ name }}</div>\r\n{% if 'nb_bibliography_contributor' in drupal_token('current-user:roles:keys') %}\r\n<div class =\"col-sm-9\">\r\n{{ '[' }}<a href=\"/taxonomy/term/{{ tid }}/edit?destination=/topics\">Edit</a>{{ ']' }}\r\n{{ '[' }}<a href=\"/taxonomy/term/{{ tid }}/delete?destination=/topics\">Delete</a>{{ ']' }}\r\n</div>\r\n{% endif %}\r\n</div>\r\n"
             make_link: false
             path: ''
             absolute: false
@@ -273,7 +273,21 @@ display:
           entity_type: taxonomy_term
           entity_field: vid
           plugin_id: bundle
-      sorts: {  }
+      sorts:
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: taxonomy_term
+          entity_field: name
+          plugin_id: standard
       title: 'NB Bibliography Topics'
       header: {  }
       footer: {  }

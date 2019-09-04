@@ -149,6 +149,11 @@ div.attachment-before {
   display: none;
 }
 
+// Topics view.
+div.view-id-nb_bibliography_topics li:nth-of-type(odd) {
+  background-color: WhiteSmoke;
+}
+
 // Reference entity display.
 // All reference fields except when grouped.
 div.yabrm-reference > dl > div:not(.dl-grouped) {

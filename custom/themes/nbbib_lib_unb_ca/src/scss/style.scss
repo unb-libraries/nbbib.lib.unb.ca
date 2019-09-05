@@ -37,9 +37,7 @@ h1.page-header {
   margin-bottom: 0px;
 }
 // Don't display space reserved for contextual filters.
-div.view-id-nb_bibliography_contributors.view-display-id-page_1 > div.view-filters.form-group {
-  display: none;
-}
+div.view-id-nb_bibliography_contributors.view-display-id-page_1 > div.view-filters.form-group,
 form#views-exposed-form-nb-bibliography-contributors-page-1 {
   display: none;
 }
@@ -49,11 +47,18 @@ form#views-exposed-form-nb-bibliography-contributors-page-1 {
 form#views-exposed-form-nb-bibliography-citations-page-1 {
   margin-bottom: 30px;
 }
+
+// Contributors view.
 // Hide contributor sort initial filter.
 form#views-exposed-form-nb-bibliography-contributors-page-1 >
 div.form--inline.form-inline.clearfix {
   display: none;
 }
+// Exposed form.
+form.views-exposed-form:not(#views-exposed-form-nb-bibliography-contributors-page-1) {
+  margin-top: 20px;
+}
+
 // Navbar toggle.
 button.navbar-toggle {
   max-height: 36px;
@@ -67,10 +72,7 @@ button.navbar-toggle {
     content: "Menu";
   }
 }
-// Exposed form.
-form.views-exposed-form:not(#views-exposed-form-nb-bibliography-contributors-page-1) {
-  margin-top: 20px;
-}
+
 // Apply sr-only CSS to main search label. Out of sight but screen-reader hit.
 form#views-exposed-form-nb-bibliography-citations-page-2
 label[for='edit-search-api-fulltext'] {
@@ -83,6 +85,7 @@ label[for='edit-search-api-fulltext'] {
   clip: rect(0,0,0,0);
   border: 0;
 }
+
 // Responsive.
 @media screen and (min-width: 768px) {
   // Filter (label + input) - First (Keywords).
@@ -156,7 +159,8 @@ div.view-id-nb_bibliography_topics li:nth-of-type(odd) {
 
 // Reference entity display.
 // All reference fields except when grouped.
-div.yabrm-reference > dl > div:not(.dl-grouped) {
+div.yabrm-reference > dl > div:not(.dl-grouped),
+div.yabrm-contributor > dl > div:not(.dl-grouped) {
   margin-top: 1em;
 }
 

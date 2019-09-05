@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - image
     - yabrm
 id: yabrm_contributor.yabrm_contributor.default
 targetEntityType: yabrm_contributor
@@ -40,6 +41,15 @@ content:
     label: above
     settings:
       link_to_entity: false
+    third_party_settings: {  }
+  picture:
+    label: above
+    type: image
+    weight: 0
+    region: content
+    settings:
+      image_style: ''
+      image_link: ''
     third_party_settings: {  }
   sort_name:
     type: string

@@ -33,7 +33,7 @@ Feature: Core
       Then I should see "Contributor"
       And I should see "Journal Article"
 
-
     Scenario: Anonymous contributors cannot add data
       When I visit "/"
       Then I should not see the link "Add New"
+      

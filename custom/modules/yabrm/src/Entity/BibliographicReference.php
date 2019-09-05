@@ -621,6 +621,29 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['cover_image'] = BaseFieldDefinition::create('image')
+      ->setLabel(t('Cover Image'))
+      ->setDescription(t('The cover image for the referenced material.'))
+      ->setRequired(FALSE)
+      ->setRevisionable(FALSE)
+      ->setDisplayOptions(
+        'view',
+        [
+          'label'   => 'above',
+          'type'    => 'image',
+          'weight'  => 0,
+        ],
+      )
+      ->setDisplayOptions(
+        'form',
+        [
+          'type'    => 'image_image',
+          'weight'  => 0,
+        ],
+      )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     return $fields;
   }
 

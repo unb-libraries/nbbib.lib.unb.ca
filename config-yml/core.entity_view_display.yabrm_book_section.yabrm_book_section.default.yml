@@ -61,6 +61,15 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+  cover_image:
+    label: above
+    type: image
+    weight: 0
+    region: content
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
   edition:
     label: above
     type: string

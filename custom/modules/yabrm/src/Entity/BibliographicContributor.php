@@ -406,6 +406,29 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the entity was last edited.'));
 
+    $fields['picture'] = BaseFieldDefinition::create('image')
+      ->setLabel(t('Picture'))
+      ->setDescription(t('Picture of the contributor.'))
+      ->setRequired(FALSE)
+      ->setRevisionable(FALSE)
+      ->setDisplayOptions(
+        'view',
+        [
+          'label'   => 'above',
+          'type'    => 'image',
+          'weight'  => 0,
+        ],
+      )
+      ->setDisplayOptions(
+        'form',
+        [
+          'type'    => 'image_image',
+          'weight'  => 0,
+        ],
+      )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     return $fields;
   }
 

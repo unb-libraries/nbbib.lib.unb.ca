@@ -72,6 +72,14 @@ content:
         duplicate: duplicate
         collapse_edit_all: collapse_edit_all
     third_party_settings: {  }
+  cover_image:
+    type: image_image
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
   extra:
     type: text_textarea
     text_processing: 0

@@ -1,0 +1,23 @@
+uuid: fcdd08fd-bd12-4176-8375-d0444e1af962
+langcode: en
+status: true
+dependencies: {  }
+name: 16_10_image_320x200
+label: '16:10 Image (320x200)'
+effects:
+  26e6b82e-54f2-4f7f-a9c9-f182a47ee02a:
+    uuid: 26e6b82e-54f2-4f7f-a9c9-f182a47ee02a
+    id: image_scale
+    weight: 1
+    data:
+      width: null
+      height: 320
+      upscale: true
+  eaaeb707-2ec3-4870-be31-608cf3daf496:
+    uuid: eaaeb707-2ec3-4870-be31-608cf3daf496
+    id: image_crop
+    weight: 2
+    data:
+      width: 200
+      height: 320
+      anchor: center-center

@@ -2,14 +2,24 @@ uuid: 87f27ef7-6afb-4ead-94e7-e26e14a16492
 langcode: en
 status: true
 dependencies:
+  config:
+    - image.style.16_10_image_320x200
   module:
     - image
+    - text
     - yabrm
 id: yabrm_contributor.yabrm_contributor.default
 targetEntityType: yabrm_contributor
 bundle: yabrm_contributor
 mode: default
 content:
+  description:
+    label: above
+    type: text_default
+    weight: -3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   first_name:
     label: above
     type: string
@@ -48,7 +58,7 @@ content:
     weight: 0
     region: content
     settings:
-      image_style: ''
+      image_style: 16_10_image_320x200
       image_link: ''
     third_party_settings: {  }
   sort_name:

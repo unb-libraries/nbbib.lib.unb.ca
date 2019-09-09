@@ -2,8 +2,11 @@ uuid: 1b410b3a-3864-4d8f-a375-ee81ed4127cc
 langcode: en
 status: true
 dependencies:
+  config:
+    - image.style.16_10_image_320x200
   module:
     - entity_reference_revisions
+    - image
     - link
     - options
     - text
@@ -67,7 +70,7 @@ content:
     weight: 0
     region: content
     settings:
-      image_style: ''
+      image_style: 16_10_image_320x200
       image_link: ''
     third_party_settings: {  }
   edition:

@@ -266,6 +266,21 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
   /**
    * {@inheritdoc}
    */
+  public function getDescription() {
+    return $this->get('description')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setDescription($description) {
+    $this->set('description', $description);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
@@ -440,6 +455,27 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
           'weight'  => 0,
         ],
       )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['description'] = BaseFieldDefinition::create('text_long')
+      ->setLabel(t('Description'))
+      ->setDescription(t('Description of the Bibliographic Contributor entity.'))
+      ->setSettings([
+        'default_value' => '',
+        'max_length' => 2048,
+        'text_processing' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'text_long',
+        'weight' => -3,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'text_long',
+        'text_processing' => 0,
+        'weight' => -3,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 

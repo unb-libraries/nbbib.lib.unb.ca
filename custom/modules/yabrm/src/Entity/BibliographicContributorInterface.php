@@ -101,6 +101,25 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
   public function setSortName($sort_name);
 
   /**
+   * Gets the Bibliographic Collection description.
+   *
+   * @return string
+   *   Description of the Bibliographic Collection.
+   */
+  public function getDescription();
+
+  /**
+   * Sets the Bibliographic Collection description.
+   *
+   * @param string $description
+   *   The Bibliographic Collection description.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicCollectionInterface
+   *   The called Bibliographic Collection entity.
+   */
+  public function setDescription($description);
+
+  /**
    * Gets the Bibliographic Contributor creation timestamp.
    *
    * @return int

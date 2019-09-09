@@ -586,4 +586,23 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
    */
   public function setNbImprint($nb_imprint);
 
+  /**
+   * Gets the Bibliographic Reference Cover Image.
+   *
+   * @return array
+   *   The 'values' array for a Drupal\image\Plugin\Field\FieldType\ImageItem.
+   */
+  public function getCover();
+
+  /**
+   * Sets the Bibliographic Reference Cover Image.
+   *
+   * @param mixed[] $values
+   *   The 'values' array for a Drupal\image\Plugin\Field\FieldType\ImageItem.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setCover(array $values);
+
 }

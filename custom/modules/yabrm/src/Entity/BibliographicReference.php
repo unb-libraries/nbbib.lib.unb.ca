@@ -1164,6 +1164,20 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
   /**
    * {@inheritdoc}
    */
+  public function getCover() {
+    return $this->get('cover_image')->getValue();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCover($values) {
+    return $this->set('cover_image', $values);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function urlRouteParameters($rel) {
     $uri_route_parameters = parent::urlRouteParameters($rel);
 

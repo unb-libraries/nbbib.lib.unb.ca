@@ -252,6 +252,20 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
   /**
    * {@inheritdoc}
    */
+  public function getPicture() {
+    return $this->get('picture')->getValue();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPicture($values) {
+    return $this->set('picture', $values);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 

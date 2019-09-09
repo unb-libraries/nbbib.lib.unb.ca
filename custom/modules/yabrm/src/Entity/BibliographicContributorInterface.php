@@ -178,4 +178,23 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
    */
   public function setRevisionUserId($uid);
 
+  /**
+   * Gets the Bibliographic Contributor picture.
+   *
+   * @return array
+   *   The 'values' array for a Drupal\image\Plugin\Field\FieldType\ImageItem.
+   */
+  public function getPicture();
+
+  /**
+   * Sets the Bibliographic Contributor picture.
+   *
+   * @param mixed[] $values
+   *   The 'values' array for a Drupal\image\Plugin\Field\FieldType\ImageItem.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setPicture(array $values);
+
 }

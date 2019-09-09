@@ -62,7 +62,7 @@
         "drupal/inline_entity_form": "1.x-dev",
         "drupal/google_analytics": "2.2",
         "drupal/ldap": "3.0-beta7",
-        "drupal/paragraphs": "1.8",
+        "drupal/paragraphs": "1.9",
         "drupal/pathauto": "1.4",
         "drupal/redis": "1.1",
         "drupal/redirect": "1.4",

@@ -267,11 +267,11 @@ class BibliographicCollection extends RevisionableContentEntityBase implements B
       ])
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'text_long',
+        'type' => 'text_textarea',
         'weight' => -3,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'text_long',
+        'type' => 'text_textarea',
         'text_processing' => 0,
         'weight' => -3,
       ])

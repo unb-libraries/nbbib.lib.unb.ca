@@ -2,7 +2,10 @@ uuid: b155031c-1044-4d77-89e5-9330e8fcf2c2
 langcode: en
 status: true
 dependencies:
+  config:
+    - image.style.thumbnail
   module:
+    - image
     - link
     - paragraphs
     - text
@@ -74,7 +77,7 @@ content:
     third_party_settings: {  }
   cover_image:
     type: image_image
-    weight: 0
+    weight: 1
     region: content
     settings:
       progress_indicator: throbber

@@ -11,13 +11,13 @@ effects:
     weight: 1
     data:
       width: null
-      height: 320
+      height: 240
       upscale: true
   eaaeb707-2ec3-4870-be31-608cf3daf496:
     uuid: eaaeb707-2ec3-4870-be31-608cf3daf496
     id: image_crop
     weight: 2
     data:
-      width: 200
-      height: 320
+      width: 150
+      height: 240
       anchor: center-center

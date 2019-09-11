@@ -164,6 +164,25 @@ div.yabrm-contributor > dl > div:not(.dl-grouped) {
   margin-top: 1em;
 }
 
+// Contributor.
+#contrib-description {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  text-align: justify;
+}
+#contrib-picture {
+  text-align: center;
+  text-align: -webkit-center;
+}
+div.yabrm-contributor.contrib-layout div.row {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+// Hide semantic portion of template.
+div.contrib-semantic {
+  display: none;
+}
+
 // Footer.
 div#footer-logo-div, div#footer-menu-div {
   padding-left: 0;

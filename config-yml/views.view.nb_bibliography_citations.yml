@@ -1423,6 +1423,7 @@ display:
         arguments: false
         query: false
         sorts: false
+        cache: false
       filter_groups:
         operator: AND
         groups: {  }
@@ -2068,6 +2069,9 @@ display:
           expose:
             label: 'Publication Year'
           plugin_id: search_api
+      cache:
+        type: none
+        options: {  }
     cache_metadata:
       max-age: -1
       contexts:

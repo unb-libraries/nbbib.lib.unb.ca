@@ -89,6 +89,18 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
             'last_name' => $last_name,
           ];
         }
+
+        // Pass all contributors roles and display names.
+        $c_dname = $contrib->getName();
+
+        $display_name = isset($c_dname) ? $c_dname : NULL;
+
+        if (!empty($display_name)) {
+          $variables['content']['contribs_all'][] = [
+            'display_name' => $display_name,
+            'role' => $role,
+          ];
+        }
       }
     }
     $i++;

@@ -20,7 +20,13 @@
     <div class="container">
       <div class="row">
         <div id="ref-body" class="col-sm-9">
-          {{ content.contributors|field_value }}
+          <div id="ref-contribs">
+            {% for contrib in content.contribs_all %}
+              {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
+              <br>
+            {% endfor %}
+          </div>
+
           <h3>Publication Details</h3>
           <br>
 

@@ -15,7 +15,7 @@
  * @ingroup themeable
  */
 #}
-<div{{ attributes.addClass('yabrm-reference', 'yabrm-book-section', 'contrib-layout') }}>
+<div{{ attributes.addClass('yabrm-reference', 'yabrm-book', 'contrib-layout') }}>
   {% if content %}
     <div class="container">
       <div class="row">
@@ -39,67 +39,67 @@
               <div class="col-sm-6">Book</div>
             </div>
             <div id="ref-series" class="row">
-              {% if content.series %}
+              {% if content.series|field_value %}
                 <div class="col-sm-6">Series</div>
                 <div class="col-sm-6">{{ content.series|field_value }}</div>
               {% endif %}
             </div>
             <div id="ref-series-num" class="row">
-              {% if content.series_number %}
+              {% if content.series_number|field_value %}
                 <div class="col-sm-6">Series Number</div>
                 <div class="col-sm-6">{{ content.series_number|field_value }}</div>
               {% endif %}
             </div>
             <div id="ref-volume" class="row">
-              {% if content.volume %}
+              {% if content.volume|field_value %}
                 <div class="col-sm-6">Volume</div>
                 <div class="col-sm-6">{{ content.volume|field_value }}</div>
               {% endif %}
             </div>
             <div id="ref-num-volumes" class="row">
-              {% if content.num_volumes %}
+              {% if content.num_volumes|field_value %}
                 <div class="col-sm-6">Number of Volumes</div>
                 <div class="col-sm-6">{{ content.num_volumes|field_value }}</div>
               {% endif %}
             </div>
             <div id="ref-edition" class="row">
-              {% if content.edition %}
+              {% if content.edition|field_value %}
                 <div class="col-sm-6">Edition</div>
                 <div class="col-sm-6">{{ content.edition|field_value }}</div>
               {% endif %}
             </div>
             <div id="ref-place" class="row">
-              {% if content.place %}
+              {% if content.place|field_value %}
                 <div class="col-sm-6">Place of Publication</div>
                 <div class="col-sm-6">{{ content.place|field_value }}</div>
               {% endif %}
             </div>
             <div id="ref-publisher" class="row">
-              {% if content.publisher %}
+              {% if content.publisher|field_value %}
                 <div class="col-sm-6">Publisher</div>
                 <div class="col-sm-6">{{ content.publisher|field_value }}</div>
               {% endif %}
             </div>
             <div id="ref-pub-date" class="row">
-              {% if content.publication_year %}
+              {% if content.publication_year|field_value %}
                 <div class="col-sm-6">Publication Date</div>
                 <div class="col-sm-6">{{ content.publication_year|field_value }}</div>
               {% endif %}
             </div>
             <div id="ref-nb-imprint" class="row">
-              {% if content.nb_imprint %}
+              {% if content.nb_imprint|field_value %}
                 <div class="col-sm-6">NB Imprint</div>
                 <div class="col-sm-6">{{ content.nb_imprint|field_value }}</div>
               {% endif %}
             </div>
             <div id="ref-language" class="row">
-              {% if content.language %}
+              {% if content.language|field_value %}
                 <div class="col-sm-6">Language</div>
                 <div class="col-sm-6">{{ content.language|field_value }}</div>
               {% endif %}
             </div>
             <div id="ref-isbn-issn" class="row">
-              {% if content.isbn %}
+              {% if content.isbn|field_value %}
                 <div class="col-sm-6">ISBN/ISSN</div>
                 <div class="col-sm-6">{{ content.isbn|field_value }}</div>
               {% endif %}
@@ -114,7 +114,7 @@
       <br>
 
       <div id="ref-description">
-        {% if content.abstract_note %}
+        {% if content.abstract_note|field_value %}
           <b>Description:</b>
           <br>
           <br>
@@ -124,14 +124,14 @@
       <br>
 
       <div id="ref-physical">
-        {% if content.physical_description %}
+        {% if content.physical_description|field_value %}
           Physical Description: {{ content.physical_description|field_value }}
         {% endif %}
       </div>
       <br>
 
       <div id="ref-copies">
-        {% if content.archive or content.url %}
+        {% if content.archive|field_value or content.url|field_value %}
           <b>Copies:</b>
           <br>
           <br>
@@ -149,7 +149,7 @@
       <br>
 
       <div id="ref-notes">
-        {% if content.notes %}
+        {% if content.notes|field_value %}
           <b>Notes:</b>
           <br>
           <br>

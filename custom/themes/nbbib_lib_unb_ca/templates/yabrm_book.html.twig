@@ -22,7 +22,10 @@
         <div id="ref-body" class="col-sm-9">
           <div id="ref-contribs">
             {% for contrib in content.contribs_all %}
-              {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
+
+              <a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
+                {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
+              </a>
               <br>
             {% endfor %}
           </div>

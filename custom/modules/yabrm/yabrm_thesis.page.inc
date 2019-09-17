@@ -97,6 +97,7 @@ function template_preprocess_yabrm_thesis(array &$variables) {
 
         if (!empty($display_name)) {
           $variables['content']['contribs_all'][] = [
+            'cid' => $cid,
             'display_name' => $display_name,
             'role' => $role,
           ];

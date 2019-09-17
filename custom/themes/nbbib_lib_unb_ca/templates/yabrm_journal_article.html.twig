@@ -15,6 +15,151 @@
  * @ingroup themeable
  */
 #}
+<div{{ attributes.addClass('yabrm-reference', 'yabrm-book-section', 'contrib-layout') }}>
+  {% if content %}
+    <div class="container">
+      <div class="row">
+        <div id="ref-body" class="col-sm-9">
+          <div id="ref-contribs">
+            {% for contrib in content.contribs_all %}
+              {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
+              <br>
+            {% endfor %}
+          </div>
+
+          <h3>Publication Details</h3>
+          <br>
+
+          <div id="ref-details" class="container">
+            <div id="ref-type" class="row">
+              <div class="col-sm-6">Item Type</div>
+              <div class="col-sm-6">Journal Article</div>
+            </div>
+            <div id="ref-series" class="row">
+              {% if content.series %}
+                <div class="col-sm-6">Series</div>
+                <div class="col-sm-6">{{ content.series|field_value }}</div>
+              {% endif %}
+            </div>
+            <div id="ref-series-num" class="row">
+              {% if content.series_number %}
+                <div class="col-sm-6">Series Number</div>
+                <div class="col-sm-6">{{ content.series_number|field_value }}</div>
+              {% endif %}
+            </div>
+            <div id="ref-volume" class="row">
+              {% if content.volume %}
+                <div class="col-sm-6">Volume</div>
+                <div class="col-sm-6">{{ content.volume|field_value }}</div>
+              {% endif %}
+            </div>
+            <div id="ref-num-volumes" class="row">
+              {% if content.num_volumes %}
+                <div class="col-sm-6">Number of Volumes</div>
+                <div class="col-sm-6">{{ content.num_volumes|field_value }}</div>
+              {% endif %}
+            </div>
+            <div id="ref-edition" class="row">
+              {% if content.edition %}
+                <div class="col-sm-6">Edition</div>
+                <div class="col-sm-6">{{ content.edition|field_value }}</div>
+              {% endif %}
+            </div>
+            <div id="ref-place" class="row">
+              {% if content.place %}
+                <div class="col-sm-6">Place of Publication</div>
+                <div class="col-sm-6">{{ content.place|field_value }}</div>
+              {% endif %}
+            </div>
+            <div id="ref-publisher" class="row">
+              {% if content.publisher %}
+                <div class="col-sm-6">Publisher</div>
+                <div class="col-sm-6">{{ content.publisher|field_value }}</div>
+              {% endif %}
+            </div>
+            <div id="ref-pub-date" class="row">
+              {% if content.publication_year %}
+                <div class="col-sm-6">Publication Date</div>
+                <div class="col-sm-6">{{ content.publication_year|field_value }}</div>
+              {% endif %}
+            </div>
+            <div id="ref-nb-imprint" class="row">
+              {% if content.nb_imprint %}
+                <div class="col-sm-6">NB Imprint</div>
+                <div class="col-sm-6">{{ content.nb_imprint|field_value }}</div>
+              {% endif %}
+            </div>
+            <div id="ref-language" class="row">
+              {% if content.language %}
+                <div class="col-sm-6">Language</div>
+                <div class="col-sm-6">{{ content.language|field_value }}</div>
+              {% endif %}
+            </div>
+            <div id="ref-isbn-issn" class="row">
+              {% if content.isbn %}
+                <div class="col-sm-6">ISBN/ISSN</div>
+                <div class="col-sm-6">{{ content.isbn|field_value }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div id="ref-picture" class="col-sm-3">
+          {{ content.cover_image|field_value }}
+        </div>
+      </div>
+      <br>
+
+      <div id="ref-description">
+        {% if content.abstract_note %}
+          <b>Description:</b>
+          <br>
+          <br>
+          {{ content.abstract_note|field_value }}
+        {% endif %}
+      </div>
+      <br>
+
+      <div id="ref-physical">
+        {% if content.physical_description %}
+          Physical Description: {{ content.physical_description|field_value }}
+        {% endif %}
+      </div>
+      <br>
+
+      <div id="ref-copies">
+        {% if content.archive or content.url %}
+          <b>Copies:</b>
+          <br>
+          <br>
+
+          {{ content.archive|field_value }}
+          <br>
+
+          {% set urls = content.url %}
+          {% for url in content.url|field_value %}
+            {{ url }}
+            <br>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <br>
+
+      <div id="ref-notes">
+        {% if content.notes %}
+          <b>Notes:</b>
+          <br>
+          <br>
+          {{ content.notes|field_value }}
+        {% endif %}
+      </div>
+      <br>
+
+    </div>
+
+  {% endif %}
+</div>
+
 <div{{ attributes.addClass('yabrm_journal_article', 'yabrm-reference') }}>
   {% if content %}
   <dl>

@@ -107,6 +107,8 @@ function template_preprocess_yabrm_book_section(array &$variables) {
     $i++;
   }
 
+  array_multisort($variables['content']['contribs_all']);
+
   // Sanitize and strong-type publication_year.
   $pub_year =
     empty($yabrm_book_section->get('publication_year')->getValue()[0]['value']) ? NULL : $yabrm_book_section->get('publication_year')->getValue()[0]['value'];

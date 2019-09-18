@@ -97,15 +97,17 @@ function template_preprocess_yabrm_book(array &$variables) {
 
         if (!empty($display_name)) {
           $variables['content']['contribs_all'][] = [
+            'role' => $role,
             'cid' => $cid,
             'display_name' => $display_name,
-            'role' => $role,
           ];
         }
       }
     }
     $i++;
   }
+
+  array_multisort($variables['content']['contribs_all']);
 
   // Sanitize and strong-type publication_year.
   $pub_year =

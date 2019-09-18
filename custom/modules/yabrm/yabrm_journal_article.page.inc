@@ -107,6 +107,8 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
     $i++;
   }
 
+  array_multisort($variables['content']['contribs_all']);
+
   // Sanitize and strong-type publication_year.
   $pub_year =
     empty($yabrm_journal_article->get('publication_year')->getValue()[0]['value']) ? NULL : $yabrm_journal_article->get('publication_year')->getValue()[0]['value'];

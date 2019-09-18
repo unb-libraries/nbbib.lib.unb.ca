@@ -158,12 +158,41 @@ div.view-id-nb_bibliography_topics li:nth-of-type(odd) {
 }
 
 // Reference entity display.
-// All reference fields except when grouped.
+// Reference.
+div.yabrm-reference {
+  text-align: justify;
+
+  & + div {
+    display: none;
+  }
+
+  & h2 {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  & div.indent-text {
+    padding-left: 1.5em;
+  }
+}
+// All reference anmd contrib fields except when grouped.
 div.yabrm-reference > dl > div:not(.dl-grouped),
 div.yabrm-contributor > dl > div:not(.dl-grouped) {
   margin-top: 1em;
 }
+// Reference details.
+div#ref-details {
+  width: 100%;
 
+  & > div {
+    padding: 4px;
+  }
+
+  & > div:nth-of-type(odd) {
+    background-color: WhiteSmoke;
+  }
+
+}
 // Contributor.
 #contrib-description {
   margin-top: 2em;

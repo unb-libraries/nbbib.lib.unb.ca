@@ -20,6 +20,7 @@
     <div class="container">
       <div class="row">
         <div id="ref-body" class="col-sm-9">
+          <br>
           <div id="ref-contribs">
             {% for contrib in content.contribs_all %}
 
@@ -30,8 +31,7 @@
             {% endfor %}
           </div>
 
-          <h3>Publication Details</h3>
-          <br>
+          <h2>Publication Details</h2>
 
           <div id="ref-details" class="container">
             <div id="ref-type" class="row">
@@ -107,6 +107,7 @@
           </div>
         </div>
 
+        <br>
         <div id="ref-picture" class="col-sm-3">
           {{ content.cover_image|field_value }}
         </div>
@@ -115,45 +116,54 @@
 
       <div id="ref-description">
         {% if content.abstract_note|field_value %}
-          <b>Description:</b>
+          <b>Description</b>
           <br>
           <br>
-          {{ content.abstract_note|field_value }}
+          <div class="indent-text">
+            {{ content.abstract_note|field_value }}
+          </div>
         {% endif %}
       </div>
       <br>
 
       <div id="ref-physical">
         {% if content.physical_description|field_value %}
-          Physical Description: {{ content.physical_description|field_value }}
+          <div class="indent-text">
+            Physical Description: {{ content.physical_description|field_value }}
+          </div>
         {% endif %}
       </div>
       <br>
 
       <div id="ref-copies">
-        {% if content.archive or content.url %}
-          <b>Copies:</b>
+        {% if content.archive|field_value or content.url|field_value %}
+          <b>Copies</b>
           <br>
           <br>
 
-          {{ content.archive|field_value }}
-          <br>
-
-          {% set urls = content.url %}
-          {% for url in content.url|field_value %}
-            {{ url }}
+          <div class="indent-text">
+            {{ content.archive|field_value }}
             <br>
-          {% endfor %}
+
+            {% set urls = content.url %}
+            {% for url in content.url|field_value %}
+              {{ url }}
+              <br>
+            {% endfor %}
+          </div>
         {% endif %}
+
       </div>
       <br>
 
       <div id="ref-notes">
         {% if content.notes|field_value %}
-          <b>Notes:</b>
+          <b>Notes</b>
           <br>
           <br>
-          {{ content.notes|field_value }}
+          <div class="indent-text">
+            {{ content.notes|field_value }}
+          </div>
         {% endif %}
       </div>
       <br>

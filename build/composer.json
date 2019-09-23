@@ -76,6 +76,7 @@
         "drupal/twig_field_value": "1.2",
         "drupal/twig_tweak": "2.4",
         "drupal/views_contextual_filters_or": "1.1",
+        "symfony/event-dispatcher": "4.3.4 as 3.4.99",
         "unb-libraries/unb_lib_theme": "dev-8.x-bootstrap-3.x",
         "unb-libraries/drupal-builder": "^8.0.0"
     },

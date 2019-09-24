@@ -107,7 +107,9 @@ function template_preprocess_yabrm_thesis(array &$variables) {
     $i++;
   }
 
-  array_multisort($variables['content']['contribs_all']);
+  if (!empty($variables['content']['contribs_all'])) {
+    array_multisort($variables['content']['contribs_all']);
+  }
 
   // Sanitize and strong-type publication_year.
   $pub_year =

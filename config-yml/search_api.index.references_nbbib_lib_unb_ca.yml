@@ -133,46 +133,6 @@ field_settings:
     dependencies:
       module:
         - yabrm
-  archive_location:
-    label: 'Archive Location'
-    datasource_id: 'entity:yabrm_biblio_reference'
-    property_path: archive_location
-    type: text
-    dependencies:
-      module:
-        - yabrm
-  archive_location_1:
-    label: 'Archive Location'
-    datasource_id: 'entity:yabrm_book'
-    property_path: archive_location
-    type: text
-    dependencies:
-      module:
-        - yabrm
-  archive_location_2:
-    label: 'Archive Location'
-    datasource_id: 'entity:yabrm_book_section'
-    property_path: archive_location
-    type: text
-    dependencies:
-      module:
-        - yabrm
-  archive_location_3:
-    label: 'Archive Location'
-    datasource_id: 'entity:yabrm_journal_article'
-    property_path: archive_location
-    type: text
-    dependencies:
-      module:
-        - yabrm
-  archive_location_4:
-    label: 'Archive Location'
-    datasource_id: 'entity:yabrm_thesis'
-    property_path: archive_location
-    type: text
-    dependencies:
-      module:
-        - yabrm
   bibliographic_authors:
     label: Author(s)
     property_path: bibliographic_authors

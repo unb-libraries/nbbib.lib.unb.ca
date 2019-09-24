@@ -316,7 +316,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['language'] = BaseFieldDefinition::create('list_string')
-      ->setLabel('Language')
+      ->setLabel('Language(s)')
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setSettings([
         'allowed_values' => ['eng' => 'English', 'fre' => 'French'],
@@ -355,7 +355,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['archive'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Archive'))
+      ->setLabel(t('Archive(s)'))
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setSettings([
         'max_length' => 512,

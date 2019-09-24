@@ -58,6 +58,14 @@ div.form--inline.form-inline.clearfix {
 form.views-exposed-form:not(#views-exposed-form-nb-bibliography-contributors-page-1) {
   margin-top: 20px;
 }
+// Reduce spacing between title and alpha-pager.
+div.attachment.attachment-before {
+  line-height: 0;
+}
+ul.pagination.js-pager__items {
+  margin-top: 0;
+  margin-bottom: 2.5em;
+}
 
 // Navbar toggle.
 button.navbar-toggle {

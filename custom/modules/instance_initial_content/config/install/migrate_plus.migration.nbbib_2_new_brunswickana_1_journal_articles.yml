@@ -100,7 +100,6 @@ process:
   language: language
   rights: rights
   archive: archive
-  archive_location: archive_location
   library_catalog: library_catalog
   call_number: call_number
   extra: extra

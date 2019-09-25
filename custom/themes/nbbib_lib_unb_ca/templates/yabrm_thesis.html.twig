@@ -38,72 +38,72 @@
               <div class="col-sm-6">Item Type</div>
               <div class="col-sm-6">Thesis</div>
             </div>
-            <div id="ref-series" class="row">
-              {% if content.series|field_value %}
+            {% if content.series|field_value %}
+              <div id="ref-series" class="row">
                 <div class="col-sm-6">Series</div>
                 <div class="col-sm-6">{{ content.series|field_value }}</div>
-              {% endif %}
-            </div>
-            <div id="ref-series-num" class="row">
-              {% if content.series_number|field_value %}
+              </div>
+            {% endif %}
+            {% if content.series_number|field_value %}
+              <div id="ref-series-num" class="row">
                 <div class="col-sm-6">Series Number</div>
                 <div class="col-sm-6">{{ content.series_number|field_value }}</div>
-              {% endif %}
-            </div>
-            <div id="ref-volume" class="row">
-              {% if content.volume|field_value %}
+              </div>
+            {% endif %}
+            {% if content.volume|field_value %}
+              <div id="ref-volume" class="row">
                 <div class="col-sm-6">Volume</div>
                 <div class="col-sm-6">{{ content.volume|field_value }}</div>
-              {% endif %}
-            </div>
-            <div id="ref-num-volumes" class="row">
-              {% if content.num_volumes|field_value %}
+              </div>
+            {% endif %}
+            {% if content.num_volumes|field_value %}
+              <div id="ref-num-volumes" class="row">
                 <div class="col-sm-6">Number of Volumes</div>
                 <div class="col-sm-6">{{ content.num_volumes|field_value }}</div>
-              {% endif %}
-            </div>
-            <div id="ref-edition" class="row">
-              {% if content.edition|field_value %}
+              </div>
+            {% endif %}
+            {% if content.edition|field_value %}
+              <div id="ref-edition" class="row">
                 <div class="col-sm-6">Edition</div>
                 <div class="col-sm-6">{{ content.edition|field_value }}</div>
-              {% endif %}
-            </div>
-            <div id="ref-place" class="row">
-              {% if content.place|field_value %}
+              </div>
+            {% endif %}
+            {% if content.place|field_value %}
+              <div id="ref-place" class="row">
                 <div class="col-sm-6">Place of Publication</div>
                 <div class="col-sm-6">{{ content.place|field_value }}</div>
-              {% endif %}
-            </div>
-            <div id="ref-publisher" class="row">
-              {% if content.publisher|field_value %}
+              </div>
+            {% endif %}
+            {% if content.publisher|field_value %}
+              <div id="ref-publisher" class="row">
                 <div class="col-sm-6">Publisher</div>
                 <div class="col-sm-6">{{ content.publisher|field_value }}</div>
-              {% endif %}
-            </div>
-            <div id="ref-pub-date" class="row">
-              {% if content.publication_year|field_value %}
+              </div>
+            {% endif %}
+            {% if content.publication_year|field_value %}
+              <div id="ref-pub-date" class="row">
                 <div class="col-sm-6">Publication Date</div>
                 <div class="col-sm-6">{{ content.publication_year|field_value }}</div>
-              {% endif %}
-            </div>
-            <div id="ref-nb-imprint" class="row">
-              {% if content.nb_imprint|field_value %}
+              </div>
+            {% endif %}
+            {% if content.nb_imprint|field_value %}
+              <div id="ref-nb-imprint" class="row">
                 <div class="col-sm-6">NB Imprint</div>
                 <div class="col-sm-6">{{ content.nb_imprint|field_value }}</div>
-              {% endif %}
-            </div>
-            <div id="ref-language" class="row">
-              {% if content.language|field_value %}
+              </div>
+            {% endif %}
+            {% if content.language|field_value %}
+              <div id="ref-language" class="row">
                 <div class="col-sm-6">Language</div>
                 <div class="col-sm-6">{{ content.language|field_value }}</div>
-              {% endif %}
-            </div>
-            <div id="ref-isbn-issn" class="row">
-              {% if content.isbn|field_value %}
+              </div>
+            {% endif %}
+            {% if content.isbn|field_value %}
+              <div id="ref-isbn-issn" class="row">
                 <div class="col-sm-6">ISBN/ISSN</div>
                 <div class="col-sm-6">{{ content.isbn|field_value }}</div>
-              {% endif %}
-            </div>
+              </div>
+            {% endif %}
           </div>
         </div>
 

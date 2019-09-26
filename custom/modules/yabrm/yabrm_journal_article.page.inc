@@ -116,6 +116,20 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
     empty($yabrm_journal_article->get('publication_year')->getValue()[0]['value']) ? NULL : $yabrm_journal_article->get('publication_year')->getValue()[0]['value'];
   $variables['content']['pub_year'] = $pub_year;
 
+  // Process languages.
+  $lang_codes = [
+    'eng' => 'English',
+    'fre' => 'French',
+  ];
+
+  $i = 0;
+
+  while (!empty($variables['content']['language'][$i])) {
+    $lang_key = $variables['content']['language'][$i]['#markup'];
+    $variables['content']['lang_names'][] = $lang_codes[$lang_key];
+    $i++;
+  }
+
   // Build citation elements.
   $authors = empty($variables['content']['authors']) ? NULL
     : $variables['content']['authors'];

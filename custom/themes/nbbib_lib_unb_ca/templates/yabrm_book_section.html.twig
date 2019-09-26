@@ -93,9 +93,19 @@
               </div>
             {% endif %}
             {% if content.language|field_value %}
+
               <div id="ref-language" class="row">
-                <div class="col-sm-6">Language</div>
-                <div class="col-sm-6">{{ content.language|field_value }}</div>
+                <div class="col-sm-6">Language(s)</div>
+
+                <div class="col-sm-6">
+                  {%- for language in content.lang_names -%}
+                    {%- if not loop.first -%}
+                      {{ ', ' }}
+                    {%- endif -%}
+
+                    {{ language }}
+                  {%- endfor -%}
+                </div>
               </div>
             {% endif %}
             {% if content.isbn|field_value %}

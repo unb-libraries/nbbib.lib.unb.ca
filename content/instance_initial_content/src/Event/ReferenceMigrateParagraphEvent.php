@@ -105,9 +105,35 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
       $collections[] = $col_id ? $col_id : NULL;
 
+      // Archive.
+      $arch_name = $row->getSourceProperty('archive');
+
+      if (!empty($arch_name)) {
+        $existing = \Drupal::entityQuery('taxonomy_term')
+          ->condition('name', $arch_name)
+          ->condition('vid', 'nbbib_archives')
+          ->execute();
+
+        reset($existing);
+        $arch_id = key($existing);
+
+        // Create archive if doesn't exist.
+        if (empty($arch_id)) {
+          $archive = Term::create([
+            'name' => $arch_name,
+          ]);
+
+          $archive->save();
+          $arch_id = $archive->id();
+        }
+      }
+
+      $archives[] = $arch_id ? $arch_id : NULL;
+
       $reference->setContributors($contributors);
       $reference->setPublicationYear($pub_year);
       $reference->setCollections($collections);
+      $reference->setArchive($archives);
       $reference->save();
     }
   }

@@ -380,21 +380,21 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   /**
    * Gets the Bibliographic Reference Archive.
    *
-   * @return string
-   *   The archive of the Bibliographic Reference.
+   * @return \Drupal\taxonomy\TermInterface[]
+   *   The archive(s) of the Bibliographic Reference.
    */
   public function getArchive();
 
   /**
    * Sets the Bibliographic Reference Archive.
    *
-   * @param string $archive
-   *   The Bibliographic Reference archive.
+   * @param \Drupal\taxonomy\TermInterface[] $archive
+   *   The Bibliographic Reference archive(s).
    *
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.
    */
-  public function setArchive($archive);
+  public function setArchive(array $archive);
 
   /**
    * Gets the Bibliographic Reference Archive Library Catalog.

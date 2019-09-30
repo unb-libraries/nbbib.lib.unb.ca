@@ -121,6 +121,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         if (empty($arch_id)) {
           $archive = Term::create([
             'name' => $arch_name,
+            'vid' => 'nbbib_archives',
           ]);
 
           $archive->save();

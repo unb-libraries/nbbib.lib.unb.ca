@@ -1,5 +1,5 @@
 ![nbbib.lib.unb.ca screenshot](screenshot.png "nbbib.lib.unb.ca screenshot")
-# nbbib.lib.unb.ca : Instance Repository
+# [nbbib.lib.unb.ca](https://nbbib.lib.unb.ca/) : Instance Repository
 [![Build Status](https://travis-ci.com/unb-libraries/nbbib.lib.unb.ca.svg?branch=prod)](https://travis-ci.com/unb-libraries/nbbib.lib.unb.ca) [![GitHub license](https://img.shields.io/github/license/unb-libraries/nbbib.lib.unb.ca)](https://github.com/unb-libraries/nbbib.lib.unb.ca/blob/dev/LICENSE) ![GitHub repo size](https://img.shields.io/github/repo-size/unb-libraries/nbbib.lib.unb.ca)
 
 This repository contains all assets used to test, build, and deploy the [nbbib.lib.unb.ca](https://nbbib.lib.unb.ca) Drupal application. This repository extends the [unb-libraries/docker-drupal](https://github.com/unb-libraries/docker-drupal) base image, which deploys nginx and php-fpm in the service container.

@@ -152,12 +152,15 @@
           <br>
 
           <div class="indent-text">
-            {{ content.archive|field_value }}
-            <br>
+            {% if content.archive|field_value %}
+              {% for archive in content.archive|field_value %}
+                <p>{{ archive['#title'] }}</p>
+              {% endfor %}
+            {% endif %}
 
             {% set urls = content.url %}
             {% for url in content.url|field_value %}
-              {{ url }}
+              <p>{{ url }}</p>
               <br>
             {% endfor %}
           </div>

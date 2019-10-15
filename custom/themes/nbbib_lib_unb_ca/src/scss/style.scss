@@ -9,11 +9,14 @@
 // Form field descriptions.
 // Language (yabrm) field description.
 // Text format help.
+// User register and reset password links.
 div.field--name-user-id,
 button.tabledrag-toggle-weight,
 div.description.help-block,
 div#edit-language--wrapper--description,
-div.form-item + div.filter-wrapper.form-inline.form-group.js-form-wrapper {
+div.form-item + div.filter-wrapper.form-inline.form-group.js-form-wrapper,
+a[href='/user/register'],
+a[href='/user/password'] {
   visibility: hidden;
 }
 
@@ -144,6 +147,9 @@ label[for='edit-search-api-fulltext'] {
 // Navigation tabs.
 .tabs--primary.nav.nav-tabs {
   margin-bottom: 10px;
+}
+nav.tabs {
+  margin-top: 10px;
 }
 
 // Contributors alpha pager.

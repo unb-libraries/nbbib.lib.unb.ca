@@ -4,6 +4,9 @@ description: Core custom functionality for nbbib.lib.unb.ca
 core: 8.x
 package: Custom
 
+dependencies:
+  - redirect
+
 libraries:
   - nbbib_core/contrib-alpha-pager
   - nbbib_core/modal-forms

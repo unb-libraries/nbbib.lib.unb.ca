@@ -15,16 +15,16 @@ function nbbib_core_install() {
   // Default redirects.
   // Redirect after delete.
   $del_redirs = [
-    '/yabrm/yabrm_book',
-    '/yabrm/yabrm_book_section',
-    '/yabrm/yabrm_journal_article',
-    '/yabrm/yabrm_thesis',
+    'yabrm/yabrm_book',
+    'yabrm/yabrm_book_section',
+    'yabrm/yabrm_journal_article',
+    'yabrm/yabrm_thesis',
   ];
 
   foreach ($del_redirs as $del_redir) {
     Redirect::create([
       'redirect_source' => $del_redir,
-      'redirect_redirect' => '/bibliography',
+      'redirect_redirect' => 'internal:/bibliography',
       'language' => 'und',
       'status_code' => '301',
     ])->save();

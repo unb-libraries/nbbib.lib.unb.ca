@@ -53,6 +53,7 @@ dependencies:
   - nbbib_core
   - paragraphs
   - pathauto
+  - redirect
   - redis
   - search_api
   - search_api_autocomplete

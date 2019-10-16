@@ -167,7 +167,7 @@ div.attachment-before {
 }
 
 // Topics view.
-div.view-id-nb_bibliography_topics li:nth-of-type(odd) {
+div.view-id-nb_bibliography_topics div.row-topics:hover {
   background-color: WhiteSmoke;
 }
 

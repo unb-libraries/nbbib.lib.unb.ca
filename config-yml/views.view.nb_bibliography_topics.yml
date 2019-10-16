@@ -67,7 +67,11 @@ display:
             offset: false
             offset_label: Offset
       style:
-        type: html_list
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
       row:
         type: fields
       fields:
@@ -214,7 +218,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"container\">\r\n<div class=\"row\">\r\n<div class =\"col-sm-3\">{{ name }}</div>\r\n{% if 'nb_bibliography_contributor' in drupal_token('current-user:roles:keys') %}\r\n<div class =\"col-sm-9\">\r\n{{ '[' }}<a href=\"/taxonomy/term/{{ tid }}/edit?destination=/topics\">Edit</a>{{ ']' }}\r\n{{ '[' }}<a href=\"/taxonomy/term/{{ tid }}/delete?destination=/topics\">Delete</a>{{ ']' }}\r\n</div>\r\n{% endif %}\r\n</div>\r\n"
+            text: "<div class=\"container\">\r\n<div class=\"row row-topics\">\r\n<div class =\"col-sm-3\">{{ name }}</div>\r\n{% if 'nb_bibliography_contributor' in drupal_token('current-user:roles:keys') %}\r\n<div class =\"col-sm-9\">\r\n{{ '[' }}<a href=\"/taxonomy/term/{{ tid }}/edit?destination=/topics\">Edit</a>{{ ']' }}\r\n{{ '[' }}<a href=\"/taxonomy/term/{{ tid }}/delete?destination=/topics\">Delete</a>{{ ']' }}\r\n</div>\r\n{% endif %}\r\n</div>\r\n"
             make_link: false
             path: ''
             absolute: false

@@ -10,6 +10,7 @@
 // Language (yabrm) field description.
 // Text format help.
 // User register and reset password links.
+// Topics filter.
 div.field--name-user-id,
 button.tabledrag-toggle-weight,
 div.description.help-block,
@@ -49,6 +50,10 @@ form#views-exposed-form-nb-bibliography-contributors-page-1 {
 // Full form.
 form#views-exposed-form-nb-bibliography-citations-page-1 {
   margin-bottom: 30px;
+}
+// Hide topics filter.
+form#views-exposed-form-nb-bibliography-citations-page-1 div.js-form-item-search-api-fulltext-5 {
+  display: none !important;
 }
 
 // Contributors view.

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - taxonomy.vocabulary.yabrm_reference_topic
+    - user.role.nb_bibliography_contributor
   module:
     - taxonomy
     - user
@@ -23,9 +24,10 @@ display:
     position: 0
     display_options:
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            nb_bibliography_contributor: nb_bibliography_contributor
       cache:
         type: tag
         options: {  }
@@ -305,7 +307,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user.permissions
+        - user.roles
       tags: {  }
   page_1:
     display_plugin: page
@@ -315,11 +317,20 @@ display:
     display_options:
       display_extenders: {  }
       path: topics
+      menu:
+        type: none
+        title: ''
+        description: ''
+        expanded: false
+        parent: ''
+        weight: null
+        context: '0'
+        menu_name: main
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user.permissions
+        - user.roles
       tags: {  }

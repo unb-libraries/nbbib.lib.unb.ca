@@ -132,18 +132,18 @@
           <div class="indent-text">
             {{ content.abstract_note|field_value }}
           </div>
+          <br>
         {% endif %}
       </div>
-      <br>
 
       <div id="ref-physical">
         {% if content.physical_description|field_value %}
           <div class="indent-text">
             Physical Description: {{ content.physical_description|field_value }}
           </div>
+          <br>
         {% endif %}
       </div>
-      <br>
 
       <div id="ref-copies">
         {% if content.archive|field_value or content.url|field_value %}
@@ -161,13 +161,12 @@
             {% set urls = content.url %}
             {% for url in content.url|field_value %}
               <p>{{ url }}</p>
-              <br>
             {% endfor %}
           </div>
+          <br>
         {% endif %}
 
       </div>
-      <br>
 
       <div id="ref-notes">
         {% if content.notes|field_value %}
@@ -177,6 +176,27 @@
           <div class="indent-text">
             {{ content.notes|field_value }}
           </div>
+          <br>
+        {% endif %}
+      </div>
+
+      <div id="ref-topics">
+        {% if content.topics|field_value %}
+          <b>Topics: </b>
+
+          <span>
+            {%- for topic in content.topics|field_value -%}
+              {% set tname = topic['#options']['entity'].name() %}
+
+              {%- if not loop.first -%}
+                {{ ", " }}
+              {%- endif -%}
+
+              <a href ="/bibliography?collections_5&search_api_fulltext_5='{{ tname }}'">
+                {{- tname -}}
+              </a>
+            {%- endfor -%}
+          </span>
         {% endif %}
       </div>
       <br>

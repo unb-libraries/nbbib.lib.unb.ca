@@ -242,7 +242,16 @@ footer.footer.container {
   padding-top: 15px;
 }
 
-// Edit reference forms - publication date fields.
+// Edit reference forms.
+
+// Button separation.
+form#yabrm-book-edit-form button:not(:first-of-type),
+form#yabrm-book-section-edit-form button:not(:first-of-type),
+form#yabrm-journal-article-edit-form button:not(:first-of-type),
+form#yabrm-thesis-edit-form button:not(:first-of-type) {
+  margin-left: 1em !important;
+}
+// Publication date fields.
 @media screen and (min-width: 768px) {
   div#edit-publication-year-wrapper,
   div#edit-publication-month-wrapper,

@@ -251,6 +251,10 @@ form#yabrm-journal-article-edit-form button:not(:first-of-type),
 form#yabrm-thesis-edit-form button:not(:first-of-type) {
   margin-left: 1em !important;
 }
+// Draggable control separation.
+td.field-multiple-drag {
+  width: 2em !important;
+}
 // Publication date fields.
 @media screen and (min-width: 768px) {
   div#edit-publication-year-wrapper,

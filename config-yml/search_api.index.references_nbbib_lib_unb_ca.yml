@@ -905,7 +905,7 @@ field_settings:
   topics:
     label: Topics
     property_path: topics
-    type: text
+    type: integer
   url:
     label: URL
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -986,8 +986,8 @@ processor_settings:
       preprocess_index: 0
 tracker_settings:
   default:
-    indexing_order: fifo
+    indexing_order: lifo
 options:
   index_directly: true
-  cron_limit: 1000
+  cron_limit: 100
 server: drupal_solr_lib_unb_ca

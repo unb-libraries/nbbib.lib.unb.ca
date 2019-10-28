@@ -1140,24 +1140,27 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_text
-        search_api_fulltext_5:
-          id: search_api_fulltext_5
+        topics:
+          id: topics
           table: search_api_index_references_nbbib_lib_unb_ca
-          field: search_api_fulltext
+          field: topics
           relationship: none
           group_type: group
           admin_label: ''
-          operator: and
-          value: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: search_api_fulltext_5_op
+            operator_id: topics_op
             label: Topics
             description: ''
             use_operator: false
-            operator: search_api_fulltext_5_op
-            identifier: search_api_fulltext_5
+            operator: topics_op
+            identifier: topics
             required: false
             remember: false
             multiple: false
@@ -1166,6 +1169,8 @@ display:
               anonymous: '0'
               nb_bibliography_contributor: '0'
             placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1178,11 +1183,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: phrase
-          min_length: null
-          fields:
-            - topics
-          plugin_id: search_api_fulltext
+          plugin_id: search_api_numeric
       defaults:
         filters: false
         filter_groups: false
@@ -1357,14 +1358,23 @@ display:
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
-          hide_empty: true
+          hide_empty: false
           empty_zero: false
           hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ''
+          format_plural: false
+          format_plural_string: !!binary Aw==
+          prefix: ''
+          suffix: ''
           link_to_item: false
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
-          plugin_id: search_api
+          format_plural_values: {  }
+          plugin_id: search_api_numeric
         nothing:
           id: nothing
           table: views

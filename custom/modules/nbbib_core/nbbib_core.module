@@ -7,6 +7,8 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\taxonomy\TermInterface;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Implements hook_theme().
@@ -245,8 +247,20 @@ function nbbib_core_entity_update(EntityInterface $entity) {
 function nbbib_core_views_pre_render($view) {
   if ($view->id() == 'nb_bibliography_citations') {
     // Include current collection in view title.
-    if (!empty($view->getExposedInput()['collections_5'])) {
-      $view->setTitle($view->getTitle() . ' - ' . $view->getExposedInput()['collections_5']);
+    $token = !empty($view->getExposedInput()['collections_5']) ?
+      $view->getExposedInput()['collections_5'] : NULL;
+
+    if (!empty($token)) {
+      $view->setTitle($view->getTitle() . ' - ' . $token);
+    }
+    // Include current topic in view title.
+    $token = !empty($view->getExposedInput()['topics']) ?
+      $view->getExposedInput()['topics'] : NULL;
+
+    if (!empty($token)) {
+      $term = Term::load($token);
+      $name = $term->getName();
+      $view->setTitle($view->getTitle() . ' - ' . $name);
     }
   }
 }

@@ -153,7 +153,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $definition = [
         'label' => $this->t('Topics'),
         'description' => $this->t('Topics associated with the reference.'),
-        'type' => 'search_api_html',
+        'type' => 'integer',
         'is_list' => TRUE,
         'processor_id' => $this->getPluginId(),
       ];
@@ -249,7 +249,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         $topics = $yabrm_entity->getTopics();
         foreach ($topics as $topic) {
           if (!empty($topic)) {
-            $field->addValue($topic->toLink()->toString());
+            $field->addValue($topic->id());
           }
         }
       }

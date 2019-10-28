@@ -21,6 +21,11 @@ a[href='/user/password'] {
   visibility: hidden;
 }
 
+// H1
+div.region-content > h1 {
+  margin-top: 0 !important;
+}
+
 // Search button.
 div#edit-actions {
   vertical-align: top;
@@ -52,7 +57,7 @@ form#views-exposed-form-nb-bibliography-citations-page-1 {
   margin-bottom: 30px;
 }
 // Hide topics filter.
-form#views-exposed-form-nb-bibliography-citations-page-1 div.js-form-item-search-api-fulltext-5 {
+form#views-exposed-form-nb-bibliography-citations-page-1 div.js-form-item-topics {
   display: none !important;
 }
 

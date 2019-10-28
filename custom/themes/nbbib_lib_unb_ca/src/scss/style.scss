@@ -56,6 +56,21 @@ form#views-exposed-form-nb-bibliography-citations-page-1 div.js-form-item-search
   display: none !important;
 }
 
+// Views (broad).
+div.views-field div.container {
+  margin-bottom: .5em;
+
+  &:hover {
+    background-color: WhiteSmoke;
+  }
+
+  & ~ div.views-field-description__value p {
+    margin-bottom: 1em;
+    padding-left: 15px;
+    text-align: justify;
+  }
+}
+
 // Contributors view.
 // Hide contributor sort initial filter.
 form#views-exposed-form-nb-bibliography-contributors-page-1 >
@@ -171,11 +186,6 @@ div.attachment-before {
   display: none;
 }
 
-// Topics view.
-div.view-id-nb_bibliography_topics div.row-topics:hover {
-  background-color: WhiteSmoke;
-}
-
 // Reference entity display.
 // Reference.
 div.yabrm-reference {
@@ -225,10 +235,6 @@ div#ref-details {
 div.yabrm-contributor.contrib-layout div.row {
   margin-top: 1em;
   margin-bottom: 1em;
-}
-// Hide semantic portion of template.
-div.contrib-semantic {
-  display: none;
 }
 
 // Footer.

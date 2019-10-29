@@ -187,12 +187,13 @@
           <span>
             {%- for topic in content.topics|field_value -%}
               {% set tname = topic['#options']['entity'].name() %}
+              {% set tid = topic['#options']['entity'].id() %}
 
               {%- if not loop.first -%}
                 {{ ", " }}
               {%- endif -%}
 
-              <a href ="/bibliography?collections_5&search_api_fulltext_5='{{ tname }}'">
+              <a href ="/bibliography?topics={{ tid }}">
                 {{- tname -}}
               </a>
             {%- endfor -%}

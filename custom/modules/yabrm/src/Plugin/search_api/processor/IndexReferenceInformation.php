@@ -151,6 +151,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $properties['bibliographic_citation'] = new ProcessorProperty($definition);
 
       $definition = [
+        'label' => $this->t('Topic Names'),
+        'description' => $this->t('Names of topics associated with the reference.'),
+        'type' => 'search_api_html',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['topic_names'] = new ProcessorProperty($definition);
+
+      $definition = [
         'label' => $this->t('Topics'),
         'description' => $this->t('Topics associated with the reference.'),
         'type' => 'integer',
@@ -242,7 +251,19 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         }
       }
 
-      // Topics.
+      // Topics (by name).
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'topic_names');
+      foreach ($fields as $field) {
+        $topics = $yabrm_entity->getTopics();
+        foreach ($topics as $topic) {
+          if (!empty($topic)) {
+            $field->addValue($topic->toLink()->toString());
+          }
+        }
+      }
+
+      // Topics (by ID).
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'topics');
       foreach ($fields as $field) {

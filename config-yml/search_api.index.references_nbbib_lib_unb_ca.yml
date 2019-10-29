@@ -902,6 +902,10 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  topic_names:
+    label: 'Topic Names'
+    property_path: topic_names
+    type: text
   topics:
     label: Topics
     property_path: topics

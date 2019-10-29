@@ -79,7 +79,7 @@ function top_submit_handler(&$form, $handler) {
  */
 function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Target all reference add/edit forms.
-  $target_forms = [
+  $ref_forms = [
     'yabrm_book_add_form',
     'yabrm_book_edit_form',
     'yabrm_book_section_add_form',
@@ -90,12 +90,27 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
     'yabrm_journal_article_edit_form',
   ];
 
-  if (in_array($form_id, $target_forms)) {
+  if (in_array($form_id, $ref_forms)) {
     // For all reference edit and add forms.
     // Add validation.
     $form['#validate'][] = 'validate_contrib_subform';
     // Add a top priority submit handler.
     top_submit_handler($form, 'clr_blank_contribs');
+  }
+
+  $contrib_forms = [
+    'yabrm_contributor_edit_form',
+    'yabrm_contributor_add_form',
+  ];
+
+  if (in_array($form_id, $contrib_forms)) {
+    // For contributor add and edit forms.
+    $form['help'] = [
+      '#type' => 'markup',
+      '#markup' => '<p>Note: Contributor roles (author, editor, illustrator, ' .
+      'etc) are set at the bibliographic reference level.</p>',
+      '#weight' => '-10',
+    ];
   }
 }
 

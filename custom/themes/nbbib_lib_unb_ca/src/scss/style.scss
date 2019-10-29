@@ -21,7 +21,7 @@ a[href='/user/password'] {
   visibility: hidden;
 }
 
-// H1
+// H1.
 div.region-content > h1 {
   margin-top: 0 !important;
 }
@@ -38,6 +38,11 @@ div#nbbib-banner {
   height: 180px;
   opacity: .7;
   background-image: url("/themes/custom/nbbib_lib_unb_ca/images/banner.jpg");
+}
+
+// Forms.
+form {
+  margin-top: 10px !important;
 }
 
 // Page title.

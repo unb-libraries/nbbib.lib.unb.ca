@@ -418,13 +418,12 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
-      ->setLabel(t('Publishing status'))
-      ->setDescription(t('A boolean indicating whether the Bibliographic Contributor is published.'))
+      ->setLabel(t('Published'))
       ->setRevisionable(TRUE)
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
-        'weight' => -3,
+        'weight' => 70,
       ]);
 
     $fields['created'] = BaseFieldDefinition::create('created')

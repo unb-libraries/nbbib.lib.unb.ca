@@ -25,10 +25,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
   archive:
-    type: options_select
+    type: entity_reference_autocomplete
     weight: 22
     region: content
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   archive_location:
     type: string_textfield

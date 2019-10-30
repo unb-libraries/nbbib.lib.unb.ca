@@ -9,6 +9,7 @@ dependencies:
     - image
     - link
     - options
+    - taxonomy
     - text
     - yabrm
 id: yabrm_book.yabrm_book.default
@@ -25,11 +26,10 @@ content:
     third_party_settings: {  }
   archive:
     label: above
-    type: string
-    weight: 21
+    type: entity_reference_rss_category
+    weight: 22
     region: content
-    settings:
-      link_to_entity: false
+    settings: {  }
     third_party_settings: {  }
   archive_location:
     label: above
@@ -42,7 +42,7 @@ content:
   call_number:
     label: above
     type: string
-    weight: 19
+    weight: 20
     region: content
     settings:
       link_to_entity: false
@@ -50,7 +50,7 @@ content:
   collections:
     label: hidden
     type: entity_reference_label
-    weight: 17
+    weight: 18
     region: content
     settings:
       link: true
@@ -58,7 +58,7 @@ content:
   contributors:
     label: above
     type: entity_reference_revisions_entity_view
-    weight: 1
+    weight: 2
     region: content
     settings:
       view_mode: default
@@ -67,7 +67,7 @@ content:
   cover_image:
     label: above
     type: image
-    weight: 0
+    weight: 1
     region: content
     settings:
       image_style: 16_10_image_320x200
@@ -76,7 +76,7 @@ content:
   edition:
     label: above
     type: string
-    weight: 8
+    weight: 9
     region: content
     settings:
       link_to_entity: false
@@ -91,7 +91,7 @@ content:
   isbn:
     label: above
     type: string
-    weight: 7
+    weight: 8
     region: content
     settings:
       link_to_entity: false
@@ -99,21 +99,21 @@ content:
   language:
     label: above
     type: list_key
-    weight: 9
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   library_catalog:
     label: above
     type: string
-    weight: 20
+    weight: 21
     region: content
     settings:
       link_to_entity: false
     third_party_settings: {  }
   nb_imprint:
     label: above
-    weight: 18
+    weight: 19
     region: content
     settings:
       format: default
@@ -138,7 +138,7 @@ content:
   num_pages:
     label: above
     type: string
-    weight: 12
+    weight: 13
     region: content
     settings:
       link_to_entity: false
@@ -146,7 +146,7 @@ content:
   num_volumes:
     label: above
     type: string
-    weight: 14
+    weight: 15
     region: content
     settings:
       link_to_entity: false
@@ -161,21 +161,12 @@ content:
   place:
     label: above
     type: string
-    weight: 3
+    weight: 4
     region: content
     settings:
       link_to_entity: false
     third_party_settings: {  }
   publication_day:
-    label: above
-    weight: 4
-    region: content
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
-    third_party_settings: {  }
-    type: number_integer
-  publication_month:
     label: above
     weight: 5
     region: content
@@ -184,9 +175,18 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
-  publication_year:
+  publication_month:
     label: above
     weight: 6
+    region: content
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  publication_year:
+    label: above
+    weight: 7
     region: content
     settings:
       thousand_separator: ''
@@ -196,7 +196,7 @@ content:
   publisher:
     label: above
     type: string
-    weight: 2
+    weight: 3
     region: content
     settings:
       link_to_entity: false
@@ -212,7 +212,7 @@ content:
   series:
     label: above
     type: string
-    weight: 15
+    weight: 16
     region: content
     settings:
       link_to_entity: false
@@ -220,7 +220,7 @@ content:
   series_number:
     label: above
     type: string
-    weight: 16
+    weight: 17
     region: content
     settings:
       link_to_entity: false
@@ -228,7 +228,7 @@ content:
   short_title:
     label: above
     type: string
-    weight: 11
+    weight: 12
     region: content
     settings:
       link_to_entity: false
@@ -243,7 +243,7 @@ content:
     third_party_settings: {  }
   topics:
     label: above
-    weight: 10
+    weight: 11
     region: content
     settings:
       link: true
@@ -264,7 +264,7 @@ content:
   volume:
     label: above
     type: string
-    weight: 13
+    weight: 14
     region: content
     settings:
       link_to_entity: false
@@ -273,4 +273,5 @@ hidden:
   external_key_ref: true
   langcode: true
   search_api_excerpt: true
+  status: true
   user_id: true

@@ -522,8 +522,11 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
-        'weight' => 70,
-      ]);
+        'weight' => 0,
+      ],
+      )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['collections'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Collection(s)'))

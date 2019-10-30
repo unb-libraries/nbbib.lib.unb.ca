@@ -423,8 +423,11 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
-        'weight' => 70,
-      ]);
+        'weight' => 0,
+      ],
+      )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))

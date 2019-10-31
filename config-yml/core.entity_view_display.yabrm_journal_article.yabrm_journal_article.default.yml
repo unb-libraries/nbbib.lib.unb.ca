@@ -289,4 +289,5 @@ hidden:
   external_key_ref: true
   langcode: true
   search_api_excerpt: true
+  status: true
   user_id: true

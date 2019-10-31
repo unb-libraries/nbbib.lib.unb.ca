@@ -9,7 +9,6 @@ dependencies:
     - image
     - link
     - options
-    - taxonomy
     - text
     - yabrm
 id: yabrm_book.yabrm_book.default
@@ -26,10 +25,11 @@ content:
     third_party_settings: {  }
   archive:
     label: above
-    type: entity_reference_rss_category
+    type: entity_reference_label
     weight: 22
     region: content
-    settings: {  }
+    settings:
+      link: true
     third_party_settings: {  }
   archive_location:
     label: above

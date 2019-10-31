@@ -25,11 +25,11 @@ content:
     third_party_settings: {  }
   archive:
     label: above
-    type: string
+    type: entity_reference_label
     weight: 22
     region: content
     settings:
-      link_to_entity: false
+      link: true
     third_party_settings: {  }
   archive_location:
     label: above
@@ -281,4 +281,5 @@ hidden:
   external_key_ref: true
   langcode: true
   search_api_excerpt: true
+  status: true
   user_id: true

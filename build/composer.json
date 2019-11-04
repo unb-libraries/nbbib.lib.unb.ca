@@ -63,7 +63,7 @@
         "drupal/google_analytics": "2.2",
         "drupal/health_check": "1.2",
         "drupal/ldap": "3.0-beta7",
-        "drupal/paragraphs": "1.9",
+        "drupal/paragraphs": "1.10",
         "drupal/pathauto": "1.5",
         "drupal/redis": "1.2",
         "drupal/redirect": "1.4",

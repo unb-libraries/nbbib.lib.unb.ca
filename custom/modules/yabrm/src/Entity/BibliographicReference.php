@@ -395,6 +395,25 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['archive_location'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Archive Location'))
+      ->setSettings([
+        'max_length' => 512,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['library_catalog'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Library Catalog'))
       ->setSettings([
@@ -1014,6 +1033,21 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    */
   public function setArchive($archive) {
     $this->set('archive', $archive);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getArchiveLocation() {
+    return $this->get('archive_location')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setArchiveLocation($archive_location) {
+    $this->set('archive_location', $archive_location);
     return $this;
   }
 

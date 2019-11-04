@@ -397,6 +397,25 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function setArchive(array $archive);
 
   /**
+   * Gets the Bibliographic Reference Archive Location.
+   *
+   * @return string
+   *   The archive location of the Bibliographic Reference.
+   */
+  public function getArchiveLocation();
+
+  /**
+   * Sets the Bibliographic Reference Archive Location.
+   *
+   * @param string $archive_location
+   *   The Bibliographic Reference archive location.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setArchiveLocation($archive_location);
+
+  /**
    * Gets the Bibliographic Reference Archive Library Catalog.
    *
    * @return string

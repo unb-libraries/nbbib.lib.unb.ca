@@ -30,11 +30,11 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
 
   // Target specific exposed form (bibliography).
   if ($form['#id'] == "views-exposed-form-nb-bibliography-citations-page-1") {
+    // Override bibliographic_type input to dropdown.
     $form['bibliographic_type']['#type'] = "select";
     $form['bibliographic_type']['#size'] = NULL;
     $form['bibliographic_type']['#validated'] = TRUE;
 
-    // Override bibliographic_type input to dropdown.
     $form['bibliographic_type']['#options'] = [
       '' => t('- Any -'),
       'Book' => t('Book'),
@@ -57,6 +57,9 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
     ];
 
     $form['collections_5']['#default_value'] = 'All';
+
+    // Override title input to remove max length.
+    $form['search_api_fulltext_title']['#maxlength'] = 1024;
   }
 
 }

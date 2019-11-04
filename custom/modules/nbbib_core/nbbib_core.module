@@ -27,6 +27,7 @@ function nbbib_core_theme($existing, $type, $theme, $path) {
  * Implements hook_form_FORM_ID_alter().
  */
 function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id) {
+  kint($form);
 
   // Target specific exposed form (bibliography).
   if ($form['#id'] == "views-exposed-form-nb-bibliography-citations-page-1") {
@@ -58,8 +59,14 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
 
     $form['collections_5']['#default_value'] = 'All';
 
-    // Override title input to remove max length.
+    // Override keyword and title input to increase max length.
+    $form['search_api_fulltext']['#maxlength'] = 1024;
     $form['search_api_fulltext_title']['#maxlength'] = 1024;
+  }
+
+  if ($form['#id'] == "views-exposed-form-nb-bibliography-citations-page-1") {
+    // Override keyword input to increase max length.
+    $form['search_api_fulltext']['#maxlength'] = 1024;
   }
 
 }

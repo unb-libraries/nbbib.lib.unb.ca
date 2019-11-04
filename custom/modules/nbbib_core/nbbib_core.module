@@ -27,7 +27,6 @@ function nbbib_core_theme($existing, $type, $theme, $path) {
  * Implements hook_form_FORM_ID_alter().
  */
 function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id) {
-  kint($form);
 
   // Target specific exposed form (bibliography).
   if ($form['#id'] == "views-exposed-form-nb-bibliography-citations-page-1") {

@@ -33,14 +33,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  archive_location:
-    type: string_textfield
-    weight: 22
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   call_number:
     type: string_textfield
     weight: 20
@@ -283,6 +275,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  archive_location: true
   external_key_ref: true
   langcode: true
   path: true

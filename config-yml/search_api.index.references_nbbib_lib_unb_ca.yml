@@ -137,6 +137,7 @@ field_settings:
     label: Author(s)
     property_path: bibliographic_authors
     type: text
+    boost: !!float 5
   bibliographic_citation:
     label: 'Reference Citation'
     property_path: bibliographic_citation
@@ -145,6 +146,7 @@ field_settings:
     label: Title
     property_path: bibliographic_title
     type: text
+    boost: !!float 5
   bibliographic_type:
     label: 'Reference Type'
     property_path: bibliographic_type
@@ -984,6 +986,7 @@ processor_settings:
   add_url: {  }
   aggregated_field: {  }
   index_bibliographic_info: {  }
+  language_with_fallback: {  }
   rendered_item: {  }
   solr_date_range:
     weights:

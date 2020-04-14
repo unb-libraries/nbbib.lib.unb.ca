@@ -68,7 +68,7 @@
         "drupal/redis": "1.4",
         "drupal/redirect": "1.5",
         "drupal/redirect_after_login": "2.5",
-        "drupal/search_api": "1.15",
+        "drupal/search_api": "1.16",
         "drupal/search_api_autocomplete": "1.2",
         "drupal/search_api_solr": "3.9",
         "drupal/token": "1.6",

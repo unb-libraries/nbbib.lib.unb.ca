@@ -64,7 +64,7 @@
         "drupal/health_check": "1.2",
         "drupal/ldap": "3.0-beta7",
         "drupal/paragraphs": "1.11",
-        "drupal/pathauto": "1.6",
+        "drupal/pathauto": "1.7",
         "drupal/redis": "1.4",
         "drupal/redirect": "1.5",
         "drupal/redirect_after_login": "2.6",

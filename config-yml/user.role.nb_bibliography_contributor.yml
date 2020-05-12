@@ -7,7 +7,7 @@ label: 'NB Bibliography Contributor'
 weight: 2
 is_admin: null
 permissions:
-  - 'access files overview'
+  - 'access content overview'
   - 'add bibliographic contributor entities'
   - 'add book reference entities'
   - 'add book section reference entities'

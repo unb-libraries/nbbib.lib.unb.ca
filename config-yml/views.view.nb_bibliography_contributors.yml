@@ -11,7 +11,6 @@ description: ''
 tag: ''
 base_table: yabrm_contributor
 base_field: id
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -223,6 +222,8 @@ display:
               anonymous: '0'
               nb_bibliography_contributor: '0'
             placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''

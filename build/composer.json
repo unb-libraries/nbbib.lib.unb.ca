@@ -54,6 +54,7 @@
         }
     ],
     "require": {
+        "drupal/admin_toolbar": "2.2",
         "drupal/bootstrap": "3.21",
         "drupal/config_update": "1.5",
         "drupal/core": "8.8.5",

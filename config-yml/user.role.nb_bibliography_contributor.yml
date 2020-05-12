@@ -8,6 +8,7 @@ weight: 2
 is_admin: null
 permissions:
   - 'access content overview'
+  - 'access toolbar'
   - 'add bibliographic contributor entities'
   - 'add book reference entities'
   - 'add book section reference entities'

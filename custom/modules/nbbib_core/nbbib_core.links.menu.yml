@@ -84,3 +84,21 @@ nbbib_core.add_journal_article:
   menu_name: main
   url: internal:/yabrm/yabrm_journal_article/add
   weight: 50
+
+# Admin toolbar.
+nbbib_core.editor:
+  title: 'New Brunswick Bibliography'
+  description: 'Manage site editor features.'
+  route_name: <front>
+  parent: system.admin
+  weight: -100
+  options:
+    attributes:
+      class:
+        - custom-editor-menu
+nbbib_core.editor.content:
+  title: 'Content'
+  description: 'Browse site content.'
+  url: internal:/admin/content
+  parent: comp_core.editor
+  weight: 10

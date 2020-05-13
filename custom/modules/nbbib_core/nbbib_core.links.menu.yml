@@ -98,7 +98,49 @@ nbbib_core.editor:
         - custom-editor-menu
 nbbib_core.editor.content:
   title: 'Content'
-  description: 'Browse site content.'
-  url: internal:/admin/content
+  description: 'Site content overview.'
+  route_name: <front>
   parent: nbbib_core.editor
   weight: 10
+nbbib_core.editor.content.bibliography:
+  title: 'Bibliography'
+  description: 'Bibliographic references overview.'
+  url: internal:/bibliography-lister
+  parent: nbbib_core.editor.content
+  weight: 10
+nbbib_core.editor.content.other:
+  title: 'Other'
+  description: 'Other site content.'
+  url: internal:/admin/content
+  parent: nbbib_core.editor.content
+  weight: 20
+nbbib_core.editor.new-contrib:
+  title: 'Add New Contributor'
+  description: 'Add new bibliographic contributor.'
+  url: internal:/yabrm/yabrm_contributor/add
+  parent: nbbib_core.editor
+  weight: 20
+nbbib_core.editor.new-book:
+  title: 'Add New Book'
+  description: 'Add new book reference.'
+  url: internal:/yabrm/yabrm_book/add
+  parent: nbbib_core.editor
+  weight: 30
+nbbib_core.editor.new-book-section:
+  title: 'Add New Book Section'
+  description: 'Add new book section reference.'
+  url: internal:/yabrm/yabrm_book_section/add
+  parent: nbbib_core.editor
+  weight: 40
+nbbib_core.editor.new-journal:
+  title: 'Add New Journal Article'
+  description: 'Add new journal article reference.'
+  url: internal:/yabrm/yabrm_journal_article/add
+  parent: nbbib_core.editor
+  weight: 50
+nbbib_core.editor.new-thesis:
+  title: 'Add New Thesis'
+  description: 'Add new thesis reference.'
+  url: internal:/yabrm/yabrm_thesis/add
+  parent: nbbib_core.editor
+  weight: 60

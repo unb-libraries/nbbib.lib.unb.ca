@@ -4,3 +4,9 @@ contrib-alpha-pager:
     js/contrib-alpha-pager.js: {}
   dependencies:
     - core/jquery,
+
+toolbar-overrides:
+  version: VERSION
+  css:
+    theme:
+      css/custom-toolbar.css: {} 

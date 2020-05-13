@@ -24,6 +24,17 @@ function nbbib_core_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_page_attachments().
+ */
+function nbbib_core_page_attachments(array &$attachments) {
+  if (!\Drupal::currentUser()->hasPermission('access toolbar')) {
+    return;
+  }
+
+  $attachments['#attached']['library'][] = 'nbbib_core/toolbar-overrides';
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id) {

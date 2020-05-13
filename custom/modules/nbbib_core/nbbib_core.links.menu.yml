@@ -100,5 +100,5 @@ nbbib_core.editor.content:
   title: 'Content'
   description: 'Browse site content.'
   url: internal:/admin/content
-  parent: comp_core.editor
+  parent: nbbib_core.editor
   weight: 10

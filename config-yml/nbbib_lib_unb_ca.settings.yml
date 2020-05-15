@@ -2,7 +2,7 @@ favicon:
   mimetype: image/vnd.microsoft.icon
   path: ''
   url: 'http://localhost:3097/themes/contrib/unb_lib_theme/favicon.ico'
-  use_default: 1
+  use_default: 0
 schemas:
   bootstrap: 8000
   unb_lib_theme: 8000

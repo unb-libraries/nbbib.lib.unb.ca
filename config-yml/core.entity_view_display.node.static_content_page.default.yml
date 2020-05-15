@@ -1,0 +1,30 @@
+uuid: 01e5f232-db92-4ac6-8f30-93d4a4faf9e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.static_content_page.body
+    - node.type.static_content_page
+  module:
+    - text
+    - user
+id: node.static_content_page.default
+targetEntityType: node
+bundle: static_content_page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  search_api_excerpt: true

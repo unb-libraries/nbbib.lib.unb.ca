@@ -31,3 +31,7 @@ permissions:
   - 'view published book section reference entities'
   - 'view published journal article reference entities'
   - 'view published thesis reference entities'
+  - 'view unpublished book reference entities'
+  - 'view unpublished book section reference entities'
+  - 'view unpublished journal article reference entities'
+  - 'view unpublished thesis reference entities'

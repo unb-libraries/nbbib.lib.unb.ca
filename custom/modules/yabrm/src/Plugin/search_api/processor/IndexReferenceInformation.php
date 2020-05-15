@@ -142,6 +142,14 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $properties['date_display'] = new ProcessorProperty($definition);
 
       $definition = [
+        'label' => $this->t('Published'),
+        'description' => $this->t('A flag indicating if the reference record is published.'),
+        'type' => 'boolean',
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['published'] = new ProcessorProperty($definition);
+
+      $definition = [
         'label' => $this->t('Reference Citation'),
         'description' => $this->t('The citation of the reference.'),
         'type' => 'search_api_html',
@@ -287,6 +295,13 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         ->filterForPropertyPath($item->getFields(), NULL, 'date_display');
       foreach ($fields as $field) {
         $field->addValue($yabrm_entity->getDisplayDate());
+      }
+
+      // Display date.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'published');
+      foreach ($fields as $field) {
+        $field->addValue($yabrm_entity->isPublished());
       }
 
       // Citation view mode.

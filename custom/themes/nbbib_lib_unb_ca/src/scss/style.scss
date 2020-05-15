@@ -21,6 +21,15 @@ a[href='/user/password'] {
   visibility: hidden;
 }
 
+// Bibliographic reference lister column sort.
+#view-bibliographic-type-table-column,
+#view-date-sort-table-column {
+  width: 8rem;
+}
+#view-published-table-column {
+  width: 12rem;
+}
+
 // H1.
 div.region-content > h1 {
   margin-top: 0 !important;

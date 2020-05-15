@@ -313,65 +313,55 @@ field_settings:
     property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
     type: integer
     dependencies:
-      module:
-        - yabrm
-        - paragraphs
-        - yabrm
-        - yabrm
       config:
         - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
   id_1:
     label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
     datasource_id: 'entity:yabrm_book'
     property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
     type: integer
     dependencies:
-      module:
-        - yabrm
-        - paragraphs
-        - yabrm
-        - yabrm
       config:
         - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
   id_2:
     label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
     datasource_id: 'entity:yabrm_book_section'
     property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
     type: integer
     dependencies:
-      module:
-        - yabrm
-        - paragraphs
-        - yabrm
-        - yabrm
       config:
         - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
   id_3:
     label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
     datasource_id: 'entity:yabrm_journal_article'
     property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
     type: integer
     dependencies:
-      module:
-        - yabrm
-        - paragraphs
-        - yabrm
-        - yabrm
       config:
         - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
   id_4:
     label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
     datasource_id: 'entity:yabrm_thesis'
     property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
     type: integer
     dependencies:
-      module:
-        - yabrm
-        - paragraphs
-        - yabrm
-        - yabrm
       config:
         - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
   isbn:
     label: ISBN
     datasource_id: 'entity:yabrm_book'
@@ -716,6 +706,10 @@ field_settings:
     label: 'Publication Year'
     property_path: publication_year
     type: integer
+  published:
+    label: Published
+    property_path: published
+    type: boolean
   publisher:
     label: Publisher
     property_path: publisher

@@ -60,13 +60,13 @@ nbbib_core.editor.content:
   parent: nbbib_core.editor
   weight: 10
 nbbib_core.editor.content.bibliography:
-  title: 'Bibliography'
+  title: 'Bibliography Records'
   description: 'Bibliographic references overview.'
   url: internal:/bibliography-lister
   parent: nbbib_core.editor.content
   weight: 10
 nbbib_core.editor.content.other:
-  title: 'Other'
+  title: 'Pages'
   description: 'Other site content.'
   url: internal:/admin/content
   parent: nbbib_core.editor.content

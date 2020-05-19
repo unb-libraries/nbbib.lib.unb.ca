@@ -150,6 +150,14 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $properties['published'] = new ProcessorProperty($definition);
 
       $definition = [
+        'label' => $this->t('Last Updated'),
+        'description' => $this->t('A timestamp for the last time the entity was updated.'),
+        'type' => 'timestamp',
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['changed'] = new ProcessorProperty($definition);
+
+      $definition = [
         'label' => $this->t('Reference Citation'),
         'description' => $this->t('The citation of the reference.'),
         'type' => 'search_api_html',
@@ -297,11 +305,18 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         $field->addValue($yabrm_entity->getDisplayDate());
       }
 
-      // Display date.
+      // Publishing status.
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'published');
       foreach ($fields as $field) {
         $field->addValue($yabrm_entity->isPublished());
+      }
+
+      // Last updated.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'changed');
+      foreach ($fields as $field) {
+        $field->addValue($yabrm_entity->getChangedTime());
       }
 
       // Citation view mode.

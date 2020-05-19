@@ -80,6 +80,7 @@ display:
             bibliographic_title: bibliographic_title
             bibliographic_authors: bibliographic_authors
             published: published
+            changed: changed
             search_api_operations: search_api_operations
           info:
             date_display:
@@ -124,12 +125,19 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
+            changed:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             search_api_operations:
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-          default: bibliographic_type
+          default: changed
           empty_table: false
       row:
         type: fields
@@ -465,6 +473,62 @@ display:
           multi_type: separator
           multi_separator: ', '
           plugin_id: search_api_boolean
+        changed:
+          id: changed
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Updated
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          date_format: html_date
+          custom_date_format: ''
+          timezone: ''
+          link_to_item: false
+          use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
+          plugin_id: search_api_date
         search_api_operations:
           id: search_api_operations
           table: search_api_index_references_nbbib_lib_unb_ca

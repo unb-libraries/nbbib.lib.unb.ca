@@ -191,6 +191,10 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  changed:
+    label: 'Last Updated'
+    property_path: changed
+    type: date
   collections:
     label: Collection(s)
     datasource_id: 'entity:yabrm_biblio_reference'

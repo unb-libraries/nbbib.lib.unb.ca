@@ -3,7 +3,7 @@ nbbib_core.home:
   description: 'Home'
   parent: main
   menu_name: main
-  route_name: nbbib_core.home
+  route_name: <front>
   weight: 10
 nbbib_core.biblio:
   title: 'Bibliography'
@@ -39,7 +39,7 @@ nbbib_core.about:
   description: 'About'
   parent: main
   menu_name: main
-  route_name: nbbib_core.about
+  url: internal:/about
   weight: 60
 
 # Admin toolbar.

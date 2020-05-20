@@ -20,16 +20,16 @@ Feature: Core
 
   Scenario: Logged in contributors can add data
     Given I am logged in as a user with the "nb_bibliography_contributor" role
-    When I visit "/"
+    When I visit "/bibliography"
     Then I should see the link "New Brunswick Bibliography"
 
   Scenario: Logged in contributors can add references and contributors
     Given I am logged in as a user with the "nb_bibliography_contributor" role
-    When I visit "/"
+    When I visit "/bibliography"
     And I click "New Brunswick Bibliography"
     Then I should see "Content"
     And I should see "Add New Book"
 
   Scenario: Anonymous contributors cannot add data
-    When I visit "/"
+    When I visit "/bibliography"
     Then I should not see the link "New Brunswick Bibliography"

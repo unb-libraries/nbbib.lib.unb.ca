@@ -15,7 +15,7 @@ Feature: Core
       | Test user |      1 |
     When I am logged in as "Test user"
     And I visit "/bibliography"
-    Then I should see "Displaying"
+    Then I should see "Keywords"
     And I should not see the link "New Brunswick Bibliography"
 
   Scenario: Logged in contributors can add data

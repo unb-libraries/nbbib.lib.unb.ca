@@ -11,6 +11,7 @@
 // Text format help.
 // User register and reset password links.
 // Topics filter.
+// Acount-edit links.
 div.field--name-user-id,
 button.tabledrag-toggle-weight,
 div.description.help-block,
@@ -19,6 +20,12 @@ div.form-item + div.filter-wrapper.form-inline.form-group.js-form-wrapper,
 a[href='/user/register'],
 a[href='/user/password'] {
   visibility: hidden;
+}
+
+// Don't display restricted account-edit toolbar links.
+.toolbar-menu .account,
+.toolbar-menu .account-edit {
+  display: none;
 }
 
 // Bibliographic reference lister columns.

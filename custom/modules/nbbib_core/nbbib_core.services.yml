@@ -1,0 +1,5 @@
+services:
+  nbbib_core.route_subscriber:
+    class: Drupal\nbbib_core\EventSubscriber\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

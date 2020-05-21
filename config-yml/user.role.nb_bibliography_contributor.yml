@@ -18,6 +18,7 @@ permissions:
   - 'delete book section reference entities'
   - 'delete journal article reference entities'
   - 'delete thesis reference entities'
+  - 'edit any static_content_page content'
   - 'edit bibliographic collection entities'
   - 'edit bibliographic contributor entities'
   - 'edit book reference entities'

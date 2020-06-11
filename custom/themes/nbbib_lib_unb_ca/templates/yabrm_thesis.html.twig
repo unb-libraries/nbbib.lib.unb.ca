@@ -38,6 +38,12 @@
               <div class="col-sm-6">Item Type</div>
               <div class="col-sm-6">Thesis</div>
             </div>
+            {% if content.num_pages|field_value %}
+              <div id="ref-series" class="row">
+                <div class="col-sm-6">Number of Pages</div>
+                <div class="col-sm-6">{{ content.num_pages|field_value }}</div>
+              </div>
+            {% endif %}
             {% if content.series|field_value %}
               <div id="ref-series" class="row">
                 <div class="col-sm-6">Series</div>

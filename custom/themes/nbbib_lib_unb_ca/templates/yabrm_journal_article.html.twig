@@ -180,17 +180,17 @@
         {% endif %}
       </div>
 
-      <div id="ref-topics">
-        {% if content.topics|field_value %}
+      {%- if content.topics|field_value -%}
+        <div id="ref-topics">
           <b>Topics: </b>
 
           <span>
             {%- for topic in content.topics|field_value -%}
-              {% set tname = topic['#options']['entity'].name() %}
-              {% set tid = topic['#options']['entity'].id() %}
+              {%- set tname = topic['#options']['entity'].name() -%}
+              {%- set tid = topic['#options']['entity'].id() -%}
 
               {%- if not loop.first -%}
-                {{ ", " }}
+                {{- ", " -}}
               {%- endif -%}
 
               <a href ="/bibliography?topics={{ tid }}">
@@ -198,8 +198,8 @@
               </a>
             {%- endfor -%}
           </span>
-        {% endif %}
-      </div>
+        </div>
+      {%- endif -%}
       <br>
 
     </div>

@@ -1516,6 +1516,52 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_text
+        topics:
+          id: topics
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: topics
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: topics_op
+            label: Topics
+            description: ''
+            use_operator: false
+            operator: topics_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: topics
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              nb_bibliography_contributor: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_numeric
       filter_groups:
         operator: AND
         groups:

@@ -1150,53 +1150,6 @@ display:
           min_length: null
           fields: {  }
           plugin_id: search_api_fulltext
-        bibliographic_type:
-          id: bibliographic_type
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: and
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: bibliographic_type_op
-            label: 'Reference Type'
-            description: ''
-            use_operator: false
-            operator: bibliographic_type_op
-            identifier: bibliographic_type
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              anonymous: '0'
-              authenticated: '0'
-              nb_bibliography_contributor: '0'
-            placeholder: ''
-            min_placeholder: ''
-            max_placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          parse_mode: terms
-          min_length: ''
-          fields:
-            bibliographic_type: bibliographic_type
-          plugin_id: search_api_text
         bibliographic_title:
           id: bibliographic_title
           table: search_api_index_references_nbbib_lib_unb_ca
@@ -1515,6 +1468,53 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+          plugin_id: search_api_text
+        bibliographic_type:
+          id: bibliographic_type
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: bibliographic_type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: and
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: bibliographic_type_op
+            label: 'Reference Type'
+            description: ''
+            use_operator: false
+            operator: bibliographic_type_op
+            identifier: bibliographic_type
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              anonymous: '0'
+              authenticated: '0'
+              nb_bibliography_contributor: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          parse_mode: terms
+          min_length: ''
+          fields:
+            bibliographic_type: bibliographic_type
           plugin_id: search_api_text
         topics:
           id: topics

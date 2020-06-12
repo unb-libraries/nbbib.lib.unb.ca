@@ -1,4 +1,4 @@
-uuid: b8a935d2-1cbd-43f5-ad3b-c81d729fed72
+uuid: dbda661d-e4c3-45c6-8acb-8c6247d98214
 langcode: en
 status: true
 dependencies:
@@ -37,10 +37,10 @@ settings:
           items:
             - Source
   plugins:
-    stylescombo:
-      styles: ''
     language:
       language_list: un
+    stylescombo:
+      styles: ''
 image_upload:
   status: false
   scheme: public

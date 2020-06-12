@@ -214,6 +214,12 @@ div.attachment-before {
   width: 96%;
 }
 
+// Hide unused form controls.
+// All revision log messages.
+[id*='revision-log-message-'] {
+  display: none;
+}
+
 // Reference entity display.
 // Reference.
 div.yabrm-reference {

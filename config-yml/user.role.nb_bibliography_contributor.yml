@@ -41,7 +41,6 @@ permissions:
   - 'revert all revisions'
   - 'revert all thesis reference revisions'
   - 'revert static_content_page revisions'
-  - 'use text format restricted_html'
   - 'use text format unb_libraries'
   - 'view all bibliographic contributor revisions'
   - 'view all bibliographic reference revisions'

@@ -1476,8 +1476,9 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: and
-          value: ''
+          operator: '='
+          value:
+            value: ''
           group: 1
           exposed: true
           expose:
@@ -1486,6 +1487,8 @@ display:
             description: ''
             use_operator: false
             operator: bibliographic_type_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: bibliographic_type
             required: false
             remember: false
@@ -1497,8 +1500,6 @@ display:
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''

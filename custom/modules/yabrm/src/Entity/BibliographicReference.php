@@ -40,6 +40,7 @@ use Drupal\user\UserInterface;
  *   revision_table = "yabrm_biblio_reference_revision",
  *   revision_data_table = "yabrm_biblio_reference_field_revision",
  *   admin_permission = "administer bibliographic reference entities",
+ *   set_revision_ui = TRUE,
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",

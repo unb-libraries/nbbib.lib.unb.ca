@@ -35,6 +35,7 @@ use Drupal\yabrm\Entity\BibliographicReference;
  *   revision_table = "yabrm_thesis_revision",
  *   revision_data_table = "yabrm_thesis_field_revision",
  *   admin_permission = "administer thesis reference entities",
+ *   set_revision_ui = TRUE,
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",

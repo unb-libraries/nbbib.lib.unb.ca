@@ -39,6 +39,7 @@ use Drupal\user\UserInterface;
  *   revision_table = "yabrm_collection_revision",
  *   revision_data_table = "yabrm_collection_field_revision",
  *   admin_permission = "administer bibliographic collection entities",
+ *   set_revision_ui = TRUE,
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",

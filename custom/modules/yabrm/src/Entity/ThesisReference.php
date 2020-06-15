@@ -114,6 +114,7 @@ class ThesisReference extends BibliographicReference implements ThesisReferenceI
 
     $fields['num_pages'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Number of Pages'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -133,6 +134,7 @@ class ThesisReference extends BibliographicReference implements ThesisReferenceI
 
     $fields['place'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Place'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -152,6 +154,7 @@ class ThesisReference extends BibliographicReference implements ThesisReferenceI
 
     $fields['thesis_type'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Thesis Type'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,

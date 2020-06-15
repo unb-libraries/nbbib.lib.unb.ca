@@ -113,6 +113,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['title'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Title'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 1024,
         'text_processing' => 0,
@@ -133,6 +134,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['short_title'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Short Title'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -171,6 +173,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['publication_year'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Publication Year'))
+      ->setRevisionable(TRUE)
       ->addPropertyConstraints('value', [
         'Range' => [
           'min' => 800,
@@ -189,6 +192,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['publication_month'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Publication Month'))
+      ->setRevisionable(TRUE)
       ->addPropertyConstraints('value', [
         'Range' => [
           'min' => 1,
@@ -207,6 +211,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['publication_day'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Publication Day'))
+      ->setRevisionable(TRUE)
       ->addPropertyConstraints('value', [
         'Range' => [
           'min' => 1,
@@ -225,6 +230,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['contributors'] = BaseFieldDefinition::create('entity_reference_revisions')
       ->setLabel(t('Contributor(s)'))
+      ->setRevisionable(TRUE)
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setSettings(
         [
@@ -261,6 +267,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['url'] = BaseFieldDefinition::create('link')
       ->setLabel(t('URL'))
+      ->setRevisionable(TRUE)
       ->setDescription(t('The fully-qualified URL of the feed.'))
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setDisplayOptions('form', [
@@ -277,6 +284,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['abstract_note'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Abstract Note'))
+      ->setRevisionable(TRUE)
       ->setDescription(t('Abstract Note.'))
       ->setSettings([
         'default_value' => '',
@@ -299,6 +307,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['publisher'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Publisher'))
       ->setDescription(t('Publisher.'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 1024,
         'text_processing' => 0,
@@ -319,6 +328,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['language'] = BaseFieldDefinition::create('list_string')
       ->setLabel('Language(s)')
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setRevisionable(TRUE)
       ->setSettings([
         'allowed_values' => ['eng' => 'English', 'fre' => 'French'],
       ])
@@ -338,6 +348,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['rights'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Rights'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -358,6 +369,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['archive'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Archive(s)'))
       ->setDescription(t('The archives associated to the reference.'))
+      ->setRevisionable(TRUE)
       ->setSettings(
         [
           'target_type' => 'taxonomy_term',
@@ -372,7 +384,6 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       )
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setRequired(FALSE)
-      ->setRevisionable(FALSE)
       ->setDisplayOptions(
         'view',
         [
@@ -398,6 +409,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['archive_location'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Archive Location'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -417,6 +429,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['library_catalog'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Library Catalog'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -436,6 +449,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['call_number'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Call Number'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -455,6 +469,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['extra'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Extra'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'default_value' => '',
         'max_length' => 2048,
@@ -476,6 +491,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['physical_description'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Physical Description'))
       ->setDescription(t('Physical Description.'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'default_value' => '',
         'max_length' => 2048,
@@ -518,6 +534,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['notes'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Notes'))
       ->setDescription(t('Notes.'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'default_value' => '',
         'max_length' => 2048,
@@ -551,6 +568,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['collections'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Collection(s)'))
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setRevisionable(TRUE)
       ->setSettings(
         [
           'target_type' => 'yabrm_collection',
@@ -609,6 +627,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['topics'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Topics'))
       ->setDescription(t('The topics attributed to the reference.'))
+      ->setRevisionable(TRUE)
       ->setSettings(
         [
           'target_type' => 'taxonomy_term',
@@ -623,7 +642,6 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       )
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setRequired(FALSE)
-      ->setRevisionable(FALSE)
       ->setDisplayOptions(
         'view',
         [

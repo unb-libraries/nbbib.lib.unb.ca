@@ -189,6 +189,7 @@ class BookReference extends BibliographicReference implements BookReferenceInter
 
     $fields['isbn'] = BaseFieldDefinition::create('string')
       ->setLabel(t('ISBN'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -208,6 +209,7 @@ class BookReference extends BibliographicReference implements BookReferenceInter
 
     $fields['num_pages'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Number of Pages'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -227,6 +229,7 @@ class BookReference extends BibliographicReference implements BookReferenceInter
 
     $fields['volume'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Volume'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -246,6 +249,7 @@ class BookReference extends BibliographicReference implements BookReferenceInter
 
     $fields['num_volumes'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Number of Volumes'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -265,6 +269,7 @@ class BookReference extends BibliographicReference implements BookReferenceInter
 
     $fields['series'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Series'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -284,6 +289,7 @@ class BookReference extends BibliographicReference implements BookReferenceInter
 
     $fields['series_number'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Series Number'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -303,6 +309,7 @@ class BookReference extends BibliographicReference implements BookReferenceInter
 
     $fields['place'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Place'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -322,6 +329,7 @@ class BookReference extends BibliographicReference implements BookReferenceInter
 
     $fields['edition'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Edition'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,

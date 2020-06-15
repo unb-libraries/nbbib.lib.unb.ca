@@ -219,6 +219,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
 
     $fields['publication_title'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Publication Title'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -238,6 +239,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
 
     $fields['issn'] = BaseFieldDefinition::create('string')
       ->setLabel(t('ISSN'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -257,6 +259,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
 
     $fields['doi'] = BaseFieldDefinition::create('string')
       ->setLabel(t('DOI'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -276,6 +279,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
 
     $fields['pages'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Pages'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -295,6 +299,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
 
     $fields['issue'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Issue'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 64,
         'text_processing' => 0,
@@ -314,6 +319,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
 
     $fields['volume'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Volume'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 64,
         'text_processing' => 0,
@@ -333,6 +339,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
 
     $fields['journal_abbr'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Journal Abbreviation'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -352,6 +359,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
 
     $fields['series'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Series'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -371,6 +379,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
 
     $fields['series_text'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Series Text'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,
@@ -390,6 +399,7 @@ class JournalArticleReference extends BibliographicReference implements JournalA
 
     $fields['series_title'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Series Title'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
         'text_processing' => 0,

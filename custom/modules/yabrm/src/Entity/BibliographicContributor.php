@@ -420,7 +420,6 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Published'))
-      ->setRevisionable(TRUE)
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
@@ -442,7 +441,6 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setLabel(t('Picture'))
       ->setDescription(t('Picture of the contributor.'))
       ->setRequired(FALSE)
-      ->setRevisionable(FALSE)
       ->setDisplayOptions(
         'view',
         [
@@ -464,6 +462,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
     $fields['description'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Description'))
       ->setDescription(t('Description of the Bibliographic Contributor entity.'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'default_value' => '',
         'max_length' => 2048,

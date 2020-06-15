@@ -214,7 +214,6 @@ class BibliographicCollection extends RevisionableContentEntityBase implements B
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Authored by'))
       ->setDescription(t('The user ID of author of the Bibliographic Collection entity.'))
-      ->setRevisionable(TRUE)
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
       ->setTranslatable(TRUE)
@@ -261,6 +260,7 @@ class BibliographicCollection extends RevisionableContentEntityBase implements B
     $fields['description'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Description'))
       ->setDescription(t('Description of the Bibliographic Collection entity.'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'default_value' => '',
         'max_length' => 2048,
@@ -282,7 +282,6 @@ class BibliographicCollection extends RevisionableContentEntityBase implements B
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
       ->setDescription(t('A boolean indicating whether the Bibliographic Collection is published.'))
-      ->setRevisionable(TRUE)
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',

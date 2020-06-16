@@ -105,8 +105,6 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
     $form['revision']['#default_value'] = TRUE;
   }
 
-  kint($form);
-
   // Target all reference add/edit forms.
   $ref_forms = [
     'yabrm_book_add_form',

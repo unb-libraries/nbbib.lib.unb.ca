@@ -160,7 +160,8 @@ label[for='edit-search-api-fulltext'] {
     width: 96%;
   }
   // Filter (label + input).
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div {
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div,
+  form#views-exposed-form-content-page-1 > div > div {
     margin-bottom: 8px;
     width: 48%;
   }
@@ -171,6 +172,7 @@ label[for='edit-search-api-fulltext'] {
     width: 17%;
   }
   // Label.
+  form#views-exposed-form-content-page-1 > div > div > label,
   form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > label {
     margin-right: .5%;
     width: 34%;
@@ -182,6 +184,8 @@ label[for='edit-search-api-fulltext'] {
     width: 80.5%;
   }
   // Input and select wrapper.
+  form#views-exposed-form-content-page-1 > div > div > input,
+  form#views-exposed-form-content-page-1 > div > div > div.select-wrapper,
   form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > input,
   form#views-exposed-form-nb-bibliography-citations-page-1 > div > div >
   div.select-wrapper {
@@ -189,6 +193,7 @@ label[for='edit-search-api-fulltext'] {
     width: 60%;
   }
   // Select.
+  form#views-exposed-form-content-page-1 > div > div > div > select,
   form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > div >
   select {
     width: 100%;

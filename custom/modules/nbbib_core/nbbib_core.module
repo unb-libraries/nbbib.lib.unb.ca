@@ -97,10 +97,16 @@ function top_submit_handler(&$form, $handler) {
  * Implements hook_form_alter().
  */
 function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Enable content revision by default.
   if (!empty($form['new_revision'])) {
     $form['new_revision']['#default_value'] = TRUE;
   }
-  
+  elseif (!empty($form['revision'])) {
+    $form['revision']['#default_value'] = TRUE;
+  }
+
+  kint($form);
+
   // Target all reference add/edit forms.
   $ref_forms = [
     'yabrm_book_add_form',

@@ -17,3 +17,4 @@ permissions:
   - 'view published book section reference entities'
   - 'view published journal article reference entities'
   - 'view published thesis reference entities'
+  - 'view sp metadata'

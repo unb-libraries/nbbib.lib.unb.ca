@@ -29,4 +29,12 @@ function nbbib_core_install() {
       'status_code' => '301',
     ])->save();
   }
+
+  // Redirect SAML login.
+  Redirect::create([
+    'redirect_source' => 'login',
+    'redirect_redirect' => 'internal:/saml/login',
+    'language' => 'und',
+    'status_code' => '301',
+  ])->save();
 }

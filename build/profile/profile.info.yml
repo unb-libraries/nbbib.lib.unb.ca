@@ -46,15 +46,12 @@ dependencies:
   - entity_reference_revisions
   - externalauth
   - language
-  - ldap
-  - ldap_authentication
-  - ldap_servers
-  - ldap_user
   - nbbib_core
   - paragraphs
   - pathauto
   - redirect
   - redis
+  - samlauth
   - search_api
   - search_api_autocomplete
   - search_api_solr

@@ -8,6 +8,9 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+use Drupal\Core\Messenger\MessengerInterface;
 
 /**
  * Implements hook_theme().
@@ -187,6 +190,24 @@ function validate_contrib_subform($element, &$form_state) {
   elseif (!empty($first_name)) {
     $form_state->setErrorByName('contributors', t('Either institution or individual names are allowed for contributors. Not both.'));
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nbbib_core_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
+  $messenger = \Drupal::messenger();
+  $messenger->addMessage(
+    t('UNB/STU patrons with accounts should use the <strong>@auth_link</strong>.',
+      [
+        '@auth_link' => Link::fromTextAndUrl(
+          t('Secure Services Login'),
+          Url::fromUri('base:/saml/login')
+        )->toString(),
+      ]
+    ),
+    $messenger::TYPE_WARNING
+  );
 }
 
 /**

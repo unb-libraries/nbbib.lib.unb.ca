@@ -209,7 +209,7 @@ function nbbib_core_form_user_login_form_alter(&$form, FormStateInterface $form_
     $messenger::TYPE_WARNING
   );
 
-  array_push($form['#validate'], '_nbbib_core_validate_final');
+  array_push($form['#validate'], 'nbbib_core_validate_final');
 
 }
 

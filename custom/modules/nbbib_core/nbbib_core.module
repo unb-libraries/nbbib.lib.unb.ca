@@ -223,6 +223,7 @@ function nbbib_core_form_user_login_form_alter(&$form, FormStateInterface $form_
  */
 function nbbib_core_validate_final(array &$form, FormStateInterface $form_state) {
   $changed = FALSE;
+
   if (($errors = $form_state->getErrors()) && !empty($errors['name']) && $errors['name'] instanceof TranslatableMarkup) {
     $error = $errors['name']->getUntranslatedString();
     if (strpos($error, 'Unrecognized username or password') !== false) {
@@ -242,11 +243,8 @@ function nbbib_core_validate_final(array &$form, FormStateInterface $form_state)
         it is temporarily blocked. Please try again later.');
       $changed = TRUE;
     }
-    elseif (strpos($error, 'SAML users must sign in') !== false) {
-      $errors['name'] = t('UNB/STU account detected: please use the <em>Secure Services Login</em> as instructed.');
-      $changed = TRUE;
-    }
   }
+
   if ($changed) {
     // It's clear and reset or set the protected variable by name with
     // FormState::setFormState().

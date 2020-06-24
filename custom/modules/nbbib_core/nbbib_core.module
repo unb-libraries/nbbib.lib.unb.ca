@@ -294,7 +294,16 @@ function generate_names($first_name, $last_name, $institution_name) {
     $sort_name .= $last_name;
 
     if (!empty($first_name)) {
-      $name .= ', ' . $first_name;
+      $given_names = explode(' ', $first_name);
+
+      if (!empty($given_names[1])) {
+        $first_name = $given_names[0];
+        $middle_init = substr($given_names[1], 0, 1);
+        $name .= ", $first_name $middle_init.";
+      }
+      else {
+        $name .= ", $first_name";
+      }
     }
   }
   else {

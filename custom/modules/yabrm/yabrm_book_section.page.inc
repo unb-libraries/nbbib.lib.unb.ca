@@ -63,6 +63,9 @@ function template_preprocess_yabrm_book_section(array &$variables) {
       $contrib = BibliographicContributor::load($cid);
 
       if (!empty($contrib)) {
+        $c_name = isset($contrib->get('name')->getValue()[0]['value']) ?
+          $contrib->get('name')->getValue()[0]['value'] : NULL;
+
         $c_iname = isset($contrib->get('institution_name')->getValue()[0]['value']) ?
           $contrib->get('institution_name')->getValue()[0]['value'] : NULL;
 
@@ -79,12 +82,14 @@ function template_preprocess_yabrm_book_section(array &$variables) {
         // Pass names for different roles.
         if (strtolower($role) == 'author') {
           $variables['content']['authors'][] = [
+            'name' => $c_name,
             'first_name' => $first_name,
             'last_name' => $last_name,
           ];
         }
         elseif (strtolower($role) == 'editor') {
           $variables['content']['editors'][] = [
+            'name' => $c_name,
             'first_name' => $first_name,
             'last_name' => $last_name,
           ];
@@ -131,7 +136,7 @@ function template_preprocess_yabrm_book_section(array &$variables) {
   }
 
   // Build citation elements.
-  $authors = empty($variables['content']['auhors']) ? NULL
+  $authors = empty($variables['content']['authors']) ? NULL
     : $variables['content']['authors'];
   $editors = empty($variables['content']['editors']) ? NULL
     : $variables['content']['editors'];
@@ -264,18 +269,11 @@ function book_section_contribs_wad(array $contributors) {
         }
       }
       // Content.
-      $contribs_wad .= $contributor['last_name'];
-      // If there's a first name.
-      if (!empty($contributor['first_name'])) {
-        // First name initial.
-        $contribs_wad .= ', ' . $contributor['first_name'] . '.';
-        // If last author, the initial period is final.
-        $period = ($contributor === end($contributors));
-      }
+      $contribs_wad .= $contributor['name'];
     }
   }
   // If no final period, add it.
-  if (!$period) {
+  if (!end($contributors)['first_name']) {
     $contribs_wad .= '.';
   }
 

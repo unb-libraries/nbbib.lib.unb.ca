@@ -162,16 +162,9 @@ function template_preprocess_yabrm_book_section(array &$variables) {
   $url = empty($yabrm_book_section->get('url')->getValue()[0]['uri']) ? NULL
     : $yabrm_book_section->get('url')->getValue()[0]['uri'];
 
-  $authors_wad = '';
   $title_wad = '';
-  $editors_wad = '';
+  $contribs_wad = '';
   $pub_wad = '';
-
-  // Authors.
-  if ($authors) {
-    $authors_wad = book_section_contribs_wad($authors);
-    $variables['content']['authors_wad'] = $authors_wad;
-  }
 
   // URL alias.
   $variables['content']['url_alias'] = $yabrm_book_section->url();
@@ -185,11 +178,16 @@ function template_preprocess_yabrm_book_section(array &$variables) {
     }
     $variables['content']['title_wad'] = $title_wad;
   }
-  // Editors.
-  if ($editors) {
-    $editors_wad = 'Edited by ' . book_section_contribs_wad($editors);
-    $variables['content']['editors_wad'] = $editors_wad;
+
+  // Contributors.
+  if ($authors) {
+    $contribs_wad = book_section_contribs_wad($authors);
   }
+  elseif ($editors) {
+    $contribs_wad = book_section_contribs_wad($editors);
+  }
+
+  $variables['content']['contribs_wad'] = $contribs_wad;
 
   // Publishing.
   if ($place) {
@@ -246,34 +244,39 @@ function template_preprocess_yabrm_book_section(array &$variables) {
  *
  * @param array $contributors
  *   An associative array containing:
+ *   - name: Contributor display name.
  *   - first_name: Contributor first name.
  *   - last_name: Contributor last name.
  */
 function book_section_contribs_wad(array $contributors) {
-  $period = FALSE;
   $contribs_wad = '';
+  $et_al = FALSE;
 
-  foreach ($contributors as $contributor) {
-    // Only act if there's a last name.
-    if (!empty($contributor['last_name'])) {
-      // If not first.
-      if ($contributor != reset($contributors)) {
-        // Leading punctuation.
-        // If not last.
-        if ($contributor === end($contributors)) {
-          $contribs_wad .= ', and ';
-        }
-        // Somewhere in between.
-        else {
-          $contribs_wad .= ', ';
-        }
+  // Only act if there's a name.
+  if (!empty($contributors[0]['name'])) {
+    // Content.
+    $contribs_wad .= $contributors[0]['name'];
+    // If there is a second.
+    if (!empty($contributors[1]['name'])) {
+      // If there is a third.
+      if (!empty($contributors[2]['name'])) {
+        $et_al = TRUE;
+        $contribs_wad .= ', ';
       }
-      // Content.
-      $contribs_wad .= $contributor['name'];
+      else {
+        $contribs_wad .= ' and ';
+      }
+
+      $contribs_wad .= $contributors[1]['name'];
+
+      if ($et_al) {
+        $contribs_wad .= ' et al';
+      }
     }
   }
-  // If no final period, add it.
-  if (!end($contributors)['first_name']) {
+
+  // Only add period if last character is not punctuation.
+  if (!preg_match("/[.!?,;:]$/", $contribs_wad)) {
     $contribs_wad .= '.';
   }
 

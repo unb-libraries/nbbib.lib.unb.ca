@@ -16,30 +16,18 @@
  */
 #}
 
-<div{{ attributes.addClass('yabrm-contributor', 'contrib-semantic') }}>
+<div{{ attributes.addClass('yabrm-contributor', 'contrib-layout') }}>
   {% if content %}
-    <dl>
-      <div>
-        <dt>{{ content.picture|field_label }}</dt>
-        <dd>{{ content.picture|field_value }}</dd>
+    <div class="container">
+      <div class="row">
+        <div id="contrib-description" class="col-sm-9">
+          {{ content.description|field_value }}
+        </div>
+        <div id="contrib-picture" class="col-sm-3">
+          {{ content.picture|field_value }}
+        </div>
       </div>
-      <div>
-        <dt>{{ content.first_name|field_label }}</dt>
-        <dd>{{ content.first_name|field_value }}</dd>
-      </div>
-      <div class="dl-grouped">
-        <dt>{{ content.last_name|field_label }}</dt>
-        <dd>{{ content.last_name|field_value }}</dd>
-      </div>
-      <div class="dl-grouped">
-        <dt>{{ content.institution_name|field_label }}</dt>
-        <dd>{{ content.institution_name|field_value }}</dd>
-      </div>
-      <div class="dl-grouped">
-        <dt>{{ content.sort_name|field_label }}</dt>
-        <dd>{{ content.sort_name|field_value }}</dd>
-      </div>
-    </dl>
+    </div>
 
     <div id="contributor-works">
       {% set cid = content.name['#object'].id() %}

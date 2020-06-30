@@ -82,13 +82,15 @@ function template_preprocess_yabrm_contributor(array &$variables) {
       $iid = $img_item->get('target_id')->getValue();
       $file = File::load($iid);
 
-      $variables['content']['cover'] = [
-        '#theme' => 'image',
-        '#uri' => $file->getFileUri(),
-        '#width' => '150',
-        '#height' => '240',
-        '#style' => '16_10_image',
-      ];
+      if ($file) {
+        $variables['content']['cover'] = [
+          '#theme' => 'image',
+          '#uri' => $file->getFileUri(),
+          '#width' => '150',
+          '#height' => '240',
+          '#style' => '16_10_image',
+        ];
+      }
     }
   }
 }

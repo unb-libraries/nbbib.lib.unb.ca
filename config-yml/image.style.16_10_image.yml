@@ -2,8 +2,8 @@ uuid: fcdd08fd-bd12-4176-8375-d0444e1af962
 langcode: en
 status: true
 dependencies: {  }
-name: 16_10_image_320x200
-label: '16:10 Image (320x200)'
+name: 16_10_image
+label: '16:10 Image'
 effects:
   26e6b82e-54f2-4f7f-a9c9-f182a47ee02a:
     uuid: 26e6b82e-54f2-4f7f-a9c9-f182a47ee02a

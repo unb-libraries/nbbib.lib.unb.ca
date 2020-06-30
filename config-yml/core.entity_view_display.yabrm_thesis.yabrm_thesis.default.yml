@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.16_10_image_320x200
+    - image.style.16_10_image
   module:
     - entity_reference_revisions
     - image
@@ -62,7 +62,7 @@ content:
     weight: 1
     region: content
     settings:
-      image_style: 16_10_image_320x200
+      image_style: 16_10_image
       image_link: ''
     third_party_settings: {  }
   extra:

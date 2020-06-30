@@ -20,11 +20,15 @@
   {% if content %}
     <div class="container">
       <div class="row">
-        <div id="contrib-description" class="col-sm-9">
+        <div id="contrib-description" class="col-sm-8">
           {{ content.description|field_value }}
         </div>
-        <div id="contrib-picture" class="col-sm-3">
-          {{ content.picture|field_value }}
+        <div id="contrib-picture" class="col-sm-4">
+          {% if content.picture|field_value %}
+            {{ content.picture|field_value }}
+          {% elseif content.cover %}
+            {{ content.cover }}
+          {% endif %}
         </div>
       </div>
     </div>

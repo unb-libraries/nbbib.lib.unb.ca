@@ -87,7 +87,7 @@ function template_preprocess_yabrm_contributor(array &$variables) {
         '#uri' => $file->getFileUri(),
         '#width' => '150',
         '#height' => '240',
-        '#style' => '16_10_image_320x200',
+        '#style' => '16_10_image',
       ];
     }
   }

@@ -35,7 +35,7 @@ function nbbib_lib_unb_ca_preprocess_menu_local_action(&$variables) {
     'Add content',
   ];
 
-  if (in_array($variables['link']['title'], $titles)) {
+  if (in_array($variables['link']['#title'], $titles)) {
     $variables['link']['#options']['attributes']['class'] = [];
     $variables['link']['#options']['attributes']['class'][] = 'btn';
     $variables['link']['#options']['attributes']['class'][] = 'btn-success';

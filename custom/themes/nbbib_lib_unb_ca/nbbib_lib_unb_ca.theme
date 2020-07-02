@@ -17,3 +17,27 @@ function nbbib_lib_unb_ca_preprocess_field(&$variables, $hook) {
     $variables['items'][0]['content']['#context']['value'] = $full_name;
   }
 }
+
+/* Extends template_preprocess_menu_local_action().
+ *
+ * Override Bootstrap small button classes for selected task links.
+ *
+ * Default template: menu-local-action.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: A render element containing:
+ *     - #link: A menu link array with 'title', 'url', and (optionally)
+ *       'localized_options' keys.
+ */
+function nbbib_lib_unb_ca_preprocess_menu_local_action(&$variables) {
+  $titles = [
+    'Add content',
+  ];
+
+  if (in_array($variables['link']['title'], $titles)) {
+    $variables['link']['#options']['attributes']['class'] = [];
+    $variables['link']['#options']['attributes']['class'][] = 'btn';
+    $variables['link']['#options']['attributes']['class'][] = 'btn-success';
+  }
+}

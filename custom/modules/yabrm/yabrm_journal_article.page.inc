@@ -89,7 +89,7 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
         }
         elseif (strtolower($role) == 'editor') {
           $variables['content']['editors'][] = [
-            'name' => $c_name,
+            'name' => "$c_name (editor)",
             'first_name' => $first_name,
             'last_name' => $last_name,
           ];

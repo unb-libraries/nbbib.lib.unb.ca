@@ -330,8 +330,13 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setRevisionable(TRUE)
       ->setSettings([
-        'allowed_values' => ['eng' => 'English', 'fre' => 'French'],
-      ])
+        'allowed_values' => [
+          'mic' => 'Mi’kmaq/Mi’kmaw/Micmac',
+          'eng' => 'English',
+          'fre' => 'French',
+          'es' => 'Spanish',
+          'de' => 'German',
+        ])
       ->setDescription('Select the language of this reference')
       ->setDisplayOptions('form', [
         'type' => 'options_buttons',

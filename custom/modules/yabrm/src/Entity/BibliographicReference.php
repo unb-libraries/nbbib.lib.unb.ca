@@ -336,7 +336,8 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
           'fre' => 'French',
           'es' => 'Spanish',
           'de' => 'German',
-        ])
+        ],
+      ])
       ->setDescription('Select the language of this reference')
       ->setDisplayOptions('form', [
         'type' => 'options_buttons',

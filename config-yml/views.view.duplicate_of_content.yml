@@ -1,4 +1,4 @@
-uuid: 241dd68f-38d4-4f3d-9fcf-3adc6fc36a49
+uuid: 41863a08-73ae-4b7e-b883-9561455f8c01
 langcode: en
 status: true
 dependencies:
@@ -7,8 +7,8 @@ dependencies:
     - user
 _core:
   default_config_hash: tS8PbpJX90aRFC3-UTgXzdqkq7_2frk2pz4TMijEebM
-id: content
-label: Content
+id: duplicate_of_content
+label: 'Duplicate of Content'
 module: node
 description: 'Find and manage content.'
 tag: default
@@ -140,6 +140,22 @@ display:
       row:
         type: fields
       fields:
+        node_bulk_form:
+          id: node_bulk_form
+          table: node
+          field: node_bulk_form
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+          element_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          plugin_id: node_bulk_form
+          entity_type: node
         title:
           id: title
           table: node_field_data
@@ -472,6 +488,49 @@ display:
           plugin_id: boolean
           entity_type: node
           entity_field: status
+        langcode:
+          id: langcode
+          table: node_field_data
+          field: langcode
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: langcode_op
+            label: Language
+            description: ''
+            use_operator: false
+            operator: langcode_op
+            identifier: langcode
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+            reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: language
+          entity_type: node
+          entity_field: langcode
         status_extra:
           id: status_extra
           table: node_field_data
@@ -522,7 +581,7 @@ display:
         - user
         - 'user.node_grants:view'
         - user.permissions
-      max-age: -1
+      max-age: 0
       tags: {  }
   page_1:
     display_options:
@@ -554,5 +613,5 @@ display:
         - user
         - 'user.node_grants:view'
         - user.permissions
-      max-age: -1
+      max-age: 0
       tags: {  }

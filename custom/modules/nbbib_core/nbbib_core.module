@@ -209,7 +209,8 @@ function nbbib_core_form_user_login_form_alter(&$form, FormStateInterface $form_
           )->toString(),
         ]
       ),
-      $messenger::TYPE_WARNING
+      $messenger::TYPE_WARNING,
+      FALSE
     );
 
     array_push($form['#validate'], 'nbbib_core_validate_final');
@@ -240,6 +241,26 @@ function nbbib_core_validate_final(array &$form, FormStateInterface $form_state)
       $errors['name'] = t('There have been more than 5 failed login attempts for this account and
         it is temporarily blocked. Please try again later.');
       $changed = TRUE;
+    }
+    elseif (strpos($error, 'sign in with SSO') !== false) {
+      $errors['name'] = t('UNB/STU account detected: please sign in using <strong>@auth_link</strong>.',
+        [
+          '@auth_link' => Link::fromTextAndUrl(
+            t('Secure Services Login'),
+            Url::fromUri('base:/saml/login')
+          )->toString(),
+        ]
+      );
+      $changed = TRUE;
+
+      // SAML warning message redundant in this context.
+      $messenger = \Drupal::messenger();
+      $messenger->deleteByType($messenger::TYPE_WARNING);
+    }
+    else {
+     // Quick & dirty purge SAML warning message on no authentication error.
+     $messenger = \Drupal::messenger();
+     $messenger->deleteByType($messenger::TYPE_WARNING);
     }
   }
 

@@ -331,11 +331,12 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setRevisionable(TRUE)
       ->setSettings([
         'allowed_values' => [
-          'mic' => 'Mi’kmaq/Mi’kmaw/Micmac',
           'eng' => 'English',
           'fre' => 'French',
-          'es' => 'Spanish',
-          'de' => 'German',
+          'deu' => 'German',
+          'mic' => 'Mi’kmaq/Mi’kmaw/Micmac',
+          'spa' => 'Spanish',
+          'pqm' => 'Wolastoqey-Passamaquoddy',
         ],
       ])
       ->setDescription('Select the language of this reference')

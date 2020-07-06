@@ -125,6 +125,10 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   $lang_codes = [
     'eng' => 'English',
     'fre' => 'French',
+    'deu' => 'German',
+    'mic' => 'Mi’kmaq/Mi’kmaw/Micmac',
+    'spa' => 'Spanish',
+    'pqm' => 'Wolastoqey-Passamaquoddy',
   ];
 
   $i = 0;

@@ -122,9 +122,14 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
   $variables['content']['pub_year'] = $pub_year;
 
   // Process languages.
+  // Process languages.
   $lang_codes = [
     'eng' => 'English',
     'fre' => 'French',
+    'deu' => 'German',
+    'mic' => 'Mi’kmaq/Mi’kmaw/Micmac',
+    'spa' => 'Spanish',
+    'pqm' => 'Wolastoqey-Passamaquoddy',
   ];
 
   $i = 0;

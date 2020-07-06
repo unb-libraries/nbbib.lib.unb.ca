@@ -78,15 +78,21 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
           $language = 'fre';
         }
         elseif (strstr($language, 'spanish') || strstr('spanish', $language)) {
-          $language = 'es';
+          $language = 'spa';
         }
         elseif (strstr($language, 'german') || strstr('german', $language)) {
-          $language = 'de';
+          $language = 'deu';
         }
         elseif (strstr($language, "mi'kmaq") || strstr("mi'kmaq", $language) ||
                 strstr($language, "mi'kmaw") || strstr("mi'kmaw", $language) ||
                 strstr($language, "micmac") || strstr("micmac", $language)) {
           $language = 'mic';
+        }
+        elseif (strstr($language, "wolastoqey") || strstr("wolastoqey", $language) ||
+                strstr($language, "passamaquoddy") || strstr("passamaquoddy", $language) ||
+                strstr($language, "maliseet") || strstr("maliseet", $language) ||
+                strstr($language, "malecite") || strstr("malecite", $language)) {
+          $language = 'pqm';
         }
         else {
           $language = 'eng';

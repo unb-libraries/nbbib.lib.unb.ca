@@ -129,7 +129,7 @@ function template_preprocess_yabrm_book(array &$variables) {
     'deu' => 'German',
     'mic' => 'Mi’kmaq/Mi’kmaw/Micmac',
     'spa' => 'Spanish',
-    'pqm' => 'Wolastoqey-Passamaquoddy',
+    'pqm' => 'Wolastoqey/Maliseet',
   ];
 
   $i = 0;

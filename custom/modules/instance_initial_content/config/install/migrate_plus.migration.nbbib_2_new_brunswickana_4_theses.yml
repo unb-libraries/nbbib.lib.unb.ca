@@ -93,6 +93,7 @@ process:
   notes: notes
   notes_private: notes_private
   translator: translator
+  physical_description: physical_description
 
 destination:
   plugin: entity:yabrm_thesis

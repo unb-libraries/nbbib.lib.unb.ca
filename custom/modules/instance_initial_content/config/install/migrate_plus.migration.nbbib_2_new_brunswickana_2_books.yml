@@ -110,6 +110,7 @@ process:
   publisher: publisher
   place: place
   edition: edition
+  physical_description: physical_description
 
 destination:
   plugin: entity:yabrm_book

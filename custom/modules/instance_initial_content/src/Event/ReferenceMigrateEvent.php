@@ -115,6 +115,32 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
       ];
 
       $row->setSourceProperty('url', $url);
+
+      // Number of pages.
+      $source_pages = trim($row->getSourceProperty('num_pages'));
+
+      if (is_numeric($source_pages)) {
+        // If pages value is an integer, just pass to corresponding field.
+        $row->setSourceProperty('num_pages', $source_pages);
+      }
+      else {
+        // Otherwise try to split string on double slash delimiter.
+        $split_pages = explode('//', $source_pages);
+
+        // If delimiter not in string or string before delimiter not numeric...
+        if ($split_pages[0] == $source_pages || !is_numeric($split_pages[0])) {
+          // Pass full string to physical description.
+          $row->setSourceProperty('physical_description', $source_pages);
+          // Clear default source num_pages (contains direct migrated value).
+          $row->setSourceProperty('num_pages', NULL);
+        }
+        else {
+          // Otherwise pass substring before delimiter to pages...
+          $row->setSourceProperty('num_pages', $split_pages[0]);
+          // And the rest to physical description.
+          $row->setSourceProperty('physical_description', $split_pages[1]);
+        }
+      }
     }
   }
 

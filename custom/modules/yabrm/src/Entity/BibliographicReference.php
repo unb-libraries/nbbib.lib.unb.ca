@@ -336,7 +336,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
           'deu' => 'German',
           'mic' => 'Mi’kmaq/Mi’kmaw/Micmac',
           'spa' => 'Spanish',
-          'pqm' => 'Wolastoqey-Passamaquoddy',
+          'pqm' => 'Wolastoqey/Maliseet',
         ],
       ])
       ->setDescription('Select the language of this reference')

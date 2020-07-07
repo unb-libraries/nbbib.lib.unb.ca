@@ -38,12 +38,6 @@
               <div class="col-sm-6">Item Type</div>
               <div class="col-sm-6">Book</div>
             </div>
-            {% if content.num_pages|field_value %}
-              <div id="ref-series" class="row">
-                <div class="col-sm-6">Number of Pages</div>
-                <div class="col-sm-6">{{ content.num_pages|field_value }}</div>
-              </div>
-            {% endif %}
             {% if content.series|field_value %}
               <div id="ref-series" class="row">
                 <div class="col-sm-6">Series</div>
@@ -131,21 +125,30 @@
       <br>
 
       <div id="ref-description">
-        {% if content.abstract_note|field_value %}
+        {% if content.abstract_note|field_value
+          or content.num_pages|field_value
+          or content.physical_description|field_value %}
           <b>Description</b>
           <br>
           <br>
-          <div class="indent-text">
-            {{ content.abstract_note|field_value }}
-          </div>
-          <br>
+          {% if content.abstract_note|field_value %}
+            <div class="indent-text">
+              {{ content.abstract_note|field_value }}
+            </div>
+            <br>
+          {% endif %}
         {% endif %}
       </div>
 
       <div id="ref-physical">
         {% if content.physical_description|field_value %}
           <div class="indent-text">
-            Physical Description: {{ content.physical_description|field_value }}
+            Physical Description:
+            {% if content.num_pages %}
+              {% set pages = content.num_pages|field_value[0]['#context']['value'] %}
+              {% set description = content.physical_description|field_value[0]['#text'] %}
+              {{ pages ~ " pages. " ~ description }}
+            {% endif %}
           </div>
           <br>
         {% endif %}

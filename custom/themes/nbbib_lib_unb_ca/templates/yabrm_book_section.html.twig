@@ -38,6 +38,12 @@
               <div class="col-sm-6">Item Type</div>
               <div class="col-sm-6">Book Section</div>
             </div>
+            {% if content.pages|field_value %}
+              <div id="ref-pages" class="row">
+                <div class="col-sm-6">Pages</div>
+                <div class="col-sm-6">{{ content.pages|field_value }}</div>
+              </div>
+            {% endif %}
             {% if content.series|field_value %}
               <div id="ref-series" class="row">
                 <div class="col-sm-6">Series</div>

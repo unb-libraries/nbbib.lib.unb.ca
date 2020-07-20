@@ -236,8 +236,13 @@ div.yabrm-reference {
   & div.indent-text {
     padding-left: 1.5em;
   }
+
+  // Physical description.
+  & #ref-physical p {
+    display: inline-block;
+  }
 }
-// All reference anmd contrib fields except when grouped.
+// All reference and contrib fields except when grouped.
 div.yabrm-reference > dl > div:not(.dl-grouped),
 div.yabrm-contributor > dl > div:not(.dl-grouped) {
   margin-top: 1em;

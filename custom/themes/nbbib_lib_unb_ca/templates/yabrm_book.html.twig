@@ -143,11 +143,12 @@
       <div id="ref-physical">
         {% if content.physical_description|field_value %}
           <div class="indent-text">
-            Physical Description:
+            <span>Physical Description: </span>
+
             {% if content.num_pages %}
               {% set pages = content.num_pages|field_value[0]['#context']['value'] %}
-              {% set description = content.physical_description|field_value[0]['#text'] %}
-              {{ pages ~ "pp. " ~ description }}
+              {{- pages ~ "pp. "-}}
+              {{- content.physical_description|field_value -}}
             {% endif %}
           </div>
           <br>

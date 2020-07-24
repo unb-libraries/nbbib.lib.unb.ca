@@ -124,6 +124,7 @@ function template_preprocess_yabrm_book(array &$variables) {
 
   // Process languages.
   $lang_codes = [
+    'ara' => 'Arabic',
     'eng' => 'English',
     'fre' => 'French',
     'deu' => 'German',

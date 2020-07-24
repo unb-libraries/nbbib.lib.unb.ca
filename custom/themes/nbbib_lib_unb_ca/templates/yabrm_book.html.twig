@@ -126,11 +126,12 @@
 
       <div id="ref-description">
         {% if content.abstract_note|field_value
-          or content.num_pages|field_value
-          or content.physical_description|field_value %}
+        or content.num_pages|field_value
+        or content.physical_description|field_value %}
           <b>Description</b>
           <br>
           <br>
+
           {% if content.abstract_note|field_value %}
             <div class="indent-text">
               {{ content.abstract_note|field_value }}
@@ -141,17 +142,19 @@
       </div>
 
       <div id="ref-physical">
-        {% if content.physical_description|field_value %}
+        {% if content.physical_description|field_value
+        or content.num_pages|field_value %}
           <div class="indent-text">
-            <span>Physical Description: </span>
+          <span>Physical Description: </span>
 
-            {% if content.num_pages %}
-              {% set pages = content.num_pages|field_value[0]['#context']['value'] %}
-              {{- pages ~ " pp. "-}}
-              {{- content.physical_description|field_value -}}
-            {% endif %}
-          </div>
-          <br>
+          {%- if content.num_pages|field_value[0]['#context']['value'] -%}
+            {% set pages = content.num_pages|field_value[0]['#context']['value'] %}
+            {{- pages ~ " pp. "-}}
+          {%- endif -%}
+
+          {{- content.physical_description|field_value -}}
+        </div>
+        <br>
         {% endif %}
       </div>
 

@@ -167,9 +167,25 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
   $url = empty($yabrm_journal_article->get('url')->getValue()[0]['uri']) ? NULL
     : $yabrm_journal_article->get('url')->getValue()[0]['uri'];
 
+  // Specific to Journal Article.
+  $publication_title =
+    empty($variables['content']['publication_title']['0']['#context']['value']) ? NULL
+    : $variables['content']['publication_title']['0']['#context']['value'];
+  $volume =
+    empty($variables['content']['volume']['0']['#context']['value']) ? NULL
+    : $variables['content']['volume']['0']['#context']['value'];
+  $issue =
+    empty($variables['content']['issue']['0']['#context']['value']) ? NULL
+    : $variables['content']['issue']['0']['#context']['value'];
+  $pages =
+    empty($variables['content']['pages']['0']['#context']['value']) ? NULL
+    : $variables['content']['pages']['0']['#context']['value'];
+
+  // Prepare fragment containers.
   $title_wad = '';
   $contribs_wad = '';
   $pub_wad = '';
+  $journal_wad = '';
 
   // URL alias.
   $variables['content']['url_alias'] = $yabrm_journal_article->url();
@@ -179,9 +195,9 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
     $title_wad .= $title;
     // Only add period if last character is not punctuation.
     if (!preg_match("/[.!?,;:]$/", $title_wad)) {
-      $title_wad .= '.';
+      $title_wad = trim($title_wad) . '.';
     }
-    $variables['content']['title_wad'] = $title_wad;
+    $variables['content']['title_wad'] = "\"$title_wad\"";
   }
 
   // Contributors.
@@ -194,54 +210,40 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
 
   $variables['content']['contribs_wad'] = $contribs_wad;
 
-  // Publishing.
-  if ($place) {
-    $pub_wad .= $place;
-  }
-  // Only add colon if there's publisher or publication year.
-  if ($place && ($publisher || $publication_year)) {
-    $pub_wad .= ':';
+  // Publication.
+  if ($publication_title) {
+    $pub_wad .= ' ' . trim($publication_title);
   }
 
-  if ($publisher) {
-    $pub_wad .= ' ' . $publisher;
-    if ($publication_year) {
-      $pub_wad .= ',';
+  if ($volume) {
+    $pub_wad .= ',';
+
+    if (is_numeric($volume)) {
+      $pub_wad .= ' vol.';
     }
-    else {
-      $pub_wad .= '.';
+
+    $pub_wad .= ' ' . trim($volume);
+  }
+
+  if ($issue) {
+    $pub_wad .= ',';
+
+    if (is_numeric($issue)) {
+      $pub_wad .= ' no.';
     }
+
+    $pub_wad .= ' ' . trim($issue);
   }
 
   if ($publication_year) {
-    $months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May.', 'Jun.', 'Jul.', 'Aug.',
-      'Sep.', 'Oct.', 'Nov.', 'Dec.',
-    ];
-    // Only add day if month is present.
-    if ($publication_month) {
-      if ($publication_day) {
-        $pub_wad .= ' ' . $publication_day;
-      }
-      // Month number converted to 3-character name.
-      $pub_wad .= ' ' . $months[(int) $publication_month - 1];
-    }
-    $pub_wad .= ' ' . $publication_year . '.';
+    $pub_wad .= ', ' . trim($publication_year);
   }
 
-  $variables['content']['pub_wad'] = $pub_wad;
-
-  // Notes.
-  if ($notes) {
-    $notes_wad = ' ' . $notes;
-    $notes_wad .= !preg_match("/[.!?,;:]$/", $notes) ? '.' : '';
-    $variables['content']['notes_wad'] = $notes_wad;
+  if ($pages) {
+    $pub_wad .= ', pp. ' . trim($pages);
   }
 
-  // URL.
-  if ($url) {
-    $url_wad = ' ' . $url;
-    $variables['content']['url_wad'] = $url_wad;
-  }
+  $variables['content']['pub_wad'] = $pub_wad . '.';
 }
 
 /**

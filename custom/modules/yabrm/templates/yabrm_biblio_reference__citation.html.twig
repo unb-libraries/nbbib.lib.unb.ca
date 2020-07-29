@@ -22,10 +22,8 @@
 
     <p>
       {{ content.contribs_wad }}
-      <a href="{{ content.url_alias }}">
-        <i>{{ ' ' ~ content.title_wad }}</i>
-      </a>
-      {{ content.pub_wad }}
+      <a href="{{ content.url_alias }}">{{ ' ' ~ content.title_wad }}</a>
+      {{ content.pub_wad|raw }}
     </p>
   {%- endif -%}
 </div>

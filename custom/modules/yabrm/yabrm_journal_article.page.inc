@@ -212,7 +212,7 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
 
   // Publication.
   if ($publication_title) {
-    $pub_wad .= ' ' . trim($publication_title);
+    $pub_wad .= ' <em>' . trim($publication_title) . '</em>';
   }
 
   if ($volume) {

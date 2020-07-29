@@ -122,8 +122,8 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
   $variables['content']['pub_year'] = $pub_year;
 
   // Process languages.
-  // Process languages.
   $lang_codes = [
+    'ara' => 'Arabic',
     'eng' => 'English',
     'fre' => 'French',
     'deu' => 'German',
@@ -185,7 +185,6 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
   $title_wad = '';
   $contribs_wad = '';
   $pub_wad = '';
-  $journal_wad = '';
 
   // URL alias.
   $variables['content']['url_alias'] = $yabrm_journal_article->url();

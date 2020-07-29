@@ -56,6 +56,17 @@ div#edit-actions {
   vertical-align: top;
 }
 
+// Search result.
+.search-result {
+  p {
+    margin-bottom: 0;
+
+    &:last-child {
+      margin-bottom: 1em;
+    }
+  }
+}
+
 // Banner.
 div#nbbib-banner {
   margin-bottom: 20px;

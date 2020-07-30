@@ -152,15 +152,15 @@
       </div>
 
       <div id="ref-copies">
-        {% if content.archive|field_value or content.url|field_value %}
+        {% if content.archives or content.url|field_value %}
           <b>Copies</b>
           <br>
           <br>
 
           <div class="indent-text">
-            {% if content.archive|field_value %}
-              {% for archive in content.archive|field_value %}
-                <p>{{ archive['#title'] }}</p>
+            {% if content.archives %}
+              {% for archive in content.archives %}
+                <p>{{ archive }}</p>
               {% endfor %}
             {% endif %}
 

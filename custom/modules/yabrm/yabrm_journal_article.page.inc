@@ -30,6 +30,16 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
 
+  // Pass archives as plain names.
+  $src_archives = $yabrm_journal_article->get('archive')->getValue();
+  $archives = [];
+
+  foreach ($src_archives as $archive) {
+    $archives[] = Term::load($archive['target_id'])->getName();
+  }
+
+  $variables['content']['archives'] = $archives;
+
   // Extract and pass Entity ID.
   $eid = $yabrm_journal_article->id();
   $variables['content']['eid'] = $eid;

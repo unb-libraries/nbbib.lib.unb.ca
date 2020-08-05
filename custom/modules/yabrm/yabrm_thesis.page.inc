@@ -35,9 +35,11 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   $archives = [];
 
   foreach ($src_archives as $archive) {
-    $archives[] = Term::load($archive['target_id'])->getName();
+    $term = Term::load($archive['target_id'];
+    if ($term) {
+      $archives[] = $term->getName();
+    }
   }
-
   $variables['content']['archives'] = $archives;
 
   // Extract and pass Entity ID.

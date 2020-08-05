@@ -177,6 +177,11 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   $url = empty($yabrm_thesis->get('url')->getValue()[0]['uri']) ? NULL
     : $yabrm_thesis->get('url')->getValue()[0]['uri'];
 
+  // Specific to Thesis.
+  $thesis_type =
+    empty($variables['content']['thesis_type']['0']['#context']['value']) ? NULL
+    : $variables['content']['thesis_type']['0']['#context']['value'];
+
   $title_wad = '';
   $contribs_wad = '';
   $pub_wad = '';
@@ -186,12 +191,12 @@ function template_preprocess_yabrm_thesis(array &$variables) {
 
   // Title.
   if ($title) {
-    $title_wad .= $title;
+    $title_wad .= trim($title);
     // Only add period if last character is not punctuation.
     if (!preg_match("/[.!?,;:]$/", $title_wad)) {
       $title_wad .= '.';
     }
-    $variables['content']['title_wad'] = $title_wad;
+    $variables['content']['title_wad'] = '<em>' . $title_wad . '</em>';
   }
 
   // Contributors.
@@ -204,54 +209,20 @@ function template_preprocess_yabrm_thesis(array &$variables) {
 
   $variables['content']['contribs_wad'] = $contribs_wad;
 
-  // Publishing.
-  if ($place) {
-    $pub_wad .= $place;
-  }
-  // Only add colon if there's publisher or publication year.
-  if ($place && ($publisher || $publication_year)) {
-    $pub_wad .= ':';
+  // Publication.
+  if ($publication_year) {
+    $pub_wad .= trim($publication_year);
   }
 
   if ($publisher) {
-    $pub_wad .= ' ' . $publisher;
-    if ($publication_year) {
-      $pub_wad .= ',';
-    }
-    else {
-      $pub_wad .= '.';
-    }
+    $pub_wad .= '. ' . trim($publisher);
   }
 
-  if ($publication_year) {
-    $months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May.', 'Jun.', 'Jul.', 'Aug.',
-      'Sep.', 'Oct.', 'Nov.', 'Dec.',
-    ];
-    // Only add day if month is present.
-    if ($publication_month) {
-      if ($publication_day) {
-        $pub_wad .= ' ' . $publication_day;
-      }
-      // Month number converted to 3-character name.
-      $pub_wad .= ' ' . $months[(int) $publication_month - 1];
-    }
-    $pub_wad .= ' ' . $publication_year . '.';
+  if ($thesis_type) {
+    $pub_wad .= '. ' . trim($thesis_type);
   }
 
-  $variables['content']['pub_wad'] = $pub_wad;
-
-  // Notes.
-  if ($notes) {
-    $notes_wad = ' ' . $notes;
-    $notes_wad .= !preg_match("/[.!?,;:]$/", $notes) ? '.' : '';
-    $variables['content']['notes_wad'] = $notes_wad;
-  }
-
-  // URL.
-  if ($url) {
-    $url_wad = ' ' . $url;
-    $variables['content']['url_wad'] = $url_wad;
-  }
+  $variables['content']['pub_wad'] = $pub_wad . '.';
 }
 
 /**

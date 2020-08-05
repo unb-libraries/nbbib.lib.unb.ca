@@ -18,8 +18,8 @@
 
 <div{{ attributes.addClass('yabrm_biblio_reference') }}>
   {%- if content -%}
-    {{ content.contribs_wad }}
-    <a href="{{ content.url_alias }}">{{ ' ' ~ content.title_wad }}</a>
+    {{ content.contribs_wad ~ ' ' }}
+    <a href="{{ content.url_alias }}">{{ content.title_wad|raw }}</a>
     {{ content.pub_wad|raw }}
   {%- endif -%}
 </div>

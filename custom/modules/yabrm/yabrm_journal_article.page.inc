@@ -201,10 +201,10 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
 
   // Title.
   if ($title) {
-    $title_wad .= $title;
+    $title_wad .= trim($title);
     // Only add period if last character is not punctuation.
     if (!preg_match("/[.!?,;:]$/", $title_wad)) {
-      $title_wad = trim($title_wad) . '.';
+      $title_wad .= '.';
     }
     $variables['content']['title_wad'] = "\"$title_wad\"";
   }

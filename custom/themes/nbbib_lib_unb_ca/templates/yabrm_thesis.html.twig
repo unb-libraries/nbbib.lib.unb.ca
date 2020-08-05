@@ -38,34 +38,10 @@
               <div class="col-sm-6">Item Type</div>
               <div class="col-sm-6">Thesis</div>
             </div>
-            {% if content.series|field_value %}
+            {% if content.thesis_type|field_value %}
               <div id="ref-series" class="row">
-                <div class="col-sm-6">Series</div>
-                <div class="col-sm-6">{{ content.series|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.series_number|field_value %}
-              <div id="ref-series-num" class="row">
-                <div class="col-sm-6">Series Number</div>
-                <div class="col-sm-6">{{ content.series_number|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.volume|field_value %}
-              <div id="ref-volume" class="row">
-                <div class="col-sm-6">Volume</div>
-                <div class="col-sm-6">{{ content.volume|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.num_volumes|field_value %}
-              <div id="ref-num-volumes" class="row">
-                <div class="col-sm-6">Number of Volumes</div>
-                <div class="col-sm-6">{{ content.num_volumes|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.edition|field_value %}
-              <div id="ref-edition" class="row">
-                <div class="col-sm-6">Edition</div>
-                <div class="col-sm-6">{{ content.edition|field_value }}</div>
+                <div class="col-sm-6">Thesis Type</div>
+                <div class="col-sm-6">{{ content.thesis_type|field_value }}</div>
               </div>
             {% endif %}
             {% if content.place|field_value %}

@@ -35,7 +35,7 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   $archives = [];
 
   foreach ($src_archives as $archive) {
-    $term = Term::load($archive['target_id'];
+    $term = Term::load($archive['target_id']);
     if ($term) {
       $archives[] = $term->getName();
     }

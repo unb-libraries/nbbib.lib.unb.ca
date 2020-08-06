@@ -28,6 +28,16 @@ a[href='/user/password'] {
   display: none;
 }
 
+// Branding.
+.branding-container a {
+  font-size: 28px;
+}
+
+// Page titles.
+.page-header {
+  font-size: 24px;
+}
+
 // Bibliographic reference lister columns.
 #view-bibliographic-type-table-column,
 #view-date-sort-table-column {

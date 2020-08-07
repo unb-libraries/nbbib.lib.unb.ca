@@ -16,12 +16,12 @@ Feature: Core
     When I am logged in as "Test user"
     And I visit "/bibliography"
     Then I should see "Keywords"
-    And I should not see the link "New Brunswick Bibliography"
+    And I should not see a "a.custom-editor-menu" element
 
   Scenario: Logged in contributors can add data
     Given I am logged in as a user with the "nb_bibliography_contributor" role
     When I visit "/bibliography"
-    Then I should see the link "New Brunswick Bibliography"
+    Then I should see a "a.custom-editor-menu" element
 
   Scenario: Logged in contributors can add references and contributors
     Given I am logged in as a user with the "nb_bibliography_contributor" role
@@ -32,4 +32,4 @@ Feature: Core
 
   Scenario: Anonymous contributors cannot add data
     When I visit "/bibliography"
-    Then I should not see the link "New Brunswick Bibliography"
+    Then I should not see a "a.custom-editor-menu" element

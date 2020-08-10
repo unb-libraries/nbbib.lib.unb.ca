@@ -759,7 +759,7 @@ display:
           expose:
             label: Title
           plugin_id: search_api
-      title: 'New Brunswick Bibliography'
+      title: Search
       header:
         result:
           id: result

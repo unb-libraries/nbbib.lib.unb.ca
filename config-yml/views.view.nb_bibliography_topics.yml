@@ -298,7 +298,7 @@ display:
           entity_type: taxonomy_term
           entity_field: name
           plugin_id: standard
-      title: 'NB Bibliography Topics'
+      title: Topics
       header: {  }
       footer: {  }
       empty: {  }

@@ -254,7 +254,7 @@ display:
           entity_type: yabrm_contributor
           entity_field: sort_name
           plugin_id: standard
-      title: 'NB Bibliography Contributors'
+      title: Contributors
       header: {  }
       footer: {  }
       empty: {  }

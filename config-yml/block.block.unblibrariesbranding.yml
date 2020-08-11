@@ -1,0 +1,20 @@
+uuid: 076b6af0-92c9-416d-9f8b-a21a81965ff7
+langcode: en
+status: true
+dependencies:
+  module:
+    - unb_lib_branding_block
+  theme:
+    - nbbib_lib_unb_ca
+id: unblibrariesbranding
+theme: nbbib_lib_unb_ca
+region: branding
+weight: 0
+provider: null
+plugin: unb_lib_branding
+settings:
+  id: unb_lib_branding
+  label: 'UNB Libraries Branding'
+  provider: unb_lib_branding_block
+  label_display: '0'
+visibility: {  }

@@ -2,10 +2,9 @@
 {#
 /**
  * @file
- * Default theme implementation for a branding block.
- *
- * Each branding element variable (logo, name, slogan) is only available if
- * enabled in the block configuration.
+ * UNB Libraries branding block implementation.
+ * Based on Bootstrap 8.x-3.x block--system-branding-block.html.twig
+ * Expected to work best with Bootstrap.
  *
  * Available variables:
  * - site_logo: Logo for site as defined in Appearance or theme settings.
@@ -15,7 +14,10 @@
  * @ingroup templates
  */
 #}
+
 {% block content %}
+  {{ attach_library('unb_lib_branding_block/branding-css') }}
+
   {% if site_logo %}
     <a class="logo navbar-btn pull-left" href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
       <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
@@ -23,9 +25,9 @@
   {% endif %}
   {% if site_name %}
     {% if is_front %}
-      <h1 class="" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</h1>
+      <h1 class="lib-branding-name" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</h1>
     {% else %}
-      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+      <a class="lib-branding-name" href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
     {% endif %}
   {% endif %}
   {% if site_slogan %}

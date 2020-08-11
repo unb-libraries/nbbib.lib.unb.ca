@@ -1,0 +1,5 @@
+name: UNB Libraries Branding Block
+type: module
+description: Adds a custom branding block for UNB Libraries' sites.
+core: 8.x
+package: UNB Libraries

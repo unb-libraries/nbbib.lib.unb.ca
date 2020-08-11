@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Contains unb_lib_branding.module.
+ */
+
+ /**
+  * Implements hook_theme().
+  */
+ function unb_lib_branding_block_theme($existing, $type, $theme, $path) {
+   return [
+     'unb_lib_branding' => [
+       'variables' => [
+         'site_logo' => NULL,
+         'site_name' => NULL,
+         'site_slogan' => NULL,
+       ],
+     ],
+   ];
+ }

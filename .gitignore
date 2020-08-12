@@ -1,4 +1,5 @@
 .gitkeep
+.idea
 vendor
 composer.lock
 tests/features/bootstrap

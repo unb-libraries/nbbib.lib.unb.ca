@@ -233,7 +233,7 @@ function template_preprocess_yabrm_book_section(array &$variables) {
     $pub_wad .= ', pp. ' . trim($pages);
   }
 
-  $variables['content']['pub_wad'] = $pub_wad . '.';
+  $variables['content']['pub_wad'] = $pub_wad . '. [book section]';
 }
 
 /**

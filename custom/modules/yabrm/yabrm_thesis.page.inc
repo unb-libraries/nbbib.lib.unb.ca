@@ -224,7 +224,7 @@ function template_preprocess_yabrm_thesis(array &$variables) {
     $pub_wad .= '. ' . trim($thesis_type);
   }
 
-  $variables['content']['pub_wad'] = $pub_wad . '.';
+  $variables['content']['pub_wad'] = $pub_wad . '. [thesis]';
 }
 
 /**

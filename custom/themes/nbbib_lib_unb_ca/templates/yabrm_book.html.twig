@@ -141,10 +141,9 @@
         {% endif %}
       </div>
 
-      <div id="ref-physical">
-        {% if content.physical_description|field_value
-        or content.num_pages|field_value %}
-          <div class="indent-text">
+      {% if content.physical_description|field_value
+      or content.num_pages|field_value %}
+        <div id="ref-physical" class="indent-text">
           <span>Physical Description: </span>
 
           {%- if content.num_pages|field_value[0]['#context']['value'] -%}
@@ -155,8 +154,7 @@
           {{- content.physical_description|field_value -}}
         </div>
         <br>
-        {% endif %}
-      </div>
+      {% endif %}
 
       <div id="ref-copies">
         {% if content.archives or content.url|field_value %}

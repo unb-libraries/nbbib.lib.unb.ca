@@ -173,58 +173,6 @@ label[for='edit-search-api-fulltext'] {
   border: 0;
 }
 
-// Responsive.
-@media screen and (min-width: 768px) {
-  // Filter (label + input) - First (Keywords).
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
-  div:first-of-type {
-    width: 96%;
-  }
-  // Filter (label + input).
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div,
-  form#views-exposed-form-content-page-1 > div > div {
-    margin-bottom: 8px;
-    width: 48%;
-  }
-  // Label - First (Keywords).
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
-  div:first-of-type > label {
-    margin-right: .3%;
-    width: 17%;
-  }
-  // Label.
-  form#views-exposed-form-content-page-1 > div > div > label,
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > label {
-    margin-right: .5%;
-    width: 34%;
-  }
-  // Input - First (Keywords).
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
-  div:first-of-type > input {
-    margin-right: 0;
-    width: 80.5%;
-  }
-  // Input and select wrapper.
-  form#views-exposed-form-content-page-1 > div > div > input,
-  form#views-exposed-form-content-page-1 > div > div > div.select-wrapper,
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > input,
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div >
-  div.select-wrapper {
-    margin-right: .5%;
-    width: 60%;
-  }
-  // Select.
-  form#views-exposed-form-content-page-1 > div > div > div > select,
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > div >
-  select {
-    width: 100%;
-  }
-  // Button.
-  form#views-exposed-form-nb-bibliography-citations-page-1 div#edit-actions {
-    margin-top: 8px;
-  }
-}
-
 // Navigation tabs.
 .tabs--primary.nav.nav-tabs {
   margin-bottom: 10px;
@@ -264,8 +212,8 @@ div.yabrm-reference {
   }
 
   // Physical description.
-  & #ref-physical p {
-    display: inline-block;
+  & #ref-physical * {
+    display: inline;
   }
 }
 // All reference and contrib fields except when grouped.
@@ -331,6 +279,59 @@ form#yabrm-thesis-edit-form button:not(:first-of-type) {
 td.field-multiple-drag {
   width: 2em !important;
 }
+
+// Responsive.
+@media screen and (min-width: 768px) {
+  // Filter (label + input) - First (Keywords).
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:first-of-type {
+    width: 96%;
+  }
+  // Filter (label + input).
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div,
+  form#views-exposed-form-content-page-1 > div > div {
+    margin-bottom: 8px;
+    width: 48%;
+  }
+  // Label - First (Keywords).
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:first-of-type > label {
+    margin-right: .3%;
+    width: 17%;
+  }
+  // Label.
+  form#views-exposed-form-content-page-1 > div > div > label,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > label {
+    margin-right: .5%;
+    width: 34%;
+  }
+  // Input - First (Keywords).
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:first-of-type > input {
+    margin-right: 0;
+    width: 80.5%;
+  }
+  // Input and select wrapper.
+  form#views-exposed-form-content-page-1 > div > div > input,
+  form#views-exposed-form-content-page-1 > div > div > div.select-wrapper,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > input,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div >
+  div.select-wrapper {
+    margin-right: .5%;
+    width: 60%;
+  }
+  // Select.
+  form#views-exposed-form-content-page-1 > div > div > div > select,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > div >
+  select {
+    width: 100%;
+  }
+  // Button.
+  form#views-exposed-form-nb-bibliography-citations-page-1 div#edit-actions {
+    margin-top: 8px;
+  }
+}
+
 // Publication date fields.
 @media screen and (min-width: 768px) {
   div#edit-publication-year-wrapper,

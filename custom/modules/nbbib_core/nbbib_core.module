@@ -44,8 +44,8 @@ function nbbib_lib_unb_ca_preprocess_html(&$variables) {
 
   $node = \Drupal::request()->attributes->get('node');
 
-  if ($node && $node->bundle() == 'static_content_page') {
-    kint("!");
+  if ($node && $node->bundle() == 'static_content_page' &&
+  \Drupal::service('path.matcher')->isFrontPage()) {
     $variables['head_title']['title'] = 'New Brunswick Bibliography';
   }
 }

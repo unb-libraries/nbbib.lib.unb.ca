@@ -209,12 +209,25 @@ function template_preprocess_yabrm_book(array &$variables) {
   $variables['content']['contribs_wad'] = $contribs_wad;
 
   // Publication.
-  if ($publication_year) {
-    $pub_wad .= trim($publication_year);
+  if ($place) {
+    $pub_wad .= '. ' . trim($place);
+
+    if ($publisher) {
+      $pub_wad .= ': ' . trim($publisher);
+    }
+  }
+  else {
+    if ($publisher) {
+      $pub_wad .= '. ' . trim($publisher);
+    }
   }
 
-  if ($publisher) {
-    $pub_wad .= '. ' . trim($publisher);
+  if ($publication_year) {
+    $pub_wad .= ', ' . trim($publication_year);
+  }
+
+  if ($pages) {
+    $pub_wad .= ', pp. ' . trim($pages);
   }
 
   $variables['content']['pub_wad'] = $pub_wad . '. [book]';

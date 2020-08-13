@@ -221,8 +221,17 @@ function template_preprocess_yabrm_book_section(array &$variables) {
     $pub_wad .= ' <em>' . trim($publication_title) . '</em>';
   }
 
-  if ($publisher) {
-    $pub_wad .= '. ' . trim($publisher);
+  if ($place) {
+    $pub_wad .= '. ' . trim($place);
+
+    if ($publisher) {
+      $pub_wad .= ': ' . trim($publisher);
+    }
+  }
+  else {
+    if ($publisher) {
+      $pub_wad .= '. ' . trim($publisher);
+    }
   }
 
   if ($publication_year) {

@@ -1,0 +1,103 @@
+/* ---------- General Layout ---------- */
+/** Setting margins */
+@page { margin: 2cm 1cm }
+
+/* Hide admin regions */
+#toolbar,
+.tabs,
+.shortcut-action {
+  display: none;
+}
+
+/* Hide header + sidebar first + slideshow containers */
+.region-header,
+.region-sidebar-first,
+.view-featured-authors-slick-carousel {
+  display: none;
+}
+
+/* https://getbootstrap.com/docs/4.4/getting-started/browsers-devices/#printing */
+.container {
+  width: auto;
+}
+
+main {
+  color: #000;
+  background: none;
+  width: 100%;
+  margin: 0;
+  float: none;
+
+  .col-sm-9 {
+    padding: 0!important;
+    max-width: 100%;
+  }
+
+  article {
+    a:not([role="button"]),
+    .view a:not([role="button"]) {
+      border-bottom: none!important;
+      color: #000;
+      text-decoration: none;
+
+      &[href]:after {
+        content: "(" attr(href) ")";
+        font-size: x-small;
+        margin-left: .5em;
+        text-decoration: underline;
+      }
+    }
+
+    div {
+      &.border {
+        border: none!important;
+      }
+    }
+  }
+
+  .text-dark {
+    background: none;
+    color: #000;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 { color: #000; }
+h2, h3, h4 {
+  margin-top: 2.5rem;
+  page-break-inside: avoid;
+
+  /* Print hack for Chrome/Mozilla: page-break-after:avoid */
+  &::after {
+    content: "";
+    display: block;
+    height: 100px;
+    margin-bottom: -100px;
+  }
+}
+
+p {
+  page-break-inside: avoid;
+}
+
+footer {
+  background: none;
+
+  .container {
+    border-color: #000;
+  }
+
+  div.text-center {
+    a {
+      color: #000;
+      text-decoration: none;
+
+      &:before {
+        content: "UNB Libraries";
+      }
+
+      img {
+        display: none;
+      }
+    }
+  }
+}

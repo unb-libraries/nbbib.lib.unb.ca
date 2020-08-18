@@ -20,7 +20,7 @@ content:
   abstract_note:
     label: above
     type: text_default
-    weight: 28
+    weight: 27
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -76,7 +76,7 @@ content:
   extra:
     label: above
     type: text_default
-    weight: 29
+    weight: 28
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -132,14 +132,14 @@ content:
   notes:
     label: above
     type: text_default
-    weight: 31
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
   notes_private:
     label: above
     type: text_default
-    weight: 30
+    weight: 29
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -150,13 +150,6 @@ content:
     region: content
     settings:
       link_to_entity: false
-    third_party_settings: {  }
-  physical_description:
-    label: above
-    type: text_default
-    weight: 25
-    region: content
-    settings: {  }
     third_party_settings: {  }
   publication_day:
     label: above
@@ -204,7 +197,7 @@ content:
   rights:
     label: above
     type: string
-    weight: 27
+    weight: 26
     region: content
     settings:
       link_to_entity: false
@@ -259,7 +252,7 @@ content:
     type: entity_reference_label
   url:
     type: link
-    weight: 26
+    weight: 25
     region: content
     label: above
     settings:
@@ -281,6 +274,7 @@ hidden:
   archive_location: true
   external_key_ref: true
   langcode: true
+  physical_description: true
   search_api_excerpt: true
   status: true
   user_id: true

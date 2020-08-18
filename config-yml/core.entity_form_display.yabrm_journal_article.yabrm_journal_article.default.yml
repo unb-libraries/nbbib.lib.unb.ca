@@ -18,7 +18,7 @@ content:
   abstract_note:
     type: text_textarea
     text_processing: 0
-    weight: -50
+    weight: 27
     region: content
     settings:
       rows: 5
@@ -26,7 +26,7 @@ content:
     third_party_settings: {  }
   archive:
     type: entity_reference_autocomplete
-    weight: -80
+    weight: 24
     region: content
     settings:
       match_operator: CONTAINS
@@ -36,7 +36,7 @@ content:
     third_party_settings: {  }
   call_number:
     type: string_textfield
-    weight: -100
+    weight: 22
     region: content
     settings:
       size: 60
@@ -44,7 +44,7 @@ content:
     third_party_settings: {  }
   collections:
     type: entity_reference_autocomplete
-    weight: -120
+    weight: 20
     settings:
       match_operator: CONTAINS
       size: 60
@@ -54,7 +54,7 @@ content:
     third_party_settings: {  }
   contributors:
     type: paragraphs
-    weight: -290
+    weight: 1
     region: content
     settings:
       title: Paragraph
@@ -72,7 +72,7 @@ content:
     third_party_settings: {  }
   cover_image:
     type: image_image
-    weight: -280
+    weight: 2
     region: content
     settings:
       progress_indicator: throbber
@@ -80,7 +80,7 @@ content:
     third_party_settings: {  }
   doi:
     type: string_textfield
-    weight: -232
+    weight: 8
     region: content
     settings:
       size: 60
@@ -89,7 +89,7 @@ content:
   extra:
     type: text_textarea
     text_processing: 0
-    weight: -45
+    weight: 28
     region: content
     settings:
       rows: 5
@@ -97,7 +97,7 @@ content:
     third_party_settings: {  }
   issn:
     type: string_textfield
-    weight: -234
+    weight: 7
     region: content
     settings:
       size: 60
@@ -105,7 +105,7 @@ content:
     third_party_settings: {  }
   issue:
     type: string_textfield
-    weight: -168
+    weight: 13
     region: content
     settings:
       size: 60
@@ -113,7 +113,7 @@ content:
     third_party_settings: {  }
   journal_abbr:
     type: string_textfield
-    weight: -158
+    weight: 16
     region: content
     settings:
       size: 60
@@ -121,13 +121,13 @@ content:
     third_party_settings: {  }
   language:
     type: options_buttons
-    weight: -200
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   library_catalog:
     type: string_textfield
-    weight: -90
+    weight: 23
     region: content
     settings:
       size: 60
@@ -135,7 +135,7 @@ content:
     third_party_settings: {  }
   nb_imprint:
     type: boolean_checkbox
-    weight: -110
+    weight: 21
     settings:
       display_label: true
     region: content
@@ -143,7 +143,7 @@ content:
   notes:
     type: text_textarea
     text_processing: 0
-    weight: -35
+    weight: 30
     region: content
     settings:
       rows: 5
@@ -152,7 +152,7 @@ content:
   notes_private:
     type: text_textarea
     text_processing: 0
-    weight: -40
+    weight: 29
     region: content
     settings:
       rows: 5
@@ -160,30 +160,21 @@ content:
     third_party_settings: {  }
   pages:
     type: string_textfield
-    weight: -160
+    weight: 15
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  physical_description:
-    type: text_textarea
-    text_processing: 0
-    weight: -70
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
   publication_day:
-    weight: -250
+    weight: 4
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
   publication_month:
-    weight: -240
+    weight: 5
     region: content
     settings:
       placeholder: ''
@@ -191,14 +182,14 @@ content:
     type: number
   publication_title:
     type: string_textfield
-    weight: -170
+    weight: 12
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   publication_year:
-    weight: -236
+    weight: 6
     region: content
     settings:
       placeholder: ''
@@ -206,7 +197,7 @@ content:
     type: number
   publisher:
     type: string_textfield
-    weight: -270
+    weight: 3
     region: content
     settings:
       size: 60
@@ -214,7 +205,7 @@ content:
     third_party_settings: {  }
   rights:
     type: string_textfield
-    weight: -55
+    weight: 26
     region: content
     settings:
       size: 60
@@ -222,7 +213,7 @@ content:
     third_party_settings: {  }
   series:
     type: string_textfield
-    weight: -150
+    weight: 17
     region: content
     settings:
       size: 60
@@ -230,7 +221,7 @@ content:
     third_party_settings: {  }
   series_text:
     type: string_textfield
-    weight: -130
+    weight: 19
     region: content
     settings:
       size: 60
@@ -238,7 +229,7 @@ content:
     third_party_settings: {  }
   series_title:
     type: string_textfield
-    weight: -140
+    weight: 18
     region: content
     settings:
       size: 60
@@ -246,7 +237,7 @@ content:
     third_party_settings: {  }
   short_title:
     type: string_textfield
-    weight: -180
+    weight: 11
     region: content
     settings:
       size: 60
@@ -254,14 +245,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: -30
+    weight: 31
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -300
+    weight: 0
     region: content
     settings:
       size: 60
@@ -269,7 +260,7 @@ content:
     third_party_settings: {  }
   topics:
     type: entity_reference_autocomplete
-    weight: -190
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 10
@@ -279,7 +270,7 @@ content:
     third_party_settings: {  }
   url:
     type: link_default
-    weight: -60
+    weight: 25
     region: content
     settings:
       placeholder_url: ''
@@ -287,7 +278,7 @@ content:
     third_party_settings: {  }
   volume:
     type: string_textfield
-    weight: -166
+    weight: 14
     region: content
     settings:
       size: 60
@@ -298,4 +289,5 @@ hidden:
   external_key_ref: true
   langcode: true
   path: true
+  physical_description: true
   user_id: true

@@ -9,7 +9,9 @@
   display: none;
 }
 
-/* Hide header + sidebar first + slideshow containers */
+/* Hide header + sidebar first + slideshow containers + highlighted region */
+header,
+.highlighted,
 .region-header,
 .region-sidebar-first,
 .view-featured-authors-slick-carousel {

@@ -181,6 +181,12 @@ function template_preprocess_yabrm_book(array &$variables) {
   $url = empty($yabrm_book->get('url')->getValue()[0]['uri']) ? NULL
     : $yabrm_book->get('url')->getValue()[0]['uri'];
 
+  // Specific to Book.
+  $pages =
+    empty($variables['content']['num_pages']['0']['#context']['value']) ? NULL
+    : $variables['content']['num_pages']['0']['#context']['value'];
+
+  // Prepare fragment containers.
   $title_wad = '';
   $contribs_wad = '';
   $pub_wad = '';

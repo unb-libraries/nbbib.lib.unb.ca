@@ -249,6 +249,11 @@ div.yabrm-contributor.contrib-layout div.row {
   margin-bottom: 1em;
 }
 
+// View pager.
+.pagination.js-pager__items {
+  margin-top: 2rem !important;
+}
+
 // Footer.
 div#footer-logo-div, div#footer-menu-div {
   padding-left: 0;
@@ -341,6 +346,7 @@ td.field-multiple-drag {
   }
 }
 @media screen and (max-width: 768px) {
+  // Responsive select controls in search view.
   .form-item.js-form-item.form-type-select {
     display: grid;
   }

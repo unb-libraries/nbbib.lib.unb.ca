@@ -1,6 +1,7 @@
 FROM unblibraries/drupal:8.x-3.x-unblib
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
+# Install additional OS packages.
 ENV ADDITIONAL_OS_PACKAGES rsyslog postfix php7-ldap php7-xmlreader php7-zip php7-redis
 ENV DRUPAL_SITE_ID nbbib
 ENV DRUPAL_SITE_URI nbbib.lib.unb.ca

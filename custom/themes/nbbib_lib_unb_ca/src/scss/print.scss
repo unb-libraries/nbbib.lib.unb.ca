@@ -1,105 +1,150 @@
-/* ---------- General Layout ---------- */
-/** Setting margins */
-@page { margin: 2cm 1cm }
-
-/* Hide admin regions */
-#toolbar,
-.tabs,
-.shortcut-action {
-  display: none;
-}
-
-/* Hide header + sidebar first + slideshow containers + highlighted region */
-header,
-.highlighted,
-.region-header,
-.region-sidebar-first,
-.view-featured-authors-slick-carousel {
-  display: none;
-}
-
-/* https://getbootstrap.com/docs/4.4/getting-started/browsers-devices/#printing */
-.container {
-  width: auto;
-}
-
-main {
-  color: #000;
-  background: none;
-  width: 100%;
-  margin: 0;
-  float: none;
-
-  .col-sm-9 {
-    padding: 0!important;
-    max-width: 100%;
+@media print {
+  /* https://getbootstrap.com/docs/4.4/getting-started/browsers-devices/#printing */
+  .container {
+    width: auto;
   }
 
-  article {
-    a:not([role="button"]),
-    .view a:not([role="button"]) {
-      border-bottom: none!important;
-      color: #000;
+  /* Override Bootstrap blockquote */
+  blockquote {
+    border-bottom: none;
+    border-right: none;
+    border-top: none;
+    padding-left: .5rem;
+  }
+
+  /* Hide authenticated admin regions */
+  #toolbar,
+  .tabs,
+  .shortcut-action {
+    display: none;
+  }
+
+  /* Hide back to top button */
+  #backtotop {
+    display: none !important;
+  }
+
+  /* Set content width, unset floats and margins */
+  .region-main-content {
+    float: none !important;
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  /* Hide banner space */
+  #nbbib-banner {
+    display: none;
+  }
+
+  /* Ommit link formatting in footer logo */
+  div#footer-logo-div {
+    a {
       text-decoration: none;
 
-      &[href]:after {
-        content: "(" attr(href) ")";
-        font-size: x-small;
-        margin-left: .5em;
-        text-decoration: underline;
-      }
-    }
-
-    div {
-      &.border {
-        border: none!important;
+      &:after {
+        display: none !important;
       }
     }
   }
 
-  .text-dark {
-    background: none;
+  /* Set page margins */
+  @page {
+    margin: 2cm;
+  }
+
+  /* Set font to 16px, set background to white and font to black */
+  body {
+    background: #fff !important;
+    color: #000;
+    font: 18px Georgia, "Times New Roman", Times, serif;
+    line-height: 1.4;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    color: inherit;
+    text-decoration: none;
+  }
+  h1 {
+    font-size: 26px;
+  }
+  h2 {
+    font-size: 20px;
+    margin-top: 26px;
+  }
+  h3, h4 {
+    font-size: 18px;
+    margin-top: 22px;
+  }
+
+  /* Links */
+  a {
+    background: transparent;
+    color: #333;
+
+    &:not(.btn) {
+      text-decoration: none;
+    }
+  }
+
+  a[href] {
+    &:not([href^="#"]) {
+      text-decoration: underline;
+    }
+  }
+
+  .biblio {
+    a[href]:after {
+      content: '';
+      margin: 0;
+    }
+  }
+
+  /* Tables */
+  th {
     color: #000;
   }
-}
 
-h1, h2, h3, h4, h5, h6 { color: #000; }
-h2, h3, h4 {
-  margin-top: 2.5rem;
-  page-break-inside: avoid;
-
-  /* Print hack for Chrome/Mozilla: page-break-after:avoid */
-  &::after {
-    content: "";
-    display: block;
-    height: 100px;
-    margin-bottom: -100px;
+  /* Header Section */
+  header {
+    background: none;
+    border: none;
   }
-}
-
-p {
-  page-break-inside: avoid;
-}
-
-footer {
-  background: none;
-
-  .container {
-    border-color: #000;
+  header .row {
+    width: 100%;
+  }
+  header .navbar-brand {
+    flex: none;
+    max-width: none;
+    text-align: center !important;
+  }
+  header .navbar-brand img {
+    width: 200px;
   }
 
-  div.text-center {
-    a {
-      color: #000;
-      text-decoration: none;
+  /* Main Section */
+  .main-page-content-wrapper {
+    flex: none;
+    max-width: none;
+  }
 
-      &:before {
-        content: "UNB Libraries";
-      }
-
-      img {
-        display: none;
-      }
-    }
+  /* Page break suggestions */
+  a {
+    page-break-inside: avoid;
+  }
+  blockquote {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  img {
+    page-break-inside: avoid;
+    page-break-after: avoid;
+  }
+  table {
+    page-break-inside: avoid;
   }
 }

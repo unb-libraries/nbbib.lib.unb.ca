@@ -2,7 +2,7 @@ FROM unblibraries/drupal:8.x-3.x-unblib
 MAINTAINER UNB Libraries <libsupport@unb.ca>
 
 # Install additional OS packages.
-ENV ADDITIONAL_OS_PACKAGES rsyslog postfix php7-ldap php7-xmlreader php7-zip php7-redis
+ENV ADDITIONAL_OS_PACKAGES postfix php7-ldap php7-xmlreader php7-zip php7-redis
 ENV DRUPAL_SITE_ID nbbib
 ENV DRUPAL_SITE_URI nbbib.lib.unb.ca
 ENV DRUPAL_SITE_UUID 8c0eeb11-ba32-495f-9e90-4b4eafb796f8
@@ -12,7 +12,6 @@ COPY ./build/ /build/
 RUN ${RSYNC_MOVE} /build/scripts/container/ /scripts/ && \
   /scripts/addOsPackages.sh && \
   /scripts/initOpenLdap.sh && \
-  /scripts/initRsyslog.sh && \
   /scripts/setupStandardConf.sh && \
   /scripts/build.sh
 

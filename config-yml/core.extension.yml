@@ -40,6 +40,7 @@ module:
   redirect_after_login: 0
   redis: 0
   samlauth: 0
+  saml_features: 12
   search: 0
   search_api: 0
   search_api_autocomplete: 0

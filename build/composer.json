@@ -82,7 +82,8 @@
         "drupal/twig_tweak": "2.8",
         "drupal/views_contextual_filters_or": "1.2",
         "unb-libraries/unb_lib_theme": "dev-8.x-bootstrap-3.x",
-        "unb-libraries/drupal-builder": "^8.0.0"
+        "unb-libraries/drupal-builder": "^8.0.0",
+        "unb-libraries/saml_features": "dev-8.x-1.x"
     },
     "require-dev": {
         "unb-libraries/drupal-development-libraries": "^8.0.0"

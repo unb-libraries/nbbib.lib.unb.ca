@@ -25,7 +25,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
    *   An array suitable for drupal_render().
    */
   public function revisionShow($yabrm_thesis_revision) {
-    $yabrm_thesis = $this->entityManager()->getStorage('yabrm_thesis')->loadRevision($yabrm_thesis_revision);
+    $yabrm_thesis = $this->entityTypeManager()->getStorage('yabrm_thesis')->loadRevision($yabrm_thesis_revision);
     $view_builder = $this->entityManager()->getViewBuilder('yabrm_thesis');
 
     return $view_builder->view($yabrm_thesis);
@@ -41,7 +41,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
    *   The page title.
    */
   public function revisionPageTitle($yabrm_thesis_revision) {
-    $yabrm_thesis = $this->entityManager()->getStorage('yabrm_thesis')->loadRevision($yabrm_thesis_revision);
+    $yabrm_thesis = $this->entityTypeManager()->getStorage('yabrm_thesis')->loadRevision($yabrm_thesis_revision);
     return $this->t('Revision of %title from %date', ['%title' => $yabrm_thesis->label(), '%date' => format_date($yabrm_thesis->getRevisionCreationTime())]);
   }
 
@@ -60,7 +60,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
     $langname = $yabrm_thesis->language()->getName();
     $languages = $yabrm_thesis->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
-    $yabrm_thesis_storage = $this->entityManager()->getStorage('yabrm_thesis');
+    $yabrm_thesis_storage = $this->entityTypeManager()->getStorage('yabrm_thesis');
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_thesis->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_thesis->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];

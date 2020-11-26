@@ -25,7 +25,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
    *   An array suitable for drupal_render().
    */
   public function revisionShow($yabrm_book_section_revision) {
-    $yabrm_book_section = $this->entityManager()->getStorage('yabrm_book_section')->loadRevision($yabrm_book_section_revision);
+    $yabrm_book_section = $this->entityTypeManager()->getStorage('yabrm_book_section')->loadRevision($yabrm_book_section_revision);
     $view_builder = $this->entityManager()->getViewBuilder('yabrm_book_section');
 
     return $view_builder->view($yabrm_book_section);
@@ -41,7 +41,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
    *   The page title.
    */
   public function revisionPageTitle($yabrm_book_section_revision) {
-    $yabrm_book_section = $this->entityManager()->getStorage('yabrm_book_section')->loadRevision($yabrm_book_section_revision);
+    $yabrm_book_section = $this->entityTypeManager()->getStorage('yabrm_book_section')->loadRevision($yabrm_book_section_revision);
     return $this->t('Revision of %title from %date', ['%title' => $yabrm_book_section->label(), '%date' => format_date($yabrm_book_section->getRevisionCreationTime())]);
   }
 
@@ -60,7 +60,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
     $langname = $yabrm_book_section->language()->getName();
     $languages = $yabrm_book_section->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
-    $yabrm_book_section_storage = $this->entityManager()->getStorage('yabrm_book_section');
+    $yabrm_book_section_storage = $this->entityTypeManager()->getStorage('yabrm_book_section');
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_book_section->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_book_section->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];

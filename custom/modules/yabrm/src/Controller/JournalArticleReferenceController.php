@@ -25,7 +25,7 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
    *   An array suitable for drupal_render().
    */
   public function revisionShow($yabrm_journal_article_revision) {
-    $yabrm_journal_article = $this->entityManager()->getStorage('yabrm_journal_article')->loadRevision($yabrm_journal_article_revision);
+    $yabrm_journal_article = $this->entityTypeManager()->getStorage('yabrm_journal_article')->loadRevision($yabrm_journal_article_revision);
     $view_builder = $this->entityManager()->getViewBuilder('yabrm_journal_article');
 
     return $view_builder->view($yabrm_journal_article);
@@ -41,7 +41,7 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
    *   The page title.
    */
   public function revisionPageTitle($yabrm_journal_article_revision) {
-    $yabrm_journal_article = $this->entityManager()->getStorage('yabrm_journal_article')->loadRevision($yabrm_journal_article_revision);
+    $yabrm_journal_article = $this->entityTypeManager()->getStorage('yabrm_journal_article')->loadRevision($yabrm_journal_article_revision);
     return $this->t('Revision of %title from %date', ['%title' => $yabrm_journal_article->label(), '%date' => format_date($yabrm_journal_article->getRevisionCreationTime())]);
   }
 
@@ -60,7 +60,7 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
     $langname = $yabrm_journal_article->language()->getName();
     $languages = $yabrm_journal_article->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
-    $yabrm_journal_article_storage = $this->entityManager()->getStorage('yabrm_journal_article');
+    $yabrm_journal_article_storage = $this->entityTypeManager()->getStorage('yabrm_journal_article');
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_journal_article->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_journal_article->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];

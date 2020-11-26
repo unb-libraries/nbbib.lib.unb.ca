@@ -25,7 +25,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
    *   An array suitable for drupal_render().
    */
   public function revisionShow($yabrm_collection_revision) {
-    $yabrm_collection = $this->entityManager()->getStorage('yabrm_collection')->loadRevision($yabrm_collection_revision);
+    $yabrm_collection = $this->entityTypeManager()->getStorage('yabrm_collection')->loadRevision($yabrm_collection_revision);
     $view_builder = $this->entityManager()->getViewBuilder('yabrm_collection');
 
     return $view_builder->view($yabrm_collection);
@@ -41,7 +41,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
    *   The page title.
    */
   public function revisionPageTitle($yabrm_collection_revision) {
-    $yabrm_collection = $this->entityManager()->getStorage('yabrm_collection')->loadRevision($yabrm_collection_revision);
+    $yabrm_collection = $this->entityTypeManager()->getStorage('yabrm_collection')->loadRevision($yabrm_collection_revision);
     return $this->t('Revision of %title from %date', ['%title' => $yabrm_collection->label(), '%date' => format_date($yabrm_collection->getRevisionCreationTime())]);
   }
 
@@ -60,7 +60,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
     $langname = $yabrm_collection->language()->getName();
     $languages = $yabrm_collection->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
-    $yabrm_collection_storage = $this->entityManager()->getStorage('yabrm_collection');
+    $yabrm_collection_storage = $this->entityTypeManager()->getStorage('yabrm_collection');
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_collection->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_collection->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];

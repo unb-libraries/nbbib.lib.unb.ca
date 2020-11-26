@@ -25,7 +25,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
    *   An array suitable for drupal_render().
    */
   public function revisionShow($yabrm_book_revision) {
-    $yabrm_book = $this->entityManager()->getStorage('yabrm_book')->loadRevision($yabrm_book_revision);
+    $yabrm_book = $this->entityTypeManager()->getStorage('yabrm_book')->loadRevision($yabrm_book_revision);
     $view_builder = $this->entityManager()->getViewBuilder('yabrm_book');
 
     return $view_builder->view($yabrm_book);
@@ -41,7 +41,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
    *   The page title.
    */
   public function revisionPageTitle($yabrm_book_revision) {
-    $yabrm_book = $this->entityManager()->getStorage('yabrm_book')->loadRevision($yabrm_book_revision);
+    $yabrm_book = $this->entityTypeManager()->getStorage('yabrm_book')->loadRevision($yabrm_book_revision);
     return $this->t('Revision of %title from %date', ['%title' => $yabrm_book->label(), '%date' => format_date($yabrm_book->getRevisionCreationTime())]);
   }
 
@@ -60,7 +60,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
     $langname = $yabrm_book->language()->getName();
     $languages = $yabrm_book->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
-    $yabrm_book_storage = $this->entityManager()->getStorage('yabrm_book');
+    $yabrm_book_storage = $this->entityTypeManager()->getStorage('yabrm_book');
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_book->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_book->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];

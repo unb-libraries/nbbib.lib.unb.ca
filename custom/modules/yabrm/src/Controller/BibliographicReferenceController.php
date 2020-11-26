@@ -25,7 +25,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
    *   An array suitable for drupal_render().
    */
   public function revisionShow($yabrm_biblio_reference_revision) {
-    $yabrm_biblio_reference = $this->entityManager()->getStorage('yabrm_biblio_reference')->loadRevision($yabrm_biblio_reference_revision);
+    $yabrm_biblio_reference = $this->entityTypeManager()->getStorage('yabrm_biblio_reference')->loadRevision($yabrm_biblio_reference_revision);
     $view_builder = $this->entityManager()->getViewBuilder('yabrm_biblio_reference');
 
     return $view_builder->view($yabrm_biblio_reference);
@@ -41,7 +41,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
    *   The page title.
    */
   public function revisionPageTitle($yabrm_biblio_reference_revision) {
-    $yabrm_biblio_reference = $this->entityManager()->getStorage('yabrm_biblio_reference')->loadRevision($yabrm_biblio_reference_revision);
+    $yabrm_biblio_reference = $this->entityTypeManager()->getStorage('yabrm_biblio_reference')->loadRevision($yabrm_biblio_reference_revision);
     return $this->t('Revision of %title from %date', ['%title' => $yabrm_biblio_reference->label(), '%date' => format_date($yabrm_biblio_reference->getRevisionCreationTime())]);
   }
 
@@ -60,7 +60,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
     $langname = $yabrm_biblio_reference->language()->getName();
     $languages = $yabrm_biblio_reference->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
-    $yabrm_biblio_reference_storage = $this->entityManager()->getStorage('yabrm_biblio_reference');
+    $yabrm_biblio_reference_storage = $this->entityTypeManager()->getStorage('yabrm_biblio_reference');
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_biblio_reference->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_biblio_reference->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];

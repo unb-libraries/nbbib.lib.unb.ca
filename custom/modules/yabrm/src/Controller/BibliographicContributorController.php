@@ -25,7 +25,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
    *   An array suitable for drupal_render().
    */
   public function revisionShow($yabrm_contributor_revision) {
-    $yabrm_contributor = $this->entityManager()->getStorage('yabrm_contributor')->loadRevision($yabrm_contributor_revision);
+    $yabrm_contributor = $this->entityTypeManager()->getStorage('yabrm_contributor')->loadRevision($yabrm_contributor_revision);
     $view_builder = $this->entityManager()->getViewBuilder('yabrm_contributor');
 
     return $view_builder->view($yabrm_contributor);
@@ -41,7 +41,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
    *   The page title.
    */
   public function revisionPageTitle($yabrm_contributor_revision) {
-    $yabrm_contributor = $this->entityManager()->getStorage('yabrm_contributor')->loadRevision($yabrm_contributor_revision);
+    $yabrm_contributor = $this->entityTypeManager()->getStorage('yabrm_contributor')->loadRevision($yabrm_contributor_revision);
     return $this->t('Revision of %title from %date', ['%title' => $yabrm_contributor->label(), '%date' => format_date($yabrm_contributor->getRevisionCreationTime())]);
   }
 
@@ -60,7 +60,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
     $langname = $yabrm_contributor->language()->getName();
     $languages = $yabrm_contributor->getTranslationLanguages();
     $has_translations = (count($languages) > 1);
-    $yabrm_contributor_storage = $this->entityManager()->getStorage('yabrm_contributor');
+    $yabrm_contributor_storage = $this->entityTypeManager()->getStorage('yabrm_contributor');
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_contributor->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_contributor->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];

@@ -26,7 +26,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
    */
   public function revisionShow($yabrm_collection_revision) {
     $yabrm_collection = $this->entityTypeManager()->getStorage('yabrm_collection')->loadRevision($yabrm_collection_revision);
-    $view_builder = $this->entityManager()->getViewBuilder('yabrm_collection');
+    $view_builder = $this->entityTypeManager()->getViewBuilder('yabrm_collection');
 
     return $view_builder->view($yabrm_collection);
   }

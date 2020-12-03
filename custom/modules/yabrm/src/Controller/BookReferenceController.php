@@ -26,7 +26,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
    */
   public function revisionShow($yabrm_book_revision) {
     $yabrm_book = $this->entityTypeManager()->getStorage('yabrm_book')->loadRevision($yabrm_book_revision);
-    $view_builder = $this->entityManager()->getViewBuilder('yabrm_book');
+    $view_builder = $this->entityTypeManager()->getViewBuilder('yabrm_book');
 
     return $view_builder->view($yabrm_book);
   }

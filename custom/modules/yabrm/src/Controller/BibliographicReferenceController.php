@@ -26,7 +26,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
    */
   public function revisionShow($yabrm_biblio_reference_revision) {
     $yabrm_biblio_reference = $this->entityTypeManager()->getStorage('yabrm_biblio_reference')->loadRevision($yabrm_biblio_reference_revision);
-    $view_builder = $this->entityManager()->getViewBuilder('yabrm_biblio_reference');
+    $view_builder = $this->entityTypeManager()->getViewBuilder('yabrm_biblio_reference');
 
     return $view_builder->view($yabrm_biblio_reference);
   }

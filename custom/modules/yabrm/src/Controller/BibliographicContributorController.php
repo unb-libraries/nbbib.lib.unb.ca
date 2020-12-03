@@ -26,7 +26,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
    */
   public function revisionShow($yabrm_contributor_revision) {
     $yabrm_contributor = $this->entityTypeManager()->getStorage('yabrm_contributor')->loadRevision($yabrm_contributor_revision);
-    $view_builder = $this->entityManager()->getViewBuilder('yabrm_contributor');
+    $view_builder = $this->entityTypeManager()->getViewBuilder('yabrm_contributor');
 
     return $view_builder->view($yabrm_contributor);
   }

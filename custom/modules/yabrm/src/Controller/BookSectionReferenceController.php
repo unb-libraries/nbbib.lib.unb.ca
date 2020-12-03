@@ -26,7 +26,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
    */
   public function revisionShow($yabrm_book_section_revision) {
     $yabrm_book_section = $this->entityTypeManager()->getStorage('yabrm_book_section')->loadRevision($yabrm_book_section_revision);
-    $view_builder = $this->entityManager()->getViewBuilder('yabrm_book_section');
+    $view_builder = $this->entityTypeManager()->getViewBuilder('yabrm_book_section');
 
     return $view_builder->view($yabrm_book_section);
   }

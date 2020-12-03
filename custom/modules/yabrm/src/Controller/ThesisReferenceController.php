@@ -26,7 +26,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
    */
   public function revisionShow($yabrm_thesis_revision) {
     $yabrm_thesis = $this->entityTypeManager()->getStorage('yabrm_thesis')->loadRevision($yabrm_thesis_revision);
-    $view_builder = $this->entityManager()->getViewBuilder('yabrm_thesis');
+    $view_builder = $this->entityTypeManager()->getViewBuilder('yabrm_thesis');
 
     return $view_builder->view($yabrm_thesis);
   }

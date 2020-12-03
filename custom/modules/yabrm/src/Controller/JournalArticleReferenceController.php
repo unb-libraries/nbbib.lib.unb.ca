@@ -26,7 +26,7 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
    */
   public function revisionShow($yabrm_journal_article_revision) {
     $yabrm_journal_article = $this->entityTypeManager()->getStorage('yabrm_journal_article')->loadRevision($yabrm_journal_article_revision);
-    $view_builder = $this->entityManager()->getViewBuilder('yabrm_journal_article');
+    $view_builder = $this->entityTypeManager()->getViewBuilder('yabrm_journal_article');
 
     return $view_builder->view($yabrm_journal_article);
   }

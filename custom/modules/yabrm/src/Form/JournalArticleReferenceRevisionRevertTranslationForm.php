@@ -51,7 +51,7 @@ class JournalArticleReferenceRevisionRevertTranslationForm extends JournalArticl
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('yabrm_journal_article'),
+      $container->get('entity_type.manager')->getStorage('yabrm_journal_article'),
       $container->get('date.formatter'),
       $container->get('language_manager')
     );

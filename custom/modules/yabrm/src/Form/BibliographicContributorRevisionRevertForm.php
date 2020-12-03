@@ -57,7 +57,7 @@ class BibliographicContributorRevisionRevertForm extends ConfirmFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('yabrm_contributor'),
+      $container->get('entity_type.manager')->getStorage('yabrm_contributor'),
       $container->get('date.formatter')
     );
   }

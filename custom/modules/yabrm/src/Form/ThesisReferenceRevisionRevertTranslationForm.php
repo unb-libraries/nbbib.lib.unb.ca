@@ -51,7 +51,7 @@ class ThesisReferenceRevisionRevertTranslationForm extends ThesisReferenceRevisi
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('yabrm_thesis'),
+      $container->get('entity_type.manager')->getStorage('yabrm_thesis'),
       $container->get('date.formatter'),
       $container->get('language_manager')
     );

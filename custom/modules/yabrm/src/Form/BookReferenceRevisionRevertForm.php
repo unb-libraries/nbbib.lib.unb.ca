@@ -57,7 +57,7 @@ class BookReferenceRevisionRevertForm extends ConfirmFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('yabrm_book'),
+      $container->get('entity_type.manager')->getStorage('yabrm_book'),
       $container->get('date.formatter')
     );
   }

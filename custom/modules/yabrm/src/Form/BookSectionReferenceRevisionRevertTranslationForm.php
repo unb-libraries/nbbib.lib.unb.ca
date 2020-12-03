@@ -51,7 +51,7 @@ class BookSectionReferenceRevisionRevertTranslationForm extends BookSectionRefer
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')->getStorage('yabrm_book_section'),
+      $container->get('entity_type.manager')->getStorage('yabrm_book_section'),
       $container->get('date.formatter'),
       $container->get('language_manager')
     );

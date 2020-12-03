@@ -42,7 +42,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
    */
   public function revisionPageTitle($yabrm_contributor_revision) {
     $yabrm_contributor = $this->entityTypeManager()->getStorage('yabrm_contributor')->loadRevision($yabrm_contributor_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_contributor->label(), '%date' => format_date($yabrm_contributor->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', ['%title' => $yabrm_contributor->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_contributor->getRevisionCreationTime())]);
   }
 
   /**

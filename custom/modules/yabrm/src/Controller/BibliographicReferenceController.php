@@ -42,7 +42,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
    */
   public function revisionPageTitle($yabrm_biblio_reference_revision) {
     $yabrm_biblio_reference = $this->entityTypeManager()->getStorage('yabrm_biblio_reference')->loadRevision($yabrm_biblio_reference_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_biblio_reference->label(), '%date' => format_date($yabrm_biblio_reference->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', ['%title' => $yabrm_biblio_reference->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_biblio_reference->getRevisionCreationTime())]);
   }
 
   /**

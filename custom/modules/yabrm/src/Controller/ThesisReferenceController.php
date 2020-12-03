@@ -42,7 +42,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
    */
   public function revisionPageTitle($yabrm_thesis_revision) {
     $yabrm_thesis = $this->entityTypeManager()->getStorage('yabrm_thesis')->loadRevision($yabrm_thesis_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_thesis->label(), '%date' => format_date($yabrm_thesis->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', ['%title' => $yabrm_thesis->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_thesis->getRevisionCreationTime())]);
   }
 
   /**

@@ -42,7 +42,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
    */
   public function revisionPageTitle($yabrm_book_section_revision) {
     $yabrm_book_section = $this->entityTypeManager()->getStorage('yabrm_book_section')->loadRevision($yabrm_book_section_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_book_section->label(), '%date' => format_date($yabrm_book_section->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', ['%title' => $yabrm_book_section->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_book_section->getRevisionCreationTime())]);
   }
 
   /**

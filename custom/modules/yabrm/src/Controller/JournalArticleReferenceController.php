@@ -42,7 +42,7 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
    */
   public function revisionPageTitle($yabrm_journal_article_revision) {
     $yabrm_journal_article = $this->entityTypeManager()->getStorage('yabrm_journal_article')->loadRevision($yabrm_journal_article_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_journal_article->label(), '%date' => format_date($yabrm_journal_article->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', ['%title' => $yabrm_journal_article->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_journal_article->getRevisionCreationTime())]);
   }
 
   /**

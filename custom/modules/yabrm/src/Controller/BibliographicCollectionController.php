@@ -42,7 +42,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
    */
   public function revisionPageTitle($yabrm_collection_revision) {
     $yabrm_collection = $this->entityTypeManager()->getStorage('yabrm_collection')->loadRevision($yabrm_collection_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_collection->label(), '%date' => format_date($yabrm_collection->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', ['%title' => $yabrm_collection->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_collection->getRevisionCreationTime())]);
   }
 
   /**

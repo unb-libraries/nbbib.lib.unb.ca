@@ -42,7 +42,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
    */
   public function revisionPageTitle($yabrm_book_revision) {
     $yabrm_book = $this->entityTypeManager()->getStorage('yabrm_book')->loadRevision($yabrm_book_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_book->label(), '%date' => format_date($yabrm_book->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', ['%title' => $yabrm_book->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_book->getRevisionCreationTime())]);
   }
 
   /**

@@ -11,5 +11,7 @@ rm_entities('yabrm_contributor');
  * {@inheritdoc}
  */
 function rm_entities($type) {
-  entity_delete_multiple($type, \Drupal::entityQuery($type)->execute());
+  $handler = \Drupal::entityTypeManager()->getStorage($type);
+  $entities = $handler->loadMultiple(\Drupal::entityQuery($type)->execute());
+  $handler->delete($entities);
 }

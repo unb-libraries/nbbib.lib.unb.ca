@@ -107,7 +107,7 @@ class BookSectionReferenceRevisionDeleteForm extends ConfirmFormBase {
     $this->BookSectionReferenceStorage->deleteRevision($this->revision->getRevisionId());
 
     $this->logger('content')->notice('Book section reference: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    drupal_set_message(t('Revision from %revision-date of Book section reference %title has been deleted.', ['%revision-date' => format_date($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
+    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Book section reference %title has been deleted.', ['%revision-date' => format_date($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
     $form_state->setRedirect(
       'entity.yabrm_book_section.canonical',
        ['yabrm_book_section' => $this->revision->id()]

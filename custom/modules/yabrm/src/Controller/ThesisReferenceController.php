@@ -88,7 +88,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_thesis->getRevisionId()) {
-          $link = $this->l($date, new Url('entity.yabrm_thesis.revision', ['yabrm_thesis' => $yabrm_thesis->id(), 'yabrm_thesis_revision' => $vid]));
+          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_thesis.revision', ['yabrm_thesis' => $yabrm_thesis->id(), 'yabrm_thesis_revision' => $vid]));
         }
         else {
           $link = $yabrm_thesis->link($date);

@@ -88,7 +88,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_collection->getRevisionId()) {
-          $link = $this->l($date, new Url('entity.yabrm_collection.revision', ['yabrm_collection' => $yabrm_collection->id(), 'yabrm_collection_revision' => $vid]));
+          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_collection.revision', ['yabrm_collection' => $yabrm_collection->id(), 'yabrm_collection_revision' => $vid]));
         }
         else {
           $link = $yabrm_collection->link($date);

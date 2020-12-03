@@ -88,7 +88,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_biblio_reference->getRevisionId()) {
-          $link = $this->l($date, new Url('entity.yabrm_biblio_reference.revision', ['yabrm_biblio_reference' => $yabrm_biblio_reference->id(), 'yabrm_biblio_reference_revision' => $vid]));
+          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_biblio_reference.revision', ['yabrm_biblio_reference' => $yabrm_biblio_reference->id(), 'yabrm_biblio_reference_revision' => $vid]));
         }
         else {
           $link = $yabrm_biblio_reference->link($date);

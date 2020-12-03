@@ -88,7 +88,7 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_journal_article->getRevisionId()) {
-          $link = $this->l($date, new Url('entity.yabrm_journal_article.revision', ['yabrm_journal_article' => $yabrm_journal_article->id(), 'yabrm_journal_article_revision' => $vid]));
+          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_journal_article.revision', ['yabrm_journal_article' => $yabrm_journal_article->id(), 'yabrm_journal_article_revision' => $vid]));
         }
         else {
           $link = $yabrm_journal_article->link($date);

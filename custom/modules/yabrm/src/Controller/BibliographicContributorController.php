@@ -88,7 +88,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_contributor->getRevisionId()) {
-          $link = $this->l($date, new Url('entity.yabrm_contributor.revision', ['yabrm_contributor' => $yabrm_contributor->id(), 'yabrm_contributor_revision' => $vid]));
+          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_contributor.revision', ['yabrm_contributor' => $yabrm_contributor->id(), 'yabrm_contributor_revision' => $vid]));
         }
         else {
           $link = $yabrm_contributor->link($date);

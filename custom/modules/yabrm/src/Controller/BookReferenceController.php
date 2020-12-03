@@ -88,7 +88,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_book->getRevisionId()) {
-          $link = $this->l($date, new Url('entity.yabrm_book.revision', ['yabrm_book' => $yabrm_book->id(), 'yabrm_book_revision' => $vid]));
+          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_book.revision', ['yabrm_book' => $yabrm_book->id(), 'yabrm_book_revision' => $vid]));
         }
         else {
           $link = $yabrm_book->link($date);

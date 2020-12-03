@@ -91,7 +91,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
           $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_thesis.revision', ['yabrm_thesis' => $yabrm_thesis->id(), 'yabrm_thesis_revision' => $vid]));
         }
         else {
-          $link = $yabrm_thesis->link($date);
+          $link = \Drupal\Core\EntityInterface::toLink()->toString($date);
         }
 
         $row = [];

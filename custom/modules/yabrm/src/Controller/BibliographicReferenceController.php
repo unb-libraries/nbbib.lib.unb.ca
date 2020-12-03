@@ -91,7 +91,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
           $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_biblio_reference.revision', ['yabrm_biblio_reference' => $yabrm_biblio_reference->id(), 'yabrm_biblio_reference_revision' => $vid]));
         }
         else {
-          $link = $yabrm_biblio_reference->link($date);
+          $link = \Drupal\Core\EntityInterface::toLink()->toString($date);
         }
 
         $row = [];

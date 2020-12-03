@@ -91,7 +91,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
           $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_contributor.revision', ['yabrm_contributor' => $yabrm_contributor->id(), 'yabrm_contributor_revision' => $vid]));
         }
         else {
-          $link = $yabrm_contributor->link($date);
+          $link = \Drupal\Core\EntityInterface::toLink()->toString($date);
         }
 
         $row = [];

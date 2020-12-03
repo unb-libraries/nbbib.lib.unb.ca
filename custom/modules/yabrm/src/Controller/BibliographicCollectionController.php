@@ -91,7 +91,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
           $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_collection.revision', ['yabrm_collection' => $yabrm_collection->id(), 'yabrm_collection_revision' => $vid]));
         }
         else {
-          $link = $yabrm_collection->link($date);
+          $link = \Drupal\Core\EntityInterface::toLink()->toString($date);
         }
 
         $row = [];

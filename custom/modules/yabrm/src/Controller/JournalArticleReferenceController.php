@@ -91,7 +91,7 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
           $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_journal_article.revision', ['yabrm_journal_article' => $yabrm_journal_article->id(), 'yabrm_journal_article_revision' => $vid]));
         }
         else {
-          $link = $yabrm_journal_article->link($date);
+          $link = \Drupal\Core\EntityInterface::toLink()->toString($date);
         }
 
         $row = [];

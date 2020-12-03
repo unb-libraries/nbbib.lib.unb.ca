@@ -91,7 +91,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
           $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_book.revision', ['yabrm_book' => $yabrm_book->id(), 'yabrm_book_revision' => $vid]));
         }
         else {
-          $link = $yabrm_book->link($date);
+          $link = \Drupal\Core\EntityInterface::toLink()->toString($date);
         }
 
         $row = [];

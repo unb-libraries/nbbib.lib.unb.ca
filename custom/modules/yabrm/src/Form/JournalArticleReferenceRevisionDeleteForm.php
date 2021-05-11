@@ -29,7 +29,7 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $JournalArticleReferenceStorage;
+  protected $journalArticleReferenceStorage;
 
   /**
    * The database connection.
@@ -47,7 +47,7 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
    *   The database connection.
    */
   public function __construct(EntityStorageInterface $entity_storage, Connection $connection) {
-    $this->JournalArticleReferenceStorage = $entity_storage;
+    $this->journalArticleReferenceStorage = $entity_storage;
     $this->connection = $connection;
   }
 
@@ -94,7 +94,7 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_journal_article_revision = NULL) {
-    $this->revision = $this->JournalArticleReferenceStorage->loadRevision($yabrm_journal_article_revision);
+    $this->revision = $this->journalArticleReferenceStorage->loadRevision($yabrm_journal_article_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -104,10 +104,16 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->JournalArticleReferenceStorage->deleteRevision($this->revision->getRevisionId());
+    $this->journalArticleReferenceStorage->deleteRevision($this->revision->getRevisionId());
 
-    $this->logger('content')->notice('Journal Article Reference: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Journal Article Reference %title has been deleted.', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
+    $this->logger('content')->notice('Journal Article Reference: deleted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId()
+    ]);
+    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Journal Article Reference %title has been deleted.', [
+      '%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()),
+      '%title' => $this->revision->label()
+    ]));
     $form_state->setRedirect(
       'entity.yabrm_journal_article.canonical',
        ['yabrm_journal_article' => $this->revision->id()]

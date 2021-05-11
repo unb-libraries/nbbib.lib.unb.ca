@@ -29,7 +29,7 @@ class BookReferenceRevisionDeleteForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $BookReferenceStorage;
+  protected $bookReferenceStorage;
 
   /**
    * The database connection.
@@ -47,7 +47,7 @@ class BookReferenceRevisionDeleteForm extends ConfirmFormBase {
    *   The database connection.
    */
   public function __construct(EntityStorageInterface $entity_storage, Connection $connection) {
-    $this->BookReferenceStorage = $entity_storage;
+    $this->bookReferenceStorage = $entity_storage;
     $this->connection = $connection;
   }
 
@@ -94,7 +94,7 @@ class BookReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_book_revision = NULL) {
-    $this->revision = $this->BookReferenceStorage->loadRevision($yabrm_book_revision);
+    $this->revision = $this->bookReferenceStorage->loadRevision($yabrm_book_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -104,10 +104,16 @@ class BookReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->BookReferenceStorage->deleteRevision($this->revision->getRevisionId());
+    $this->bookReferenceStorage->deleteRevision($this->revision->getRevisionId());
 
-    $this->logger('content')->notice('Book reference: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Book reference %title has been deleted.', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
+    $this->logger('content')->notice('Book reference: deleted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId()
+    ]);
+    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Book reference %title has been deleted.', [
+      '%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()),
+      '%title' => $this->revision->label()
+    ]));
     $form_state->setRedirect(
       'entity.yabrm_book.canonical',
        ['yabrm_book' => $this->revision->id()]

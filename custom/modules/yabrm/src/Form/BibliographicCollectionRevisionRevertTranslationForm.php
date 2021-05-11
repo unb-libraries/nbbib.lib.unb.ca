@@ -68,7 +68,10 @@ class BibliographicCollectionRevisionRevertTranslationForm extends Bibliographic
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to revert @language translation to the revision from %revision-date?', ['@language' => $this->languageManager->getLanguageName($this->langcode), '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
+    return t('Are you sure you want to revert @language translation to the revision from %revision-date?', [
+      '@language' => $this->languageManager->getLanguageName($this->langcode),
+      '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())
+    ]);
   }
 
   /**
@@ -94,7 +97,7 @@ class BibliographicCollectionRevisionRevertTranslationForm extends Bibliographic
     $revert_untranslated_fields = $form_state->getValue('revert_untranslated_fields');
 
     /** @var \Drupal\yabrm\Entity\BibliographicCollectionInterface $default_revision */
-    $latest_revision = $this->BibliographicCollectionStorage->load($revision->id());
+    $latest_revision = $this->bibliographicCollectionStorage->load($revision->id());
     $latest_revision_translation = $latest_revision->getTranslation($this->langcode);
 
     $revision_translation = $revision->getTranslation($this->langcode);

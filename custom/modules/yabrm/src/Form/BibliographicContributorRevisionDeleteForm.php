@@ -29,7 +29,7 @@ class BibliographicContributorRevisionDeleteForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $BibliographicContributorStorage;
+  protected $bibliographicContributorStorage;
 
   /**
    * The database connection.
@@ -47,7 +47,7 @@ class BibliographicContributorRevisionDeleteForm extends ConfirmFormBase {
    *   The database connection.
    */
   public function __construct(EntityStorageInterface $entity_storage, Connection $connection) {
-    $this->BibliographicContributorStorage = $entity_storage;
+    $this->bibliographicContributorStorage = $entity_storage;
     $this->connection = $connection;
   }
 
@@ -94,7 +94,7 @@ class BibliographicContributorRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_contributor_revision = NULL) {
-    $this->revision = $this->BibliographicContributorStorage->loadRevision($yabrm_contributor_revision);
+    $this->revision = $this->bibliographicContributorStorage->loadRevision($yabrm_contributor_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -104,10 +104,16 @@ class BibliographicContributorRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->BibliographicContributorStorage->deleteRevision($this->revision->getRevisionId());
+    $this->bibliographicContributorStorage->deleteRevision($this->revision->getRevisionId());
 
-    $this->logger('content')->notice('Bibliographic Contributor: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Bibliographic Contributor %title has been deleted.', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
+    $this->logger('content')->notice('Bibliographic Contributor: deleted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId()
+    ]);
+    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Bibliographic Contributor %title has been deleted.', [
+      '%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()),
+      '%title' => $this->revision->label()
+    ]));
     $form_state->setRedirect(
       'entity.yabrm_contributor.canonical',
        ['yabrm_contributor' => $this->revision->id()]

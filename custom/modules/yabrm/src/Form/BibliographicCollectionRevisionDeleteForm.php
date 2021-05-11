@@ -29,7 +29,7 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $BibliographicCollectionStorage;
+  protected $bibliographicCollectionStorage;
 
   /**
    * The database connection.
@@ -47,7 +47,7 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
    *   The database connection.
    */
   public function __construct(EntityStorageInterface $entity_storage, Connection $connection) {
-    $this->BibliographicCollectionStorage = $entity_storage;
+    $this->bibliographicCollectionStorage = $entity_storage;
     $this->connection = $connection;
   }
 
@@ -94,7 +94,7 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_collection_revision = NULL) {
-    $this->revision = $this->BibliographicCollectionStorage->loadRevision($yabrm_collection_revision);
+    $this->revision = $this->bibliographicCollectionStorage->loadRevision($yabrm_collection_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -104,10 +104,16 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->BibliographicCollectionStorage->deleteRevision($this->revision->getRevisionId());
+    $this->bibliographicCollectionStorage->deleteRevision($this->revision->getRevisionId());
 
-    $this->logger('content')->notice('Bibliographic Collection: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Bibliographic Collection %title has been deleted.', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
+    $this->logger('content')->notice('Bibliographic Collection: deleted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId()
+    ]);
+    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Bibliographic Collection %title has been deleted.', [
+      '%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()),
+      '%title' => $this->revision->label()
+    ]));
     $form_state->setRedirect(
       'entity.yabrm_collection.canonical',
        ['yabrm_collection' => $this->revision->id()]

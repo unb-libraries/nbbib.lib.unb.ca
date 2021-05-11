@@ -68,7 +68,10 @@ class BookReferenceRevisionRevertTranslationForm extends BookReferenceRevisionRe
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to revert @language translation to the revision from %revision-date?', ['@language' => $this->languageManager->getLanguageName($this->langcode), '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
+    return t('Are you sure you want to revert @language translation to the revision from %revision-date?', [
+      '@language' => $this->languageManager->getLanguageName($this->langcode),
+      '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())
+    ]);
   }
 
   /**
@@ -94,7 +97,7 @@ class BookReferenceRevisionRevertTranslationForm extends BookReferenceRevisionRe
     $revert_untranslated_fields = $form_state->getValue('revert_untranslated_fields');
 
     /** @var \Drupal\yabrm\Entity\BookReferenceInterface $default_revision */
-    $latest_revision = $this->BookReferenceStorage->load($revision->id());
+    $latest_revision = $this->bookReferenceStorage->load($revision->id());
     $latest_revision_translation = $latest_revision->getTranslation($this->langcode);
 
     $revision_translation = $revision->getTranslation($this->langcode);

@@ -5,6 +5,8 @@ namespace Drupal\yabrm\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\EntityInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\BookSectionReferenceInterface;
 
@@ -42,7 +44,10 @@ class BookSectionReferenceController extends ControllerBase implements Container
    */
   public function revisionPageTitle($yabrm_book_section_revision) {
     $yabrm_book_section = $this->entityTypeManager()->getStorage('yabrm_book_section')->loadRevision($yabrm_book_section_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_book_section->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_book_section->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', [
+      '%title' => $yabrm_book_section->label(),
+      '%date' => \Drupal::service('date.formatter')->format($yabrm_book_section->getRevisionCreationTime())
+    ]);
   }
 
   /**
@@ -62,7 +67,10 @@ class BookSectionReferenceController extends ControllerBase implements Container
     $has_translations = (count($languages) > 1);
     $yabrm_book_section_storage = $this->entityTypeManager()->getStorage('yabrm_book_section');
 
-    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_book_section->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_book_section->label()]);
+    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
+      '@langname' => $langname,
+      '%title' => $yabrm_book_section->label()
+    ]) : $this->t('Revisions for %title', ['%title' => $yabrm_book_section->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
     $revert_permission = (($account->hasPermission("revert all book section reference revisions") || $account->hasPermission('administer book section reference entities')));
@@ -88,10 +96,13 @@ class BookSectionReferenceController extends ControllerBase implements Container
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_book_section->getRevisionId()) {
-          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_book_section.revision', ['yabrm_book_section' => $yabrm_book_section->id(), 'yabrm_book_section_revision' => $vid]));
+          $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_book_section.revision', [
+            'yabrm_book_section' => $yabrm_book_section->id(),
+            'yabrm_book_section_revision' => $vid
+          ]));
         }
         else {
-          $link = \Drupal\Core\EntityInterface::toLink()->toString($date);
+          $link = EntityInterface::toLink()->toString($date);
         }
 
         $row = [];
@@ -102,7 +113,10 @@ class BookSectionReferenceController extends ControllerBase implements Container
             '#context' => [
               'date' => $link,
               'username' => \Drupal::service('renderer')->renderPlain($username),
-              'message' => ['#markup' => $revision->getRevisionLogMessage(), '#allowed_tags' => Xss::getHtmlTagList()],
+              'message' => [
+                '#markup' => $revision->getRevisionLogMessage(),
+                '#allowed_tags' => Xss::getHtmlTagList()
+              ],
             ],
           ],
         ];
@@ -132,14 +146,20 @@ class BookSectionReferenceController extends ControllerBase implements Container
                 'yabrm_book_section_revision' => $vid,
                 'langcode' => $langcode,
               ]) :
-              Url::fromRoute('entity.yabrm_book_section.revision_revert', ['yabrm_book_section' => $yabrm_book_section->id(), 'yabrm_book_section_revision' => $vid]),
+              Url::fromRoute('entity.yabrm_book_section.revision_revert', [
+                'yabrm_book_section' => $yabrm_book_section->id(),
+                'yabrm_book_section_revision' => $vid
+              ]),
             ];
           }
 
           if ($delete_permission) {
             $links['delete'] = [
               'title' => $this->t('Delete'),
-              'url' => Url::fromRoute('entity.yabrm_book_section.revision_delete', ['yabrm_book_section' => $yabrm_book_section->id(), 'yabrm_book_section_revision' => $vid]),
+              'url' => Url::fromRoute('entity.yabrm_book_section.revision_delete', [
+                'yabrm_book_section' => $yabrm_book_section->id(),
+                'yabrm_book_section_revision' => $vid
+              ]),
             ];
           }
 

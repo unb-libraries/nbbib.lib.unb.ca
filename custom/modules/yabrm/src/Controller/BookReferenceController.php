@@ -5,6 +5,8 @@ namespace Drupal\yabrm\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\EntityInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\BookReferenceInterface;
 
@@ -42,7 +44,10 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
    */
   public function revisionPageTitle($yabrm_book_revision) {
     $yabrm_book = $this->entityTypeManager()->getStorage('yabrm_book')->loadRevision($yabrm_book_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_book->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_book->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', [
+      '%title' => $yabrm_book->label(),
+      '%date' => \Drupal::service('date.formatter')->format($yabrm_book->getRevisionCreationTime())
+    ]);
   }
 
   /**
@@ -62,7 +67,10 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
     $has_translations = (count($languages) > 1);
     $yabrm_book_storage = $this->entityTypeManager()->getStorage('yabrm_book');
 
-    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_book->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_book->label()]);
+    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
+      '@langname' => $langname,
+      '%title' => $yabrm_book->label()
+    ]) : $this->t('Revisions for %title', ['%title' => $yabrm_book->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
     $revert_permission = (($account->hasPermission("revert all book reference revisions") || $account->hasPermission('administer book reference entities')));
@@ -88,10 +96,13 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_book->getRevisionId()) {
-          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_book.revision', ['yabrm_book' => $yabrm_book->id(), 'yabrm_book_revision' => $vid]));
+          $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_book.revision', [
+            'yabrm_book' => $yabrm_book->id(),
+            'yabrm_book_revision' => $vid
+          ]));
         }
         else {
-          $link = \Drupal\Core\EntityInterface::toLink()->toString($date);
+          $link = EntityInterface::toLink()->toString($date);
         }
 
         $row = [];
@@ -102,7 +113,10 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
             '#context' => [
               'date' => $link,
               'username' => \Drupal::service('renderer')->renderPlain($username),
-              'message' => ['#markup' => $revision->getRevisionLogMessage(), '#allowed_tags' => Xss::getHtmlTagList()],
+              'message' => [
+                '#markup' => $revision->getRevisionLogMessage(),
+                '#allowed_tags' => Xss::getHtmlTagList()
+              ],
             ],
           ],
         ];
@@ -126,14 +140,20 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
           if ($revert_permission) {
             $links['revert'] = [
               'title' => $this->t('Revert'),
-              'url' => Url::fromRoute('entity.yabrm_book.revision_revert', ['yabrm_book' => $yabrm_book->id(), 'yabrm_book_revision' => $vid]),
+              'url' => Url::fromRoute('entity.yabrm_book.revision_revert', [
+                'yabrm_book' => $yabrm_book->id(),
+                'yabrm_book_revision' => $vid
+              ]),
             ];
           }
 
           if ($delete_permission) {
             $links['delete'] = [
               'title' => $this->t('Delete'),
-              'url' => Url::fromRoute('entity.yabrm_book.revision_delete', ['yabrm_book' => $yabrm_book->id(), 'yabrm_book_revision' => $vid]),
+              'url' => Url::fromRoute('entity.yabrm_book.revision_delete', [
+                'yabrm_book' => $yabrm_book->id(),
+                'yabrm_book_revision' => $vid
+              ]),
             ];
           }
 

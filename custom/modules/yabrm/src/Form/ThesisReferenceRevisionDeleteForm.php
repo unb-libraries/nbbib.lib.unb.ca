@@ -29,7 +29,7 @@ class ThesisReferenceRevisionDeleteForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $ThesisReferenceStorage;
+  protected $thesisReferenceStorage;
 
   /**
    * The database connection.
@@ -47,7 +47,7 @@ class ThesisReferenceRevisionDeleteForm extends ConfirmFormBase {
    *   The database connection.
    */
   public function __construct(EntityStorageInterface $entity_storage, Connection $connection) {
-    $this->ThesisReferenceStorage = $entity_storage;
+    $this->thesisReferenceStorage = $entity_storage;
     $this->connection = $connection;
   }
 
@@ -94,7 +94,7 @@ class ThesisReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_thesis_revision = NULL) {
-    $this->revision = $this->ThesisReferenceStorage->loadRevision($yabrm_thesis_revision);
+    $this->revision = $this->thesisReferenceStorage->loadRevision($yabrm_thesis_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -104,10 +104,16 @@ class ThesisReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->ThesisReferenceStorage->deleteRevision($this->revision->getRevisionId());
+    $this->thesisReferenceStorage->deleteRevision($this->revision->getRevisionId());
 
-    $this->logger('content')->notice('Thesis reference: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Thesis reference %title has been deleted.', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()), '%title' => $this->revision->label()]));
+    $this->logger('content')->notice('Thesis reference: deleted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId()
+    ]);
+    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Thesis reference %title has been deleted.', [
+      '%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()),
+      '%title' => $this->revision->label()
+    ]));
     $form_state->setRedirect(
       'entity.yabrm_thesis.canonical',
        ['yabrm_thesis' => $this->revision->id()]

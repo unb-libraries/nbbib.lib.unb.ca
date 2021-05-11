@@ -30,7 +30,7 @@ class ThesisReferenceRevisionRevertForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $ThesisReferenceStorage;
+  protected $thesisReferenceStorage;
 
   /**
    * The date formatter service.
@@ -48,7 +48,7 @@ class ThesisReferenceRevisionRevertForm extends ConfirmFormBase {
    *   The date formatter service.
    */
   public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
-    $this->ThesisReferenceStorage = $entity_storage;
+    $this->thesisReferenceStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
   }
 
@@ -101,7 +101,7 @@ class ThesisReferenceRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_thesis_revision = NULL) {
-    $this->revision = $this->ThesisReferenceStorage->loadRevision($yabrm_thesis_revision);
+    $this->revision = $this->thesisReferenceStorage->loadRevision($yabrm_thesis_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -119,8 +119,14 @@ class ThesisReferenceRevisionRevertForm extends ConfirmFormBase {
     $this->revision->revision_log = t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
     $this->revision->save();
 
-    $this->logger('content')->notice('Thesis reference: reverted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    \Drupal::messenger()->addMessage(t('Thesis reference %title has been reverted to the revision from %revision-date.', ['%title' => $this->revision->label(), '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)]));
+    $this->logger('content')->notice('Thesis reference: reverted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId()
+    ]);
+    \Drupal::messenger()->addMessage(t('Thesis reference %title has been reverted to the revision from %revision-date.', [
+      '%title' => $this->revision->label(),
+      '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)
+    ]));
     $form_state->setRedirect(
       'entity.yabrm_thesis.version_history',
       ['yabrm_thesis' => $this->revision->id()]

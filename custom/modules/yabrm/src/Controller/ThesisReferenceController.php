@@ -5,6 +5,8 @@ namespace Drupal\yabrm\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\EntityInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\ThesisReferenceInterface;
 
@@ -42,7 +44,10 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
    */
   public function revisionPageTitle($yabrm_thesis_revision) {
     $yabrm_thesis = $this->entityTypeManager()->getStorage('yabrm_thesis')->loadRevision($yabrm_thesis_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_thesis->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_thesis->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', [
+      '%title' => $yabrm_thesis->label(),
+      '%date' => \Drupal::service('date.formatter')->format($yabrm_thesis->getRevisionCreationTime())
+    ]);
   }
 
   /**
@@ -62,7 +67,10 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
     $has_translations = (count($languages) > 1);
     $yabrm_thesis_storage = $this->entityTypeManager()->getStorage('yabrm_thesis');
 
-    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_thesis->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_thesis->label()]);
+    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
+      '@langname' => $langname,
+      '%title' => $yabrm_thesis->label()
+    ]) : $this->t('Revisions for %title', ['%title' => $yabrm_thesis->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
     $revert_permission = (($account->hasPermission("revert all thesis reference revisions") || $account->hasPermission('administer thesis reference entities')));
@@ -88,10 +96,13 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_thesis->getRevisionId()) {
-          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_thesis.revision', ['yabrm_thesis' => $yabrm_thesis->id(), 'yabrm_thesis_revision' => $vid]));
+          $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_thesis.revision', [
+            'yabrm_thesis' => $yabrm_thesis->id(),
+            'yabrm_thesis_revision' => $vid
+          ]));
         }
         else {
-          $link = \Drupal\Core\EntityInterface::toLink()->toString($date);
+          $link = EntityInterface::toLink()->toString($date);
         }
 
         $row = [];
@@ -102,7 +113,10 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
             '#context' => [
               'date' => $link,
               'username' => \Drupal::service('renderer')->renderPlain($username),
-              'message' => ['#markup' => $revision->getRevisionLogMessage(), '#allowed_tags' => Xss::getHtmlTagList()],
+              'message' => [
+                '#markup' => $revision->getRevisionLogMessage(),
+                '#allowed_tags' => Xss::getHtmlTagList()
+              ],
             ],
           ],
         ];
@@ -126,14 +140,20 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
           if ($revert_permission) {
             $links['revert'] = [
               'title' => $this->t('Revert'),
-              'url' => Url::fromRoute('entity.yabrm_thesis.revision_revert', ['yabrm_thesis' => $yabrm_thesis->id(), 'yabrm_thesis_revision' => $vid]),
+              'url' => Url::fromRoute('entity.yabrm_thesis.revision_revert', [
+                'yabrm_thesis' => $yabrm_thesis->id(),
+                'yabrm_thesis_revision' => $vid
+              ]),
             ];
           }
 
           if ($delete_permission) {
             $links['delete'] = [
               'title' => $this->t('Delete'),
-              'url' => Url::fromRoute('entity.yabrm_thesis.revision_delete', ['yabrm_thesis' => $yabrm_thesis->id(), 'yabrm_thesis_revision' => $vid]),
+              'url' => Url::fromRoute('entity.yabrm_thesis.revision_delete', [
+                'yabrm_thesis' => $yabrm_thesis->id(),
+                'yabrm_thesis_revision' => $vid
+              ]),
             ];
           }
 

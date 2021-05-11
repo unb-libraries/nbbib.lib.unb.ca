@@ -5,6 +5,8 @@ namespace Drupal\yabrm\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\EntityInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\JournalArticleReferenceInterface;
 
@@ -42,7 +44,10 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
    */
   public function revisionPageTitle($yabrm_journal_article_revision) {
     $yabrm_journal_article = $this->entityTypeManager()->getStorage('yabrm_journal_article')->loadRevision($yabrm_journal_article_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_journal_article->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_journal_article->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', [
+      '%title' => $yabrm_journal_article->label(),
+      '%date' => \Drupal::service('date.formatter')->format($yabrm_journal_article->getRevisionCreationTime())
+    ]);
   }
 
   /**
@@ -62,7 +67,12 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
     $has_translations = (count($languages) > 1);
     $yabrm_journal_article_storage = $this->entityTypeManager()->getStorage('yabrm_journal_article');
 
-    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_journal_article->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_journal_article->label()]);
+    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
+      '@langname' => $langname,
+      '%title' => $yabrm_journal_article->label()
+    ]) : $this->t('Revisions for %title', [
+      '%title' => $yabrm_journal_article->label()
+    ]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
     $revert_permission = (($account->hasPermission("revert all journal article reference revisions") || $account->hasPermission('administer journal article reference entities')));
@@ -88,10 +98,13 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_journal_article->getRevisionId()) {
-          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_journal_article.revision', ['yabrm_journal_article' => $yabrm_journal_article->id(), 'yabrm_journal_article_revision' => $vid]));
+          $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_journal_article.revision', [
+            'yabrm_journal_article' => $yabrm_journal_article->id(),
+            'yabrm_journal_article_revision' => $vid
+          ]));
         }
         else {
-          $link = \Drupal\Core\EntityInterface::toLink()->toString($date);
+          $link = EntityInterface::toLink()->toString($date);
         }
 
         $row = [];
@@ -102,7 +115,10 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
             '#context' => [
               'date' => $link,
               'username' => \Drupal::service('renderer')->renderPlain($username),
-              'message' => ['#markup' => $revision->getRevisionLogMessage(), '#allowed_tags' => Xss::getHtmlTagList()],
+              'message' => [
+                '#markup' => $revision->getRevisionLogMessage(),
+                '#allowed_tags' => Xss::getHtmlTagList()
+              ],
             ],
           ],
         ];
@@ -126,14 +142,20 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
           if ($revert_permission) {
             $links['revert'] = [
               'title' => $this->t('Revert'),
-              'url' => Url::fromRoute('entity.yabrm_journal_article.revision_revert', ['yabrm_journal_article' => $yabrm_journal_article->id(), 'yabrm_journal_article_revision' => $vid]),
+              'url' => Url::fromRoute('entity.yabrm_journal_article.revision_revert', [
+                'yabrm_journal_article' => $yabrm_journal_article->id(),
+                'yabrm_journal_article_revision' => $vid
+              ]),
             ];
           }
 
           if ($delete_permission) {
             $links['delete'] = [
               'title' => $this->t('Delete'),
-              'url' => Url::fromRoute('entity.yabrm_journal_article.revision_delete', ['yabrm_journal_article' => $yabrm_journal_article->id(), 'yabrm_journal_article_revision' => $vid]),
+              'url' => Url::fromRoute('entity.yabrm_journal_article.revision_delete', [
+                'yabrm_journal_article' => $yabrm_journal_article->id(),
+                'yabrm_journal_article_revision' => $vid
+              ]),
             ];
           }
 

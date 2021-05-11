@@ -30,7 +30,7 @@ class JournalArticleReferenceRevisionRevertForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $JournalArticleReferenceStorage;
+  protected $journalArticleReferenceStorage;
 
   /**
    * The date formatter service.
@@ -48,7 +48,7 @@ class JournalArticleReferenceRevisionRevertForm extends ConfirmFormBase {
    *   The date formatter service.
    */
   public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
-    $this->JournalArticleReferenceStorage = $entity_storage;
+    $this->journalArticleReferenceStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
   }
 
@@ -101,7 +101,7 @@ class JournalArticleReferenceRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_journal_article_revision = NULL) {
-    $this->revision = $this->JournalArticleReferenceStorage->loadRevision($yabrm_journal_article_revision);
+    $this->revision = $this->journalArticleReferenceStorage->loadRevision($yabrm_journal_article_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -119,8 +119,14 @@ class JournalArticleReferenceRevisionRevertForm extends ConfirmFormBase {
     $this->revision->revision_log = t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
     $this->revision->save();
 
-    $this->logger('content')->notice('Journal Article Reference: reverted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    \Drupal::messenger()->addMessage(t('Journal Article Reference %title has been reverted to the revision from %revision-date.', ['%title' => $this->revision->label(), '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)]));
+    $this->logger('content')->notice('Journal Article Reference: reverted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId()
+    ]);
+    \Drupal::messenger()->addMessage(t('Journal Article Reference %title has been reverted to the revision from %revision-date.', [
+      '%title' => $this->revision->label(),
+      '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)
+    ]));
     $form_state->setRedirect(
       'entity.yabrm_journal_article.version_history',
       ['yabrm_journal_article' => $this->revision->id()]

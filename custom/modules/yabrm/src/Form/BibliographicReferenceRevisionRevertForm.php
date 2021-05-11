@@ -30,7 +30,7 @@ class BibliographicReferenceRevisionRevertForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $BibliographicReferenceStorage;
+  protected $bibliographicReferenceStorage;
 
   /**
    * The date formatter service.
@@ -48,7 +48,7 @@ class BibliographicReferenceRevisionRevertForm extends ConfirmFormBase {
    *   The date formatter service.
    */
   public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
-    $this->BibliographicReferenceStorage = $entity_storage;
+    $this->bibliographicReferenceStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
   }
 
@@ -101,7 +101,7 @@ class BibliographicReferenceRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_biblio_reference_revision = NULL) {
-    $this->revision = $this->BibliographicReferenceStorage->loadRevision($yabrm_biblio_reference_revision);
+    $this->revision = $this->bibliographicReferenceStorage->loadRevision($yabrm_biblio_reference_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -119,8 +119,14 @@ class BibliographicReferenceRevisionRevertForm extends ConfirmFormBase {
     $this->revision->revision_log = t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
     $this->revision->save();
 
-    $this->logger('content')->notice('Bibliographic Reference: reverted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
-    \Drupal::messenger()->addMessage(t('Bibliographic Reference %title has been reverted to the revision from %revision-date.', ['%title' => $this->revision->label(), '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)]));
+    $this->logger('content')->notice('Bibliographic Reference: reverted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId()
+    ]);
+    \Drupal::messenger()->addMessage(t('Bibliographic Reference %title has been reverted to the revision from %revision-date.', [
+      '%title' => $this->revision->label(),
+      '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)
+    ]));
     $form_state->setRedirect(
       'entity.yabrm_biblio_reference.version_history',
       ['yabrm_biblio_reference' => $this->revision->id()]

@@ -5,6 +5,8 @@ namespace Drupal\yabrm\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\EntityInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\BibliographicCollectionInterface;
 
@@ -42,7 +44,10 @@ class BibliographicCollectionController extends ControllerBase implements Contai
    */
   public function revisionPageTitle($yabrm_collection_revision) {
     $yabrm_collection = $this->entityTypeManager()->getStorage('yabrm_collection')->loadRevision($yabrm_collection_revision);
-    return $this->t('Revision of %title from %date', ['%title' => $yabrm_collection->label(), '%date' => \Drupal::service('date.formatter')->format($yabrm_collection->getRevisionCreationTime())]);
+    return $this->t('Revision of %title from %date', [
+      '%title' => $yabrm_collection->label(),
+      '%date' => \Drupal::service('date.formatter')->format($yabrm_collection->getRevisionCreationTime())
+    ]);
   }
 
   /**
@@ -62,7 +67,12 @@ class BibliographicCollectionController extends ControllerBase implements Contai
     $has_translations = (count($languages) > 1);
     $yabrm_collection_storage = $this->entityTypeManager()->getStorage('yabrm_collection');
 
-    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', ['@langname' => $langname, '%title' => $yabrm_collection->label()]) : $this->t('Revisions for %title', ['%title' => $yabrm_collection->label()]);
+    $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
+      '@langname' => $langname,
+      '%title' => $yabrm_collection->label()
+    ]) : $this->t('Revisions for %title', [
+      '%title' => $yabrm_collection->label()
+    ]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
     $revert_permission = (($account->hasPermission("revert all bibliographic collection revisions") || $account->hasPermission('administer bibliographic collection entities')));
@@ -88,10 +98,13 @@ class BibliographicCollectionController extends ControllerBase implements Contai
         // Use revision link to link to revisions that are not active.
         $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_collection->getRevisionId()) {
-          $link = \Drupal\Core\Link::fromTextAndUrl($date, new Url('entity.yabrm_collection.revision', ['yabrm_collection' => $yabrm_collection->id(), 'yabrm_collection_revision' => $vid]));
+          $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_collection.revision', [
+            'yabrm_collection' => $yabrm_collection->id(),
+            'yabrm_collection_revision' => $vid
+          ]));
         }
         else {
-          $link = \Drupal\Core\EntityInterface::toLink()->toString($date);
+          $link = EntityInterface::toLink()->toString($date);
         }
 
         $row = [];
@@ -102,7 +115,10 @@ class BibliographicCollectionController extends ControllerBase implements Contai
             '#context' => [
               'date' => $link,
               'username' => \Drupal::service('renderer')->renderPlain($username),
-              'message' => ['#markup' => $revision->getRevisionLogMessage(), '#allowed_tags' => Xss::getHtmlTagList()],
+              'message' => [
+                '#markup' => $revision->getRevisionLogMessage(),
+                '#allowed_tags' => Xss::getHtmlTagList()
+              ],
             ],
           ],
         ];
@@ -126,14 +142,20 @@ class BibliographicCollectionController extends ControllerBase implements Contai
           if ($revert_permission) {
             $links['revert'] = [
               'title' => $this->t('Revert'),
-              'url' => Url::fromRoute('entity.yabrm_collection.revision_revert', ['yabrm_collection' => $yabrm_collection->id(), 'yabrm_collection_revision' => $vid]),
+              'url' => Url::fromRoute('entity.yabrm_collection.revision_revert', [
+                'yabrm_collection' => $yabrm_collection->id(),
+                'yabrm_collection_revision' => $vid
+              ]),
             ];
           }
 
           if ($delete_permission) {
             $links['delete'] = [
               'title' => $this->t('Delete'),
-              'url' => Url::fromRoute('entity.yabrm_collection.revision_delete', ['yabrm_collection' => $yabrm_collection->id(), 'yabrm_collection_revision' => $vid]),
+              'url' => Url::fromRoute('entity.yabrm_collection.revision_delete', [
+                'yabrm_collection' => $yabrm_collection->id(),
+                'yabrm_collection_revision' => $vid
+              ]),
             ];
           }
 

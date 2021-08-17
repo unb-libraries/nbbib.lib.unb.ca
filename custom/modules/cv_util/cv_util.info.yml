@@ -2,4 +2,5 @@ name: Utility Functions
 type: module
 description: Scripts, debugging hooks, etc.
 core: 8.x
+core_version_requirement: ^8 || ^9
 package: Custom Misc

@@ -2,6 +2,7 @@ name: NB Bibliography Core
 type: module
 description: Core custom functionality for nbbib.lib.unb.ca
 core: 8.x
+core_version_requirement: ^8 || ^9
 package: Custom
 
 dependencies:

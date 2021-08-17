@@ -38,6 +38,11 @@ use Drupal\user\UserInterface;
  *   base_table = "yabrm_contributor",
  *   revision_table = "yabrm_contributor_revision",
  *   revision_data_table = "yabrm_contributor_field_revision",
+ *   revision_metadata_keys = {
+ *     "revision_user" = "revision_user",
+ *     "revision_created" = "revision_created",
+ *     "revision_log_message" = "revision_log",
+ *   },
  *   admin_permission = "administer bibliographic contributor entities",
  *   set_revision_ui = TRUE,
  *   entity_keys = {

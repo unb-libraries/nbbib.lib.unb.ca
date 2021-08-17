@@ -2,6 +2,7 @@ name: 'Yet Another Bibliographic Reference Module'
 type: module
 description: 'Yet Another Bibliographic Reference Module'
 core: 8.x
+core_version_requirement: ^8 || ^9
 package: 'YABRM'
 dependencies:
   - entity_reference_revisions:entity_reference_revisions

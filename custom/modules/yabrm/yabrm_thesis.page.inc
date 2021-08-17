@@ -189,7 +189,7 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   $pub_wad = '';
 
   // URL alias.
-  $variables['content']['url_alias'] = $yabrm_thesis->url();
+  $variables['content']['url_alias'] = $yabrm_thesis->toUrl()->toString();
 
   // Title.
   if ($title) {

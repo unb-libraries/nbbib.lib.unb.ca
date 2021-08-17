@@ -192,7 +192,7 @@ function template_preprocess_yabrm_book(array &$variables) {
   $pub_wad = '';
 
   // URL alias.
-  $variables['content']['url_alias'] = $yabrm_book->url();
+  $variables['content']['url_alias'] = $yabrm_book->toUrl()->toString();
 
   // Title.
   if ($title) {

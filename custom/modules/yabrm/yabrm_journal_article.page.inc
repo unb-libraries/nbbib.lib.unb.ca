@@ -200,7 +200,7 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
   $pub_wad = '';
 
   // URL alias.
-  $variables['content']['url_alias'] = $yabrm_journal_article->url();
+  $variables['content']['url_alias'] = $yabrm_journal_article->toUrl()->toString();
 
   // Title.
   if ($title) {

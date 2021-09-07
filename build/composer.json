@@ -60,7 +60,7 @@
     "require": {
         "drupal/admin_toolbar": "2.5",
         "drupal/bootstrap": "3.23",
-        "drupal/core": "9.2.4",
+        "drupal/core": "9.2.5",
         "drupal/externalauth": "1.4",
         "drupal/inline_entity_form": "1.x-dev",
         "drupal/health_check": "1.3",

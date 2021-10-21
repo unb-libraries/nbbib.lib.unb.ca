@@ -20,6 +20,23 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
   use NbBibMigrationTrait;
 
   /**
+   * Dependency injection for entity_type.manager.
+   *
+   * @var Drupal\Core\Entity\EntityTypeManager
+   */
+  protected $typeManager;
+
+  /**
+   * Constructs a new ReferenceMigrateParagraphEvent object.
+   *
+   * @param Drupal\Core\Entity\EntityTypeManager $typeManager
+   *   Dependency injection for entity_type.manager.
+   */
+  public function __construct(EntityTypeManager $typeManager) {
+    $this->typeManager = $typeManager;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
@@ -65,7 +82,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $item_type = $row->getSourceProperty('item_type');
       $entity_type = self::getZoteroTypeMappings()[$item_type];
 
-      $reference = \Drupal::entityTypeManager()
+      $reference = $this->typeManager
         ->getStorage($entity_type)
         ->load($reference_id);
 
@@ -85,7 +102,8 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $collection_name = self::getMigrations()[$migration_id];
 
       if (!empty($collection_name)) {
-        $existing = \Drupal::entityQuery('yabrm_collection')
+        $existing = $this->typeManager->getStorage('yabrm_collection')
+          ->getQuery()
           ->condition('name', $collection_name)
           ->execute();
 
@@ -109,7 +127,8 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $arch_name = $row->getSourceProperty('archive');
 
       if (!empty($arch_name)) {
-        $existing = \Drupal::entityQuery('taxonomy_term')
+        $existing = $this->typeManager->getStorage('taxonomy_term')
+          ->getQuery()
           ->condition('name', $arch_name)
           ->condition('vid', 'nbbib_archives')
           ->execute();
@@ -165,7 +184,8 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $contrib_name = ucwords(mb_strtolower($contrib_name));
 
       if (!empty($contrib_name)) {
-        $existing = \Drupal::entityQuery('yabrm_contributor')
+        $existing = $this->typeManager->getStorage('yabrm_contributor')
+          ->getQuery()
           ->condition('name', $contrib_name)
           ->execute();
 
@@ -260,7 +280,8 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
    *   An array of INTs of the id if exists, FALSE otherwise.
    */
   public function entitySearch($type, $field, $value) {
-    return \Drupal::entityQuery($type)
+    return $this->typeManager->getStorage($type)
+      ->getQuery()
       ->condition($field, $value)
       ->execute();
   }
@@ -301,10 +322,11 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
    *   Contains an INT of the tid if exists, FALSE otherwise.
    */
   public function taxTermExists($value, $field, $vocabulary) {
-    $query = \Drupal::entityQuery('taxonomy_term');
+    $query = $this->typeManager->getStorage('taxonomy_term')->getQuery();
     $query->condition('vid', $vocabulary);
     $query->condition($field, $value);
     $tids = $query->execute();
+
     if (!empty($tids)) {
       foreach ($tids as $tid) {
         return $tid;

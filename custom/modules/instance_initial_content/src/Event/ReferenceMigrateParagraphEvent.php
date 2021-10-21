@@ -11,6 +11,7 @@ use Drupal\taxonomy\Entity\Term;
 use Drupal\yabrm\Entity\BibliographicContributor;
 use Drupal\yabrm\Entity\BibliographicCollection;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Drupal\Core\Entity\EntityTypeManager;
 
 /**
  * Defines the migrate event subscriber.

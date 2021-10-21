@@ -8,21 +8,20 @@ source:
   plugin: csv
   path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_0_static_pages.csv'
   header_row_count: 1
-  keys:
-    - nid
+  ids: [nid]
 
-  column_names:
-    0:
-      nid: NID
-    1:
-      alias: Alias
-    2:
-      title: Title
-    3:
-      body: Body
+  fields:
+    - name: nid
+      label: NID
+    - name: alias
+      label: Alias
+    - name: title
+      label: Title
+    - name: body
+      label: Body
 
-    constants:
-      slash: "/"
+  constants:
+    slash: "/"
 
 process:
   type:

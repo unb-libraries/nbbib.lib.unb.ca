@@ -27,6 +27,18 @@ source:
     4:
       name: title
       label: Title
+    5:
+      name: publication_title
+      label: Publication Title
+    6:
+      name: foo
+      label: Foo
+    7:
+      name: issn
+      label: ISSN
+    8:
+      name: doi
+      label: DOI
     9:
       name: url
       label: URL
@@ -36,6 +48,18 @@ source:
     11:
       name: publication_date
       label: Publication Date
+    12:
+      name: date_added
+      label: Date Added
+    13:
+      name: date_modified
+      label: Date Modified
+    14:
+      name: access_date
+      label: Access Date
+    15:
+      name: pages
+      label: Pages
     21:
       name: short_title
       label: Short Title
@@ -84,18 +108,6 @@ source:
     55:
       name: reviewed_author
       label: Reviewed Author
-    5:
-      name: publication_title
-      label: Publication Title
-    7:
-      name: issn
-      label: ISSN
-    8:
-      name: doi
-      label: DOI
-    15:
-      name: pages
-      label: Pages
     17:
       name: issue
       label: Issue

@@ -1,5 +1,5 @@
-id: nbbib_1_religion_anglican_1_journal_articles
-label: Religion/Anglican Journal article references from Zotero for NBBIB
+id: nbbib_2_new_brunswickana_1_journal_articles
+label: New Brunswickana Journal article references from Zotero for NBBIB
 
 migration_tags:
   - CSV
@@ -7,7 +7,7 @@ migration_tags:
 
 source:
   plugin: csv
-  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_1_religion_anglican.csv'
+  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_2_new_brunswickana.csv'
   header_row_count: 1
   ids: [key]
 

@@ -1,5 +1,5 @@
-id: nbbib_1_religion_anglican_1_journal_articles
-label: Religion/Anglican Journal article references from Zotero for NBBIB
+id: nbbib_1_religion_anglican_3_book_sections
+label: Religion/Anglican Book Section references from Zotero for NBBIB
 
 migration_tags:
   - CSV
@@ -198,17 +198,25 @@ process:
     plugin: skip_on_value
     method: row
     not_equals: true
-    value: journalArticle
+    value: bookSection
     source: item_type
-
   external_key_ref: key
   title: title
+  isbn: isbn
   url: url
   abstract_note: abstract_note
   publication_year: publication_year
   publication_month: publication_month
   publication_day: publication_day
+  publication_title: publication_title
+  pages: pages
+  volume: volume
+  num_volumes: num_volumes
   short_title: short_title
+  series: series
+  series_number: series_number
+  publisher: publisher
+  place: place
   language: language
   rights: rights
   archive: archive
@@ -218,21 +226,13 @@ process:
   extra: extra
   notes: notes
   notes_private: notes_private
-  publication_title: publication_title
-  issn: issn
-  doi: doi
-  pages: pages
-  issue: issue
-  volume: volume
-  journal_abbr: journal_abbr
-  series: series
-  series_text: series_text
-  series_title: series_title
-  publisher: publisher
-
+  editor: editor
+  series_editor: series_editor
+  translator: translator
+  edition: edition
 
 destination:
-  plugin: entity:yabrm_journal_article
+  plugin: entity:yabrm_book_section
 
 dependencies:
   module:

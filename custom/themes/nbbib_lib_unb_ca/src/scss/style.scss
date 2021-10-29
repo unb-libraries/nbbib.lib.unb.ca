@@ -29,7 +29,9 @@ a[href='/user/password'] {
 }
 
 // Branding.
-.branding-container a {
+.site-title {
+  margin: 0;
+  line-height: 1.2rem;
   font-size: 28px;
 }
 

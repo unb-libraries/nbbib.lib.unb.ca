@@ -5,10 +5,10 @@ namespace Drupal\yabrm\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\EntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\BibliographicCollectionInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class BibliographicCollectionController.
@@ -16,6 +16,37 @@ use Drupal\yabrm\Entity\BibliographicCollectionInterface;
  *  Returns responses for Bibliographic Collection routes.
  */
 class BibliographicCollectionController extends ControllerBase implements ContainerInjectionInterface {
+
+  /**
+   * For services dependency injection.
+   *
+   * @var Symfony\Component\DependencyInjection\ContainerInterface
+   */
+  protected $service;
+
+  /**
+   * Class constructor.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service_container
+   *   The container interface for using services via dependency injection.
+   */
+  public function __construct(ContainerInterface $service_container) {
+    $this->service = $service_container;
+  }
+
+  /**
+   * Object create method.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *   Container interface.
+   *
+   * @return static
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('service_container')
+    );
+  }
 
   /**
    * Displays a Bibliographic Collection  revision.
@@ -46,7 +77,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
     $yabrm_collection = $this->entityTypeManager()->getStorage('yabrm_collection')->loadRevision($yabrm_collection_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_collection->label(),
-      '%date' => \Drupal::service('date.formatter')->format($yabrm_collection->getRevisionCreationTime())
+      '%date' => $this->service->get('date.formatter')->format($yabrm_collection->getRevisionCreationTime())
     ]);
   }
 
@@ -96,15 +127,15 @@ class BibliographicCollectionController extends ControllerBase implements Contai
         ];
 
         // Use revision link to link to revisions that are not active.
-        $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
+        $date = $this->service->get('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_collection->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_collection.revision', [
             'yabrm_collection' => $yabrm_collection->id(),
             'yabrm_collection_revision' => $vid
-          ]));
+          ]))->toString();
         }
         else {
-          $link = EntityInterface::toLink()->toString($date);
+          $link = $yabrm_collection->toLink($date)->toString();
         }
 
         $row = [];
@@ -114,7 +145,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
             '#template' => '{% trans %}{{ date }} by {{ username }}{% endtrans %}{% if message %}<p class="revision-log">{{ message }}</p>{% endif %}',
             '#context' => [
               'date' => $link,
-              'username' => \Drupal::service('renderer')->renderPlain($username),
+              'username' => $this->service->get('path.matcher')->renderPlain($username),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
                 '#allowed_tags' => Xss::getHtmlTagList()

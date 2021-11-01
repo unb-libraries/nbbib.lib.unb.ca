@@ -5,10 +5,10 @@ namespace Drupal\yabrm\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\EntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\ThesisReferenceInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class ThesisReferenceController.
@@ -16,6 +16,37 @@ use Drupal\yabrm\Entity\ThesisReferenceInterface;
  *  Returns responses for Thesis reference routes.
  */
 class ThesisReferenceController extends ControllerBase implements ContainerInjectionInterface {
+
+  /**
+   * For services dependency injection.
+   *
+   * @var Symfony\Component\DependencyInjection\ContainerInterface
+   */
+  protected $service;
+
+  /**
+   * Class constructor.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service_container
+   *   The container interface for using services via dependency injection.
+   */
+  public function __construct(ContainerInterface $service_container) {
+    $this->service = $service_container;
+  }
+
+  /**
+   * Object create method.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *   Container interface.
+   *
+   * @return static
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('service_container')
+    );
+  }
 
   /**
    * Displays a Thesis reference  revision.
@@ -46,7 +77,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
     $yabrm_thesis = $this->entityTypeManager()->getStorage('yabrm_thesis')->loadRevision($yabrm_thesis_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_thesis->label(),
-      '%date' => \Drupal::service('date.formatter')->format($yabrm_thesis->getRevisionCreationTime())
+      '%date' => $this->service->get('date.formatter')->format($yabrm_thesis->getRevisionCreationTime())
     ]);
   }
 
@@ -94,15 +125,15 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
         ];
 
         // Use revision link to link to revisions that are not active.
-        $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
+        $date = $this->service->get('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_thesis->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_thesis.revision', [
             'yabrm_thesis' => $yabrm_thesis->id(),
             'yabrm_thesis_revision' => $vid
-          ]));
+          ]))->toString();
         }
         else {
-          $link = EntityInterface::toLink()->toString($date);
+          $link = $yabrm_thesis->toLink($date)->toString();
         }
 
         $row = [];
@@ -112,7 +143,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
             '#template' => '{% trans %}{{ date }} by {{ username }}{% endtrans %}{% if message %}<p class="revision-log">{{ message }}</p>{% endif %}',
             '#context' => [
               'date' => $link,
-              'username' => \Drupal::service('renderer')->renderPlain($username),
+              'username' => $this->service->get('renderer')->renderPlain($username),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
                 '#allowed_tags' => Xss::getHtmlTagList()

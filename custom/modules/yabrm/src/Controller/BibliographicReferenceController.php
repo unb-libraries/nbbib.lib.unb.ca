@@ -5,10 +5,10 @@ namespace Drupal\yabrm\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\EntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\BibliographicReferenceInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class BibliographicReferenceController.
@@ -16,6 +16,37 @@ use Drupal\yabrm\Entity\BibliographicReferenceInterface;
  *  Returns responses for Bibliographic Reference routes.
  */
 class BibliographicReferenceController extends ControllerBase implements ContainerInjectionInterface {
+
+  /**
+   * For services dependency injection.
+   *
+   * @var Symfony\Component\DependencyInjection\ContainerInterface
+   */
+  protected $service;
+
+  /**
+   * Class constructor.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service_container
+   *   The container interface for using services via dependency injection.
+   */
+  public function __construct(ContainerInterface $service_container) {
+    $this->service = $service_container;
+  }
+
+  /**
+   * Object create method.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *   Container interface.
+   *
+   * @return static
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('service_container')
+    );
+  }
 
   /**
    * Displays a Bibliographic Reference  revision.
@@ -46,7 +77,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
     $yabrm_biblio_reference = $this->entityTypeManager()->getStorage('yabrm_biblio_reference')->loadRevision($yabrm_biblio_reference_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_biblio_reference->label(),
-      '%date' => \Drupal::service('date.formatter')->format($yabrm_biblio_reference->getRevisionCreationTime())
+      '%date' => $this->service->get('date.formatter')->format($yabrm_biblio_reference->getRevisionCreationTime())
     ]);
   }
 
@@ -96,15 +127,15 @@ class BibliographicReferenceController extends ControllerBase implements Contain
         ];
 
         // Use revision link to link to revisions that are not active.
-        $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
+        $date = $this->service->get('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_biblio_reference->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_biblio_reference.revision', [
             'yabrm_biblio_reference' => $yabrm_biblio_reference->id(),
             'yabrm_biblio_reference_revision' => $vid
-          ]));
+          ]))->toString();
         }
         else {
-          $link = EntityInterface::toLink()->toString($date);
+          $link = $yabrm_biblio_reference->toLink($date)->toString();
         }
 
         $row = [];
@@ -114,7 +145,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
             '#template' => '{% trans %}{{ date }} by {{ username }}{% endtrans %}{% if message %}<p class="revision-log">{{ message }}</p>{% endif %}',
             '#context' => [
               'date' => $link,
-              'username' => \Drupal::service('renderer')->renderPlain($username),
+              'username' => $this->service->get('renderer')->renderPlain($username),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
                 '#allowed_tags' => Xss::getHtmlTagList()

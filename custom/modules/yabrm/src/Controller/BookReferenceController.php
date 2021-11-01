@@ -5,10 +5,10 @@ namespace Drupal\yabrm\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\EntityInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\BookReferenceInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class BookReferenceController.
@@ -16,6 +16,37 @@ use Drupal\yabrm\Entity\BookReferenceInterface;
  *  Returns responses for Book reference routes.
  */
 class BookReferenceController extends ControllerBase implements ContainerInjectionInterface {
+
+  /**
+   * For services dependency injection.
+   *
+   * @var Symfony\Component\DependencyInjection\ContainerInterface
+   */
+  protected $service;
+
+  /**
+   * Class constructor.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service_container
+   *   The container interface for using services via dependency injection.
+   */
+  public function __construct(ContainerInterface $service_container) {
+    $this->service = $service_container;
+  }
+
+  /**
+   * Object create method.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *   Container interface.
+   *
+   * @return static
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('service_container')
+    );
+  }
 
   /**
    * Displays a Book reference  revision.
@@ -46,7 +77,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
     $yabrm_book = $this->entityTypeManager()->getStorage('yabrm_book')->loadRevision($yabrm_book_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_book->label(),
-      '%date' => \Drupal::service('date.formatter')->format($yabrm_book->getRevisionCreationTime())
+      '%date' => $this->service->get('date.formatter')->format($yabrm_book->getRevisionCreationTime())
     ]);
   }
 
@@ -94,15 +125,15 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
         ];
 
         // Use revision link to link to revisions that are not active.
-        $date = \Drupal::service('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
+        $date = $this->service->get('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_book->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_book.revision', [
             'yabrm_book' => $yabrm_book->id(),
             'yabrm_book_revision' => $vid
-          ]));
+          ]))->toString();
         }
         else {
-          $link = EntityInterface::toLink()->toString($date);
+          $link = $yabrm_book->toLink($date)->toString();
         }
 
         $row = [];
@@ -112,7 +143,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
             '#template' => '{% trans %}{{ date }} by {{ username }}{% endtrans %}{% if message %}<p class="revision-log">{{ message }}</p>{% endif %}',
             '#context' => [
               'date' => $link,
-              'username' => \Drupal::service('renderer')->renderPlain($username),
+              'username' => $this->service->get('renderer')->renderPlain($username),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
                 '#allowed_tags' => Xss::getHtmlTagList()

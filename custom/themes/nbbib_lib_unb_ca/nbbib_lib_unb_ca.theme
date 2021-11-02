@@ -9,16 +9,19 @@ function nbbib_lib_unb_ca_preprocess_field(&$variables, $hook) {
   // Only for 'name' field.
   if ($element['#field_name'] == 'name' and $element['#view_mode'] == 'full') {
     $contrib = $element['#object'];
-    $first_name = empty($contrib->get('first_name')->getValue()[0]['value'])
-      ? NULL : $contrib->get('first_name')->getValue()[0]['value'];
-    $last_name = empty($contrib->get('last_name')->getValue()[0]['value'])
-      ? NULL : $contrib->get('last_name')->getValue()[0]['value'];
-    $inst_name = empty($contrib->get('institution_name')->getValue()[0]['value'])
-      ? NULL : $contrib->get('institution_name')->getValue()[0]['value'];
-    $full_name = $inst_name ? $inst_name : "$first_name $last_name";
 
-    // Replace field with fist_name last_name.
-    $variables['items'][0]['content']['#context']['value'] = $full_name;
+    if ($contrib->bundle() != 'yabrm_collection') {
+      $first_name = empty($contrib->get('first_name')->getValue()[0]['value'])
+        ? NULL : $contrib->get('first_name')->getValue()[0]['value'];
+      $last_name = empty($contrib->get('last_name')->getValue()[0]['value'])
+        ? NULL : $contrib->get('last_name')->getValue()[0]['value'];
+      $inst_name = empty($contrib->get('institution_name')->getValue()[0]['value'])
+        ? NULL : $contrib->get('institution_name')->getValue()[0]['value'];
+      $full_name = $inst_name ? $inst_name : "$first_name $last_name";
+
+      // Replace field with fist_name last_name.
+      $variables['items'][0]['content']['#context']['value'] = $full_name;
+    }
   }
 }
 

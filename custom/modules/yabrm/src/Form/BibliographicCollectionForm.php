@@ -4,6 +4,8 @@ namespace Drupal\yabrm\Form;
 
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Component\Datetime\Time;
 
 /**
  * Form controller for Bibliographic Collection edit forms.
@@ -13,10 +15,43 @@ use Drupal\Core\Form\FormStateInterface;
 class BibliographicCollectionForm extends ContentEntityForm {
 
   /**
+   * For services dependency injection.
+   *
+   * @var Symfony\Component\DependencyInjection\ContainerInterface
+   */
+  protected $service;
+
+  /**
+   * Class constructor.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service_container
+   *   The container interface for using services via dependency injection.
+   */
+  public function __construct(ContainerInterface $service_container) {
+    $this->service = $service_container;
+  }
+
+  /**
+   * Object create method.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *   Container interface.
+   *
+   * @return static
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('service_container')
+    );
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var $entity \Drupal\yabrm\Entity\BibliographicCollection */
+    /**
+     * @var $entity \Drupal\yabrm\Entity\BibliographicCollection
+     */
     $form = parent::buildForm($form, $form_state);
 
     if (!$this->entity->isNew()) {
@@ -44,8 +79,8 @@ class BibliographicCollectionForm extends ContentEntityForm {
       $entity->setNewRevision();
 
       // If a new revision is created, save the current user as revision author.
-      $entity->setRevisionCreationTime(\Drupal::time()->getRequestTime());
-      $entity->setRevisionUserId(\Drupal::currentUser()->id());
+      $entity->setRevisionCreationTime(Time::getRequestTime());
+      $entity->setRevisionUserId($this->service->get('current_user')->id());
     }
     else {
       $entity->setNewRevision(FALSE);
@@ -55,13 +90,13 @@ class BibliographicCollectionForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        \Drupal::messenger()->addMessage($this->t('Created the %label Bibliographic Collection.', [
+        $this->service->get('messenger')->addMessage($this->t('Created the %label Bibliographic Collection.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        \Drupal::messenger()->addMessage($this->t('Saved the %label Bibliographic Collection.', [
+        $this->service->get('messenger')->addMessage($this->t('Saved the %label Bibliographic Collection.', [
           '%label' => $entity->label(),
         ]));
     }

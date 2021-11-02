@@ -50,7 +50,7 @@ class BibliographicCollectionForm extends ContentEntityForm {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     /**
-     * @var $entity \Drupal\yabrm\Entity\BibliographicCollection
+     * @var \Drupal\yabrm\Entity\BibliographicCollection $entity
      */
     $form = parent::buildForm($form, $form_state);
 
@@ -62,8 +62,6 @@ class BibliographicCollectionForm extends ContentEntityForm {
         '#weight' => 10,
       ];
     }
-
-    $entity = $this->entity;
 
     return $form;
   }

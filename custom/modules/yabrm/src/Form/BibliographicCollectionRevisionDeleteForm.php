@@ -8,8 +8,6 @@ use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\StringTranslation\TranslationInterface;
 
 /**
  * Provides a form for deleting a Bibliographic Collection revision.
@@ -17,7 +15,6 @@ use Drupal\Core\StringTranslation\TranslationInterface;
  * @ingroup yabrm
  */
 class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
-  use StringTranslationTrait;
 
   /**
    * The Bibliographic Collection revision.
@@ -48,13 +45,6 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
   protected $service;
 
   /**
-   * For string translation.
-   *
-   * @var Drupal\Core\StringTranslation\StringTranslationTrait
-   */
-  protected $stringTranslation;
-
-  /**
    * Constructs a new BibliographicCollectionRevisionDeleteForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
@@ -63,18 +53,14 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
    *   The database connection.
    * @param Symfony\Component\DependencyInjection\ContainerInterface $service
    *   The service container.
-   * @param Drupal\Core\StringTranslation\TranslationInterface $string_translation
-   *   For string translation.
    */
   public function __construct(
     EntityStorageInterface $entity_storage,
     Connection $connection,
-    ContainerInterface $service,
-    TranslationInterface $string_translation) {
+    ContainerInterface $service) {
     $this->bibliographicCollectionStorage = $entity_storage;
     $this->connection = $connection;
     $this->service = $service;
-    $this->stringTranslation = $string_translation;
   }
 
   /**
@@ -137,7 +123,7 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
       '%title' => $this->revision->label(),
       '%revision' => $this->revision->getRevisionId(),
     ]);
-    $this->service->get('messenger')->addMessage($this->t('Revision from %revision-date of Bibliographic Collection %title has been deleted.', [
+    $this->messenger()->addMessage($this->t('Revision from %revision-date of Bibliographic Collection %title has been deleted.', [
       '%revision-date' => $this->service->get('date.formatter')->format($this->revision->getRevisionCreationTime()),
       '%title' => $this->revision->label(),
     ]));

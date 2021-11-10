@@ -145,7 +145,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
             '#template' => '{% trans %}{{ date }} by {{ username }}{% endtrans %}{% if message %}<p class="revision-log">{{ message }}</p>{% endif %}',
             '#context' => [
               'date' => $link,
-              'username' => $this->service->get('path.matcher')->renderPlain($username),
+              'username' => $revision->getRevisionUser()->getAccountName(),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
                 '#allowed_tags' => Xss::getHtmlTagList()

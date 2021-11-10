@@ -77,12 +77,12 @@ class BibliographicCollectionController extends ControllerBase implements Contai
     $yabrm_collection = $this->entityTypeManager()->getStorage('yabrm_collection')->loadRevision($yabrm_collection_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_collection->label(),
-      '%date' => $this->service->get('date.formatter')->format($yabrm_collection->getRevisionCreationTime())
+      '%date' => $this->service->get('date.formatter')->format($yabrm_collection->getRevisionCreationTime()),
     ]);
   }
 
   /**
-   * Generates an overview table of older revisions of a Bibliographic Collection .
+   * Generates an overview table of older revisions of BibliographicCollection.
    *
    * @param \Drupal\yabrm\Entity\BibliographicCollectionInterface $yabrm_collection
    *   A Bibliographic Collection  object.
@@ -100,9 +100,9 @@ class BibliographicCollectionController extends ControllerBase implements Contai
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
       '@langname' => $langname,
-      '%title' => $yabrm_collection->label()
+      '%title' => $yabrm_collection->label(),
     ]) : $this->t('Revisions for %title', [
-      '%title' => $yabrm_collection->label()
+      '%title' => $yabrm_collection->label(),
     ]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
@@ -121,17 +121,13 @@ class BibliographicCollectionController extends ControllerBase implements Contai
       // Only show revisions that are affected by the language that is being
       // displayed.
       if ($revision->hasTranslation($langcode) && $revision->getTranslation($langcode)->isRevisionTranslationAffected()) {
-        $username = [
-          '#theme' => 'username',
-          '#account' => $revision->getRevisionUser(),
-        ];
 
         // Use revision link to link to revisions that are not active.
         $date = $this->service->get('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_collection->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_collection.revision', [
             'yabrm_collection' => $yabrm_collection->id(),
-            'yabrm_collection_revision' => $vid
+            'yabrm_collection_revision' => $vid,
           ]))->toString();
         }
         else {
@@ -148,7 +144,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
               'username' => $revision->getRevisionUser()->getAccountName(),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
-                '#allowed_tags' => Xss::getHtmlTagList()
+                '#allowed_tags' => Xss::getHtmlTagList(),
               ],
             ],
           ],
@@ -175,7 +171,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
               'title' => $this->t('Revert'),
               'url' => Url::fromRoute('entity.yabrm_collection.revision_revert', [
                 'yabrm_collection' => $yabrm_collection->id(),
-                'yabrm_collection_revision' => $vid
+                'yabrm_collection_revision' => $vid,
               ]),
             ];
           }
@@ -185,7 +181,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
               'title' => $this->t('Delete'),
               'url' => Url::fromRoute('entity.yabrm_collection.revision_delete', [
                 'yabrm_collection' => $yabrm_collection->id(),
-                'yabrm_collection_revision' => $vid
+                'yabrm_collection_revision' => $vid,
               ]),
             ];
           }

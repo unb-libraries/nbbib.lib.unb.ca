@@ -113,8 +113,8 @@ class BibliographicCollection extends RevisionableContentEntityBase implements B
       }
     }
 
-    // If no revision author has been set explicitly, make the yabrm_collection owner the
-    // revision author.
+    // If no revision author has been set explicitly, make the yabrm_collection
+    // owner the revision author.
     if (!$this->getRevisionUser()) {
       $this->setRevisionUserId($this->getOwnerId());
     }

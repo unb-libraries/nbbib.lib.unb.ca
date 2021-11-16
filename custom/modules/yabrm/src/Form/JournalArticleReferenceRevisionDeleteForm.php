@@ -118,7 +118,7 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
       'entity.yabrm_journal_article.canonical',
        ['yabrm_journal_article' => $this->revision->id()]
     );
-    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {yabrm_journal_article_field_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
+    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {yabrm_journal_article_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
       $form_state->setRedirect(
         'entity.yabrm_journal_article.version_history',
          ['yabrm_journal_article' => $this->revision->id()]

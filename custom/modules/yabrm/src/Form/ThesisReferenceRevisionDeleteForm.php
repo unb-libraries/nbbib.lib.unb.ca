@@ -118,7 +118,7 @@ class ThesisReferenceRevisionDeleteForm extends ConfirmFormBase {
       'entity.yabrm_thesis.canonical',
        ['yabrm_thesis' => $this->revision->id()]
     );
-    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {yabrm_thesis_field_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
+    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {yabrm_thesis_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
       $form_state->setRedirect(
         'entity.yabrm_thesis.version_history',
          ['yabrm_thesis' => $this->revision->id()]

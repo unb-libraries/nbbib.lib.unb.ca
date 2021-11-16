@@ -66,7 +66,6 @@ use Drupal\user\UserInterface;
  *     "collection" = "/yabrm/yabrm_collection",
  *   },
  *   field_ui_base_route = "yabrm_collection.settings"
- *   translatable = TRUE
  * )
  */
 class BibliographicCollection extends RevisionableContentEntityBase implements BibliographicCollectionInterface {

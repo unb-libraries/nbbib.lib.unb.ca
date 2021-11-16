@@ -118,7 +118,7 @@ class BookReferenceRevisionDeleteForm extends ConfirmFormBase {
       'entity.yabrm_book.canonical',
        ['yabrm_book' => $this->revision->id()]
     );
-    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {yabrm_book_field_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
+    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {yabrm_book_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
       $form_state->setRedirect(
         'entity.yabrm_book.version_history',
          ['yabrm_book' => $this->revision->id()]

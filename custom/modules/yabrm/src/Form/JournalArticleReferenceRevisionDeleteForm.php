@@ -73,7 +73,7 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime())]);
+    return $this->t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime())]);
   }
 
   /**
@@ -87,7 +87,7 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getConfirmText() {
-    return t('Delete');
+    return $this->t('Delete');
   }
 
   /**
@@ -108,11 +108,11 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
 
     $this->logger('content')->notice('Journal Article Reference: deleted %title revision %revision.', [
       '%title' => $this->revision->label(),
-      '%revision' => $this->revision->getRevisionId()
+      '%revision' => $this->revision->getRevisionId(),
     ]);
-    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Journal Article Reference %title has been deleted.', [
+    $this->messenger()->addMessage($this->t('Revision from %revision-date of Journal Article Reference %title has been deleted.', [
       '%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()),
-      '%title' => $this->revision->label()
+      '%title' => $this->revision->label(),
     ]));
     $form_state->setRedirect(
       'entity.yabrm_journal_article.canonical',

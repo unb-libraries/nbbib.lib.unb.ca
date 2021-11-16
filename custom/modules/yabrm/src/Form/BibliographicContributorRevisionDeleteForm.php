@@ -73,7 +73,7 @@ class BibliographicContributorRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime())]);
+    return $this->t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime())]);
   }
 
   /**
@@ -87,7 +87,7 @@ class BibliographicContributorRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getConfirmText() {
-    return t('Delete');
+    return $this->t('Delete');
   }
 
   /**
@@ -108,11 +108,11 @@ class BibliographicContributorRevisionDeleteForm extends ConfirmFormBase {
 
     $this->logger('content')->notice('Bibliographic Contributor: deleted %title revision %revision.', [
       '%title' => $this->revision->label(),
-      '%revision' => $this->revision->getRevisionId()
+      '%revision' => $this->revision->getRevisionId(),
     ]);
-    \Drupal::messenger()->addMessage(t('Revision from %revision-date of Bibliographic Contributor %title has been deleted.', [
+    $this->messenger()->addMessage($this->t('Revision from %revision-date of Bibliographic Contributor %title has been deleted.', [
       '%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()),
-      '%title' => $this->revision->label()
+      '%title' => $this->revision->label(),
     ]));
     $form_state->setRedirect(
       'entity.yabrm_contributor.canonical',

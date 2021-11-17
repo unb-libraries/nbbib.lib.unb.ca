@@ -17,7 +17,7 @@ class BibliographicContributorForm extends ContentEntityForm {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     /**
-     * @var $entity \Drupal\yabrm\Entity\BibliographicContributor
+     * @var \Drupal\yabrm\Entity\BibliographicContributor $entity
      */
     $form = parent::buildForm($form, $form_state);
 

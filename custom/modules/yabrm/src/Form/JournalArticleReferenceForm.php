@@ -17,7 +17,7 @@ class JournalArticleReferenceForm extends ContentEntityForm {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     /**
-     * @var $entity \Drupal\yabrm\Entity\JournalArticleReference
+     * @var \Drupal\yabrm\Entity\JournalArticleReference $entity
      */
     $form = parent::buildForm($form, $form_state);
 

@@ -17,7 +17,7 @@ class BookSectionReferenceForm extends ContentEntityForm {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     /**
-     * @var $entity \Drupal\yabrm\Entity\BookSectionReference
+     * @var \Drupal\yabrm\Entity\BookSectionReference $entity
      */
     $form = parent::buildForm($form, $form_state);
 

@@ -73,7 +73,7 @@ class BibliographicReferenceRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to revert to the revision from %revision-date?', ['%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
+    return $this->t('Are you sure you want to revert to the revision from %revision-date?', ['%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
   }
 
   /**
@@ -87,7 +87,7 @@ class BibliographicReferenceRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getConfirmText() {
-    return t('Revert');
+    return $this->t('Revert');
   }
 
   /**
@@ -116,16 +116,16 @@ class BibliographicReferenceRevisionRevertForm extends ConfirmFormBase {
     $original_revision_timestamp = $this->revision->getRevisionCreationTime();
 
     $this->revision = $this->prepareRevertedRevision($this->revision, $form_state);
-    $this->revision->revision_log = t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
+    $this->revision->revision_log = $this->t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
     $this->revision->save();
 
     $this->logger('content')->notice('Bibliographic Reference: reverted %title revision %revision.', [
       '%title' => $this->revision->label(),
-      '%revision' => $this->revision->getRevisionId()
+      '%revision' => $this->revision->getRevisionId(),
     ]);
-    $this->messenger()->addMessage(t('Bibliographic Reference %title has been reverted to the revision from %revision-date.', [
+    $this->messenger()->addMessage($this->t('Bibliographic Reference %title has been reverted to the revision from %revision-date.', [
       '%title' => $this->revision->label(),
-      '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)
+      '%revision-date' => $this->dateFormatter->format($original_revision_timestamp),
     ]));
     $form_state->setRedirect(
       'entity.yabrm_biblio_reference.version_history',

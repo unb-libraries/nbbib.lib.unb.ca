@@ -16,7 +16,9 @@ class ThesisReferenceForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var $entity \Drupal\yabrm\Entity\ThesisReference */
+    /*
+     * @var $entity \Drupal\yabrm\Entity\ThesisReference
+     */
     $form = parent::buildForm($form, $form_state);
 
     if (!$this->entity->isNew()) {

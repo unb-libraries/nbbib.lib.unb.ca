@@ -16,7 +16,9 @@ class BibliographicReferenceForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var $entity \Drupal\yabrm\Entity\BibliographicReference */
+    /*
+     * @var $entity \Drupal\yabrm\Entity\BibliographicReference
+     */
     $form = parent::buildForm($form, $form_state);
 
     if (!$this->entity->isNew()) {

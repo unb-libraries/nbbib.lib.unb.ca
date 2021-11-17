@@ -55,13 +55,13 @@ class BookReferenceForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        \Drupal::messenger()->addMessage($this->t('Created the %label Book reference.', [
+        $this->messenger()->addMessage($this->t('Created the %label Book reference.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        \Drupal::messenger()->addMessage($this->t('Saved the %label Book reference.', [
+        $this->messenger()->addMessage($this->t('Saved the %label Book reference.', [
           '%label' => $entity->label(),
         ]));
     }

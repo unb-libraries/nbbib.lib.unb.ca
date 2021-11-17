@@ -123,7 +123,7 @@ class ThesisReferenceRevisionRevertForm extends ConfirmFormBase {
       '%title' => $this->revision->label(),
       '%revision' => $this->revision->getRevisionId()
     ]);
-    \Drupal::messenger()->addMessage(t('Thesis reference %title has been reverted to the revision from %revision-date.', [
+    $this->messenger()->addMessage(t('Thesis reference %title has been reverted to the revision from %revision-date.', [
       '%title' => $this->revision->label(),
       '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)
     ]));

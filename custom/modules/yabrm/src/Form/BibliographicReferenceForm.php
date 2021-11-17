@@ -55,13 +55,13 @@ class BibliographicReferenceForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        \Drupal::messenger()->addMessage($this->t('Created the %label Bibliographic Reference.', [
+        $this->messenger()->addMessage($this->t('Created the %label Bibliographic Reference.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        \Drupal::messenger()->addMessage($this->t('Saved the %label Bibliographic Reference.', [
+        $this->messenger()->addMessage($this->t('Saved the %label Bibliographic Reference.', [
           '%label' => $entity->label(),
         ]));
     }

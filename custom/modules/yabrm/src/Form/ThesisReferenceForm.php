@@ -55,13 +55,13 @@ class ThesisReferenceForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        \Drupal::messenger()->addMessage($this->t('Created the %label Thesis reference.', [
+        $this->messenger()->addMessage($this->t('Created the %label Thesis reference.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        \Drupal::messenger()->addMessage($this->t('Saved the %label Thesis reference.', [
+        $this->messenger()->addMessage($this->t('Saved the %label Thesis reference.', [
           '%label' => $entity->label(),
         ]));
     }

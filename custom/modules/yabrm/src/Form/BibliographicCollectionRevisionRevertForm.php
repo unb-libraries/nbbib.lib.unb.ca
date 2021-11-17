@@ -40,16 +40,30 @@ class BibliographicCollectionRevisionRevertForm extends ConfirmFormBase {
   protected $dateFormatter;
 
   /**
+   * The service container.
+   *
+   * @var \Symfony\Component\DependencyInjection\ContainerInterface
+   */
+  protected $service;
+
+  /**
    * Constructs a new BibliographicCollectionRevisionRevertForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The Bibliographic Collection storage.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service
+   *   The service container.
    */
-  public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
+  public function __construct(
+    EntityStorageInterface $entity_storage,
+    DateFormatterInterface $date_formatter,
+    ContainerInterface $service
+    ) {
     $this->bibliographicCollectionStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
+    $this->service = $service;
   }
 
   /**
@@ -58,7 +72,8 @@ class BibliographicCollectionRevisionRevertForm extends ConfirmFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager')->getStorage('yabrm_collection'),
-      $container->get('date.formatter')
+      $container->get('date.formatter'),
+      $container->get('service_container')
     );
   }
 
@@ -123,7 +138,7 @@ class BibliographicCollectionRevisionRevertForm extends ConfirmFormBase {
       '%title' => $this->revision->label(),
       '%revision' => $this->revision->getRevisionId()
     ]);
-    \Drupal::messenger()->addMessage(t('Bibliographic Collection %title has been reverted to the revision from %revision-date.', [
+    $this->messenger()->addMessage(t('Bibliographic Collection %title has been reverted to the revision from %revision-date.', [
       '%title' => $this->revision->label(),
       '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)
     ]));
@@ -147,7 +162,7 @@ class BibliographicCollectionRevisionRevertForm extends ConfirmFormBase {
   protected function prepareRevertedRevision(BibliographicCollectionInterface $revision, FormStateInterface $form_state) {
     $revision->setNewRevision();
     $revision->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
+    $revision->setRevisionCreationTime($this->service->get('datetime.time')->getRequestTime());
 
     return $revision;
   }

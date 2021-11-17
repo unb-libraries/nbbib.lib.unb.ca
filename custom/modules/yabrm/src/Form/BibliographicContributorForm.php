@@ -55,13 +55,13 @@ class BibliographicContributorForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        \Drupal::messenger()->addMessage($this->t('Created the %label Bibliographic Contributor.', [
+        $this->messenger()->addMessage($this->t('Created the %label Bibliographic Contributor.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        \Drupal::messenger()->addMessage($this->t('Saved the %label Bibliographic Contributor.', [
+        $this->messenger()->addMessage($this->t('Saved the %label Bibliographic Contributor.', [
           '%label' => $entity->label(),
         ]));
     }

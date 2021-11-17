@@ -32,6 +32,13 @@ class BibliographicCollectionRevisionRevertTranslationForm extends Bibliographic
   protected $languageManager;
 
   /**
+   * The service container.
+   *
+   * @var \Symfony\Component\DependencyInjection\ContainerInterface
+   */
+  protected $service;
+
+  /**
    * Constructs a new BibliographicCollectionRevisionRevertTranslationForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
@@ -40,10 +47,17 @@ class BibliographicCollectionRevisionRevertTranslationForm extends Bibliographic
    *   The date formatter service.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service
+   *   The service container.
    */
-  public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter, LanguageManagerInterface $language_manager) {
+  public function __construct(
+    EntityStorageInterface $entity_storage,
+    DateFormatterInterface $date_formatter,
+    LanguageManagerInterface $language_manager,
+    ContainerInterface $service) {
     parent::__construct($entity_storage, $date_formatter);
     $this->languageManager = $language_manager;
+    $this->service = $service;
   }
 
   /**
@@ -53,7 +67,8 @@ class BibliographicCollectionRevisionRevertTranslationForm extends Bibliographic
     return new static(
       $container->get('entity_type.manager')->getStorage('yabrm_collection'),
       $container->get('date.formatter'),
-      $container->get('language_manager')
+      $container->get('language_manager'),
+      $container->get('service_container')
     );
   }
 
@@ -110,7 +125,7 @@ class BibliographicCollectionRevisionRevertTranslationForm extends Bibliographic
 
     $latest_revision_translation->setNewRevision();
     $latest_revision_translation->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
+    $revision->setRevisionCreationTime($this->service->get('datetime.time')->getRequestTime());
 
     return $latest_revision_translation;
   }

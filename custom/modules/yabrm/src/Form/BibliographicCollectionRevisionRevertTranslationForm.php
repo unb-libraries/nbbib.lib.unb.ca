@@ -10,7 +10,7 @@ use Drupal\yabrm\Entity\BibliographicCollectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a form for reverting a Bibliographic Collection revision for a single translation.
+ * For reverting a Bibliographic Collection revision single translation.
  *
  * @ingroup yabrm
  */

@@ -16,7 +16,7 @@ class BookReferenceForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /*
+    /**
      * @var $entity \Drupal\yabrm\Entity\BookReference
      */
     $form = parent::buildForm($form, $form_state);

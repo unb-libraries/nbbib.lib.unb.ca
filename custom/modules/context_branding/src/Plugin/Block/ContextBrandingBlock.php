@@ -4,6 +4,7 @@ namespace Drupal\context_branding\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Path\PathMatcher;
 use Drupal\Core\Config\ConfigFactory;
 

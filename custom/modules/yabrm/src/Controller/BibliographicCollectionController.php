@@ -9,6 +9,7 @@ use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\BibliographicCollectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Datetime\DateFormatter;
 
 /**
  * Class BibliographicCollectionController.
@@ -20,18 +21,18 @@ class BibliographicCollectionController extends ControllerBase implements Contai
   /**
    * For services dependency injection.
    *
-   * @var Symfony\Component\DependencyInjection\ContainerInterface
+   * @var Drupal\Core\Datetime\DateFormatter
    */
-  protected $service;
+  protected $dateFormatter;
 
   /**
    * Class constructor.
    *
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service_container
+   * @param Drupal\Core\Datetime\DateFormatter $date_formatter
    *   The container interface for using services via dependency injection.
    */
-  public function __construct(ContainerInterface $service_container) {
-    $this->service = $service_container;
+  public function __construct(DateFormatter $date_formatter) {
+    $this->dateFormatter = $date_formatter;
   }
 
   /**
@@ -44,7 +45,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('service_container')
+      $container->get('date.formatter')
     );
   }
 
@@ -77,7 +78,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
     $yabrm_collection = $this->entityTypeManager()->getStorage('yabrm_collection')->loadRevision($yabrm_collection_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_collection->label(),
-      '%date' => $this->service->get('date.formatter')->format($yabrm_collection->getRevisionCreationTime()),
+      '%date' => $this->dateFormatter->format($yabrm_collection->getRevisionCreationTime()),
     ]);
   }
 
@@ -123,7 +124,7 @@ class BibliographicCollectionController extends ControllerBase implements Contai
       if ($revision->hasTranslation($langcode) && $revision->getTranslation($langcode)->isRevisionTranslationAffected()) {
 
         // Use revision link to link to revisions that are not active.
-        $date = $this->service->get('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
+        $date = $this->dateFormatter->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_collection->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_collection.revision', [
             'yabrm_collection' => $yabrm_collection->id(),

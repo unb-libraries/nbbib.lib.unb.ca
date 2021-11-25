@@ -9,6 +9,8 @@ use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\BookSectionReferenceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Datetime\DateFormatter;
+use Drupal\Core\Render\Renderer;
 
 /**
  * Class BookSectionReferenceController.
@@ -20,18 +22,30 @@ class BookSectionReferenceController extends ControllerBase implements Container
   /**
    * For services dependency injection.
    *
-   * @var Symfony\Component\DependencyInjection\ContainerInterface
+   * @var Drupal\Core\Datetime\DateFormatter
    */
-  protected $service;
+  protected $dateFormatter;
+
+  /**
+   * For services dependency injection.
+   *
+   * @var Drupal\Core\Render\Renderer
+   */
+  protected $renderer;
 
   /**
    * Class constructor.
    *
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service_container
-   *   The container interface for using services via dependency injection.
+   * @param Drupal\Core\Datetime\DateFormatter $date_formatter
+   *   For services dependency injection.
+   * @param Drupal\Core\Render\Renderer $renderer
+   *   For services dependency injection.
    */
-  public function __construct(ContainerInterface $service_container) {
-    $this->service = $service_container;
+  public function __construct(
+    DateFormatter $date_formatter,
+    Renderer $renderer) {
+    $this->dateFormatter = $date_formatter;
+    $this->renderer = $renderer;
   }
 
   /**
@@ -44,7 +58,8 @@ class BookSectionReferenceController extends ControllerBase implements Container
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('service_container')
+      $container->get('date.formatter'),
+      $container->get('renderer')
     );
   }
 
@@ -77,7 +92,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
     $yabrm_book_section = $this->entityTypeManager()->getStorage('yabrm_book_section')->loadRevision($yabrm_book_section_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_book_section->label(),
-      '%date' => $this->service->get('date.formatter')->format($yabrm_book_section->getRevisionCreationTime())
+      '%date' => $this->dateFormatter->format($yabrm_book_section->getRevisionCreationTime())
     ]);
   }
 
@@ -125,7 +140,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
         ];
 
         // Use revision link to link to revisions that are not active.
-        $date = $this->service->get('date.formatter')->format($revision->getRevisionCreationTime(), 'short');
+        $date = $this->dateFormatter->format($revision->getRevisionCreationTime(), 'short');
         if ($vid != $yabrm_book_section->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_book_section.revision', [
             'yabrm_book_section' => $yabrm_book_section->id(),
@@ -143,7 +158,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
             '#template' => '{% trans %}{{ date }} by {{ username }}{% endtrans %}{% if message %}<p class="revision-log">{{ message }}</p>{% endif %}',
             '#context' => [
               'date' => $link,
-              'username' => $this->service->get('renderer')->renderPlain($username),
+              'username' => $this->renderer->renderPlain($username),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
                 '#allowed_tags' => Xss::getHtmlTagList()

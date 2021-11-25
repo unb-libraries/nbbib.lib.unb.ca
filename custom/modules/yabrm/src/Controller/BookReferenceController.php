@@ -92,7 +92,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
     $yabrm_book = $this->entityTypeManager()->getStorage('yabrm_book')->loadRevision($yabrm_book_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_book->label(),
-      '%date' => $this->dateFormatter->format($yabrm_book->getRevisionCreationTime())
+      '%date' => $this->dateFormatter->format($yabrm_book->getRevisionCreationTime()),
     ]);
   }
 
@@ -115,7 +115,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
       '@langname' => $langname,
-      '%title' => $yabrm_book->label()
+      '%title' => $yabrm_book->label(),
     ]) : $this->t('Revisions for %title', ['%title' => $yabrm_book->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
@@ -144,7 +144,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
         if ($vid != $yabrm_book->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_book.revision', [
             'yabrm_book' => $yabrm_book->id(),
-            'yabrm_book_revision' => $vid
+            'yabrm_book_revision' => $vid,
           ]))->toString();
         }
         else {
@@ -161,7 +161,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
               'username' => $this->renderer->renderPlain($username),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
-                '#allowed_tags' => Xss::getHtmlTagList()
+                '#allowed_tags' => Xss::getHtmlTagList(),
               ],
             ],
           ],
@@ -188,7 +188,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
               'title' => $this->t('Revert'),
               'url' => Url::fromRoute('entity.yabrm_book.revision_revert', [
                 'yabrm_book' => $yabrm_book->id(),
-                'yabrm_book_revision' => $vid
+                'yabrm_book_revision' => $vid,
               ]),
             ];
           }
@@ -198,7 +198,7 @@ class BookReferenceController extends ControllerBase implements ContainerInjecti
               'title' => $this->t('Delete'),
               'url' => Url::fromRoute('entity.yabrm_book.revision_delete', [
                 'yabrm_book' => $yabrm_book->id(),
-                'yabrm_book_revision' => $vid
+                'yabrm_book_revision' => $vid,
               ]),
             ];
           }

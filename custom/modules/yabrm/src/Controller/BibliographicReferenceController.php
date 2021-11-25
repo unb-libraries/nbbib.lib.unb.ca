@@ -92,12 +92,12 @@ class BibliographicReferenceController extends ControllerBase implements Contain
     $yabrm_biblio_reference = $this->entityTypeManager()->getStorage('yabrm_biblio_reference')->loadRevision($yabrm_biblio_reference_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_biblio_reference->label(),
-      '%date' => $this->dateFormatter->format($yabrm_biblio_reference->getRevisionCreationTime())
+      '%date' => $this->dateFormatter->format($yabrm_biblio_reference->getRevisionCreationTime()),
     ]);
   }
 
   /**
-   * Generates an overview table of older revisions of a Bibliographic Reference .
+   * Overview table of old revisions for Bibliographic Reference.
    *
    * @param \Drupal\yabrm\Entity\BibliographicReferenceInterface $yabrm_biblio_reference
    *   A Bibliographic Reference  object.
@@ -115,9 +115,9 @@ class BibliographicReferenceController extends ControllerBase implements Contain
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
       '@langname' => $langname,
-      '%title' => $yabrm_biblio_reference->label()
+      '%title' => $yabrm_biblio_reference->label(),
     ]) : $this->t('Revisions for %title', [
-      '%title' => $yabrm_biblio_reference->label()
+      '%title' => $yabrm_biblio_reference->label(),
     ]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
@@ -146,7 +146,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
         if ($vid != $yabrm_biblio_reference->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_biblio_reference.revision', [
             'yabrm_biblio_reference' => $yabrm_biblio_reference->id(),
-            'yabrm_biblio_reference_revision' => $vid
+            'yabrm_biblio_reference_revision' => $vid,
           ]))->toString();
         }
         else {
@@ -163,7 +163,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
               'username' => $this->renderer->renderPlain($username),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
-                '#allowed_tags' => Xss::getHtmlTagList()
+                '#allowed_tags' => Xss::getHtmlTagList(),
               ],
             ],
           ],
@@ -190,7 +190,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
               'title' => $this->t('Revert'),
               'url' => Url::fromRoute('entity.yabrm_biblio_reference.revision_revert', [
                 'yabrm_biblio_reference' => $yabrm_biblio_reference->id(),
-                'yabrm_biblio_reference_revision' => $vid
+                'yabrm_biblio_reference_revision' => $vid,
               ]),
             ];
           }
@@ -200,7 +200,7 @@ class BibliographicReferenceController extends ControllerBase implements Contain
               'title' => $this->t('Delete'),
               'url' => Url::fromRoute('entity.yabrm_biblio_reference.revision_delete', [
                 'yabrm_biblio_reference' => $yabrm_biblio_reference->id(),
-                'yabrm_biblio_reference_revision' => $vid
+                'yabrm_biblio_reference_revision' => $vid,
               ]),
             ];
           }

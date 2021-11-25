@@ -92,12 +92,12 @@ class BibliographicContributorController extends ControllerBase implements Conta
     $yabrm_contributor = $this->entityTypeManager()->getStorage('yabrm_contributor')->loadRevision($yabrm_contributor_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_contributor->label(),
-      '%date' => $this->dateFormatter->format($yabrm_contributor->getRevisionCreationTime())
+      '%date' => $this->dateFormatter->format($yabrm_contributor->getRevisionCreationTime()),
     ]);
   }
 
   /**
-   * Generates an overview table of older revisions of a Bibliographic Contributor .
+   * Overview table of old revisions for Bibliographic Contributor.
    *
    * @param \Drupal\yabrm\Entity\BibliographicContributorInterface $yabrm_contributor
    *   A Bibliographic Contributor  object.
@@ -115,7 +115,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
       '@langname' => $langname,
-      '%title' => $yabrm_contributor->label()
+      '%title' => $yabrm_contributor->label(),
     ]) : $this->t('Revisions for %title', ['%title' => $yabrm_contributor->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
@@ -144,7 +144,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
         if ($vid != $yabrm_contributor->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_contributor.revision', [
             'yabrm_contributor' => $yabrm_contributor->id(),
-            'yabrm_contributor_revision' => $vid
+            'yabrm_contributor_revision' => $vid,
           ]))->toString();
         }
         else {
@@ -161,7 +161,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
               'username' => $this->renderer->renderPlain($username),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
-                '#allowed_tags' => Xss::getHtmlTagList()
+                '#allowed_tags' => Xss::getHtmlTagList(),
               ],
             ],
           ],
@@ -188,7 +188,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
               'title' => $this->t('Revert'),
               'url' => Url::fromRoute('entity.yabrm_contributor.revision_revert', [
                 'yabrm_contributor' => $yabrm_contributor->id(),
-                'yabrm_contributor_revision' => $vid
+                'yabrm_contributor_revision' => $vid,
               ]),
             ];
           }
@@ -198,7 +198,7 @@ class BibliographicContributorController extends ControllerBase implements Conta
               'title' => $this->t('Delete'),
               'url' => Url::fromRoute('entity.yabrm_contributor.revision_delete', [
                 'yabrm_contributor' => $yabrm_contributor->id(),
-                'yabrm_contributor_revision' => $vid
+                'yabrm_contributor_revision' => $vid,
               ]),
             ];
           }

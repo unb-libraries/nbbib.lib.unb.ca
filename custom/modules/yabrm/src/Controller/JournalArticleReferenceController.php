@@ -92,12 +92,12 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
     $yabrm_journal_article = $this->entityTypeManager()->getStorage('yabrm_journal_article')->loadRevision($yabrm_journal_article_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_journal_article->label(),
-      '%date' => $this->dateFormatter->format($yabrm_journal_article->getRevisionCreationTime())
+      '%date' => $this->dateFormatter->format($yabrm_journal_article->getRevisionCreationTime()),
     ]);
   }
 
   /**
-   * Generates an overview table of older revisions of a Journal Article Reference .
+   * Overview table of old revisions for  Journal Article Reference.
    *
    * @param \Drupal\yabrm\Entity\JournalArticleReferenceInterface $yabrm_journal_article
    *   A Journal Article Reference  object.
@@ -115,9 +115,9 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
       '@langname' => $langname,
-      '%title' => $yabrm_journal_article->label()
+      '%title' => $yabrm_journal_article->label(),
     ]) : $this->t('Revisions for %title', [
-      '%title' => $yabrm_journal_article->label()
+      '%title' => $yabrm_journal_article->label(),
     ]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
@@ -146,7 +146,7 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
         if ($vid != $yabrm_journal_article->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_journal_article.revision', [
             'yabrm_journal_article' => $yabrm_journal_article->id(),
-            'yabrm_journal_article_revision' => $vid
+            'yabrm_journal_article_revision' => $vid,
           ]))->toString();
         }
         else {
@@ -163,7 +163,7 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
               'username' => $this->renderer->renderPlain($username),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
-                '#allowed_tags' => Xss::getHtmlTagList()
+                '#allowed_tags' => Xss::getHtmlTagList(),
               ],
             ],
           ],
@@ -190,7 +190,7 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
               'title' => $this->t('Revert'),
               'url' => Url::fromRoute('entity.yabrm_journal_article.revision_revert', [
                 'yabrm_journal_article' => $yabrm_journal_article->id(),
-                'yabrm_journal_article_revision' => $vid
+                'yabrm_journal_article_revision' => $vid,
               ]),
             ];
           }
@@ -200,7 +200,7 @@ class JournalArticleReferenceController extends ControllerBase implements Contai
               'title' => $this->t('Delete'),
               'url' => Url::fromRoute('entity.yabrm_journal_article.revision_delete', [
                 'yabrm_journal_article' => $yabrm_journal_article->id(),
-                'yabrm_journal_article_revision' => $vid
+                'yabrm_journal_article_revision' => $vid,
               ]),
             ];
           }

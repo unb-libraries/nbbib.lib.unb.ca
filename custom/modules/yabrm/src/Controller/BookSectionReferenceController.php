@@ -92,12 +92,12 @@ class BookSectionReferenceController extends ControllerBase implements Container
     $yabrm_book_section = $this->entityTypeManager()->getStorage('yabrm_book_section')->loadRevision($yabrm_book_section_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_book_section->label(),
-      '%date' => $this->dateFormatter->format($yabrm_book_section->getRevisionCreationTime())
+      '%date' => $this->dateFormatter->format($yabrm_book_section->getRevisionCreationTime()),
     ]);
   }
 
   /**
-   * Generates an overview table of older revisions of a Book section reference .
+   * Overview table of old revisions for Book section reference.
    *
    * @param \Drupal\yabrm\Entity\BookSectionReferenceInterface $yabrm_book_section
    *   A Book section reference  object.
@@ -115,7 +115,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
       '@langname' => $langname,
-      '%title' => $yabrm_book_section->label()
+      '%title' => $yabrm_book_section->label(),
     ]) : $this->t('Revisions for %title', ['%title' => $yabrm_book_section->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
@@ -144,7 +144,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
         if ($vid != $yabrm_book_section->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_book_section.revision', [
             'yabrm_book_section' => $yabrm_book_section->id(),
-            'yabrm_book_section_revision' => $vid
+            'yabrm_book_section_revision' => $vid,
           ]))->toString();
         }
         else {
@@ -161,7 +161,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
               'username' => $this->renderer->renderPlain($username),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
-                '#allowed_tags' => Xss::getHtmlTagList()
+                '#allowed_tags' => Xss::getHtmlTagList(),
               ],
             ],
           ],
@@ -194,7 +194,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
               ]) :
               Url::fromRoute('entity.yabrm_book_section.revision_revert', [
                 'yabrm_book_section' => $yabrm_book_section->id(),
-                'yabrm_book_section_revision' => $vid
+                'yabrm_book_section_revision' => $vid,
               ]),
             ];
           }
@@ -204,7 +204,7 @@ class BookSectionReferenceController extends ControllerBase implements Container
               'title' => $this->t('Delete'),
               'url' => Url::fromRoute('entity.yabrm_book_section.revision_delete', [
                 'yabrm_book_section' => $yabrm_book_section->id(),
-                'yabrm_book_section_revision' => $vid
+                'yabrm_book_section_revision' => $vid,
               ]),
             ];
           }

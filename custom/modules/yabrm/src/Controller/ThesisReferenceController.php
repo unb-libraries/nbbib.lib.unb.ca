@@ -92,7 +92,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
     $yabrm_thesis = $this->entityTypeManager()->getStorage('yabrm_thesis')->loadRevision($yabrm_thesis_revision);
     return $this->t('Revision of %title from %date', [
       '%title' => $yabrm_thesis->label(),
-      '%date' => $this->dateFormatter->format($yabrm_thesis->getRevisionCreationTime())
+      '%date' => $this->dateFormatter->format($yabrm_thesis->getRevisionCreationTime()),
     ]);
   }
 
@@ -115,7 +115,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
 
     $build['#title'] = $has_translations ? $this->t('@langname revisions for %title', [
       '@langname' => $langname,
-      '%title' => $yabrm_thesis->label()
+      '%title' => $yabrm_thesis->label(),
     ]) : $this->t('Revisions for %title', ['%title' => $yabrm_thesis->label()]);
     $header = [$this->t('Revision'), $this->t('Operations')];
 
@@ -144,7 +144,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
         if ($vid != $yabrm_thesis->getRevisionId()) {
           $link = Link::fromTextAndUrl($date, new Url('entity.yabrm_thesis.revision', [
             'yabrm_thesis' => $yabrm_thesis->id(),
-            'yabrm_thesis_revision' => $vid
+            'yabrm_thesis_revision' => $vid,
           ]))->toString();
         }
         else {
@@ -161,7 +161,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
               'username' => $this->renderer->renderPlain($username),
               'message' => [
                 '#markup' => $revision->getRevisionLogMessage(),
-                '#allowed_tags' => Xss::getHtmlTagList()
+                '#allowed_tags' => Xss::getHtmlTagList(),
               ],
             ],
           ],
@@ -188,7 +188,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
               'title' => $this->t('Revert'),
               'url' => Url::fromRoute('entity.yabrm_thesis.revision_revert', [
                 'yabrm_thesis' => $yabrm_thesis->id(),
-                'yabrm_thesis_revision' => $vid
+                'yabrm_thesis_revision' => $vid,
               ]),
             ];
           }
@@ -198,7 +198,7 @@ class ThesisReferenceController extends ControllerBase implements ContainerInjec
               'title' => $this->t('Delete'),
               'url' => Url::fromRoute('entity.yabrm_thesis.revision_delete', [
                 'yabrm_thesis' => $yabrm_thesis->id(),
-                'yabrm_thesis_revision' => $vid
+                'yabrm_thesis_revision' => $vid,
               ]),
             ];
           }

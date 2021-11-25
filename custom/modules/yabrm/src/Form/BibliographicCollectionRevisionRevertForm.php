@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\BibliographicCollectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Component\Datetime\Time;
 
 /**
  * Provides a form for reverting a Bibliographic Collection revision.
@@ -40,11 +41,11 @@ class BibliographicCollectionRevisionRevertForm extends ConfirmFormBase {
   protected $dateFormatter;
 
   /**
-   * The service container.
+   * For services dependency injection.
    *
-   * @var \Symfony\Component\DependencyInjection\ContainerInterface
+   * @var Drupal\Component\Datetime\Time
    */
-  protected $service;
+  protected $time;
 
   /**
    * Constructs a new BibliographicCollectionRevisionRevertForm.
@@ -53,17 +54,17 @@ class BibliographicCollectionRevisionRevertForm extends ConfirmFormBase {
    *   The Bibliographic Collection storage.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service
+   * @param Drupal\Component\Datetime\Time $time
    *   The service container.
    */
   public function __construct(
     EntityStorageInterface $entity_storage,
     DateFormatterInterface $date_formatter,
-    ContainerInterface $service
+    Time $time
     ) {
     $this->bibliographicCollectionStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
-    $this->service = $service;
+    $this->time = $time;
   }
 
   /**
@@ -73,7 +74,7 @@ class BibliographicCollectionRevisionRevertForm extends ConfirmFormBase {
     return new static(
       $container->get('entity_type.manager')->getStorage('yabrm_collection'),
       $container->get('date.formatter'),
-      $container->get('service_container')
+      $container->get('datetime.time')
     );
   }
 
@@ -162,7 +163,7 @@ class BibliographicCollectionRevisionRevertForm extends ConfirmFormBase {
   protected function prepareRevertedRevision(BibliographicCollectionInterface $revision, FormStateInterface $form_state) {
     $revision->setNewRevision();
     $revision->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime($this->service->get('datetime.time')->getRequestTime());
+    $revision->setRevisionCreationTime($this->time->getRequestTime());
 
     return $revision;
   }

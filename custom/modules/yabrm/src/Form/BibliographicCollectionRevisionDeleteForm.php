@@ -8,6 +8,7 @@ use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Datetime\DateFormatter;
 
 /**
  * Provides a form for deleting a Bibliographic Collection revision.
@@ -38,11 +39,11 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
   protected $connection;
 
   /**
-   * The service container.
+   * For services dependency injection.
    *
-   * @var \Symfony\Component\DependencyInjection\ContainerInterface
+   * @var Drupal\Core\Datetime\DateFormatter
    */
-  protected $service;
+  protected $dateFormatter;
 
   /**
    * Constructs a new BibliographicCollectionRevisionDeleteForm.
@@ -51,16 +52,16 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
    *   The entity storage.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
-   * @param Symfony\Component\DependencyInjection\ContainerInterface $service
-   *   The service container.
+   * @param Drupal\Core\Datetime\DateFormatter $date_formatter
+   *   For services dependency injection.
    */
   public function __construct(
     EntityStorageInterface $entity_storage,
     Connection $connection,
-    ContainerInterface $service) {
+    DateFormatter $date_formatter) {
     $this->bibliographicCollectionStorage = $entity_storage;
     $this->connection = $connection;
-    $this->service = $service;
+    $this->dateFormatter = $date_formatter;
   }
 
   /**
@@ -71,7 +72,7 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
     return new static(
       $entity_manager->getStorage('yabrm_collection'),
       $container->get('database'),
-      $container->get('service_container')
+      $container->get('date.formatter')
     );
   }
 
@@ -86,7 +87,7 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => $this->service->get('date.formatter')->format($this->revision->getRevisionCreationTime())]);
+    return $this->t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
   }
 
   /**
@@ -124,7 +125,7 @@ class BibliographicCollectionRevisionDeleteForm extends ConfirmFormBase {
       '%revision' => $this->revision->getRevisionId(),
     ]);
     $this->messenger()->addMessage($this->t('Revision from %revision-date of Bibliographic Collection %title has been deleted.', [
-      '%revision-date' => $this->service->get('date.formatter')->format($this->revision->getRevisionCreationTime()),
+      '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime()),
       '%title' => $this->revision->label(),
     ]));
     $form_state->setRedirect(

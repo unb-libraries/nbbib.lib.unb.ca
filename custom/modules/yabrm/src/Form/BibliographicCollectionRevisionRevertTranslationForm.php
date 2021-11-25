@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\yabrm\Entity\BibliographicCollectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Component\Datetime\Time;
 
 /**
  * For reverting a Bibliographic Collection revision single translation.
@@ -32,11 +33,11 @@ class BibliographicCollectionRevisionRevertTranslationForm extends Bibliographic
   protected $languageManager;
 
   /**
-   * The service container.
+   * For services dependency injection.
    *
-   * @var \Symfony\Component\DependencyInjection\ContainerInterface
+   * @var Drupal\Component\Datetime\Time
    */
-  protected $service;
+  protected $time;
 
   /**
    * Constructs a new BibliographicCollectionRevisionRevertTranslationForm.
@@ -47,17 +48,17 @@ class BibliographicCollectionRevisionRevertTranslationForm extends Bibliographic
    *   The date formatter service.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service
+   * @param Drupal\Component\Datetime\Time $time
    *   The service container.
    */
   public function __construct(
     EntityStorageInterface $entity_storage,
     DateFormatterInterface $date_formatter,
     LanguageManagerInterface $language_manager,
-    ContainerInterface $service) {
+    Time $time) {
     parent::__construct($entity_storage, $date_formatter);
     $this->languageManager = $language_manager;
-    $this->service = $service;
+    $this->time = $time;
   }
 
   /**
@@ -68,7 +69,7 @@ class BibliographicCollectionRevisionRevertTranslationForm extends Bibliographic
       $container->get('entity_type.manager')->getStorage('yabrm_collection'),
       $container->get('date.formatter'),
       $container->get('language_manager'),
-      $container->get('service_container')
+      $container->get('datetime.time')
     );
   }
 
@@ -125,7 +126,7 @@ class BibliographicCollectionRevisionRevertTranslationForm extends Bibliographic
 
     $latest_revision_translation->setNewRevision();
     $latest_revision_translation->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime($this->service->get('datetime.time')->getRequestTime());
+    $revision->setRevisionCreationTime($this->time->getRequestTime());
 
     return $latest_revision_translation;
   }

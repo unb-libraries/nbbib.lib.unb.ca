@@ -8,6 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Core\Session\AccountProxy;
 
 /**
  * Form controller for Bibliographic Collection edit forms.
@@ -21,7 +22,7 @@ class BibliographicCollectionForm extends ContentEntityForm {
    *
    * @var Symfony\Component\DependencyInjection\ContainerInterface
    */
-  protected $service;
+  protected $currentUser;
 
   /**
    * Class constructor.
@@ -32,20 +33,20 @@ class BibliographicCollectionForm extends ContentEntityForm {
    *   The entity type bundle service.
    * @param \Drupal\Component\Datetime\TimeInterface $time_interface
    *   The time service.
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $service_container
-   *   The container interface for using services via dependency injection.
+   * @param Drupal\Core\Session\AccountProxy $current_user
+   *   For services dependency injection.
    */
   public function __construct(
     EntityRepositoryInterface $entity_repository,
     EntityTypeBundleInfoInterface $entity_type_bundle_info,
     TimeInterface $time_interface,
-    ContainerInterface $service_container) {
+    AccountProxy $current_user) {
     parent::__construct(
       $entity_repository,
       $entity_type_bundle_info,
       $time_interface
       );
-    $this->service = $service_container;
+    $this->currentUser = $current_user;
   }
 
   /**
@@ -61,7 +62,7 @@ class BibliographicCollectionForm extends ContentEntityForm {
       $container->get('entity.repository'),
       $container->get('entity_type.bundle.info'),
       $container->get('datetime.time'),
-      $container->get('service_container')
+      $container->get('current_user')
     );
   }
 
@@ -98,7 +99,7 @@ class BibliographicCollectionForm extends ContentEntityForm {
 
       // If a new revision is created, save the current user as revision author.
       $entity->setRevisionCreationTime($this->time->getRequestTime());
-      $entity->setRevisionUserId($this->service->get('current_user')->id());
+      $entity->setRevisionUserId($this->currentUser->id());
     }
     else {
       $entity->setNewRevision(FALSE);

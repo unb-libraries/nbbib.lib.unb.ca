@@ -7,6 +7,9 @@ use Drupal\search_api\IndexInterface;
 use Drupal\search_api\Item\ItemInterface;
 use Drupal\search_api\Processor\ProcessorPluginBase;
 use Drupal\search_api\Processor\ProcessorProperty;
+use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Render\Renderer;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Adds additional citation information to a search api reference.
@@ -23,6 +26,73 @@ use Drupal\search_api\Processor\ProcessorProperty;
  * )
  */
 class IndexReferenceInformation extends ProcessorPluginBase {
+
+  /**
+   * For service dependency injection.
+   *
+   * @var Drupal\Core\Entity\EntityTypeManager
+   */
+  protected $entityTypeManager;
+
+  /**
+   * For service dependency injection.
+   *
+   * @var Drupal\Core\Render\Renderer
+   */
+  protected $renderer;
+
+  /**
+   * Class constructor.
+   *
+   * @param array $configuration
+   *   The block configuration.
+   * @param string $plugin_id
+   *   The plugin identifier.
+   * @param mixed $plugin_definition
+   *   The plugin definition.
+   * @param Drupal\Core\Entity\EntityTypeManager $entity_type_manager
+   *   Path matcher service dependency injection.
+   * @param Drupal\Core\Render\Renderer $renderer
+   *   Config factory service dependency injection.
+   */
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    EntityTypeManager $entity_type_manager,
+    Renderer $renderer) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->entityTypeManager = $entity_type_manager;
+    $this->renderer = $renderer;
+  }
+
+  /**
+   * Object create function.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *   Container interface.
+   * @param array $configuration
+   *   The block configuration.
+   * @param string $plugin_id
+   *   The plugin identifier.
+   * @param mixed $plugin_definition
+   *   The plugin definition.
+   *
+   * @return static
+   */
+  public static function create(
+    ContainerInterface $container,
+    array $configuration,
+    $plugin_id,
+    $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_type.manager'),
+      $container->get('renderer')
+    );
+  }
 
   const APPLIES_ENTITY_TYPES = [
     'yabrm_biblio_reference',
@@ -320,15 +390,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       }
 
       // Citation view mode.
-      $view_builder = \Drupal::entityTypeManager()->getViewBuilder($yabrm_entity->getEntityTypeId());
-      $storage = \Drupal::entityTypeManager()->getStorage($yabrm_entity->getEntityTypeId());
+      $view_builder = $this->entityTypeManager->getViewBuilder($yabrm_entity->getEntityTypeId());
+      $storage = $this->entityTypeManager->getStorage($yabrm_entity->getEntityTypeId());
       $build = $view_builder->view($yabrm_entity, 'citation');
 
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'bibliographic_citation');
 
       foreach ($fields as $field) {
-        $field->addValue(\Drupal::service('renderer')->renderRoot($build));
+        $field->addValue($this->renderer->renderRoot($build));
       }
     }
   }

@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\JournalArticleReferenceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Component\Datetime\Time;
 
 /**
  * Provides a form for reverting a Journal Article Reference revision.
@@ -40,16 +41,29 @@ class JournalArticleReferenceRevisionRevertForm extends ConfirmFormBase {
   protected $dateFormatter;
 
   /**
+   * For service dependency injection.
+   *
+   * @var Drupal\Component\Datetime\Time
+   */
+  protected $time;
+
+  /**
    * Constructs a new JournalArticleReferenceRevisionRevertForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The Journal Article Reference storage.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
+   * @param Drupal\Component\Datetime\Time $time
+   *   The time service.
    */
-  public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
+  public function __construct(
+    EntityStorageInterface $entity_storage,
+    DateFormatterInterface $date_formatter,
+    Time $time) {
     $this->journalArticleReferenceStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
+    $this->time = $time;
   }
 
   /**
@@ -58,7 +72,8 @@ class JournalArticleReferenceRevisionRevertForm extends ConfirmFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager')->getStorage('yabrm_journal_article'),
-      $container->get('date.formatter')
+      $container->get('date.formatter'),
+      $container->get('datetime.time'),
     );
   }
 
@@ -121,11 +136,11 @@ class JournalArticleReferenceRevisionRevertForm extends ConfirmFormBase {
 
     $this->logger('content')->notice('Journal Article Reference: reverted %title revision %revision.', [
       '%title' => $this->revision->label(),
-      '%revision' => $this->revision->getRevisionId()
+      '%revision' => $this->revision->getRevisionId(),
     ]);
     $this->messenger()->addMessage($this->t('Journal Article Reference %title has been reverted to the revision from %revision-date.', [
       '%title' => $this->revision->label(),
-      '%revision-date' => $this->dateFormatter->format($original_revision_timestamp)
+      '%revision-date' => $this->dateFormatter->format($original_revision_timestamp),
     ]));
     $form_state->setRedirect(
       'entity.yabrm_journal_article.version_history',
@@ -147,7 +162,7 @@ class JournalArticleReferenceRevisionRevertForm extends ConfirmFormBase {
   protected function prepareRevertedRevision(JournalArticleReferenceInterface $revision, FormStateInterface $form_state) {
     $revision->setNewRevision();
     $revision->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
+    $revision->setRevisionCreationTime($this->time->getRequestTime());
 
     return $revision;
   }

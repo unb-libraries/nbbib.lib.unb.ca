@@ -8,9 +8,10 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\yabrm\Entity\BibliographicReferenceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Component\Datetime\Time;
 
 /**
- * Provides a form for reverting a Bibliographic Reference revision for a single translation.
+ * Form for reverting Bibliographic Reference revision - single translation.
  *
  * @ingroup yabrm
  */
@@ -32,6 +33,13 @@ class BibliographicReferenceRevisionRevertTranslationForm extends BibliographicR
   protected $languageManager;
 
   /**
+   * For service dependency injection.
+   *
+   * @var Drupal\Component\Datetime\Time
+   */
+  protected $time;
+
+  /**
    * Constructs a new BibliographicReferenceRevisionRevertTranslationForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
@@ -40,10 +48,17 @@ class BibliographicReferenceRevisionRevertTranslationForm extends BibliographicR
    *   The date formatter service.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
+   * @param Drupal\Component\Datetime\Time $time
+   *   The time service.
    */
-  public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter, LanguageManagerInterface $language_manager) {
+  public function __construct(
+    EntityStorageInterface $entity_storage,
+    DateFormatterInterface $date_formatter,
+    LanguageManagerInterface $language_manager,
+    Time $time) {
     parent::__construct($entity_storage, $date_formatter);
     $this->languageManager = $language_manager;
+    $this->time = $time;
   }
 
   /**
@@ -54,6 +69,7 @@ class BibliographicReferenceRevisionRevertTranslationForm extends BibliographicR
       $container->get('entity_type.manager')->getStorage('yabrm_biblio_reference'),
       $container->get('date.formatter'),
       $container->get('language_manager')
+      $container->get('datetime.time')
     );
   }
 
@@ -68,9 +84,9 @@ class BibliographicReferenceRevisionRevertTranslationForm extends BibliographicR
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Are you sure you want to revert @language translation to the revision from %revision-date?', [
+    return $this->t('Are you sure you want to revert @language translation to the revision from %revision-date?', [
       '@language' => $this->languageManager->getLanguageName($this->langcode),
-      '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())
+      '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime()),
     ]);
   }
 
@@ -110,7 +126,7 @@ class BibliographicReferenceRevisionRevertTranslationForm extends BibliographicR
 
     $latest_revision_translation->setNewRevision();
     $latest_revision_translation->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
+    $revision->setRevisionCreationTime($this->time->getRequestTime());
 
     return $latest_revision_translation;
   }

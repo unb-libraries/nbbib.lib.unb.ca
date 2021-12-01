@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\BibliographicContributorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Component\Datetime\Time;
 
 /**
  * Provides a form for reverting a Bibliographic Contributor revision.
@@ -40,16 +41,29 @@ class BibliographicContributorRevisionRevertForm extends ConfirmFormBase {
   protected $dateFormatter;
 
   /**
+   * For service dependency injection.
+   *
+   * @var Drupal\Component\Datetime\Time
+   */
+  protected $time;
+
+  /**
    * Constructs a new BibliographicContributorRevisionRevertForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The Bibliographic Contributor storage.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
+   * @param Drupal\Component\Datetime\Time $time
+   *   The time service.
    */
-  public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
+  public function __construct(
+    EntityStorageInterface $entity_storage,
+    DateFormatterInterface $date_formatter,
+    Time $time) {
     $this->bibliographicContributorStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
+    $this->time = $time;
   }
 
   /**
@@ -58,7 +72,8 @@ class BibliographicContributorRevisionRevertForm extends ConfirmFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager')->getStorage('yabrm_contributor'),
-      $container->get('date.formatter')
+      $container->get('date.formatter'),
+      $container->get('datetime.time'),
     );
   }
 
@@ -147,7 +162,7 @@ class BibliographicContributorRevisionRevertForm extends ConfirmFormBase {
   protected function prepareRevertedRevision(BibliographicContributorInterface $revision, FormStateInterface $form_state) {
     $revision->setNewRevision();
     $revision->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
+    $revision->setRevisionCreationTime($this->time->getRequestTime());
 
     return $revision;
   }

@@ -55,7 +55,7 @@ class BibliographicCollectionRevisionRevertForm extends ConfirmFormBase {
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
    * @param Drupal\Component\Datetime\Time $time
-   *   The service container.
+   *   The time service.
    */
   public function __construct(
     EntityStorageInterface $entity_storage,

@@ -8,6 +8,7 @@ use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Datetime\DateFormatterInterface;
 
 /**
  * Provides a form for deleting a Journal Article Reference revision.
@@ -39,16 +40,29 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
   protected $connection;
 
   /**
+   * The date formatter service.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * Constructs a new JournalArticleReferenceRevisionDeleteForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The entity storage.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
+   *   The date formatter service.
    */
-  public function __construct(EntityStorageInterface $entity_storage, Connection $connection) {
+  public function __construct(
+    EntityStorageInterface $entity_storage,
+    Connection $connection,
+    DateFormatterInterface $date_formatter) {
     $this->journalArticleReferenceStorage = $entity_storage;
     $this->connection = $connection;
+    $this->dateFormatter = $date_formatter;
   }
 
   /**
@@ -58,7 +72,8 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
     $entity_manager = $container->get('entity_type.manager');
     return new static(
       $entity_manager->getStorage('yabrm_journal_article'),
-      $container->get('database')
+      $container->get('database'),
+      $container->get('date.formatter')
     );
   }
 
@@ -73,7 +88,7 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime())]);
+    return $this->t('Are you sure you want to delete the revision from %revision-date?', ['%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime())]);
   }
 
   /**
@@ -111,7 +126,7 @@ class JournalArticleReferenceRevisionDeleteForm extends ConfirmFormBase {
       '%revision' => $this->revision->getRevisionId(),
     ]);
     $this->messenger()->addMessage($this->t('Revision from %revision-date of Journal Article Reference %title has been deleted.', [
-      '%revision-date' => \Drupal::service('date.formatter')->format($this->revision->getRevisionCreationTime()),
+      '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime()),
       '%title' => $this->revision->label(),
     ]));
     $form_state->setRedirect(

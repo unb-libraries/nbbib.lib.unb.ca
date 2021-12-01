@@ -20,7 +20,7 @@ class BibliographicCollectionForm extends ContentEntityForm {
   /**
    * For services dependency injection.
    *
-   * @var Symfony\Component\DependencyInjection\ContainerInterface
+   * @var Drupal\Core\Session\AccountProxy
    */
   protected $currentUser;
 

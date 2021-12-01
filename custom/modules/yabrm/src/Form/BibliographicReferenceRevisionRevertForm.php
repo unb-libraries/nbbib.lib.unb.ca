@@ -40,16 +40,29 @@ class BibliographicReferenceRevisionRevertForm extends ConfirmFormBase {
   protected $dateFormatter;
 
   /**
+   * For service dependency injection.
+   *
+   * @var Drupal\Component\Datetime\Time
+   */
+  protected $time;
+
+  /**
    * Constructs a new BibliographicReferenceRevisionRevertForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The Bibliographic Reference storage.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
+   * @param Drupal\Component\Datetime\Time $time
+   *   The time service.
    */
-  public function __construct(EntityStorageInterface $entity_storage, DateFormatterInterface $date_formatter) {
+  public function __construct(
+    EntityStorageInterface $entity_storage,
+    DateFormatterInterface $date_formatter,
+    Time $time) {
     $this->bibliographicReferenceStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
+    $this->time = $time;
   }
 
   /**
@@ -58,7 +71,8 @@ class BibliographicReferenceRevisionRevertForm extends ConfirmFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager')->getStorage('yabrm_biblio_reference'),
-      $container->get('date.formatter')
+      $container->get('date.formatter'),
+      $container->get('datetime.time')
     );
   }
 
@@ -147,7 +161,7 @@ class BibliographicReferenceRevisionRevertForm extends ConfirmFormBase {
   protected function prepareRevertedRevision(BibliographicReferenceInterface $revision, FormStateInterface $form_state) {
     $revision->setNewRevision();
     $revision->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(\Drupal::time()->getRequestTime());
+    $revision->setRevisionCreationTime($this->time->getRequestTime());
 
     return $revision;
   }

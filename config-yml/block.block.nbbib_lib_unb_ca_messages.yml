@@ -1,0 +1,22 @@
+uuid: 6ae15bd3-3741-4600-b72f-33d6c0da00ee
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nbbib_lib_unb_ca
+_core:
+  default_config_hash: tZtWC6EKIYALVtpV4mPz79GsLZD6IFWb7Wk1B7Rd8Go
+id: nbbib_lib_unb_ca_messages
+theme: nbbib_lib_unb_ca
+region: content
+weight: -7
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  label_display: '0'
+  provider: system
+visibility: {  }

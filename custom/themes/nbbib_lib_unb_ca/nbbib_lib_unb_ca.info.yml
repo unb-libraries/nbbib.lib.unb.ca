@@ -1,7 +1,7 @@
 core: 8.x
 core_version_requirement: ^8 || ^9
 type: theme
-base theme: bootstrap
+base theme: bootstrap4
 
 name: 'nbbib_lib_unb_ca'
 description: 'For nbbib_lib_unb_ca'

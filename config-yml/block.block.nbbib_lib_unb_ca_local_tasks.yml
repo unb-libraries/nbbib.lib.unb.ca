@@ -1,0 +1,22 @@
+uuid: 57ddb810-3811-44ad-b639-21769a657df1
+langcode: en
+status: true
+dependencies:
+  theme:
+    - nbbib_lib_unb_ca
+_core:
+  default_config_hash: IzSbK3zk-Gon9y7WLEWop15Wn__7LeKzBJIXqajlb00
+id: nbbib_lib_unb_ca_local_tasks
+theme: nbbib_lib_unb_ca
+region: content
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

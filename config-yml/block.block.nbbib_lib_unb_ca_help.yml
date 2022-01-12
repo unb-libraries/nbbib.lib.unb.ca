@@ -1,0 +1,22 @@
+uuid: 5db66650-98ec-4287-997b-304156c85d6b
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - nbbib_lib_unb_ca
+_core:
+  default_config_hash: JPtjio142VL7z1Y-K1aWkTXu5wId7r4-zNUHozwLqf0
+id: nbbib_lib_unb_ca_help
+theme: nbbib_lib_unb_ca
+region: content
+weight: -3
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

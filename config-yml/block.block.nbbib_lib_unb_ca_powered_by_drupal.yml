@@ -1,0 +1,22 @@
+uuid: a04cc494-e322-4135-b6ea-dd56aa87bd34
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nbbib_lib_unb_ca
+_core:
+  default_config_hash: pCYcyBIVbwKUmraga_6Ycz5P-bhQJLJS_8HtOFpMq-o
+id: nbbib_lib_unb_ca_powered_by_drupal
+theme: nbbib_lib_unb_ca
+region: footer
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,20 +1,20 @@
-uuid: 8a4d7b20-8f9a-4d72-a893-ea07da6a9b32
+uuid: 2e609ce2-55e9-481d-a30d-fcb02dfe8d3f
 langcode: en
 status: true
 dependencies:
   theme:
-    - nbbib_lib_unb_ca
+    - bootstrap4
 _core:
-  default_config_hash: MElvhLL51qOJTRCN_2svXmul_TfaBwG7mNCwWz8gi9o
-id: pagetitle
-theme: nbbib_lib_unb_ca
+  default_config_hash: _0ZyPKUqcQMu9FlcCoa_Y-No4zdv-wUNF4hlSj60yi0
+id: bootstrap4_page_title
+theme: bootstrap4
 region: content
-weight: -4
+weight: -6
 provider: null
 plugin: page_title_block
 settings:
   id: page_title_block
   label: 'Page title'
-  provider: core
   label_display: '0'
+  provider: core
 visibility: {  }

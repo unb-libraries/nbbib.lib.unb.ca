@@ -1,22 +1,22 @@
-uuid: c07bc878-4952-4c17-847d-184356c2e19b
+uuid: 7a3f7366-9888-42a8-9eda-65bfbdea9667
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - nbbib_lib_unb_ca
+    - bootstrap4
 _core:
-  default_config_hash: KkvTeKXiJacABLPBALdKCQV2Uoy4tn_sfOr1wUoAq84
-id: mainpagecontent
-theme: nbbib_lib_unb_ca
+  default_config_hash: aJ6ps0sJm9MtQffqINgRms1JaSQgjsg68REaPdN-BGk
+id: bootstrap4_content
+theme: bootstrap4
 region: content
-weight: 0
+weight: -1
 provider: null
 plugin: system_main_block
 settings:
   id: system_main_block
   label: 'Main page content'
+  label_display: '0'
   provider: system
-  label_display: visible
 visibility: {  }

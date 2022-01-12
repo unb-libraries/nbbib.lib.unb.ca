@@ -1,17 +1,17 @@
-uuid: e1213df8-1d47-49c6-89b1-ac2b46b3a3b6
+uuid: a82950c0-eb64-44b3-8d45-6fdb7ac94c68
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - stark
+    - bootstrap4
 _core:
-  default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
-id: stark_branding
-theme: stark
-region: header
-weight: 0
+  default_config_hash: 0XmTH5dbJRl-fsDBgX10MzeFMarkhKpzU7ZGdGPfAMU
+id: bootstrap4_branding
+theme: bootstrap4
+region: nav_branding
+weight: -6
 provider: null
 plugin: system_branding_block
 settings:
@@ -21,5 +21,5 @@ settings:
   provider: system
   use_site_logo: true
   use_site_name: true
-  use_site_slogan: true
+  use_site_slogan: false
 visibility: {  }

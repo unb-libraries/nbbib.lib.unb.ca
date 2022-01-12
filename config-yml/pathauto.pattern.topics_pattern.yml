@@ -12,12 +12,12 @@ pattern: 'topic/[term:name]'
 selection_criteria:
   d9aa3567-3eac-4330-b5db-24e02d72cbba:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      yabrm_reference_topic: yabrm_reference_topic
     negate: false
+    uuid: d9aa3567-3eac-4330-b5db-24e02d72cbba
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: d9aa3567-3eac-4330-b5db-24e02d72cbba
+    bundles:
+      yabrm_reference_topic: yabrm_reference_topic
 selection_logic: and
 weight: -5
 relationships: {  }

@@ -57,9 +57,9 @@ field_type:
       filters:
         -
           class: solr.SynonymFilterFactory
+          ignoreCase: true
           synonyms: synonyms.txt
           expand: true
-          ignoreCase: true
         -
           class: solr.StopFilterFactory
           ignoreCase: true
@@ -155,8 +155,6 @@ text_files:
     was
     will
     with
-  synonyms: |
-    drupal, durpal
   protwords: |
 
   accents: |
@@ -308,3 +306,5 @@ text_files:
     "\uFB05" => "st"
     # ﬆ => st
     "\uFB06" => "st"
+  synonyms: |
+    drupal, durpal

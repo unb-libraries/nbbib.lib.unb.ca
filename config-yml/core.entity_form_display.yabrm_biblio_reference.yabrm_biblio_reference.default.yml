@@ -14,13 +14,13 @@ mode: default
 content:
   abstract_note:
     type: text_textarea
-    text_processing: 0
     weight: 18
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+    text_processing: 0
   archive:
     type: string_textfield
     weight: 13
@@ -48,12 +48,12 @@ content:
   collections:
     type: entity_reference_autocomplete
     weight: 9
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
   contributors:
     type: paragraphs
@@ -83,13 +83,13 @@ content:
     third_party_settings: {  }
   extra:
     type: text_textarea
-    text_processing: 0
     weight: 19
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+    text_processing: 0
   language:
     type: options_buttons
     weight: 7
@@ -107,58 +107,58 @@ content:
   nb_imprint:
     type: boolean_checkbox
     weight: 10
+    region: content
     settings:
       display_label: true
-    region: content
     third_party_settings: {  }
   notes:
     type: text_textarea
-    text_processing: 0
     weight: 21
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+    text_processing: 0
   notes_private:
     type: text_textarea
-    text_processing: 0
     weight: 20
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+    text_processing: 0
   physical_description:
     type: text_textarea
-    text_processing: 0
     weight: 15
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+    text_processing: 0
   publication_day:
+    type: number
     weight: 3
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
   publication_month:
+    type: number
     weight: 4
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
   publication_year:
+    type: number
     weight: 5
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
   publisher:
     type: string_textfield
     weight: 2
@@ -201,12 +201,12 @@ content:
   topics:
     type: entity_reference_autocomplete
     weight: 6
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 10
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
   url:
     type: link_default

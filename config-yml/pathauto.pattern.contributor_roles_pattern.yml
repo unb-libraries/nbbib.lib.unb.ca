@@ -12,12 +12,12 @@ pattern: 'contributor-role/[term:name]'
 selection_criteria:
   3bae5c67-001b-466c-aa5e-f03bfa769fe5:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      yabrm_contributor_roles: yabrm_contributor_roles
     negate: false
+    uuid: 3bae5c67-001b-466c-aa5e-f03bfa769fe5
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 3bae5c67-001b-466c-aa5e-f03bfa769fe5
+    bundles:
+      yabrm_contributor_roles: yabrm_contributor_roles
 selection_logic: and
 weight: -5
 relationships: {  }

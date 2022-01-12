@@ -17,22 +17,22 @@ mode: default
 content:
   abstract_note:
     type: text_textarea
-    text_processing: 0
     weight: -50
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+    text_processing: 0
   archive:
     type: entity_reference_autocomplete
     weight: -80
     region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
   call_number:
     type: string_textfield
@@ -45,12 +45,12 @@ content:
   collections:
     type: entity_reference_autocomplete
     weight: -168
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
   contributors:
     type: paragraphs
@@ -80,13 +80,13 @@ content:
     third_party_settings: {  }
   extra:
     type: text_textarea
-    text_processing: 0
     weight: -45
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+    text_processing: 0
   language:
     type: options_buttons
     weight: -200
@@ -104,28 +104,28 @@ content:
   nb_imprint:
     type: boolean_checkbox
     weight: -110
+    region: content
     settings:
       display_label: true
-    region: content
     third_party_settings: {  }
   notes:
     type: text_textarea
-    text_processing: 0
     weight: -35
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+    text_processing: 0
   notes_private:
     type: text_textarea
-    text_processing: 0
     weight: -40
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+    text_processing: 0
   num_pages:
     type: string_textfield
     weight: -170
@@ -136,13 +136,13 @@ content:
     third_party_settings: {  }
   physical_description:
     type: text_textarea
-    text_processing: 0
     weight: -70
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+    text_processing: 0
   place:
     type: string_textfield
     weight: -260
@@ -152,26 +152,26 @@ content:
       placeholder: ''
     third_party_settings: {  }
   publication_day:
+    type: number
     weight: -250
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
   publication_month:
+    type: number
     weight: -240
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
   publication_year:
+    type: number
     weight: -230
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
   publisher:
     type: string_textfield
     weight: -270
@@ -222,12 +222,12 @@ content:
   topics:
     type: entity_reference_autocomplete
     weight: -190
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 10
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
   url:
     type: link_default

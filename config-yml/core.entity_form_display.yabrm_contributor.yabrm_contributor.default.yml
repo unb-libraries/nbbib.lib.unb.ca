@@ -15,13 +15,13 @@ mode: default
 content:
   description:
     type: text_textarea
-    text_processing: 0
     weight: 4
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+    text_processing: 0
   first_name:
     type: string_textfield
     weight: 0

@@ -1,17 +1,17 @@
-uuid: 773e0eff-985a-4fa2-96f7-13d4c47fe9cb
+uuid: b2b66dd8-0757-40e3-afa8-802d796ffb14
 langcode: en
 status: true
 dependencies:
   module:
     - help
   theme:
-    - seven
+    - bootstrap4
 _core:
-  default_config_hash: NU5A_49mwLHfs5xFzMFrZ850w9pgUolxMS9NNF3vv4c
-id: seven_help
-theme: seven
-region: help
-weight: 0
+  default_config_hash: JPtjio142VL7z1Y-K1aWkTXu5wId7r4-zNUHozwLqf0
+id: bootstrap4_help
+theme: bootstrap4
+region: content
+weight: -3
 provider: null
 plugin: help_block
 settings:

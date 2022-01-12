@@ -1,4 +1,4 @@
-uuid: 8e53a2c5-f13f-46ca-afee-7a7cd668735c
+uuid: dd25bd4e-a36a-4b12-b6be-da177e9feaec
 langcode: en
 status: true
 dependencies:
@@ -7,19 +7,21 @@ dependencies:
   module:
     - system
   theme:
-    - nbbib_lib_unb_ca
-id: mainnavigation
-theme: nbbib_lib_unb_ca
-region: navigation_collapsible
+    - bootstrap4
+_core:
+  default_config_hash: 35BFwuaW_wb2mnnYk1tNg7T9Ro9RaewrCqOTtyQ7VJE
+id: bootstrap4_main_navigation
+theme: bootstrap4
+region: nav_main
 weight: 0
 provider: null
 plugin: 'system_menu_block:main'
 settings:
   id: 'system_menu_block:main'
   label: 'Main navigation'
-  provider: system
   label_display: '0'
+  provider: system
   level: 1
   depth: 0
-  expand_all_items: false
+  expand_all_items: true
 visibility: {  }

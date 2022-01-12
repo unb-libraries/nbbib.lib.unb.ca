@@ -1,13 +1,13 @@
-uuid: 115c00f2-4b71-483e-9bc7-1c753e7ce3a2
+uuid: d8b8e85e-09f8-42b7-9837-c41e0a25b235
 langcode: en
 status: true
 dependencies:
   theme:
-    - nbbib_lib_unb_ca
+    - bootstrap4
 _core:
-  default_config_hash: eggm5_GtIocJdzthxv8qYspwpZqucNZ-vD_aJ5wZ4sU
-id: primaryadminactions
-theme: nbbib_lib_unb_ca
+  default_config_hash: rKurRLaH08AjwE5wsNzeL2fa77rF5pXKSR9WopsFYyI
+id: bootstrap4_local_actions
+theme: bootstrap4
 region: content
 weight: -2
 provider: null
@@ -15,6 +15,6 @@ plugin: local_actions_block
 settings:
   id: local_actions_block
   label: 'Primary admin actions'
-  provider: core
   label_display: '0'
+  provider: core
 visibility: {  }

@@ -1,22 +1,22 @@
-uuid: 61c5da52-62de-4376-81ca-647dbfe7ec5b
+uuid: 2ab6aeec-d70b-4e07-892f-7a12ea658226
 langcode: en
 status: true
 dependencies:
   theme:
-    - nbbib_lib_unb_ca
+    - bootstrap4
 _core:
-  default_config_hash: rPVh7aMr8D6gtH-N6HrfrNoab1Uz2JqGDGXUVSNQ4fQ
-id: tabs
-theme: nbbib_lib_unb_ca
+  default_config_hash: IzSbK3zk-Gon9y7WLEWop15Wn__7LeKzBJIXqajlb00
+id: bootstrap4_local_tasks
+theme: bootstrap4
 region: content
-weight: -1
+weight: -4
 provider: null
 plugin: local_tasks_block
 settings:
   id: local_tasks_block
   label: Tabs
-  provider: core
   label_display: '0'
+  provider: core
   primary: true
   secondary: true
 visibility: {  }

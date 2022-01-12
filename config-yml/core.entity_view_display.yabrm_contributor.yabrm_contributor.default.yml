@@ -14,61 +14,61 @@ bundle: yabrm_contributor
 mode: default
 content:
   description:
-    label: above
     type: text_default
-    weight: -3
-    region: content
+    label: above
     settings: {  }
     third_party_settings: {  }
+    weight: -3
+    region: content
   first_name:
-    label: above
     type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 1
     region: content
+  institution_name:
+    type: string
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  institution_name:
-    label: above
-    type: string
     weight: 3
     region: content
+  last_name:
+    type: string
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  last_name:
-    label: above
-    type: string
     weight: 2
     region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   name:
     type: string
-    weight: 0
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  picture:
-    label: above
-    type: image
     weight: 0
     region: content
+  picture:
+    type: image
+    label: above
     settings:
-      image_style: 16_10_image
       image_link: ''
+      image_style: 16_10_image
     third_party_settings: {  }
+    weight: 0
+    region: content
   sort_name:
     type: string
-    weight: 4
-    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 4
+    region: content
 hidden:
   langcode: true
   search_api_excerpt: true

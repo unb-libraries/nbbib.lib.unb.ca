@@ -17,242 +17,240 @@ bundle: yabrm_book_section
 mode: default
 content:
   abstract_note:
-    label: above
     type: text_default
-    weight: 27
-    region: content
+    label: above
     settings: {  }
     third_party_settings: {  }
-  archive:
-    label: above
-    type: entity_reference_label
-    weight: 23
+    weight: 27
     region: content
+  archive:
+    type: entity_reference_label
+    label: above
     settings:
       link: true
     third_party_settings: {  }
-  call_number:
-    label: above
-    type: string
-    weight: 21
+    weight: 23
     region: content
+  call_number:
+    type: string
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  collections:
-    label: hidden
-    type: entity_reference_label
-    weight: 19
+    weight: 21
     region: content
+  collections:
+    type: entity_reference_label
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
-  contributors:
-    label: above
-    type: entity_reference_revisions_entity_view
-    weight: 3
+    weight: 19
     region: content
+  contributors:
+    type: entity_reference_revisions_entity_view
+    label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 3
+    region: content
   cover_image:
-    label: above
     type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: 16_10_image
+    third_party_settings: {  }
     weight: 1
     region: content
-    settings:
-      image_style: 16_10_image
-      image_link: ''
-    third_party_settings: {  }
   edition:
-    label: above
     type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 10
     region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   extra:
-    label: above
     type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
     weight: 28
     region: content
-    settings: {  }
-    third_party_settings: {  }
   isbn:
-    label: above
     type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 9
     region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   language:
-    label: above
     type: list_key
-    weight: 11
-    region: content
+    label: above
     settings: {  }
     third_party_settings: {  }
-  library_catalog:
-    label: above
-    type: string
-    weight: 22
+    weight: 11
     region: content
+  library_catalog:
+    type: string
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  nb_imprint:
-    label: above
-    weight: 20
+    weight: 22
     region: content
+  nb_imprint:
+    type: boolean
+    label: above
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
+    weight: 20
+    region: content
   notes:
-    label: above
     type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
     weight: 30
     region: content
+  notes_private:
+    type: text_default
+    label: above
     settings: {  }
     third_party_settings: {  }
-  notes_private:
-    label: above
-    type: text_default
     weight: 29
     region: content
-    settings: {  }
-    third_party_settings: {  }
   num_volumes:
-    label: above
     type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 16
     region: content
+  pages:
+    type: string
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  pages:
-    label: above
-    type: string
     weight: 14
     region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   physical_description:
-    label: above
     type: text_default
-    weight: 24
-    region: content
+    label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 24
+    region: content
   place:
-    label: above
     type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 5
     region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   publication_day:
+    type: number_integer
     label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
     weight: 6
     region: content
+  publication_month:
+    type: number_integer
+    label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_integer
-  publication_month:
-    label: above
     weight: 7
     region: content
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
-    third_party_settings: {  }
-    type: number_integer
   publication_title:
-    label: above
     type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 2
     region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   publication_year:
+    type: number_integer
     label: above
-    weight: 8
-    region: content
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_integer
+    weight: 8
+    region: content
   publisher:
-    label: above
     type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 4
     region: content
+  rights:
+    type: string
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  rights:
-    label: above
-    type: string
     weight: 26
     region: content
+  series:
+    type: string
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  series:
-    label: above
-    type: string
     weight: 17
     region: content
+  series_number:
+    type: string
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  series_number:
-    label: above
-    type: string
     weight: 18
     region: content
+  short_title:
+    type: string
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  short_title:
-    label: above
-    type: string
     weight: 13
     region: content
+  title:
+    type: string
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  title:
-    label: above
-    type: string
     weight: 0
     region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   topics:
+    type: entity_reference_label
     label: above
-    weight: 12
-    region: content
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 12
+    region: content
   url:
     type: link
-    weight: 25
-    region: content
     label: above
     settings:
       trim_length: 80
@@ -261,14 +259,16 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-  volume:
-    label: above
-    type: string
-    weight: 15
+    weight: 25
     region: content
+  volume:
+    type: string
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 15
+    region: content
 hidden:
   archive_location: true
   external_key_ref: true

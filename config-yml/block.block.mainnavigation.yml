@@ -1,6 +1,6 @@
 uuid: 8e53a2c5-f13f-46ca-afee-7a7cd668735c
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - system.menu.main
@@ -11,7 +11,7 @@ dependencies:
 id: mainnavigation
 theme: nbbib_lib_unb_ca
 region: header
-weight: 0
+weight: -3
 provider: null
 plugin: 'system_menu_block:main'
 settings:

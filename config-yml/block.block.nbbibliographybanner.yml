@@ -1,6 +1,6 @@
 uuid: 5fa71842-52b3-4a0e-9ed0-14505450ba93
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - nbbib_core
@@ -9,7 +9,7 @@ dependencies:
 id: nbbibliographybanner
 theme: nbbib_lib_unb_ca
 region: header
-weight: -5
+weight: -4
 provider: null
 plugin: nbbib_banner
 settings:

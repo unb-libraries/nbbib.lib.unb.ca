@@ -1,4 +1,4 @@
-uuid: 8e53a2c5-f13f-46ca-afee-7a7cd668735c
+uuid: b6d485b6-67ce-4c1b-a534-d72c2a57e13d
 langcode: en
 status: true
 dependencies:
@@ -10,8 +10,8 @@ dependencies:
     - nbbib_lib_unb_ca
 id: mainnavigation
 theme: nbbib_lib_unb_ca
-region: header
-weight: -3
+region: nav_main
+weight: -5
 provider: null
 plugin: 'system_menu_block:main'
 settings:
@@ -22,4 +22,8 @@ settings:
   level: 1
   depth: 0
   expand_all_items: false
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

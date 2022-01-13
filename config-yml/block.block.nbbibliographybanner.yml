@@ -8,7 +8,7 @@ dependencies:
     - nbbib_lib_unb_ca
 id: nbbibliographybanner
 theme: nbbib_lib_unb_ca
-region: header
+region: content
 weight: -4
 provider: null
 plugin: nbbib_banner

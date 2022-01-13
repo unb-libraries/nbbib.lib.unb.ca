@@ -1,15 +1,15 @@
-uuid: 57ddb810-3811-44ad-b639-21769a657df1
+uuid: 61c5da52-62de-4376-81ca-647dbfe7ec5b
 langcode: en
 status: true
 dependencies:
   theme:
     - nbbib_lib_unb_ca
 _core:
-  default_config_hash: IzSbK3zk-Gon9y7WLEWop15Wn__7LeKzBJIXqajlb00
-id: nbbib_lib_unb_ca_local_tasks
+  default_config_hash: rPVh7aMr8D6gtH-N6HrfrNoab1Uz2JqGDGXUVSNQ4fQ
+id: tabs
 theme: nbbib_lib_unb_ca
 region: content
-weight: -4
+weight: -1
 provider: null
 plugin: local_tasks_block
 settings:

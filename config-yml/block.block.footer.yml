@@ -1,4 +1,4 @@
-uuid: d7427221-f80b-4026-97cc-2cdc8c5bab4f
+uuid: 5fd3e41a-784d-4fa1-97f4-37877b8ed665
 langcode: en
 status: true
 dependencies:
@@ -8,12 +8,10 @@ dependencies:
     - system
   theme:
     - nbbib_lib_unb_ca
-_core:
-  default_config_hash: aFKksJmiEhSztWNw-j-SbfzO88axvjNIZsjFBcNtI6o
-id: nbbib_lib_unb_ca_footer
+id: footer
 theme: nbbib_lib_unb_ca
 region: footer
-weight: -6
+weight: 0
 provider: null
 plugin: 'system_menu_block:footer'
 settings:

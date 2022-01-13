@@ -1,0 +1,20 @@
+uuid: 5fa71842-52b3-4a0e-9ed0-14505450ba93
+langcode: en
+status: false
+dependencies:
+  module:
+    - nbbib_core
+  theme:
+    - nbbib_lib_unb_ca
+id: nbbibliographybanner
+theme: nbbib_lib_unb_ca
+region: header
+weight: -5
+provider: null
+plugin: nbbib_banner
+settings:
+  id: nbbib_banner
+  label: 'NB Bibliography Banner'
+  label_display: '0'
+  provider: nbbib_core
+visibility: {  }

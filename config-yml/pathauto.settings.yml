@@ -5,16 +5,6 @@ enabled_entity_types:
   - yabrm_thesis
   - yabrm_book_section
   - yabrm_contributor
-verbose: false
-separator: '-'
-case: true
-max_length: 100
-max_component_length: 100
-update_action: 2
-transliterate: true
-reduce_ascii: true
-ignore_words: ''
-safe_tokens: {  }
 punctuation:
   double_quotes: 0
   quotes: 0
@@ -48,3 +38,13 @@ punctuation:
   greater_than: 0
   slash: 0
   back_slash: 0
+verbose: false
+separator: '-'
+max_length: 100
+max_component_length: 100
+transliterate: true
+reduce_ascii: true
+case: true
+ignore_words: ''
+update_action: 2
+safe_tokens: {  }

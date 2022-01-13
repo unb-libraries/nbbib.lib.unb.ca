@@ -1,15 +1,15 @@
-uuid: 66d4364c-d036-4568-9826-093c9043f7f6
+uuid: 8a4d7b20-8f9a-4d72-a893-ea07da6a9b32
 langcode: en
 status: true
 dependencies:
   theme:
     - nbbib_lib_unb_ca
 _core:
-  default_config_hash: _0ZyPKUqcQMu9FlcCoa_Y-No4zdv-wUNF4hlSj60yi0
-id: nbbib_lib_unb_ca_page_title
+  default_config_hash: MElvhLL51qOJTRCN_2svXmul_TfaBwG7mNCwWz8gi9o
+id: pagetitle
 theme: nbbib_lib_unb_ca
 region: content
-weight: -6
+weight: -4
 provider: null
 plugin: page_title_block
 settings:

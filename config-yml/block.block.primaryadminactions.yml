@@ -1,12 +1,12 @@
-uuid: 436fbecb-e21a-4f87-9367-7303814d234c
+uuid: 115c00f2-4b71-483e-9bc7-1c753e7ce3a2
 langcode: en
 status: true
 dependencies:
   theme:
     - nbbib_lib_unb_ca
 _core:
-  default_config_hash: rKurRLaH08AjwE5wsNzeL2fa77rF5pXKSR9WopsFYyI
-id: nbbib_lib_unb_ca_local_actions
+  default_config_hash: eggm5_GtIocJdzthxv8qYspwpZqucNZ-vD_aJ5wZ4sU
+id: primaryadminactions
 theme: nbbib_lib_unb_ca
 region: content
 weight: -2

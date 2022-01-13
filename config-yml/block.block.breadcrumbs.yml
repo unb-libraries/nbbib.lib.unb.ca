@@ -1,22 +1,22 @@
-uuid: 815ec113-4138-4c8c-81a7-88bc7a61d916
+uuid: 4a76e901-c46c-476c-bfd5-be83e3a7e6f9
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
   theme:
     - nbbib_lib_unb_ca
 _core:
-  default_config_hash: B4RbOEFqUHi5Wx38pRiZzYXo1hhKzCpF50HCAvpOYf4
-id: nbbib_lib_unb_ca_breadcrumbs
+  default_config_hash: AOWLwA5I5lQJPIVAaFbOWYpnHgVwuRlYHK2gHqo5VQs
+id: breadcrumbs
 theme: nbbib_lib_unb_ca
-region: branding
+region: header
 weight: 0
 provider: null
 plugin: system_breadcrumb_block
 settings:
   id: system_breadcrumb_block
   label: Breadcrumbs
-  label_display: '0'
+  label_display: visible
   provider: system
 visibility: {  }

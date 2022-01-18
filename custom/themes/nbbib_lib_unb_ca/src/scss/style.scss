@@ -7,6 +7,34 @@ header {
     text-transform: none !important;
     font-weight: normal !important;
   }
+
+  // Main navigation.
+  nav.navbar {
+    margin-bottom: 1rem;
+    background-color: whitesmoke;
+
+    // Supported content.
+    #navbarSupportedContent {
+      justify-content: flex-start !important;
+
+      // Menu list.
+      ul.navbar-nav {
+
+        // Menu items.
+        li.nav-item {
+
+          // Item links.
+          a.nav-link {
+            color: dimgray;
+
+            &:hover, &.is-active {
+              color:black;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 // Page.

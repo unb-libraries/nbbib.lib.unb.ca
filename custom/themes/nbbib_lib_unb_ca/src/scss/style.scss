@@ -34,6 +34,20 @@ header {
         }
       }
     }
+
+    // Collapsed menu.
+    button.navbar-toggler {
+      max-height: 40px;
+      max-width: 64px;
+
+      &:after {
+        font-size: 1rem;
+        position: relative;
+        top: -24px;
+        left: -64px;
+        content: "Menu";
+      }
+    }
   }
 }
 

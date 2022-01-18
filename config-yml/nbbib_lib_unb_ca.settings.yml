@@ -26,3 +26,14 @@ reset_http_request_cache: ''
 table: ''
 forms_smart_descriptions: 0
 button_colorize: 1
+b4_top_container: 'container-fluid m-0 p-0'
+b4_top_container_config: ''
+b4_body_schema: none
+b4_body_bg_schema: none
+b4_navbar_schema: light
+b4_navbar_bg_schema: none
+b4_footer_schema: none
+b4_footer_bg_schema: none
+subtheme_folder: themes/custom
+subtheme_name: 'B4 subtheme'
+subtheme_machine_name: b4subtheme

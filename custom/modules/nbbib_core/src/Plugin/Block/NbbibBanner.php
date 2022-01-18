@@ -20,7 +20,9 @@ class NbbibBanner extends BlockBase {
    */
   public function build() {
     $text =
-      '<div id="nbbib-banner"></div>';
+      '<div id="nbbib-banner">
+        <img id="nbbib-banner-img" alt="NBBIB Banner" src="/themes/custom/nbbib_lib_unb_ca/images/banner.jpg">
+      </div>';
     return [
       '#markup' => $this->t($text),
     ];

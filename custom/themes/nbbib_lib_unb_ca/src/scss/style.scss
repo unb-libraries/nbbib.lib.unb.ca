@@ -74,6 +74,106 @@ header {
           object-fit: cover;
         }
       }
+
+      // Homepage exposed form.
+      #views-exposed-form-nb-bibliography-citations-page-2 {
+
+        // Text input.
+        .form-item-search-api-fulltext {
+          margin-top: none;
+
+          // Make label sr-only.
+          label {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+          }
+        }
+
+        // Submit button.
+        #edit-actions {
+          display: inline-block;
+        }
+      }
     }
+  }
+}
+
+// Responsive.
+@media screen and (min-width: 768px) {
+  // Filter (label + input) - Keywords and title.
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:first-of-type,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:nth-of-type(2) {
+    width: 96%;
+  }
+  // Filter (label + input).
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div,
+  form#views-exposed-form-content-page-1 > div > div {
+    margin-top: 0;
+    margin-bottom: 8px;
+    width: 48%;
+  }
+  // Label - Keywords and title.
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:first-of-type > label,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:nth-of-type(2) > label {
+    margin-right: .3%;
+    width: 17%;
+  }
+  // Label.
+  form#views-exposed-form-content-page-1 > div > div > label,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > label {
+    margin-right: .5%;
+    width: 34%;
+  }
+  // Input - Keywords and title.
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:first-of-type > input,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
+  div:nth-of-type(2) > input {
+    margin-right: 0;
+    width: 80.5%;
+  }
+  // Input and select wrapper.
+  form#views-exposed-form-content-page-1 > div > div > input,
+  form#views-exposed-form-content-page-1 > div > div > select,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > input,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > select {
+    display: inline-block;
+    margin-right: .5%;
+    width: 60%;
+  }
+  // Select.
+  form#views-exposed-form-content-page-1 > div > div > div > select,
+  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > div >
+  select {
+    // width: 100%;
+  }
+  // Button.
+  form#views-exposed-form-nb-bibliography-citations-page-1 div#edit-actions {
+    margin-top: 8px;
+  }
+  // Publication date fields.
+  div#edit-publication-year-wrapper,
+  div#edit-publication-month-wrapper,
+  div#edit-publication-day-wrapper {
+    & > div > label {
+      margin-right: 1%;
+      width: 15%;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  // Responsive select controls in search view.
+  .form-item.js-form-item.form-type-select {
+    display: grid;
   }
 }

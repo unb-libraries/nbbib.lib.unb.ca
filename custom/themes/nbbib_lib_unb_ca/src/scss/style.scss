@@ -3,14 +3,13 @@ header {
 
   // Page title.
   .site-title {
-    margin: .5rem;
+    margin-top: 1rem;
     text-transform: none !important;
     font-weight: normal !important;
   }
 
   // Main navigation.
   nav.navbar {
-    margin-bottom: 1rem;
     background-color: whitesmoke;
 
     // Supported content.
@@ -65,6 +64,7 @@ header {
 
       // Banner.
       #nbbib-banner {
+        margin-top: 1rem;
         height: 180px !important;
         opacity: .7;
 
@@ -100,74 +100,46 @@ header {
           display: inline-block;
         }
       }
+
+      // Main page content.
+      #block-mainpagecontent {
+        margin-top: 1rem;
+      }
     }
   }
 }
 
 // Responsive.
 @media screen and (min-width: 768px) {
-  // Filter (label + input) - Keywords and title.
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
-  div:first-of-type,
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
-  div:nth-of-type(2) {
-    width: 96%;
-  }
   // Filter (label + input).
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div,
-  form#views-exposed-form-content-page-1 > div > div {
-    margin-top: 0;
-    margin-bottom: 8px;
-    width: 48%;
-  }
-  // Label - Keywords and title.
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
-  div:first-of-type > label,
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
-  div:nth-of-type(2) > label {
-    margin-right: .3%;
-    width: 17%;
-  }
-  // Label.
-  form#views-exposed-form-content-page-1 > div > div > label,
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > label {
-    margin-right: .5%;
-    width: 34%;
-  }
-  // Input - Keywords and title.
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
-  div:first-of-type > input,
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div >
-  div:nth-of-type(2) > input {
-    margin-right: 0;
-    width: 80.5%;
-  }
-  // Input and select wrapper.
-  form#views-exposed-form-content-page-1 > div > div > input,
-  form#views-exposed-form-content-page-1 > div > div > select,
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > input,
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > select {
-    display: inline-block;
-    margin-right: .5%;
-    width: 60%;
-  }
-  // Select.
-  form#views-exposed-form-content-page-1 > div > div > div > select,
-  form#views-exposed-form-nb-bibliography-citations-page-1 > div > div > div >
-  select {
-    // width: 100%;
-  }
-  // Button.
-  form#views-exposed-form-nb-bibliography-citations-page-1 div#edit-actions {
-    margin-top: 8px;
-  }
-  // Publication date fields.
-  div#edit-publication-year-wrapper,
-  div#edit-publication-month-wrapper,
-  div#edit-publication-day-wrapper {
-    & > div > label {
-      margin-right: 1%;
-      width: 15%;
+  form#views-exposed-form-nb-bibliography-citations-page-1 {
+
+    // Form items.
+    .form-item {
+      display: block;
+      margin: auto;
+      margin-bottom: .2rem;
+      width: 49%;
+      line-height: 1.2rem;
+
+      &:nth-child(odd) {
+        margin-right: 2%;
+      }
+      // Labels.
+      label {
+        display: inline-block;
+        width: 25%;
+      }
+      // Inputs + dropboxes.
+      input, select {
+        display: inline-block;
+        width: 74%;
+      }
+    }
+    // Form actions.
+    .form-actions {
+      display: inline-block;
+      margin-top: 1rem !important;
     }
   }
 }

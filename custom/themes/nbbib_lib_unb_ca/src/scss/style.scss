@@ -1,3 +1,12 @@
+// Import Sass files.
+@import 'import';
+
+// HTML.
+// Base font size.
+html {
+  font-size: 14px;
+}
+
 // Header.
 header {
 
@@ -35,15 +44,15 @@ header {
     }
 
     // Collapsed menu.
-    button.navbar-toggler {
-      max-height: 40px;
-      max-width: 64px;
+    button.navbar-toggler.collapsed {
+      max-height: 36px;
+      max-width: 50px;
 
       &:after {
         font-size: 1rem;
         position: relative;
-        top: -24px;
-        left: -64px;
+        top: -22px;
+        left: -56px;
         content: "Menu";
       }
     }
@@ -53,6 +62,7 @@ header {
 // Page.
 .dialog-off-canvas-main-canvas {
   margin: 0 auto;
+  padding: 0 1rem;
   max-width: 1140px;
 
   // Main.
@@ -107,6 +117,15 @@ header {
       }
     }
   }
+
+  // Footer.
+  footer {
+    // Footer logo.
+    #footer-logo-div {
+      padding: 0;
+    }
+  }
+
 }
 
 // Responsive.
@@ -144,6 +163,24 @@ header {
   }
 }
 @media screen and (max-width: 768px) {
+  // Responisve search form.
+  // Filter (label + input).
+  form#views-exposed-form-nb-bibliography-citations-page-1 {
+
+    // Form items.
+    .form-item {
+      display: block;
+      margin: auto;
+      margin-bottom: .2rem;
+      width: 100%;
+      line-height: 1.2rem;
+    }
+    // Form actions.
+    .form-actions {
+      display: inline-block;
+      margin-top: 1rem !important;
+    }
+  }
   // Responsive select controls in search view.
   .form-item.js-form-item.form-type-select {
     display: grid;

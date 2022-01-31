@@ -35,7 +35,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"container\">\r\n<div class=\"row\">\r\n<div class =\"col-sm-3\"><h2 class=\"h5\">{{ name }}</h2></div>\r\n<div class =\"col-sm-9\">\r\n<p class=\"h5\">{{ '[ ' }}<a href=\"/bibliography?search_api_fulltext=&collections_5={{ name|striptags }}\">View all items</a>{{ ' ]' }}</p>\r\n</div>\r\n</div>"
+            text: "<div class=\"container\">\r\n<div class=\"row\">\r\n<div class =\"col-sm-3\"><h2 class=\"h6\">{{ name }}</h2></div>\r\n<div class =\"col-sm-9\">\r\n<p class=\"h6\">{{ '[ ' }}<a href=\"/bibliography?search_api_fulltext=&collections_5={{ name|striptags }}\">View all items</a>{{ ' ]' }}</p>\r\n</div>\r\n</div>"
             make_link: false
             path: ''
             absolute: false

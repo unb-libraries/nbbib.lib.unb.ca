@@ -1,7 +1,9 @@
 uuid: 8a4d7b20-8f9a-4d72-a893-ea07da6a9b32
 langcode: en
-status: false
+status: true
 dependencies:
+  module:
+    - system
   theme:
     - nbbib_lib_unb_ca
 _core:
@@ -9,7 +11,7 @@ _core:
 id: pagetitle
 theme: nbbib_lib_unb_ca
 region: content
-weight: -3
+weight: 0
 provider: null
 plugin: page_title_block
 settings:
@@ -17,4 +19,8 @@ settings:
   label: 'Page title'
   label_display: '0'
   provider: core
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

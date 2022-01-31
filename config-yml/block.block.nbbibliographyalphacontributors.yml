@@ -10,7 +10,7 @@ dependencies:
 id: nbbibliographyalphacontributors
 theme: nbbib_lib_unb_ca
 region: content
-weight: -2
+weight: -3
 provider: null
 plugin: nbbib_alpha_contributors
 settings:

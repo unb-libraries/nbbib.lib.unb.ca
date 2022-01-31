@@ -10,9 +10,10 @@ html {
 // Header.
 header {
 
-  // Page title.
+  // Site title.
   .site-title {
     margin-top: 1rem;
+    font-size: 1.8rem !important;
     text-transform: none !important;
     font-weight: normal !important;
   }
@@ -109,6 +110,14 @@ header {
         #edit-actions {
           display: inline-block;
         }
+      }
+
+      // Page title.
+      .page-title {
+        margin-top: 1rem;
+        border-bottom: 1px solid whitesmoke;
+        text-align: left !important;
+        font-size: 1.5rem;
       }
 
       // Main page content.

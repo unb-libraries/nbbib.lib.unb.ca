@@ -62,24 +62,24 @@ function template_preprocess_yabrm_thesis(array &$variables) {
     if (!empty($paragraph)) {
       // Role ID and role.
       $rid =
-        isset($paragraph->get('field_yabrm_contributor_role')->getValue()[0]['target_id']) ?? NULL;
+        $paragraph->get('field_yabrm_contributor_role')->getValue()[0]['target_id'] ?? NULL;
 
       $role = !empty(Term::load($rid)) ? Term::load($rid)->getName() : NULL;
 
       // Contributor ID and names.
       $cid =
-        isset($paragraph->get('field_yabrm_contributor_person')->getValue()[0]['target_id']) ?? NULL;
+        $paragraph->get('field_yabrm_contributor_person')->getValue()[0]['target_id'] ?? NULL;
 
       $contrib = BibliographicContributor::load($cid);
 
       if (!empty($contrib)) {
-        $c_name = isset($contrib->get('name')->getValue()[0]['value']) ?? NULL;
+        $c_name = $contrib->get('name')->getValue()[0]['value'] ?? NULL;
 
-        $c_iname = isset($contrib->get('institution_name')->getValue()[0]['value']) ?? NULL;
+        $c_iname = $contrib->get('institution_name')->getValue()[0]['value'] ?? NULL;
 
-        $c_fname = isset($contrib->get('first_name')->getValue()[0]['value']) ?? NULL;
+        $c_fname = $contrib->get('first_name')->getValue()[0]['value'] ?? NULL;
 
-        $c_lname = isset($contrib->get('last_name')->getValue()[0]['value']) ?? NULL;
+        $c_lname = $contrib->get('last_name')->getValue()[0]['value'] ?? NULL;
 
         // If institution, pass as last name, otherwise pass name.
         $last_name = $c_iname ? $c_iname : $c_lname;
@@ -104,7 +104,7 @@ function template_preprocess_yabrm_thesis(array &$variables) {
         // Pass all contributors roles and display names.
         $c_dname = $contrib->getName();
 
-        $display_name = isset($c_dname) ?? NULL;
+        $display_name = $c_dname ?? NULL;
 
         if (!empty($display_name)) {
           $variables['content']['contribs_all'][] = [

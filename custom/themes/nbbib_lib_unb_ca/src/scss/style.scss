@@ -5,6 +5,14 @@
 html {
   // Base font size.
   font-size: 14px;
+
+  // Header sizes.
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
 }
 
 // Header.
@@ -125,6 +133,33 @@ header {
       // Main page content.
       #block-mainpagecontent {
         margin-top: 1rem;
+
+        // Bibliographic references.
+        .yabrm-reference.contrib-layout {
+
+          // Publication details label.
+          #ref-contribs + h2 {
+            margin-top: 1rem;
+          }
+
+          // Publication details.
+          #ref-details {
+          }
+
+          // Publication copies.
+          #ref-copies {
+
+            // List.
+            ul {
+              list-style: none;
+              padding-left: 15px;
+            }
+          }
+
+          + .yabrm-reference {
+            display: none;
+          }
+        }
       }
 
       // Pagination.

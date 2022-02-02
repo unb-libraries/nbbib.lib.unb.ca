@@ -7,7 +7,6 @@ package: Custom
 
 dependencies:
   - redirect
-  - core/drupal
 
 libraries:
   - nbbib_core/contrib-alpha-pager

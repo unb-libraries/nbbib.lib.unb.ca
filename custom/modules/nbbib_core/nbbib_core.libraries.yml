@@ -3,10 +3,11 @@ contrib-alpha-pager:
   js:
     js/contrib-alpha-pager.js: {}
   dependencies:
-    - core/jquery,
+    - core/drupal
+    - core/jquery
 
 toolbar-overrides:
   version: VERSION
   css:
     theme:
-      css/custom-toolbar.css: {} 
+      css/custom-toolbar.css: {}

@@ -122,6 +122,38 @@ header {
         }
       }
 
+      // Contributors exposed form.
+      .view-nb-bibliography-contributors.view-display-id-page_1 {
+
+        .view-filters {
+
+          #views-exposed-form-nb-bibliography-contributors-page-1 {
+            margin-bottom: 1rem;
+
+            // Input div.
+            .form-item-sort-initial {
+
+              // Make label sr-only.
+              label {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0,0,0,0);
+                border: 0;
+              }
+            }
+
+            // Submit button.
+            #edit-actions {
+              display: inline-block;
+            }
+          }
+        }
+      }
+
       // Page title.
       .page-title {
         margin-top: 1rem;
@@ -160,6 +192,11 @@ header {
             display: none;
           }
         }
+      }
+
+      // View content.
+      .view-content {
+        margin-bottom: 1rem;
       }
 
       // Pagination.

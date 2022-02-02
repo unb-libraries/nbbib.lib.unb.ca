@@ -9,9 +9,13 @@
         // Create extra list item to display reset contributor list.
         var resetLi = $("<li></li>");
 
+        if (!$(".view-display-id-attachment_1 li a.is-active").length) {
+          resetLi.addClass("is-active active");
+        }
+
         $("<a>", {
           text: "All",
-          href: "/contributors/all"
+          href: "/contributors/all",
         }).appendTo(resetLi);
 
         // Prepend new reset item.

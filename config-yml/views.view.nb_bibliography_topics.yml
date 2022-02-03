@@ -106,7 +106,7 @@ display:
             alter_text: false
             text: ''
             make_link: true
-            path: '/bibliography?topics={{ tid }}'
+            path: '/bibliography?topic_names={{ name }}'
             absolute: false
             external: false
             replace_spaces: false

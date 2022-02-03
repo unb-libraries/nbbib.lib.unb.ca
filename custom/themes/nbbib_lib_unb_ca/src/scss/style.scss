@@ -194,9 +194,28 @@ header {
         }
       }
 
+      // View header.
+      .view-header {
+        padding: .5rem 0 1rem 0;
+        border-top: 1px solid $lgray;
+      }
+
+      .view-filters {
+        margin-bottom: 0;
+      }
+
       // View content.
       .view-content {
         margin-bottom: 1rem;
+
+        // Field content.
+        .field-content {
+
+          // Comtainer.
+          .container {
+            padding-left: 0;
+          }
+        }
       }
 
       // Pagination.
@@ -221,7 +240,7 @@ header {
 @media screen and (min-width: 768px) {
   // Filter (label + input).
   #views-exposed-form-nb-bibliography-citations-page-1 {
-    border-bottom: 1px solid $lgray;
+    padding-top: 1rem;
 
     // Form items.
     .form-item {
@@ -256,7 +275,7 @@ header {
   // Responisve search form.
   // Filter (label + input).
   #views-exposed-form-nb-bibliography-citations-page-1 {
-  border-bottom: 1px solid $unb-darkgray;
+    padding-top: 1rem;
 
     // Form items.
     .form-item {

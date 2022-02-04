@@ -80,9 +80,10 @@ function template_preprocess_yabrm_contributor(array &$variables) {
       $reference = $entity_storage->load(reset($rid));
       $img_item = $reference->get('cover_image')->getIterator()[0];
       $iid = $img_item->get('target_id')->getValue();
-      $file = File::load($iid);
 
-      if ($file) {
+      if ($iid) {
+        $file = File::load($iid);
+
         $variables['content']['cover'] = [
           '#theme' => 'image',
           '#uri' => $file->getFileUri(),

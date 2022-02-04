@@ -20,22 +20,26 @@
   {% if content %}
     <div class="container">
       <div class="row">
-        <div id="contrib-description" class="col-sm-8">
-          {{ content.description|field_value }}
-        </div>
-        <div id="contrib-picture" class="col-sm-4">
-          {% if content.picture|field_value %}
-            {{ content.picture|field_value }}
-          {% elseif content.cover %}
-            {{ content.cover }}
-          {% endif %}
-        </div>
+        {% if content.description|field_value %}
+          <div id="contrib-description" class="col-sm-8">
+            {{ content.description|field_value }}
+          </div>
+        {% endif %}
+        {% if content.picture|field_value or content.cover %}
+          <div id="contrib-picture" class="col-sm-4">
+            {% if content.picture|field_value %}
+              {{ content.picture|field_value }}
+            {% elseif content.cover %}
+              {{ content.cover }}
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
     </div>
 
     <div id="contributor-works">
       {% set cid = content.name['#object'].id() %}
-
+      <br>
       <b>Bibliography Items</b>
       <br>
       <br>

@@ -154,6 +154,15 @@ header {
         }
       }
 
+      // Contributors initial filter.
+      .view-nb-bibliography-contributors.view-display-id-attachment_1 {
+
+        // View content.
+        .view-content {
+          margin-bottom: 1rem !important;
+        }
+      }
+
       // Page title.
       .page-title {
         margin-top: 1rem;
@@ -206,7 +215,7 @@ header {
 
       // View content.
       .view-content {
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
 
         // Field content.
         .field-content {
@@ -218,10 +227,40 @@ header {
         }
       }
 
+      // Collections view.
+      .view-nb-bibliography-collections {
+
+        // View row.
+        .row-collection {
+
+          // Make sure bootstrap4 row doesn't wrap.
+          .row {
+            flex-wrap: nowrap;
+          }
+        }
+      }
+
+      // Topics view.
+      .view-nb-bibliography-topics {
+
+        // View row.
+        .row-topic {
+
+          // Make sure bootstrap4 row doesn't wrap.
+          .row {
+            flex-wrap: nowrap;
+          }
+        }
+      }
+
       // Pagination.
       .pager {
         max-width: fit-content;
         margin: 0 auto;
+
+        ul.pagination {
+          flex-wrap: wrap;
+        }
       }
     }
   }

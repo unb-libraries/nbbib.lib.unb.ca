@@ -1,4 +1,4 @@
-id: nbbib_4_religion_mormon_4_theses
+id: nbbib_10_religion_mormon_1_journal_articles
 label: Religion/Mormon Journal article references from Zotero for NBBIB
 
 migration_tags:
@@ -7,7 +7,7 @@ migration_tags:
 
 source:
   plugin: csv
-  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_4_religion_mormon.csv'
+  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_10_religion_mormon.csv'
   header_row_count: 1
   ids: [key]
 
@@ -198,8 +198,9 @@ process:
     plugin: skip_on_value
     method: row
     not_equals: true
-    value: thesis
+    value: journalArticle
     source: item_type
+
   external_key_ref: key
   title: title
   url: url
@@ -207,14 +208,9 @@ process:
   publication_year: publication_year
   publication_month: publication_month
   publication_day: publication_day
-  publication_title: publication_title
-  num_pages: num_pages
   short_title: short_title
-  publisher: publisher
-  place: place
   language: language
   rights: rights
-  thesis_type: thesis_type
   archive: archive
   archive_location: archive_location
   library_catalog: library_catalog
@@ -222,11 +218,21 @@ process:
   extra: extra
   notes: notes
   notes_private: notes_private
-  translator: translator
-  physical_description: physical_description
+  publication_title: publication_title
+  issn: issn
+  doi: doi
+  pages: pages
+  issue: issue
+  volume: volume
+  journal_abbr: journal_abbr
+  series: series
+  series_text: series_text
+  series_title: series_title
+  publisher: publisher
+
 
 destination:
-  plugin: entity:yabrm_thesis
+  plugin: entity:yabrm_journal_article
 
 dependencies:
   module:

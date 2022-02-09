@@ -31,10 +31,10 @@ trait NbBibMigrationTrait {
       'nbbib_3_religion_buddhist_2_books' => 'Religion: Buddhist',
       'nbbib_3_religion_buddhist_3_book_sections' => 'Religion: Buddhist',
       'nbbib_3_religion_buddhist_4_theses' => 'Religion: Buddhist',
-      'nbbib_4_religion_mormon_1_journal_articles' => 'Religion: Mormon',
-      'nbbib_4_religion_mormon_2_books' => 'Religion: Mormon',
-      'nbbib_4_religion_mormon_3_book_sections' => 'Religion: Mormon',
-      'nbbib_4_religion_mormon_4_theses' => 'Religion: Mormon',
+      'nbbib_10_religion_mormon_1_journal_articles' => 'Religion: Mormon',
+      'nbbib_10_religion_mormon_2_books' => 'Religion: Mormon',
+      'nbbib_10_religion_mormon_3_book_sections' => 'Religion: Mormon',
+      'nbbib_10_religion_mormon_4_theses' => 'Religion: Mormon',
     ];
   }
 

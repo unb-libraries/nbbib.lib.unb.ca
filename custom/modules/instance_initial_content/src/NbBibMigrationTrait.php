@@ -23,6 +23,10 @@ trait NbBibMigrationTrait {
       'nbbib_2_new_brunswickana_2_books' => 'New Brunswickana',
       'nbbib_2_new_brunswickana_3_book_sections' => 'New Brunswickana',
       'nbbib_2_new_brunswickana_4_theses' => 'New Brunswickana',
+      'nbbib_3_religion_buddhist_1_journal_articles' => 'Religion: Buddhist',
+      'nbbib_3_religion_buddhist_2_books' => 'Religion: Buddhist',
+      'nbbib_3_religion_buddhist_3_book_sections' => 'Religion: Buddhist',
+      'nbbib_3_religion_buddhist_4_theses' => 'Religion: Buddhist',
     ];
   }
 

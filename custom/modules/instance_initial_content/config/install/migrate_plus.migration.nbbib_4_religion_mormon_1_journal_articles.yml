@@ -1,5 +1,5 @@
-id: nbbib_2_new_brunswickana_1_journal_articles
-label: New Brunswickana Journal article references from Zotero for NBBIB
+id: nbbib_4_religion_mormon_1_journal_articles
+label: Religion/Mormon Journal article references from Zotero for NBBIB
 
 migration_tags:
   - CSV
@@ -7,7 +7,7 @@ migration_tags:
 
 source:
   plugin: csv
-  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_2_new_brunswickana.csv'
+  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_4_religion_mormon.csv'
   header_row_count: 1
   ids: [key]
 

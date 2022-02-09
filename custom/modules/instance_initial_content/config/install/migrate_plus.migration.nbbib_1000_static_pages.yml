@@ -1,4 +1,4 @@
-id: nbbib_0_static_pages
+id: nbbib_1000_static_pages
 label: Static pages for NBBIB
 
 migration_tags:
@@ -6,7 +6,7 @@ migration_tags:
 
 source:
   plugin: csv
-  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_0_static_pages.csv'
+  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_100_static_pages.csv'
   header_row_count: 1
   ids: [nid]
 

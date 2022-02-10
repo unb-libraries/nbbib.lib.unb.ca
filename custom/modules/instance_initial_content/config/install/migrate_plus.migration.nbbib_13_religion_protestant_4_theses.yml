@@ -1,0 +1,236 @@
+id: nbbib_13_religion_protestant_4_theses
+label: Religion/Protestant Thesis references from Zotero for NBBIB
+
+migration_tags:
+  - CSV
+  - NBBIB Zotero
+
+source:
+  plugin: csv
+  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_13_religion_protestant.csv'
+  header_row_count: 1
+  ids: [key]
+
+  fields:
+    0:
+      name: key
+      label: Key
+    1:
+      name: item_type
+      label: Item Type
+    2:
+      name: src_publication_year
+      label: Publication Year
+    3:
+      name: author
+      label: Author
+    4:
+      name: title
+      label: Title
+    5:
+      name: publication_title
+      label: Publication Title
+    6:
+      name: foo
+      label: Foo
+    7:
+      name: issn
+      label: ISSN
+    8:
+      name: doi
+      label: DOI
+    9:
+      name: url
+      label: URL
+    10:
+      name: abstract_note
+      label: Abstract Note
+    11:
+      name: publication_date
+      label: Publication Date
+    12:
+      name: date_added
+      label: Date Added
+    13:
+      name: date_modified
+      label: Date Modified
+    14:
+      name: access_date
+      label: Access Date
+    15:
+      name: pages
+      label: Pages
+    16:
+      name: num_pages
+      label: Number of Pages
+    17:
+      name: issue
+      label: Issue
+    18:
+      name: volume
+      label: Volume
+    19:
+      name: num_volumes
+      label: Number of Volumes
+    20:
+      name: journal_abbr
+      label: Journal Abbreviation
+    21:
+      name: short_title
+      label: Short Title
+    22:
+      name: series
+      label: Series
+    23:
+      name: series_number
+      label: Series Number
+    24:
+      name: series_text
+      label: Series Text
+    25:
+      name: series_title
+      label: Series Title
+    26:
+      name: publisher
+      label: Publisher
+    27:
+      name: place
+      label: Place
+    28:
+      name: language
+      label: Language
+    29:
+      name: rights
+      label: Rights
+    30:
+      name: thesis_type
+      label: Thesis Type
+    31:
+      name: archive
+      label: Archive
+    32:
+      name: archive_location
+      label: Archive Location
+    33:
+      name: library_catalog
+      label: Library Catalog
+    34:
+      name: call_number
+      label: Call Number
+    35:
+      name: extra
+      label: Extra
+    36:
+      name: notes_private
+      label: Notes
+    37:
+      name: file_attachments
+      label: File Attachments
+    38:
+      name: link_attachments
+      label: Link Attachments
+    39:
+      name: manual_tags
+      label: Manual Tags
+    40:
+      name: automatic_tags
+      label: Automatic Tags
+    41:
+      name: editor
+      label: Editor
+    42:
+      name: series_editor
+      label: Series Editor
+    43:
+      name: translator
+      label: Translator
+    44:
+      name: contributor
+      label: Contributor
+    46:
+      name: book_author
+      label: Book Author
+    47:
+      name: cast_member
+      label: Cast Member
+    48:
+      name: commenter
+      label: Commenter
+    49:
+      name: composer
+      label: Composer
+    50:
+      name: cosponsor
+      label: Cosponsor
+    51:
+      name: counsel
+      label: Counsel
+    52:
+      name: interviewer
+      label: Interviewer
+    53:
+      name: producer
+      label: Producer
+    54:
+      name: recipient
+      label: Recipient
+    55:
+      name: reviewed_author
+      label: Reviewed Author
+    56:
+      name: scriptwriter
+      label: Scriptwriter
+    57:
+      name: words_by
+      label: Words By
+    58:
+      name: guest
+      label: Guest
+    59:
+      name: number
+      label: Number
+    60:
+      name: edition
+      label: Edition
+
+process:
+  type:
+    plugin: skip_on_value
+    method: row
+    not_equals: true
+    value: thesis
+    source: item_type
+  external_key_ref: key
+  title: title
+  url: url
+  abstract_note: abstract_note
+  publication_year: publication_year
+  publication_month: publication_month
+  publication_day: publication_day
+  publication_title: publication_title
+  num_pages: num_pages
+  short_title: short_title
+  publisher: publisher
+  place: place
+  language: language
+  rights: rights
+  thesis_type: thesis_type
+  archive: archive
+  archive_location: archive_location
+  library_catalog: library_catalog
+  call_number: call_number
+  extra: extra
+  notes: notes
+  notes_private: notes_private
+  translator: translator
+  physical_description: physical_description
+
+destination:
+  plugin: entity:yabrm_thesis
+
+dependencies:
+  module:
+    - instance_initial_content
+  enforced:
+    module:
+    - instance_initial_content

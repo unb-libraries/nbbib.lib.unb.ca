@@ -5,7 +5,8 @@
  * Contains rm-contribs.php.
  */
 
-rm_entities('yabrm_paragraph');
+rm_entities('yabrm_collection');
+rm_entities('paragraph');
 rm_entities('yabrm_book');
 rm_entities('yabrm_book_section');
 rm_entities('yabrm_journal_article');

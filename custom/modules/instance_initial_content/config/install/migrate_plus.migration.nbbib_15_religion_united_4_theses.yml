@@ -31,8 +31,8 @@ source:
       name: publication_title
       label: Publication Title
     6:
-      name: foo
-      label: Foo
+      name: isbn
+      label: ISBN
     7:
       name: issn
       label: ISSN

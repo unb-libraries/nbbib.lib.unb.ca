@@ -19,7 +19,7 @@
 <div{{ attributes.addClass('yabrm-contributor', 'contrib-layout') }}>
   {% if content %}
     <div class="container">
-      <div class="row">
+      <div class="row description-pic">
         {% if content.description|field_value %}
           <div id="contrib-description" class="col-sm-8">
             {{ content.description|field_value }}
@@ -39,7 +39,7 @@
 
     <div id="contributor-works">
       {% set cid = content.name['#object'].id() %}
-      <b>Bibliography Items</b>
+      <b class="works-label">Bibliography Items</b>
       {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
     </div>
   {% endif %}

@@ -13,6 +13,11 @@ html {
   h2 {
     font-size: 1.5rem;
   }
+
+  // Paragraph.
+  p {
+    text-align: justify;
+  }
 }
 
 // Header.
@@ -199,6 +204,19 @@ header {
 
           + .yabrm-reference {
             display: none;
+          }
+        }
+
+        // Bibliographic contributors.
+        .yabrm-contributor {
+
+          // List of works.
+          #contributor-works .works-label {
+            margin-top: 1rem;
+
+            & + .views-element-container {
+              margin-top: 1rem;
+            }
           }
         }
       }

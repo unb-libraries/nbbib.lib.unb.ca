@@ -26,7 +26,6 @@
               <a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
                 {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
               </a>
-              <br>
             {% endfor %}
           </div>
 
@@ -103,7 +102,6 @@
         {% if content.abstract_note|field_value
         or content.num_pages|field_value
         or content.physical_description|field_value %}
-          <br>
           <b>Description</b>
 
 

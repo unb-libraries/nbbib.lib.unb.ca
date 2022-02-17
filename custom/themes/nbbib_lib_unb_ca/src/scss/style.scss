@@ -184,12 +184,24 @@ header {
         .yabrm-reference.contrib-layout {
 
           // Publication details label.
-          #ref-contribs + h2 {
-            margin-top: 1rem;
+          #ref-contribs {
+            margin-left: 1rem;
+            padding-left: 0;
+            list-style: none;
+
+            // Header.
+            & + h2 {
+              margin-top: 1rem;
+            }
           }
 
           // Publication details.
           #ref-details {
+          }
+
+          // Description.
+          #ref-description {
+            margin-top: 1rem;
           }
 
           // Publication copies.

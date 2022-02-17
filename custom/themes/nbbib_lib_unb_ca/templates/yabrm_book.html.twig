@@ -21,14 +21,14 @@
       <div class="row">
         <div id="ref-body" class="col-sm-9">
 
-          <div id="ref-contribs">
+          <ul id="ref-contribs">
             {% for contrib in content.contribs_all %}
 
-              <a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
+              <li><a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
                 {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
-              </a>
+              </a></li>
             {% endfor %}
-          </div>
+          </ul>
 
           <h2>Publication Details</h2>
 

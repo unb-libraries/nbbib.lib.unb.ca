@@ -142,15 +142,15 @@
           </div>
 
         {% endif %}
-      </div>
 
-      <div id="ref-physical">
-        {% if content.physical_description|field_value %}
-          <div class="indent-text">
-            Physical Description: {{ content.physical_description|field_value }}
-          </div>
+        <div id="ref-physical">
+          {% if content.physical_description|field_value %}
+            <div class="indent-text">
+              Physical Description: {{ content.physical_description|field_value }}
+            </div>
 
-        {% endif %}
+          {% endif %}
+        </div>
       </div>
 
       <div id="ref-copies">

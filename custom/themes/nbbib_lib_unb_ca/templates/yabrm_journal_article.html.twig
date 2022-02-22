@@ -106,7 +106,7 @@
         {% if content.abstract_note|field_value %}
           <b>Description</b>
 
-          <div class="indent-text">
+          <div>
             {{ content.abstract_note|field_value }}
           </div>
 
@@ -117,7 +117,7 @@
         {% if content.archives or content.url|field_value %}
           <b>Copies</b>
 
-          <div class="indent-text">
+          <div>
             {% if content.archives %}
               <ul>
                 {% for archive in content.archives %}
@@ -141,7 +141,7 @@
           <b>Notes</b>
 
 
-          <div class="indent-text">
+          <div>
             {{ content.notes|field_value }}
           </div>
 

@@ -156,7 +156,7 @@
           <b>Copies</b>
 
           <div>
-            {% if content.archives %}
+            {% if content.archives or content.url %}
               <ul>
                 {% for archive in content.archives %}
                   <li>{{ archive }}</li>

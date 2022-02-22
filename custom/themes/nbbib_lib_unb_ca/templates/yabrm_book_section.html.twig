@@ -153,8 +153,8 @@
         </div>
       </div>
 
-      <div id="ref-copies">
-        {% if content.archives or content.url|field_value %}
+      {% if content.archives or content.url|field_value %}
+        <div id="ref-copies">
           <b>Copies</b>
 
           <div>
@@ -172,21 +172,19 @@
               </ul>
           </div>
 
-        {% endif %}
+        </div>
+      {% endif %}
 
-      </div>
-
-      <div id="ref-notes">
-        {% if content.notes|field_value %}
+      {% if content.notes|field_value %}
+        <div id="ref-notes">
           <b>Notes</b>
-
 
           <div>
             {{ content.notes|field_value }}
           </div>
 
-        {% endif %}
-      </div>
+        </div>
+      {% endif %}
 
       {%- if content.topics|field_value -%}
         <div id="ref-topics">
@@ -209,166 +207,6 @@
         </div>
       {%- endif -%}
 
-
     </div>
-
-  {% endif %}
-</div>
-
-<div{{ attributes.addClass('yabrm_book_section', 'yabrm-reference') }}>
-  {% if content %}
-    <dl>
-      <div>
-        <dt>Item Type</dt>
-        <dd>Book Section</dd>
-      </div>
-      <div>
-        <dt>{{ content.cover_image|field_label }}</dt>
-        <dd>{{ content.cover_image|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.publication_title|field_label }}</dt>
-        <dd>{{ content.publication_title|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.contributors|field_label }}</dt>
-        <dd>{{ content.contributors|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.publisher|field_label }}</dt>
-        <dd>{{ content.publisher|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.place|field_label }}</dt>
-        <dd>{{ content.place|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.publication_day|field_label }}</dt>
-        <dd>{{ content.publication_day|field_value }}</dd>
-      </div>
-      <div class="dl-grouped">
-        <dt>{{ content.publication_month|field_label }}</dt>
-        <dd>{{ content.publication_month|field_value }}</dd>
-      </div>
-      <div class="dl-grouped">
-        <dt>{{ content.publication_year|field_label }}</dt>
-        <dd>{{ content.publication_year|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.isbn|field_label }}</dt>
-        <dd>{{ content.isbn|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.edition|field_label }}</dt>
-        <dd>{{ content.edition|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.language|field_label }}</dt>
-        <dd>{{ content.language|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.topics|field_label }}</dt>
-
-        {% set full_topics = "" %}
-
-        {%- for topic in content.topics|field_value -%}
-          {% set topic_title = topic['#title'] %}
-
-          {%- if loop.last -%}
-            {% set separator = "." %}
-          {%- else -%}
-            {% set separator = ", " %}
-          {%- endif -%}
-
-          {% set full_topics = full_topics ~ topic_title ~ separator %}
-        {%- endfor -%}
-
-        <dd>{{ full_topics }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.short_title|field_label }}</dt>
-        <dd>{{ content.short_title|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.pages|field_label }}</dt>
-        <dd>{{ content.pages|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.volume|field_label }}</dt>
-        <dd>{{ content.volume|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.num_volumes|field_label }}</dt>
-        <dd>{{ content.num_volumes|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.series|field_label }}</dt>
-        <dd>{{ content.series|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.series_number|field_label }}</dt>
-        <dd>{{ content.series_number|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.collections|field_label }}</dt>
-        <dd>
-        {%- for collection in content.collections|field_value -%}
-          {{ collection }}
-
-        {%- endfor -%}
-        </dd>
-      </div>
-      <div>
-        <dt>{{ content.nb_imprint|field_label }}</dt>
-        <dd>{{ content.nb_imprint|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.call_number|field_label }}</dt>
-        <dd>{{ content.call_number|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.library_catalog|field_label }}</dt>
-        <dd>{{ content.library_catalog|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.archive|field_label }}</dt>
-        <dd>{{ content.archive|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.physical_description|field_label }}</dt>
-        <dd>{{ content.physical_description|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.url|field_label }}</dt>
-        <dd>
-        {%- for url in content.url|field_value -%}
-          {{ url }}
-
-        {%- endfor -%}
-        </dd>
-      </div>
-      <div>
-        <dt>{{ content.rights|field_label }}</dt>
-        <dd>{{ content.rights|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.abstract_note|field_label }}</dt>
-        <dd>{{ content.abstract_note|field_value }}</dd>
-      </div>
-      <div>
-        <dt>{{ content.extra|field_label }}</dt>
-        <dd>{{ content.extra|field_value }}</dd>
-      </div>
-      {% if logged_in %}
-        <div>
-          <dt>{{ content.notes_private|field_label }}</dt>
-          <dd>{{ content.notes_private|field_value }}</dd>
-        </div>
-      {% endif %}
-      <div>
-        <dt>{{ content.notes|field_label }}</dt>
-        <dd>{{ content.notes|field_value }}</dd>
-      </div>
-    </dl>
   {% endif %}
 </div>

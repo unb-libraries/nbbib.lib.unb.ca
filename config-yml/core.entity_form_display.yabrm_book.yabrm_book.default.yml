@@ -5,6 +5,7 @@ dependencies:
   config:
     - image.style.thumbnail
   module:
+    - chosen_field
     - image
     - link
     - paragraphs
@@ -25,14 +26,10 @@ content:
     third_party_settings: {  }
     text_processing: 0
   archive:
-    type: entity_reference_autocomplete
+    type: chosen_select
     weight: -80
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   call_number:
     type: string_textfield
@@ -43,14 +40,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   collections:
-    type: entity_reference_autocomplete
+    type: chosen_select
     weight: -120
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   contributors:
     type: paragraphs
@@ -252,14 +245,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   topics:
-    type: entity_reference_autocomplete
+    type: chosen_select
     weight: -190
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 10
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   url:
     type: link_default

@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_role
     - paragraphs.paragraphs_type.yabrm_bibliographic_contributor
   module:
+    - chosen_field
     - inline_entity_form
 id: paragraph.yabrm_bibliographic_contributor.default
 targetEntityType: paragraph
@@ -28,16 +29,13 @@ content:
       allow_duplicate: false
       collapsible: false
       collapsed: false
+      revision: false
     third_party_settings: {  }
   field_yabrm_contributor_role:
-    type: entity_reference_autocomplete
+    type: chosen_select
     weight: 1
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
 hidden:
   created: true

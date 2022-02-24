@@ -253,10 +253,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   topics:
-    type: chosen_select
+    type: entity_reference_autocomplete
     weight: -190
     region: content
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   url:
     type: link_default

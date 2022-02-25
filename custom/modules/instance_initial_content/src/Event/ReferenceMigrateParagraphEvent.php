@@ -102,6 +102,14 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       // Default collection.
       $collection_name = self::getMigrations()[$migration_id];
 
+      // If it's a religion migration, add to religion Collection.
+      $parts = explode(': ', $collection_name);
+
+      if ($parts[0] == 'Religion') {
+        $collection_name = $parts[0];
+        $religion_topic = $parts[1];
+      }
+
       if (!empty($collection_name)) {
         $existing = $this->typeManager->getStorage('yabrm_collection')
           ->getQuery()
@@ -123,6 +131,31 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       }
 
       $collections[] = $col_id ? $col_id : NULL;
+
+      // Religion topics.
+      if (!empty($religion_topic)) {
+        $existing = $this->typeManager->getStorage('taxonomy_term')
+          ->getQuery()
+          ->condition('name', $religion_topic)
+          ->condition('vid', 'yabrm_reference_topic')
+          ->execute();
+
+        reset($existing);
+        $topic_id = key($existing);
+
+        // Create topic if doesn't exist.
+        if (empty($topic_id)) {
+          $topic = Term::create([
+            'name' => $religion_topic,
+            'vid' => 'yabrm_reference_topic',
+          ]);
+
+          $topic->save();
+          $topic_id = $topic->id();
+        }
+      }
+
+      $topics[] = $topic_id ? $topic_id : NULL;
 
       // Archive.
       $arch_name = $row->getSourceProperty('archive');
@@ -154,6 +187,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $reference->setContributors($contributors);
       $reference->setPublicationYear($pub_year);
       $reference->setCollections($collections);
+      $reference->setTopics($topics);
       $reference->setArchive($archives);
       $reference->save();
     }

@@ -18,7 +18,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: -3
+    weight: 0
     region: content
   first_name:
     type: string
@@ -26,7 +26,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 3
     region: content
   institution_name:
     type: string
@@ -34,7 +34,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
+    weight: 5
     region: content
   last_name:
     type: string
@@ -42,7 +42,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    weight: 4
     region: content
   name:
     type: string
@@ -50,7 +50,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
   picture:
     type: image
@@ -59,7 +59,7 @@ content:
       image_link: ''
       image_style: 16_10_image
     third_party_settings: {  }
-    weight: 0
+    weight: 2
     region: content
   sort_name:
     type: string
@@ -67,10 +67,11 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 4
+    weight: 6
     region: content
 hidden:
   langcode: true
   search_api_excerpt: true
   status: true
   user_id: true
+  zotero_name: true

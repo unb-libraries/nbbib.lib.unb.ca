@@ -67,3 +67,4 @@ hidden:
   path: true
   sort_name: true
   user_id: true
+  zotero_name: true

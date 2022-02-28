@@ -215,13 +215,15 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
     foreach ($contrib_names as $contrib_name) {
       // Trim whitespace and remove periods.
       $contrib_name = trim($contrib_name, " \t\n\r\0\x0B\x2E");
+      // Keep exact trimmed copy to prevent duplicate import.
+      $zotero_name = $contrib_name;
       // Ensure consistent name casing.
       $contrib_name = ucwords(mb_strtolower($contrib_name));
 
       if (!empty($contrib_name)) {
         $existing = $this->typeManager->getStorage('yabrm_contributor')
           ->getQuery()
-          ->condition('name', $contrib_name)
+          ->condition('zotero_name', $zotero_name)
           ->execute();
 
         reset($existing);
@@ -247,11 +249,10 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           }
 
           $contrib = BibliographicContributor::create([
-            'name' => $contrib_name,
+            'zotero_name' => $zotero_name,
             'institution_name' => $institution_name,
             'first_name' => $first_name,
             'last_name' => $last_name,
-            'sort_name' => $sort_name,
           ]);
 
           $contrib->save();

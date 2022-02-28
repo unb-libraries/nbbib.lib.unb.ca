@@ -123,6 +123,21 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
   /**
    * {@inheritdoc}
    */
+  public function getZoteroName() {
+    return $this->get('zotero_name')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setZoteroName($zotero_name) {
+    $this->set('zotero_name', $zotero_name);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getName() {
     return $this->get('name')->value;
   }
@@ -318,6 +333,27 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Name'))
       ->setDescription(t('The name of the Bibliographic Contributor entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 256,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['zotero_name'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Zotero Name'))
+      ->setDescription(t('The imported name of the Bibliographic Contributor entity.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 256,

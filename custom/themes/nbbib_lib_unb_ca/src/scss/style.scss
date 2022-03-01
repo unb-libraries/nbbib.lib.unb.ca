@@ -197,6 +197,9 @@ header {
 
           // Publication details.
           #ref-details {
+            .row:nth-of-type(odd) {
+              background-color: $lgray;
+            }
           }
 
           // Description.

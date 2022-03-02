@@ -136,7 +136,7 @@
 
         {% if content.physical_description|field_value
         or content.num_pages|field_value %}
-          <div id="ref-physical">
+          <p id="ref-physical">
               {{ "Physical Description: " }}
 
               {%- if content.num_pages|field_value[0]['#context']['value'] -%}
@@ -145,7 +145,7 @@
               {%- endif -%}
 
               {{- content.physical_description|field_value[0]['#text']|striptags -}}
-          </div>
+          </p>
         {% endif %}
 
         </div>

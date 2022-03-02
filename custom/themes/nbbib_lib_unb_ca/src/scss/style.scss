@@ -9,9 +9,11 @@ html {
   // Header sizes.
   h1 {
     font-size: 1.8rem;
+    font-weight: 600;
   }
   h2 {
     font-size: 1.5rem;
+    font-weight: 600;
   }
 
   // Paragraph.
@@ -28,7 +30,7 @@ header {
     margin-top: 1rem;
     font-size: 1.8rem !important;
     text-transform: none !important;
-    font-weight: normal !important;
+    font-weight: 600 !important;
   }
 
   // Main navigation.
@@ -170,10 +172,14 @@ header {
 
       // Page title.
       .page-title {
-        margin-top: 1rem;
-        border-bottom: 1px solid $lgray;
+        margin-top: 1.5rem;
         text-align: left !important;
-        font-size: 1.5rem;
+        font-size: 1.7rem;
+        font-weight: 600;
+
+        .field--name-title {
+          font-weight: 600;
+        }
       }
 
       // Main page content.
@@ -182,6 +188,10 @@ header {
 
         // Bibliographic references.
         .yabrm-reference.contrib-layout {
+          // Paragraphs.
+          p {
+            margin-left: 1rem;
+          }
 
           // Publication details label.
           #ref-contribs {
@@ -192,13 +202,14 @@ header {
             // Header.
             & + h2 {
               margin-top: 1rem;
+              font-size: 1.3rem;
             }
           }
 
           // Publication details.
           #ref-details {
-            .row:nth-of-type(odd) {
-              background-color: $lgray;
+            .row:nth-of-type(even) {
+              background-color: whitesmoke;
             }
           }
 

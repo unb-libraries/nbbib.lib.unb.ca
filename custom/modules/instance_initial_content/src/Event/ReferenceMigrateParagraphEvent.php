@@ -108,6 +108,10 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       if ($parts[0] == 'Religion') {
         $collection_name = $parts[0];
         $religion_topic = $parts[1];
+
+        if ($religion_topic == "General") {
+          $religion_topic = "Religion";
+        }
       }
 
       if (!empty($collection_name)) {

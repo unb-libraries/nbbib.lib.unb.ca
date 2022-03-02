@@ -110,7 +110,10 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         $religion_topic = $parts[1];
 
         if ($religion_topic == "General") {
-          $religion_topic = "Religion";
+          $religion_topic = "General Religion";
+        }
+        elseif ($religion_topic == "Indigenous") {
+          $religion_topic = "Indigenous Religion";
         }
       }
 

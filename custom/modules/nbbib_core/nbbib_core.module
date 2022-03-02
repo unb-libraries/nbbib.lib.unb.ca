@@ -330,13 +330,11 @@ function nbbib_core_views_pre_render($view) {
       $view->setTitle($view->getTitle() . ' - ' . $token);
     }
     // Include current topic in view title.
-    $token = !empty($view->getExposedInput()['topics']) ?
-      $view->getExposedInput()['topics'] : NULL;
+    $token = !empty($view->getExposedInput()['topic_names']) ?
+      $view->getExposedInput()['topic_names'] : NULL;
 
     if (!empty($token)) {
-      $term = Term::load($token);
-      $name = $term->getName();
-      $view->setTitle($view->getTitle() . ' - ' . $name);
+      $view->setTitle($view->getTitle() . ' - ' . $token);
     }
   }
 }

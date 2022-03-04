@@ -1,7 +1,7 @@
 // Import Sass files.
 @import 'import';
 
-// HTML.
+// HTML. Broad. Careful.
 html {
   // Base font size.
   font-size: 14px;
@@ -14,6 +14,29 @@ html {
   h2 {
     font-size: 1.5rem;
     font-weight: 600;
+  }
+
+  // Links.
+  a {
+    color: $unb-dmango;
+
+    &:hover {
+      color: $unb-ddmango;
+    }
+  }
+
+  // Buttons.
+  input.btn {
+    background-color: $unb-dmango;
+    border-color: $unb-dmango;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: $unb-ddmango !important;
+      border-color: $unb-ddmango !important;
+      box-shadow: none !important;
+    }
   }
 
   // Paragraph.
@@ -316,6 +339,24 @@ header {
 
         ul.pagination {
           flex-wrap: wrap;
+
+          a {
+            color: $unb-dmango;
+
+            &:active,
+            &:focus,
+            &:hover {
+              background-color: $unb-ddmango !important;
+              border-color: $unb-ddmango !important;
+              box-shadow: none !important;
+            }
+          }
+
+         .page-item.active a {
+           color: whitesmoke;
+           background-color: $unb-dmango;
+           border-color: $unb-dmango;
+         }
         }
       }
     }
@@ -323,9 +364,15 @@ header {
 
   // Footer.
   footer {
+    background-color: $unb-dmango;
+
     // Footer logo.
     #footer-logo-div {
-      padding: 0;
+      padding: 0 0 0 1rem;
+
+      img {
+        width: 360px;
+      }
     }
   }
 

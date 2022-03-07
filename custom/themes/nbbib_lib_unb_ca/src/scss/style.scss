@@ -6,6 +6,10 @@ html {
   // Base font size.
   font-size: 14px;
 
+  body {
+    background-color: $nb-lyellow;
+  }
+
   // Header sizes.
   h1 {
     font-size: 1.8rem;
@@ -18,23 +22,29 @@ html {
 
   // Links.
   a {
-    color: $unb-dmango;
+    color: $nb-blue;
 
     &:hover {
-      color: $unb-ddmango;
+      color: $nb-dblue;
     }
+  }
+
+  // Inputs.
+  input, select {
+    border:none !important;
+    box-shadow: none !important;
   }
 
   // Buttons.
   input.btn {
-    background-color: $unb-dmango;
-    border-color: $unb-dmango;
+    background-color: $nb-blue;
+    border-color: $nb-blue;
 
     &:active,
     &:focus,
     &:hover {
-      background-color: $unb-ddmango !important;
-      border-color: $unb-ddmango !important;
+      background-color: $nb-dblue !important;
+      border-color: $nb-dblue !important;
       box-shadow: none !important;
     }
   }
@@ -47,18 +57,20 @@ html {
 
 // Header.
 header {
+  background-color: $nb-red;
 
   // Site title.
   .site-title {
-    margin-top: 1rem;
+    margin: 1rem;
     font-size: 1.8rem !important;
     text-transform: none !important;
     font-weight: 600 !important;
+    color: white !important;
   }
 
   // Main navigation.
   nav.navbar {
-    background-color: whitesmoke;
+    background-color: $nb-red;
 
     // Supported content.
     #navbarSupportedContent {
@@ -72,10 +84,11 @@ header {
 
           // Item links.
           a.nav-link {
-            color: dimgray;
+            color: white;
+            font-weight: bold;
 
             &:hover, &.is-active {
-              color:black;
+              color: black;
             }
           }
         }
@@ -83,12 +96,14 @@ header {
     }
 
     // Collapsed menu.
-    button.navbar-toggler.collapsed {
+    button.navbar-toggler {
       max-height: 36px;
       max-width: 50px;
+      border: none;
 
       &:after {
         font-size: 1rem;
+        font-weight: bold;
         position: relative;
         top: -22px;
         left: -56px;
@@ -182,6 +197,11 @@ header {
             }
           }
         }
+
+        // Contributor row.
+        .row-contrib {
+          padding: .2rem .5rem;
+        }
       }
 
       // Contributors initial filter.
@@ -232,7 +252,7 @@ header {
           // Publication details.
           #ref-details {
             .row:nth-of-type(even) {
-              background-color: whitesmoke;
+              background-color: white;
             }
           }
 
@@ -341,21 +361,22 @@ header {
           flex-wrap: wrap;
 
           a {
-            color: $unb-dmango;
+            color: $nb-blue;
 
             &:active,
             &:focus,
             &:hover {
-              background-color: $unb-ddmango !important;
-              border-color: $unb-ddmango !important;
+              color: whitesmoke;
+              background-color: $nb-blue !important;
+              border-color: $nb-blue !important;
               box-shadow: none !important;
             }
           }
 
          .page-item.active a {
            color: whitesmoke;
-           background-color: $unb-dmango;
-           border-color: $unb-dmango;
+           background-color: $nb-blue;
+           border-color: $nb-blue;
          }
         }
       }
@@ -364,7 +385,8 @@ header {
 
   // Footer.
   footer {
-    background-color: $unb-dmango;
+    margin-top: 1rem !important;
+    background-color: $nb-red;
 
     // Footer logo.
     #footer-logo-div {

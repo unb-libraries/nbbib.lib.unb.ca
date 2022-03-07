@@ -67,7 +67,7 @@ class BibliographicContributorRevisionRevertTranslationForm extends Bibliographi
     return new static(
       $container->get('entity_type.manager')->getStorage('yabrm_contributor'),
       $container->get('date.formatter'),
-      $container->get('language_manager')
+      $container->get('language_manager'),
       $container->get('datetime.time')
     );
   }

@@ -68,7 +68,7 @@ class BibliographicReferenceRevisionRevertTranslationForm extends BibliographicR
     return new static(
       $container->get('entity_type.manager')->getStorage('yabrm_biblio_reference'),
       $container->get('date.formatter'),
-      $container->get('language_manager')
+      $container->get('language_manager'),
       $container->get('datetime.time')
     );
   }

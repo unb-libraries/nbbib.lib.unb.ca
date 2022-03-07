@@ -126,7 +126,7 @@ class JournalArticleReferenceRevisionRevertTranslationForm extends JournalArticl
 
     $latest_revision_translation->setNewRevision();
     $latest_revision_translation->isDefaultRevision(TRUE);
-    $revision->setRevisionCreationTime(\$this->time->getRequestTime());
+    $revision->setRevisionCreationTime($this->time->getRequestTime());
 
     return $latest_revision_translation;
   }

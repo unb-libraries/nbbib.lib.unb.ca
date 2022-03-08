@@ -4,8 +4,7 @@
 // HTML. Broad. Careful.
 html {
   // Base font size.
-  font-size: 14px;
-  color: $unb-darkgray;
+  font-size: 16px;
 
   body {
     font-family: 'Maven Pro', sans-serif;
@@ -15,10 +14,17 @@ html {
   h1 {
     font-size: 1.8rem;
     font-weight: 600;
+    color: $nb-dblue;
   }
   h2 {
     font-size: 1.5rem;
     font-weight: 600;
+    color: $nb-dblue;
+  }
+
+  // Bold.
+  b {
+    color: $nb-dblue;
   }
 
   // Links.
@@ -63,7 +69,6 @@ html {
 
 // Header.
 header {
-  background-color: $nb-yellow;
   // Branding.
   .navbar-brand {
     margin: .5rem 1rem;
@@ -74,7 +79,7 @@ header {
       line-height: 1.2 !important;
       font-size: 2rem !important;
       font-weight: 600 !important;
-      color: black !important;
+      color: $nb-dblue !important;
       font-family: 'IBM Plex Serif', serif;
     }
   }
@@ -229,6 +234,7 @@ header {
         text-align: left !important;
         font-size: 1.7rem;
         font-weight: 600;
+        color: $nb-dblue;
 
         .field--name-title {
           font-weight: 600;
@@ -395,7 +401,6 @@ header {
   footer {
     margin-top: 1rem !important;
     padding: 1rem;
-    background-color: $nb-red;
 
     // Footer logo.
     #footer-logo-div {

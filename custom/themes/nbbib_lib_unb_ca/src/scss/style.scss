@@ -213,9 +213,14 @@ header {
           }
         }
 
-        // Contributor row.
-        .row-contrib {
-          padding: .2rem .5rem;
+        // View content.
+        & > .view-content {
+          columns: 2;
+
+          // Contributor row.
+          .row-contrib {
+            padding: .2rem .5rem;
+          }
         }
       }
 

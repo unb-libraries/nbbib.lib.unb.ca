@@ -5,8 +5,10 @@
 html {
   // Base font size.
   font-size: 14px;
+  color: $unb-darkgray;
 
   body {
+    font-family: 'Maven Pro', sans-serif;
   }
 
   // Header sizes.
@@ -61,14 +63,20 @@ html {
 
 // Header.
 header {
-  background-color: $nb-red;
+  background-color: $nb-yellow;
+  // Branding.
+  .navbar-brand {
+    margin: .5rem 1rem;
 
-  // Site title.
-  .site-title {
-    font-size: 1.8rem !important;
-    text-transform: none !important;
-    font-weight: 600 !important;
-    color: white !important;
+    // Site title.
+    .site-title {
+      margin: 0;
+      line-height: 1.2 !important;
+      font-size: 2rem !important;
+      font-weight: 600 !important;
+      color: black !important;
+      font-family: 'IBM Plex Serif', serif;
+    }
   }
 
   // Main navigation.
@@ -91,7 +99,7 @@ header {
             font-weight: bold;
 
             &:hover, &.is-active {
-              color: $nb-dblue;
+              color: $nb-lyellow;
             }
           }
         }
@@ -254,7 +262,7 @@ header {
           // Publication details.
           #ref-details {
             .row:nth-of-type(even) {
-              background-color: white;
+              background-color: whitesmoke;
             }
           }
 
@@ -393,13 +401,14 @@ header {
     #footer-logo-div {
 
       img {
-        width: 320px;
+        width: 260px;
       }
     }
 
     // Footer copy.
     #footer-copy {
       p {
+        margin: 0;
         padding-top: 1.8rem;
         padding-bottom: 0;
         color: white;

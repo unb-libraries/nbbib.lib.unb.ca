@@ -19,7 +19,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'NB Bibliography Collections'
+      title: Collections
       fields:
         name:
           id: name

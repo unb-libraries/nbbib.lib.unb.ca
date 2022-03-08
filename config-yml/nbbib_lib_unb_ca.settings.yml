@@ -30,7 +30,7 @@ b4_top_container: 'container-fluid m-0 p-0'
 b4_top_container_config: ''
 b4_body_schema: none
 b4_body_bg_schema: none
-b4_navbar_schema: light
+b4_navbar_schema: dark
 b4_navbar_bg_schema: none
 b4_footer_schema: none
 b4_footer_bg_schema: none

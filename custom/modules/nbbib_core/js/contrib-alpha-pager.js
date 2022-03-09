@@ -5,6 +5,12 @@
   Drupal.behaviors.contribAlphaPager = {
     attach: function (context, settings) {
       $(document).ready( function() {
+        // Preserve is-active class in menu when alpha facet is engaged.
+        var url = window.location.href;
+
+        if (url.includes("/contributors/")) {
+          $(".region-nav-main .nav-item[title='Contributors']").addClass('is-active');
+        }
 
         // Create extra list item to display reset contributor list.
         var resetLi = $("<li></li>");

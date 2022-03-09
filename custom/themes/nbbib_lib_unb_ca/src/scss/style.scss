@@ -103,8 +103,8 @@ header {
             color: white;
             font-weight: bold;
 
-            &:hover, &.is-active {
-              color: $nb-lyellow;
+            &:hover, &.is-active, &.active {
+              color: black;
             }
           }
         }
@@ -406,6 +406,7 @@ header {
   footer {
     margin-top: 1rem !important;
     padding: 1rem;
+    border-top: 1px solid $unb-halfgray;
 
     // Footer logo.
     #footer-logo-div {
@@ -421,11 +422,10 @@ header {
         margin: 0;
         padding-top: 1.8rem;
         padding-bottom: 0;
-        color: white;
         text-align: right;
 
         a {
-          color: white;
+          color: inherit;
         }
       }
     }

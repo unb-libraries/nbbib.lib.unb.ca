@@ -8,6 +8,7 @@
         // Preserve is-active class in menu when alpha facet is engaged.
         var url = window.location.href;
 
+        // Add is-active to "Contributors" if URL includes "/Contributors/".
         if (url.includes("/contributors/")) {
           $(".region-nav-main .nav-item[title='Contributors']").addClass('is-active');
         }

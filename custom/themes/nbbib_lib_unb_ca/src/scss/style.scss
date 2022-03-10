@@ -86,6 +86,7 @@ header {
 
   // Main navigation.
   nav.navbar {
+    padding: 0;
     background-color: $nb-red;
 
     // Supported content.
@@ -97,14 +98,15 @@ header {
 
         // Menu items.
         li.nav-item {
+          padding: 0;
 
           // Item links.
           a.nav-link {
+            padding: 1rem .5rem;
             color: white;
-            font-weight: bold;
 
             &:hover, &.is-active, &.active {
-              color: black;
+              background-color: $nb-lred;
             }
           }
         }

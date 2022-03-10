@@ -102,7 +102,7 @@ header {
 
           // Item links.
           a.nav-link {
-            padding: 1rem .5rem;
+            padding: 1rem 1rem;
             color: white;
 
             &:hover, &.is-active, &.active {
@@ -123,7 +123,7 @@ header {
         font-size: 1rem;
         font-weight: bold;
         position: relative;
-        top: -22px;
+        top: -26px;
         left: -56px;
         content: "Menu";
       }

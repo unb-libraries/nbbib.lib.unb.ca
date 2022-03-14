@@ -38,19 +38,6 @@ function nbbib_core_page_attachments(array &$attachments) {
 }
 
 /**
- * Implements hook_preprocess_page_title().
- */
-function nbbib_lib_unb_ca_preprocess_html(&$variables) {
-
-  $node = \Drupal::request()->attributes->get('node');
-
-  if ($node && $node->bundle() == 'static_content_page' &&
-  \Drupal::service('path.matcher')->isFrontPage()) {
-    $variables['head_title']['title'] = 'New Brunswick Bibliography';
-  }
-}
-
-/**
  * Implements hook_form_FORM_ID_alter().
  */
 function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id) {

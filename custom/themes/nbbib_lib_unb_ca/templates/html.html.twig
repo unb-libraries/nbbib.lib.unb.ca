@@ -58,7 +58,7 @@
 <html {{ html_attributes }}>
   <head>
     <head-placeholder token="{{ placeholder_token|raw }}">
-    {% if is_front %}
+    {% if not root_path %}
       <title>New Brunswick Bibliography</title>
     {% else %}
       <title>{{ head_title|safe_join(' | ') }}</title>

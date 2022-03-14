@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - nbbib_core
+    - system
   theme:
     - nbbib_lib_unb_ca
 id: nbbibliographybanner
@@ -17,4 +18,8 @@ settings:
   label: 'NB Bibliography Banner'
   label_display: '0'
   provider: nbbib_core
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

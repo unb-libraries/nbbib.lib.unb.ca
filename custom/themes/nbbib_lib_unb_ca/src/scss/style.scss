@@ -11,6 +11,12 @@ html {
 
     &.path-frontpage {
       background-image: url('/themes/custom/nbbib_lib_unb_ca/images/home-bg.jpg');
+
+      main[role="main"] {
+        padding: 1rem;
+        background-color: white;
+        opacity: 80%;
+      }
     }
   }
 

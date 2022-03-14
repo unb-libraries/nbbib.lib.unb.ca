@@ -22,8 +22,4 @@ settings:
   level: 1
   depth: 0
   expand_all_items: false
-visibility:
-  request_path:
-    id: request_path
-    negate: true
-    pages: '<front>'
+visibility: {  }

@@ -51,17 +51,17 @@ html {
 
       // Footer.
       footer {
+        margin-top: none !important;
+        background-color: white;
         border-top: none;
+        opacity: 85%;
 
         // Footer copy.
         #footer-copy {
           p {
-            color: white;
-            text-shadow: 2px 2px 1px black, 0 0 5px black;
 
             a {
               color: inherit;
-              text-decoration: none !important;
 
               &:hover {
                 border-bottom: 1px solid white;
@@ -480,7 +480,7 @@ header {
 
   // Footer.
   footer {
-    margin-top: 1rem !important;
+    margin-top: 1rem;
     padding: 1rem;
     border-top: 1px solid $unb-halfgray;
 

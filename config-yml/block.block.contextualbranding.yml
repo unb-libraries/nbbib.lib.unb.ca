@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - context_branding
+    - system
   theme:
     - nbbib_lib_unb_ca
 id: contextualbranding
@@ -17,4 +18,8 @@ settings:
   label: 'Contextual Branding'
   label_display: '0'
   provider: context_branding
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

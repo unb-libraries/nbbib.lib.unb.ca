@@ -16,13 +16,14 @@ html {
     // Frontpage.
     &.path-frontpage {
       background-image: url('/themes/custom/nbbib_lib_unb_ca/images/home-bg.jpg');
+      background-repeat: no-repeat;
 
       // Header.
       header {
 
         // Main navigation.
         .navbar {
-          text-shadow: 2px 2px 1px black, 0 0 5px black;
+          text-shadow: 2px 2px black;
           background: none !important;
 
           .nav-item {
@@ -33,10 +34,10 @@ html {
               color: white !important;
 
               &:hover {
-                text-shadow: none;
                 background-color: white !important;
                 color: black !important;
-                opacity: 85%;
+                opacity: 90%;
+                text-shadow: none;
               }
             }
           }
@@ -59,18 +60,45 @@ html {
         }
       }
 
+      // Main.
       main[role="main"] {
-        padding: 1rem;
-        background-color: white;
-        opacity: 85%;
+        padding: 0;
+
+        // Branding.
+        .block-context-branding {
+          margin-top: 5rem;
+          margin-bottom: 5rem;
+          text-align: center;
+
+          .navbar-brand {
+            display: block !important;
+
+            .site-title {
+              color: white !important;
+              text-shadow: 0 0 8px black;
+            }
+          }
+        }
+
+        // Exposed form.
+        form[action='/bibliography'] {
+          width: 400px;
+          margin: auto;
+          margin-bottom: 5rem;
+        }
+
+        // Main content block.
+        #block-mainpagecontent {
+          padding: 1rem !important;
+          background-color: white;
+          opacity: 90%;
+        }
       }
 
       // Footer.
       footer {
         margin-top: none !important;
-        background-color: white;
         border-top: none;
-        opacity: 85%;
 
         // Footer copy.
         #footer-copy {
@@ -157,21 +185,21 @@ html {
   }
 }
 
+// Site title.
+.site-title {
+  margin: 0;
+  white-space: normal;
+  line-height: 1.2 !important;
+  font-size: 2rem !important;
+  color: $nb-dblue !important;
+  font-family: 'Cardo', serif;
+}
+
 // Header.
 header {
   // Branding.
   .navbar-brand {
     margin: .5rem 1rem;
-
-    // Site title.
-    .site-title {
-      margin: 0;
-      white-space: normal;
-      line-height: 1.2 !important;
-      font-size: 2rem !important;
-      color: $nb-dblue !important;
-      font-family: 'Cardo', serif;
-    }
   }
 
   // Main navigation.

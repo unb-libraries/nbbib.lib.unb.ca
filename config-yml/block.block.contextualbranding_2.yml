@@ -1,26 +1,25 @@
-uuid: 8a4d7b20-8f9a-4d72-a893-ea07da6a9b32
+uuid: b4f18cc5-dca2-4a1d-ba3c-098265aff8b2
 langcode: en
 status: true
 dependencies:
   module:
+    - context_branding
     - system
   theme:
     - nbbib_lib_unb_ca
-_core:
-  default_config_hash: MElvhLL51qOJTRCN_2svXmul_TfaBwG7mNCwWz8gi9o
-id: pagetitle
+id: contextualbranding_2
 theme: nbbib_lib_unb_ca
 region: content
-weight: -1
+weight: 0
 provider: null
-plugin: page_title_block
+plugin: context_branding_block
 settings:
-  id: page_title_block
-  label: 'Page title'
+  id: context_branding_block
+  label: 'Contextual Branding'
   label_display: '0'
-  provider: core
+  provider: context_branding
 visibility:
   request_path:
     id: request_path
-    negate: true
+    negate: false
     pages: '<front>'

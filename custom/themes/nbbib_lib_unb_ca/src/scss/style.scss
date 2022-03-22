@@ -23,21 +23,32 @@ html {
 
         // Main navigation.
         .navbar {
-          text-shadow: 2px 2px black;
-          background: none !important;
+          transition: all .2s ease;
+          -webkit-transition: all 0.2s ease;
+          -moz-transition: all 0.2s ease;
+          background-color: rgba(0, 0, 0, 0);
+          background-image: linear-gradient(to bottom, rgba(30,3,4,.4), rgba(0,0,0,0));
+
+          &:hover {
+            background-image: none;
+            background-color: $nb-red;
+          }
 
           .nav-item {
             background: none !important;
 
             .nav-link {
+              transition: all .2s ease;
+              border-bottom: 4px solid transparent;
               background: none !important;
               color: white !important;
 
               &:hover {
-                background-color: white !important;
-                color: black !important;
-                opacity: 90%;
-                text-shadow: none;
+                border-bottom: 4px solid white;
+              }
+
+              &.is-active, &.active {
+                border-bottom: none !important;
               }
             }
           }
@@ -66,8 +77,8 @@ html {
 
         // Branding.
         .block-context-branding {
-          margin-top: 5rem;
-          margin-bottom: 5rem;
+          margin-top: 10rem;
+          margin-bottom: 10rem;
           text-align: center;
 
           .navbar-brand {
@@ -75,7 +86,11 @@ html {
 
             .site-title {
               color: white !important;
-              text-shadow: 0 0 8px black;
+              text-shadow:
+                -1px 0 8px $bg-shadow,
+                0 1px 8px $bg-shadow,
+                1px 0 8px $bg-shadow,
+                0 -1px 8px $bg-shadow;
             }
           }
         }
@@ -84,12 +99,12 @@ html {
         form[action='/bibliography'] {
           width: 424px;
           margin: auto;
-          margin-bottom: 5rem;
+          margin-bottom: 10rem;
 
           .form--inline {
               background: white;
               padding-top: 1rem;
-              opacity: 85%;
+              opacity: 90%;
               padding-right: 1rem;
               padding-left: 1rem;
               border-radius: .25rem;
@@ -229,11 +244,13 @@ header {
 
           // Item links.
           a.nav-link {
+            transition: all .2s ease;
             padding: 1rem 1rem;
             color: white;
+            font-size: 1.1rem;
 
             &:hover, &.is-active, &.active {
-              background-color: $nb-lred;
+              border-bottom: 4px solid white;
             }
           }
         }

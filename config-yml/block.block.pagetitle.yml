@@ -11,7 +11,7 @@ _core:
 id: pagetitle
 theme: nbbib_lib_unb_ca
 region: content
-weight: -1
+weight: -2
 provider: null
 plugin: page_title_block
 settings:

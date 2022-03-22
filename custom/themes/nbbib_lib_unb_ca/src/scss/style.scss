@@ -82,9 +82,18 @@ html {
 
         // Exposed form.
         form[action='/bibliography'] {
-          width: 400px;
+          width: 424px;
           margin: auto;
           margin-bottom: 5rem;
+
+          .form--inline {
+              background: white;
+              padding-top: 1rem;
+              opacity: 85%;
+              padding-right: 1rem;
+              padding-left: 1rem;
+              border-radius: .25rem;
+          }
         }
 
         // Main content block.

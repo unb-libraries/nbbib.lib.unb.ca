@@ -52,22 +52,6 @@ html {
               }
             }
           }
-
-          // Collapsed menu.
-          button.navbar-toggler {
-            max-height: 36px;
-            max-width: 50px;
-            border: none;
-
-            &:after {
-              color: $nb-dblue;
-            }
-
-            // Toggler icon.
-            .navbar-toggler-icon {
-              background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2814, 31, 70, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-            }
-          }
         }
       }
 
@@ -116,26 +100,6 @@ html {
           padding: 1rem !important;
           background-color: white;
           opacity: 90%;
-        }
-      }
-
-      // Footer.
-      footer {
-        margin-top: none !important;
-        border-top: none;
-
-        // Footer copy.
-        #footer-copy {
-          p {
-
-            a {
-              color: inherit;
-
-              &:hover {
-                border-bottom: 1px solid white;
-              }
-            }
-          }
         }
       }
     }
@@ -223,7 +187,7 @@ html {
 header {
   // Branding.
   .navbar-brand {
-    margin: .5rem 1rem;
+    margin: .5rem .5rem;
   }
 
   // Main navigation.
@@ -264,12 +228,17 @@ header {
       border: none;
 
       &:after {
+        color: white;
         font-size: 1rem;
-        font-weight: bold;
         position: relative;
         top: -26px;
         left: -56px;
         content: "Menu";
+      }
+
+      // Toggler icon.
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
       }
     }
   }
@@ -637,5 +606,11 @@ header {
   // Responsive select controls in search view.
   .form-item.js-form-item.form-type-select {
     display: grid;
+  }
+  // Responsive footer copy.
+  #footer-copy {
+    p {
+      text-align: left !important;
+    }
   }
 }

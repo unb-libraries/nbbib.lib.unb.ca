@@ -20,7 +20,7 @@ html {
 
       // Header.
       header {
-
+        /* Fade-in homepage navbar commented out.
         // Main navigation.
         .navbar {
           transition: all .2s ease;
@@ -53,6 +53,7 @@ html {
             }
           }
         }
+        */
       }
 
       // Main.
@@ -212,7 +213,9 @@ header {
             font-size: 1.1rem;
 
             &:hover, &.is-active, &.active {
-              border-bottom: 4px solid white;
+              // border-bottom: 4px solid white;
+              background-color: $nb-lred;
+              color: black;
             }
           }
         }

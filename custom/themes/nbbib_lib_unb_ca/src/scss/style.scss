@@ -70,6 +70,7 @@ html {
             display: block !important;
 
             .site-title {
+              font-size: 2.5rem !important;
               color: white !important;
               text-shadow:
                 -1px 0 8px $bg-shadow,
@@ -126,7 +127,7 @@ html {
     color: $nb-blue;
 
     &:hover {
-      color: $nb-dblue;
+      color: $nb-lblue;
     }
   }
 

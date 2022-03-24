@@ -20,6 +20,11 @@ html {
 
       // Header.
       header {
+        // Hide "Home" option from homepage.
+        #block-mainnavigation li.nav-item:first-of-type {
+          display: none !important;
+        }
+
         /* Fade-in homepage navbar commented out.
         // Main navigation.
         .navbar {

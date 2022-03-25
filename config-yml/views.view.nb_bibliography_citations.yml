@@ -1683,7 +1683,7 @@ display:
           expose:
             operator_id: search_api_fulltext_op
             label: Search
-            description: 'Search by author, collection, title, etc.'
+            description: 'Search by title, author, publisher, year, etc.'
             use_operator: false
             operator: search_api_fulltext_op
             operator_limit_selection: false
@@ -1696,7 +1696,9 @@ display:
               authenticated: authenticated
               anonymous: '0'
               nb_bibliography_contributor: '0'
+            expose_fields: false
             placeholder: ''
+            searched_fields_id: ''
           is_grouped: false
           group_info:
             label: ''

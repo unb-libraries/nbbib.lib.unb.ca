@@ -88,17 +88,20 @@ html {
 
         // Exposed form.
         form[action='/bibliography'] {
-          width: 424px;
+          width: 50%;
+          min-width: 424px;
           margin: auto;
           margin-bottom: 10rem;
 
           .form--inline {
-              background: white;
-              padding-top: 1rem;
-              opacity: 90%;
-              padding-right: 1rem;
-              padding-left: 1rem;
-              border-radius: .25rem;
+            padding: 1rem 1rem 0 1rem;
+            background: white;
+            opacity: 90%;
+            border-radius: .25rem;
+
+            .form-item-search-api-fulltext {
+              width: 84%;
+            }
           }
         }
 
@@ -587,6 +590,18 @@ header {
     .form-actions {
       display: inline-block;
       margin-top: 1rem !important;
+    }
+  }
+}
+@media screen and (max-width: 1145px) {
+  // Home exposed form.
+  body.path-frontpage form[action='/bibliography'] {
+
+    .form--inline {
+
+      .form-item-search-api-fulltext {
+        width: 78% !important;
+      }
     }
   }
 }

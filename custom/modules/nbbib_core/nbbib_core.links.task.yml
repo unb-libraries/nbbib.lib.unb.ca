@@ -1,0 +1,5 @@
+nbb_core.merge_contribs:
+  route_name: nbb_core.merge_contribs
+  title: 'Merge'
+  base_route: entity.yabrm_contributor.canonical
+  weight: 0

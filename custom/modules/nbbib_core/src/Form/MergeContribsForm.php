@@ -57,7 +57,7 @@ class MergeContribsForm extends FormBase {
         $dupe_name = trim("$first $last");
       }
 
-      $form['duplicates']['#options'][$cid] = t($dupe_name);
+      $form['duplicates']['#options'][$cid] = $this->t($dupe_name);
     }
 
     return $form;

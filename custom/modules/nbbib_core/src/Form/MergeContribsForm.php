@@ -57,7 +57,7 @@ class MergeContribsForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_contributor = NULL) {
     $form = [];
 
-    // Generate dynamic title.
+    // Load base contributor and generate dynamic title.
     $contrib = BibliographicContributor::load($yabrm_contributor);
     $name = $contrib->getName();
     $form['#title'] = "$name";
@@ -79,19 +79,23 @@ class MergeContribsForm extends FormBase {
 
     // Populate duplicates checkbox set.
     foreach ($results as $cid) {
-      $dupe = BibliographicContributor::load($cid);
-      $first = $dupe->getFirstName();
-      $last = $dupe->getLastName();
-      $inst = $dupe->getInstitutionName();
 
-      if ($inst) {
-        $dupe_name = trim($inst);
-      }
-      else {
-        $dupe_name = trim("$first $last");
-      }
+      // Only include if not base contributor.
+      if ($cid != $yabrm_contributor) {
+        $dupe = BibliographicContributor::load($cid);
+        $first = $dupe->getFirstName();
+        $last = $dupe->getLastName();
+        $inst = $dupe->getInstitutionName();
 
-      $form['duplicates']['#options'][$cid] = $this->t($dupe_name);
+        if ($inst) {
+          $dupe_name = trim($inst);
+        }
+        else {
+          $dupe_name = trim("$first $last");
+        }
+
+        $form['duplicates']['#options'][$cid] = $this->t($dupe_name);
+      }
     }
 
     return $form;

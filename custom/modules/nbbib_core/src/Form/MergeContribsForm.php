@@ -4,12 +4,45 @@ namespace Drupal\nbbib_core\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\yabrm\Entity\BibliographicContributor;
 
 /**
  * EditSubjectsForm class.
  */
 class MergeContribsForm extends FormBase {
+  /**
+   * For services dependency injection.
+   *
+   * @var Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * Class constructor.
+   *
+   * @param Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager service.
+   */
+  public function __construct(
+    EntityTypeManagerInterface $entity_type_manager) {
+    $this->entityTypeManager = $entity_type_manager;
+  }
+
+  /**
+   * Object create method.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *   Container interface.
+   *
+   * @return static
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('entity_type.manager'),
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -37,11 +70,12 @@ class MergeContribsForm extends FormBase {
     ];
 
     // Query for possible duplicates (same formatted name).
-    $query = \Drupal::entityQuery('yabrm_contributor')
-      ->condition('status', 1)
-      ->condition('name', $name);
+    $query = $this->entityTypeManager->getStorage('yabrm_contributor');
 
-    $results = $query->execute();
+    $results = $query->getQuery()
+      ->condition('status', 1)
+      ->condition('name', $name)
+      ->execute();
 
     // Populate duplicates checkbox set.
     foreach ($results as $cid) {

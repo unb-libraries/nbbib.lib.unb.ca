@@ -116,7 +116,7 @@ class MergeContribsForm extends FormBase {
     }
     else {
       $form['duplicates']['#description'] =
-        "No duplicate candidates found.";
+        $this->t("No duplicate candidates found.");
     }
 
     return $form;

@@ -61,12 +61,18 @@ class MergeContribsForm extends FormBase {
     $contrib = BibliographicContributor::load($yabrm_contributor);
     $name = $contrib->getName();
     $form['#title'] = "$name";
+    $warning = "
+      Merging will delete the selected contributor(s) and reassign all
+      bibliographic references to the current contributor. This action cannot be
+      undone.
+    ";
 
     // Set up duplicates checkbox set.
     $form['duplicates'] = [
       '#type' => 'checkboxes',
       '#options' => [],
-      '#title' => "Possible duplicates for $name",
+      '#title' => $this->t("Possible duplicates for $name"),
+      '#description' => $this->t("<b>WARNING: </b>$warning")
     ];
 
     // Query for possible duplicates (same formatted name).
@@ -94,8 +100,23 @@ class MergeContribsForm extends FormBase {
           $dupe_name = trim("$first $last");
         }
 
-        $form['duplicates']['#options'][$cid] = $this->t($dupe_name);
+        $form['duplicates']['#options'][$cid] =
+          $this->t("<a href='/yabrm/yabrm_contributor/$cid' rel='noopener noreferrer' target='_blank'>$dupe_name</a>");
       }
+    }
+
+    if (count($results) > 1) {
+      $form['actions']['#type'] = 'actions';
+
+      $form['actions']['submit'] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Merge'),
+        '#button_type' => 'primary',
+      ];
+    }
+    else {
+      $form['duplicates']['#description'] =
+        "No duplicate candidates found.";
     }
 
     return $form;
@@ -111,6 +132,8 @@ class MergeContribsForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    // Redirect to confirm form.
+    $form_state->setRedirect('nbb_core.merge_contribs.confirm');
   }
 
 }

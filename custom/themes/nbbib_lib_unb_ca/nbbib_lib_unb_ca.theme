@@ -7,10 +7,11 @@ function nbbib_lib_unb_ca_preprocess_field(&$variables, $hook) {
   $element = $variables['element'];
 
   // Only for 'name' field.
-  if ($element['#field_name'] == 'name' and $element['#view_mode'] == 'full') {
+//  if ($element['#field_name'] == 'name' and $element['#view_mode'] == 'full') {
+  if ($element['#field_name'] == 'name') {
     $contrib = $element['#object'];
 
-    if ($contrib->bundle() != 'yabrm_collection') {
+    if ($contrib->bundle() == 'yabrm_contributor') {
       $first_name = empty($contrib->get('first_name')->getValue()[0]['value'])
         ? NULL : $contrib->get('first_name')->getValue()[0]['value'];
       $last_name = empty($contrib->get('last_name')->getValue()[0]['value'])

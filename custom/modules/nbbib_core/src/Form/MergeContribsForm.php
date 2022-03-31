@@ -72,7 +72,7 @@ class MergeContribsForm extends FormBase {
       '#type' => 'checkboxes',
       '#options' => [],
       '#title' => $this->t("Possible duplicates for $name"),
-      '#description' => $this->t("<b>WARNING: </b>$warning")
+      '#description' => $this->t("<b>WARNING: </b>$warning"),
     ];
 
     // Query for possible duplicates (same formatted name).

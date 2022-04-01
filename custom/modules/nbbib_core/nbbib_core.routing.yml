@@ -15,7 +15,7 @@ nbb_core.merge_contribs:
   defaults:
     _title: 'Merge Contributors'
     _form: '\Drupal\nbbib_core\Form\MergeContribsForm'
-nbb_core.merge_contribs.confirm:
+nbbib_core.merge_contribs.confirm:
   path: '/contributor/{yabrm_contributor}/merge/confirm'
   requirements:
     _role: nb_bibliography_contributor

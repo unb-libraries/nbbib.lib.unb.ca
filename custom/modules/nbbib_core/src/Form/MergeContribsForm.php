@@ -133,7 +133,7 @@ class MergeContribsForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Redirect to confirm form.
-    $form_state->setRedirect('nbb_core.merge_contribs.confirm');
+    $form_state->setRedirect('nbbib_core.merge_contribs.confirm', ['yabrm_contributor' => 3863]);
   }
 
 }

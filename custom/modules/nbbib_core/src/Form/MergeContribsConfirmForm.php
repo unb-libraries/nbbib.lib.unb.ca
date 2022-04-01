@@ -14,6 +14,13 @@ use Drupal\yabrm\Entity\BibliographicContributor;
  */
 class MergeContribsConfirmForm extends ConfirmFormBase {
   /**
+   * ID of the item to delete.
+   *
+   * @var int
+   */
+  protected $cid;
+
+  /**
    * For services dependency injection.
    *
    * @var Drupal\Core\Entity\EntityTypeManagerInterface
@@ -56,20 +63,21 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('example_module.another_path');
+    return new Url('entity.yabrm_contributor.canonical', ['yabrm_contributor' => 3863]);
   }
 
   /**
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Do you want to merge %id?', ['%id' => $this->id]);
+    return $this->t('Do you want to merge %cid?', ['%cid' => $this->cid]);
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_contributor = NULL) {
+    $this->cid = $yabrm_contributor;
     return parent::buildForm($form, $form_state);
   }
 
@@ -84,6 +92,7 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // TODO: Merge contributors.
+    $form_state->setRedirect('entity.yabrm_contributor.canonical', ['yabrm_contributor' => 3863]);
   }
 
 }

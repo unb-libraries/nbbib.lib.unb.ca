@@ -13,6 +13,13 @@ use Drupal\yabrm\Entity\BibliographicContributor;
  */
 class MergeContribsForm extends FormBase {
   /**
+   * ID of the item to merge.
+   *
+   * @var int
+   */
+  protected $cid;
+
+  /**
    * For services dependency injection.
    *
    * @var Drupal\Core\Entity\EntityTypeManagerInterface
@@ -56,6 +63,7 @@ class MergeContribsForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_contributor = NULL) {
     $form = [];
+    $this->cid = $yabrm_contributor;
 
     // Load base contributor and generate dynamic title.
     $contrib = BibliographicContributor::load($yabrm_contributor);
@@ -133,7 +141,10 @@ class MergeContribsForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Redirect to confirm form.
-    $form_state->setRedirect('nbbib_core.merge_contribs.confirm', ['yabrm_contributor' => 3863]);
+    $form_state->setRedirect('nbbib_core.merge_contribs.confirm', [
+      'yabrm_contributor' => $this->cid,
+      'duplicates' => $form_state->getValue('duplicates'),
+    ]);
   }
 
 }

@@ -22,3 +22,7 @@ nbbib_core.merge_contribs.confirm:
   defaults:
     _title: 'Confirm Contributor Merge'
     _form: '\Drupal\nbbib_core\Form\MergeContribsConfirmForm'
+  options:
+    parameters:
+      duplicates:
+        type: array

@@ -14,11 +14,18 @@ use Drupal\yabrm\Entity\BibliographicContributor;
  */
 class MergeContribsConfirmForm extends ConfirmFormBase {
   /**
-   * ID of the item to delete.
+   * ID of the contributor being merged into.
    *
    * @var int
    */
   protected $cid;
+
+  /**
+   * IDs of the duplicate contributors selected for merging.
+   *
+   * @var string
+   */
+  protected $duplicates;
 
   /**
    * For services dependency injection.
@@ -63,21 +70,29 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('entity.yabrm_contributor.canonical', ['yabrm_contributor' => 3863]);
+    return new Url('entity.yabrm_contributor.canonical', ['yabrm_contributor' => $this->cid]);
   }
 
   /**
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Do you want to merge %cid?', ['%cid' => $this->cid]);
+    return $this->t('Are you sure you want want to merge contributors?');
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $yabrm_contributor = NULL) {
+  public function buildForm(
+    array $form,
+    FormStateInterface $form_state,
+    $yabrm_contributor = NULL,
+    $duplicates = NULL) {
+
     $this->cid = $yabrm_contributor;
+    $this->duplicates = $duplicates;
+    dump($duplicates);
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -91,8 +106,8 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // TODO: Merge contributors.
-    $form_state->setRedirect('entity.yabrm_contributor.canonical', ['yabrm_contributor' => 3863]);
+    // @todo Merge contributors.
+    $form_state->setRedirect('entity.yabrm_contributor.canonical', ['yabrm_contributor' => $this->cid]);
   }
 
 }

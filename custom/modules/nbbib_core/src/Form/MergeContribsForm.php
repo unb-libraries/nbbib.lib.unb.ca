@@ -143,7 +143,7 @@ class MergeContribsForm extends FormBase {
     // Redirect to confirm form.
     $form_state->setRedirect('nbbib_core.merge_contribs.confirm', [
       'yabrm_contributor' => $this->cid,
-      'duplicates' => $form_state->getValue('duplicates'),
+      'duplicates' => implode('-', $form_state->getValue('duplicates')),
     ]);
   }
 

@@ -5,8 +5,8 @@ namespace Drupal\nbbib_core\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\yabrm\Entity\BibliographicContributor;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * EditSubjectsForm class.

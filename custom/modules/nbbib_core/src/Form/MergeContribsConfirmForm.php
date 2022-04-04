@@ -6,7 +6,10 @@ use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\yabrm\Entity\BibliographicContributor;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -35,6 +38,13 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
   protected $entityTypeManager;
 
   /**
+   * The Language Manager service.
+   *
+   * @var Drupal\Core\Language\LanguageManager
+   */
+  protected $languageManager;
+
+  /**
    * The Messenger service.
    *
    * @var \Drupal\Core\Messenger\MessengerInterface
@@ -46,13 +56,17 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
    *
    * @param Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager service.
+   * @param Drupal\Core\Language\LanguageManager $language_manager
+   *   The language manager service.
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
    *   The entity type manager service.
    */
   public function __construct(
     EntityTypeManagerInterface $entity_type_manager,
+    LanguageManager $language_manager,
     MessengerInterface $messenger) {
     $this->entityTypeManager = $entity_type_manager;
+    $this->languageManager = $language_manager;
     $this->messenger = $messenger;
   }
 
@@ -67,6 +81,7 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager'),
+      $container->get('language_manager'),
       $container->get('messenger'),
     );
   }
@@ -131,16 +146,108 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
 
       // For each paragraph...
       foreach ($paragraphs as $pid) {
-        // Query for book references that contain the paragraphs.
+        // Load paragraph.
+        $paragraph = Paragraph::load($pid);
+        // Replace dupe contributor id for target contributor id ($this->cid).
+        $paragraph->set('field_yabrm_contributor_person', $this->cid);
+        // Save paragraph.
+        $paragraph->save();
+
+        // Reindex references affected by paragraph change.
+        $items = [];
+        // Get current language.
+        $language = $this->languageManager->getCurrentLanguage()->getId();
+        // Query for books that contain the paragraphs.
         $query = $this->entityTypeManager->getStorage('yabrm_book');
 
         $books = $query->getQuery()
           ->condition('contributors', $pid, 'IN')
           ->execute();
+
+        // For each book...
+        foreach ($books as $bid) {
+          // Load Search API index.
+          $index_storage = $this->entityTypeManager
+            ->getStorage('search_api_index');
+          $index = $index_storage->load('references_nbbib_lib_unb_ca');
+
+          // Add book to index tracking.
+          // Prepare and add specific item to list for reindex.
+          $item_id = 'entity:yabrm_book/' . $bid . ':' . $language;
+          $items[$item_id] = $index->loadItem($item_id);
+        }
+
+        // Query for book sections that contain the paragraphs.
+        $query = $this->entityTypeManager->getStorage('yabrm_book_section');
+
+        $sections = $query->getQuery()
+          ->condition('contributors', $pid, 'IN')
+          ->execute();
+
+        foreach ($sections as $sid) {
+          // Load Search API index.
+          $index_storage = $this->entityTypeManager
+            ->getStorage('search_api_index');
+          $index = $index_storage->load('references_nbbib_lib_unb_ca');
+
+          // Add book section to index tracking.
+          // Prepare and add item.
+          $item_id = 'entity:yabrm_book_section/' . $sid . ':' . $language;
+          $items[$item_id] = $index->loadItem($item_id);
+        }
+
+        // Query for journal articles that contain the paragraphs.
+        $query = $this->entityTypeManager->getStorage('yabrm_journal_article');
+
+        $articles = $query->getQuery()
+          ->condition('contributors', $pid, 'IN')
+          ->execute();
+
+        foreach ($articles as $aid) {
+          // Load Search API index.
+          $index_storage = $this->entityTypeManager
+            ->getStorage('search_api_index');
+          $index = $index_storage->load('references_nbbib_lib_unb_ca');
+
+          // Add journal article to index tracking.
+          // Prepare and add item.
+          $item_id = 'entity:yabrm_journal_article/' . $aid . ':' . $language;
+          $items[$item_id] = $index->loadItem($item_id);
+        }
+
+        // Query for theses that contain the paragraphs.
+        $query = $this->entityTypeManager->getStorage('yabrm_thesis');
+
+        $theses = $query->getQuery()
+          ->condition('contributors', $pid, 'IN')
+          ->execute();
+
+        foreach ($theses as $tid) {
+          // Load Search API index.
+          $index_storage = $this->entityTypeManager
+            ->getStorage('search_api_index');
+          $index = $index_storage->load('references_nbbib_lib_unb_ca');
+
+          // Add thesis to index tracking.
+          // Prepare and add item.
+          $item_id = 'entity:yabrm_thesis/' . $tid . ':' . $language;
+          $items[$item_id] = $index->loadItem($item_id);
+        }
+
+        // Index items.
+        $index->indexSpecificItems($items);
       }
+
+      // Delete duplicate contributor.
+      $duplicate = BibliographicContributor::load($did);
+      $duplicate->delete();
     }
 
-    $this->messenger->addMessage(implode(', ', $books));
+    // Get target contributor name.
+    $contributor = BibliographicContributor::load($this->cid);
+    $name = $contributor->getName();
+
+    $this->messenger->addMessage("Merged into the $name Bibliographic Contributor.");
     $form_state->setRedirect('entity.yabrm_contributor.canonical', ['yabrm_contributor' => $this->cid]);
   }
 

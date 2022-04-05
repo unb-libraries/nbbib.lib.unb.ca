@@ -8,7 +8,7 @@ nbbib_core.add:
     _role: nb_bibliography_contributor
 nbbib_core.contributors:
   path: '/contributors/{filter}'
-nbb_core.merge_contribs:
+nbbib_core.merge_contribs:
   path: '/contributor/{yabrm_contributor}/merge'
   requirements:
     _role: nb_bibliography_contributor

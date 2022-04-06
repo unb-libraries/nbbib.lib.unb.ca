@@ -25,41 +25,6 @@ html {
         #block-mainnavigation li.nav-item:first-of-type {
           display: none !important;
         }
-
-        /* Fade-in homepage navbar commented out.
-        // Main navigation.
-        .navbar {
-          transition: all .2s ease;
-          -webkit-transition: all 0.2s ease;
-          -moz-transition: all 0.2s ease;
-          background-color: rgba(0, 0, 0, 0);
-          background-image: linear-gradient(to bottom, rgba(30,3,4,.4), rgba(0,0,0,0));
-
-          &:hover {
-            background-image: none;
-            background-color: $nb-red;
-          }
-
-          .nav-item {
-            background: none !important;
-
-            .nav-link {
-              transition: all .2s ease;
-              border-bottom: 4px solid transparent;
-              background: none !important;
-              color: white !important;
-
-              &:hover {
-                border-bottom: 4px solid white;
-              }
-
-              &.is-active, &.active {
-                border-bottom: none !important;
-              }
-            }
-          }
-        }
-        */
       }
 
       // Main.
@@ -559,6 +524,11 @@ header {
 }
 
 // Responsive.
+@media screen and (min-width: 2545px) and (max-width: 3000px) {
+  body {
+    background-size: contain !important;
+  }
+}
 @media screen and (min-width: 768px) {
   // Filter (label + input).
   #views-exposed-form-nb-bibliography-citations-page-1 {

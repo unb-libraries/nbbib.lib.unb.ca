@@ -92,14 +92,14 @@ class MergeContribsForm extends FormBase {
       // Only include if not base contributor.
       if ($cid != $yabrm_contributor) {
         $dupe = BibliographicContributor::load($cid);
-        $first = $dupe->getFirstName();
-        $last = $dupe->getLastName();
         $inst = $dupe->getInstitutionName();
 
         if ($inst) {
           $dupe_name = trim($inst);
         }
         else {
+          $first = $dupe->getFirstName();
+          $last = $dupe->getLastName();
           $dupe_name = trim("$first $last");
         }
 

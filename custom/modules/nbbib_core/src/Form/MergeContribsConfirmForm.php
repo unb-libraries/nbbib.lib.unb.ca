@@ -117,11 +117,99 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
     $yabrm_contributor = NULL,
     $duplicates = NULL) {
 
-    $this->cid = $yabrm_contributor;
-    // Extract individual duplicate ids.
-    if ($duplicates) {
-      $this->duplicates = explode('-', $duplicates);
+    $dupe_names = [];
+
+    // Extract current contributor id.
+    if ($yabrm_contributor) {
+      $this->cid = $yabrm_contributor;
+      // Load contributor.
+      $contrib = BibliographicContributor::load($yabrm_contributor);
+      // Get name.
+      $contrib_inst = $contrib->getInstitutionName();
+
+      if ($contrib_inst) {
+        $contrib_name = $contrib_inst;
+      }
+      else {
+        $contrib_name = trim(
+          $contrib->getFirstName() . ' ' . $contrib->getLastName()
+        );
+      }
     }
+
+    // Build target contrib name markup.
+    $contrib_name_markup = "
+      <a href='/yabrm/yabrm_contributor/$yabrm_contributor' rel='noopener noreferrer' target='_blank'>
+        $contrib_name ($yabrm_contributor)
+      </a>
+    ";
+
+    if ($duplicates) {
+      // Extract individual duplicate contributor ids.
+      $this->duplicates = explode('-', $duplicates);
+
+      // For each duplicate id...
+      foreach ($this->duplicates as $did) {
+
+        if ($did) {
+          // Load contributor.
+          $dupe = BibliographicContributor::load($did);
+          // Get name and add to list.
+          $dupe_inst = $dupe->getInstitutionName();
+
+          if ($dupe_inst) {
+            $dupe_names[$did] = $contrib_inst;
+          }
+          else {
+            $dupe_names[$did] = trim(
+              $dupe->getFirstName() . ' ' . $dupe->getLastName()
+            );
+          }
+        }
+      }
+    }
+
+    // Build duplicate names markup.
+    $dupe_names_markup = "<ul class='dupe-contribs'>";
+
+    foreach ($dupe_names as $did => $dupe_name) {
+      $li = "
+        <li class='dupe-contrib'>
+          <a href='/yabrm/yabrm_contributor/$did' rel='noopener noreferrer' target='_blank'>
+            $dupe_name ($did)
+          </a>
+        </li>
+      ";
+
+      $dupe_names_markup .= $li;
+    }
+
+    $dupe_names_markup .= "</ul>";
+
+    // Add duplicate details to confirmation form.
+    $form['duplicates'] = [
+      '#type' => 'item',
+      '#title' => $this->t('<b>The following contributors:</b>'),
+      '#markup' => $this->t($dupe_names_markup),
+    ];
+
+    // Add merge target details to confirmation form.
+    $form['target'] = [
+      '#type' => 'item',
+      '#title' => $this->t('<b>Will be merged into:</b>'),
+      '#markup' => $this->t($contrib_name_markup),
+    ];
+
+    // Add warning.
+    $warning = "
+      Merging will delete the selected contributor(s) and reassign all
+      bibliographic references to the target contributor.
+    ";
+
+    $form['warning'] = [
+      '#type' => 'markup',
+      '#markup' => $this->t("<b>WARNING:</b> $warning"),
+    ];
 
     return parent::buildForm($form, $form_state);
   }

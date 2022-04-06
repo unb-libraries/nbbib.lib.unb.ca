@@ -69,18 +69,12 @@ class MergeContribsForm extends FormBase {
     $contrib = BibliographicContributor::load($yabrm_contributor);
     $name = $contrib->getName();
     $form['#title'] = "$name";
-    $warning = "
-      Merging will delete the selected contributor(s) and reassign all
-      bibliographic references to the current contributor. This action cannot be
-      undone.
-    ";
 
     // Set up duplicates checkbox set.
     $form['duplicates'] = [
       '#type' => 'checkboxes',
       '#options' => [],
       '#title' => $this->t("Possible duplicates for $name"),
-      '#description' => $this->t("<b>WARNING: </b>$warning"),
       '#required' => TRUE,
     ];
 

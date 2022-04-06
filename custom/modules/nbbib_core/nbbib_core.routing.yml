@@ -15,6 +15,8 @@ nbbib_core.merge_contribs:
   defaults:
     _title: 'Merge Contributors'
     _form: '\Drupal\nbbib_core\Form\MergeContribsForm'
+  options:
+    _admin_route: TRUE
 nbbib_core.merge_contribs.confirm:
   path: '/contributor/{yabrm_contributor}/merge/{duplicates}/confirm'
   requirements:
@@ -22,3 +24,5 @@ nbbib_core.merge_contribs.confirm:
   defaults:
     _title: 'Confirm Contributor Merge'
     _form: '\Drupal\nbbib_core\Form\MergeContribsConfirmForm'
+  options:
+    _admin_route: TRUE

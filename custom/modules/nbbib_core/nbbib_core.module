@@ -94,6 +94,27 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ * Overrides contrib delete/cancel redirects.
+ */
+function nbbib_core_form_yabrm_contributor_delete_form_alter(&$form, $form_state, $form_id) {
+  // Add submit handler to delete.
+  $form['actions']['submit']['#submit'][] = 'contrib_del_redirect';
+  // Retrieve current contributor from route parameter.
+  $yabrm_contributor = \Drupal::routeMatch()->getParameter('yabrm_contributor')->id();
+  // Add custom URL to cancel action. Routes to main contributor view. 
+  $form['actions']['cancel']['#url'] =
+    Url::fromRoute('entity.yabrm_contributor.canonical', ['yabrm_contributor' => $yabrm_contributor]);
+}
+
+/**
+ * Submit handler for yabrm_contributor_delete. Redirects to view after submit.
+ */
+function contrib_del_redirect(&$form, FormStateInterface $form_state) {
+  $form_state->setRedirect('nbbib_core.contributors', ['filter' => 'all']);
+}
+
+/**
  * Adds a top priority handler to the 'submit' action of the specified form.
  */
 function top_submit_handler(&$form, $handler) {

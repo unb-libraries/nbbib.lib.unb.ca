@@ -102,7 +102,7 @@ function nbbib_core_form_yabrm_contributor_delete_form_alter(&$form, $form_state
   $form['actions']['submit']['#submit'][] = 'contrib_del_redirect';
   // Retrieve current contributor from route parameter.
   $yabrm_contributor = \Drupal::routeMatch()->getParameter('yabrm_contributor')->id();
-  // Add custom URL to cancel action. Routes to main contributor view. 
+  // Add custom URL to cancel action. Routes to main contributor view.
   $form['actions']['cancel']['#url'] =
     Url::fromRoute('entity.yabrm_contributor.canonical', ['yabrm_contributor' => $yabrm_contributor]);
 }
@@ -171,6 +171,35 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
       'etc) are set at the bibliographic reference level.</p>',
       '#weight' => '-10',
     ];
+
+    // Add validation.
+    $form['#validate'][] = 'validate_contrib_form';
+  }
+}
+
+/**
+ * Custom validation handler for contributor form.
+ */
+function validate_contrib_form($element, &$form_state) {
+  // Get updated contributor values.
+  $first_name = $form_state->getValue('first_name')[0]['value'];
+  $last_name = $form_state->getValue('last_name')[0]['value'];
+  $institution_name = $form_state->getValue('institution_name')[0]['value'];
+
+  // Validation rules and errors.
+  if (empty($institution_name)) {
+    if (empty($first_name) and empty($last_name)) {
+      $form_state->setErrorByName('contributors', t('Either institution or individual names are required for contributors.'));
+    }
+    elseif (empty($first_name) or empty($last_name)) {
+      $form_state->setErrorByName('contributors', t('Full names are required for individual contributors.'));
+    }
+  }
+  elseif (!empty($last_name)) {
+    $form_state->setErrorByName('contributors', t('Either institution or individual names are allowed for contributors. Not both.'));
+  }
+  elseif (!empty($first_name)) {
+    $form_state->setErrorByName('contributors', t('Either institution or individual names are allowed for contributors. Not both.'));
   }
 }
 
@@ -192,7 +221,7 @@ function clr_blank_contribs(&$form, FormStateInterface $form_state) {
 }
 
 /**
- * Custom validation handler for contributors.
+ * Custom validation handler for contributor sub-form.
  */
 function validate_contrib_subform($element, &$form_state) {
   $i = 0;

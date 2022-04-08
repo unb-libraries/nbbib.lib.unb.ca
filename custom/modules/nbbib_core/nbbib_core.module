@@ -265,7 +265,6 @@ function update_names($entity_type, $entity, $entity_form, &$form_state) {
   $first_name = $entity->getFirstName();
   $last_name = $entity->getLastName();
   $institution_name = $entity->getInstitutionName();
-
   $names = generate_names($first_name, $last_name, $institution_name);
 
   $entity->setName($names['name']);
@@ -316,7 +315,7 @@ function generate_names($first_name, $last_name, $institution_name) {
 }
 
 /**
- * Implements hook_ENTITY_TYPE_ID_presave().
+ * Implements hook_ENTITY_TYPE_presave().
  */
 function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
   // Pupulate name (display) and sort name on save.
@@ -352,6 +351,35 @@ function nbbib_core_entity_update(EntityInterface $entity) {
   if (\Drupal::hasService('pathauto.generator')) {
     \Drupal::service('pathauto.generator')->updateEntityAlias($stored_entity, 'update');
   }
+}
+
+/**
+ * Implements hook_ENTITY_delete().
+ */
+function nbbib_core_entity_delete(EntityInterface $entity) {
+  // Delete orphan paragraphs on bibliographic reference delete.
+  $types = [
+    'yabrm_book',
+    'yabrm_book_section',
+    'yabrm_journal_article',
+    'yabrm_thesis',
+  ];
+
+  // If deleted entity has a bibliographic reference type...
+  if (in_array($entity->bundle(), $types)) {
+    // Get contributors/roles (paragraphs).
+    $contribs = $entity->contributors->getValue();
+
+    // For each contributor paragraph...
+    foreach ($contribs as $contrib) {
+      // Load entity...
+      $entity_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+      $stored_entity = $entity_storage->load($contrib['target_id']);
+      // And delete.
+      $stored_entity->delete();
+    }
+  }
+
 }
 
 /**

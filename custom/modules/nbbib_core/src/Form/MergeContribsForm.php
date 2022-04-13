@@ -104,7 +104,16 @@ class MergeContribsForm extends FormBase {
         }
 
         $form['duplicates']['#options'][$cid] =
-          $this->t("<a href='/yabrm/yabrm_contributor/$cid' rel='noopener noreferrer' target='_blank'>$dupe_name</a>");
+          $this->t(
+            "$dupe_name [
+            <a href='/yabrm/yabrm_contributor/$cid' class='use-ajax' data-dialog-type='modal'>
+              Overview
+            </a>] [
+            <a href='/contributor/$cid/merge'>
+              Merge into this contributor
+            </a>]
+            "
+          );
       }
     }
 

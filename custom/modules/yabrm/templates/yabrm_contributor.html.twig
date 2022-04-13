@@ -1,22 +1,64 @@
 {#
 /**
  * @file yabrm_contributor.html.twig
- * Default theme implementation to present Bibliographic Contributor data.
+ * Default theme implementation to present Book Section reference data.
  *
- * This template is used when viewing Bibliographic Contributor pages.
+ * This template is used when viewing Contributor pages.
  *
  *
  * Available variables:
  * - content: A list of content items. Use 'content' to print all content, or
  * - attributes: HTML attributes for the container element.
  *
- * @see template_preprocess_yabrm_contributor()
+ * @see template_preprocess_yabrm_book_section()
  *
  * @ingroup themeable
  */
 #}
-<div{{ attributes.addClass('yabrm_contributor') }}>
+
+<div{{ attributes.addClass('yabrm-contributor', 'contrib-layout') }}>
   {% if content %}
-    {{- content -}}
+    <div class="container">
+      <div class="row description-pic">
+        {% if content.first_name|field_value %}
+          <div id="contrib-description" class="col-sm-8">
+            {{ content.first_name }}
+          </div>
+        {% endif %}
+        {% if content.last_name|field_value %}
+          <div id="contrib-description" class="col-sm-8">
+            {{ content.last_name }}
+          </div>
+        {% endif %}
+        {% if content.institution_name|field_value %}
+          <div id="contrib-description" class="col-sm-8">
+            {{ content.institution_name }}
+          </div>
+        {% endif %}
+        {% if content.description|field_value %}
+        <br>
+          <div id="contrib-description" class="col-sm-8">
+            {{ content.description|field_value }}
+          </div>
+        {% endif %}
+        {% if content.picture|field_value or content.cover %}
+          <br>
+          <div id="contrib-picture" class="col-sm-4">
+            {% if content.picture|field_value %}
+              {{ content.picture|field_value }}
+            {% elseif content.cover %}
+              {{ content.cover }}
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div id="contributor-works">
+      {% set cid = content.name['#object'].id() %}
+      <br>
+      <b class="works-label">Bibliography Items</b>
+      {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
+    </div>
   {% endif %}
 </div>

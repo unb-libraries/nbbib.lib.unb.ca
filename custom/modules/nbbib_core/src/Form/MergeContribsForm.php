@@ -106,7 +106,7 @@ class MergeContribsForm extends FormBase {
         $form['duplicates']['#options'][$cid] =
           $this->t(
             "$dupe_name [
-            <a href='/yabrm/yabrm_contributor/$cid' class='use-ajax' data-dialog-type='modal'>
+            <a href='/yabrm/yabrm_contributor/$cid' class='use-ajax' data-dialog-options='{&quot;width&quot;:500}' data-dialog-type='modal'>
               Overview
             </a>] [
             <a href='/contributor/$cid/merge'>

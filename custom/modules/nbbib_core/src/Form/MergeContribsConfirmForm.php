@@ -238,16 +238,16 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
 
       // Set up batch process.
       $batch = [
-        'title' => t('Merging contributors...'),
+        'title' => $this->t('Merging contributors...'),
         'operations' => [
           [
             '\Drupal\nbbib_core\Form\MergeContribsConfirmForm::mergeContribs',
-            [$this, $dids]
+            [$this, $dids],
           ],
         ],
-        'init_message'     => t('Initializing'),
-        'progress_message' => t('Completed @current out of @total'),
-        'error_message'    => t('An error occurred during processing'),
+        'init_message'     => $this->t('Initializing'),
+        'progress_message' => $this->t('Completed @current out of @total'),
+        'error_message'    => $this->t('An error occurred during processing'),
         'finished' => '::mergeContribsDone',
       ];
 

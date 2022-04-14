@@ -14,7 +14,7 @@ use Drupal\yabrm\Entity\BibliographicContributor;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * EditSubjectsForm class.
+ * MergeContribsConfirmForm class. Confirms the merging of contributors.
  */
 class MergeContribsConfirmForm extends ConfirmFormBase {
   /**
@@ -60,7 +60,7 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
    * @param Drupal\Core\Language\LanguageManager $language_manager
    *   The language manager service.
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
-   *   The entity type manager service.
+   *   The messenger service.
    */
   public function __construct(
     EntityTypeManagerInterface $entity_type_manager,
@@ -224,6 +224,9 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    // Clear citations view's cache.
+    $view = Views::getView('nb_bibliography_citations');
+    $view->storage->invalidateCaches();
     // Get target contributor name.
     $contributor = BibliographicContributor::load($this->cid);
     $name = $contributor->getName();
@@ -233,111 +236,25 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
       // Retrieve individual duplicate ids.
       $dids = $this->duplicates;
 
-      // For each duplicate id...
-      foreach ($dids as $did) {
+      // Set up batch process.
+      $batch = [
+        'title' => t('Merging contributors...'),
+        'operations' => [
+          [
+            '\Drupal\nbbib_core\Form\MergeContribsConfirmForm::mergeContribs',
+            [$this, $dids]
+          ],
+        ],
+        'init_message'     => t('Initializing'),
+        'progress_message' => t('Completed @current out of @total'),
+        'error_message'    => t('An error occurred during processing'),
+        'finished' => '::mergeContribsDone',
+      ];
 
-        if ($did) {
-          // Query for reference relationships (paragraphs) that reference id.
-          $query = $this->entityTypeManager->getStorage('paragraph');
-
-          $paragraphs = $query->getQuery()
-            ->condition('field_yabrm_contributor_person', $did)
-            ->execute();
-
-          // For each paragraph...
-          foreach ($paragraphs as $pid) {
-            // Load paragraph.
-            $paragraph = Paragraph::load($pid);
-            // Replace dupe contributor id for target contributor id ($this->cid).
-            $paragraph->set('field_yabrm_contributor_person', $this->cid);
-            // Save paragraph.
-            $paragraph->save();
-
-            // Reindex references affected by paragraph change.
-            $items = [];
-            // Get current language.
-            $language = $this->languageManager->getCurrentLanguage()->getId();
-            // Load Search API index.
-            $index_storage = $this->entityTypeManager
-              ->getStorage('search_api_index');
-            $index = $index_storage->load('references_nbbib_lib_unb_ca');
-
-            // Query for books that contain the paragraphs.
-            $query = $this->entityTypeManager->getStorage('yabrm_book');
-
-            $books = $query->getQuery()
-              ->condition('contributors', $pid, 'IN')
-              ->execute();
-
-            // For each book...
-            foreach ($books as $bid) {
-              // Add book to index tracking.
-              // Prepare and add specific item to list for reindex.
-              $item_id = 'entity:yabrm_book/' . $bid . ':' . $language;
-              $items[$item_id] = $index->loadItem($item_id);
-            }
-
-            // Query for book sections that contain the paragraphs.
-            $query = $this->entityTypeManager->getStorage('yabrm_book_section');
-
-            $sections = $query->getQuery()
-              ->condition('contributors', $pid, 'IN')
-              ->execute();
-
-            foreach ($sections as $sid) {
-              // Add book section to index tracking.
-              // Prepare and add item.
-              $item_id = 'entity:yabrm_book_section/' . $sid . ':' . $language;
-              $items[$item_id] = $index->loadItem($item_id);
-            }
-
-            // Query for journal articles that contain the paragraphs.
-            $query = $this->entityTypeManager->getStorage('yabrm_journal_article');
-
-            $articles = $query->getQuery()
-              ->condition('contributors', $pid, 'IN')
-              ->execute();
-
-            foreach ($articles as $aid) {
-              // Add journal article to index tracking.
-              // Prepare and add item.
-              $item_id = 'entity:yabrm_journal_article/' . $aid . ':' . $language;
-              $items[$item_id] = $index->loadItem($item_id);
-            }
-
-            // Query for theses that contain the paragraphs.
-            $query = $this->entityTypeManager->getStorage('yabrm_thesis');
-
-            $theses = $query->getQuery()
-              ->condition('contributors', $pid, 'IN')
-              ->execute();
-
-            foreach ($theses as $tid) {
-              // Add thesis to index tracking.
-              // Prepare and add item.
-              $item_id = 'entity:yabrm_thesis/' . $tid . ':' . $language;
-              $items[$item_id] = $index->loadItem($item_id);
-            }
-
-            // Index items.
-            $index->indexSpecificItems($items);
-
-            // Clear citations view's cache.
-            $view = Views::getView('nb_bibliography_citations');
-            $view->storage->invalidateCaches();
-          }
-
-          // Delete duplicate contributor.
-          $duplicate = BibliographicContributor::load($did);
-          $duplicate->delete();
-        }
-      }
+      batch_set($batch);
 
       // Display confirmation message.
-      $msg = "
-        Merged into the $name Bibliographic Contributor. Please wait a moment for
-        the list of bibliography items to update.
-      ";
+      $msg = "Merged into the $name Bibliographic Contributor.";
 
       $this->messenger->addMessage($msg);
 
@@ -352,6 +269,112 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
       $form_state->setRedirect('nbbib_core.merge_contribs', ['yabrm_contributor' => $this->cid]);
     }
 
+  }
+
+  /**
+   * Merge contributors batch callback.
+   */
+  public static function mergeContribs(MergeContribsConfirmForm $form, $dids, &$context) {
+    // For each duplicate id...
+    foreach ($dids as $did) {
+
+      if ($did) {
+        // Query for reference relationships (paragraphs) that reference id.
+        $query = $form->entityTypeManager->getStorage('paragraph');
+
+        $paragraphs = $query->getQuery()
+          ->condition('field_yabrm_contributor_person', $did)
+          ->execute();
+
+        // For each paragraph...
+        foreach ($paragraphs as $pid) {
+          // Load paragraph.
+          $paragraph = Paragraph::load($pid);
+          // Replace dupe contributor id for target contributor id ($this->cid).
+          $paragraph->set('field_yabrm_contributor_person', $form->cid);
+          // Save paragraph.
+          $paragraph->save();
+
+          // Reindex references affected by paragraph change.
+          $items = [];
+          // Get current language.
+          $language = $form->languageManager->getCurrentLanguage()->getId();
+          // Load Search API index.
+          $index_storage = $form->entityTypeManager
+            ->getStorage('search_api_index');
+          $index = $index_storage->load('references_nbbib_lib_unb_ca');
+
+          // Query for books that contain the paragraphs.
+          $query = $form->entityTypeManager->getStorage('yabrm_book');
+
+          $books = $query->getQuery()
+            ->condition('contributors', $pid, 'IN')
+            ->execute();
+
+          // For each book...
+          foreach ($books as $bid) {
+            // Add book to index tracking.
+            // Prepare and add specific item to list for reindex.
+            $item_id = 'entity:yabrm_book/' . $bid . ':' . $language;
+            $items[$item_id] = $index->loadItem($item_id);
+          }
+
+          // Query for book sections that contain the paragraphs.
+          $query = $form->entityTypeManager->getStorage('yabrm_book_section');
+
+          $sections = $query->getQuery()
+            ->condition('contributors', $pid, 'IN')
+            ->execute();
+
+          foreach ($sections as $sid) {
+            // Add book section to index tracking.
+            // Prepare and add item.
+            $item_id = 'entity:yabrm_book_section/' . $sid . ':' . $language;
+            $items[$item_id] = $index->loadItem($item_id);
+          }
+
+          // Query for journal articles that contain the paragraphs.
+          $query = $form->entityTypeManager->getStorage('yabrm_journal_article');
+
+          $articles = $query->getQuery()
+            ->condition('contributors', $pid, 'IN')
+            ->execute();
+
+          foreach ($articles as $aid) {
+            // Add journal article to index tracking.
+            // Prepare and add item.
+            $item_id = 'entity:yabrm_journal_article/' . $aid . ':' . $language;
+            $items[$item_id] = $index->loadItem($item_id);
+          }
+
+          // Query for theses that contain the paragraphs.
+          $query = $form->entityTypeManager->getStorage('yabrm_thesis');
+
+          $theses = $query->getQuery()
+            ->condition('contributors', $pid, 'IN')
+            ->execute();
+
+          foreach ($theses as $tid) {
+            // Add thesis to index tracking.
+            // Prepare and add item.
+            $item_id = 'entity:yabrm_thesis/' . $tid . ':' . $language;
+            $items[$item_id] = $index->loadItem($item_id);
+          }
+
+          foreach ($items as $key => $item) {
+            // Index item.
+            $index->indexSpecificItems([$key => $item]);
+            // Wait for reindex.
+            sleep(5);
+            // Update reindexing batch status here...
+          }
+        }
+
+        // Delete duplicate contributor.
+        $duplicate = BibliographicContributor::load($did);
+        $duplicate->delete();
+      }
+    }
   }
 
 }

@@ -8,7 +8,6 @@ use Drupal\Core\Url;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Messenger\MessengerInterface;
-use Drupal\views\Views;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\yabrm\Entity\BibliographicContributor;
 use Symfony\Component\DependencyInjection\ContainerInterface;

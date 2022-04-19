@@ -1,7 +1,11 @@
 uuid: 2f13fe71-bed1-4522-a673-5a1785429090
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - samlauth
+    - system
+    - yabrm
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
 id: anonymous
@@ -12,7 +16,6 @@ permissions:
   - 'access content'
   - 'view published bibliographic collection entities'
   - 'view published bibliographic contributor entities'
-  - 'view published bibliographic reference entities'
   - 'view published book reference entities'
   - 'view published book section reference entities'
   - 'view published journal article reference entities'

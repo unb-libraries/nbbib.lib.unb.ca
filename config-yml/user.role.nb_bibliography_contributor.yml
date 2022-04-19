@@ -1,7 +1,19 @@
 uuid: d69340f6-3cac-46d5-b170-cdc306db4368
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.unb_libraries
+    - node.type.static_content_page
+    - taxonomy.vocabulary.nbbib_archives
+    - taxonomy.vocabulary.yabrm_reference_topic
+  module:
+    - filter
+    - node
+    - system
+    - taxonomy
+    - toolbar
+    - yabrm
 id: nb_bibliography_contributor
 label: 'NB Bibliography Contributor'
 weight: 2
@@ -60,6 +72,7 @@ permissions:
   - 'view published journal article reference entities'
   - 'view published thesis reference entities'
   - 'view static_content_page revisions'
+  - 'view the administration theme'
   - 'view unpublished book reference entities'
   - 'view unpublished book section reference entities'
   - 'view unpublished journal article reference entities'

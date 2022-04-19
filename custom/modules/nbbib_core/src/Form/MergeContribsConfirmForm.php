@@ -224,9 +224,6 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Clear citations view's cache.
-    $view = Views::getView('nb_bibliography_citations');
-    $view->storage->invalidateCaches();
     // Get target contributor name.
     $contributor = BibliographicContributor::load($this->cid);
     $name = $contributor->getName();
@@ -238,25 +235,29 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
 
       // Set up batch process.
       $batch = [
-        'title' => $this->t('Merging contributors...'),
+        'title' => $this->t('Merging contributors'),
         'operations' => [
           [
-            '\Drupal\nbbib_core\Form\MergeContribsConfirmForm::mergeContribs',
-            [$this, $dids],
+            '\Drupal\nbbib_core\Form\MergeContribsConfirmForm::queryReferences',
+            [$this->entityTypeManager, $dids],
           ],
         ],
         'init_message'     => $this->t('Initializing'),
         'progress_message' => $this->t('Completed @current out of @total'),
         'error_message'    => $this->t('An error occurred during processing'),
-        'finished' => '::mergeContribsDone',
+        'finished' => '\Drupal\nbbib_core\Form\MergeContribsConfirmForm::mergeContribsDone',
       ];
 
+      // Run batch.
       batch_set($batch);
 
-      // Display confirmation message.
+      // Prepare confirmation message.
       $msg = "Merged into the $name Bibliographic Contributor.";
-
       $this->messenger->addMessage($msg);
+
+      // Flush all caches and wait.
+      drupal_flush_all_caches();
+      sleep(count($dids) * 3);
 
       // Redirect to contributor main display.
       $form_state->setRedirect('entity.yabrm_contributor.canonical', ['yabrm_contributor' => $this->cid]);
@@ -272,9 +273,32 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
   }
 
   /**
+   * Query references - batch operation callback.
+   */
+  public static function queryReferences(EntityTypeManagerInterface $entityTypeManager, $dids, &$context) {
+
+    // Initialize batch sandbox.
+    if (!isset($context['sandbox']['progress'])) {
+      $context['sandbox']['progress'] = 0;
+      $context['sandbox']['paragraphs'] = [];
+      $context['sandbox']['reindex'] = [];
+    }
+
+    if ($dids[$context['sandbox']['progress']]) {
+      // Query for reference relationships (paragraphs) that reference id.
+      $query = $entityTypeManager->getStorage('paragraph');
+
+      $context['sandbox']['paragraphs'] = $query->getQuery()
+        ->condition('field_yabrm_contributor_person', $did)
+        ->execute();
+    }
+  }
+
+  /**
    * Merge contributors batch callback.
    */
   public static function mergeContribs(MergeContribsConfirmForm $form, $dids, &$context) {
+
     // For each duplicate id...
     foreach ($dids as $did) {
 
@@ -361,18 +385,15 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
             $items[$item_id] = $index->loadItem($item_id);
           }
 
-          foreach ($items as $key => $item) {
-            // Index item.
-            $index->indexSpecificItems([$key => $item]);
-            // Wait for reindex.
-            sleep(5);
-            // Update reindexing batch status here...
-          }
+          // Index items.
+          $index->indexSpecificItems($items);
         }
 
         // Delete duplicate contributor.
         $duplicate = BibliographicContributor::load($did);
         $duplicate->delete();
+        // Update batch message.
+        $context['message'] = "Reindexing...";
       }
     }
   }

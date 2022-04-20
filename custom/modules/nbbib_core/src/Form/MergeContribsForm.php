@@ -68,6 +68,7 @@ class MergeContribsForm extends FormBase {
     // Load base contributor and generate dynamic title.
     $contrib = BibliographicContributor::load($yabrm_contributor);
     $name = $contrib->getName();
+    $last_name = $contrib->getLastName();
     $form['#title'] = "$name";
 
     // Set up duplicates checkbox set.
@@ -83,7 +84,8 @@ class MergeContribsForm extends FormBase {
 
     $results = $query->getQuery()
       ->condition('status', 1)
-      ->condition('name', $name)
+      ->condition('last_name', $last_name)
+      ->sort('name', 'asc')
       ->execute();
 
     // Populate duplicates checkbox set.
@@ -105,12 +107,12 @@ class MergeContribsForm extends FormBase {
 
         $form['duplicates']['#options'][$cid] =
           $this->t(
-            "$dupe_name [
+            "<span style='display: table-cell; width: 16rem;'>$dupe_name</span> [
             <a href='/yabrm/yabrm_contributor/$cid' class='use-ajax' data-dialog-options='{&quot;width&quot;:500}' data-dialog-type='modal'>
               Overview
             </a>] [
             <a href='/contributor/$cid/merge'>
-              Merge into this contributor
+              Switch to this contributor
             </a>]
             "
           );

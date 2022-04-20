@@ -97,7 +97,7 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('entity.yabrm_contributor.canonical', ['yabrm_contributor' => $this->cid]);
+    return new Url('nbbib_core.merge_contribs', ['yabrm_contributor' => $this->cid]);
   }
 
   /**
@@ -202,7 +202,7 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
     // Add warning.
     $warning = "
       Merging will delete the selected contributor(s) and reassign all
-      bibliographic references to the target contributor.
+      bibliographic references to the target contributor. Might take a minute to complete.
     ";
 
     $form['warning'] = [
@@ -237,14 +237,13 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
         'title' => $this->t('Merging contributors'),
         'operations' => [
           [
-            '\Drupal\nbbib_core\Form\MergeContribsConfirmForm::queryReferences',
-            [$this->entityTypeManager, $dids],
+            '\Drupal\nbbib_core\Form\MergeContribsConfirmForm::mergeContribs',
+            [$this, $dids],
           ],
         ],
-        'init_message'     => $this->t('Initializing'),
-        'progress_message' => $this->t('Completed @current out of @total'),
+        'init_message'     => $this->t('Reindexing. This might take a minute...'),
+        'progress_message' => $this->t('Completing merge'),
         'error_message'    => $this->t('An error occurred during processing'),
-        'finished' => '\Drupal\nbbib_core\Form\MergeContribsConfirmForm::mergeContribsDone',
       ];
 
       // Run batch.
@@ -269,28 +268,6 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
       $form_state->setRedirect('nbbib_core.merge_contribs', ['yabrm_contributor' => $this->cid]);
     }
 
-  }
-
-  /**
-   * Query references - batch operation callback.
-   */
-  public static function queryReferences(EntityTypeManagerInterface $entityTypeManager, $dids, &$context) {
-
-    // Initialize batch sandbox.
-    if (!isset($context['sandbox']['progress'])) {
-      $context['sandbox']['progress'] = 0;
-      $context['sandbox']['paragraphs'] = [];
-      $context['sandbox']['reindex'] = [];
-    }
-
-    if ($dids[$context['sandbox']['progress']]) {
-      // Query for reference relationships (paragraphs) that reference id.
-      $query = $entityTypeManager->getStorage('paragraph');
-
-      $context['sandbox']['paragraphs'] = $query->getQuery()
-        ->condition('field_yabrm_contributor_person', $did)
-        ->execute();
-    }
   }
 
   /**
@@ -384,15 +361,14 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
             $items[$item_id] = $index->loadItem($item_id);
           }
 
-          // Index items.
+          // Index items and wait for reindex.
           $index->indexSpecificItems($items);
+          sleep(count($paragraphs) + 4);
         }
 
         // Delete duplicate contributor.
         $duplicate = BibliographicContributor::load($did);
         $duplicate->delete();
-        // Update batch message.
-        $context['message'] = "Reindexing...";
       }
     }
   }

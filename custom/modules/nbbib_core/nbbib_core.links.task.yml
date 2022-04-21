@@ -1,5 +1,5 @@
 nbbib_core.merge_contribs:
   route_name: nbbib_core.merge_contribs
-  title: 'Merge'
+  title: 'Duplicates'
   base_route: entity.yabrm_contributor.canonical
   weight: 0

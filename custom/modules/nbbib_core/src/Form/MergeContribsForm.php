@@ -67,9 +67,18 @@ class MergeContribsForm extends FormBase {
 
     // Load base contributor and generate dynamic title.
     $contrib = BibliographicContributor::load($yabrm_contributor);
-    $name = $contrib->getName();
-    $last_name = $contrib->getLastName();
-    $form['#title'] = "$name";
+    $inst = $contrib->getInstitutionName();
+
+    if ($inst) {
+      $name = trim($inst);
+    }
+    else {
+      $first = $contrib->getFirstName();
+      $last = $contrib->getLastName();
+      $name = trim("$first $last");
+    }
+
+    $form['#title'] = $this->t("Merge duplicates into <i>$name</i>");
 
     // Set up duplicates checkbox set.
     $form['duplicates'] = [
@@ -84,7 +93,7 @@ class MergeContribsForm extends FormBase {
 
     $results = $query->getQuery()
       ->condition('status', 1)
-      ->condition('last_name', $last_name)
+      ->condition('last_name', $last)
       ->sort('name', 'asc')
       ->execute();
 

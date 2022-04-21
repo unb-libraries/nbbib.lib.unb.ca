@@ -202,7 +202,7 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
     // Add warning.
     $warning = "
       Merging will delete the selected contributor(s) and reassign all
-      bibliographic references to the target contributor. Might take a minute to complete.
+      bibliographic references to the target contributor.
     ";
 
     $form['warning'] = [

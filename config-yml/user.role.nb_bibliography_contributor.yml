@@ -15,7 +15,7 @@ dependencies:
     - toolbar
     - yabrm
 id: nb_bibliography_contributor
-label: 'NB Bibliography Contributor'
+label: 'NB Bibliography Editor'
 weight: 2
 is_admin: null
 permissions:

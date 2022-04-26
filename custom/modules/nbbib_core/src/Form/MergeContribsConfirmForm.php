@@ -253,10 +253,6 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
       $msg = "Merged into the $name Bibliographic Contributor.";
       $this->messenger->addMessage($msg);
 
-      // Flush all caches and wait.
-      drupal_flush_all_caches();
-      sleep(count($dids) * 3);
-
       // Redirect to contributor main display.
       $form_state->setRedirect('entity.yabrm_contributor.canonical', ['yabrm_contributor' => $this->cid]);
     }
@@ -294,76 +290,6 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
           $paragraph->set('field_yabrm_contributor_person', $form->cid);
           // Save paragraph.
           $paragraph->save();
-
-          // Reindex references affected by paragraph change.
-          $items = [];
-          // Get current language.
-          $language = $form->languageManager->getCurrentLanguage()->getId();
-          // Load Search API index.
-          $index_storage = $form->entityTypeManager
-            ->getStorage('search_api_index');
-          $index = $index_storage->load('references_nbbib_lib_unb_ca');
-
-          // Query for books that contain the paragraphs.
-          $query = $form->entityTypeManager->getStorage('yabrm_book');
-
-          $books = $query->getQuery()
-            ->condition('contributors', $pid, 'IN')
-            ->execute();
-
-          // For each book...
-          foreach ($books as $bid) {
-            // Add book to index tracking.
-            // Prepare and add specific item to list for reindex.
-            $item_id = 'entity:yabrm_book/' . $bid . ':' . $language;
-            $items[$item_id] = $index->loadItem($item_id);
-          }
-
-          // Query for book sections that contain the paragraphs.
-          $query = $form->entityTypeManager->getStorage('yabrm_book_section');
-
-          $sections = $query->getQuery()
-            ->condition('contributors', $pid, 'IN')
-            ->execute();
-
-          foreach ($sections as $sid) {
-            // Add book section to index tracking.
-            // Prepare and add item.
-            $item_id = 'entity:yabrm_book_section/' . $sid . ':' . $language;
-            $items[$item_id] = $index->loadItem($item_id);
-          }
-
-          // Query for journal articles that contain the paragraphs.
-          $query = $form->entityTypeManager->getStorage('yabrm_journal_article');
-
-          $articles = $query->getQuery()
-            ->condition('contributors', $pid, 'IN')
-            ->execute();
-
-          foreach ($articles as $aid) {
-            // Add journal article to index tracking.
-            // Prepare and add item.
-            $item_id = 'entity:yabrm_journal_article/' . $aid . ':' . $language;
-            $items[$item_id] = $index->loadItem($item_id);
-          }
-
-          // Query for theses that contain the paragraphs.
-          $query = $form->entityTypeManager->getStorage('yabrm_thesis');
-
-          $theses = $query->getQuery()
-            ->condition('contributors', $pid, 'IN')
-            ->execute();
-
-          foreach ($theses as $tid) {
-            // Add thesis to index tracking.
-            // Prepare and add item.
-            $item_id = 'entity:yabrm_thesis/' . $tid . ':' . $language;
-            $items[$item_id] = $index->loadItem($item_id);
-          }
-
-          // Index items and wait for reindex.
-          $index->indexSpecificItems($items);
-          sleep(count($paragraphs) + 4);
         }
 
         // Delete duplicate contributor.

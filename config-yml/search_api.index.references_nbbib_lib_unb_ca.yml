@@ -15,6 +15,7 @@ third_party_settings:
     finalize: false
     commit_before_finalize: false
     commit_after_finalize: false
+    debug_finalize: false
     highlighter:
       maxAnalyzedChars: 51200
       fragmenter: gap
@@ -41,6 +42,9 @@ third_party_settings:
       maxntp: 2000
       boost: false
       interestingTerms: none
+    term_modifiers:
+      slop: 3
+      fuzzy: 1
     advanced:
       index_prefix: ''
       collection: ''
@@ -983,6 +987,7 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  entity_type: {  }
   index_bibliographic_info: {  }
   language_with_fallback: {  }
   rendered_item: {  }
@@ -995,4 +1000,5 @@ tracker_settings:
 options:
   cron_limit: 100
   index_directly: true
+  track_changes_in_references: true
 server: drupal_solr_lib_unb_ca

@@ -232,71 +232,49 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
       // Retrieve individual duplicate ids.
       $dids = $this->duplicates;
 
-      // Set up batch process.
-      $batch = [
-        'title' => $this->t('Merging contributors'),
-        'operations' => [
-          [
-            '\Drupal\nbbib_core\Form\MergeContribsConfirmForm::mergeContribs',
-            [$this, $dids],
-          ],
-        ],
-        'init_message'     => $this->t('Reindexing. This might take a minute...'),
-        'progress_message' => $this->t('Completing merge'),
-        'error_message'    => $this->t('An error occurred during processing'),
-      ];
+      // For each duplicate id...
+      foreach ($dids as $did) {
 
-      // Run batch.
-      batch_set($batch);
+        if ($did) {
+          // Query for reference relationships (paragraphs) that reference id.
+          $query = $this->entityTypeManager->getStorage('paragraph');
+
+          $paragraphs = $query->getQuery()
+            ->condition('field_yabrm_contributor_person', $did)
+            ->execute();
+
+          // For each paragraph...
+          foreach ($paragraphs as $pid) {
+            // Load paragraph.
+            $paragraph = Paragraph::load($pid);
+            // Replace dupe contributor id for target contributor id ($this->cid).
+            $paragraph->set('field_yabrm_contributor_person', $this->cid);
+            // Save paragraph.
+            $paragraph->save();
+          }
+
+          // Delete duplicate contributor.
+          $duplicate = BibliographicContributor::load($did);
+          $duplicate->delete();
+        }
+      }
 
       // Prepare confirmation message.
-      $msg = "Merged into the $name Bibliographic Contributor.";
+      $msg = "Merged into the $name Bibliographic Contributor. Please wait a
+        moment for bibliography list to update.";
       $this->messenger->addMessage($msg);
 
       // Redirect to contributor main display.
-      $form_state->setRedirect('entity.yabrm_contributor.canonical', ['yabrm_contributor' => $this->cid]);
+      $form_state->setRedirect('nbbib_core.merge_contribs.reindex', ['yabrm_contributor' => $this->cid]);
     }
     else {
-      // Display confirmation message.
+      // Display error message.
       $msg = "No items selected for merging.";
       $this->messenger->addError($msg);
       // Redirect to contributor merge display.
       $form_state->setRedirect('nbbib_core.merge_contribs', ['yabrm_contributor' => $this->cid]);
     }
 
-  }
-
-  /**
-   * Merge contributors batch callback.
-   */
-  public static function mergeContribs(MergeContribsConfirmForm $form, $dids, &$context) {
-
-    // For each duplicate id...
-    foreach ($dids as $did) {
-
-      if ($did) {
-        // Query for reference relationships (paragraphs) that reference id.
-        $query = $form->entityTypeManager->getStorage('paragraph');
-
-        $paragraphs = $query->getQuery()
-          ->condition('field_yabrm_contributor_person', $did)
-          ->execute();
-
-        // For each paragraph...
-        foreach ($paragraphs as $pid) {
-          // Load paragraph.
-          $paragraph = Paragraph::load($pid);
-          // Replace dupe contributor id for target contributor id ($this->cid).
-          $paragraph->set('field_yabrm_contributor_person', $form->cid);
-          // Save paragraph.
-          $paragraph->save();
-        }
-
-        // Delete duplicate contributor.
-        $duplicate = BibliographicContributor::load($did);
-        $duplicate->delete();
-      }
-    }
   }
 
 }

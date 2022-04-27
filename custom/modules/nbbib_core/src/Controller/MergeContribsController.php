@@ -4,7 +4,6 @@ namespace Drupal\nbbib_core\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
-use Drupal\search_api\Entity\Index;
 
 /**
  * Controller for post-processing of contributor merge operations.

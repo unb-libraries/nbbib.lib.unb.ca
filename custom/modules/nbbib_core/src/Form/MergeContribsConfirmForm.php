@@ -260,12 +260,14 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
         }
       }
 
+      $count = count($dids);
+
       // Prepare confirmation message.
-      $msg = "Merged into the $name Bibliographic Contributor.";
+      $msg = "$count record(s) merged into the $name Bibliographic Contributor.";
       $this->messenger->addMessage($msg);
 
       // Redirect to contributor main display.
-      $form_state->setRedirect('nbbib_core.merge_contribs.reindex', ['yabrm_contributor' => $this->cid]);
+      $form_state->setRedirect('entity.yabrm_contributor.canonical', ['yabrm_contributor' => $this->cid]);
     }
     else {
       // Display error message.

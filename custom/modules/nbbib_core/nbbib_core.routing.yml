@@ -26,12 +26,3 @@ nbbib_core.merge_contribs.confirm:
     _form: '\Drupal\nbbib_core\Form\MergeContribsConfirmForm'
   options:
     _admin_route: TRUE
-nbbib_core.merge_contribs.reindex:
-  path: '/contributor/{yabrm_contributor}/merge/reindex'
-  requirements:
-    _role: nb_bibliography_contributor
-  defaults:
-    _title: 'Post-merge Reindexing'
-    _controller: '\Drupal\nbbib_core\Controller\MergeContribsController:waitReindex'
-  options:
-    _admin_route: TRUE

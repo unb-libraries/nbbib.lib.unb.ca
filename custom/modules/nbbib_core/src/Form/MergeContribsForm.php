@@ -90,16 +90,54 @@ class MergeContribsForm extends FormBase {
 
     // Query for possible duplicates (same formatted name).
     $query = $this->entityTypeManager->getStorage('yabrm_contributor');
+    $results = [];
 
-    $results = $query->getQuery()
-      ->condition('status', 1)
-      ->condition('last_name', $last)
-      ->sort('name', 'asc')
-      ->execute();
+    // If the target contributor is an institution...
+    if ($inst) {
+      // Break the name into individual words.
+      $tokens = explode(" ", $name);
+
+      // For each word...
+      foreach ($tokens as $token) {
+        // If the word is longer than 3 characters...
+        if (strlen($token) > 3) {
+          // Return all contributors that contain the word.
+          $set = $query->getQuery()
+            ->condition('status', 1)
+            ->condition('institution_name', $token, 'CONTAINS')
+            ->sort('name', 'asc')
+            ->execute();
+        }
+        // Add to array of all duplicate candidates.
+        $candidates = array_merge($results, $set);
+      }
+
+      // For each duplicate candidate...
+      foreach ($candidates as $candidate) {
+        // Load candidate name.
+        $inst2 = BibliographicContributor::load($candidate)
+          ->getInstitutionName();
+        // Get the percentage of similar characters in $perc.
+        similar_text($inst2, $inst, $perc);
+
+        // If characters match over 50%...
+        if ($perc > 50) {
+          // Add to results list.
+          $results[] = $candidate;
+        }
+      }
+
+    }
+    else {
+      $results = $query->getQuery()
+        ->condition('status', 1)
+        ->condition('last_name', $last)
+        ->sort('name', 'asc')
+        ->execute();
+    }
 
     // Populate duplicates checkbox set.
     foreach ($results as $cid) {
-
       // Only include if not base contributor.
       if ($cid != $yabrm_contributor) {
         $dupe = BibliographicContributor::load($cid);

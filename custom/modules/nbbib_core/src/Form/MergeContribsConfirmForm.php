@@ -231,7 +231,7 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
     // If duplicates have been selected...
     if ($this->duplicates) {
       // Retrieve individual duplicate ids.
-      $dids = $this->duplicates;
+      $dids = array_filter($this->duplicates);
 
       // For each duplicate id...
       foreach ($dids as $did) {
@@ -263,8 +263,10 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
       $count = count($dids);
 
       // Prepare confirmation message.
-      $msg = "$count record(s) merged into the $name Bibliographic Contributor.";
-      $this->messenger->addMessage($msg);
+      $msg = "$count record(s) merged into the $name Bibliographic Contributor.
+        <br><b>Please wait a few seconds for the bibliography items list to
+        update.</b>";
+      $this->messenger->addMessage($this->t($msg));
 
       // Redirect to contributor main display.
       $form_state->setRedirect('entity.yabrm_contributor.canonical', ['yabrm_contributor' => $this->cid]);

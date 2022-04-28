@@ -202,7 +202,8 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
     // Add warning.
     $warning = "
       Merging will delete the selected contributor(s) and reassign all
-      bibliographic references to the target contributor.
+      bibliographic references to the target contributor. This may take a few
+      seconds.
     ";
 
     $form['warning'] = [
@@ -260,8 +261,7 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
       }
 
       // Prepare confirmation message.
-      $msg = "Merged into the $name Bibliographic Contributor. Please wait a
-        moment for bibliography list to update.";
+      $msg = "Merged into the $name Bibliographic Contributor.";
       $this->messenger->addMessage($msg);
 
       // Redirect to contributor main display.

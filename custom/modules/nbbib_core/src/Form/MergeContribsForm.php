@@ -67,16 +67,11 @@ class MergeContribsForm extends FormBase {
 
     // Load base contributor and generate dynamic title.
     $contrib = BibliographicContributor::load($yabrm_contributor);
+    $first = $contrib->getFirstName();
+    $last = $contrib->getLastName();
     $inst = $contrib->getInstitutionName();
 
-    if ($inst) {
-      $name = trim($inst);
-    }
-    else {
-      $first = $contrib->getFirstName();
-      $last = $contrib->getLastName();
-      $name = trim("$first $last");
-    }
+    $name = $inst ? $inst : trim("$first $last");
 
     $form['#title'] = $this->t("Merge duplicates into <i>$name</i>");
 
@@ -104,36 +99,42 @@ class MergeContribsForm extends FormBase {
           // Return all contributors that contain the word.
           $set = $query->getQuery()
             ->condition('status', 1)
-            ->condition('institution_name', $token, 'CONTAINS')
+            ->condition('name', $token, 'CONTAINS')
             ->sort('name', 'asc')
             ->execute();
         }
         // Add to array of all duplicate candidates.
         $candidates = array_merge($results, $set);
       }
-
-      // For each duplicate candidate...
-      foreach ($candidates as $candidate) {
-        // Load candidate name.
-        $inst2 = BibliographicContributor::load($candidate)
-          ->getInstitutionName();
-        // Get the percentage of similar characters in $perc.
-        similar_text($inst2, $inst, $perc);
-
-        // If characters match over 50%...
-        if ($perc > 50) {
-          // Add to results list.
-          $results[] = $candidate;
-        }
-      }
-
     }
     else {
-      $results = $query->getQuery()
+      $candidates = $query->getQuery()
         ->condition('status', 1)
-        ->condition('last_name', $last)
+        ->condition('last_name', $last, 'CONTAINS')
         ->sort('name', 'asc')
         ->execute();
+    }
+
+    // For each duplicate candidate...
+    foreach ($candidates as $candidate) {
+      // Load candidate name.
+      $obj = BibliographicContributor::load($candidate);
+      $name2 = $obj->getName();
+
+      if (!$inst) {
+        $name2 = trim(
+          $obj->getFirstName() .
+          $obj->getLastName()
+        );
+      }
+      // Get the percentage of similar characters in $perc.
+      similar_text($name2, $name, $perc);
+
+      // If characters match over 60%...
+      if ($perc > 60) {
+        // Add to results list.
+        $results[] = $candidate;
+      }
     }
 
     // Populate duplicates checkbox set.

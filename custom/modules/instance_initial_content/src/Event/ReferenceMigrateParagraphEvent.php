@@ -251,7 +251,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           }
           else {
             $last_name = trim($split_name[0]);
-            $first_name = trim($split_name[1]);
+            $first_name = trim(implode(',', array_slice($split_name, 1)));
             $sort_name = $last_name;
           }
 

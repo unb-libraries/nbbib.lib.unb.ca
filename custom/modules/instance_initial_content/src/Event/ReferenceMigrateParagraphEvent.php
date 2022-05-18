@@ -260,6 +260,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
             'institution_name' => $institution_name,
             'first_name' => $first_name,
             'last_name' => $last_name,
+            'sort_name' => $sort_name,
           ]);
 
           $contrib->save();

@@ -353,6 +353,11 @@ header {
             padding-left: 0;
             list-style: none;
 
+            // Contributor links.
+            > a {
+              display: block;
+            }
+
             // Header.
             & + h2 {
               margin-top: 1rem;

@@ -397,7 +397,9 @@ function nbbib_core_entity_delete(EntityInterface $entity) {
       $entity_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
       $stored_entity = $entity_storage->load($contrib['target_id']);
       // And delete.
-      $stored_entity->delete();
+      if ($stored_entity) {
+        $stored_entity->delete();
+      }
     }
   }
 

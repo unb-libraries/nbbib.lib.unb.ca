@@ -101,6 +101,44 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
   public function setSortName($sort_name);
 
   /**
+   * Gets the Bibliographic Contributor prefix.
+   *
+   * @return string
+   *   Prefix of the Bibliographic Contributor.
+   */
+  public function getPrefix();
+
+  /**
+   * Sets the Bibliographic Contributor prefix.
+   *
+   * @param string $prefix
+   *   The Bibliographic Contributor prefix.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setPrefix($prefix);
+
+  /**
+   * Gets the Bibliographic Contributor suffix.
+   *
+   * @return string
+   *   Suffix of the Bibliographic Contributor.
+   */
+  public function getSuffix();
+
+  /**
+   * Sets the Bibliographic Contributor suffix.
+   *
+   * @param string $suffix
+   *   The Bibliographic Contributor suffix.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setSuffix($suffix);
+
+  /**
    * Gets the Bibliographic Collection description.
    *
    * @return string

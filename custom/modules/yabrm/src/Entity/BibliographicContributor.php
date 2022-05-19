@@ -213,6 +213,36 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
   /**
    * {@inheritdoc}
    */
+  public function getPrefix() {
+    return $this->get('prefix')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPrefix($prefix) {
+    $this->set('prefix', $prefix);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSuffix() {
+    return $this->get('suffix')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSuffix($suffix) {
+    $this->set('suffix', $suffix);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getCreatedTime() {
     return $this->get('created')->value;
   }
@@ -441,6 +471,48 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
     $fields['sort_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Sort Name'))
       ->setDescription(t('The sort name of the Bibliographic Contributor entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 256,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['prefix'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Prefix'))
+      ->setDescription(t('The name prefix of the Bibliographic Contributor entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 256,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['suffix'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Suffix'))
+      ->setDescription(t('The name suffix of the Bibliographic Contributor entity.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 256,

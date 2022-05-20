@@ -11,13 +11,17 @@ function nbbib_lib_unb_ca_preprocess_field(&$variables, $hook) {
     $contrib = $element['#object'];
 
     if ($contrib->bundle() == 'yabrm_contributor') {
-      $first_name = empty($contrib->get('first_name')->getValue()[0]['value'])
-        ? NULL : $contrib->get('first_name')->getValue()[0]['value'];
-      $last_name = empty($contrib->get('last_name')->getValue()[0]['value'])
-        ? NULL : $contrib->get('last_name')->getValue()[0]['value'];
-      $inst_name = empty($contrib->get('institution_name')->getValue()[0]['value'])
-        ? NULL : $contrib->get('institution_name')->getValue()[0]['value'];
-      $full_name = $inst_name ? $inst_name : "$first_name $last_name";
+      $first_name = $contrib->get('first_name')->getValue()[0]['value'] ??
+        NULL;
+      $last_name = $contrib->get('last_name')->getValue()[0]['value'] ??
+        NULL;
+      $inst_name = $contrib->get('institution_name')->getValue()[0]['value'] ??
+        NULL;
+      $prefix = $contrib->get('prefix')->getValue()[0]['value'] ??
+        NULL;
+      $suffix = $contrib->get('suffix')->getValue()[0]['value'] ??
+        NULL;
+      $full_name = $inst_name ?? trim("$prefix $first_name $last_name $suffix");
 
       // Replace field with fist_name last_name.
       $variables['items'][0]['content']['#context']['value'] = $full_name;

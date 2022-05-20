@@ -70,8 +70,10 @@ class MergeContribsForm extends FormBase {
     $first = $contrib->getFirstName();
     $last = $contrib->getLastName();
     $inst = $contrib->getInstitutionName();
+    $pre = $contrib->getPrefix();
+    $suf = $contrib->getSuffix();
 
-    $name = $inst ? $inst : trim("$first $last");
+    $name = $inst ? $inst : trim("$pre $first $last $suf");
 
     $form['#title'] = $this->t("Merge duplicates into <i>$name</i>");
 
@@ -150,7 +152,9 @@ class MergeContribsForm extends FormBase {
         else {
           $first = $dupe->getFirstName();
           $last = $dupe->getLastName();
-          $dupe_name = trim("$first $last");
+          $pre = $dupe->getPrefix();
+          $suf = $dupe->getSuffix();
+          $dupe_name = trim("$pre $first $last $suf");
         }
 
         $form['duplicates']['#options'][$cid] =

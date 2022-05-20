@@ -130,9 +130,13 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
         $contrib_name = $contrib_inst;
       }
       else {
-        $contrib_name = trim(
-          $contrib->getFirstName() . ' ' . $contrib->getLastName()
-        );
+        $first = $contrib->getFirstName();
+        $last = $contrib->getLastName();
+        $inst = $contrib->getInstitutionName();
+        $pre = $contrib->getPrefix();
+        $suf = $contrib->getSuffix();
+
+        $contrib_name = trim("$pre $first $last $suf");
       }
     }
 

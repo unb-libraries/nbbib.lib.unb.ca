@@ -266,7 +266,6 @@ function update_names($entity_type, $entity, $entity_form, &$form_state) {
   $last_name = $entity->getLastName();
   $institution_name = $entity->getInstitutionName();
   $names = generate_names($first_name, $last_name, $institution_name);
-
   $entity->setName($names['name']);
   $entity->setSortName($names['sort_name']);
 }
@@ -322,9 +321,7 @@ function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
   $first_name = trim($entity->getFirstName());
   $last_name = trim($entity->getLastName());
   $institution_name = trim($entity->getInstitutionName());
-
   $names = generate_names($first_name, $last_name, $institution_name);
-
   $entity->setName($names['name']);
   $entity->setSortName($names['sort_name']);
 }

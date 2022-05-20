@@ -132,7 +132,6 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
       else {
         $first = $contrib->getFirstName();
         $last = $contrib->getLastName();
-        $inst = $contrib->getInstitutionName();
         $pre = $contrib->getPrefix();
         $suf = $contrib->getSuffix();
 
@@ -252,7 +251,7 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
           foreach ($paragraphs as $pid) {
             // Load paragraph.
             $paragraph = Paragraph::load($pid);
-            // Replace dupe contributor id for target contributor id ($this->cid).
+            // Replace dupe contrib id for target contributor id ($this->cid).
             $paragraph->set('field_yabrm_contributor_person', $this->cid);
             // Save paragraph.
             $paragraph->save();

@@ -199,18 +199,55 @@ function template_preprocess_yabrm_book(array &$variables) {
   }
 
   // Contributors.
-  if ($authors) {
-    $contribs_wad = book_contribs_wad($authors);
+  // If there are authors...
+  if (!empty($authors)) {
+    // Build formatted list.
+    $au_names = array_column($authors, 'name');
+    $au_wad = count($au_names) > 1 ?
+      implode(', ', array_slice($au_names, 0, -1)) . ', and ' . end($au_names)
+      : $au_names[0];
   }
-  elseif ($editors) {
-    $contribs_wad = book_contribs_wad($editors);
+  // If there are editors...
+  if (!empty($editors)) {
+    // Build formatted list.
+    $ed_names = array_column($editors, 'name');
+    $ed_wad = count($ed_names) > 1 ?
+      implode(', ', array_slice($ed_names, 0, -1)) . ', and ' . end($ed_names)
+      : $ed_names[0];
+  }
+  // If no authors...
+  if (empty($authors)) {
+    // But we have editors...
+    if (!empty($editors)) {
+      // Editors will take up the contributors segment.
+      $contribs_wad = $ed_wad;
+    }
+  }
+  // If we have authors...
+  else {
+    // Authors go in the pre-title contributors segment.
+    $contribs_wad = $au_wad;
+    // If there are editors as well...
+    if (!empty($editors)) {
+      // Editors go in the post-title publication segment.
+      $pub_wad .= ". Edited by $ed_wad";
+    }
+  }
+
+  // Only add period if last character is not punctuation.
+  if (!preg_match("/[.!?,;:]$/", $contribs_wad)) {
+    $contribs_wad .= '.';
   }
 
   $variables['content']['contribs_wad'] = $contribs_wad;
 
   // Publication.
+  // Only add period if last character is not punctuation.
+  if (!preg_match("/[.!?,;:]$/", $pub_wad)) {
+    $pub_wad .= '.';
+  }
   if ($place) {
-    $pub_wad .= '. ' . trim($place);
+    $pub_wad .= ' ' . trim($place);
 
     if ($publisher) {
       $pub_wad .= ': ' . trim($publisher);
@@ -218,7 +255,7 @@ function template_preprocess_yabrm_book(array &$variables) {
   }
   else {
     if ($publisher) {
-      $pub_wad .= '. ' . trim($publisher);
+      $pub_wad .= ' ' . trim($publisher);
     }
   }
 

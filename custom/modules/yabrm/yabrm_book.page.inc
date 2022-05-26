@@ -157,7 +157,6 @@ function template_preprocess_yabrm_book(array &$variables) {
   $title = $variables['content']['title']['0']['#context']['value'] ?? NULL;
   $publisher = $variables['content']['publisher']['0']['#context']['value']
     ?? NULL;
-  $notes = $variables['content']['notes']['0']['#text'] ?? NULL;
 
   // Specific to Book.
   $pages = $variables['content']['num_pages']['0']['#context']['value']

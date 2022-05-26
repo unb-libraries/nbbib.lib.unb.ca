@@ -156,7 +156,6 @@ function template_preprocess_yabrm_book_section(array &$variables) {
   $title = $variables['content']['title']['0']['#context']['value'] ?? NULL;
   $publisher = $variables['content']['publisher']['0']['#context']['value']
     ?? NULL;
-  $notes = $variables['content']['notes']['0']['#text'] ?? NULL;
 
   // Specific to Book Section.
   $publication_title =

@@ -149,36 +149,19 @@ function template_preprocess_yabrm_book(array &$variables) {
   }
 
   // Build citation elements.
-  $authors = empty($variables['content']['authors']) ? NULL
-    : $variables['content']['authors'];
-  $editors = empty($variables['content']['editors']) ? NULL
-    : $variables['content']['editors'];
-  $place = empty($variables['content']['place']['0']['#context']['value']) ? NULL
-    : $variables['content']['place']['0']['#context']['value'];
-  $publication_year =
-    empty($variables['content']['publication_year']['0']['#markup']) ? NULL
-    : $variables['content']['publication_year']['0']['#markup'];
-  $publication_month =
-    empty($variables['content']['publication_month']['0']['#markup']) ? NULL
-    : $variables['content']['publication_month']['0']['#markup'];
-  $publication_day =
-    empty($variables['content']['publication_day']['0']['#markup']) ? NULL
-    : $variables['content']['publication_day']['0']['#markup'];
-  $title =
-    empty($variables['content']['title']['0']['#context']['value']) ? NULL
-    : $variables['content']['title']['0']['#context']['value'];
-  $publisher =
-    empty($variables['content']['publisher']['0']['#context']['value']) ? NULL
-    : $variables['content']['publisher']['0']['#context']['value'];
-  $notes = empty($variables['content']['notes']['0']['#text']) ? NULL
-    : $variables['content']['notes']['0']['#text'];
-  $url = empty($yabrm_book->get('url')->getValue()[0]['uri']) ? NULL
-    : $yabrm_book->get('url')->getValue()[0]['uri'];
+  $authors = $variables['content']['authors'] ?? NULL;
+  $editors = $variables['content']['editors'] ?? NULL;
+  $place = $variables['content']['place']['0']['#context']['value'] ?? NULL;
+  $publication_year = $variables['content']['publication_year']['0']['#markup']
+    ?? NULL;
+  $title = $variables['content']['title']['0']['#context']['value'] ?? NULL;
+  $publisher = $variables['content']['publisher']['0']['#context']['value']
+    ?? NULL;
+  $notes = $variables['content']['notes']['0']['#text'] ?? NULL;
 
   // Specific to Book.
-  $pages =
-    empty($variables['content']['num_pages']['0']['#context']['value']) ? NULL
-    : $variables['content']['num_pages']['0']['#context']['value'];
+  $pages = $variables['content']['num_pages']['0']['#context']['value']
+    ?? NULL;
 
   // Prepare fragment containers.
   $title_wad = '';
@@ -230,7 +213,11 @@ function template_preprocess_yabrm_book(array &$variables) {
     // If there are editors as well...
     if (!empty($editors)) {
       // Editors go in the post-title publication segment.
-      $pub_wad .= ". Edited by $ed_wad";
+      $pub_wad .= "Edited by $ed_wad";
+      // Only add period if last character is not punctuation.
+      if (!preg_match("/[.!?,;:]$/", $pub_wad)) {
+        $pub_wad .= '.';
+      }
     }
   }
 
@@ -242,10 +229,6 @@ function template_preprocess_yabrm_book(array &$variables) {
   $variables['content']['contribs_wad'] = $contribs_wad;
 
   // Publication.
-  // Only add period if last character is not punctuation.
-  if (!preg_match("/[.!?,;:]$/", $pub_wad)) {
-    $pub_wad .= '.';
-  }
   if ($place) {
     $pub_wad .= ' ' . trim($place);
 
@@ -268,48 +251,4 @@ function template_preprocess_yabrm_book(array &$variables) {
   }
 
   $variables['content']['pub_wad'] = $pub_wad . '. [book]';
-}
-
-/**
- * Prepares contributors for passing to template.
- *
- * @param array $contributors
- *   An associative array containing:
- *   - name: Contributor display name.
- *   - first_name: Contributor first name.
- *   - last_name: Contributor last name.
- */
-function book_contribs_wad(array $contributors) {
-  $contribs_wad = '';
-  $et_al = FALSE;
-
-  // Only act if there's a name.
-  if (!empty($contributors[0]['name'])) {
-    // Content.
-    $contribs_wad .= $contributors[0]['name'];
-    // If there is a second.
-    if (!empty($contributors[1]['name'])) {
-      // If there is a third.
-      if (!empty($contributors[2]['name'])) {
-        $et_al = TRUE;
-        $contribs_wad .= ', ';
-      }
-      else {
-        $contribs_wad .= ' and ';
-      }
-
-      $contribs_wad .= $contributors[1]['name'];
-
-      if ($et_al) {
-        $contribs_wad .= ' et al';
-      }
-    }
-  }
-
-  // Only add period if last character is not punctuation.
-  if (!preg_match("/[.!?,;:]$/", $contribs_wad)) {
-    $contribs_wad .= '.';
-  }
-
-  return $contribs_wad;
 }

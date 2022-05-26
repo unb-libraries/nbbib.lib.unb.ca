@@ -147,36 +147,19 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   }
 
   // Build citation elements.
-  $authors = empty($variables['content']['authors']) ? NULL
-    : $variables['content']['authors'];
-  $editors = empty($variables['content']['editors']) ? NULL
-    : $variables['content']['editors'];
-  $place = empty($variables['content']['place']['0']['#context']['value']) ? NULL
-    : $variables['content']['place']['0']['#context']['value'];
-  $publication_year =
-    empty($variables['content']['publication_year']['0']['#markup']) ? NULL
-    : $variables['content']['publication_year']['0']['#markup'];
-  $publication_month =
-    empty($variables['content']['publication_month']['0']['#markup']) ? NULL
-    : $variables['content']['publication_month']['0']['#markup'];
-  $publication_day =
-    empty($variables['content']['publication_day']['0']['#markup']) ? NULL
-    : $variables['content']['publication_day']['0']['#markup'];
-  $title =
-    empty($variables['content']['title']['0']['#context']['value']) ? NULL
-    : $variables['content']['title']['0']['#context']['value'];
-  $publisher =
-    empty($variables['content']['publisher']['0']['#context']['value']) ? NULL
-    : $variables['content']['publisher']['0']['#context']['value'];
-  $notes = empty($variables['content']['notes']['0']['#text']) ? NULL
-    : $variables['content']['notes']['0']['#text'];
-  $url = empty($yabrm_thesis->get('url')->getValue()[0]['uri']) ? NULL
-    : $yabrm_thesis->get('url')->getValue()[0]['uri'];
+  $authors = $variables['content']['authors'] ?? NULL;
+  $editors = $variables['content']['editors'] ?? NULL;
+  $place = $variables['content']['place']['0']['#context']['value'] ?? NULL;
+  $publication_year = $variables['content']['publication_year']['0']['#markup']
+    ?? NULL;
+  $title = $variables['content']['title']['0']['#context']['value'] ?? NULL;
+  $publisher = $variables['content']['publisher']['0']['#context']['value']
+    ?? NULL;
+  $notes = $variables['content']['notes']['0']['#text'] ?? NULL;
 
   // Specific to Thesis.
-  $thesis_type =
-    empty($variables['content']['thesis_type']['0']['#context']['value']) ? NULL
-    : $variables['content']['thesis_type']['0']['#context']['value'];
+  $thesis_type = $variables['content']['thesis_type']['0']['#context']['value']
+    ?? NULL;
 
   $title_wad = '';
   $contribs_wad = '';
@@ -196,11 +179,48 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   }
 
   // Contributors.
-  if ($authors) {
-    $contribs_wad = thesis_contribs_wad($authors);
+  // If there are authors...
+  if (!empty($authors)) {
+    // Build formatted list.
+    $au_names = array_column($authors, 'name');
+    $au_wad = count($au_names) > 1 ?
+      implode(', ', array_slice($au_names, 0, -1)) . ', and ' . end($au_names)
+      : $au_names[0];
   }
-  elseif ($editors) {
-    $contribs_wad = thesis_contribs_wad($editors);
+  // If there are editors...
+  if (!empty($editors)) {
+    // Build formatted list.
+    $ed_names = array_column($editors, 'name');
+    $ed_wad = count($ed_names) > 1 ?
+      implode(', ', array_slice($ed_names, 0, -1)) . ', and ' . end($ed_names)
+      : $ed_names[0];
+  }
+  // If no authors...
+  if (empty($authors)) {
+    // But we have editors...
+    if (!empty($editors)) {
+      // Editors will take up the contributors segment.
+      $contribs_wad = $ed_wad;
+    }
+  }
+  // If we have authors...
+  else {
+    // Authors go in the pre-title contributors segment.
+    $contribs_wad = $au_wad;
+    // If there are editors as well...
+    if (!empty($editors)) {
+      // Editors go in the post-title publication segment.
+      $pub_wad .= "Edited by $ed_wad";
+      // Only add period if last character is not punctuation.
+      if (!preg_match("/[.!?,;:]$/", $pub_wad)) {
+        $pub_wad .= '.';
+      }
+    }
+  }
+
+  // Only add period if last character is not punctuation.
+  if (!preg_match("/[.!?,;:]$/", $contribs_wad)) {
+    $contribs_wad .= '.';
   }
 
   $variables['content']['contribs_wad'] = $contribs_wad;
@@ -218,7 +238,12 @@ function template_preprocess_yabrm_thesis(array &$variables) {
     $pub_wad .= '. ' . trim($thesis_type);
   }
 
-  $variables['content']['pub_wad'] = $pub_wad . '. [thesis]';
+  // Only add period if last character is not punctuation.
+  if (!preg_match("/[.!?,;:]$/", $pub_wad)) {
+    $pub_wad .= '.';
+  }
+
+  $variables['content']['pub_wad'] = $pub_wad . ' [thesis]';
 }
 
 /**

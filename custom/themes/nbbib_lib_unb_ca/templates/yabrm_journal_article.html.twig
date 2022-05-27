@@ -20,14 +20,19 @@
     <div class="container">
       <div class="row">
         <div id="ref-body" class="col-sm-9">
-          <div id="ref-contribs">
-            {% for contrib in content.contribs_all %}
 
-              <a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
-                {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
-              </a>
-            {% endfor %}
-          </div>
+          <ul id="ref-contribs">
+            {% if content.contribs_all %}
+
+              {% for contrib in content.contribs_all %}
+                <li><a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
+                  {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
+                </a></li>
+              {% endfor %}
+            {% else %}
+              <li>[Unknown]</li>
+            {% endif %}
+          </ul>
 
           <h2>Publication Details</h2>
 

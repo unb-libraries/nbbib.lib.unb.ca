@@ -152,8 +152,8 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
 
   if (in_array($form_id, $ref_forms)) {
     // For all reference edit and add forms.
-    // Add validation.
-    $form['#validate'][] = 'validate_contrib_subform';
+    // Add contributor validation.
+    // $form['#validate'][] = 'validate_contrib_subform';
     // Add a top priority submit handler.
     top_submit_handler($form, 'clr_blank_contribs');
   }
@@ -207,7 +207,7 @@ function validate_contrib_form($element, &$form_state) {
  * Submit handler for yabrm_book_edit. Removes empty contributors before saving to avoid errors.
  */
 function clr_blank_contribs(&$form, FormStateInterface $form_state) {
-  $contribs = $form_state->getValue('contributors');
+  $contribs = $form_state->getValue('contributors') ?? NULL;
 
   foreach ($contribs as $key => $contrib) {
     if (empty($contrib['subform']['field_yabrm_contributor_person'])) {
@@ -351,11 +351,13 @@ function nbbib_core_user_presave(EntityInterface $entity) {
  * Implements hook_entity_insert().
  */
 function nbbib_core_entity_insert(EntityInterface $entity) {
-  $entity_storage = \Drupal::entityTypeManager()->getStorage($entity->getEntityTypeId());
-  $stored_entity = $entity_storage->load($entity->id());
-  // Force pathauto generation on insert if the service is available.
-  if (\Drupal::hasService('pathauto.generator')) {
-    \Drupal::service('pathauto.generator')->updateEntityAlias($stored_entity, 'update');
+  if ($entity->bundle() != 'paragraph') {
+    $entity_storage = \Drupal::entityTypeManager()->getStorage($entity->getEntityTypeId());
+    $stored_entity = $entity_storage->load($entity->id());
+    // Force pathauto generation on insert if the service is available.
+    if (\Drupal::hasService('pathauto.generator')) {
+      \Drupal::service('pathauto.generator')->updateEntityAlias($stored_entity, 'update');
+    }
   }
 }
 
@@ -363,11 +365,13 @@ function nbbib_core_entity_insert(EntityInterface $entity) {
  * Implements hook_entity_update().
  */
 function nbbib_core_entity_update(EntityInterface $entity) {
-  $entity_storage = \Drupal::entityTypeManager()->getStorage($entity->getEntityTypeId());
-  $stored_entity = $entity_storage->load($entity->id());
-  // Force pathauto generation on update if the service is available.
-  if (\Drupal::hasService('pathauto.generator')) {
-    \Drupal::service('pathauto.generator')->updateEntityAlias($stored_entity, 'update');
+  if ($entity->bundle() != 'paragraph') {
+    $entity_storage = \Drupal::entityTypeManager()->getStorage($entity->getEntityTypeId());
+    $stored_entity = $entity_storage->load($entity->id());
+    // Force pathauto generation on update if the service is available.
+    if (\Drupal::hasService('pathauto.generator')) {
+      \Drupal::service('pathauto.generator')->updateEntityAlias($stored_entity, 'update');
+    }
   }
 }
 

@@ -70,7 +70,7 @@ function template_preprocess_yabrm_thesis(array &$variables) {
       $cid =
         $paragraph->get('field_yabrm_contributor_person')->getValue()[0]['target_id'] ?? NULL;
 
-      $contrib = BibliographicContributor::load($cid);
+      $contrib = $cid ? BibliographicContributor::load($cid) : NULL;
 
       if (!empty($contrib)) {
         $c_name = $contrib->get('name')->getValue()[0]['value'] ?? NULL;

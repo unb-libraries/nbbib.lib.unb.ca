@@ -222,7 +222,7 @@ function template_preprocess_yabrm_book_section(array &$variables) {
   }
 
   // Only add period if last character is not punctuation.
-  if (!preg_match("/[.!?,;:]$/", $contribs_wad)) {
+  if (!preg_match("/[.!?,;:]$/", $contribs_wad) and !empty($contribs_wad)) {
     $contribs_wad .= '.';
   }
 

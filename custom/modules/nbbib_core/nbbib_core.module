@@ -278,7 +278,7 @@ function generate_names($first_name, $last_name, $institution_name) {
 
   if (!empty($institution_name)) {
     if (!empty($first_name) or !empty($last_name)) {
-      $name = $sort_name = 'Warning: Contributor has both institution and individual names. Please review.';
+      $name = $sort_name = 'ERROR: Contributor has both institution and individual names. Please review.';
     }
     else {
       $name = $sort_name = $institution_name;
@@ -302,7 +302,7 @@ function generate_names($first_name, $last_name, $institution_name) {
     }
   }
   else {
-    $name = $sort_name = 'Warning: Contributor is missing one or more names. Please review.';
+    $name = $sort_name = 'ERROR: Contributor is missing one or more names. Please review.';
   }
 
   $names = [

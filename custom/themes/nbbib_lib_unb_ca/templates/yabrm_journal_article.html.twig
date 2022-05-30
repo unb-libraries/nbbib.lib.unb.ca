@@ -22,12 +22,18 @@
         <div id="ref-body" class="col-sm-9">
 
           <ul id="ref-contribs">
-            {% if content.contribs_all %}
 
+            {% if content.contribs_all %}
               {% for contrib in content.contribs_all %}
-                <li><a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
+
+                {% if contrib.display_name == "Anonymous" %}
+                  <li>[Anonymous]</li>
+                {% else %}
+                  <li><a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
                   {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
-                </a></li>
+                  </a></li>
+                {% endif %}
+
               {% endfor %}
             {% else %}
               <li>[Unknown]</li>

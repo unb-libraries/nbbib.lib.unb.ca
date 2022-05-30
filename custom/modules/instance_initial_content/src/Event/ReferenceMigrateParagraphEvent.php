@@ -226,6 +226,10 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $zotero_name = $contrib_name;
       // Ensure consistent name casing.
       $contrib_name = ucwords(mb_strtolower($contrib_name));
+      // If contributor is anonymous...
+      if (strpos(mb_strtolower($contrib_name), 'anonymous')) {
+        $zotero_name = $contrib_name = 'Anonymous';
+      }
 
       if (!empty($contrib_name)) {
         $existing = $this->typeManager->getStorage('yabrm_contributor')

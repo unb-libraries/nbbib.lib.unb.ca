@@ -113,8 +113,8 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       }
     }
 
-    // If no revision author has been set explicitly, make the yabrm_contributor owner the
-    // revision author.
+    // If no revision author has been set explicitly, make the yabrm_contributor
+    // owner the revision author.
     if (!$this->getRevisionUser()) {
       $this->setRevisionUserId($this->getOwnerId());
     }

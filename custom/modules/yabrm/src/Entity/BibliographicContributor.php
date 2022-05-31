@@ -491,7 +491,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
 
     $fields['prefix'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Prefix'))
-      ->setDescription(t('The name prefix of the Bibliographic Contributor entity.'))
+      ->setDescription(t('e.g. Rev., Honorable but not Mr., Mrs, etc.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 256,
@@ -512,7 +512,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
 
     $fields['suffix'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Suffix'))
-      ->setDescription(t('The name suffix of the Bibliographic Contributor entity.'))
+      ->setDescription(t('e.g. Jr., Senior, O.F.M., etc.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 256,

@@ -62,7 +62,7 @@ class JournalArticleReferenceHtmlRouteProvider extends AdminHtmlRouteProvider {
           '_title' => "{$entity_type->getLabel()} revisions",
           '_controller' => '\Drupal\yabrm\Controller\JournalArticleReferenceController::revisionOverview',
         ])
-        ->setRequirement('_permission', 'access journal article reference revisions')
+        ->setRequirement('_role', 'nb_bibliography_contributor')
         ->setOption('_admin_route', TRUE);
 
       return $route;
@@ -86,7 +86,7 @@ class JournalArticleReferenceHtmlRouteProvider extends AdminHtmlRouteProvider {
           '_controller' => '\Drupal\yabrm\Controller\JournalArticleReferenceController::revisionShow',
           '_title_callback' => '\Drupal\yabrm\Controller\JournalArticleReferenceController::revisionPageTitle',
         ])
-        ->setRequirement('_permission', 'access journal article reference revisions')
+        ->setRequirement('_role', 'nb_bibliography_contributor')
         ->setOption('_admin_route', TRUE);
 
       return $route;

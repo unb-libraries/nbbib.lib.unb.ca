@@ -62,7 +62,7 @@ class ThesisReferenceHtmlRouteProvider extends AdminHtmlRouteProvider {
           '_title' => "{$entity_type->getLabel()} revisions",
           '_controller' => '\Drupal\yabrm\Controller\ThesisReferenceController::revisionOverview',
         ])
-        ->setRequirement('_permission', 'access thesis reference revisions')
+        ->setRequirement('_role', 'nb_bibliography_contributor')
         ->setOption('_admin_route', TRUE);
 
       return $route;
@@ -86,7 +86,7 @@ class ThesisReferenceHtmlRouteProvider extends AdminHtmlRouteProvider {
           '_controller' => '\Drupal\yabrm\Controller\ThesisReferenceController::revisionShow',
           '_title_callback' => '\Drupal\yabrm\Controller\ThesisReferenceController::revisionPageTitle',
         ])
-        ->setRequirement('_permission', 'access thesis reference revisions')
+        ->setRequirement('_role', 'nb_bibliography_contributor')
         ->setOption('_admin_route', TRUE);
 
       return $route;

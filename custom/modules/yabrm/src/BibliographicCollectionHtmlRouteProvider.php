@@ -62,7 +62,7 @@ class BibliographicCollectionHtmlRouteProvider extends AdminHtmlRouteProvider {
           '_title' => "{$entity_type->getLabel()} revisions",
           '_controller' => '\Drupal\yabrm\Controller\BibliographicCollectionController::revisionOverview',
         ])
-        ->setRequirement('_permission', 'access bibliographic collection revisions')
+        ->setRequirement('_role', 'nb_bibliography_contributor')
         ->setOption('_admin_route', TRUE);
 
       return $route;
@@ -86,7 +86,7 @@ class BibliographicCollectionHtmlRouteProvider extends AdminHtmlRouteProvider {
           '_controller' => '\Drupal\yabrm\Controller\BibliographicCollectionController::revisionShow',
           '_title_callback' => '\Drupal\yabrm\Controller\BibliographicCollectionController::revisionPageTitle',
         ])
-        ->setRequirement('_permission', 'access bibliographic collection revisions')
+        ->setRequirement('_role', 'nb_bibliography_contributor')
         ->setOption('_admin_route', TRUE);
 
       return $route;

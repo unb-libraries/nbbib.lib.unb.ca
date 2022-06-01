@@ -37,6 +37,7 @@ permissions:
   - 'delete all revisions'
   - 'delete all thesis reference revisions'
   - 'delete any static_content_page content'
+  - 'delete bibliographic contributor entities'
   - 'delete book reference entities'
   - 'delete book section reference entities'
   - 'delete journal article reference entities'

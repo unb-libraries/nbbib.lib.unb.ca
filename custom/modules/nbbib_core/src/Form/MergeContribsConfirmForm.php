@@ -267,8 +267,8 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
 
       // Prepare confirmation message.
       $msg = "$count record(s) merged into the $name Bibliographic Contributor.
-        <br><b>Please wait a few seconds for the bibliography items list to
-        update.</b>";
+        <br><b>Please wait a few seconds and refresh this page to see the
+        complete listing of merged items.</b>";
       $this->messenger->addMessage($this->t($msg));
 
       // Redirect to contributor main display.

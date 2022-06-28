@@ -160,11 +160,12 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
           $dupe_inst = $dupe->getInstitutionName();
 
           if ($dupe_inst) {
-            $dupe_names[$did] = $contrib_inst;
+            $dupe_names[$did] = $dupe_inst;
           }
           else {
             $dupe_names[$did] = trim(
-              $dupe->getFirstName() . ' ' . $dupe->getLastName()
+              $dupe->getPrefix() . ' ' . $dupe->getFirstName() . ' ' .
+              $dupe->getLastName() . ' ' . $dupe->getSuffix()
             );
           }
         }

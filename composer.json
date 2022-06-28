@@ -12,9 +12,6 @@
   "minimum-stability": "dev",
   "name": "unb-libraries/nbbib.lib.unb.ca",
   "prefer-stable": true,
-  "require": {
-    "unb-libraries/unb_lib_theme": "dev-9.x-bootstrap-3.x"
-  },
   "require-dev": {
     "unb-libraries/dockworker-drupal": "^5"
   },

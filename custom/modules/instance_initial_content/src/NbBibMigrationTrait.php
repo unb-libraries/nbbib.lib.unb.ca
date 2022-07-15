@@ -15,10 +15,10 @@ trait NbBibMigrationTrait {
    */
   public function getMigrations() {
     return [
-      'nbbib_0_new_brunswickana_1_journal_articles' => 'New Brunswickana',
-      'nbbib_0_new_brunswickana_2_books' => 'New Brunswickana',
-      'nbbib_0_new_brunswickana_3_book_sections' => 'New Brunswickana',
-      'nbbib_0_new_brunswickana_4_theses' => 'New Brunswickana',
+      'nbbib_0_new_brunswickana_1_journal_articles' => 'New Brunswick Imprints',
+      'nbbib_0_new_brunswickana_2_books' => 'New Brunswick Imprints',
+      'nbbib_0_new_brunswickana_3_book_sections' => 'New Brunswick Imprints',
+      'nbbib_0_new_brunswickana_4_theses' => 'New Brunswick Imprints',
       'nbbib_1_religion_anglican_1_journal_articles' => 'Religion: Anglican',
       'nbbib_1_religion_anglican_2_books' => 'Religion: Anglican',
       'nbbib_1_religion_anglican_3_book_sections' => 'Religion: Anglican',

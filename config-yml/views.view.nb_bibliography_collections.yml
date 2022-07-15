@@ -199,7 +199,22 @@ display:
           empty: true
           content: 'The search did not match any records.'
           tokenize: false
-      sorts: {  }
+      sorts:
+        name:
+          id: name
+          table: yabrm_collection
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: yabrm_collection
+          entity_field: name
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       arguments: {  }
       filters: {  }
       style:
@@ -219,17 +234,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: result
-          empty: false
-          content: 'Displaying @start - @end of @total'
+      header: {  }
       footer: {  }
       display_extenders: {  }
     cache_metadata:

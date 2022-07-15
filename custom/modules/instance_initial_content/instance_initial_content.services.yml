@@ -1,6 +1,7 @@
 services:
   instance_initial_content.0_reference_migrate_subscriber:
     class: Drupal\instance_initial_content\Event\ReferenceMigrateEvent
+    arguments: ['@entity_type.manager']
     tags:
       - { name: event_subscriber }
   instance_initial_content.0_reference_migrate_subscriber_paragraphs:

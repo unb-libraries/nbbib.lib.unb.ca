@@ -2,9 +2,13 @@
 
 namespace Drupal\instance_initial_content\Event;
 
+use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\instance_initial_content\NbBibMigrationTrait;
-use Drupal\migrate_plus\Event\MigrateEvents;
+use Drupal\migrate\Event\MigrateEvents;
+use Drupal\migrate\Event\MigrateImportEvent;
+use Drupal\migrate_plus\Event\MigrateEvents as MigratePlusEvents;
 use Drupal\migrate_plus\Event\MigratePrepareRowEvent;
+use Drupal\yabrm\Entity\BibliographicCollection;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -15,17 +19,35 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
   use NbBibMigrationTrait;
 
   /**
+   * Dependency injection for entity_type.manager.
+   *
+   * @var Drupal\Core\Entity\EntityTypeManager
+   */
+  protected $typeManager;
+
+  /**
+   * Constructs a new ReferenceMigrateParagraphEvent object.
+   *
+   * @param Drupal\Core\Entity\EntityTypeManager $type_manager
+   *   Dependency injection for entity_type.manager.
+   */
+  public function __construct(EntityTypeManager $type_manager) {
+    $this->typeManager = $type_manager;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
-    $events[MigrateEvents::PREPARE_ROW][] = ['onPrepareRow', 0];
+    $events[MigratePlusEvents::PREPARE_ROW][] = ['onPrepareRow', 0];
+    $events[MigrateEvents::POST_IMPORT][] = ['onPostImport', 0];
     return $events;
   }
 
   /**
    * React to a new row.
    *
-   * @param \Drupal\migrate_plus\Event\MigratePrepareRowEvent $event
+   * @param Drupal\migrate_plus\Event\MigratePrepareRowEvent $event
    *   The prepare-row event.
    */
   public function onPrepareRow(MigratePrepareRowEvent $event) {
@@ -144,6 +166,34 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
           $row->setSourceProperty('physical_description', $split_pages[1]);
         }
       }
+    }
+  }
+
+  /**
+   * React to post-import.
+   *
+   * @param Drupal\migrate\Event\MigrateImportEvent $event
+   *   The post-import event.
+   */
+  public function onPostImport(MigrateImportEvent $event) {
+    // Create default manual collection 'Bibliographies'.
+    $collection_name = 'Bibliographies';
+
+    $existing = $this->typeManager->getStorage('yabrm_collection')
+      ->getQuery()
+      ->condition('name', $collection_name)
+      ->execute();
+
+    reset($existing);
+    $col_id = key($existing);
+
+    // Create collection if doesn't exist.
+    if (empty($col_id)) {
+      $collection = BibliographicCollection::create([
+        'name' => $collection_name,
+      ]);
+
+      $collection->save();
     }
   }
 

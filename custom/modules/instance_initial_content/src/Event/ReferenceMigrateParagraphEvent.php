@@ -30,11 +30,11 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
   /**
    * Constructs a new ReferenceMigrateParagraphEvent object.
    *
-   * @param Drupal\Core\Entity\EntityTypeManager $typeManager
+   * @param Drupal\Core\Entity\EntityTypeManager $type_manager
    *   Dependency injection for entity_type.manager.
    */
-  public function __construct(EntityTypeManager $typeManager) {
-    $this->typeManager = $typeManager;
+  public function __construct(EntityTypeManager $type_manager) {
+    $this->typeManager = $type_manager;
   }
 
   /**
@@ -47,7 +47,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
   /**
    * Subscribed event callback: MigrateEvents::POST_ROW_SAVE.
    *
-   * @param \Drupal\migrate\Event\MigratePostRowSaveEvent $event
+   * @param Drupal\migrate\Event\MigratePostRowSaveEvent $event
    *   The event triggered.
    */
   public function onPostRowSave(MigratePostRowSaveEvent $event) {
@@ -203,15 +203,15 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
   /**
    * Create contributor paragraph entities for a row.
    *
-   * @param \Drupal\migrate\Row $row
+   * @param Drupal\migrate\Row $row
    *   The row of the migration.
    * @param string $contrib_role
    *   The contributor role.
    *
-   * @return \Drupal\paragraphs\Entity\Paragraph[]
+   * @return Drupal\paragraphs\Entity\Paragraph[]
    *   The created paragraph entities
    *
-   * @throws \Drupal\Core\Entity\EntityStorageException
+   * @throws Drupal\Core\Entity\EntityStorageException
    */
   public function createContributors(Row $row, $contrib_role) {
     // Contributors.

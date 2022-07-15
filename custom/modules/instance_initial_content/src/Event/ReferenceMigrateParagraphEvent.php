@@ -196,6 +196,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $reference->setCollections($collections);
       $reference->setTopics($topics);
       $reference->setArchive($archives);
+      $reference->setPublished(FALSE);
       $reference->save();
     }
   }

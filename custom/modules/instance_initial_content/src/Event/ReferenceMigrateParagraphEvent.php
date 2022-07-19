@@ -166,7 +166,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
         $url = [
           'uri' => $uri,
-          'title' => "Zotero URL",
+          'title' => "URL",
           'options' => [
             'attributes' => [
               'target' => '_blank',

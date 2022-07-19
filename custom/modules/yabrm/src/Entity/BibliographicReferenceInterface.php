@@ -85,7 +85,7 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
    * Sets the published status of a Bibliographic Reference.
    *
    * @param bool $published
-   *   TRUE to set this Bibliographic Reference to published, FALSE to set it to unpublished.
+   *   TRUE if published, FALSE if unpublished.
    *
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.

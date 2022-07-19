@@ -169,7 +169,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           'title' => "Zotero URL",
           'options' => [
             'attributes' => [
-            'target' => '_blank',
+              'target' => '_blank',
             ],
           ],
         ];

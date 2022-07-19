@@ -304,7 +304,7 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   /**
    * Gets the Bibliographic Reference URL.
    *
-   * @return string
+   * @return array
    *   URL of the Bibliographic Reference.
    */
   public function getUrl();
@@ -312,13 +312,13 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   /**
    * Sets the Bibliographic Reference URL.
    *
-   * @param string $url
+   * @param array $url
    *   The Bibliographic Reference URL.
    *
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.
    */
-  public function setUrl($url);
+  public function setUrl(array $url);
 
   /**
    * Gets the Bibliographic Reference Abstract Note.

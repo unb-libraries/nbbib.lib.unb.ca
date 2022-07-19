@@ -158,6 +158,25 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
       $archives[] = $arch_id ? $arch_id : NULL;
 
+      // URL.
+      $source_url = $row->getSourceProperty('url');
+      $uri = strpos($source_url, 'http') === 0 ? $source_url : NULL;
+
+      if ($uri) {
+
+        $url = [
+          'uri' => $uri,
+          'title' => "Zotero URL",
+          'options' => [
+            'attributes' => [
+            'target' => '_blank',
+            ],
+          ],
+        ];
+
+        $reference->setUrl($url);
+      }
+
       $reference->setContributors($contributors);
       $reference->setPublicationYear($pub_year);
       $reference->setCollections($collections);

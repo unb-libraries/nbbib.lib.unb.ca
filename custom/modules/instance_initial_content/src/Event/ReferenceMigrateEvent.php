@@ -129,18 +129,6 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
 
       $row->setSourceProperty('language', $language);
 
-      // URL.
-      $source_url = $row->getSourceProperty('url');
-      $uri = strpos($source_url, 'http') ? $source_url : NULL;
-
-      $url = [
-        'uri' => $uri,
-        'title' => "Zotero URL",
-        'options' => [],
-      ];
-
-      $row->setSourceProperty('url', $url);
-
       // Number of pages.
       $source_pages = trim($row->getSourceProperty('num_pages'));
 

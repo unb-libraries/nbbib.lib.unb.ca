@@ -775,7 +775,7 @@ display:
           separator: ''
           hide_empty: false
       query:
-        type: views_query
+        type: search_api_query
         options:
           bypass_access: false
           skip_access: false
@@ -2410,12 +2410,12 @@ display:
         operator: AND
         groups: {  }
       query:
-        type: views_query
+        type: search_api_query
         options:
-          contextual_filters_or: true
-          skip_access: 0
-          bypass_access: 0
+          bypass_access: false
+          skip_access: false
           preserve_facet_query_args: false
+          contextual_filters_or: true
       defaults:
         cache: false
         query: false

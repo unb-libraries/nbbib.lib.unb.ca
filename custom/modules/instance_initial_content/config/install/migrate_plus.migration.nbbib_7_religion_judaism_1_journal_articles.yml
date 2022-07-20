@@ -203,7 +203,6 @@ process:
 
   external_key_ref: key
   title: title
-  url: url
   abstract_note: abstract_note
   publication_year: publication_year
   publication_month: publication_month

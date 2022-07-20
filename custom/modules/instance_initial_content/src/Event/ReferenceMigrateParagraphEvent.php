@@ -160,13 +160,13 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
       // URL.
       $source_url = $row->getSourceProperty('url');
-      $uri = strpos($source_url, 'http') === 0 ? $source_url : NULL;
+      $uri = substr(trim($source_url), 0, 4) === 'http' ? $source_url : NULL;
 
       if ($uri) {
 
         $url = [
           'uri' => $uri,
-          'title' => "URL",
+          'title' => $uri,
           'options' => [
             'attributes' => [
               'target' => '_blank',

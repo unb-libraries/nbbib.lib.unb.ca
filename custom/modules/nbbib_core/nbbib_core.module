@@ -24,10 +24,6 @@ function nbbib_core_cron() {
   $last_day = date('d', $last);
   $current_hour = date('g');
 
-  // For server testing. REMOVE!!!
-  $last_day = 0;
-  $current_hour = 2;
-
   // If it's not the same day (at least 24h have passed) and it's 12-3am local...
   if ($last_day != date('d') and $current_hour < 3) {
     // Get all contributor ids with no matching contributor paragraphs.

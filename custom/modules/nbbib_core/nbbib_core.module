@@ -7,10 +7,43 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Queue\QueueFactory;
+use Drupal\Core\Queue\QueueInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\Core\Messenger\MessengerInterface;
+
+/**
+ * Implements hook_cron().
+ */
+function nbbib_core_cron() {
+  // Get last cron run time.
+  $last = \Drupal::state()->get('nbbib_core.cron_last_run', REQUEST_TIME);
+  // Get only the day.
+  $last_day = date('d', $last);
+  $last_day = 1;
+
+  // If it's not the same day (at least 24h have passed)...
+  if ($last_day != date('d')) {
+    // Get all contributor ids.
+    $cids = \Drupal::entityTypeManager()
+      ->getStorage('yabrm_contributor')
+      ->getQuery()
+      ->execute();
+
+    // Call contrib cleanup queue.
+    /** @var QueueFactory $queue_factory */
+    $queue_factory = \Drupal::service('queue');
+    /** @var QueueInterface $queue */
+    $queue = $queue_factory->get('contrib_cleanup');
+
+    // Pass each contrib id to clanup queue.
+    foreach ($cids as $cid) {
+      // $queue->cleanupContrib($cid);
+    }
+  }
+}
 
 /**
  * Implements hook_theme().

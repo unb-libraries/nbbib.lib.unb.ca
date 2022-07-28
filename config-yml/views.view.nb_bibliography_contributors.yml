@@ -413,6 +413,7 @@ display:
         type: none
         options:
           offset: 0
+      empty: {  }
       arguments:
         sort_name:
           id: sort_name
@@ -469,6 +470,7 @@ display:
           separator: ''
           hide_empty: false
       defaults:
+        empty: false
         style: false
         row: false
         fields: false

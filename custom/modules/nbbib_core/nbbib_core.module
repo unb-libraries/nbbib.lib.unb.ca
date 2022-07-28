@@ -22,15 +22,22 @@ function nbbib_core_cron() {
   $last = \Drupal::state()->get('nbbib_core.cron_last_run', REQUEST_TIME);
   // Get only the day.
   $last_day = date('d', $last);
-  $last_day = 1;
+  $current_hour = date('g');
 
-  // If it's not the same day (at least 24h have passed)...
-  if ($last_day != date('d')) {
-    // Get all contributor ids.
-    $cids = \Drupal::entityTypeManager()
-      ->getStorage('yabrm_contributor')
-      ->getQuery()
-      ->execute();
+  // For server testing. REMOVE!!!
+  $last_day = 0;
+  $current_hour = 2;
+
+  // If it's not the same day (at least 24h have passed) and it's 12-3am local...
+  if ($last_day != date('d') and $current_hour < 3) {
+    // Get all contributor ids with no matching contributor paragraphs.
+    $query = \Drupal::database()->query(
+      'SELECT id
+      FROM yabrm_contributor
+      WHERE id NOT IN (SELECT field_yabrm_contributor_person_target_id FROM paragraph__field_yabrm_contributor_person)'
+    );
+
+    $contribs = $query->fetchAll();
 
     // Call contrib cleanup queue.
     /** @var QueueFactory $queue_factory */
@@ -38,9 +45,11 @@ function nbbib_core_cron() {
     /** @var QueueInterface $queue */
     $queue = $queue_factory->get('contrib_cleanup');
 
-    // Pass each contrib id to clanup queue.
-    foreach ($cids as $cid) {
-      // $queue->cleanupContrib($cid);
+    // Pass each contrib id to cleanup queue.
+    foreach ($contribs as $contrib) {
+      $item = new \stdClass();
+      $item->cid = $contrib->id;
+      $queue->createItem($item);
     }
   }
 }

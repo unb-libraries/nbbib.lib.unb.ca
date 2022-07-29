@@ -18,18 +18,12 @@ use Drupal\Core\Messenger\MessengerInterface;
  * Implements hook_cron().
  */
 function nbbib_core_cron() {
-  // Get last cron run time.
-  $last = \Drupal::state()->get('nbbib_core.cron_last_run', REQUEST_TIME);
-  // Get only the day.
-  $last_day = date('d', $last);
-  \Drupal::logger('nbbib_core')->notice("Last execution on day [$last_day].");
-  $current_day = date('d');
-  \Drupal::logger('nbbib_core')->notice("Current execution on day [$current_day].");
+  // Get current hour.
   $current_hour = date('g');
   \Drupal::logger('nbbib_core')->notice("Current execution on hour [$current_hour].");
 
-  // If it's not the same day (at least 24h have passed) and it's 12-3am local...
-  if ($last_day != $current_day and $current_hour < 3) {
+  // If it's it's 12-1am server time...
+  if ($current_hour < 1) {
     // Get all contributor ids with no matching contributor paragraphs.
     $query = \Drupal::database()->query(
       'SELECT id
@@ -39,19 +33,23 @@ function nbbib_core_cron() {
 
     $contribs = $query->fetchAll();
     $contrib_no = count($contribs);
-    \Drupal::logger('nbbib_core')->notice("Found [$contrib_no] orphan contributors.");
 
-    // Call contrib cleanup queue.
-    /** @var QueueFactory $queue_factory */
-    $queue_factory = \Drupal::service('queue');
-    /** @var QueueInterface $queue */
-    $queue = $queue_factory->get('contrib_cleanup');
+    // If orphans found...
+    if ($contrib_no) {
+      \Drupal::logger('nbbib_core')->notice("Found [$contrib_no] orphan contributors.");
 
-    // Pass each contrib id to cleanup queue.
-    foreach ($contribs as $contrib) {
-      $item = new \stdClass();
-      $item->cid = $contrib->id;
-      $queue->createItem($item);
+      // Call contrib cleanup queue.
+      /** @var QueueFactory $queue_factory */
+      $queue_factory = \Drupal::service('queue');
+      /** @var QueueInterface $queue */
+      $queue = $queue_factory->get('contrib_cleanup');
+
+      // Pass each contrib id to cleanup queue.
+      foreach ($contribs as $contrib) {
+        $item = new \stdClass();
+        $item->cid = $contrib->id;
+        $queue->createItem($item);
+      }
     }
   }
 }

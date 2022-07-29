@@ -55,7 +55,7 @@ class ContribCleanup extends QueueWorkerBase implements ContainerFactoryPluginIn
 
     if ($contrib) {
       $contrib->delete();
-      $this->logger->notice("Cleanup: Deleted orphan contributor [$cid]");
+      $this->logger->notice("Cleanup: Deleted orphan contributor [$cid].");
     }
   }
 

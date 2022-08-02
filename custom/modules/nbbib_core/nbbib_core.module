@@ -57,7 +57,7 @@ function nbbib_core_cron() {
     }
   }
   else {
-    \Drupal::logger('nbbib_core')->notice("No orphan contributors cleanup ran.");
+    \Drupal::logger('nbbib_core')->notice("No orphan contributor cleanup ran.");
   }
 }
 

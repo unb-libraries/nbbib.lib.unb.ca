@@ -19,11 +19,12 @@ use Drupal\Core\Messenger\MessengerInterface;
  */
 function nbbib_core_cron() {
   // Get current hour.
-  $current_hour = date('g');
+  $current_hour = date('G');
   \Drupal::logger('nbbib_core')->notice("Current execution on hour [$current_hour].");
 
-  // If it's it's 12-1am server time...
+  // If it's between 1-2am server time...
   if ($current_hour < 1) {
+    \Drupal::logger('nbbib_core')->notice("Starting orphan contributor cleanup...");
     // Get all contributor ids with no matching contributor paragraphs.
     $query = \Drupal::database()->query(
       'SELECT id
@@ -50,6 +51,9 @@ function nbbib_core_cron() {
         $item->cid = $contrib->id;
         $queue->createItem($item);
       }
+    }
+    else {
+      \Drupal::logger('nbbib_core')->notice("No orphan contributors found.");
     }
   }
 }

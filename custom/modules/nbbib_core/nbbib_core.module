@@ -5,14 +5,16 @@
  * Contains nbbib_core.module.
  */
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueInterface;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\yabrm\Entity\BibliographicContributor;
 
 /**
  * Implements hook_cron().
@@ -57,7 +59,7 @@ function nbbib_core_cron() {
     }
   }
   else {
-    \Drupal::logger('nbbib_core')->notice("No orphan contributor cleanup ran.");
+    \Drupal::logger('nbbib_core')->notice("No orphan contributor cleanup.");
   }
 }
 
@@ -403,6 +405,75 @@ function nbbib_core_user_presave(EntityInterface $entity) {
 }
 
 /**
+* Implements hook_ENTITY_presave().
+*/
+function nbbib_core_entity_presave(EntityInterface $entity) {
+  // Publish contributors if bibliographic reference becomes published.
+  $types = [
+    'yabrm_book',
+    'yabrm_book_section',
+    'yabrm_journal_article',
+    'yabrm_thesis',
+  ];
+
+  // If updated entity has a bibliographic reference type...
+  if (in_array($entity->bundle(), $types)) {
+    // If this is an update operation.
+    if ($entity->original) {
+      // Get original and new published (status) values.
+      $pub_old = $entity->original->status->getValue()[0]['value'];
+      $pub_new = $entity->status->getValue()[0]['value'];
+
+      // If the published status changed...
+      if ($pub_old != $pub_new) {
+        // Get referenced contributor paragraphs.
+        $paragraphs = $entity->contributors->getValue();
+
+        // Iterate through paragraphs.
+        foreach ($paragraphs as $paragraph) {
+          // Load paragraph object.
+          $pid = $paragraph['target_id'];
+          $p_obj = Paragraph::load($pid);
+          // If valid object.
+          if ($p_obj) {
+            // Update paragraph published status to reflect reference.
+            $p_obj->set('status', $pub_new);
+            // Save paragraph.
+            $p_obj->save();
+
+            // Get contributor id.
+            $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'];
+            // Load paragraph object.
+            $c_obj = BibliographicContributor::load($cid);
+
+            // If the reference was unpublished...
+            if (!$pub_new) {
+              // Check if contributor id is present in any published paragraphs.
+              $par_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+              $pids = $par_storage->getQuery()
+                ->condition('field_yabrm_contributor_person', $cid)
+                ->condition('status', TRUE)
+                ->execute();
+
+              // If none found...
+              if (!count($pids)) {
+                // Unpublish contributor and save.
+                $c_obj->set('status', FALSE);
+                $c_obj->save();
+              }
+            } else {
+              // Publish contributor and save.
+              $c_obj->set('status', TRUE);
+              $c_obj->save();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_entity_insert().
  */
 function nbbib_core_entity_insert(EntityInterface $entity) {
@@ -427,7 +498,7 @@ function nbbib_core_entity_update(EntityInterface $entity) {
     if (\Drupal::hasService('pathauto.generator')) {
       \Drupal::service('pathauto.generator')->updateEntityAlias($stored_entity, 'update');
     }
-
+    /*
     // Publish contributors if bibliographic reference becomes published.
     $types = [
       'yabrm_book',
@@ -468,6 +539,7 @@ function nbbib_core_entity_update(EntityInterface $entity) {
         }
       }
     }
+    */
   }
 }
 

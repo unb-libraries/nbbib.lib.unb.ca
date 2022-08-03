@@ -340,6 +340,8 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $paragraph->set($value['field'], $value['value']);
     }
 
+    // Migrate all paragraphs as unpublished.
+    $paragraph->set('status', FALSE);
     $paragraph->save();
     return $paragraph;
   }

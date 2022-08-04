@@ -468,7 +468,7 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
                 $c_obj->set('status', TRUE);
                 $c_obj->save();
               }
-          }
+            }
           }
         }
       }

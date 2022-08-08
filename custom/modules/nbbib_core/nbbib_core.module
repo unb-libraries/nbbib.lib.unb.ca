@@ -14,6 +14,8 @@ use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\yabrm\Entity\BibliographicContributor;
 
 /**
@@ -148,6 +150,30 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
     $form['published']['#options']['0'] = 'No';
   }
 
+}
+
+/**
+ * Implements hook_views_query_alter().
+ * Adds published filter for contributors view only if user is not editor.
+ */
+
+function nbbib_core_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  try {
+    $userCurrent = \Drupal::currentUser();
+    $uid = $userCurrent->id();
+    // For non-editor users…
+    if($view->id() === 'nb_bibliography_citations' and $view->getTitle() === 'page_3' and !$userCurrent->hasRole('nb_bibliography_contributor')) {
+      // …add a WHERE condition to only display published content.
+      $query->addWhere(0, 'status', TRUE);
+    }
+  }
+  catch(Error $e) {
+    drupal_set_message('The server encountered a problem. Please contact the site\'s administrator.', 'error');
+    \Drupal::logger('nbbib_core')->error("Error adding filter to view in nbbib_core.module : %e",
+      ['%e' => $e]
+    );
+    return;
+  }
 }
 
 /**

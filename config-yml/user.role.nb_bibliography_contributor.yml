@@ -10,6 +10,7 @@ dependencies:
   module:
     - filter
     - node
+    - paragraphs
     - system
     - taxonomy
     - toolbar
@@ -74,7 +75,10 @@ permissions:
   - 'view published thesis reference entities'
   - 'view static_content_page revisions'
   - 'view the administration theme'
+  - 'view unpublished bibliographic collection entities'
+  - 'view unpublished bibliographic contributor entities'
   - 'view unpublished book reference entities'
   - 'view unpublished book section reference entities'
   - 'view unpublished journal article reference entities'
+  - 'view unpublished paragraphs'
   - 'view unpublished thesis reference entities'

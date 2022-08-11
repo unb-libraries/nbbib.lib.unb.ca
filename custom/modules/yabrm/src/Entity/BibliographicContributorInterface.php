@@ -139,21 +139,21 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
   public function setSuffix($suffix);
 
   /**
-   * Gets the Bibliographic Collection description.
+   * Gets the Bibliographic Contributor description.
    *
    * @return string
-   *   Description of the Bibliographic Collection.
+   *   Description of the Bibliographic Contributor.
    */
   public function getDescription();
 
   /**
-   * Sets the Bibliographic Collection description.
+   * Sets the Bibliographic Contributor description.
    *
    * @param string $description
-   *   The Bibliographic Collection description.
+   *   The Bibliographic Contributor description.
    *
-   * @return \Drupal\yabrm\Entity\BibliographicCollectionInterface
-   *   The called Bibliographic Collection entity.
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
    */
   public function setDescription($description);
 

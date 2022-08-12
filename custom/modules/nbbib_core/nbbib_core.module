@@ -527,48 +527,6 @@ function nbbib_core_entity_update(EntityInterface $entity) {
     if (\Drupal::hasService('pathauto.generator')) {
       \Drupal::service('pathauto.generator')->updateEntityAlias($stored_entity, 'update');
     }
-    /*
-    // Publish contributors if bibliographic reference becomes published.
-    $types = [
-      'yabrm_book',
-      'yabrm_book_section',
-      'yabrm_journal_article',
-      'yabrm_thesis',
-    ];
-
-    // If updated entity has a bibliographic reference type and is published...
-    if (in_array($entity->bundle(), $types) and
-    $entity->status->getValue()[0]['value']) {
-      // Get contributors/roles (paragraphs).
-      $contribs = $entity->contributors->getValue();
-
-      // For each contributor paragraph...
-      foreach ($contribs as $contrib) {
-        // Load paragraph entity...
-        $entity_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
-        $stored_entity = $entity_storage->load($contrib['target_id']);
-        // If there is a contributor a valid entity...
-        if ($stored_entity) {
-          // Process paragraph.
-          // Get yabrm contributor id.
-          $yabrm_cid =
-            $stored_entity->field_yabrm_contributor_person->getValue()[0]['target_id'];
-          // Get yabrm contributor storage.
-          $yabrm_cs = \Drupal::entityTypeManager()->getStorage('yabrm_contributor');
-          // Instance yabrm contributor entity.
-          $contrib_entity = $yabrm_cs->load($yabrm_cid);
-
-          // If valid entity...
-          if ($contrib_entity) {
-            // Publish entity.
-            $contrib_entity->setPublished(TRUE);
-            // Save entity.
-            $contrib_entity->save();
-          }
-        }
-      }
-    }
-    */
   }
 }
 

@@ -96,7 +96,8 @@ function nbbib_core_page_attachments(array &$attachments) {
 function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id) {
 
   // Target specific exposed form (bibliography).
-  if ($form['#id'] == "views-exposed-form-nb-bibliography-citations-page-1") {
+  if ($form['#id'] == "views-exposed-form-nb-bibliography-citations-page-1" or
+    $form['#id'] == "views-exposed-form-nb-bibliography-lister-page-1") {
     // Override bibliographic_type input to dropdown.
     $form['bibliographic_type']['#type'] = "select";
     $form['bibliographic_type']['#size'] = NULL;

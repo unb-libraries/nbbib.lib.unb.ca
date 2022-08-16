@@ -22,6 +22,119 @@ display:
     display_options:
       title: Content
       fields:
+        published:
+          id: published
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: published
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api_boolean
+          label: Published
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          type: unicode-yes-no
+          type_custom_true: ''
+          type_custom_false: ''
+          not: false
+          link_to_item: false
+          use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
+        changed:
+          id: changed
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api_date
+          label: Updated
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          date_format: html_date
+          custom_date_format: ''
+          timezone: ''
+          link_to_item: false
+          use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
         date_display:
           id: date_display
           table: search_api_index_references_nbbib_lib_unb_ca
@@ -296,15 +409,15 @@ display:
           use_highlighting: false
           multi_type: ul
           multi_separator: ', '
-        published:
-          id: published
+        collections_5:
+          id: collections_5
           table: search_api_index_references_nbbib_lib_unb_ca
-          field: published
+          field: collections_5
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api_boolean
-          label: Published
+          plugin_id: search_api
+          label: Collection(s)
           exclude: false
           alter:
             alter_text: false
@@ -337,7 +450,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -345,66 +458,6 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          type: unicode-yes-no
-          type_custom_true: ''
-          type_custom_false: ''
-          not: false
-          link_to_item: false
-          use_highlighting: false
-          multi_type: separator
-          multi_separator: ', '
-        changed:
-          id: changed
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: changed
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_date
-          label: Updated
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          date_format: html_date
-          custom_date_format: ''
-          timezone: ''
           link_to_item: false
           use_highlighting: false
           multi_type: separator
@@ -686,16 +739,31 @@ display:
           row_class: ''
           default_row_class: true
           columns:
+            published: published
+            changed: changed
             date_display: date_display
             date_sort: date_sort
             bibliographic_type: bibliographic_type
             bibliographic_title: bibliographic_title
             bibliographic_authors: bibliographic_authors
-            published: published
-            changed: changed
+            collections_5: collections_5
             search_api_operations: search_api_operations
           default: changed
           info:
+            published:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            changed:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             date_display:
               sortable: false
               default_sort_order: asc
@@ -731,16 +799,9 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            published:
+            collections_5:
               sortable: true
               default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            changed:
-              sortable: true
-              default_sort_order: desc
               align: ''
               separator: ''
               empty_column: false

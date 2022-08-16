@@ -468,6 +468,15 @@ header {
         }
       }
 
+      // Content lister view.
+      .view-nb-bibliography-lister {
+
+        // Operations column.
+        .dropbutton-wrapper.dropbutton-multiple {
+          padding-right: 0 !important;
+        }
+      }
+
       // Pagination.
       .pager {
         max-width: fit-content;

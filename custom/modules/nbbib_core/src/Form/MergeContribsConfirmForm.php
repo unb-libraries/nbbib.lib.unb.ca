@@ -282,7 +282,6 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
       // Redirect to contributor merge display.
       $form_state->setRedirect('nbbib_core.merge_contribs', ['yabrm_contributor' => $this->cid]);
     }
-
   }
 
 }

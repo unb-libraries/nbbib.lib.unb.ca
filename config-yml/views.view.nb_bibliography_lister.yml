@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - search_api.index.references_nbbib_lib_unb_ca
+    - user.role.nb_bibliography_contributor
   module:
     - search_api
+    - user
 id: nb_bibliography_lister
 label: 'NB Bibliography Lister'
 module: views
@@ -544,8 +546,10 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: none
-        options: {  }
+        type: role
+        options:
+          role:
+            nb_bibliography_contributor: nb_bibliography_contributor
       cache:
         type: none
         options: {  }
@@ -845,6 +849,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.roles
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
   page_1:
@@ -861,5 +866,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.roles
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'

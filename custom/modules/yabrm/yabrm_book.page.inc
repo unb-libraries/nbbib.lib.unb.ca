@@ -246,8 +246,8 @@ function template_preprocess_yabrm_book(array &$variables) {
   }
 
   if ($pages) {
-    $pub_wad .= ', pp. ' . trim($pages);
+    $pub_wad .= ', ' . trim($pages) . ' pp.';
   }
 
-  $variables['content']['pub_wad'] = $pub_wad . '. [book]';
+  $variables['content']['pub_wad'] = $pub_wad . ' [book]';
 }

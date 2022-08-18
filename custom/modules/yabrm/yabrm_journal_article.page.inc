@@ -257,7 +257,7 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
   }
 
   if ($pages) {
-    $pub_wad .= ', pp. ' . trim($pages);
+    $pub_wad .= ', ' . trim($pages);
   }
 
   $variables['content']['pub_wad'] = $pub_wad . '. [journal article]';

@@ -236,6 +236,10 @@ function template_preprocess_yabrm_thesis(array &$variables) {
     $pub_wad .= '. ' . trim($thesis_type);
   }
 
+  if ($pages) {
+    $pub_wad .= ', ' . trim($pages) . ' pp.';
+  }
+
   // Only add period if last character is not punctuation.
   if (!preg_match("/[.!?,;:]$/", $pub_wad)) {
     $pub_wad .= '.';

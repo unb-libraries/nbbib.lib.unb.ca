@@ -212,7 +212,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       // Keep exact trimmed copy to prevent duplicate import.
       $zotero_name = $contrib_name;
       // Ensure consistent name casing.
-      $contrib_name = ucwords(mb_strtolower($contrib_name));
+      $contrib_name = ucwords($contrib_name);
       // If contributor is anonymous...
       if (strpos(mb_strtolower($contrib_name), 'anonymous')) {
         $zotero_name = $contrib_name = 'Anonymous';

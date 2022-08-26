@@ -1,0 +1,22 @@
+uuid: eb55903f-f410-47e4-aa2e-7d49bbd2abe7
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - nbbib_admin
+_core:
+  default_config_hash: NU5A_49mwLHfs5xFzMFrZ850w9pgUolxMS9NNF3vv4c
+id: nbbib_admin_help
+theme: nbbib_admin
+region: help
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

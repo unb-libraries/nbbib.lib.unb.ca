@@ -27,7 +27,7 @@ function nbbib_core_cron() {
   \Drupal::logger('nbbib_core')->notice("Current execution on hour [$current_hour].");
 
   // If it's between 12pm-1am server time...
-  if ($current_hour) {
+  if ($current_hour < 1) {
     // Cleanup orphan contribustors.
     \Drupal::logger('nbbib_core')->notice("Starting orphan contributor cleanup...");
     // Get all contributor ids with no matching contributor paragraphs.

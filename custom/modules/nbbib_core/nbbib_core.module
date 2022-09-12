@@ -64,13 +64,13 @@ function nbbib_core_cron() {
     // Cleanup orphan topics.
     \Drupal::logger('nbbib_core')->notice("Starting orphan topic term cleanup...");
     $query = \Drupal::database()->query(
-      'SELECT tid
+      "SELECT tid
       FROM taxonomy_term_field_data
-      WHERE vid = "yabrm_reference_topic"
+      WHERE vid = 'yabrm_reference_topic'
       AND tid NOT IN (SELECT topics_target_id FROM yabrm_book__topics)
       AND tid NOT IN (SELECT topics_target_id FROM yabrm_book_section__topics)
       AND tid NOT IN (SELECT topics_target_id FROM yabrm_journal_article__topics)
-      AND tid NOT IN (SELECT topics_target_id FROM yabrm_thesis__topics)'
+      AND tid NOT IN (SELECT topics_target_id FROM yabrm_thesis__topics)"
     );
 
     $topics = $query->fetchAll();
@@ -100,13 +100,13 @@ function nbbib_core_cron() {
     // Cleanup orphan archives.
     \Drupal::logger('nbbib_core')->notice("Starting orphan archive term cleanup...");
     $query = \Drupal::database()->query(
-      'SELECT tid
+      "SELECT tid
       FROM taxonomy_term_field_data
-      WHERE vid = "nbbib_archives"
+      WHERE vid = 'nbbib_archives'
       AND tid NOT IN (SELECT archive_target_id FROM yabrm_book__archive)
       AND tid NOT IN (SELECT archive_target_id FROM yabrm_book_section__archive)
       AND tid NOT IN (SELECT archive_target_id FROM yabrm_journal_article__archive)
-      AND tid NOT IN (SELECT archive_target_id FROM yabrm_thesis__archive)'
+      AND tid NOT IN (SELECT archive_target_id FROM yabrm_thesis__archive)"
     );
 
     $archives = $query->fetchAll();

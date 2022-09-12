@@ -27,7 +27,8 @@ function nbbib_core_cron() {
   \Drupal::logger('nbbib_core')->notice("Current execution on hour [$current_hour].");
 
   // If it's between 12pm-1am server time...
-  if ($current_hour < 1) {
+  if ($current_hour) {
+    // Cleanup orphan contribustors.
     \Drupal::logger('nbbib_core')->notice("Starting orphan contributor cleanup...");
     // Get all contributor ids with no matching contributor paragraphs.
     $query = \Drupal::database()->query(
@@ -59,9 +60,81 @@ function nbbib_core_cron() {
     else {
       \Drupal::logger('nbbib_core')->notice("No orphan contributors found.");
     }
+
+    // Cleanup orphan topics.
+    \Drupal::logger('nbbib_core')->notice("Starting orphan topic term cleanup...");
+    $query = \Drupal::database()->query(
+      'SELECT tid
+      FROM taxonomy_term_field_data
+      WHERE vid = "yabrm_reference_topic"
+      AND tid NOT IN (SELECT topics_target_id FROM yabrm_book__topics)
+      AND tid NOT IN (SELECT topics_target_id FROM yabrm_book_section__topics)
+      AND tid NOT IN (SELECT topics_target_id FROM yabrm_journal_article__topics)
+      AND tid NOT IN (SELECT topics_target_id FROM yabrm_thesis__topics)'
+    );
+
+    $topics = $query->fetchAll();
+    $topic_no = count($topics);
+
+    // If orphans found...
+    if ($topic_no) {
+      \Drupal::logger('nbbib_core')->notice("Found [$topic_no] orphan topics.");
+
+      // Call topics cleanup queue.
+      /** @var QueueFactory $queue_factory */
+      $queue_factory = \Drupal::service('queue');
+      /** @var QueueInterface $queue */
+      $queue = $queue_factory->get('topic_cleanup');
+
+      // Pass each contrib id to cleanup queue.
+      foreach ($topics as $topic) {
+        $item = new \stdClass();
+        $item->tid = $topics->tid;
+        $queue->createItem($item);
+      }
+    }
+    else {
+      \Drupal::logger('nbbib_core')->notice("No orphan topics found.");
+    }
+
+    // Cleanup orphan archives.
+    \Drupal::logger('nbbib_core')->notice("Starting orphan archive term cleanup...");
+    $query = \Drupal::database()->query(
+      'SELECT tid
+      FROM taxonomy_term_field_data
+      WHERE vid = "nbbib_archives"
+      AND tid NOT IN (SELECT archive_target_id FROM yabrm_book__archive)
+      AND tid NOT IN (SELECT archive_target_id FROM yabrm_book_section__archive)
+      AND tid NOT IN (SELECT archive_target_id FROM yabrm_journal_article__archive)
+      AND tid NOT IN (SELECT archive_target_id FROM yabrm_thesis__archive)'
+    );
+
+    $archives = $query->fetchAll();
+    $archive_no = count($archives);
+
+    // If orphans found...
+    if ($archive_no) {
+      \Drupal::logger('nbbib_core')->notice("Found [$archive_no] orphan archives.");
+
+      // Call topics cleanup queue.
+      /** @var QueueFactory $queue_factory */
+      $queue_factory = \Drupal::service('queue');
+      /** @var QueueInterface $queue */
+      $queue = $queue_factory->get('archive_cleanup');
+
+      // Pass each contrib id to cleanup queue.
+      foreach ($archives as $archive) {
+        $item = new \stdClass();
+        $item->tid = $archives->tid;
+        $queue->createItem($item);
+      }
+    }
+    else {
+      \Drupal::logger('nbbib_core')->notice("No orphan archives found.");
+    }
   }
   else {
-    \Drupal::logger('nbbib_core')->notice("No orphan contributor cleanup.");
+    \Drupal::logger('nbbib_core')->notice("No cleanup tasks ran at this time.");
   }
 }
 

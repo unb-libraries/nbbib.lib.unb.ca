@@ -86,7 +86,7 @@
     "drupal/inline_entity_form": "1.x-dev",
     "drupal/paragraphs": "1.15",
     "drupal/pathauto": "1.11",
-    "drupal/redirect": "1.7",
+    "drupal/redirect": "1.8",
     "drupal/redis": "1.5",
     "drupal/samlauth": "3.8",
     "drupal/search_api": "1.25",

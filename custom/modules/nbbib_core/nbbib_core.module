@@ -90,7 +90,7 @@ function nbbib_core_cron() {
       // Pass each contrib id to cleanup queue.
       foreach ($topics as $topic) {
         $item = new \stdClass();
-        $item->tid = $topics->tid;
+        $item->tid = $topic->tid;
         $queue->createItem($item);
       }
     }
@@ -126,7 +126,7 @@ function nbbib_core_cron() {
       // Pass each contrib id to cleanup queue.
       foreach ($archives as $archive) {
         $item = new \stdClass();
-        $item->tid = $archives->tid;
+        $item->tid = $archive->tid;
         $queue->createItem($item);
       }
     }

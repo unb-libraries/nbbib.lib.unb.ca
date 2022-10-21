@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains rm-contribs.php.
+ * Contains rm_paragraph.php.
  */
 
 rm_entities('paragraph');

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains rm-contribs.php.
+ * Contains rm_contribs.php.
  */
 
 rm_entities('yabrm_contributor');

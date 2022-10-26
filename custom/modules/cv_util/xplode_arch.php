@@ -17,10 +17,26 @@ $bundles = [
   'yabrm_journal_article',
 ];
 
+$to_delete = [];
+
 // Iterate through types and process.
 foreach ($bundles as $bundle) {
-  xplode_arch($bundle);
+  $new_to_delete = xplode_arch($bundle);
+  echo "\nAll entities of type [$type] processed for archives.\n";
+  $to_delete = array_merge($to_delete, $new_to_delete);
 }
+
+// Delete old, imploded archive terms.
+if (!empty($to_delete)) {
+  $term_storage = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term');
+  $entities = $term_storage->loadMultiple($to_delete);
+  $term_storage->delete($entities);
+}
+
+echo "\nThe following terms have been removed:\n";
+echo print_r($to_delete);
+echo "\n";
 
 /**
  * Iterates through entities and processes comma-exploded archive values.
@@ -28,23 +44,34 @@ foreach ($bundles as $bundle) {
 function xplode_arch($type) {
   $handler = \Drupal::entityTypeManager()->getStorage($type);
   $entities = $handler->loadMultiple(\Drupal::entityQuery($type)->execute());
+  $terms_removed = [];
 
+  // Process all 4 types of yabrm reference.
   foreach ($entities as $entity) {
+    // Get archive ids.
     $arch_ids = array_column($entity->archive->getValue(), 'target_id') ?? NULL;
 
+    // If any archive ids...
     if ($arch_ids) {
+      // Process only first archive entry (migrated values, comma sepparated).
       $arch_id = $arch_ids[0];
 
+      // Load term and get name.
       $term = Term::load($arch_id);
       $name = $term->getName();
 
+      // If the name contains commas and not 'CIHM' (known to contain commas)...
       if (str_contains($name, ',') and !str_contains($name, 'CIHM')) {
+        // Explode archive names on comma.
         $names = explode(',', $name);
         $archives = [];
 
+        // For each exploded name...
         foreach ($names as $arch_name) {
+          // Check if it exists.
           $existing = tax_term_exists($arch_name, 'name', 'nbbib_archives');
 
+          // If it exists, create it.
           if (!$existing) {
             $archive = Term::create([
               'name' => $arch_name,
@@ -53,23 +80,32 @@ function xplode_arch($type) {
 
             $archive->save();
           }
+          // If it doesn't exist, load it.
           else {
             $archive = Term::load($existing);
           }
+
+          // Add entry to multivalue archives array.
           $archives[] = ['target_id' => $archive->id()];
         }
 
+        echo "\nProcessing reference: ";
+        echo $entity->id();
+        echo "\nReplacing archive reference:\n";
+        echo print_r($entity->archive->getValue());
+        echo "\n";
+        // Update archives in yabrm reference, save, delete original multi-term.
         $entity->archive->setValue($archives);
         $entity->save();
-        $term->delete();
-
-        echo print_r($name);
+        $terms_removed[] = $term->id();
+        echo "With:\n";
         echo print_r($entity->archive->getValue());
+        echo "\n";
       }
     }
   }
 
-  echo "\nAll entities of type [$type] removed.\n";
+  return $terms_removed;
 }
 
 /**

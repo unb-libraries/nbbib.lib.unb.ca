@@ -5,7 +5,6 @@ dependencies:
   config:
     - image.style.thumbnail
   module:
-    - chosen_field
     - image
     - link
     - paragraphs
@@ -26,10 +25,14 @@ content:
     third_party_settings: {  }
     text_processing: 0
   archive:
-    type: chosen_select
+    type: entity_reference_autocomplete
     weight: -80
     region: content
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   call_number:
     type: string_textfield
@@ -40,10 +43,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   collections:
-    type: chosen_select
+    type: entity_reference_autocomplete
     weight: -168
     region: content
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   contributors:
     type: paragraphs

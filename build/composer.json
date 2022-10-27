@@ -74,6 +74,7 @@
   ],
   "require": {
     "drupal/admin_toolbar": "3.2.1",
+    "drupal/autocomplete_deluxe": "2.0.2",
     "drupal/bootstrap4": "2.1.15",
     "drupal/chosen": "3.0.3",
     "drupal/core": "9.4.8",

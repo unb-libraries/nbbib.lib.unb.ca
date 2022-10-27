@@ -68,6 +68,8 @@ function xplode_arch($type) {
 
         // For each exploded name...
         foreach ($names as $arch_name) {
+          // Trim name.
+          $arch_name = trim($arch_name);
           // Check if it exists.
           $existing = tax_term_exists($arch_name, 'name', 'nbbib_archives');
 

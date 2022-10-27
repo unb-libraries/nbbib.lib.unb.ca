@@ -22,7 +22,7 @@ $to_delete = [];
 // Iterate through types and process.
 foreach ($bundles as $bundle) {
   $new_to_delete = xplode_arch($bundle);
-  echo "\nAll entities of type [$type] processed for archives.\n";
+  echo "\nAll entities of type [$bundle] processed for archives.\n";
   $to_delete = array_merge($to_delete, $new_to_delete);
 }
 
@@ -44,7 +44,7 @@ echo "\n";
 function xplode_arch($type) {
   $handler = \Drupal::entityTypeManager()->getStorage($type);
   $entities = $handler->loadMultiple(\Drupal::entityQuery($type)->execute());
-  $terms_removed = [];
+  $terms_processed = [];
 
   // Process all 4 types of yabrm reference.
   foreach ($entities as $entity) {
@@ -71,7 +71,7 @@ function xplode_arch($type) {
           // Check if it exists.
           $existing = tax_term_exists($arch_name, 'name', 'nbbib_archives');
 
-          // If it exists, create it.
+          // If it doesn't exist, create it.
           if (!$existing) {
             $archive = Term::create([
               'name' => $arch_name,
@@ -80,12 +80,12 @@ function xplode_arch($type) {
 
             $archive->save();
           }
-          // If it doesn't exist, load it.
+          // If it exists, load it.
           else {
             $archive = Term::load($existing);
           }
 
-          // Add entry to multivalue archives array.
+          // Add entry to reference multivalue archives field array.
           $archives[] = ['target_id' => $archive->id()];
         }
 
@@ -94,10 +94,11 @@ function xplode_arch($type) {
         echo "\nReplacing archive reference:\n";
         echo print_r($entity->archive->getValue());
         echo "\n";
-        // Update archives in yabrm reference, save, delete original multi-term.
+        // Update archives in yabrm reference, save.
         $entity->archive->setValue($archives);
         $entity->save();
-        $terms_removed[] = $term->id();
+        // List original term for deletion.
+        $terms_processed[] = $term->id();
         echo "With:\n";
         echo print_r($entity->archive->getValue());
         echo "\n";
@@ -105,7 +106,7 @@ function xplode_arch($type) {
     }
   }
 
-  return $terms_removed;
+  return $terms_processed;
 }
 
 /**

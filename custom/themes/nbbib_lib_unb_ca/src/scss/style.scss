@@ -342,6 +342,11 @@ header {
 
         // Bibliographic references.
         .yabrm-reference.contrib-layout {
+          // Container.
+          > div.container {
+            margin-bottom: 1rem;
+          }
+
           // Paragraphs.
           p {
             margin-left: 1rem;
@@ -383,7 +388,8 @@ header {
 
           // Publication copies.
           #ref-copies {
-
+            margin-bottom: 1rem;
+            
             // List.
             ul {
               list-style: none;

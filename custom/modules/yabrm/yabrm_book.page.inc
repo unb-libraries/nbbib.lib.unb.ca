@@ -248,7 +248,7 @@ function template_preprocess_yabrm_book(array &$variables) {
 
   if ($pages) {
     $pub_wad .= ', ' . trim($pages);
-    $pub_wad = trim($pages) == 'n.pag.' ? $pub_wad : $pub_wad . ' pp.';
+    $pub_wad = trim($pages) == 'n. pag.' ? $pub_wad : $pub_wad . ' pp.';
   }
 
   $variables['content']['pub_wad'] = $pub_wad . ' [book]';

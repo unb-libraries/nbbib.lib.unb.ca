@@ -151,7 +151,7 @@
 
               {%- if content.num_pages|field_value[0]['#context']['value'] -%}
                 {%- set pages = content.num_pages|field_value[0]['#context']['value'] -%}
-                {%- if pages == 'n.pag.' -%}
+                {%- if pages == 'n. pag.' -%}
                   {{- pages ~ " " -}}
                 {% else %}
                   {{- pages ~ " pp. "-}}

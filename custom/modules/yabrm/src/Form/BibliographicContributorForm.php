@@ -77,29 +77,6 @@ class BibliographicContributorForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
-    /**
-     * @var \Drupal\yabrm\Entity\BibliographicContributor $entity
-     */
-    $form = parent::buildForm($form, $form_state);
-
-    if (!$this->entity->isNew()) {
-      $form['new_revision'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Create new revision'),
-        '#default_value' => FALSE,
-        '#weight' => 10,
-      ];
-    }
-
-    $entity = $this->entity;
-
-    return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function save(array $form, FormStateInterface $form_state) {
     $entity = $this->entity;
 

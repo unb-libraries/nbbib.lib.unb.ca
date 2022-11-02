@@ -40,7 +40,7 @@ use Drupal\yabrm\Entity\BibliographicReference;
  *     "revision_log_message" = "revision_log",
  *   },
  *   admin_permission = "administer book_section reference entities",
- *   set_revision_ui = TRUE,
+ *   show_revision_ui = TRUE,
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",

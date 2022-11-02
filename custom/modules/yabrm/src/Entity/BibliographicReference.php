@@ -45,7 +45,7 @@ use Drupal\user\UserInterface;
  *     "revision_log_message" = "revision_log",
  *   },
  *   admin_permission = "administer bibliographic reference entities",
- *   set_revision_ui = TRUE,
+ *   show_revision_ui = TRUE,
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",

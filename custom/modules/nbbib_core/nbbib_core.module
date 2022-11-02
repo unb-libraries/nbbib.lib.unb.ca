@@ -13,6 +13,7 @@ use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\search_api\Entity\Index;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
@@ -611,6 +612,7 @@ function nbbib_core_entity_insert(EntityInterface $entity) {
  * Implements hook_entity_update().
  */
 function nbbib_core_entity_update(EntityInterface $entity) {
+  // If any entity updates but paragraphs...
   if ($entity->bundle() != 'paragraph') {
     $entity_storage = \Drupal::entityTypeManager()->getStorage($entity->getEntityTypeId());
     $stored_entity = $entity_storage->load($entity->id());
@@ -618,12 +620,19 @@ function nbbib_core_entity_update(EntityInterface $entity) {
     if (\Drupal::hasService('pathauto.generator')) {
       \Drupal::service('pathauto.generator')->updateEntityAlias($stored_entity, 'update');
     }
+
+    // If contributor entity updates...
+    if ($entity->bundle() == 'yabrm_contributor') {
+      // Re-index associated references (updates citations).
+      $cid = $entity->id();
+      reindex_contrib_refs($cid);
+    }
   }
 }
 
 /**
- * Implements hook_entity_delete().
- */
+* Implements hook_entity_delete().
+*/
 function nbbib_core_entity_delete(EntityInterface $entity) {
   // Delete orphan paragraphs on bibliographic reference delete.
   $types = [
@@ -650,6 +659,93 @@ function nbbib_core_entity_delete(EntityInterface $entity) {
     }
   }
 
+  // If contributor entity updates...
+  if ($entity->bundle() == 'yabrm_contributor') {
+    // Re-index associated references (updates citations).
+    $cid = $entity->id();
+    reindex_contrib_refs($cid);
+  }
+}
+
+/**
+ * Immediately reindex references associated with contributor id $cid.
+ */
+function reindex_contrib_refs($cid) {
+  // Fetch all references that point to the target contributor.
+  $books = "
+    SELECT entity_id
+    FROM yabrm_book__contributors
+    WHERE contributors_target_id IN (
+      SELECT entity_id
+      FROM paragraph__field_yabrm_contributor_person
+      WHERE field_yabrm_contributor_person_target_id = $cid
+    )
+  ";
+  $sections = "
+    SELECT entity_id
+    FROM yabrm_book_section__contributors
+    WHERE contributors_target_id IN (
+      SELECT entity_id
+      FROM paragraph__field_yabrm_contributor_person
+      WHERE field_yabrm_contributor_person_target_id = $cid
+    )
+  ";
+  $articles = "
+    SELECT entity_id
+    FROM yabrm_journal_article__contributors
+    WHERE contributors_target_id IN (
+      SELECT entity_id
+      FROM paragraph__field_yabrm_contributor_person
+      WHERE field_yabrm_contributor_person_target_id = $cid
+    )
+  ";
+  $theses = "
+    SELECT entity_id
+    FROM yabrm_thesis__contributors
+    WHERE contributors_target_id IN (
+      SELECT entity_id
+      FROM paragraph__field_yabrm_contributor_person
+      WHERE field_yabrm_contributor_person_target_id = $cid
+    )
+  ";
+
+  $book_ids =
+    array_column(\Drupal::database()->query($books)->fetchAll(), 'entity_id');
+  $section_ids =
+    array_column(\Drupal::database()->query($sections)->fetchAll(), 'entity_id');
+  $article_ids =
+    array_column(\Drupal::database()->query($articles)->fetchAll(), 'entity_id');
+  $thesis_ids =
+    array_column(\Drupal::database()->query($theses)->fetchAll(), 'entity_id');
+  $index = Index::load('references_nbbib_lib_unb_ca');
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $reindex = [];
+
+  // For each reference id... create indexing id and add item to list.
+  foreach ($book_ids as $book_id) {
+    $item_id = 'entity:yabrm_book/' . $book_id . ':' . $language;
+    $reindex[$item_id] = $index->loadItem($item_id);
+  }
+  foreach ($section_ids as $section_id) {
+    $item_id = 'entity:yabrm_book_section/' . $section_id . ':' . $language;
+    $reindex[$item_id] = $index->loadItem($item_id);
+  }
+  foreach ($article_ids as $article_id) {
+    $item_id = 'entity:yabrm_journal_article/' . $article_id . ':' . $language;
+    $reindex[$item_id] = $index->loadItem($item_id);
+  }
+  foreach ($thesis_ids as $thesis_id) {
+    $item_id = 'entity:yabrm_thesis/' . $thesis_id . ':' . $language;
+    $reindex[$item_id] = $index->loadItem($item_id);
+  }
+
+  // Reindex all in list.
+  $index->indexSpecificItems($reindex);
+
+  // Prepare confirmation message.
+  $msg = "<b>Please wait a few seconds and refresh this page to see the
+    uptaded list of citations.</b>";
+  \Drupal::messenger()->addMessage(t($msg));
 }
 
 /**

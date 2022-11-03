@@ -73,7 +73,7 @@ class ThesisReferenceForm extends ContentEntityForm {
     $entity = $this->entity;
 
     // Save as a new revision if requested to do so.
-    if (!$form_state->isValueEmpty('new_revision') && $form_state->getValue('new_revision') != FALSE) {
+    if (!$form_state->isValueEmpty('revision') && $form_state->getValue('revision') != FALSE) {
       $entity->setNewRevision();
 
       // If a new revision is created, save the current user as revision author.

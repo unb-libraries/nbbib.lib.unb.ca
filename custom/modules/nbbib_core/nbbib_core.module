@@ -291,15 +291,9 @@ function top_submit_handler(&$form, $handler) {
  * Implements hook_form_alter().
  */
 function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  $form['#after_build'][] = 'sort_rev_widgets';
   // Enable content revision by default.
   if (!empty($form['revision'])) {
     $form['revision']['#default_value'] = TRUE;
-  }
-
-  // Remove revision log default value.
-  if (!empty($form['revision_log'])) {
-    $form['revision_log']['widget'][0]['value']['#default_value'] = NULL;
   }
 
   // Target all reference add/edit forms.
@@ -339,17 +333,6 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
     // Add validation.
     $form['#validate'][] = 'validate_contrib_form';
   }
-}
-
-/**
- * Implements hook_form_alter().
- */
-function sort_rev_widgets($form, FormStateInterface $form_state) {
-  $form['new_revision']['#weight'] = $form['actions']['#weight'] -2;
-  $form['revision']['#weight'] = $form['actions']['#weight'] -2;;
-  $form['revision_log']['#weight'] = $form['actions']['#weight'] -1;;
-
-  return $form;
 }
 
 /**

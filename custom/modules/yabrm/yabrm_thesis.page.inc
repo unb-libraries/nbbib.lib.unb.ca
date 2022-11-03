@@ -95,7 +95,7 @@ function template_preprocess_yabrm_thesis(array &$variables) {
         }
         elseif (strtolower($role) == 'editor') {
           $variables['content']['editors'][] = [
-            'name' => "$c_name (editor)",
+            'name' => "$c_name",
             'first_name' => $first_name,
             'last_name' => $last_name,
           ];

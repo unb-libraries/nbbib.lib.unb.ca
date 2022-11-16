@@ -50,8 +50,8 @@
     },
     "patches": {
       "drupal/core": {
-            "Fix error on entity reference creation with parentheses in name": "https://www.drupal.org/files/issues/2021-04-18/2924783-18.patch"
-        }
+        "Fix error on entity reference creation with parentheses in name": "https://www.drupal.org/files/issues/2021-04-18/2924783-18.patch"
+      }
     }
   },
   "license": "MIT",
@@ -75,7 +75,7 @@
     "drupal/paragraphs": "1.15",
     "drupal/pathauto": "1.11",
     "drupal/redirect": "1.8",
-    "drupal/redis": "1.5",
+    "drupal/redis": "1.6",
     "drupal/samlauth": "3.8",
     "drupal/search_api": "1.25",
     "drupal/search_api_autocomplete": "1.7",

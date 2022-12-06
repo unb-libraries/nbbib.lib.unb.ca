@@ -51,6 +51,8 @@ services:
     container_name: nbbib.lib.unb.ca
     depends_on:
       - drupal-mysql-lib-unb-ca
+      - drupal-redis-lib-unb-ca
+      - drupal-solr-lib-unb-ca
     expose:
       - "80"
     environment:

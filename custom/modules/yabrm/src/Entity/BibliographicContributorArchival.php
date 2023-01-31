@@ -10,7 +10,7 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 
 /**
- * Defines the Bibliographic Contributor entity.
+ * Defines the Bibliographic Contributor Archival entity.
  *
  * @ingroup yabrm
  *

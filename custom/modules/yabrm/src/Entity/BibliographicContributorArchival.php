@@ -8,6 +8,7 @@ use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Link\LinkItemInterface;
 use Drupal\user\UserInterface;
 
 /**
@@ -36,7 +37,7 @@ use Drupal\user\UserInterface;
  *     },
  *   },
  *   base_table = "yabrm_contributor_archival",
- *   revision_table = "yabrm_contributor_archival_revision",
+ *   revision_table = "yabrm_contrib_archival_revision",
  *   revision_data_table = "yabrm_contributor_archival_field_revision",
  *   revision_metadata_keys = {
  *     "revision_user" = "revision_user",
@@ -60,9 +61,9 @@ use Drupal\user\UserInterface;
  *     "edit-form" = "/yabrm/yabrm_contributor_archival/{yabrm_contributor_archival}/edit",
  *     "delete-form" = "/yabrm/yabrm_contributor_archival/{yabrm_contributor_archival}/delete",
  *     "version-history" = "/yabrm/yabrm_contributor_archival/{yabrm_contributor_archival}/revisions",
- *     "revision" = "/yabrm/yabrm_contributor_archival/{yabrm_contributor_archival}/revisions/{yabrm_contributor_archival_revision}/view",
- *     "revision_revert" = "/yabrm/yabrm_contributor_archival/{yabrm_contributor_archival}/revisions/{yabrm_contributor_archival_revision}/revert",
- *     "revision_delete" = "/yabrm/yabrm_contributor_archival/{yabrm_contributor_archival}/revisions/{yabrm_contributor_archival_revision}/delete",
+ *     "revision" = "/yabrm/yabrm_contributor_archival/{yabrm_contributor_archival}/revisions/{yabrm_contrib_archival_revision}/view",
+ *     "revision_revert" = "/yabrm/yabrm_contributor_archival/{yabrm_contributor_archival}/revisions/{yabrm_contrib_archival_revision}/revert",
+ *     "revision_delete" = "/yabrm/yabrm_contributor_archival/{yabrm_contributor_archival}/revisions/{yabrm_contrib_archival_revision}/delete",
  *     "collection" = "/yabrm/yabrm_contributor_archival",
  *   },
  *   field_ui_base_route = "yabrm_contributor_archival.settings"

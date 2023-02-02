@@ -456,6 +456,94 @@ display:
           path_case: none
           transform_dash: false
           break_phrase: false
+      filters:
+        status:
+          id: status
+          table: yabrm_contributor
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: yabrm_contributor
+          entity_field: status
+          plugin_id: boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        sort_name:
+          id: sort_name
+          table: yabrm_contributor
+          field: sort_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: yabrm_contributor
+          entity_field: sort_name
+          plugin_id: string
+          operator: starts
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: sort_name_op
+            label: 'Sort Name'
+            description: ''
+            use_operator: false
+            operator: sort_name_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: sort-initial
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              nb_bibliography_contributor: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: default
         options:
@@ -475,6 +563,8 @@ display:
         row: false
         fields: false
         arguments: false
+        filters: false
+        filter_groups: false
       display_extenders: {  }
       displays:
         page_1: page_1
@@ -601,6 +691,46 @@ display:
           transform_dash: false
           break_phrase: false
       filters:
+        status:
+          id: status
+          table: yabrm_contributor
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: yabrm_contributor
+          entity_field: status
+          plugin_id: boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
         sort_name:
           id: sort_name
           table: yabrm_contributor
@@ -632,46 +762,6 @@ display:
               anonymous: '0'
               nb_bibliography_contributor: '0'
             placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        status:
-          id: status
-          table: yabrm_contributor
-          field: status
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: yabrm_contributor
-          entity_field: status
-          plugin_id: boolean
-          operator: '='
-          value: '1'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
           is_grouped: false
           group_info:
             label: ''

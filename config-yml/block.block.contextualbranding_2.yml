@@ -1,4 +1,4 @@
-uuid: b4f18cc5-dca2-4a1d-ba3c-098265aff8b2
+uuid: 6e14dedf-4792-41b6-83db-ce8a4acac5ff
 langcode: en
 status: true
 dependencies:
@@ -10,7 +10,7 @@ dependencies:
 id: contextualbranding_2
 theme: nbbib_lib_unb_ca
 region: content
-weight: -1
+weight: 0
 provider: null
 plugin: context_branding_block
 settings:

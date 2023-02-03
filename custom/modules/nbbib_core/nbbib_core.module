@@ -735,7 +735,7 @@ function reindex_contrib_refs($cid) {
  * Implements hook_views_pre_render().
  */
 function nbbib_core_views_pre_render($view) {
-  if ($view->id() == 'nb_bibliography_citations') {
+  if (isset($view) && $view->id() == 'nb_bibliography_citations') {
     // Include current collection in view title.
     $token = !empty($view->getExposedInput()['collections_5']) ?
       $view->getExposedInput()['collections_5'] : NULL;
@@ -750,5 +750,9 @@ function nbbib_core_views_pre_render($view) {
     if (!empty($token)) {
       $view->setTitle($view->getTitle() . ' - ' . $token);
     }
+  }
+
+  if (isset($view) && $view->id() == 'nb_bibliography_contributors') {
+    $view->element['#attached']['library'][] = 'nbbib_core/contrib-alpha-pager';
   }
 }

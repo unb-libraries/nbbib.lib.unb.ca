@@ -51,6 +51,9 @@
     "patches": {
       "drupal/core": {
         "Fix error on entity reference creation with parentheses in name": "https://www.drupal.org/files/issues/2021-04-18/2924783-18.patch"
+      },
+      "drupal/search_api": {
+        "Fix views_contextual_filters_or": "https://www.drupal.org/files/issues/2023-01-09/3316665-13--views_default_group_type_or_ignored.patch"
       }
     }
   },

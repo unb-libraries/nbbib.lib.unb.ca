@@ -150,9 +150,13 @@
               {{ "Physical Description: " }}
 
               {%- if content.num_pages|field_value[0]['#context']['value'] -%}
-                {% set pages = content.num_pages|field_value[0]['#context']['value'] %}
-                {{- pages ~ " pp. "-}}
+                {%- set pages = content.num_pages|field_value[0]['#context']['value'] -%}
+                {%- if pages == 'n. pag.' -%}
+                  {{- pages ~ " " -}}
+                {% else %}
+                  {{- pages ~ " pp. "-}}
               {%- endif -%}
+            {%- endif -%}
 
               {{- content.physical_description|field_value[0]['#text']|striptags -}}
           </p>

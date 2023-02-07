@@ -39,7 +39,7 @@
 
     <div id="contributor-works">
       {% set cid = content.name['#object'].id() %}
-      <b class="works-label">Bibliography Items</b>
+      <h2 class="works-label">Bibliography Items</h2>
       {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
     </div>
   {% endif %}

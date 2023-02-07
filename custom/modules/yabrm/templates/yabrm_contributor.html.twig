@@ -20,29 +20,12 @@
   {% if content %}
     <div class="container">
       <div class="row description-pic">
-        {% if content.first_name|field_value %}
-          <div id="contrib-description" class="col-sm-8">
-            {{ content.first_name }}
-          </div>
-        {% endif %}
-        {% if content.last_name|field_value %}
-          <div id="contrib-description" class="col-sm-8">
-            {{ content.last_name }}
-          </div>
-        {% endif %}
-        {% if content.institution_name|field_value %}
-          <div id="contrib-description" class="col-sm-8">
-            {{ content.institution_name }}
-          </div>
-        {% endif %}
         {% if content.description|field_value %}
-        <br>
           <div id="contrib-description" class="col-sm-8">
             {{ content.description|field_value }}
           </div>
         {% endif %}
         {% if content.picture|field_value or content.cover %}
-          <br>
           <div id="contrib-picture" class="col-sm-4">
             {% if content.picture|field_value %}
               {{ content.picture|field_value }}
@@ -56,8 +39,7 @@
 
     <div id="contributor-works">
       {% set cid = content.name['#object'].id() %}
-      <br>
-      <b class="works-label">Bibliography Items</b>
+      <h2 class="works-label">Bibliography Items</h2>
       {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
     </div>
   {% endif %}

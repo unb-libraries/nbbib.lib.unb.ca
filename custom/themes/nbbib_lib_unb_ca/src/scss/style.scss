@@ -404,6 +404,10 @@ header {
 
         // Bibliographic contributors.
         .yabrm-contributor {
+          // Description.
+          #contrib-description {
+            padding: 0;
+          }
 
           // List of works.
           #contributor-works .works-label {

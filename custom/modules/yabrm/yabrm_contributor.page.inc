@@ -87,9 +87,9 @@ function template_preprocess_yabrm_contributor(array &$variables) {
         $variables['content']['cover'] = [
           '#theme' => 'image',
           '#uri' => $file->getFileUri(),
-          '#width' => '150',
-          '#height' => '240',
-          '#style' => '16_10_image',
+          '#width' => '300',
+          '#height' => '400',
+          '#style' => 'contrib_photo',
         ];
       }
     }

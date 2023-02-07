@@ -252,4 +252,23 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
    */
   public function setPicture(array $values);
 
+  /**
+   * Gets the Bibliographic Contributor picture caption.
+   *
+   * @return string
+   *   Picture caption of the Bibliographic Contributor.
+   */
+  public function getPicCaption();
+
+  /**
+   * Sets the Bibliographic Contributor picture caption.
+   *
+   * @param string $pic_caption
+   *   The Bibliographic Contributor picture caption.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setPicCaption($pic_caption);
+
 }

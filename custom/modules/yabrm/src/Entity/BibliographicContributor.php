@@ -317,6 +317,21 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
   /**
    * {@inheritdoc}
    */
+  public function setPicCaption($pic_caption) {
+    $this->set('pic_caption', $pic_caption);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPicCaption() {
+    return $this->get('pic_caption')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getDescription() {
     return $this->get('description')->value;
   }
@@ -554,6 +569,10 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setLabel(t('Picture'))
       ->setDescription(t('Picture of the contributor.'))
       ->setRequired(FALSE)
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'file_extensions' => 'png jpg jpeg',
+      ])
       ->setDisplayOptions(
         'view',
         [
@@ -569,6 +588,27 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
           'weight'  => 0,
         ],
       )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['pic_caption'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Picture Caption'))
+      ->setDescription(t('Contributor picture caption.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 256,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 

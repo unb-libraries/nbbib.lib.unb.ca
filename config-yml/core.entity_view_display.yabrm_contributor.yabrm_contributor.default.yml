@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.16_10_image
+    - image.style.contrib_photo
   module:
     - image
     - text
@@ -57,7 +57,7 @@ content:
     label: above
     settings:
       image_link: ''
-      image_style: 16_10_image
+      image_style: contrib_photo
       image_loading:
         attribute: lazy
     third_party_settings: {  }

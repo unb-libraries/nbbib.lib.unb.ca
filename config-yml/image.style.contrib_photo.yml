@@ -1,0 +1,15 @@
+uuid: 352efc7b-76ac-49a7-a434-dd350f79c115
+langcode: en
+status: true
+dependencies: {  }
+name: contrib_photo
+label: 'Contributor Photo (300x400)'
+effects:
+  1e037f8a-11d0-4d21-930c-65c89ab3a350:
+    uuid: 1e037f8a-11d0-4d21-930c-65c89ab3a350
+    id: image_scale
+    weight: 1
+    data:
+      width: 300
+      height: 400
+      upscale: false

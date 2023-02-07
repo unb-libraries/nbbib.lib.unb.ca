@@ -27,11 +27,18 @@
         {% endif %}
         {% if content.picture|field_value or content.cover %}
           <div id="contrib-picture" class="col-sm-4">
-            {% if content.picture|field_value %}
-              {{ content.picture|field_value }}
-            {% elseif content.cover %}
-              {{ content.cover }}
-            {% endif %}
+            <figure>
+              {% if content.picture|field_value %}
+                {{ content.picture|field_value }}
+              {% elseif content.cover %}
+                {{ content.cover }}
+              {% endif %}
+              {% if content.pic_caption|field_value %}
+                <figcaption>
+                  {{ content.pic_caption|field_value }}
+                </figcaption>
+              {% endif %}
+            </figure>
           </div>
         {% endif %}
       </div>

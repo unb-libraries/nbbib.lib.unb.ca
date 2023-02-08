@@ -52,6 +52,14 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
+  pic_caption:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
   picture:
     type: image
     label: above

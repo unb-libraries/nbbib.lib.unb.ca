@@ -46,6 +46,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  pic_caption:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   picture:
     type: image_image
     weight: 5

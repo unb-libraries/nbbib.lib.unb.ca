@@ -2,11 +2,8 @@ uuid: fb68f979-7f76-488f-a6dc-a473656bbc07
 langcode: en
 status: true
 dependencies:
-  config:
-    - image.style.16_10_image
   module:
     - entity_reference_revisions
-    - image
     - link
     - options
     - taxonomy
@@ -55,17 +52,6 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 2
-    region: content
-  cover_image:
-    type: image
-    label: above
-    settings:
-      image_link: ''
-      image_style: 16_10_image
-      image_loading:
-        attribute: lazy
-    third_party_settings: {  }
-    weight: 1
     region: content
   doi:
     type: string
@@ -274,6 +260,7 @@ content:
     region: content
 hidden:
   archive_location: true
+  cover_image: true
   external_key_ref: true
   langcode: true
   physical_description: true

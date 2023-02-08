@@ -5,11 +5,11 @@ dependencies: {  }
 name: contrib_photo
 label: 'Contributor Photo (300x400)'
 effects:
-  1e037f8a-11d0-4d21-930c-65c89ab3a350:
-    uuid: 1e037f8a-11d0-4d21-930c-65c89ab3a350
-    id: image_scale
+  ee54760c-a887-48b1-a5de-bf0599092f90:
+    uuid: ee54760c-a887-48b1-a5de-bf0599092f90
+    id: image_scale_and_crop
     weight: 1
     data:
       width: 300
       height: 400
-      upscale: false
+      anchor: center-top

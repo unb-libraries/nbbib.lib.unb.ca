@@ -569,7 +569,6 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setLabel(t('Picture'))
       ->setDescription(t('Picture of the contributor.'))
       ->setRequired(FALSE)
-      ->setRevisionable(TRUE)
       ->setSettings([
         'file_extensions' => 'png jpg jpeg',
       ])

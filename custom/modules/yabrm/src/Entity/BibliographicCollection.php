@@ -219,7 +219,6 @@ class BibliographicCollection extends RevisionableContentEntityBase implements B
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Authored by'))
       ->setDescription(t('The user ID of author of the Bibliographic Collection entity.'))
-      ->setRevisionable(TRUE)
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
       ->setTranslatable(TRUE)

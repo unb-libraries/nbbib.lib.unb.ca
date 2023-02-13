@@ -332,7 +332,28 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
 
     // Add validation.
     $form['#validate'][] = 'validate_contrib_form';
+
+    // Add after-build callback to remove text area help.
+    $form['pic_caption']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
+    $form['description']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
   }
+}
+
+/**
+ * After-build callback. Removes text are field's help.
+ */
+function _allowed_formats_remove_textarea_help($form_element, FormStateInterface $form_state) {
+
+  if (isset($form_element[0]['format'])) {
+    // All this stuff is needed to hide the help text.
+    unset($form_element[0]['format']['guidelines']);
+    unset($form_element[0]['format']['help']);
+    unset($form_element[0]['format']['#type']);
+    unset($form_element[0]['format']['#theme_wrappers']);
+    $form_element[0]['format']['format']['#access'] = FALSE;
+  }
+
+  return $form_element;
 }
 
 /**

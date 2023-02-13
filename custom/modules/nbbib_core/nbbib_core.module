@@ -766,7 +766,7 @@ function reindex_contrib_refs($cid) {
 
   // Prepare confirmation message.
   $msg = "<b>Please wait a few seconds and refresh this page to see the
-    uptaded list of citations.</b>";
+    updated list of citations.</b>";
   \Drupal::messenger()->addMessage(t($msg));
 }
 

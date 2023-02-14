@@ -235,6 +235,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['contributors'] = BaseFieldDefinition::create('entity_reference_revisions')
       ->setLabel(t('Contributor(s)'))
+      ->setDescription(t('List of contributors associated with the item.'))
       ->setRevisionable(TRUE)
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setSettings(
@@ -273,7 +274,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['url'] = BaseFieldDefinition::create('link')
       ->setLabel(t('URL'))
       ->setRevisionable(TRUE)
-      ->setDescription(t('The fully-qualified URL of the feed.'))
+      ->setDescription(t('List of fully-qualified reference URLs for the item.'))
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setDisplayOptions('form', [
         'type' => 'link',
@@ -290,7 +291,6 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['abstract_note'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Abstract Note'))
       ->setRevisionable(TRUE)
-      ->setDescription(t('Abstract Note.'))
       ->setSettings([
         'default_value' => '',
         'max_length' => 2048,
@@ -311,7 +311,6 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['publisher'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Publisher'))
-      ->setDescription(t('Publisher.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 1024,
@@ -346,7 +345,6 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
           'pqm' => 'Wolastoqey/Maliseet',
         ],
       ])
-      ->setDescription('Select the language of this reference')
       ->setDisplayOptions('form', [
         'type' => 'options_buttons',
         'weight' => 2,
@@ -362,6 +360,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['rights'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Rights'))
+      ->setDescription(t('Publishing rights for the item.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
@@ -382,7 +381,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['archive'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Archive(s)'))
-      ->setDescription(t('The archives associated to the reference.'))
+      ->setDescription(t('Archives where the item can be located.'))
       ->setRevisionable(TRUE)
       ->setSettings(
         [
@@ -423,6 +422,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['archive_location'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Archive Location'))
+      ->setDescription(t('Archive location for the item.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
@@ -504,7 +504,6 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['physical_description'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Physical Description'))
-      ->setDescription(t('Physical Description.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'default_value' => '',
@@ -526,7 +525,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['notes_private'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Notes (private/Zotero)'))
-      ->setDescription(t('Notes (private/Zotero).'))
+      ->setDescription(t('Only visible to site editors.'))
       ->setSettings([
         'default_value' => '',
         'max_length' => 2048,
@@ -547,7 +546,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['notes'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Notes'))
-      ->setDescription(t('Notes.'))
+      ->setDescription(t('Visible to site users.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'default_value' => '',
@@ -569,6 +568,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Published'))
+      ->setDescription(t('Is this entry published on the site?'))
       ->setRevisionable(TRUE)
       ->setDefaultValue(TRUE)
       ->setDisplayOptions('form', [
@@ -581,6 +581,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['collections'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Collection(s)'))
+      ->setDescription(t('Collections associated with the item.'))
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setRevisionable(TRUE)
       ->setSettings(
@@ -616,7 +617,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['nb_imprint'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('New Brunswick imprint'))
-      ->setDescription(t('Was this item printed in New Brunswick?'))
+      ->setDescription(t('Was the item printed in New Brunswick?'))
       ->setSettings(['on_label' => 'Yes', 'off_label' => 'No'])
       ->setRevisionable(TRUE)
       ->setDefaultValue('0')
@@ -640,7 +641,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['topics'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Topics'))
-      ->setDescription(t('The topics attributed to the reference.'))
+      ->setDescription(t('The topics associated with the item.'))
       ->setRevisionable(TRUE)
       ->setSettings(
         [
@@ -681,7 +682,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['cover_image'] = BaseFieldDefinition::create('image')
       ->setLabel(t('Cover Image'))
-      ->setDescription(t('The cover image for the referenced material.'))
+      ->setDescription(t('The cover image for the item.'))
       ->setRequired(FALSE)
       ->setRevisionable(FALSE)
       ->setDisplayOptions(

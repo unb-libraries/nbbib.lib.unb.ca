@@ -308,16 +308,20 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
     'yabrm_journal_article_edit_form',
   ];
 
+  // For all reference edit and add forms.
   if (in_array($form_id, $ref_forms)) {
-    // For all reference edit and add forms.
-    // Add contributor validation.
-    // $form['#validate'][] = 'validate_contrib_subform';
     // Add a top priority submit handler.
     top_submit_handler($form, 'clr_blank_contribs');
+    // Add after-build widget callback to remove text area help.
+    $form['physical_description']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
+    $form['abstract_note']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
+    $form['extra']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
+    $form['notes']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
+    $form['notes_private']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
+    // Add after-build widget callback to remove URL help text.
+    $form['url']['widget']['#after_build'][] = '_remove_url_help';
   }
 
-  // Add after-build widget callback to remove URL help text.
-  $form['url']['widget']['#after_build'][] = '_remove_url_help';
 
   $contrib_forms = [
     'yabrm_contributor_edit_form',

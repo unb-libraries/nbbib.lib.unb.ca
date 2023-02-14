@@ -314,6 +314,7 @@ class BookReference extends BibliographicReference implements BookReferenceInter
 
     $fields['place'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Place'))
+      ->setDescription(t('Place of publication for the item.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,

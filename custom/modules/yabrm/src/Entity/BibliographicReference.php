@@ -641,7 +641,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
 
     $fields['topics'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Topics'))
-      ->setDescription(t('The topics associated with the item.'))
+      ->setDescription(t('List of topics associated with the item.'))
       ->setRevisionable(TRUE)
       ->setSettings(
         [

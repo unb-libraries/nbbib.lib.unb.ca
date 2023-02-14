@@ -8,6 +8,7 @@ use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Link\LinkItemInterface;
 use Drupal\user\UserInterface;
 
 /**
@@ -347,6 +348,81 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
   /**
    * {@inheritdoc}
    */
+  public function getBirthYear() {
+    return $this->get('birth_year')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setBirthYear($year) {
+    $this->set('birth_year', $year);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDeathYear() {
+    return $this->get('death_year')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setDeathYear($year) {
+    $this->set('death_year', $year);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getNbResidences() {
+    return $this->get('nb_residences')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setNbResidences($nb_residences) {
+    $this->set('nb_residences', $nb_residences);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getArchivalNote() {
+    return $this->get('archival_note')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setArchivalNote($archival_note) {
+    $this->set('archival_note', $archival_note);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getArchival() {
+    return $this->get('archival')->referencedEntities();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setArchival($archival) {
+    $this->set('archival', $archival);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
@@ -546,24 +622,43 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['status'] = BaseFieldDefinition::create('boolean')
-      ->setLabel(t('Published'))
-      ->setDefaultValue(TRUE)
+    $fields['birth_year'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Year of Birth'))
+      ->setRevisionable(TRUE)
+      ->addPropertyConstraints('value', [
+        'Range' => [
+          'min' => 800,
+          'max' => 2048,
+        ],
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'weight' => 4,
+      ])
       ->setDisplayOptions('form', [
-        'type' => 'boolean_checkbox',
-        'weight' => 0,
-      ],
-      )
+        'weight' => 4,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['created'] = BaseFieldDefinition::create('created')
-      ->setLabel(t('Created'))
-      ->setDescription(t('The time that the entity was created.'));
-
-    $fields['changed'] = BaseFieldDefinition::create('changed')
-      ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the entity was last edited.'));
+    $fields['death_year'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Year of Death'))
+      ->setRevisionable(TRUE)
+      ->addPropertyConstraints('value', [
+        'Range' => [
+          'min' => 800,
+          'max' => 2048,
+        ],
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'weight' => 4,
+      ])
+      ->setDisplayOptions('form', [
+        'weight' => 4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['picture'] = BaseFieldDefinition::create('image')
       ->setLabel(t('Picture'))
@@ -612,6 +707,46 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['nb_residences'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Predominant New Brunswick Residences'))
+      ->setRevisionable(TRUE)
+      ->setSettings(
+        [
+          'target_type' => 'taxonomy_term',
+          'handler' => 'default:taxonomy_term',
+          'handler_settings' => [
+            'target_bundles' => [
+              'nbbib_residences' => 'nbbib_residences',
+            ],
+            'auto_create' => TRUE,
+          ],
+        ]
+      )
+      ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setRequired(FALSE)
+      ->setDisplayOptions(
+        'view',
+        [
+          'label' => 'above',
+          'weight' => 0,
+        ]
+      )
+      ->setDisplayOptions(
+        'form',
+        [
+          'type' => 'entity_reference_autocomplete',
+          'weight' => 0,
+          'settings' => [
+            'match_operator' => 'CONTAINS',
+            'size' => '10',
+            'autocomplete_type' => 'tags',
+            'placeholder' => '',
+          ],
+        ]
+      )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['description'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Description'))
       ->setDescription(t('Description of the Bibliographic Contributor entity.'))
@@ -633,6 +768,63 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
+
+    $fields['nble_url'] = BaseFieldDefinition::create('link')
+      ->setLabel(t('NBLE URL'))
+      ->setRevisionable(TRUE)
+      ->setDescription(t('Fully-qualified NBLE URL for the contributor.'))
+      ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setDisplayOptions('form', [
+        'type' => 'link_default',
+        'weight' => -3,
+      ])
+      ->setSettings([
+        'default_value' => '',
+        'max_length' => 4096,
+        'link_type' => LinkItemInterface::LINK_GENERIC,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['archival_note'] = BaseFieldDefinition::create('text_long')
+      ->setLabel(t('General Archival Note'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'default_value' => '',
+        'max_length' => 2048,
+        'text_processing' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'text_default',
+        'weight' => -3,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'text_textarea',
+        'text_processing' => 0,
+        'weight' => -3,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['status'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('Published'))
+      ->setDefaultValue(TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'boolean_checkbox',
+        'weight' => 0,
+      ],
+      )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['created'] = BaseFieldDefinition::create('created')
+      ->setLabel(t('Created'))
+      ->setDescription(t('The time that the entity was created.'));
+
+    $fields['changed'] = BaseFieldDefinition::create('changed')
+      ->setLabel(t('Changed'))
+      ->setDescription(t('The time that the entity was last edited.'));
 
     return $fields;
   }

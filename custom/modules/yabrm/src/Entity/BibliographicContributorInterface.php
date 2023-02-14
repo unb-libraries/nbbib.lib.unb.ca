@@ -156,6 +156,25 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
   public function setDescription($description);
 
   /**
+   * Gets the Bibliographic Contributor Archival(s).
+   *
+   * @return \\Drupal\yabrm\BibliographicContributorInterface[]
+   *   The Archival(s) of the Bibliographic Contributor.
+   */
+  public function getArchival();
+
+  /**
+   * Sets the Bibliographic Contributor Archival(s).
+   *
+   * @param \Drupal\yabrm\BibliographicContributorInterface[] $archival
+   *   The Bibliographic Contributor archival(s).
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setArchival(array $archival);
+
+  /**
    * Gets the Bibliographic Contributor creation timestamp.
    *
    * @return int
@@ -270,5 +289,81 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
    *   The called Bibliographic Contributor entity.
    */
   public function setPicCaption($pic_caption);
+
+  /**
+   * Gets the birth year of the contributor.
+   *
+   * @return int
+   *   The birth year of the contributor..
+   */
+  public function getBirthYear();
+
+  /**
+   * Sets the birth year of the contributor.
+   *
+   * @param int $year
+   *   Integer birth year.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setBirthYear($year);
+
+  /**
+   * Gets the death year of the contributor.
+   *
+   * @return int
+   *   The death year of the contributor..
+   */
+  public function getDeathYear();
+
+  /**
+   * Sets the death year of the contributor.
+   *
+   * @param int $year
+   *   Integer death year.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setDeathYear($year);
+
+  /**
+   * Gets the Bibliographic Contributor NB residences.
+   *
+   * @return \Drupal\taxonomy\TermInterface[]
+   *   The residence(s) of the Bibliographic Reference.
+   */
+  public function getNbResidences();
+
+  /**
+   * Sets the Bibliographic Contributor NB residences.
+   *
+   * @param \Drupal\taxonomy\TermInterface[] $nb_residences
+   *   The Bibliographic Contributor residence(s).
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setNbResidences(array $nb_residences);
+
+  /**
+   * Gets the Bibliographic Contributor Archival Note.
+   *
+   * @return string
+   *   Archival note of the Bibliographic Contributor.
+   */
+  public function getArchivalNote();
+
+  /**
+   * Sets the Bibliographic Contributor Archival Note.
+   *
+   * @param string $archival_note
+   *   The Bibliographic Contributor Archival Note.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setArchivalNote($archival_note);
 
 }

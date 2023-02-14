@@ -344,6 +344,17 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
     $form['pic_caption']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
     $form['description']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
   }
+
+  $archival_forms = [
+    'yabrm_contributor_archival_edit_form',
+    'yabrm_contributor_archival_edit_form',
+  ];
+
+  if (in_array($form_id, $archival_forms)) {
+    // Add after-build widget callback to remove text area help.
+    $form['title']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
+    $form['location']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
+  };
 }
 
 /**

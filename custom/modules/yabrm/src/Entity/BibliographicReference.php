@@ -274,7 +274,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $fields['url'] = BaseFieldDefinition::create('link')
       ->setLabel(t('URL'))
       ->setRevisionable(TRUE)
-      ->setDescription(t('List of fully-qualified reference URLs for the item.'))
+      ->setDescription(t('List of fully-qualified URLs for the item.'))
       ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setDisplayOptions('form', [
         'type' => 'link',

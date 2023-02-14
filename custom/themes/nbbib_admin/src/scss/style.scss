@@ -1,5 +1,11 @@
+// Hide contributor delete.
 #contributors-values {
   div[class$="form-delete"] {
     visibility: hidden;
   }
+}
+
+// Hide text formatting panels in IEF.
+.ief-form .js-text-format-wrapper .js-filter-wrapper {
+  display: none;
 }

@@ -6,6 +6,7 @@ dependencies:
     - image.style.contrib_photo
   module:
     - image
+    - search_api_solr
     - text
     - yabrm
 id: yabrm_contributor.yabrm_contributor.default
@@ -46,17 +47,18 @@ content:
     region: content
   name:
     type: string
-    label: hidden
+    label: visually_hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     weight: 1
     region: content
   pic_caption:
-    type: string
-    label: above
+    type: solr_highlighted_text_default
+    label: visually_hidden
     settings:
-      link_to_entity: false
+      prefix: '<strong>'
+      suffix: '</strong>'
     third_party_settings: {  }
     weight: -4
     region: content

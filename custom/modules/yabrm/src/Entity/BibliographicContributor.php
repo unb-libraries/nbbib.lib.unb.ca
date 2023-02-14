@@ -590,23 +590,24 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['pic_caption'] = BaseFieldDefinition::create('string')
+    $fields['pic_caption'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Picture Caption'))
       ->setDescription(t('Contributor picture caption.'))
       ->setRevisionable(TRUE)
       ->setSettings([
-        'max_length' => 256,
+        'default_value' => '',
+        'max_length' => 2048,
         'text_processing' => 0,
       ])
-      ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
+        'type' => 'text_textarea',
+        'weight' => -3,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
+        'type' => 'text_textarea',
+        'text_processing' => 0,
+        'weight' => -3,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);

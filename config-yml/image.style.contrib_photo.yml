@@ -3,13 +3,13 @@ langcode: en
 status: true
 dependencies: {  }
 name: contrib_photo
-label: 'Contributor Photo (300x400)'
+label: 'Contributor Photo (300w)'
 effects:
-  ee54760c-a887-48b1-a5de-bf0599092f90:
-    uuid: ee54760c-a887-48b1-a5de-bf0599092f90
-    id: image_scale_and_crop
+  78675c07-ff41-402c-9d41-266f98c21565:
+    uuid: 78675c07-ff41-402c-9d41-266f98c21565
+    id: image_scale
     weight: 1
     data:
       width: 300
-      height: 400
-      anchor: center-top
+      height: null
+      upscale: true

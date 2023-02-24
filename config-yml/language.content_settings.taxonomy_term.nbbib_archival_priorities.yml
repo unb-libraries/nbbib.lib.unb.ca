@@ -1,0 +1,11 @@
+uuid: de5e21f0-0350-43a1-ac54-e8f07d5cd064
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.nbbib_archival_priorities
+id: taxonomy_term.nbbib_archival_priorities
+target_entity_type_id: taxonomy_term
+target_bundle: nbbib_archival_priorities
+default_langcode: site_default
+language_alterable: false

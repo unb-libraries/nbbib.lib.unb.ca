@@ -1,0 +1,11 @@
+uuid: 85f858b2-fef9-4019-bcd2-959bfa7623c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.nbbib_locations
+id: taxonomy_term.nbbib_locations
+target_entity_type_id: taxonomy_term
+target_bundle: nbbib_locations
+default_langcode: site_default
+language_alterable: false

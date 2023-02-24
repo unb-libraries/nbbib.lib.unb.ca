@@ -47,7 +47,7 @@ use Drupal\user\UserInterface;
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",
- *     "label" = "name",
+ *     "label" = "title",
  *     "uuid" = "uuid",
  *     "uid" = "user_id",
  *     "langcode" = "langcode",
@@ -129,15 +129,15 @@ class ContribArchival extends EditorialContentEntityBase implements ContribArchi
   /**
    * {@inheritdoc}
    */
-  public function getName() {
-    return $this->get('name')->value;
+  public function getTitle() {
+    return $this->get('title')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setName($name) {
-    $this->set('name', $name);
+  public function setTitle($title) {
+    $this->set('title', $title);
     return $this;
   }
 
@@ -220,9 +220,9 @@ class ContribArchival extends EditorialContentEntityBase implements ContribArchi
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Name'))
-      ->setDescription(t('The name of the Contrib Archival entity.'))
+    $fields['title'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Title'))
+      ->setDescription(t('The title of the Contrib Archival entity.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 50,

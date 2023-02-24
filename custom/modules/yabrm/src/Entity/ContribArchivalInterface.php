@@ -20,23 +20,23 @@ interface ContribArchivalInterface extends ContentEntityInterface, RevisionLogIn
    */
 
   /**
-   * Gets the Contrib Archival name.
+   * Gets the Contrib Archival title.
    *
    * @return string
-   *   Name of the Contrib Archival.
+   *   Title of the Contrib Archival.
    */
-  public function getName();
+  public function getTitle();
 
   /**
-   * Sets the Contrib Archival name.
+   * Sets the Contrib Archival title.
    *
-   * @param string $name
-   *   The Contrib Archival name.
+   * @param string $title
+   *   The Contrib Archival title.
    *
    * @return \Drupal\yabrm\Entity\ContribArchivalInterface
    *   The called Contrib Archival entity.
    */
-  public function setName($name);
+  public function setTitle($title);
 
   /**
    * Gets the Contrib Archival creation timestamp.

@@ -13,6 +13,29 @@ targetEntityType: yabrm_contributor
 bundle: yabrm_contributor
 mode: default
 content:
+  archival_note:
+    type: text_textarea
+    weight: -3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    text_processing: 0
+  birth_year:
+    type: number
+    weight: 4
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  death_year:
+    type: number
+    weight: 4
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   description:
     type: text_textarea
     weight: 7
@@ -45,6 +68,24 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  nb_residences:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 10
+      placeholder: ''
+    third_party_settings: {  }
+  nble_url:
+    type: link_default
+    weight: -3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   pic_caption:
     type: string_textfield

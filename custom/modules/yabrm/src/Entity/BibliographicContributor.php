@@ -807,6 +807,40 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['archival'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Archival(s)'))
+      ->setRevisionable(TRUE)
+      ->setSettings(
+        [
+          'target_type' => 'yabrm_contrib_archival',
+          'handler' => 'default',
+        ]
+      )
+      ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setRequired(FALSE)
+      ->setDisplayOptions(
+        'view',
+        [
+          'label' => 'above',
+          'weight' => 0,
+        ]
+      )
+      ->setDisplayOptions(
+        'form',
+        [
+          'type' => 'entity_reference_autocomplete',
+          'weight' => 0,
+          'settings' => [
+            'match_operator' => 'CONTAINS',
+            'size' => '10',
+            'autocomplete_type' => 'tags',
+            'placeholder' => '',
+          ],
+        ]
+      )
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Published'))
       ->setDefaultValue(TRUE)

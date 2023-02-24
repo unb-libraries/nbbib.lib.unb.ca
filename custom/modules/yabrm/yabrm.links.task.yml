@@ -187,3 +187,29 @@ entity.yabrm_thesis.delete_form:
   title: Delete
   weight: 10
 
+# Contrib Archival routing definition
+yabrm_contrib_archival.settings_tab:
+  route_name: yabrm_contrib_archival.settings
+  title: 'Settings'
+  base_route: yabrm_contrib_archival.settings
+
+entity.yabrm_contrib_archival.canonical:
+  route_name: entity.yabrm_contrib_archival.canonical
+  base_route: entity.yabrm_contrib_archival.canonical
+  title: 'View'
+
+entity.yabrm_contrib_archival.edit_form:
+  route_name: entity.yabrm_contrib_archival.edit_form
+  base_route: entity.yabrm_contrib_archival.canonical
+  title: 'Edit'
+
+entity.yabrm_contrib_archival.version_history:
+  route_name: entity.yabrm_contrib_archival.version_history
+  base_route: entity.yabrm_contrib_archival.canonical
+  title: 'Revisions'
+
+entity.yabrm_contrib_archival.delete_form:
+  route_name:  entity.yabrm_contrib_archival.delete_form
+  base_route:  entity.yabrm_contrib_archival.canonical
+  title: Delete
+  weight: 10

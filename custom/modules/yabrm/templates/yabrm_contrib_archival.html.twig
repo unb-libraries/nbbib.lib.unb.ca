@@ -1,0 +1,22 @@
+{#
+/**
+ * @file yabrm_contrib_archival.html.twig
+ * Default theme implementation to present Contrib Archival data.
+ *
+ * This template is used when viewing Contrib Archival pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_yabrm_contrib_archival()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('yabrm_contrib_archival') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

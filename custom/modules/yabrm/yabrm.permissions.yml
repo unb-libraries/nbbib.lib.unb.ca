@@ -208,3 +208,34 @@ revert all thesis reference revisions:
 delete all thesis reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Thesis reference revisions</em> and <em>delete rights</em> for thesis reference entities in question or <em>administer thesis reference entities</em>.'
+add contrib archival entities:
+  title: 'Create new Contrib Archival entities'
+
+administer contrib archival entities:
+  title: 'Administer Contrib Archival entities'
+  description: 'Allow to access the administration form to configure Contrib Archival entities.'
+  restrict access: true
+
+delete contrib archival entities:
+  title: 'Delete Contrib Archival entities'
+
+edit contrib archival entities:
+  title: 'Edit Contrib Archival entities'
+
+view published contrib archival entities:
+  title: 'View published Contrib Archival entities'
+
+view unpublished contrib archival entities:
+  title: 'View unpublished Contrib Archival entities'
+
+view all contrib archival revisions:
+  title: 'View all Contrib Archival revisions'
+
+revert all contrib archival revisions:
+  title: 'Revert all Contrib Archival revisions'
+  description: 'Role requires permission <em>view Contrib Archival revisions</em> and <em>edit rights</em> for contrib archival entities in question or <em>administer contrib archival entities</em>.'
+
+delete all contrib archival revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Contrib Archival revisions</em> and <em>delete rights</em> for contrib archival entities in question or <em>administer contrib archival entities</em>.'
+

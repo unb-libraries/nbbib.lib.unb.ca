@@ -33,3 +33,8 @@ entity.yabrm_thesis.add_form:
   title: 'Add Thesis reference'
   appears_on:
     - entity.yabrm_thesis.collection
+entity.yabrm_contrib_archival.add_form:
+  route_name: entity.yabrm_contrib_archival.add_form
+  title: 'Add Contrib Archival'
+  appears_on:
+    - entity.yabrm_contrib_archival.collection

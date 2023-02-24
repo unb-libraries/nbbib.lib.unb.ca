@@ -96,3 +96,17 @@ yabrm_thesis.admin.structure.settings:
   description: 'Configure Thesis reference entities'
   route_name: yabrm_thesis.settings
   parent: system.admin_structure
+
+# Contrib Archival menu items definition
+entity.yabrm_contrib_archival.collection:
+  title: 'Contrib Archival list'
+  route_name: entity.yabrm_contrib_archival.collection
+  description: 'List Contrib Archival entities'
+  parent: system.admin_structure
+  weight: 100
+
+yabrm_contrib_archival.admin.structure.settings:
+  title: 'Contrib Archival settings'
+  description: 'Configure Contrib Archival entities'
+  route_name: yabrm_contrib_archival.settings
+  parent: system.admin_structure

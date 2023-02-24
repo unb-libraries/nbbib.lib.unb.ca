@@ -781,7 +781,8 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setSettings([
         'default_value' => '',
         'max_length' => 4096,
-        'link_type' => LinkItemInterface::LINK_GENERIC,
+        'link_type' => LinkItemInterface::LINK_EXTERNAL,
+        'title' => DRUPAL_DISABLED,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);

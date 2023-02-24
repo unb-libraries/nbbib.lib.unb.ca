@@ -1,0 +1,19 @@
+uuid: afa3ed55-eaaf-4ccd-b32c-690b86fc7aa7
+langcode: en
+status: true
+dependencies:
+  module:
+    - text
+    - yabrm
+id: yabrm_contrib_archival.field_scope_content
+field_name: field_scope_content
+entity_type: yabrm_contrib_archival
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

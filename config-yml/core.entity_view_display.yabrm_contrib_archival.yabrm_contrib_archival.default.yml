@@ -1,0 +1,97 @@
+uuid: f438c846-e0e3-46c1-b9f0-da383c548db4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_date_range
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_extent
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_location
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_priority
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_retrieval_number
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_scope_content
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_website
+  module:
+    - link
+    - text
+    - user
+    - yabrm
+id: yabrm_contrib_archival.yabrm_contrib_archival.default
+targetEntityType: yabrm_contrib_archival
+bundle: yabrm_contrib_archival
+mode: default
+content:
+  field_date_range:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_extent:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_location:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_priority:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_retrieval_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_scope_content:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_website:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  user_id:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

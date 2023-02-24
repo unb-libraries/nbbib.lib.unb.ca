@@ -1,0 +1,30 @@
+uuid: d07778ec-c752-40e7-aa0f-a6ebac3397d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.yabrm_contrib_archival.field_priority
+    - taxonomy.vocabulary.nbbib_archival_priorities
+  module:
+    - yabrm
+id: yabrm_contrib_archival.yabrm_contrib_archival.field_priority
+field_name: field_priority
+entity_type: yabrm_contrib_archival
+bundle: yabrm_contrib_archival
+label: Priority
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      nbbib_archival_priorities: nbbib_archival_priorities
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

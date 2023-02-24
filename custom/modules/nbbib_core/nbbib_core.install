@@ -37,4 +37,19 @@ function nbbib_core_install() {
     'language' => 'und',
     'status_code' => '301',
   ])->save();
+
+  // Contributor archival priorities.
+  $priorities = [
+    "Primary",
+    "Secondary",
+    "Tertiary",
+  ];
+
+  foreach ($priorities as $priority) {
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->create([
+      'name' => $priority,
+      'vid' => "nbbib_archival_priorities",
+    ])->save();
+  }
+
 }

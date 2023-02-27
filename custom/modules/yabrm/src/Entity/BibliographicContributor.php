@@ -772,7 +772,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
     $fields['nble_url'] = BaseFieldDefinition::create('link')
       ->setLabel(t('NBLE URL'))
       ->setRevisionable(TRUE)
-      ->setDescription(t('Fully-qualified NBLE URL for the contributor.'))
+      ->setDescription(t('Fully-qualified NBLE URL for the contributor, eg. https://nble.lib.unb.ca/browse/g/william-francis-ganong'))
       ->setDisplayOptions('form', [
         'type' => 'link_default',
         'weight' => -3,

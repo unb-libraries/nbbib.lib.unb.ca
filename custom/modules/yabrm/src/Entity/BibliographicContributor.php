@@ -773,7 +773,6 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setLabel(t('NBLE URL'))
       ->setRevisionable(TRUE)
       ->setDescription(t('Fully-qualified NBLE URL for the contributor.'))
-      ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
       ->setDisplayOptions('form', [
         'type' => 'link_default',
         'weight' => -3,

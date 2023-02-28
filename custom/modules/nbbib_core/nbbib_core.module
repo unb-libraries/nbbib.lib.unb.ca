@@ -343,6 +343,9 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
     // Add after-build widget callback to remove text area help.
     $form['pic_caption']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
     $form['description']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
+
+    // Remove default external URL field help text.
+    $form['nble_url']['widget']['#after_build'][] = '_external_url_remove_default_help';
   }
 
   $archival_forms = [
@@ -355,6 +358,7 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
     $form['title']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
     $form['location']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
   };
+
 }
 
 /**
@@ -386,6 +390,16 @@ function _allowed_formats_remove_textarea_help($form_element, FormStateInterface
     $form_element[0]['format']['format']['#access'] = FALSE;
   }
 
+  return $form_element;
+}
+
+/**
+ * After-build widget callback. Removes external URL default help text.
+ */
+function _external_url_remove_default_help($form_element, FormStateInterface $form_state) {
+  // Remove external URL default help text (second item, index 1). 
+  unset($form_element[0]['uri']['#description']["#items"][1]);
+  
   return $form_element;
 }
 

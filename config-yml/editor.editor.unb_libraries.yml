@@ -46,7 +46,6 @@ settings:
         -
           name: Tools
           items:
-            - ShowBlocks
             - Source
             - Maximize
   plugins: {  }

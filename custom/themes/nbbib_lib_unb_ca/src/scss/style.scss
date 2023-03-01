@@ -424,6 +424,14 @@ header {
             padding: 0;
           }
 
+          // Picture.
+          #contrib-picture {
+            figure {
+              width: fit-content;
+              margin: auto;
+            }
+          }
+
           // List of works.
           #contributor-works .works-label {
             margin-top: 1rem;

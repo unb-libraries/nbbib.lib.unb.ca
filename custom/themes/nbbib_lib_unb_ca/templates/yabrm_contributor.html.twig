@@ -21,12 +21,17 @@
     <div class="container">
       <div class="row description-pic">
         {% if content.description|field_value %}
-          <div id="contrib-description" class="col-sm-8">
+          <div id="contrib-description" class="col-sm-6">
             {{ content.description|field_value }}
+          <div id="contributor-works">
+            {% set cid = content.name['#object'].id() %}
+            <h2 class="works-label">Bibliography Items</h2>
+            {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
+          </div>
           </div>
         {% endif %}
-        {% if content.picture|field_value or content.cover %}
-          <div id="contrib-picture" class="col-sm-4">
+          <div id="contrib-picture" class="col-sm-6">
+        {% if content.picture|field_value or content.cover or content.birth_year or content.death_year %}
             <figure>
               {% if content.picture|field_value %}
                 {{ content.picture|field_value }}
@@ -39,15 +44,22 @@
                 </figcaption>
               {% endif %}
             </figure>
-          </div>
+            {% if content.birth_year or content.death_year %}
+              <span>
+                <b>Date of Birth and Death: </b>
+                {%- if content.birth_year -%}
+                  {{ content.birth_year|field_value }}
+                {%- endif -%}
+                -
+                {%- if content.death_year -%}
+                  {{ content.death_year|field_value }}
+                {%- endif -%}
+              </span>
+            {% endif %}
         {% endif %}
+          </div>
       </div>
     </div>
 
-    <div id="contributor-works">
-      {% set cid = content.name['#object'].id() %}
-      <h2 class="works-label">Bibliography Items</h2>
-      {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
-    </div>
   {% endif %}
 </div>

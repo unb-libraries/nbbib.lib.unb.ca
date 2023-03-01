@@ -484,6 +484,11 @@ header {
       // Topics view.
       .view-nb-bibliography-topics {
 
+        // View content.
+        & > .view-content {
+          columns: 2;
+        }        
+
         // View row.
         .row-topic {
 

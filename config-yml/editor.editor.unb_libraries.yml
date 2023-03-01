@@ -48,6 +48,7 @@ settings:
           items:
             - ShowBlocks
             - Source
+            - Maximize
   plugins: {  }
 image_upload:
   status: true

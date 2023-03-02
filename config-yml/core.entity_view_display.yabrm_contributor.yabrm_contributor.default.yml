@@ -6,6 +6,7 @@ dependencies:
     - image.style.contrib_photo
   module:
     - image
+    - link
     - search_api_solr
     - text
     - yabrm
@@ -20,14 +21,14 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 0
+    weight: 4
     region: content
   archival_note:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: -3
+    weight: 1
     region: content
   birth_year:
     type: number_integer
@@ -36,7 +37,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 4
+    weight: 9
     region: content
   death_year:
     type: number_integer
@@ -45,14 +46,14 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 4
+    weight: 10
     region: content
   description:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 3
     region: content
   first_name:
     type: string
@@ -60,7 +61,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 4
+    weight: 8
     region: content
   institution_name:
     type: string
@@ -68,7 +69,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 7
+    weight: 13
     region: content
   last_name:
     type: string
@@ -76,7 +77,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 5
+    weight: 11
     region: content
   name:
     type: string
@@ -84,7 +85,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 5
     region: content
   nb_residences:
     type: entity_reference_label
@@ -92,7 +93,19 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 0
+    weight: 2
+    region: content
+  nble_url:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 15
     region: content
   pic_caption:
     type: solr_highlighted_text_default
@@ -101,7 +114,7 @@ content:
       prefix: '<strong>'
       suffix: '</strong>'
     third_party_settings: {  }
-    weight: -4
+    weight: 0
     region: content
   picture:
     type: image
@@ -112,7 +125,7 @@ content:
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    weight: 2
+    weight: 6
     region: content
   prefix:
     type: string
@@ -120,7 +133,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
+    weight: 7
     region: content
   sort_name:
     type: string
@@ -128,7 +141,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 8
+    weight: 14
     region: content
   suffix:
     type: string
@@ -136,11 +149,10 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 6
+    weight: 12
     region: content
 hidden:
   langcode: true
-  nble_url: true
   search_api_excerpt: true
   status: true
   user_id: true

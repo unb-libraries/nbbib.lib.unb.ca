@@ -45,8 +45,8 @@
               {% endif %}
             </figure>
             {% if content.birth_year or content.death_year %}
-              <span>
-                <b>Date of Birth and Death: </b>
+              <p><span>
+                <b>Dates of Birth and Death: </b>
                 {%- if content.birth_year -%}
                   {{ content.birth_year|field_value }}
                 {%- endif -%}
@@ -54,8 +54,28 @@
                 {%- if content.death_year -%}
                   {{ content.death_year|field_value }}
                 {%- endif -%}
-              </span>
+              </span></p>
             {% endif %}
+            {%- if content.nb_residences -%}
+              <p><span>
+                <b>Predominant New Brunswick Residences: </b>
+                {%- for i in 0..100 if content.nb_residences[i] -%}
+                  {%- if not loop.first -%}
+                    {{ ", " }}
+                  {%- endif -%}
+                  {{ content.nb_residences[i]['#title'] }}
+                {%- endfor -%}
+              </span></p>
+            {%- endif -%}
+            {%- if content.nble_url -%}
+              <p><span>
+                See the
+                <a href="{{ content.nble_url|field_value[0]['#title'] }}">
+                  New Brunswick Literary Encyclopedia
+                </a>
+                 entry.
+              </span></p>
+            {%- endif -%}
         {% endif %}
           </div>
       </div>

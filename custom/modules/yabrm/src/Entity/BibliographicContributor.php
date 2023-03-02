@@ -393,6 +393,21 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
   /**
    * {@inheritdoc}
    */
+  public function getNbleUrl() {
+    return $this->get('nble_url')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setNbleUrl($nble_url) {
+    $this->set('nble_url', $nble_url);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getArchivalNote() {
     return $this->get('archival_note')->value;
   }

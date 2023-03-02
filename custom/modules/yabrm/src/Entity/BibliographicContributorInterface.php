@@ -156,6 +156,25 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
   public function setDescription($description);
 
   /**
+   * Gets the Bibliographic Contributor NBLE URL.
+   *
+   * @return string
+   *   NBLE URL of the Bibliographic Contributor.
+   */
+  public function getNbleUrl();
+
+  /**
+   * Sets the Bibliographic Contributor NBLE URL.
+   *
+   * @param string $nble_url
+   *   The Bibliographic Contributor NBLE URL.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setNbleUrl($nble_url);
+
+  /**
    * Gets the Bibliographic Contributor Archival(s).
    *
    * @return \\Drupal\yabrm\BibliographicContributorInterface[]

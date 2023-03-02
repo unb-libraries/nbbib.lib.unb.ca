@@ -21,7 +21,7 @@
     <div class="container">
       <div class="row description-pic">
         {% if content.description|field_value %}
-          <div id="contrib-description" class="col-sm-6">
+          <div id="contrib-description" class="col-sm-8">
             {{ content.description|field_value }}
           <div id="contributor-works">
             {% set cid = content.name['#object'].id() %}
@@ -30,7 +30,7 @@
           </div>
           </div>
         {% endif %}
-          <div id="contrib-picture" class="col-sm-6">
+          <div id="contrib-picture" class="col-sm-4">
         {% if content.picture|field_value or content.cover or content.birth_year or content.death_year %}
             <figure>
               {% if content.picture|field_value %}

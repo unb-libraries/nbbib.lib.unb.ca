@@ -1,3 +1,14 @@
+// Format NBLE URL help text list as single value.
+.description[id^="edit-nble-url-"] {
+  ul {
+    margin-left: 0 !important;
+
+    li {
+      margin: 0 !important;
+      list-style: none;
+    }
+  }
+}
 // Hide contributor delete.
 #contributors-values {
   div[class$="form-delete"] {

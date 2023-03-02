@@ -366,13 +366,13 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
  */
 function _remove_url_help($form_element, FormStateInterface $form_state) {
   $i = 0;
-  
-  // Remove description for all multi-value entries. 
+
+  // Remove description for all multi-value entries.
   while (isset($form_element[$i])) {
     unset($form_element[$i]['uri']['#description']);
     $i++;
   }
-  
+
   return $form_element;
 }
 
@@ -397,9 +397,9 @@ function _allowed_formats_remove_textarea_help($form_element, FormStateInterface
  * After-build widget callback. Removes external URL default help text.
  */
 function _external_url_remove_default_help($form_element, FormStateInterface $form_state) {
-  // Remove external URL default help text (second item, index 1). 
+  // Remove external URL default help text (second item, index 1).
   unset($form_element[0]['uri']['#description']["#items"][1]);
-  
+
   return $form_element;
 }
 

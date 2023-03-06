@@ -426,9 +426,15 @@ header {
 
           // Picture.
           #contrib-picture {
+            p {
+              text-align: left;
+            }
             figure {
               width: fit-content;
               margin: auto;
+            }
+            figcaption {
+              font-size: .9rem;
             }
           }
 

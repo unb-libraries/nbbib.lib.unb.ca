@@ -242,10 +242,10 @@ class ContribArchival extends EditorialContentEntityBase implements ContribArchi
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
 
-    $fields['status']->setDescription(t('A boolean indicating whether the Contrib Archival is published.'))
+    $fields['status']->setDescription(t('Is this entry published on the site?'))
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
-        'weight' => -3,
+        'weight' => 10,
       ]);
 
     $fields['created'] = BaseFieldDefinition::create('created')

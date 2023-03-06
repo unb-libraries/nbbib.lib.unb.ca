@@ -481,7 +481,9 @@ function validate_contrib_subform($element, &$form_state) {
  * Implements hook_inline_entity_form_entity_form_alter().
  */
 function nbbib_core_inline_entity_form_entity_form_alter(&$entity_form, FormStateInterface $form_state) {
-  $entity_form['#entity_builders'][] = 'update_names';
+  if (str_contains($entity_form['#id'], 'contributors')) {
+    $entity_form['#entity_builders'][] = 'update_names';
+  }
 }
 
 /**

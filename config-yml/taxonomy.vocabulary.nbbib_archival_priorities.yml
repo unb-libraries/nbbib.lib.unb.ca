@@ -1,8 +1,0 @@
-uuid: df3497ce-1856-4c11-a63a-64b3fae5b0df
-langcode: en
-status: true
-dependencies: {  }
-name: 'NBBIB Archival Priorities'
-vid: nbbib_archival_priorities
-description: 'NBBIB Archival Priorities'
-weight: 0

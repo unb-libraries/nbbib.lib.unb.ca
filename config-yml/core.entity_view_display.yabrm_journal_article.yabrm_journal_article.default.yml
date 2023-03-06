@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - entity_reference_revisions
+    - image
     - link
     - options
     - taxonomy
@@ -51,7 +52,18 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 1
+    region: content
+  cover_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 9
     region: content
   doi:
     type: string
@@ -74,7 +86,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 7
+    weight: 6
     region: content
   issue:
     type: string
@@ -97,7 +109,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 8
+    weight: 7
     region: content
   library_catalog:
     type: string
@@ -146,7 +158,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 4
+    weight: 3
     region: content
   publication_month:
     type: number_integer
@@ -155,7 +167,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 5
+    weight: 4
     region: content
   publication_title:
     type: string
@@ -172,7 +184,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 6
+    weight: 5
     region: content
   publisher:
     type: string
@@ -180,7 +192,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   rights:
     type: string
@@ -236,7 +248,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 9
+    weight: 8
     region: content
   url:
     type: link
@@ -260,7 +272,6 @@ content:
     region: content
 hidden:
   archive_location: true
-  cover_image: true
   external_key_ref: true
   langcode: true
   physical_description: true

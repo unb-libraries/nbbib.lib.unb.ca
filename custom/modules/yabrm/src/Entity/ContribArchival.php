@@ -54,9 +54,9 @@ use Drupal\user\UserInterface;
  *     "published" = "status",
  *   },
  *   revision_metadata_keys = {
- *     "revision_user" = "revision_uid",
- *     "revision_created" = "revision_timestamp",
- *     "revision_log_message" = "revision_log"
+ *     "revision_user" = "revision_user",
+ *     "revision_created" = "revision_created",
+ *     "revision_log_message" = "revision_log_message"
  *   },
  *   links = {
  *     "canonical" = "/yabrm/yabrm_contrib_archival/{yabrm_contrib_archival}",

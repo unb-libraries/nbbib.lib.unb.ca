@@ -55,6 +55,7 @@ permissions:
   - 'edit bibliographic contributor entities'
   - 'edit book reference entities'
   - 'edit book section reference entities'
+  - 'edit contrib archival entities'
   - 'edit journal article reference entities'
   - 'edit thesis reference entities'
   - 'revert all bibliographic contributor revisions'

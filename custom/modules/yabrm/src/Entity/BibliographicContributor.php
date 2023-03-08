@@ -823,7 +823,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['archival'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Archival(s)'))
+      ->setLabel(t('Archival Record(s)'))
       ->setRevisionable(TRUE)
       ->setSettings(
         [

@@ -21,9 +21,9 @@ content:
     region: content
     settings:
       form_mode: default
-      override_labels: false
-      label_singular: ''
-      label_plural: ''
+      override_labels: true
+      label_singular: 'Archival Record'
+      label_plural: 'Archival Records'
       allow_new: true
       allow_existing: false
       match_operator: CONTAINS

@@ -5,12 +5,16 @@
  * Contains nbbib_core.module.
  */
 
+use \Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\search_api\Entity\Index;
@@ -165,6 +169,22 @@ function nbbib_core_page_attachments(array &$attachments) {
   }
 
   $attachments['#attached']['library'][] = 'nbbib_core/toolbar-overrides';
+}
+
+/**
+ * Implements hook_entity_field_access().
+ */
+function nbbib_core_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL) {
+  $result = AccessResult::neutral();
+
+  // Prevent non-archival record editors from modifying BibliographicContributor.archival entity reference field.  
+  if ($field_definition->getName() == 'archival') {
+    if ($operation != 'view' and !in_array('nbbib_archivals_editor', $account->getRoles())) {
+      $result = AccessResult::forbidden();
+    }
+  }
+
+  return $result->addCacheContexts(['user.roles:nbbib_archivals_editor']);
 }
 
 /**

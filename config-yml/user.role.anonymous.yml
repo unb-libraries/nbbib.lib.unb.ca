@@ -18,6 +18,7 @@ permissions:
   - 'view published bibliographic contributor entities'
   - 'view published book reference entities'
   - 'view published book section reference entities'
+  - 'view published contrib archival entities'
   - 'view published journal article reference entities'
   - 'view published thesis reference entities'
   - 'view sp metadata'

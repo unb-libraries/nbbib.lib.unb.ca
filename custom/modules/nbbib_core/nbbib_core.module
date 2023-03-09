@@ -174,7 +174,7 @@ function nbbib_core_page_attachments(array &$attachments) {
 /**
  * Implements hook_entity_field_access().
  */
-/*
+
 function nbbib_core_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL) {
   $result = AccessResult::neutral();
 
@@ -187,7 +187,7 @@ function nbbib_core_entity_field_access($operation, FieldDefinitionInterface $fi
 
   return $result->addCacheContexts(['user.roles:nbbib_archivals_editor']);
 }
-*/
+
 /**
  * Implements hook_form_FORM_ID_alter().
  */

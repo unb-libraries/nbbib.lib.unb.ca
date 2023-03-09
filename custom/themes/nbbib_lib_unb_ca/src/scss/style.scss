@@ -419,13 +419,18 @@ header {
 
         // Bibliographic contributors.
         .yabrm-contributor {
+          margin-bottom: 1rem;
+
           // Description.
           #contrib-description {
             padding: 0;
+            padding-right: 1rem;
           }
 
           // Picture.
           #contrib-picture {
+            border-left: 1px solid $lgray;
+
             p {
               text-align: left;
             }
@@ -434,6 +439,7 @@ header {
               margin: auto;
             }
             figcaption {
+              padding-bottom: 1rem;
               font-size: .9rem;
             }
           }

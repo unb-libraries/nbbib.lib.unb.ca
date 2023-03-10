@@ -179,7 +179,9 @@ function nbbib_core_entity_field_access($operation, FieldDefinitionInterface $fi
   $result = AccessResult::neutral();
 
   // Prevent non-archival record editors from modifying BibliographicContributor.archival entity reference field.  
-  if ($field_definition->getName() == 'archival') {
+  $field = $field_definition->getName();
+  
+  if ($field == 'archival' or $field == 'archival_note') {
     if ($operation != 'view' and !in_array('nbbib_archivals_editor', $account->getRoles())) {
       $result = AccessResult::forbidden();
     }

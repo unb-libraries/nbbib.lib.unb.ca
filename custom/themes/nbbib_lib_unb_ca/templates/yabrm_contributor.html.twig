@@ -24,9 +24,26 @@
           {% if content.description|field_value %}
               {{ content.description|field_value }}
           {% endif %}
+          {% if content.archival_note|field_value or content.archival|field_value %}            
+            <h2 class="archival-header smaller">Archival Material</h2>
+            {% if content.archival_note %}
+              {{ content.archival_note }}
+            {%- endif -%}
+            {% if content.archival|field_value %}
+              <ul id="archival-container">
+                {% for archival in content.full_archivals %}
+                <li class="archival-material">
+                  <a href="#" class="material-link"></a>
+                  <p>{{ archival }}</p>
+                  <p>{{ dump(archival) }}</p>
+                </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          {%- endif -%}
           <div id="contributor-works">
             {% set cid = content.name['#object'].id() %}
-          <h2 class="works-label">Bibliography Items</h2>
+          <h2 class="works-header">Bibliography Items</h2>
           {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
           </div>
         </div>

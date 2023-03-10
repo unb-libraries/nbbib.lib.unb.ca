@@ -20,13 +20,27 @@
   {% if content %}
     <div class="container">
       <div class="row description-pic">
-        {% if content.description|field_value %}
-          <div id="contrib-description" class="col-sm-8">
-            {{ content.description|field_value }}
+        <div id="contrib-description" class="col-sm-8">
+          {% if content.description|field_value %}
+              {{ content.description|field_value }}
+          {% endif %}
+          {% if content.archival_note|field_value or content.archival|field_value %}
+            <h2 class="archival-header smaller">Archival Material</h2>
+            {% if content.archival_note %}
+              {{ content.archival_note }}
+            {%- endif -%}
+            {% if content.archival %}
+              {{ content.archival }}
+            {%- endif -%}
+          {%- endif -%}
+          <div id="contributor-works">
+            {% set cid = content.name['#object'].id() %}
+          <h2 class="works-header">Bibliography Items</h2>
+          {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
           </div>
-        {% endif %}
-        {% if content.picture|field_value or content.cover %}
-          <div id="contrib-picture" class="col-sm-4">
+        </div>
+        <div id="contrib-picture" class="col-sm-4 pl-4">
+        {% if content.picture|field_value or content.cover or content.birth_year or content.death_year %}
             <figure>
               {% if content.picture|field_value %}
                 {{ content.picture|field_value }}
@@ -35,19 +49,46 @@
               {% endif %}
               {% if content.pic_caption|field_value %}
                 <figcaption>
-                  {{ content.pic_caption|field_value }}
+                  {{ content.pic_caption }}
                 </figcaption>
               {% endif %}
             </figure>
-          </div>
+            {% if content.birth_year|field_value or content.death_year|field_value %}
+              <p><span>
+                <b>Dates of Birth and Death: </b>
+                {%- if content.birth_year -%}
+                  {{ content.birth_year|field_value }}
+                {%- endif -%}
+                -
+                {%- if content.death_year -%}
+                  {{ content.death_year|field_value }}
+                {%- endif -%}
+              </span></p>
+            {% endif %}
+            {%- if content.nb_residences|field_value -%}
+              <p><span>
+                <b>Predominant New Brunswick Residences: </b>
+                {%- for i in 0..100 if content.nb_residences[i] -%}
+                  {%- if not loop.first -%}
+                    {{ ", " }}
+                  {%- endif -%}
+                  {{ content.nb_residences[i]['#title'] }}
+                {%- endfor -%}
+              </span></p>
+            {%- endif -%}
+            {%- if content.nble_url|field_value -%}
+              <p><span>
+                See the
+                <a href="{{ content.nble_url|field_value[0]['#title'] }}">
+                  New Brunswick Literary Encyclopedia
+                </a>
+                 entry.
+              </span></p>
+            {%- endif -%}
         {% endif %}
+          </div>
       </div>
     </div>
 
-    <div id="contributor-works">
-      {% set cid = content.name['#object'].id() %}
-      <h2 class="works-label">Bibliography Items</h2>
-      {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
-    </div>
   {% endif %}
 </div>

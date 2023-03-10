@@ -9,6 +9,7 @@
 
 use Drupal\Core\Render\Element;
 use Drupal\file\Entity\File;
+use Drupal\yabrm\Entity\ContribArchival;
 
 /**
  * Prepares variables for Bibliographic Contributor templates.
@@ -93,5 +94,16 @@ function template_preprocess_yabrm_contributor(array &$variables) {
         ];
       }
     }
+  }
+
+  // Add views for all archival references to $content.
+  $archivals = $yabrm_contributor->archival->getValue();
+  $view_builder = \Drupal::entityTypeManager()
+    ->getViewBuilder('yabrm_contrib_archival');
+
+  foreach ($archivals as $archival) {
+    $entity = ContribArchival::load($archival['target_id']);
+    $view = $view_builder->view($entity);
+    $variables['content']['full_archivals'][] = $view;
   }
 }

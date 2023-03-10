@@ -85,6 +85,10 @@ html {
     font-size: 1.5rem;
     font-weight: 600;
     color: $nb-dblue;
+
+    &.smaller {
+      font-size: 1.2rem;
+    }
   }
 
   // Bold.
@@ -445,7 +449,7 @@ header {
           }
 
           // List of works.
-          #contributor-works .works-label {
+          #contributor-works .works-header {
             margin-top: 1rem;
             font-size: 1.2rem !important;
 

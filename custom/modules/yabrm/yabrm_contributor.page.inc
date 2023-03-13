@@ -103,7 +103,7 @@ function template_preprocess_yabrm_contributor(array &$variables) {
 
   foreach ($archivals as $archival) {
     $entity = ContribArchival::load($archival['target_id']);
-    $view = $view_builder->view($entity);
+    $view = $view_builder->view($entity, 'contributor_embed');
     $variables['content']['full_archivals'][] = $view;
   }
 }

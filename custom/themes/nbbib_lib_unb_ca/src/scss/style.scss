@@ -429,6 +429,34 @@ header {
           #contrib-description {
             padding: 0;
             padding-right: 1rem;
+
+            [id^="archival-content-"] {
+              p {
+                margin-bottom: 0;
+              }
+            }
+
+            .archival-collapse {
+              &[aria-expanded="true"] {
+                .fa-caret-right {
+                  display: none !important;
+                }z
+                .fa-caret-down {
+                  display: initial !important;
+                }
+              }
+
+
+              &[aria-expanded="false"] {
+                .fa-caret-right {
+                  display: initial !important;
+                }
+                .fa-caret-down {
+                  display: none !important;
+                }
+
+              }
+            } 
           }
 
           // Picture.

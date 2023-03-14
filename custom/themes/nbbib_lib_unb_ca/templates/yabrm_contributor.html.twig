@@ -34,7 +34,7 @@
                 {% for archival in content.full_archivals %}
                 <li class="archival-material">
                   <a href="#" class="archival-collapse" data-toggle="collapse" data-target="#archival-content-{{ loop.index0 }}" aria-expanded="false">
-                    {{ archival['#yabrm_contrib_archival'].title.getString() }}
+                    {{ archival['#yabrm_contrib_archival'].title.getString() ~ " " }}<i class="fa-solid fa-caret-right"></i><i class="fa-solid fa-caret-down"></i>
                   </a>
                   <div id="archival-content-{{ loop.index0 }}" class="collapse">
                     {{ archival }}

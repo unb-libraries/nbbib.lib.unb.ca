@@ -431,12 +431,15 @@ header {
             padding-right: 1rem;
 
             [id^="archival-content-"] {
-              p {
-                margin-bottom: 0;
+              margin-top: 1rem;
+
+              .field__item {
+                margin-bottom: 1rem;
               }
             }
 
             .archival-collapse {
+              
               &[aria-expanded="true"] {
                 .fa-caret-right {
                   display: none !important;

@@ -28,7 +28,7 @@ content:
     region: content
   field_extent:
     type: text_default
-    label: inline
+    label: above
     settings: {  }
     third_party_settings: {  }
     weight: 4
@@ -51,7 +51,7 @@ content:
     region: content
   field_scope_content:
     type: text_default
-    label: inline
+    label: above
     settings: {  }
     third_party_settings: {  }
     weight: 5

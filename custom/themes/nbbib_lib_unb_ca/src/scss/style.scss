@@ -48,6 +48,24 @@ html {
           }
         }
 
+        // Breadcrumbs.
+        .breadcrumb {
+          margin-bottom: 0;
+          border-radius: 0;
+          background-color: $lgray;
+
+          li {
+            margin-right: .5rem;
+            font-style: italic;
+          }
+
+          a:active,
+          a:focus,
+          a:hover {
+            color: $unb-darkgray;
+          }
+        }
+
         // Exposed form.
         form[action='/bibliography'] {
           width: 50%;

@@ -72,6 +72,7 @@
     "drupal/autocomplete_deluxe": "2.0.3",
     "drupal/bootstrap4": "2.1.16",
     "drupal/core": "9.5.3",
+    "drupal/easy_breadcrumb": "2.0.5",
     "drupal/externalauth": "1.4",
     "drupal/fontawesome": "2.25.0",
     "drupal/health_check": "1.3",

@@ -7,12 +7,12 @@ dependencies:
 id: topics_pattern
 label: 'Topics Pattern'
 type: 'canonical_entities:taxonomy_term'
-pattern: 'topic/[term:name]'
+pattern: 'topics/[term:name]'
 selection_criteria:
-  d9aa3567-3eac-4330-b5db-24e02d72cbba:
+  9692fe01-e62c-4fd7-80fd-b9337f9dc74b:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: d9aa3567-3eac-4330-b5db-24e02d72cbba
+    uuid: 9692fe01-e62c-4fd7-80fd-b9337f9dc74b
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:

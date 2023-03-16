@@ -7,12 +7,12 @@ dependencies:
 id: contributor_roles_pattern
 label: 'Contributor Roles Pattern'
 type: 'canonical_entities:taxonomy_term'
-pattern: 'contributor-role/[term:name]'
+pattern: 'contributor-roles/[term:name]'
 selection_criteria:
-  3bae5c67-001b-466c-aa5e-f03bfa769fe5:
+  332b35bd-3155-41e7-90cb-47e956259340:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: 3bae5c67-001b-466c-aa5e-f03bfa769fe5
+    uuid: 332b35bd-3155-41e7-90cb-47e956259340
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:

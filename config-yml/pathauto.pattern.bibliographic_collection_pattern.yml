@@ -7,7 +7,7 @@ dependencies:
 id: bibliographic_collection_pattern
 label: 'Bibliographic Collection Pattern'
 type: 'canonical_entities:yabrm_collection'
-pattern: 'collection/[yabrm_collection:name]'
+pattern: 'collections/[yabrm_collection:name]'
 selection_criteria: {  }
 selection_logic: and
 weight: 0

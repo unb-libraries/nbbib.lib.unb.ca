@@ -48,24 +48,6 @@ html {
           }
         }
 
-        // Breadcrumbs.
-        .breadcrumb {
-          margin-bottom: 0;
-          border-radius: 0;
-          background-color: $lgray;
-
-          li {
-            margin-right: .5rem;
-            font-style: italic;
-          }
-
-          a:active,
-          a:focus,
-          a:hover {
-            color: $unb-darkgray;
-          }
-        }
-
         // Exposed form.
         form[action='/bibliography'] {
           width: 50%;
@@ -266,7 +248,24 @@ header {
 
   // Main.
   main[role="main"] {
+    // Breadcrumbs.
+    .breadcrumb {
+      margin-bottom: 0;
+      border-radius: 0 !important;
+      background-color: white;
 
+      li {
+        margin-right: .5rem;
+        font-style: italic;
+      }
+
+      a:active,
+      a:focus,
+      a:hover {
+        color: $unb-darkgray;
+      }
+    }            
+    
     // Content region.
     .region.region-content {
       padding: 0 0;

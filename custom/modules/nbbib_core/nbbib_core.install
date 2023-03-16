@@ -30,6 +30,32 @@ function nbbib_core_install() {
     ])->save();
   }
 
+  // Breadcrumb redirects.
+  // Contributors.
+  Redirect::create([
+    'redirect_source' => 'contributors',
+    'redirect_redirect' => 'internal:/contributors/all',
+    'language' => 'und',
+    'status_code' => '301',
+  ])->save();
+
+  // Works.
+  $works = [
+    'books',
+    'book_sections',
+    'journal_articles',
+    'theses',
+  ];
+
+  foreach ($works as $work) {
+    Redirect::create([
+      'redirect_source' => $work,
+      'redirect_redirect' => 'internal:/bibliography',
+      'language' => 'und',
+      'status_code' => '301',
+    ])->save();      
+  }
+  
   // Redirect SAML login.
   Redirect::create([
     'redirect_source' => 'login',
@@ -37,19 +63,5 @@ function nbbib_core_install() {
     'language' => 'und',
     'status_code' => '301',
   ])->save();
-
-  // Contributor archival priorities.
-  $priorities = [
-    "Primary",
-    "Secondary",
-    "Tertiary",
-  ];
-
-  foreach ($priorities as $priority) {
-    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->create([
-      'name' => $priority,
-      'vid' => "nbbib_archival_priorities",
-    ])->save();
-  }
 
 }

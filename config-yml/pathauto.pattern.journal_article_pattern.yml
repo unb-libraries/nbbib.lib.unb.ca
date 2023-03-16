@@ -7,7 +7,7 @@ dependencies:
 id: journal_article_pattern
 label: 'Journal Article Pattern'
 type: 'canonical_entities:yabrm_journal_article'
-pattern: 'journal_article/[yabrm_journal_article:title]'
+pattern: 'journal_articles/[yabrm_journal_article:title]'
 selection_criteria: {  }
 selection_logic: and
 weight: 0

@@ -12,7 +12,7 @@
 {% if breadcrumb %}
   <ol class="breadcrumb">
     <li>
-      <a href="/"><i class="fa fa-home"></i></a>
+      <a href="/"><i class="fa fa-home"></i></a>&nbsp
     </li>
     {% for item in breadcrumb %}
       <li {{ item.attributes }}>
@@ -21,7 +21,7 @@
         {% else %}
           {{ item.text }}
         {% endif %}
-      </li>
+      </li>&nbsp
     {% endfor %}
   </ol>
 {% endif %}

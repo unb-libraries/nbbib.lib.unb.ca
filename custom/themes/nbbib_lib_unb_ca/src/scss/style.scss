@@ -180,7 +180,7 @@ html {
 
   // Paragraph.
   p {
-    text-align: justify;
+    // text-align: justify;
   }
 }
 
@@ -447,6 +447,10 @@ header {
           #contrib-description {
             padding: 0;
             padding-right: 1rem;
+
+            p {
+              margin-bottom: .7rem !important;
+            }
 
             [id^="archival-content-"] {
               margin-top: 1rem;

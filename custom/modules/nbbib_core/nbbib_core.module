@@ -592,9 +592,10 @@ function nbbib_core_user_insert(EntityInterface $entity) {
  * Implements hook_ENTITY_TYPE_presave().
  */
 function nbbib_core_user_presave(EntityInterface $entity) {
-  // If user id 1 (Drupal special uli superuser), give contrib role.
+  // If user id 1 (Drupal special uli superuser), give contrib roles.
   if($entity->id() == '1') {
     $entity->addRole('nb_bibliography_contributor');
+    $entity->addRole('nbbib_archivals_editor');
   }
 }
 

@@ -37,7 +37,7 @@ content:
     type: entity_reference_label
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 1
     region: content
@@ -57,14 +57,14 @@ content:
     weight: 5
     region: content
   field_website:
-    type: link
-    label: inline
+    type: link_separate
+    label: visually_hidden
     settings:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
     weight: 0
     region: content

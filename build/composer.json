@@ -83,7 +83,7 @@
     "drupal/redirect": "1.8",
     "drupal/redis": "1.6",
     "drupal/samlauth": "3.8",
-    "drupal/search_api": "1.28",
+    "drupal/search_api": "1.29",
     "drupal/search_api_autocomplete": "1.7",
     "drupal/search_api_solr": "4.2.10",
     "drupal/token": "1.11",

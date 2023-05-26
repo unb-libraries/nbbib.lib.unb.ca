@@ -73,7 +73,8 @@
     {% endif %}
     {% for item in items %}
       <div{{ item.attributes.addClass('field__item') }}>
-        <a href="{{ item.content['#url_title'] }}" target="_blank">
+        {{ dump(item.content) }}
+        <a href="{{ item.content['#url'].getUri() }}" target="_blank">
             View Archival Record<i class="fa fa-external-link-alt ml-2"></i>
         </a>
       </div>

@@ -88,7 +88,8 @@
               <div id="ref-language" class="row">
                 <div class="col-sm-6">Language(s)</div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-6">          {#***#}
+
                   {%- for language in content.lang_names -%}
                     {%- if not loop.first -%}
                       {{ ', ' }}
@@ -106,79 +107,77 @@
               </div>
             {% endif %}
           </div>
+
+          <div id="ref-description">
+            {% if content.abstract_note|field_value %}
+              <b>Description</b>
+
+              <div>
+                {{ content.abstract_note|field_value }}
+              </div>
+
+            {% endif %}
+          </div>
+
+          {% if content.archives or content.url|field_value %}
+            <div id="ref-copies">
+              <b>Copies</b>
+
+              <div>
+                {% if content.archives %}
+                  <ul>
+                    {% for archive in content.archives %}
+                      <li>{{ archive }}</li>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% set urls = content.url %}
+                    {% for url in content.url|field_value %}
+                      <li>{{ url }}</li>
+                    {% endfor %}
+                  </ul>
+              </div>
+
+            </div>
+          {% endif %}
+
+          {% if content.notes|field_value %}
+            <div id="ref-notes">
+              <b>Notes</b>
+
+              <div>
+                {{ content.notes|field_value }}
+              </div>
+
+            </div>
+          {% endif %}
+
+          {%- if content.topics|field_value -%}
+            <div id="ref-topics">
+              <b>Topics: </b>
+
+              <span>
+                {%- for topic in content.topics|field_value -%}
+                  {%- set tname = topic['#options']['entity'].name() -%}
+                  {%- set tid = topic['#options']['entity'].id() -%}
+
+                  {%- if not loop.first -%}
+                    {{- ", " -}}
+                  {%- endif -%}
+
+                  <a href ="/bibliography?topic_names={{ tname }}">
+                    {{- tname -}}
+                  </a>
+                {%- endfor -%}
+              </span>
+            </div>
+          {%- endif -%}
         </div>
 
         <div id="ref-picture" class="col-sm-4">
           {{ content.cover_image|field_value }}
         </div>
       </div>
-
-      <div id="ref-description">
-        {% if content.abstract_note|field_value %}
-          <b>Description</b>
-
-          <div>
-            {{ content.abstract_note|field_value }}
-          </div>
-
-        {% endif %}
-      </div>
-
-      {% if content.archives or content.url|field_value %}
-        <div id="ref-copies">
-          <b>Copies</b>
-
-          <div>
-            {% if content.archives %}
-              <ul>
-                {% for archive in content.archives %}
-                  <li>{{ archive }}</li>
-                {% endfor %}
-                {% endif %}
-
-                {% set urls = content.url %}
-                {% for url in content.url|field_value %}
-                  <li>{{ url }}</li>
-                {% endfor %}
-              </ul>
-          </div>
-
-        </div>
-      {% endif %}
-
-      {% if content.notes|field_value %}
-        <div id="ref-notes">
-          <b>Notes</b>
-
-          <div>
-            {{ content.notes|field_value }}
-          </div>
-
-        </div>
-      {% endif %}
-
-      {%- if content.topics|field_value -%}
-        <div id="ref-topics">
-          <b>Topics: </b>
-
-          <span>
-            {%- for topic in content.topics|field_value -%}
-              {%- set tname = topic['#options']['entity'].name() -%}
-              {%- set tid = topic['#options']['entity'].id() -%}
-
-              {%- if not loop.first -%}
-                {{- ", " -}}
-              {%- endif -%}
-
-              <a href ="/bibliography?topic_names={{ tname }}">
-                {{- tname -}}
-              </a>
-            {%- endfor -%}
-          </span>
-        </div>
-      {%- endif -%}
-
-
     </div>
   {% endif %}
 </div>

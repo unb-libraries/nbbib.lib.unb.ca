@@ -21,24 +21,24 @@
       <div class="row">
         <div id="ref-body" class="col-sm-8">
 
-        <ul id="ref-contribs">
+          <ul id="ref-contribs">
 
-          {% if content.contribs_all %}
-            {% for contrib in content.contribs_all %}
+            {% if content.contribs_all %}
+              {% for contrib in content.contribs_all %}
 
-              {% if contrib.display_name == "Anonymous" %}
-                <li>[Anonymous]</li>
-              {% else %}
-                <li><a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
-                {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
-                </a></li>
-              {% endif %}
+                {% if contrib.display_name == "Anonymous" %}
+                  <li>[Anonymous]</li>
+                {% else %}
+                  <li><a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
+                  {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
+                  </a></li>
+                {% endif %}
 
-            {% endfor %}
-          {% else %}
-            <li>[Unknown]</li>
-          {% endif %}
-        </ul>
+              {% endfor %}
+            {% else %}
+              <li>[Unknown]</li>
+            {% endif %}
+          </ul>
 
           <h2>Publication Details</h2>
 
@@ -124,102 +124,104 @@
               </div>
             {% endif %}
           </div>
+
+          {% if content.abstract_note|field_value
+            or content.num_pages|field_value
+            or content.physical_description|field_value %}
+            <div id="ref-description">
+
+              <b>Description</b>
+
+              {% if content.abstract_note|field_value %}
+                <div>
+                  {{ content.abstract_note|field_value }}
+                </div>
+              {% endif %}
+
+            {% if content.physical_description|field_value
+            or content.num_pages|field_value %}
+              <p id="ref-physical">
+                  {{ "Physical Description: " }}
+
+                  {%- if content.num_pages|field_value[0]['#context']['value'] -%}
+                    {%- set pages = content.num_pages|field_value[0]['#context']['value'] -%}
+                    {%- if pages == 'n. pag.' -%}
+                      {{- pages ~ " " -}}
+                    {% else %}
+                      {{- pages ~ " pp. "-}}
+                  {%- endif -%}
+                {%- endif -%}
+
+                  {{- content.physical_description|field_value[0]['#text']|striptags -}}
+              </p>
+            {% endif %}
+
+            </div>
+          {% else %}
+            <div id="ref-description"></div>
+          {% endif %}
+
+          {% if content.archives or content.url|field_value %}
+            <div id="ref-copies">
+              <b>Copies</b>
+
+              <div>
+                {% if content.archives or content.url %}
+                  <ul>
+                    {% for archive in content.archives %}
+                      <li>{{ archive }}</li>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% set urls = content.url %}
+                    {% for url in content.url|field_value %}
+                      <li>{{ url }}</li>
+                    {% endfor %}
+                  </ul>
+              </div>
+
+            </div>
+          {% endif %}
+
+          {% if content.notes|field_value %}
+            <div id="ref-notes">
+              <b>Notes</b>
+
+              <div>
+                {{ content.notes|field_value }}
+              </div>
+
+            </div>
+          {% endif %}
+
+          {%- if content.topics|field_value -%}
+            <div id="ref-topics">
+              <b>Topics: </b>
+
+              <span>
+                {%- for topic in content.topics|field_value -%}
+                  {%- set tname = topic['#options']['entity'].name() -%}
+                  {%- set tid = topic['#options']['entity'].id() -%}
+
+                  {%- if not loop.first -%}
+                    {{- ", " -}}
+                  {%- endif -%}
+
+                  <a href ="/bibliography?topic_names={{ tname }}">
+                    {{- tname -}}
+                  </a>
+                {%- endfor -%}
+              </span>
+
+            </div>
+          {%- endif -%}
+
         </div>
 
         <div id="ref-picture" class="col-sm-4">
           {{ content.cover_image|field_value }}
         </div>
       </div>
-
-      {% if content.abstract_note|field_value
-      or content.num_pages|field_value
-      or content.physical_description|field_value %}
-        <div id="ref-description">
-
-          <b>Description</b>
-
-          {% if content.abstract_note|field_value %}
-            <div>
-              {{ content.abstract_note|field_value }}
-            </div>
-          {% endif %}
-
-        {% if content.physical_description|field_value
-        or content.num_pages|field_value %}
-          <p id="ref-physical">
-              {{ "Physical Description: " }}
-
-              {%- if content.num_pages|field_value[0]['#context']['value'] -%}
-                {%- set pages = content.num_pages|field_value[0]['#context']['value'] -%}
-                {%- if pages == 'n. pag.' -%}
-                  {{- pages ~ " " -}}
-                {% else %}
-                  {{- pages ~ " pp. "-}}
-              {%- endif -%}
-            {%- endif -%}
-
-              {{- content.physical_description|field_value[0]['#text']|striptags -}}
-          </p>
-        {% endif %}
-
-        </div>
-      {% endif %}
-
-      {% if content.archives or content.url|field_value %}
-        <div id="ref-copies">
-          <b>Copies</b>
-
-          <div>
-            {% if content.archives or content.url %}
-              <ul>
-                {% for archive in content.archives %}
-                  <li>{{ archive }}</li>
-                {% endfor %}
-                {% endif %}
-
-                {% set urls = content.url %}
-                {% for url in content.url|field_value %}
-                  <li>{{ url }}</li>
-                {% endfor %}
-              </ul>
-          </div>
-
-        </div>
-      {% endif %}
-
-      {% if content.notes|field_value %}
-        <div id="ref-notes">
-          <b>Notes</b>
-
-          <div>
-            {{ content.notes|field_value }}
-          </div>
-
-        </div>
-      {% endif %}
-
-      {%- if content.topics|field_value -%}
-        <div id="ref-topics">
-          <b>Topics: </b>
-
-          <span>
-            {%- for topic in content.topics|field_value -%}
-              {%- set tname = topic['#options']['entity'].name() -%}
-              {%- set tid = topic['#options']['entity'].id() -%}
-
-              {%- if not loop.first -%}
-                {{- ", " -}}
-              {%- endif -%}
-
-              <a href ="/bibliography?topic_names={{ tname }}">
-                {{- tname -}}
-              </a>
-            {%- endfor -%}
-          </span>
-
-        </div>
-      {%- endif -%}
-
     </div>
   {% endif %}
 </div>

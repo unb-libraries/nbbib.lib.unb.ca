@@ -532,12 +532,13 @@ function generate_names($first_name, $last_name, $institution_name) {
       $name = $sort_name = 'ERROR: Contributor has both institution and individual names. Please review.';
     }
     else {
-      $name = $sort_name = $institution_name;
+      $name = $institution_name;
+      $sort_name = str_replace(['"',"'"], "", $institution_name);
     }
   }
   elseif (!empty($last_name)) {
     $name .= $last_name;
-    $sort_name .= $last_name;
+    $sort_name .= str_replace(['"',"'"], "", $last_name);
 
     if (!empty($first_name)) {
       $given_names = explode(' ', $first_name);

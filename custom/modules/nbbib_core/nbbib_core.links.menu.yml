@@ -65,6 +65,12 @@ nbbib_core.editor.content.bibliography:
   url: internal:/bibliography-lister
   parent: nbbib_core.editor.content
   weight: 10
+nbbib_core.editor.content.contribs:
+  title: 'Bibliography Contributors'
+  description: 'Bibliographic contributors overview.'
+  url: internal:/contributor-lister
+  parent: nbbib_core.editor.content
+  weight: 20
 nbbib_core.editor.content.other:
   title: 'Pages'
   description: 'Other site content.'

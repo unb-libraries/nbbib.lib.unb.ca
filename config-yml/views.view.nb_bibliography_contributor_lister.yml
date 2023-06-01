@@ -1,37 +1,36 @@
-uuid: 2284f174-de27-4fb0-ae23-3939f2de7322
+uuid: 0d3b258b-a827-43ac-a160-b5148820a341
 langcode: en
 status: true
 dependencies:
-  config:
-    - search_api.index.references_nbbib_lib_unb_ca
-    - user.role.nb_bibliography_contributor
   module:
-    - search_api
-    - user
-id: nb_bibliography_lister
-label: 'NB Bibliography Lister'
+    - taxonomy
+    - yabrm
+id: nb_bibliography_contributor_lister
+label: 'NB Bibliography Contributor Lister'
 module: views
 description: ''
 tag: ''
-base_table: search_api_index_references_nbbib_lib_unb_ca
-base_field: search_api_id
+base_table: yabrm_contributor
+base_field: id
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
-      title: 'Manage Bibliography Records'
+      title: 'Manage Contributors'
       fields:
-        published:
-          id: published
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: published
+        status:
+          id: status
+          table: yabrm_contributor
+          field: status
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api_boolean
+          entity_type: yabrm_contributor
+          entity_field: status
+          plugin_id: field
           label: Published
           exclude: false
           alter:
@@ -73,22 +72,32 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          type: unicode-yes-no
-          type_custom_true: ''
-          type_custom_false: ''
-          not: false
-          link_to_item: false
-          use_highlighting: false
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: unicode-yes-no
+            format_custom_false: ''
+            format_custom_true: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
           multi_type: separator
-          multi_separator: ', '
+          separator: ', '
+          field_api_classes: false
         changed:
           id: changed
-          table: search_api_index_references_nbbib_lib_unb_ca
+          table: yabrm_contributor
           field: changed
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api_date
+          entity_type: yabrm_contributor
+          entity_field: changed
+          plugin_id: field
           label: Updated
           exclude: false
           alter:
@@ -130,137 +139,33 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          date_format: html_date
-          custom_date_format: ''
-          timezone: ''
-          link_to_item: false
-          use_highlighting: false
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: html_date
+            custom_date_format: ''
+            timezone: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
           multi_type: separator
-          multi_separator: ', '
-        date_display:
-          id: date_display
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: date_display
+          separator: ', '
+          field_api_classes: false
+        name:
+          id: name
+          table: yabrm_contributor
+          field: name
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api
-          label: 'Reference Date'
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          link_to_item: false
-          use_highlighting: false
-          multi_type: separator
-          multi_separator: ', '
-        date_sort:
-          id: date_sort
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: date_sort
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_numeric
-          label: Date
-          exclude: false
-          alter:
-            alter_text: true
-            text: '{{ date_display }}'
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: Unknown
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          set_precision: false
-          precision: 0
-          decimal: .
-          separator: ','
-          format_plural: false
-          format_plural_string: !!binary Aw==
-          prefix: ''
-          suffix: ''
-          link_to_item: false
-          use_highlighting: false
-          multi_type: separator
-          multi_separator: ', '
-          format_plural_values: {  }
-        bibliographic_type:
-          id: bibliographic_type
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          label: Type
+          entity_type: null
+          entity_field: name
+          plugin_id: field
+          label: Name
           exclude: false
           alter:
             alter_text: false
@@ -301,19 +206,32 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          link_to_item: false
-          use_highlighting: false
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns:
+            entity_id: entity_id
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
           multi_type: separator
-          multi_separator: ', '
-        bibliographic_title:
-          id: bibliographic_title
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_title
+          separator: ', '
+          field_api_classes: false
+        birth_year:
+          id: birth_year
+          table: yabrm_contributor
+          field: birth_year
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api
-          label: Title
+          entity_type: yabrm_contributor
+          entity_field: birth_year
+          plugin_id: field
+          label: 'Year of Birth'
           exclude: false
           alter:
             alter_text: false
@@ -354,19 +272,32 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          link_to_item: true
-          use_highlighting: false
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
           multi_type: separator
-          multi_separator: ', '
-        bibliographic_authors:
-          id: bibliographic_authors
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_authors
+          separator: ', '
+          field_api_classes: false
+        death_year:
+          id: death_year
+          table: yabrm_contributor
+          field: death_year
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api
-          label: Author(s)
+          entity_type: yabrm_contributor
+          entity_field: death_year
+          plugin_id: field
+          label: 'Year of Death'
           exclude: false
           alter:
             alter_text: false
@@ -407,19 +338,32 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          link_to_item: false
-          use_highlighting: false
-          multi_type: ul
-          multi_separator: ', '
-        collections_5:
-          id: collections_5
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: collections_5
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        nb_residences_target_id:
+          id: nb_residences_target_id
+          table: yabrm_contributor__nb_residences
+          field: nb_residences_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api
-          label: Collection(s)
+          entity_type: yabrm_contributor
+          entity_field: nb_residences
+          plugin_id: field
+          label: 'Predominant New Brunswick Residences'
           exclude: false
           alter:
             alter_text: false
@@ -460,20 +404,32 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          link_to_item: false
-          use_highlighting: false
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
           multi_type: separator
-          multi_separator: ', '
-        search_api_operations:
-          id: search_api_operations
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: search_api_operations
+          separator: ', '
+          field_api_classes: false
+        archival_target_id:
+          id: archival_target_id
+          table: yabrm_contributor__archival
+          field: archival_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api_entity_operations
-          label: Operations
-          exclude: false
+          entity_type: yabrm_contributor
+          entity_field: archival
+          plugin_id: field
+          label: ''
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -505,7 +461,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -513,7 +469,19 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          destination: true
+          click_sort_column: target_id
+          type: entity_reference_entity_id
+          settings: {  }
+          group_column: entity_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       pager:
         type: full
         options:
@@ -546,10 +514,8 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: role
-        options:
-          role:
-            nb_bibliography_contributor: nb_bibliography_contributor
+        type: none
+        options: {  }
       cache:
         type: none
         options: {  }
@@ -568,73 +534,27 @@ display:
       sorts: {  }
       arguments: {  }
       filters:
-        search_api_fulltext:
-          id: search_api_fulltext
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: search_api_fulltext
+        combine:
+          id: combine
+          table: views
+          field: combine
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api_fulltext
-          operator: and
+          plugin_id: combine
+          operator: word
           value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: search_api_fulltext_op
+            operator_id: combine_op
             label: Search
             description: ''
             use_operator: false
-            operator: search_api_fulltext_op
+            operator: combine_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: search_api_fulltext
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          parse_mode: terms
-          min_length: null
-          fields: {  }
-        bibliographic_type:
-          id: bibliographic_type
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_text
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: bibliographic_type_op
-            label: 'Reference Type'
-            description: ''
-            use_operator: false
-            operator: bibliographic_type_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: bibliographic_type
+            identifier: contributor-search
             required: false
             remember: false
             multiple: false
@@ -642,8 +562,7 @@ display:
               authenticated: authenticated
               anonymous: '0'
               nb_bibliography_contributor: '0'
-            min_placeholder: ''
-            max_placeholder: ''
+              nbbib_archivals_editor: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -657,15 +576,21 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        collections_5:
-          id: collections_5
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: collections_5
+          fields:
+            name: name
+            birth_year: birth_year
+            death_year: death_year
+        archival_target_id:
+          id: archival_target_id
+          table: yabrm_contributor__archival
+          field: archival_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api_text
-          operator: '='
+          entity_type: yabrm_contributor
+          entity_field: archival
+          plugin_id: numeric
+          operator: 'not empty'
           value:
             min: ''
             max: ''
@@ -673,14 +598,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: collections_5_op
-            label: Collection(s)
+            operator_id: archival_target_id_op
+            label: 'Has Archival Record(s)'
             description: ''
             use_operator: false
-            operator: collections_5_op
+            operator: archival_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: collections_5
+            identifier: archival_target_id
             required: false
             remember: false
             multiple: false
@@ -688,29 +613,46 @@ display:
               authenticated: authenticated
               anonymous: '0'
               nb_bibliography_contributor: '0'
+              nbbib_archivals_editor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
-          is_grouped: false
+          is_grouped: true
           group_info:
-            label: ''
+            label: 'Has archival Record(s)'
             description: ''
-            identifier: ''
+            identifier: archival_target_id
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
-        published:
-          id: published
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: published
+            group_items:
+              1:
+                title: 'Yes'
+                operator: 'not empty'
+                value:
+                  min: ''
+                  max: ''
+                  value: ''
+              2:
+                title: 'No'
+                operator: empty
+                value:
+                  min: ''
+                  max: ''
+                  value: ''
+        status:
+          id: status
+          table: yabrm_contributor
+          field: status
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: search_api_boolean
+          entity_type: yabrm_contributor
+          entity_field: status
+          plugin_id: boolean
           operator: '='
           value: All
           group: 1
@@ -720,10 +662,10 @@ display:
             label: Published
             description: ''
             use_operator: false
-            operator: published_op
+            operator: status_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: published
+            identifier: status
             required: false
             remember: false
             multiple: false
@@ -731,6 +673,7 @@ display:
               authenticated: authenticated
               anonymous: '0'
               nb_bibliography_contributor: '0'
+              nbbib_archivals_editor: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -743,10 +686,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
       style:
         type: table
         options:
@@ -754,18 +693,15 @@ display:
           row_class: ''
           default_row_class: true
           columns:
-            published: published
+            status: status
             changed: changed
-            date_display: date_display
-            date_sort: date_sort
-            bibliographic_type: bibliographic_type
-            bibliographic_title: bibliographic_title
-            bibliographic_authors: bibliographic_authors
-            collections_5: collections_5
-            search_api_operations: search_api_operations
+            name: name
+            birth_year: birth_year
+            death_year: death_year
+            nb_residences_target_id: nb_residences_target_id
           default: changed
           info:
-            published:
+            status:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -774,54 +710,33 @@ display:
               responsive: ''
             changed:
               sortable: true
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            date_display:
-              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            date_sort:
-              sortable: true
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            bibliographic_type:
+            name:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            bibliographic_title:
+            birth_year:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            bibliographic_authors:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            collections_5:
+            death_year:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            search_api_operations:
+            nb_residences_target_id:
               align: ''
               separator: ''
               empty_column: false
@@ -835,12 +750,27 @@ display:
       row:
         type: fields
       query:
-        type: search_api_query
+        type: views_query
         options:
-          bypass_access: false
-          skip_access: false
-      relationships: {  }
-      use_ajax: false
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+          contextual_filters_or: false
+      relationships:
+        nb_residences_target_id:
+          id: nb_residences_target_id
+          table: yabrm_contributor__nb_residences
+          field: nb_residences_target_id
+          relationship: none
+          group_type: group
+          admin_label: 'Taxonomy term'
+          entity_type: yabrm_contributor
+          entity_field: nb_residences
+          plugin_id: standard
+          required: false
+      group_by: true
       header:
         result:
           id: result
@@ -857,13 +787,11 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.roles
-      tags:
-        - 'config:search_api.index.references_nbbib_lib_unb_ca'
-        - 'search_api_list:references_nbbib_lib_unb_ca'
+      tags: {  }
   page_1:
     id: page_1
     display_title: Page
@@ -871,14 +799,12 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: bibliography-lister
+      path: contributor-lister
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.roles
-      tags:
-        - 'config:search_api.index.references_nbbib_lib_unb_ca'
-        - 'search_api_list:references_nbbib_lib_unb_ca'
+      tags: {  }

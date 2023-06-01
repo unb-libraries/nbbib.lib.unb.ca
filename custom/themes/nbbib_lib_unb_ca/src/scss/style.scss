@@ -519,6 +519,10 @@ header {
       .view-content {
         margin-bottom: 2rem;
 
+        td {
+          min-width: 8rem;
+        }
+
         // Field content.
         .field-content {
 

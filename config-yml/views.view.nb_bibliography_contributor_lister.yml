@@ -699,6 +699,7 @@ display:
             birth_year: birth_year
             death_year: death_year
             nb_residences_target_id: nb_residences_target_id
+            archival_target_id: archival_target_id
           default: changed
           info:
             status:
@@ -710,7 +711,7 @@ display:
               responsive: ''
             changed:
               sortable: true
-              default_sort_order: asc
+              default_sort_order: desc
               align: ''
               separator: ''
               empty_column: false
@@ -737,6 +738,11 @@ display:
               empty_column: false
               responsive: ''
             nb_residences_target_id:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            archival_target_id:
               align: ''
               separator: ''
               empty_column: false

@@ -20,7 +20,16 @@
   {% if content %}
     <div class="container">
       <div class="row description-pic">
+        {% if content.picture|field_value 
+          or content.cover 
+          or content.birth_year|field_value 
+          or content.death_year|field_value 
+          or content.nb_residences|field_value 
+          or content.nble_url|field_value %}
         <div id="contrib-description" class="col-sm-8">
+        {% else %}
+        <div id="contrib-description" class="col-sm-12">
+        {% endif %}
           {% if content.description|field_value %}
               {{ content.description|field_value }}
           {% endif %}
@@ -32,26 +41,32 @@
             {% if content.archival|field_value %}
               <ul id="archival-container">
                 {% for archival in content.full_archivals %}
-                <li class="archival-material">
-                  <a href="#" class="archival-collapse" data-toggle="collapse" data-target="#archival-content-{{ loop.index0 }}" aria-expanded="false">
-                    {{ archival['#yabrm_contrib_archival'].title.getString() ~ " " }}<i class="fa-solid fa-caret-right"></i><i class="fa-solid fa-caret-down"></i>
-                  </a>
-                  <div id="archival-content-{{ loop.index0 }}" class="collapse">
-                    {{ archival }}
-                  </div>
-                </li>
+                  <li class="archival-material">
+                    <a href="#" class="archival-collapse" data-toggle="collapse" data-target="#archival-content-{{ loop.index0 }}" aria-expanded="false">
+                      {{ archival['#yabrm_contrib_archival'].title.getString() ~ " " }}<i class="fa-solid fa-caret-right"></i><i class="fa-solid fa-caret-down"></i>
+                    </a>
+                    <div id="archival-content-{{ loop.index0 }}" class="collapse">
+                      {{ archival }}
+                    </div>
+                  </li>
                 {%- endfor -%}
               </ul>
             {%- endif -%}
           {%- endif -%}
           <div id="contributor-works">
             {% set cid = content.name['#object'].id() %}
-          <h2 class="works-header">Bibliography Items</h2>
-          {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
+            <h2 class="works-header">Bibliography Items</h2>
+            {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
           </div>
         </div>
-        <div id="contrib-picture" class="col-sm-4 pl-4">
-        {% if content.picture|field_value or content.cover or content.birth_year or content.death_year %}
+      
+        {% if content.picture|field_value 
+          or content.cover 
+          or content.birth_year|field_value 
+          or content.death_year|field_value 
+          or content.nb_residences|field_value 
+          or content.nble_url|field_value %}
+          <div id="contrib-picture" class="col-sm-4 pl-4">
             <figure>
               {% if content.picture|field_value %}
                 {{ content.picture|field_value }}
@@ -64,42 +79,42 @@
                 </figcaption>
               {% endif %}
             </figure>
-            {% if content.birth_year|field_value or content.death_year|field_value %}
-              <p><span>
-                <b>Dates of Birth and Death: </b>
-                {%- if content.birth_year -%}
-                  {{ content.birth_year|field_value }}
+          {% if content.birth_year|field_value or content.death_year|field_value %}
+            <p><span>
+              <b>Dates of Birth and Death: </b>
+              {%- if content.birth_year -%}
+                {{ content.birth_year|field_value }}
+              {%- endif -%}
+              -
+              {%- if content.death_year -%}
+                {{ content.death_year|field_value }}
+              {%- endif -%}
+            </span></p>
+          {% endif %}
+          {%- if content.nb_residences|field_value -%}
+            <p><span>
+              <b>Predominant New Brunswick Residences: </b>
+              {%- for i in 0..100 if content.nb_residences[i] -%}
+                {%- if not loop.first -%}
+                  {{ ", " }}
                 {%- endif -%}
-                -
-                {%- if content.death_year -%}
-                  {{ content.death_year|field_value }}
-                {%- endif -%}
-              </span></p>
-            {% endif %}
-            {%- if content.nb_residences|field_value -%}
-              <p><span>
-                <b>Predominant New Brunswick Residences: </b>
-                {%- for i in 0..100 if content.nb_residences[i] -%}
-                  {%- if not loop.first -%}
-                    {{ ", " }}
-                  {%- endif -%}
-                  {{ content.nb_residences[i]['#title'] }}
-                {%- endfor -%}
-              </span></p>
-            {%- endif -%}
-            {%- if content.nble_url|field_value -%}
-              <p><span>
-                See the
-                <a href="{{ content.nble_url|field_value[0]['#title'] }}">
-                  New Brunswick Literary Encyclopedia
-                </a>
-                 entry.
-              </span></p>
-            {%- endif -%}
+                {{ content.nb_residences[i]['#title'] }}
+              {%- endfor -%}
+            </span></p>
+          {%- endif -%}
+          {%- if content.nble_url|field_value -%}
+            <p><span>
+              See the
+              <a href="{{ content.nble_url|field_value[0]['#title'] }}">
+                New Brunswick Literary Encyclopedia
+              </a>
+                entry.
+            </span></p>
+          {%- endif -%}
         {% endif %}
-          </div>
       </div>
     </div>
+  </div>
 
   {% endif %}
 </div>

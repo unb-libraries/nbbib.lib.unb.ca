@@ -2,8 +2,11 @@ uuid: 0d3b258b-a827-43ac-a160-b5148820a341
 langcode: en
 status: true
 dependencies:
+  config:
+    - user.role.nb_bibliography_contributor
   module:
     - taxonomy
+    - user
     - yabrm
 id: nb_bibliography_contributor_lister
 label: 'NB Bibliography Contributor Lister'
@@ -514,8 +517,10 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: none
-        options: {  }
+        type: role
+        options:
+          role:
+            nb_bibliography_contributor: nb_bibliography_contributor
       cache:
         type: none
         options: {  }
@@ -903,6 +908,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.roles
       tags: {  }
   page_1:
     id: page_1
@@ -919,4 +925,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.roles
       tags: {  }

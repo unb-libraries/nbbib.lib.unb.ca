@@ -735,6 +735,59 @@ display:
                   min: ''
                   max: ''
                   value: ''
+        description__value:
+          id: description__value
+          table: yabrm_contributor
+          field: description__value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: yabrm_contributor
+          entity_field: description
+          plugin_id: string
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: description__value_op
+            label: Description
+            description: null
+            use_operator: false
+            operator: description__value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: description__value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: null
+          is_grouped: true
+          group_info:
+            label: 'Has description?'
+            description: ''
+            identifier: description__value
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'Yes'
+                operator: 'not empty'
+                value: ''
+              2:
+                title: 'No'
+                operator: empty
+                value: ''
+              3:
+                title: ''
+                operator: '='
+                value: ''
       filter_groups:
         operator: AND
         groups:

@@ -580,69 +580,6 @@ display:
             name: name
             birth_year: birth_year
             death_year: death_year
-        archival_target_id:
-          id: archival_target_id
-          table: yabrm_contributor__archival
-          field: archival_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: yabrm_contributor
-          entity_field: archival
-          plugin_id: numeric
-          operator: 'not empty'
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: archival_target_id_op
-            label: 'Has Archival Record(s)'
-            description: ''
-            use_operator: false
-            operator: archival_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: archival_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
-              nbbib_archivals_editor: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: true
-          group_info:
-            label: 'Has archival Record(s)'
-            description: ''
-            identifier: archival_target_id
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1:
-                title: 'Yes'
-                operator: 'not empty'
-                value:
-                  min: ''
-                  max: ''
-                  value: ''
-              2:
-                title: 'No'
-                operator: empty
-                value:
-                  min: ''
-                  max: ''
-                  value: ''
         status:
           id: status
           table: yabrm_contributor
@@ -686,6 +623,122 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        archival_note__value:
+          id: archival_note__value
+          table: yabrm_contributor
+          field: archival_note__value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: yabrm_contributor
+          entity_field: archival_note
+          plugin_id: string
+          operator: 'not empty'
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: archival_note__value_op
+            label: 'General Archival Note'
+            description: null
+            use_operator: false
+            operator: archival_note__value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: archival_note__value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: null
+          is_grouped: true
+          group_info:
+            label: 'Archival note?'
+            description: ''
+            identifier: archival_note__value
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'Yes'
+                operator: 'not empty'
+                value: ''
+              2:
+                title: 'No'
+                operator: empty
+                value: ''
+        archival_target_id:
+          id: archival_target_id
+          table: yabrm_contributor__archival
+          field: archival_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: yabrm_contributor
+          entity_field: archival
+          plugin_id: numeric
+          operator: 'not empty'
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: archival_target_id_op
+            label: 'Has Archival Record(s)'
+            description: ''
+            use_operator: false
+            operator: archival_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: archival_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              nb_bibliography_contributor: '0'
+              nbbib_archivals_editor: '0'
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: true
+          group_info:
+            label: 'Archival record(s)?'
+            description: ''
+            identifier: archival_target_id
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'Yes'
+                operator: 'not empty'
+                value:
+                  min: ''
+                  max: ''
+                  value: ''
+              2:
+                title: 'No'
+                operator: empty
+                value:
+                  min: ''
+                  max: ''
+                  value: ''
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: table
         options:

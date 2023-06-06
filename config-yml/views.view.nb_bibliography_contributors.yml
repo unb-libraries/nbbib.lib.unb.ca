@@ -2,8 +2,6 @@ uuid: df4525aa-d0c4-4061-90d3-f0a8ffc3cc48
 langcode: en
 status: true
 dependencies:
-  config:
-    - user.role.nb_bibliography_contributor
   module:
     - user
     - yabrm
@@ -169,10 +167,9 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: role
+        type: perm
         options:
-          role:
-            nb_bibliography_contributor: nb_bibliography_contributor
+          perm: 'access content'
       cache:
         type: tag
         options: {  }
@@ -341,7 +338,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.roles
+        - user.permissions
       tags: {  }
   attachment_1:
     id: attachment_1
@@ -581,7 +578,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user.roles
+        - user.permissions
       tags: {  }
   page_1:
     id: page_1
@@ -1073,5 +1070,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.roles
+        - user.permissions
       tags: {  }

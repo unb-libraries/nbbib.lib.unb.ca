@@ -207,7 +207,7 @@ display:
         options:
           submit_button: Search
           reset_button: true
-          reset_button_label: Reset
+          reset_button_label: 'Show All Titles'
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Ascending
@@ -749,6 +749,7 @@ display:
         - 'url.query_args:sort_order'
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
+        - 'search_api_list:references_nbbib_lib_unb_ca'
   page_1:
     id: page_1
     display_title: Page
@@ -1328,6 +1329,7 @@ display:
         - 'url.query_args:sort_order'
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
+        - 'search_api_list:references_nbbib_lib_unb_ca'
   page_2:
     id: page_2
     display_title: 'Search Exposed Block'
@@ -1464,6 +1466,7 @@ display:
         - url.query_args
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
+        - 'search_api_list:references_nbbib_lib_unb_ca'
   page_3:
     id: page_3
     display_title: 'Bibliography By Contributor'
@@ -2180,3 +2183,4 @@ display:
         - url.query_args
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
+        - 'search_api_list:references_nbbib_lib_unb_ca'

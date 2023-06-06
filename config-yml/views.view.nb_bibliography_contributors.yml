@@ -862,7 +862,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<a href=\"/yabrm/yabrm_contributor/{{- id -}}\">{{- name -}}</a>\r\n{%- if birth_year or death_year -%}\r\n{{- \"(\" -}}\r\n{%- if birth_year -%}\r\n{{- birth_year ~ \"-\" -}}\r\n{%- else -%}\r\n{{ \"?-\" }}\r\n{%- endif -%}\r\n{%- if death_year -%}\r\n{{- death_year -}}\r\n{%- else -%}\r\n{{- \"?\" -}}\r\n{%- endif -%}\r\n{%- if birth_year or death_year -%}\r\n{{- \")\" -}}\r\n{%- endif -%}\r\n{%- endif -%}\r\n"
+            text: "<span>\r\n<a href=\"/yabrm/yabrm_contributor/{{- id -}}\">{{- name|striptags -}}</a>\r\n{%- if birth_year or death_year -%}\r\n{{- \"(\" -}}\r\n{%- if birth_year -%}\r\n{{- birth_year ~ \"-\" -}}\r\n{%- else -%}\r\n{{ \"?-\" }}\r\n{%- endif -%}\r\n{%- if death_year -%}\r\n{{- death_year -}}\r\n{%- endif -%}\r\n{%- if birth_year or death_year -%}\r\n{{- \")\" -}}\r\n{%- endif -%}\r\n{%- endif -%}\r\n</span>"
             make_link: false
             path: ''
             absolute: false

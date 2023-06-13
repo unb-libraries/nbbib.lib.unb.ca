@@ -334,7 +334,7 @@ header {
         }
 
         // View content.
-        & > .view-content:has(> div.row-contrib:not(:only-child)) {
+        & > .view-content.multicol {
           columns: 2;
 
           // Contributor row.

@@ -1,11 +1,11 @@
 {#
 /**
  * @file
- * Default theme implementation for main view template.
+ * Theme override for a main view template.
  *
  * Available variables:
  * - attributes: Remaining HTML attributes for the element.
- * - css_name: A css-safe version of the view name.
+ * - css_name: A CSS-safe version of the view name.
  * - css_class: The user-specified classes names, if any.
  * - header: The optional header.
  * - footer: The optional footer.
@@ -27,8 +27,6 @@
  * - dom_id: Unique id for every view being printed to give unique class for
  *   JavaScript.
  *
- * @ingroup templates
- *
  * @see template_preprocess_views_view()
  */
 #}
@@ -47,8 +45,13 @@
     {{ title }}
   {% endif %}
   {{ title_suffix }}
+  {% if header %}
+    <div class="view-header">
+      {{ header }}
+    </div>
+  {% endif %}
   {% if exposed %}
-    <div class="view-filters form-group">
+    <div class="view-filters">
       {{ exposed }}
     </div>
   {% endif %}
@@ -57,14 +60,15 @@
       {{ attachment_before }}
     </div>
   {% endif %}
-  {% if header %}
-    <div class="view-header">
-      {{ header }}
-    </div>
-  {% endif %}
 
   {% if rows %}
-    <div class="view-content">
+    {% set count = rows[0]['#rows'][0]['#view'].total_rows %}
+    
+    {% if count == 1 %}
+      <div class="view-content">
+    {% else %}
+      <div class="view-content multicol">
+    {% endif %}
       {{ rows }}
     </div>
   {% elseif empty %}

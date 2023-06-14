@@ -26,3 +26,9 @@ nbbib_core.merge_contribs.confirm:
     _form: '\Drupal\nbbib_core\Form\MergeContribsConfirmForm'
   options:
     _admin_route: TRUE
+nbbib_core.about:
+  path: '/about'
+  defaults:
+    _title: 'About The Site'
+  requirements:
+    _permission: 'access content'

@@ -39,8 +39,37 @@ nbbib_core.about:
   description: 'About'
   parent: main
   menu_name: main
-  url: internal:/about
+  route_name: nbbib_core.about
+  expanded: TRUE
   weight: 60
+nbbib_core.about.overview:
+  title: 'Project Overview'
+  description: 'Project Overview'
+  parent: nbbib_core.about
+  menu_name: main
+  url: internal:/project-overview
+  weight: 10
+nbbib_core.about.print:
+  title: 'New Brunswick Bibliography Print Series'
+  description: 'New Brunswick Bibliography Print Series'
+  parent: nbbib_core.about
+  menu_name: main
+  url: internal:/print-series
+  weight: 20
+nbbib_core.about.symposia:
+  title: 'New Brunswick Bibliography Symposia'
+  description: 'New Brunswick Bibliography Symposia'
+  parent: nbbib_core.about
+  menu_name: main
+  url: internal:/symposia
+  weight: 30
+nbbib_core.about.contact:
+  title: 'Contact Us'
+  description: 'Contact Us'
+  parent: nbbib_core.about
+  menu_name: main
+  url: https://lib.unb.ca/contact-unb-libraries-staff?recipient=archives@unb.ca&subject=New%20Brunswick%20Bibliography
+  weight: 40
 
 # Admin toolbar.
 nbbib_core.editor:

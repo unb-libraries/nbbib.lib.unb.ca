@@ -182,6 +182,11 @@ header {
   nav.navbar {
     padding: 0;
     background-color: $nb-red;
+    // Drop-down.
+    .dropdown-menu.show {
+      padding: 0;
+      background-color: $nb-red;  
+    }
 
     // Supported content.
     #navbarSupportedContent {

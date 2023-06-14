@@ -2,13 +2,13 @@
 
 namespace Drupal\yabrm\Plugin\search_api\processor;
 
+use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Render\Renderer;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\IndexInterface;
 use Drupal\search_api\Item\ItemInterface;
 use Drupal\search_api\Processor\ProcessorPluginBase;
 use Drupal\search_api\Processor\ProcessorProperty;
-use Drupal\Core\Entity\EntityTypeManager;
-use Drupal\Core\Render\Renderer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

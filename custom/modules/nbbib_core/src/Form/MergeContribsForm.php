@@ -2,9 +2,9 @@
 
 namespace Drupal\nbbib_core\Form;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\yabrm\Entity\BibliographicContributor;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

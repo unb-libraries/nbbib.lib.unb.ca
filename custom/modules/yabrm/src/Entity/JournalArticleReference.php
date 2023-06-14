@@ -2,8 +2,8 @@
 
 namespace Drupal\yabrm\Entity;
 
-use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\yabrm\Entity\BibliographicReference;
 
 /**

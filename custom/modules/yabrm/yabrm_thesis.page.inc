@@ -8,8 +8,8 @@
  */
 
 use Drupal\Core\Render\Element;
-use Drupal\yabrm\Entity\BibliographicContributor;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\yabrm\Entity\BibliographicContributor;
 
 /**
  * Prepares variables for Thesis reference templates.

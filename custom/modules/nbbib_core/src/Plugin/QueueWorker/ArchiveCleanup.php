@@ -2,9 +2,9 @@
 
 namespace Drupal\nbbib_core\Plugin\QueueWorker;
 
-use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\Logger\LoggerChannelFactory;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\taxonomy\Entity\Term;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

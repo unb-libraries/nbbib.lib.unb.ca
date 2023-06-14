@@ -2,16 +2,16 @@
 
 namespace Drupal\instance_initial_content\Event;
 
+use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\instance_initial_content\NbBibMigrationTrait;
 use Drupal\migrate\Event\MigrateEvents;
 use Drupal\migrate\Event\MigratePostRowSaveEvent;
 use Drupal\migrate\Row;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\taxonomy\Entity\Term;
-use Drupal\yabrm\Entity\BibliographicContributor;
 use Drupal\yabrm\Entity\BibliographicCollection;
+use Drupal\yabrm\Entity\BibliographicContributor;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Drupal\Core\Entity\EntityTypeManager;
 
 /**
  * Defines the migrate event subscriber.

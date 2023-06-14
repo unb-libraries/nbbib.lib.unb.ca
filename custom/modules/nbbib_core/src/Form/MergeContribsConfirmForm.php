@@ -2,12 +2,12 @@
 
 namespace Drupal\nbbib_core\Form;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\yabrm\Entity\BibliographicContributor;
 use Symfony\Component\DependencyInjection\ContainerInterface;

@@ -2,6 +2,7 @@
 
 namespace Drupal\yabrm\Form;
 
+use Drupal\Component\Datetime\Time;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\ConfirmFormBase;
@@ -9,7 +10,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\yabrm\Entity\JournalArticleReferenceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Component\Datetime\Time;
 
 /**
  * Provides a form for reverting a Journal Article Reference revision.

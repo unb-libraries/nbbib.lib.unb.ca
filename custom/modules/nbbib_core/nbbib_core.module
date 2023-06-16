@@ -273,7 +273,7 @@ function nbbib_core_views_query_alter(ViewExecutable $view, QueryPluginBase $que
     }
   }
   catch(Error $e) {
-    drupal_set_message('The server encountered a problem. Please contact the site\'s administrator.', 'error');
+    \Drupal::messenger()->addError('The server encountered a problem. Please contact the site\'s administrator.');
     \Drupal::logger('nbbib_core')->error("Error adding filter to view in nbbib_core.module : %e",
       ['%e' => $e]
     );

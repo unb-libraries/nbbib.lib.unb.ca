@@ -44,7 +44,7 @@ services:
       - "4097:8025"
     networks:
       - nbbib.lib.unb.ca
-  nbbib.lib.unb.ca:
+  nbbib-lib-unb-ca:
     build:
       context: .
     restart: unless-stopped
@@ -65,7 +65,7 @@ services:
       - ./env/drupal.env
     volumes:
       - drupal-data:/app/html/sites/default
-      - ./config-yml:/app/configuration
+      - ./configuration:/app/configuration
       - ./custom/modules:/app/html/modules/custom
       - ./custom/themes:/app/html/themes/custom
       - ./tests:/app/tests

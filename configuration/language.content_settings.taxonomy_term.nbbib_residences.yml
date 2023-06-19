@@ -1,0 +1,11 @@
+uuid: 07ed0430-94cc-451f-8f0f-5429b758415f
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.nbbib_residences
+id: taxonomy_term.nbbib_residences
+target_entity_type_id: taxonomy_term
+target_bundle: nbbib_residences
+default_langcode: site_default
+language_alterable: false

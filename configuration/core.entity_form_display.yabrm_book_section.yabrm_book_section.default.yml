@@ -1,0 +1,315 @@
+uuid: eb31727b-ef30-49d4-878e-d0172d80ccb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.thumbnail
+  module:
+    - autocomplete_deluxe
+    - image
+    - link
+    - paragraphs
+    - text
+    - yabrm
+id: yabrm_book_section.yabrm_book_section.default
+targetEntityType: yabrm_book_section
+bundle: yabrm_book_section
+mode: default
+content:
+  abstract_note:
+    type: text_textarea
+    weight: -50
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    text_processing: 0
+  archive:
+    type: autocomplete_deluxe
+    weight: -80
+    region: content
+    settings:
+      match_operator: CONTAINS
+      autocomplete_route_name: autocomplete_deluxe.autocomplete
+      size: 60
+      selection_handler: default
+      limit: 10
+      min_length: 0
+      delimiter: ''
+      not_found_message_allow: false
+      not_found_message: 'The term ''@term'' will be added'
+      new_terms: true
+      no_empty_message: 'No terms could be found. Please type in order to add a new term.'
+    third_party_settings: {  }
+  call_number:
+    type: string_textfield
+    weight: -100
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  collections:
+    type: autocomplete_deluxe
+    weight: -110
+    region: content
+    settings:
+      match_operator: CONTAINS
+      autocomplete_route_name: autocomplete_deluxe.autocomplete
+      size: 60
+      selection_handler: default
+      limit: 10
+      min_length: 0
+      delimiter: ''
+      not_found_message_allow: false
+      not_found_message: 'The term ''@term'' will be added'
+      new_terms: false
+      no_empty_message: 'No terms could be found. Please type in order to add a new term.'
+    third_party_settings: {  }
+  contributors:
+    type: paragraphs
+    weight: -290
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  cover_image:
+    type: image_image
+    weight: -280
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  edition:
+    type: string_textfield
+    weight: -210
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  extra:
+    type: text_textarea
+    weight: -45
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    text_processing: 0
+  isbn:
+    type: string_textfield
+    weight: -220
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  language:
+    type: options_buttons
+    weight: -200
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  library_catalog:
+    type: string_textfield
+    weight: -90
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  nb_imprint:
+    type: boolean_checkbox
+    weight: -105
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  notes:
+    type: text_textarea
+    weight: -35
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    text_processing: 0
+  notes_private:
+    type: text_textarea
+    weight: -40
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    text_processing: 0
+  num_volumes:
+    type: string_textfield
+    weight: -140
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  pages:
+    type: string_textfield
+    weight: -160
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  physical_description:
+    type: text_textarea
+    weight: -70
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    text_processing: 0
+  place:
+    type: string_textfield
+    weight: -260
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  publication_day:
+    type: number
+    weight: -250
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  publication_month:
+    type: number
+    weight: -240
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  publication_title:
+    type: string_textfield
+    weight: -170
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  publication_year:
+    type: number
+    weight: -230
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  publisher:
+    type: string_textfield
+    weight: -270
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  rights:
+    type: string_textfield
+    weight: -55
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  series:
+    type: string_textfield
+    weight: -130
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  series_number:
+    type: string_textfield
+    weight: -120
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  short_title:
+    type: string_textfield
+    weight: -180
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: -30
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -300
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  topics:
+    type: autocomplete_deluxe
+    weight: -190
+    region: content
+    settings:
+      match_operator: CONTAINS
+      autocomplete_route_name: autocomplete_deluxe.autocomplete
+      size: 60
+      selection_handler: default
+      limit: 10
+      min_length: 0
+      delimiter: ''
+      not_found_message_allow: false
+      not_found_message: 'The term ''@term'' will be added'
+      new_terms: true
+      no_empty_message: 'No terms could be found. Please type in order to add a new term.'
+    third_party_settings: {  }
+  url:
+    type: link_default
+    weight: -60
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  volume:
+    type: string_textfield
+    weight: -150
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  archive_location: true
+  external_key_ref: true
+  langcode: true
+  path: true
+  user_id: true

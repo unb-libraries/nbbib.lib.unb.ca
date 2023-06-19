@@ -1,0 +1,26 @@
+uuid: 7f4a8cde-0511-449c-95eb-fb6606f26f30
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_yabrm_contributor_person
+    - paragraphs.paragraphs_type.yabrm_bibliographic_contributor
+id: paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_person
+field_name: field_yabrm_contributor_person
+entity_type: paragraph
+bundle: yabrm_bibliographic_contributor
+label: Person/Institution
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:yabrm_contributor'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: name
+      direction: ASC
+    auto_create: true
+field_type: entity_reference

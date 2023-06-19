@@ -1,0 +1,95 @@
+uuid: 49f88f81-dad5-4cd1-be4d-9c933f585277
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.unb_libraries
+    - node.type.static_content_page
+    - taxonomy.vocabulary.nbbib_archives
+    - taxonomy.vocabulary.nbbib_locations
+    - taxonomy.vocabulary.nbbib_residences
+    - taxonomy.vocabulary.yabrm_reference_topic
+  module:
+    - filter
+    - node
+    - paragraphs
+    - system
+    - taxonomy
+    - toolbar
+    - yabrm
+id: nbbib_archivals_editor
+label: 'NBBIB Archivals Editor'
+weight: 3
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'access toolbar'
+  - 'add bibliographic contributor entities'
+  - 'add book reference entities'
+  - 'add book section reference entities'
+  - 'add contrib archival entities'
+  - 'add journal article reference entities'
+  - 'add thesis reference entities'
+  - 'create static_content_page content'
+  - 'create terms in nbbib_archives'
+  - 'create terms in nbbib_locations'
+  - 'create terms in nbbib_residences'
+  - 'create terms in yabrm_reference_topic'
+  - 'delete all bibliographic contributor revisions'
+  - 'delete all bibliographic reference revisions'
+  - 'delete all book reference revisions'
+  - 'delete all book section reference revisions'
+  - 'delete all contrib archival revisions'
+  - 'delete all journal article reference revisions'
+  - 'delete all revisions'
+  - 'delete all thesis reference revisions'
+  - 'delete any static_content_page content'
+  - 'delete book reference entities'
+  - 'delete book section reference entities'
+  - 'delete contrib archival entities'
+  - 'delete journal article reference entities'
+  - 'delete static_content_page revisions'
+  - 'delete thesis reference entities'
+  - 'edit any static_content_page content'
+  - 'edit bibliographic collection entities'
+  - 'edit bibliographic contributor entities'
+  - 'edit book reference entities'
+  - 'edit book section reference entities'
+  - 'edit contrib archival entities'
+  - 'edit journal article reference entities'
+  - 'edit thesis reference entities'
+  - 'revert all bibliographic contributor revisions'
+  - 'revert all bibliographic reference revisions'
+  - 'revert all book reference revisions'
+  - 'revert all book section reference revisions'
+  - 'revert all contrib archival revisions'
+  - 'revert all journal article reference revisions'
+  - 'revert all revisions'
+  - 'revert all thesis reference revisions'
+  - 'revert static_content_page revisions'
+  - 'use text format unb_libraries'
+  - 'view all bibliographic contributor revisions'
+  - 'view all bibliographic reference revisions'
+  - 'view all book reference revisions'
+  - 'view all book section reference revisions'
+  - 'view all contrib archival revisions'
+  - 'view all journal article reference revisions'
+  - 'view all revisions'
+  - 'view all thesis reference revisions'
+  - 'view published bibliographic collection entities'
+  - 'view published bibliographic contributor entities'
+  - 'view published book reference entities'
+  - 'view published book section reference entities'
+  - 'view published contrib archival entities'
+  - 'view published journal article reference entities'
+  - 'view published thesis reference entities'
+  - 'view static_content_page revisions'
+  - 'view the administration theme'
+  - 'view unpublished bibliographic collection entities'
+  - 'view unpublished bibliographic contributor entities'
+  - 'view unpublished book reference entities'
+  - 'view unpublished book section reference entities'
+  - 'view unpublished contrib archival entities'
+  - 'view unpublished journal article reference entities'
+  - 'view unpublished paragraphs'
+  - 'view unpublished thesis reference entities'

@@ -1,0 +1,26 @@
+uuid: 8a4d7b20-8f9a-4d72-a893-ea07da6a9b32
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nbbib_lib_unb_ca
+_core:
+  default_config_hash: MElvhLL51qOJTRCN_2svXmul_TfaBwG7mNCwWz8gi9o
+id: pagetitle
+theme: nbbib_lib_unb_ca
+region: content
+weight: -1
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

@@ -1,0 +1,75 @@
+uuid: 40d3f1d4-7c7d-421a-b957-f19d255bba85
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.yabrm_contrib_archival.contributor_embed
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_date_range
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_extent
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_location
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_retrieval_number
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_scope_content
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_website
+  module:
+    - link
+    - text
+    - yabrm
+id: yabrm_contrib_archival.yabrm_contrib_archival.contributor_embed
+targetEntityType: yabrm_contrib_archival
+bundle: yabrm_contrib_archival
+mode: contributor_embed
+content:
+  field_date_range:
+    type: basic_string
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_extent:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_location:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_retrieval_number:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_scope_content:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_website:
+    type: link_separate
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
+  title: true
+  user_id: true

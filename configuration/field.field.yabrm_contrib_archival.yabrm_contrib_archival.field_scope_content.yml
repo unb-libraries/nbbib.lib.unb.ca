@@ -1,0 +1,21 @@
+uuid: c8a249d8-841e-4ade-a570-fa6372f6ffad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.yabrm_contrib_archival.field_scope_content
+  module:
+    - text
+    - yabrm
+id: yabrm_contrib_archival.yabrm_contrib_archival.field_scope_content
+field_name: field_scope_content
+entity_type: yabrm_contrib_archival
+bundle: yabrm_contrib_archival
+label: 'Scope and Content Note'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,14 @@
+uuid: 1e8bd80b-05fa-4443-901d-b528214b1eec
+langcode: en
+status: true
+dependencies:
+  module:
+    - yabrm
+id: bibliographic_contributor_pattern
+label: 'Bibliographic Contributor Pattern'
+type: 'canonical_entities:yabrm_contributor'
+pattern: 'contributors/[yabrm_contributor:name]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

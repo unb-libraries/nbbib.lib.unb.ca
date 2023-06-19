@@ -1,0 +1,25 @@
+uuid: aa0a9458-c65c-4520-a5e4-4ecc687489c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - context_branding
+    - system
+  theme:
+    - nbbib_lib_unb_ca
+id: contextualbranding
+theme: nbbib_lib_unb_ca
+region: header
+weight: -4
+provider: null
+plugin: context_branding_block
+settings:
+  id: context_branding_block
+  label: 'Contextual Branding'
+  label_display: '0'
+  provider: context_branding
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

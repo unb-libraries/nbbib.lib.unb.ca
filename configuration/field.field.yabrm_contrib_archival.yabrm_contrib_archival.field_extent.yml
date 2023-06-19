@@ -1,0 +1,21 @@
+uuid: 2a0caf3d-cdeb-463f-b47f-abb2788ae5c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.yabrm_contrib_archival.field_extent
+  module:
+    - text
+    - yabrm
+id: yabrm_contrib_archival.yabrm_contrib_archival.field_extent
+field_name: field_extent
+entity_type: yabrm_contrib_archival
+bundle: yabrm_contrib_archival
+label: Extent
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

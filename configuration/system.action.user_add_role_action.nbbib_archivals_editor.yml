@@ -1,0 +1,14 @@
+uuid: 0c078464-e063-426d-8bf8-88c01aab3d0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.nbbib_archivals_editor
+  module:
+    - user
+id: user_add_role_action.nbbib_archivals_editor
+label: 'Add the NBBIB Archivals Editor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: nbbib_archivals_editor

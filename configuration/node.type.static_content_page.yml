@@ -1,0 +1,17 @@
+uuid: 436dff5a-d292-4706-a1ee-83ab775cd33f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Static Content Page'
+type: static_content_page
+description: 'Content type for static HTML pages in nbbib_lib_unb_ca.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

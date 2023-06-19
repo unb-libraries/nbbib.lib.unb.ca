@@ -1,0 +1,14 @@
+uuid: a6960074-3236-4284-973f-6f783eb00125
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.nbbib_archivals_editor
+  module:
+    - user
+id: user_remove_role_action.nbbib_archivals_editor
+label: 'Remove the NBBIB Archivals Editor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: nbbib_archivals_editor

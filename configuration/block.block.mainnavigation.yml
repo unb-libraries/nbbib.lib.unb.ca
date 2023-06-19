@@ -1,0 +1,25 @@
+uuid: b6d485b6-67ce-4c1b-a534-d72c2a57e13d
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - nbbib_lib_unb_ca
+id: mainnavigation
+theme: nbbib_lib_unb_ca
+region: nav_main
+weight: -6
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

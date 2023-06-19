@@ -1,0 +1,14 @@
+uuid: af9a761a-c73f-4f16-9b8c-354ecd2ba36f
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.nb_bibliography_contributor
+  module:
+    - user
+id: user_add_role_action.nb_bibliography_contributor
+label: 'Add the NB Bibliography Contributor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: nb_bibliography_contributor

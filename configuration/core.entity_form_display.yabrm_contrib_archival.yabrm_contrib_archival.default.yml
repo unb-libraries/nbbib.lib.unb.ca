@@ -1,0 +1,81 @@
+uuid: 893d1d90-a577-48d9-9eee-2905d9fed3d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_date_range
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_extent
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_location
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_retrieval_number
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_scope_content
+    - field.field.yabrm_contrib_archival.yabrm_contrib_archival.field_website
+  module:
+    - link
+    - text
+    - yabrm
+id: yabrm_contrib_archival.yabrm_contrib_archival.default
+targetEntityType: yabrm_contrib_archival
+bundle: yabrm_contrib_archival
+mode: default
+content:
+  field_date_range:
+    type: string_textarea
+    weight: 5
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_extent:
+    type: text_textarea
+    weight: 6
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_location:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_retrieval_number:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_scope_content:
+    type: text_textarea
+    weight: 7
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_website:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  user_id: true

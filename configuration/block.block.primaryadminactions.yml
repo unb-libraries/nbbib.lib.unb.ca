@@ -1,0 +1,20 @@
+uuid: 115c00f2-4b71-483e-9bc7-1c753e7ce3a2
+langcode: en
+status: true
+dependencies:
+  theme:
+    - nbbib_lib_unb_ca
+_core:
+  default_config_hash: eggm5_GtIocJdzthxv8qYspwpZqucNZ-vD_aJ5wZ4sU
+id: primaryadminactions
+theme: nbbib_lib_unb_ca
+region: content
+weight: -2
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

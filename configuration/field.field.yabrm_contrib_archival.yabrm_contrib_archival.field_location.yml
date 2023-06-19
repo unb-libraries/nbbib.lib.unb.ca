@@ -1,0 +1,30 @@
+uuid: 2ad8b04e-0a05-472c-9cc6-3bd45ebf7217
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.yabrm_contrib_archival.field_location
+    - taxonomy.vocabulary.nbbib_locations
+  module:
+    - yabrm
+id: yabrm_contrib_archival.yabrm_contrib_archival.field_location
+field_name: field_location
+entity_type: yabrm_contrib_archival
+bundle: yabrm_contrib_archival
+label: Location
+description: 'Institution, department, and/or unit.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      nbbib_locations: nbbib_locations
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

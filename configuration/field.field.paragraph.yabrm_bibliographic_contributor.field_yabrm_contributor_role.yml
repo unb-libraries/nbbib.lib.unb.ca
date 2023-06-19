@@ -1,0 +1,29 @@
+uuid: 03e84277-cdb4-476e-b225-b00a68610315
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_yabrm_contributor_role
+    - paragraphs.paragraphs_type.yabrm_bibliographic_contributor
+    - taxonomy.vocabulary.yabrm_contributor_roles
+id: paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_role
+field_name: field_yabrm_contributor_role
+entity_type: paragraph
+bundle: yabrm_bibliographic_contributor
+label: Role
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      yabrm_contributor_roles: yabrm_contributor_roles
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

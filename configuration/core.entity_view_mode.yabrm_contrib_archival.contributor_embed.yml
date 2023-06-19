@@ -1,0 +1,10 @@
+uuid: 6a0e6d32-ec51-4923-b3d0-2445ef37bf98
+langcode: en
+status: true
+dependencies:
+  module:
+    - yabrm
+id: yabrm_contrib_archival.contributor_embed
+label: 'Contributor Embed'
+targetEntityType: yabrm_contrib_archival
+cache: true

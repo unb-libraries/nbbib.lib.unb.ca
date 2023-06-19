@@ -1,0 +1,1006 @@
+uuid: 194e7aa8-0966-4854-9aff-c46a56c9f4f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_yabrm_contributor_person
+    - search_api.server.drupal_solr_lib_unb_ca
+  module:
+    - search_api_solr
+    - yabrm
+    - paragraphs
+    - search_api
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    debug_finalize: false
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
+    term_modifiers:
+      slop: 3
+      fuzzy: 1
+    advanced:
+      index_prefix: ''
+      collection: ''
+      timezone: ''
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+      use_language_undefined_as_fallback_language: false
+      use_universal_collation: false
+id: references_nbbib_lib_unb_ca
+name: references.nbbib.lib.unb.ca
+description: ''
+read_only: false
+field_settings:
+  abstract_note:
+    label: 'Abstract Note'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: abstract_note
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  abstract_note_1:
+    label: 'Abstract Note'
+    datasource_id: 'entity:yabrm_book'
+    property_path: abstract_note
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  abstract_note_2:
+    label: 'Abstract Note'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: abstract_note
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  abstract_note_3:
+    label: 'Abstract Note'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: abstract_note
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  abstract_note_4:
+    label: 'Abstract Note'
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: abstract_note
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  archive:
+    label: Archive
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: archive
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  archive_1:
+    label: Archive
+    datasource_id: 'entity:yabrm_book'
+    property_path: archive
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  archive_2:
+    label: Archive
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: archive
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  archive_3:
+    label: Archive
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: archive
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  archive_4:
+    label: Archive
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: archive
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  bibliographic_authors:
+    label: Author(s)
+    property_path: bibliographic_authors
+    type: text
+    boost: !!float 5
+  bibliographic_citation:
+    label: 'Reference Citation'
+    property_path: bibliographic_citation
+    type: string
+  bibliographic_title:
+    label: Title
+    property_path: bibliographic_title
+    type: text
+    boost: !!float 5
+  bibliographic_type:
+    label: 'Reference Type'
+    property_path: bibliographic_type
+    type: text
+  call_number:
+    label: 'Call Number'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: call_number
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  call_number_1:
+    label: 'Call Number'
+    datasource_id: 'entity:yabrm_book'
+    property_path: call_number
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  call_number_2:
+    label: 'Call Number'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: call_number
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  call_number_3:
+    label: 'Call Number'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: call_number
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  call_number_4:
+    label: 'Call Number'
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: call_number
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  changed:
+    label: 'Last Updated'
+    property_path: changed
+    type: date
+  collections:
+    label: Collection(s)
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: collections
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  collections_1:
+    label: Collection(s)
+    datasource_id: 'entity:yabrm_book'
+    property_path: collections
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  collections_2:
+    label: Collection(s)
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: collections
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  collections_3:
+    label: Collection(s)
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: collections
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  collections_4:
+    label: Collection(s)
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: collections
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  collections_5:
+    label: Collection(s)
+    property_path: collections
+    type: text
+  contributors:
+    label: Contributor(s)
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: contributors
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  contributors_1:
+    label: Contributor(s)
+    datasource_id: 'entity:yabrm_book'
+    property_path: contributors
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  contributors_2:
+    label: Contributor(s)
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: contributors
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  contributors_3:
+    label: Contributor(s)
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: contributors
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  contributors_4:
+    label: Contributor(s)
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: contributors
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  date_display:
+    label: 'Reference Date'
+    property_path: date_display
+    type: string
+  date_sort:
+    label: 'Sortable Date'
+    property_path: date_sort
+    type: integer
+  doi:
+    label: DOI
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: doi
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  edition:
+    label: Edition
+    datasource_id: 'entity:yabrm_book'
+    property_path: edition
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  edition_1:
+    label: Edition
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: edition
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  id:
+    label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
+  id_1:
+    label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
+    datasource_id: 'entity:yabrm_book'
+    property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
+  id_2:
+    label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
+  id_3:
+    label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
+  id_4:
+    label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
+  isbn:
+    label: ISBN
+    datasource_id: 'entity:yabrm_book'
+    property_path: isbn
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  isbn_1:
+    label: ISBN
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: isbn
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  issn:
+    label: ISSN
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: issn
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  issue:
+    label: Issue
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: issue
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  journal_abbr:
+    label: 'Journal Abbreviation'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: journal_abbr
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  language:
+    label: Language
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: language
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  language_1:
+    label: Language
+    datasource_id: 'entity:yabrm_book'
+    property_path: language
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  language_2:
+    label: Language
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: language
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  language_3:
+    label: Language
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: language
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  language_4:
+    label: Language
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: language
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  library_catalog:
+    label: 'Library Catalog'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: library_catalog
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  library_catalog_1:
+    label: 'Library Catalog'
+    datasource_id: 'entity:yabrm_book'
+    property_path: library_catalog
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  library_catalog_2:
+    label: 'Library Catalog'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: library_catalog
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  library_catalog_3:
+    label: 'Library Catalog'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: library_catalog
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  library_catalog_4:
+    label: 'Library Catalog'
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: library_catalog
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  num_pages:
+    label: 'Number of Pages'
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: num_pages
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  num_pages_1:
+    label: 'Number of Pages'
+    datasource_id: 'entity:yabrm_book'
+    property_path: num_pages
+    type: string
+    dependencies:
+      module:
+        - yabrm
+  num_volumes:
+    label: 'Number of Volumes'
+    datasource_id: 'entity:yabrm_book'
+    property_path: num_volumes
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  num_volumes_1:
+    label: 'Number of Volumes'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: num_volumes
+    type: string
+    dependencies:
+      module:
+        - yabrm
+  pages:
+    label: Pages
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: pages
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  pages_1:
+    label: Pages
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: pages
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  place:
+    label: Place
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: place
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  place_1:
+    label: Place
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: place
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  place_2:
+    label: Place
+    datasource_id: 'entity:yabrm_book'
+    property_path: place
+    type: string
+    dependencies:
+      module:
+        - yabrm
+  place_3:
+    label: Place
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: place
+    type: string
+    dependencies:
+      module:
+        - yabrm
+  place_4:
+    label: 'Publication Place'
+    property_path: place
+    type: text
+  publication_day:
+    label: 'Publication Day'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: publication_day
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_day_1:
+    label: 'Publication Day'
+    datasource_id: 'entity:yabrm_book'
+    property_path: publication_day
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_day_2:
+    label: 'Publication Day'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: publication_day
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_day_3:
+    label: 'Publication Day'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: publication_day
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_day_4:
+    label: 'Publication Day'
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: publication_day
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_month:
+    label: 'Publication Month'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: publication_month
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_month_1:
+    label: 'Publication Month'
+    datasource_id: 'entity:yabrm_book'
+    property_path: publication_month
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_month_2:
+    label: 'Publication Month'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: publication_month
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_month_3:
+    label: 'Publication Month'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: publication_month
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_month_4:
+    label: 'Publication Month'
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: publication_month
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_title:
+    label: 'Publication Title'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: publication_title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_title_1:
+    label: 'Publication Title'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: publication_title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_year:
+    label: 'Publication Year'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: publication_year
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_year_1:
+    label: 'Publication Year'
+    datasource_id: 'entity:yabrm_book'
+    property_path: publication_year
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_year_2:
+    label: 'Publication Year'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: publication_year
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_year_3:
+    label: 'Publication Year'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: publication_year
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_year_4:
+    label: 'Publication Year'
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: publication_year
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_year_5:
+    label: 'Publication Year'
+    property_path: publication_year
+    type: integer
+  published:
+    label: Published
+    property_path: published
+    type: boolean
+  publisher:
+    label: Publisher
+    property_path: publisher
+    type: text
+  rights:
+    label: Rights
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: rights
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  rights_1:
+    label: Rights
+    datasource_id: 'entity:yabrm_book'
+    property_path: rights
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  rights_2:
+    label: Rights
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: rights
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  rights_3:
+    label: Rights
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: rights
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  rights_4:
+    label: Rights
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: rights
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  series:
+    label: Series
+    datasource_id: 'entity:yabrm_book'
+    property_path: series
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  series_1:
+    label: Series
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: series
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  series_2:
+    label: Series
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: series
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  series_number:
+    label: 'Series Number'
+    datasource_id: 'entity:yabrm_book'
+    property_path: series_number
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  series_number_1:
+    label: 'Series Number'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: series_number
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  series_text:
+    label: 'Series Text'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: series_text
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  series_title:
+    label: 'Series Title'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: series_title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  short_title:
+    label: 'Short Title'
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: short_title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  short_title_1:
+    label: 'Short Title'
+    datasource_id: 'entity:yabrm_book'
+    property_path: short_title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  short_title_2:
+    label: 'Short Title'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: short_title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  short_title_3:
+    label: 'Short Title'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: short_title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  short_title_4:
+    label: 'Short Title'
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: short_title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  thesis_type:
+    label: 'Thesis Type'
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: thesis_type
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  title:
+    label: Title
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  title_1:
+    label: Title
+    datasource_id: 'entity:yabrm_book'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  title_2:
+    label: Title
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  title_3:
+    label: Title
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  title_4:
+    label: Title
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  topic_names:
+    label: 'Topic Names'
+    property_path: topic_names
+    type: text
+  topics:
+    label: Topics
+    property_path: topics
+    type: integer
+  url:
+    label: URL
+    datasource_id: 'entity:yabrm_biblio_reference'
+    property_path: url
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  url_1:
+    label: URL
+    datasource_id: 'entity:yabrm_book'
+    property_path: url
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  url_2:
+    label: URL
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: url
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  url_3:
+    label: URL
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: url
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  url_4:
+    label: URL
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: url
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  volume:
+    label: Volume
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: volume
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  volume_1:
+    label: Volume
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: volume
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  volume_2:
+    label: Volume
+    datasource_id: 'entity:yabrm_book'
+    property_path: volume
+    type: string
+    dependencies:
+      module:
+        - yabrm
+datasource_settings:
+  'entity:yabrm_biblio_reference': {  }
+  'entity:yabrm_book': {  }
+  'entity:yabrm_book_section': {  }
+  'entity:yabrm_journal_article': {  }
+  'entity:yabrm_thesis': {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  entity_type: {  }
+  index_bibliographic_info: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+  solr_date_range:
+    weights:
+      preprocess_index: 0
+tracker_settings:
+  default:
+    indexing_order: lifo
+options:
+  cron_limit: 100
+  index_directly: true
+  track_changes_in_references: true
+server: drupal_solr_lib_unb_ca

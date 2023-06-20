@@ -68,7 +68,7 @@ nbbib_core.about.contact:
   description: 'Contact Us'
   parent: nbbib_core.about
   menu_name: main
-  url: https://lib.unb.ca/contact-unb-libraries-staff?recipient=archives@unb.ca&subject=New%20Brunswick%20Bibliography
+  url: internal:/contact-us
   weight: 40
 
 # Admin toolbar.

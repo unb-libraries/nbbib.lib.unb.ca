@@ -6,7 +6,6 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
-  ckeditor: 0
   color: 0
   comment: 0
   config: 0
@@ -40,7 +39,6 @@ module:
   path_alias: 0
   pathauto: 0
   quickedit: 0
-  rdf: 0
   redirect: 0
   redis: 0
   samlauth: 0
@@ -52,7 +50,6 @@ module:
   text: 0
   token: 0
   toolbar: 0
-  transliterate: 0
   twig_field_value: 0
   twig_tweak: 0
   update: 0

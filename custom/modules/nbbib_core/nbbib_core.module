@@ -33,8 +33,8 @@ function nbbib_core_cron() {
   $datestamp = date('c');
 
   // If it's between 12:45-1am server time...
-  //if ($current_hour) { // CRON DEV - RUN EVERY CRON
-  if ($current_hour < 1 and $current_minute > 44) {
+  if ($current_hour) { // CRON DEV - RUN EVERY CRON
+  //if ($current_hour < 1 and $current_minute > 44) {
     \Drupal::logger('nbbib_core')->notice("NBBIB cleanup CRON job started at [$datestamp].");
     // Cleanup orphan contribustors.
     \Drupal::logger('nbbib_core')->notice("Starting orphan contributor cleanup...");

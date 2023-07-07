@@ -225,7 +225,7 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
     // Dynamically populate collection list.
     // Get collection storage, query for ids.
     $col_storage = \Drupal::entityTypeManager()->getStorage('yabrm_collection');
-    $cids = $col_storage->getQuery()->execute();
+    $cids = $col_storage->getQuery()->accessCheck(TRUE)->execute();
     $collection = NULL;
     // Iterate through ids, append each collection name.
     foreach ($cids as $cid) {

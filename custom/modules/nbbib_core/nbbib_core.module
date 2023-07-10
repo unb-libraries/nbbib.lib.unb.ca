@@ -273,7 +273,7 @@ function nbbib_core_views_query_alter(ViewExecutable $view, QueryPluginBase $que
     }
   }
   catch(Error $e) {
-    \Drupal::messenger()->addError('The server encountered a problem. Please contact the site\'s administrator.');
+    drupal_set_message('The server encountered a problem. Please contact the site\'s administrator.', 'error');
     \Drupal::logger('nbbib_core')->error("Error adding filter to view in nbbib_core.module : %e",
       ['%e' => $e]
     );
@@ -573,7 +573,7 @@ function generate_names($first_name, $last_name, $institution_name) {
  * Implements hook_ENTITY_TYPE_presave().
  */
 function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
-  // Pupulate name (display) and sort name on save.
+  // Populate name (display) and sort name on save.
   $first_name = trim($entity->getFirstName());
   $last_name = trim($entity->getLastName());
   $institution_name = trim($entity->getInstitutionName());
@@ -710,6 +710,13 @@ function nbbib_core_entity_update(EntityInterface $entity) {
       $cid = $entity->id();
       reindex_contrib_refs($cid);
     }
+
+    // If collection entity updates...
+    if ($entity->bundle() == 'yabrm_collection') {
+      // Re-index associated references (updates citations).
+      $cid = $entity->id();
+      reindex_collection_refs($cid);
+    }
   }
 }
 
@@ -747,6 +754,13 @@ function nbbib_core_entity_delete(EntityInterface $entity) {
     // Re-index associated references (updates citations).
     $cid = $entity->id();
     reindex_contrib_refs($cid);
+  }
+
+  // If collection entity updates...
+  if ($entity->bundle() == 'yabrm_collection') {
+    // Re-index associated references (updates citations).
+    $cid = $entity->id();
+    reindex_collection_refs($cid);
   }
 }
 
@@ -828,6 +842,71 @@ function reindex_contrib_refs($cid) {
   // Prepare confirmation message.
   $msg = "<b>Please wait a few seconds and refresh this page to see the
     updated list of citations.</b>";
+  \Drupal::messenger()->addMessage(t($msg));
+}
+
+/**
+ * Immediately reindex references associated with collection id $cid.
+ */
+function reindex_collection_refs($cid) {
+  // Fetch all references that point to the target collection.
+  $books = "
+    SELECT entity_id
+    FROM yabrm_book__collections
+    WHERE collections_target_id = $cid
+  ";
+  $sections = "
+    SELECT entity_id
+    FROM yabrm_book_section__collections
+    WHERE collections_target_id = $cid
+  ";
+  $articles = "
+    SELECT entity_id
+    FROM yabrm_journal_article__collections
+    WHERE collections_target_id = $cid
+  ";
+  $theses = "
+    SELECT entity_id
+    FROM yabrm_thesis__collections
+    WHERE collections_target_id = $cid
+  ";
+
+  $book_ids =
+    array_column(\Drupal::database()->query($books)->fetchAll(), 'entity_id');
+  $section_ids =
+    array_column(\Drupal::database()->query($sections)->fetchAll(), 'entity_id');
+  $article_ids =
+    array_column(\Drupal::database()->query($articles)->fetchAll(), 'entity_id');
+  $thesis_ids =
+    array_column(\Drupal::database()->query($theses)->fetchAll(), 'entity_id');
+  $index = Index::load('references_nbbib_lib_unb_ca');
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $reindex = [];
+
+  // For each reference id... create indexing id and add item to list.
+  foreach ($book_ids as $book_id) {
+    $item_id = 'entity:yabrm_book/' . $book_id . ':' . $language;
+    $reindex[$item_id] = $index->loadItem($item_id);
+  }
+  foreach ($section_ids as $section_id) {
+    $item_id = 'entity:yabrm_book_section/' . $section_id . ':' . $language;
+    $reindex[$item_id] = $index->loadItem($item_id);
+  }
+  foreach ($article_ids as $article_id) {
+    $item_id = 'entity:yabrm_journal_article/' . $article_id . ':' . $language;
+    $reindex[$item_id] = $index->loadItem($item_id);
+  }
+  foreach ($thesis_ids as $thesis_id) {
+    $item_id = 'entity:yabrm_thesis/' . $thesis_id . ':' . $language;
+    $reindex[$item_id] = $index->loadItem($item_id);
+  }
+
+  // Reindex all in list.
+  $index->indexSpecificItems($reindex);
+
+  // Prepare confirmation message.
+  $msg = "<b>Please wait a few seconds to see the
+    updated references.</b>";
   \Drupal::messenger()->addMessage(t($msg));
 }
 

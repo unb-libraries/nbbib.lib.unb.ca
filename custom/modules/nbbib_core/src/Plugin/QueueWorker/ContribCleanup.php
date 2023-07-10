@@ -49,13 +49,14 @@ class ContribCleanup extends QueueWorkerBase implements ContainerFactoryPluginIn
    * {@inheritdoc}
    */
   public function processItem($data) {
-    // Delete orphan contrib and log.
+    // Unpublish orphan contrib and log.
     $cid = $data->cid;
     $contrib = BibliographicContributor::load($cid);
 
     if ($contrib) {
-      $contrib->delete();
-      $this->logger->notice("Cleanup: Deleted orphan contributor [$cid].");
+      $contrib->setPublished(FALSE);
+      $contrib->save();
+      $this->logger->notice("Cleanup: Unpublished orphan contributor [$cid].");
     }
   }
 

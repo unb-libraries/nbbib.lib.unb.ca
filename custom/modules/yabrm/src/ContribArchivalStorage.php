@@ -52,6 +52,7 @@ class ContribArchivalStorage extends SqlContentEntityStorage implements ContribA
     return $this->database->update('yabrm_contrib_archival_revision')
       ->fields(['langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED])
       ->condition('langcode', $language->getId())
+      ->accessCheck(FALSE)
       ->execute();
   }
 

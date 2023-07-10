@@ -246,6 +246,7 @@ class MergeContribsConfirmForm extends ConfirmFormBase {
 
           $paragraphs = $query->getQuery()
             ->condition('field_yabrm_contributor_person', $did)
+            ->accessCheck(FALSE)
             ->execute();
 
           // For each paragraph...

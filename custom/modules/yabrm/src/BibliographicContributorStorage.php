@@ -52,6 +52,7 @@ class BibliographicContributorStorage extends SqlContentEntityStorage implements
     return $this->database->update('yabrm_contributor_revision')
       ->fields(['langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED])
       ->condition('langcode', $language->getId())
+      ->accessCheck(FALSE)
       ->execute();
   }
 

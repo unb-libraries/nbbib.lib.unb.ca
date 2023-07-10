@@ -103,6 +103,7 @@ class MergeContribsForm extends FormBase {
             ->condition('status', 1)
             ->condition('name', $token, 'CONTAINS')
             ->sort('name', 'asc')
+            ->accessCheck(TRUE)
             ->execute();
         }
         // Add to array of all duplicate candidates.
@@ -114,6 +115,7 @@ class MergeContribsForm extends FormBase {
         ->condition('status', 1)
         ->condition('last_name', $last, 'CONTAINS')
         ->sort('name', 'asc')
+        ->accessCheck(TRUE)
         ->execute();
     }
 

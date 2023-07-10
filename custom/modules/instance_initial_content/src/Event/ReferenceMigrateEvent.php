@@ -173,6 +173,7 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
     $existing = $this->typeManager->getStorage('yabrm_collection')
       ->getQuery()
       ->condition('name', $collection_name)
+      ->accessCheck(FALSE)
       ->execute();
 
     reset($existing);

@@ -52,6 +52,7 @@ class BookSectionReferenceStorage extends SqlContentEntityStorage implements Boo
     return $this->database->update('yabrm_book_section_revision')
       ->fields(['langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED])
       ->condition('langcode', $language->getId())
+      ->accessCheck(FALSE)
       ->execute();
   }
 

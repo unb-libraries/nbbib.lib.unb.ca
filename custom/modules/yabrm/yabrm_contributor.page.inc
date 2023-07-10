@@ -42,6 +42,7 @@ function template_preprocess_yabrm_contributor(array &$variables) {
     $pids = \Drupal::entityQuery('paragraph')
       ->condition('type', 'yabrm_bibliographic_contributor')
       ->condition('field_yabrm_contributor_person', $cid)
+      ->accessCheck(FALSE)
       ->execute();
 
     foreach ($pids as $pid) {
@@ -49,6 +50,7 @@ function template_preprocess_yabrm_contributor(array &$variables) {
 
       $rid = \Drupal::entityQuery($type)
         ->condition('contributors', $pid, 'IN')
+        ->accessCheck(FALSE)
         ->execute();
 
       if (empty($rid)) {
@@ -56,6 +58,7 @@ function template_preprocess_yabrm_contributor(array &$variables) {
 
         $rid = \Drupal::entityQuery($type)
           ->condition('contributors', $pid, 'IN')
+          ->accessCheck(FALSE)
           ->execute();
       }
 
@@ -64,6 +67,7 @@ function template_preprocess_yabrm_contributor(array &$variables) {
 
         $rid = \Drupal::entityQuery($type)
           ->condition('contributors', $pid, 'IN')
+          ->accessCheck(FALSE)
           ->execute();
       }
 
@@ -72,6 +76,7 @@ function template_preprocess_yabrm_contributor(array &$variables) {
 
         $rid = \Drupal::entityQuery($type)
           ->condition('contributors', $pid, 'IN')
+          ->accessCheck(FALSE)
           ->execute();
       }
     }

@@ -12,6 +12,6 @@ rm_entities('yabrm_contributor');
  */
 function rm_entities($type) {
   $handler = \Drupal::entityTypeManager()->getStorage($type);
-  $entities = $handler->loadMultiple(\Drupal::entityQuery($type)->execute());
+  $entities = $handler->loadMultiple(\Drupal::entityQuery($type)->accessCheck(FALSE)->execute());
   $handler->delete($entities);
 }

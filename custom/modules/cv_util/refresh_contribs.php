@@ -17,6 +17,7 @@ refresh_contribs();
 function refresh_contribs() {
 
   $ids = \Drupal::entityQuery('yabrm_contributor')
+    ->accessCheck(FALSE)
     ->execute();
 
   if (!empty($ids)) {

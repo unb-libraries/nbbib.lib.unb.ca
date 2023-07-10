@@ -43,7 +43,7 @@ echo "\n";
  */
 function xplode_arch($type) {
   $handler = \Drupal::entityTypeManager()->getStorage($type);
-  $entities = $handler->loadMultiple(\Drupal::entityQuery($type)->execute());
+  $entities = $handler->loadMultiple(\Drupal::entityQuery($type)->accessCheck(FALSE)->execute());
   $terms_processed = [];
 
   // Process all 4 types of yabrm reference.
@@ -128,7 +128,7 @@ function tax_term_exists($value, $field, $vocabulary) {
   $tids = \Drupal::entityQuery('taxonomy_term')
     ->condition('vid', $vocabulary)
     ->condition($field, $value)
-    ->execute();
+    ->accessCheck(FALSE)->execute();
 
   if (!empty($tids)) {
     foreach ($tids as $tid) {

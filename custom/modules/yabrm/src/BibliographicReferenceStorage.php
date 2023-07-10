@@ -52,6 +52,7 @@ class BibliographicReferenceStorage extends SqlContentEntityStorage implements B
     return $this->database->update('yabrm_biblio_reference_revision')
       ->fields(['langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED])
       ->condition('langcode', $language->getId())
+      ->accessCheck(FALSE)
       ->execute();
   }
 

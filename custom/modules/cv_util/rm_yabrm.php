@@ -19,7 +19,7 @@ rm_entities('taxonomy_term');
  */
 function rm_entities($type) {
   $handler = \Drupal::entityTypeManager()->getStorage($type);
-  $entities = $handler->loadMultiple(\Drupal::entityQuery($type)->execute());
+  $entities = $handler->loadMultiple(\Drupal::entityQuery($type)->accessCheck(FALSE)->execute());
   $handler->delete($entities);
   echo "All entities of type [$type] removed.\n";
 }

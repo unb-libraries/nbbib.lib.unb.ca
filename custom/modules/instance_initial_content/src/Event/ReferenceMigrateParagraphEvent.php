@@ -113,6 +113,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         $existing = $this->typeManager->getStorage('yabrm_collection')
           ->getQuery()
           ->condition('name', $collection_name)
+          ->accessCheck(FALSE)
           ->execute();
 
         reset($existing);
@@ -139,6 +140,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           ->getQuery()
           ->condition('name', $arch_name)
           ->condition('vid', 'nbbib_archives')
+          ->accessCheck(FALSE)
           ->execute();
 
         reset($existing);
@@ -220,6 +222,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         $existing = $this->typeManager->getStorage('yabrm_contributor')
           ->getQuery()
           ->condition('zotero_name', $zotero_name)
+          ->accessCheck(FALSE)
           ->execute();
 
         reset($existing);
@@ -317,6 +320,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
     return $this->typeManager->getStorage($type)
       ->getQuery()
       ->condition($field, $value)
+      ->accessCheck(FALSE)
       ->execute();
   }
 
@@ -361,7 +365,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
     $query = $this->typeManager->getStorage('taxonomy_term')->getQuery();
     $query->condition('vid', $vocabulary);
     $query->condition($field, $value);
-    $tids = $query->execute();
+    $tids = $query->accessCheck(FALSE)->execute();
 
     if (!empty($tids)) {
       foreach ($tids as $tid) {

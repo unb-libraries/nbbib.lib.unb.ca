@@ -1,8 +1,0 @@
-uuid: 0f2f1247-1094-470a-8f3c-9ae76b61d77b
-langcode: en
-status: true
-dependencies: {  }
-name: 'NBBIB Residences'
-vid: nbbib_residences
-description: 'NBBIB Residences'
-weight: 0

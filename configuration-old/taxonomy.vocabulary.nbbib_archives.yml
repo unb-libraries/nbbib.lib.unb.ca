@@ -1,8 +1,0 @@
-uuid: c026d6fa-ae54-4c17-bda2-7567e8a762e4
-langcode: en
-status: true
-dependencies: {  }
-name: 'NBBIB Archives'
-vid: nbbib_archives
-description: 'NBBIB Archives'
-weight: 0

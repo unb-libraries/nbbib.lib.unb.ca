@@ -1,8 +1,0 @@
-uuid: 321762c1-c084-41c3-9211-76ee917f5c89
-langcode: en
-status: true
-dependencies: {  }
-name: 'NBBIB Locations'
-vid: nbbib_locations
-description: 'NBBIB Locations'
-weight: 0

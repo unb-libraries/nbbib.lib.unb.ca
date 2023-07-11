@@ -1,8 +1,0 @@
-uuid: 527ec076-26d1-4ed7-87f8-808fb2ab1736
-langcode: en
-status: true
-dependencies: {  }
-name: 'YABRM Contributor Roles'
-vid: yabrm_contributor_roles
-description: 'YABRM Contributor Roles'
-weight: 0

@@ -1,8 +1,0 @@
-uuid: b4589037-6904-4477-8dcb-7d2a802079f6
-langcode: en
-status: true
-dependencies: {  }
-name: 'YABRM Reference Topics'
-vid: yabrm_reference_topic
-description: 'YABRM Reference Topics'
-weight: 0

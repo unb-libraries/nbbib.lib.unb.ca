@@ -10,6 +10,7 @@ jobs:
     uses: unb-libraries/dockworker/.github/workflows/build-push-deploy-notify.yaml@6.x
     with:
       branch-env-map: '{"dev":"dev", "prod":"prod"}'
+      build-themes: true
       deploy-branches: '["dev", "prod"]'
       image-name: ghcr.io/unb-libraries/nbbib.lib.unb.ca
       k8s-deployment-name: 'nbbib-lib-unb-ca'

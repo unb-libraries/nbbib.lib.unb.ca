@@ -517,12 +517,14 @@ function nbbib_core_inline_entity_form_entity_form_alter(&$entity_form, FormStat
  * Update display and sort names on contributor IEF collapse.
  */
 function update_names($entity_type, $entity, $entity_form, &$form_state) {
-  $first_name = $entity->getFirstName();
-  $last_name = $entity->getLastName();
-  $institution_name = $entity->getInstitutionName();
-  $names = generate_names($first_name, $last_name, $institution_name);
-  $entity->setName($names['name']);
-  $entity->setSortName($names['sort_name']);
+  if ($entity_type == "yabrm_contributor") {
+    $first_name = $entity->getFirstName();
+    $last_name = $entity->getLastName();
+    $institution_name = $entity->getInstitutionName();
+    $names = generate_names($first_name, $last_name, $institution_name);
+    $entity->setName($names['name']);
+    $entity->setSortName($names['sort_name']);
+  }
 }
 
 /**

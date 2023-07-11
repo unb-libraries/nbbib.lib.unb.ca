@@ -94,11 +94,13 @@
           {%- if content.nb_residences|field_value -%}
             <p><span>
               <b>Predominant New Brunswick Residences: </b>
-              {%- for i in 0..100 if content.nb_residences[i] -%}
-                {%- if not loop.first -%}
-                  {{ ", " }}
+              {%- for i in 0..100 -%} 
+                {%- if content.nb_residences[i] -%}
+                  {%- if not loop.first -%}
+                    {{ ", " }}
+                  {%- endif -%}
+                  {{ content.nb_residences[i]['#title'] }}
                 {%- endif -%}
-                {{ content.nb_residences[i]['#title'] }}
               {%- endfor -%}
             </span></p>
           {%- endif -%}

@@ -3,7 +3,7 @@ name: Update nbbib.lib.unb.ca
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 5 * * *'
+    - cron: '26 5 * * 1,4'
 
 jobs:
   deploy:

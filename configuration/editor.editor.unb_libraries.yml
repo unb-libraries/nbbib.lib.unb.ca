@@ -1,0 +1,116 @@
+uuid: 32200bf1-4145-4dfb-9417-1058a9519920
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.unb_libraries
+  module:
+    - ckeditor5
+format: unb_libraries
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - heading
+      - bold
+      - italic
+      - '|'
+      - link
+      - blockQuote
+      - code
+      - bulletedList
+      - numberedList
+      - strikethrough
+      - superscript
+      - subscript
+      - insertTable
+      - horizontalLine
+      - codeBlock
+      - sourceEditing
+  plugins:
+    ckeditor5_codeBlock:
+      languages:
+        -
+          label: 'Plain text'
+          language: plaintext
+        -
+          label: C
+          language: c
+        -
+          label: 'C#'
+          language: cs
+        -
+          label: C++
+          language: cpp
+        -
+          label: CSS
+          language: css
+        -
+          label: Diff
+          language: diff
+        -
+          label: HTML
+          language: html
+        -
+          label: Java
+          language: java
+        -
+          label: JavaScript
+          language: javascript
+        -
+          label: PHP
+          language: php
+        -
+          label: Python
+          language: python
+        -
+          label: Ruby
+          language: ruby
+        -
+          label: TypeScript
+          language: typescript
+        -
+          label: XML
+          language: xml
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_list:
+      reversed: false
+      startIndex: true
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<a hreflang id class>'
+        - '<cite class>'
+        - '<blockquote cite class>'
+        - '<code class>'
+        - '<ul type class>'
+        - '<ol type class>'
+        - '<li class>'
+        - '<dl class>'
+        - '<dt class>'
+        - '<dd class>'
+        - '<sup class>'
+        - '<sub class>'
+        - '<img src alt data-entity-type data-entity-uuid data-align data-caption class>'
+        - '<table class>'
+        - '<caption class>'
+        - '<tbody class>'
+        - '<thead class>'
+        - '<tfoot class>'
+        - '<th class>'
+        - '<td class>'
+        - '<tr class>'
+        - '<div class>'
+        - '<small class>'
+        - '<span class>'
+        - '<h2 id>'
+        - '<h3 id>'
+        - '<h4 id>'
+        - '<h5 id>'
+        - '<h6 id>'
+image_upload: {  }

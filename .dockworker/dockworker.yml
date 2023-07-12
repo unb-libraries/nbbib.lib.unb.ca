@@ -54,19 +54,14 @@ dockworker:
     jira:
       project_keys:
         - NBBIB
-    ci:
-      actions:
-        - source: dockworker-drupal
-          type: deployment-workflow
     image:
-      parent: ghcr.io/unb-libraries/drupal:9.x-2.x-unblib
-      repositories:
-        - name: GitHub
-          push_branches:
-            - dev
-            - prod
-          image_name: ghcr.io/unb-libraries/nbbib.lib.unb.ca
-      e2e_tests:
+      name: ghcr.io/unb-libraries/nbbib.lib.unb.ca
+      parent: ghcr.io/unb-libraries/drupal:10.x-1.x-unblib
+      repository: GitHub
+      push-branches:
+        - dev
+        - prod
+    e2e_tests:
         - id: core
           frequency: '*/5 * * * *'
           source_files:

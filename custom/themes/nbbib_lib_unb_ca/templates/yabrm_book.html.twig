@@ -140,20 +140,22 @@
 
             {% if content.physical_description|field_value
             or content.num_pages|field_value %}
-              <p id="ref-physical">
+              <span id="ref-physical">
                   {{ "Physical Description: " }}
 
                   {%- if content.num_pages|field_value[0]['#context']['value'] -%}
                     {%- set pages = content.num_pages|field_value[0]['#context']['value'] -%}
-                    {%- if pages == 'n. pag.' -%}
-                      {{- pages ~ " " -}}
-                    {% else %}
-                      {{- pages ~ " pp. "-}}
+                      {%- if pages == 'n. pag.' -%}
+                        {{- pages ~ " " -}}
+                      {% else %}
+                        {{- pages ~ " pp. "-}}
+                      {%- endif -%}
                   {%- endif -%}
-                {%- endif -%}
 
-                  {{- content.physical_description|field_value[0]['#text']|striptags -}}
-              </p>
+                  {%- set pass_tags = '<br><h2><h3><h4><h5><h6><a><cite><blockquote><code><ul><ol><li><dl><dt><dd><sup><sub><img><table><caption><tbody><thead><tfoot><th><td><tr><div><small><span><strong><em><pre><s><hr>' %}
+                  
+                  {{- content.physical_description|field_value[0]['#text']|striptags(pass_tags)|raw -}}
+              </span>
             {% endif %}
 
             </div>

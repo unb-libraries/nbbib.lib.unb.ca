@@ -143,7 +143,7 @@ field_settings:
     label: Author(s)
     property_path: bibliographic_authors
     type: text
-    boost: !!float 5
+    boost: 5.0
   bibliographic_citation:
     label: 'Reference Citation'
     property_path: bibliographic_citation
@@ -152,7 +152,7 @@ field_settings:
     label: Title
     property_path: bibliographic_title
     type: text
-    boost: !!float 5
+    boost: 5.0
   bibliographic_type:
     label: 'Reference Type'
     property_path: bibliographic_type

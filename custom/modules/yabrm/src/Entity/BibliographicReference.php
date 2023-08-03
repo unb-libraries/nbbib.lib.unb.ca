@@ -483,7 +483,8 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['extra'] = BaseFieldDefinition::create('text_long')
-      ->setLabel(t('Extra'))
+      ->setLabel(t('Extra (private/Zotero)'))
+      ->setDescription(t('Corresponds to Extra field in Zotero.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'default_value' => '',

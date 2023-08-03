@@ -18,7 +18,7 @@ mode: default
 content:
   abstract_note:
     type: text_textarea
-    weight: -50
+    weight: 27
     region: content
     settings:
       rows: 5
@@ -27,7 +27,7 @@ content:
     text_processing: 0
   archive:
     type: autocomplete_deluxe
-    weight: -80
+    weight: 23
     region: content
     settings:
       match_operator: CONTAINS
@@ -38,13 +38,13 @@ content:
       min_length: 0
       delimiter: ''
       not_found_message_allow: false
-      not_found_message: 'The term ''@term'' will be added'
+      not_found_message: "The term '@term' will be added"
       new_terms: true
       no_empty_message: 'No terms could be found. Please type in order to add a new term.'
     third_party_settings: {  }
   call_number:
     type: string_textfield
-    weight: -100
+    weight: 21
     region: content
     settings:
       size: 60
@@ -52,7 +52,7 @@ content:
     third_party_settings: {  }
   collections:
     type: autocomplete_deluxe
-    weight: -110
+    weight: 19
     region: content
     settings:
       match_operator: CONTAINS
@@ -63,13 +63,13 @@ content:
       min_length: 0
       delimiter: ''
       not_found_message_allow: false
-      not_found_message: 'The term ''@term'' will be added'
+      not_found_message: "The term '@term' will be added"
       new_terms: false
       no_empty_message: 'No terms could be found. Please type in order to add a new term.'
     third_party_settings: {  }
   contributors:
     type: paragraphs
-    weight: -290
+    weight: 1
     region: content
     settings:
       title: Paragraph
@@ -87,7 +87,7 @@ content:
     third_party_settings: {  }
   cover_image:
     type: image_image
-    weight: -280
+    weight: 2
     region: content
     settings:
       progress_indicator: throbber
@@ -95,7 +95,7 @@ content:
     third_party_settings: {  }
   edition:
     type: string_textfield
-    weight: -210
+    weight: 9
     region: content
     settings:
       size: 60
@@ -103,7 +103,7 @@ content:
     third_party_settings: {  }
   extra:
     type: text_textarea
-    weight: -45
+    weight: 29
     region: content
     settings:
       rows: 5
@@ -112,7 +112,7 @@ content:
     text_processing: 0
   isbn:
     type: string_textfield
-    weight: -220
+    weight: 8
     region: content
     settings:
       size: 60
@@ -120,13 +120,13 @@ content:
     third_party_settings: {  }
   language:
     type: options_buttons
-    weight: -200
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   library_catalog:
     type: string_textfield
-    weight: -90
+    weight: 22
     region: content
     settings:
       size: 60
@@ -134,14 +134,14 @@ content:
     third_party_settings: {  }
   nb_imprint:
     type: boolean_checkbox
-    weight: -105
+    weight: 20
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   notes:
     type: text_textarea
-    weight: -35
+    weight: 28
     region: content
     settings:
       rows: 5
@@ -150,7 +150,7 @@ content:
     text_processing: 0
   notes_private:
     type: text_textarea
-    weight: -40
+    weight: 30
     region: content
     settings:
       rows: 5
@@ -159,7 +159,7 @@ content:
     text_processing: 0
   num_volumes:
     type: string_textfield
-    weight: -140
+    weight: 16
     region: content
     settings:
       size: 60
@@ -167,7 +167,7 @@ content:
     third_party_settings: {  }
   pages:
     type: string_textfield
-    weight: -160
+    weight: 14
     region: content
     settings:
       size: 60
@@ -175,7 +175,7 @@ content:
     third_party_settings: {  }
   physical_description:
     type: text_textarea
-    weight: -70
+    weight: 24
     region: content
     settings:
       rows: 5
@@ -184,7 +184,7 @@ content:
     text_processing: 0
   place:
     type: string_textfield
-    weight: -260
+    weight: 4
     region: content
     settings:
       size: 60
@@ -192,21 +192,21 @@ content:
     third_party_settings: {  }
   publication_day:
     type: number
-    weight: -250
+    weight: 5
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   publication_month:
     type: number
-    weight: -240
+    weight: 6
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   publication_title:
     type: string_textfield
-    weight: -170
+    weight: 13
     region: content
     settings:
       size: 60
@@ -214,14 +214,14 @@ content:
     third_party_settings: {  }
   publication_year:
     type: number
-    weight: -230
+    weight: 7
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   publisher:
     type: string_textfield
-    weight: -270
+    weight: 3
     region: content
     settings:
       size: 60
@@ -229,7 +229,7 @@ content:
     third_party_settings: {  }
   rights:
     type: string_textfield
-    weight: -55
+    weight: 26
     region: content
     settings:
       size: 60
@@ -237,7 +237,7 @@ content:
     third_party_settings: {  }
   series:
     type: string_textfield
-    weight: -130
+    weight: 17
     region: content
     settings:
       size: 60
@@ -245,7 +245,7 @@ content:
     third_party_settings: {  }
   series_number:
     type: string_textfield
-    weight: -120
+    weight: 18
     region: content
     settings:
       size: 60
@@ -253,7 +253,7 @@ content:
     third_party_settings: {  }
   short_title:
     type: string_textfield
-    weight: -180
+    weight: 12
     region: content
     settings:
       size: 60
@@ -261,14 +261,14 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: -30
+    weight: 31
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: -300
+    weight: 0
     region: content
     settings:
       size: 60
@@ -276,7 +276,7 @@ content:
     third_party_settings: {  }
   topics:
     type: autocomplete_deluxe
-    weight: -190
+    weight: 11
     region: content
     settings:
       match_operator: CONTAINS
@@ -287,13 +287,13 @@ content:
       min_length: 0
       delimiter: ''
       not_found_message_allow: false
-      not_found_message: 'The term ''@term'' will be added'
+      not_found_message: "The term '@term' will be added"
       new_terms: true
       no_empty_message: 'No terms could be found. Please type in order to add a new term.'
     third_party_settings: {  }
   url:
     type: link_default
-    weight: -60
+    weight: 25
     region: content
     settings:
       placeholder_url: ''
@@ -301,7 +301,7 @@ content:
     third_party_settings: {  }
   volume:
     type: string_textfield
-    weight: -150
+    weight: 15
     region: content
     settings:
       size: 60

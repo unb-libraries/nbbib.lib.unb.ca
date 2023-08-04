@@ -5,23 +5,24 @@
  * Contains nbbib_core.module.
  */
 
- use Drupal\Core\Entity\EntityInterface;
- use Drupal\Core\Field\FieldDefinitionInterface;
- use Drupal\Core\Field\FieldItemListInterface;
- use Drupal\Core\Form\FormStateInterface;
- use Drupal\Core\Link;
- use Drupal\Core\Messenger\MessengerInterface;
- use Drupal\Core\Queue\QueueFactory;
- use Drupal\Core\Queue\QueueInterface;
- use Drupal\Core\Session\AccountInterface;
- use Drupal\Core\Url;
- use Drupal\paragraphs\Entity\Paragraph;
- use Drupal\search_api\Entity\Index;
- use Drupal\taxonomy\Entity\Term;
- use Drupal\views\Plugin\views\query\QueryPluginBase;
- use Drupal\views\ViewExecutable;
- use Drupal\yabrm\Entity\BibliographicContributor;
- use \Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Queue\QueueFactory;
+use Drupal\Core\Queue\QueueInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\search_api\Entity\Index;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+use Drupal\yabrm\Entity\BibliographicContributor;
 
 /**
  * Implements hook_cron().
@@ -935,5 +936,11 @@ function nbbib_core_views_pre_render($view) {
 
   if (isset($view) && $view->id() == 'nb_bibliography_contributors') {
     $view->element['#attached']['library'][] = 'nbbib_core/contrib-alpha-pager';
+  }
+}
+
+function nbbib_core_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {
+  if ($data['tabs'] and is_array($data['tabs']) and str_contains(key(reset($data['tabs'])), 'entity.version_history:')) {
+    array_shift($data['tabs'][0]);
   }
 }

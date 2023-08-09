@@ -66,6 +66,7 @@
           or content.death_year|field_value 
           or content.nb_residences|field_value 
           or content.nble_url|field_value %}
+          {{ dump(content) }}
           <div id="contrib-picture" class="col-sm-4 pl-4">
             {% if content.picture|field_value or content.cover|field_value %}
               <figure>

@@ -48,7 +48,7 @@ services:
     build:
       context: .
     restart: unless-stopped
-    container_name: nbbib.lib.unb.ca
+    container_name: nbbib-lib-unb-ca
     depends_on:
       - drupal-mysql-lib-unb-ca
       - drupal-redis-lib-unb-ca

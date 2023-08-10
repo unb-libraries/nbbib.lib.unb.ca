@@ -18,6 +18,7 @@
 
 <div{{ attributes.addClass('yabrm-contributor', 'contrib-layout') }}>
   {% if content %}
+    {{ dump(content) }}
     <div class="container">
       <div class="row description-pic">
         {% if content.picture|field_value 
@@ -59,7 +60,7 @@
             {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
           </div>
         </div>
-      
+
         {% if content.picture|field_value 
           or content.cover 
           or content.birth_year|field_value 
@@ -67,7 +68,7 @@
           or content.nb_residences|field_value 
           or content.nble_url|field_value %}
           <div id="contrib-picture" class="col-sm-4 pl-4">
-            {% if content.picture|field_value or content.cover|field_value %}
+            {% if content.picture|field_value or content.cover %}
               <figure>
                 {% if content.picture|field_value %}
                   {{ content.picture|field_value }}

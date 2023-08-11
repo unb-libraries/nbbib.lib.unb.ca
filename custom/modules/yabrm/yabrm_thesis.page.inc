@@ -152,7 +152,7 @@ function template_preprocess_yabrm_thesis(array &$variables) {
   $authors = $variables['content']['authors'] ?? NULL;
   $editors = $variables['content']['editors'] ?? NULL;
   $publication_year = $variables['content']['publication_year']['0']['#markup']
-    ?? NULL;
+    ?? 'n.d.';
   $title = $variables['content']['title']['0']['#context']['value'] ?? NULL;
   $publisher = $variables['content']['publisher']['0']['#context']['value']
     ?? NULL;

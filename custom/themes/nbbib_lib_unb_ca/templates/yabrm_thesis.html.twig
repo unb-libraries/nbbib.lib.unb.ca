@@ -65,12 +65,14 @@
                 <div class="col-sm-6">{{ content.publisher|field_value }}</div>
               </div>
             {% endif %}
-            {% if content.publication_year|field_value %}
-              <div id="ref-pub-date" class="row">
-                <div class="col-sm-6">Publication Date</div>
+            <div id="ref-pub-date" class="row">
+              <div class="col-sm-6">Publication Date</div>
+              {% if content.publication_year|field_value %}
                 <div class="col-sm-6">{{ content.publication_year|field_value }}</div>
-              </div>
-            {% endif %}
+              {% else %}
+                <div class="col-sm-6">n.d.</div>
+              {% endif %}
+            </div>
             {% if content.nb_imprint|field_value %}
               <div id="ref-nb-imprint" class="row">
                 <div class="col-sm-6">NB Imprint</div>

@@ -153,7 +153,7 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
   $authors = $variables['content']['authors'] ?? NULL;
   $editors = $variables['content']['editors'] ?? NULL;
   $publication_year = $variables['content']['publication_year']['0']['#markup']
-    ?? NULL;
+    ?? 'n.d.';
   $title = $variables['content']['title']['0']['#context']['value'] ?? NULL;
 
   // Specific to Journal Article.

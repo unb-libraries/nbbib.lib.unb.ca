@@ -1,24 +1,17 @@
-nbbib_core.home:
-  title: 'Home'
-  description: 'Home'
-  parent: main
-  menu_name: main
-  route_name: <front>
-  weight: 10
 nbbib_core.biblio:
   title: 'Bibliography'
   description: 'Bibliography'
   parent: main
   menu_name: main
   route_name: nbbib_core.bibliography
-  weight: 20
+  weight: 10
 nbbib_core.collections:
   title: 'Collections'
   description: 'Collections'
   parent: main
   menu_name: main
   route_name: nbbib_core.collections
-  weight: 30
+  weight: 20
 nbbib_core.contributors:
   title: 'Contributors'
   description: 'Contributors'
@@ -26,14 +19,14 @@ nbbib_core.contributors:
   menu_name: main
   route_name: nbbib_core.contributors
   route_parameters: { filter: 'all' }
-  weight: 40
+  weight: 30
 nbbib_core.topics:
   title: 'Topics'
   description: 'Topics'
   parent: main
   menu_name: main
   route_name: view.nb_bibliography_topics.page_1
-  weight: 50
+  weight: 40
 nbbib_core.about:
   title: 'About'
   description: 'About'
@@ -41,7 +34,7 @@ nbbib_core.about:
   menu_name: main
   route_name: nbbib_core.about
   expanded: TRUE
-  weight: 60
+  weight: 50
 nbbib_core.about.overview:
   title: 'Project Overview'
   description: 'Project Overview'

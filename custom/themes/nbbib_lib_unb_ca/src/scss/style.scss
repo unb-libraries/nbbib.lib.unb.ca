@@ -17,10 +17,6 @@ html {
 
       // Header.
       header {
-        // Hide "Home" option from homepage.
-        #block-mainnavigation li.nav-item:first-of-type {
-          display: none !important;
-        }
       }
 
       // Main.

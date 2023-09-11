@@ -174,6 +174,18 @@ class MergeContribsForm extends FormBase {
     }
 
     if (count($results) > 1) {
+      if (!$pub) {
+        // Add unpublished contrib warning.
+        $warning = "
+        You are about to merge other contributors into unpublished contributor <i>$name</i>. 
+        ";
+  
+        $form['warning'] = [
+        '#type' => 'markup',
+        '#markup' => $this->t("<b>WARNING:</b> $warning"),
+        ];
+      }
+      // Add actions.
       $form['actions']['#type'] = 'actions';
 
       $form['actions']['submit'] = [
@@ -185,18 +197,6 @@ class MergeContribsForm extends FormBase {
     else {
       $form['duplicates']['#description'] =
         $this->t("No duplicate candidates found.");
-    }
-
-    if (!$pub) {
-      // Add unpublished contrib warning.
-      $warning = "
-      You are about to merge other contributors into unpublished contributor <i>$name</i>. 
-      ";
-
-      $form['warning'] = [
-      '#type' => 'markup',
-      '#markup' => $this->t("<b>WARNING:</b> $warning"),
-      ];
     }
 
     return $form;

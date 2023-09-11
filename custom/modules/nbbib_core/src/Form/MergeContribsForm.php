@@ -72,10 +72,12 @@ class MergeContribsForm extends FormBase {
     $inst = $contrib->getInstitutionName();
     $pre = $contrib->getPrefix();
     $suf = $contrib->getSuffix();
+    $pub = $contrib->isPublished();
 
     $name = $inst ? $inst : trim("$pre $first $last $suf");
 
     $form['#title'] = $this->t("Merge duplicates into <i>$name</i>");
+    $title = "Possible duplicates for $name:";
 
     // Set up duplicates checkbox set.
     $form['duplicates'] = [
@@ -100,7 +102,6 @@ class MergeContribsForm extends FormBase {
         if (strlen($token) > 3) {
           // Return all contributors that contain the word.
           $set = $query->getQuery()
-            ->condition('status', 1)
             ->condition('name', $token, 'CONTAINS')
             ->sort('name', 'asc')
             ->accessCheck(TRUE)
@@ -112,7 +113,6 @@ class MergeContribsForm extends FormBase {
     }
     else {
       $candidates = $query->getQuery()
-        ->condition('status', 1)
         ->condition('last_name', $last, 'CONTAINS')
         ->sort('name', 'asc')
         ->accessCheck(TRUE)
@@ -185,6 +185,18 @@ class MergeContribsForm extends FormBase {
     else {
       $form['duplicates']['#description'] =
         $this->t("No duplicate candidates found.");
+    }
+
+    if (!$pub) {
+      // Add unpublished contrib warning.
+      $warning = "
+      You are about to merge other contributors into unpublished contributor <i>$name</i>. 
+      ";
+
+      $form['warning'] = [
+      '#type' => 'markup',
+      '#markup' => $this->t("<b>WARNING:</b> $warning"),
+      ];
     }
 
     return $form;

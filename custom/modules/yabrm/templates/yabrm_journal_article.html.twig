@@ -177,12 +177,12 @@
           </span>
         </div>
       {%- endif -%}
-            {% if content.source|field_value %}
+            {% if content.collections|field_value %}
         <div id="ref-notes">
-          <b>Source</b>
+          <b>Collection(s)</b>
 
           <div>
-            {{ content.source }}
+            {{ content.collections }}
           </div>
 
         </div>

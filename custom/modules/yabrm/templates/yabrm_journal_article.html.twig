@@ -177,8 +177,16 @@
           </span>
         </div>
       {%- endif -%}
+            {% if content.source|field_value %}
+        <div id="ref-notes">
+          <b>Source</b>
 
+          <div>
+            {{ content.source }}
+          </div>
 
+        </div>
+      {% endif %}
     </div>
   {% endif %}
 </div>

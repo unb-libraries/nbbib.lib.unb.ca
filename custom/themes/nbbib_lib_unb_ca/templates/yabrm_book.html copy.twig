@@ -1,21 +1,21 @@
 {#
 /**
- * @file yabrm_journal_article.html.twig
- * Default theme implementation to present Journal Article Reference data.
+ * @file yabrm_book.html.twig
+ * Default theme implementation to present Book reference data.
  *
- * This template is used when viewing Journal Article Reference pages.
+ * This template is used when viewing Book reference pages.
  *
  *
  * Available variables:
  * - content: A list of content items. Use 'content' to print all content, or
  * - attributes: HTML attributes for the container element.
  *
- * @see template_preprocess_yabrm_journal_article()
+ * @see template_preprocess_yabrm_book()
  *
  * @ingroup themeable
  */
 #}
-<div{{ attributes.addClass('yabrm-reference', 'yabrm-journal-article', 'contrib-layout') }}>
+<div{{ attributes.addClass('yabrm-reference', 'yabrm-book', 'contrib-layout') }}>
   {% if content %}
     <div class="container">
       <div class="row">
@@ -45,12 +45,18 @@
           <div id="ref-details" class="container">
             <div id="ref-type" class="row">
               <div class="col-sm-6">Item Type</div>
-              <div class="col-sm-6">Journal Article</div>
+              <div class="col-sm-6">Book</div>
             </div>
-            {% if content.publication_title|field_value %}
-              <div id="ref-pub-title" class="row">
-                <div class="col-sm-6">Journal Title</div>
-                <div class="col-sm-6">{{ content.publication_title|field_value }}</div>
+            {% if content.series|field_value %}
+              <div id="ref-series" class="row">
+                <div class="col-sm-6">Series</div>
+                <div class="col-sm-6">{{ content.series|field_value }}</div>
+              </div>
+            {% endif %}
+            {% if content.series_number|field_value %}
+              <div id="ref-series-num" class="row">
+                <div class="col-sm-6">Series Number</div>
+                <div class="col-sm-6">{{ content.series_number|field_value }}</div>
               </div>
             {% endif %}
             {% if content.volume|field_value %}
@@ -59,16 +65,28 @@
                 <div class="col-sm-6">{{ content.volume|field_value }}</div>
               </div>
             {% endif %}
-            {% if content.issue|field_value %}
-              <div id="ref-issue" class="row">
-                <div class="col-sm-6">Issue</div>
-                <div class="col-sm-6">{{ content.issue|field_value }}</div>
+            {% if content.num_volumes|field_value %}
+              <div id="ref-num-volumes" class="row">
+                <div class="col-sm-6">Number of Volumes</div>
+                <div class="col-sm-6">{{ content.num_volumes|field_value }}</div>
               </div>
             {% endif %}
-            {% if content.pages|field_value %}
-              <div id="ref-pages" class="row">
-                <div class="col-sm-6">Pages</div>
-                <div class="col-sm-6">{{ content.pages|field_value }}</div>
+            {% if content.edition|field_value %}
+              <div id="ref-edition" class="row">
+                <div class="col-sm-6">Edition</div>
+                <div class="col-sm-6">{{ content.edition|field_value }}</div>
+              </div>
+            {% endif %}
+            {% if content.place|field_value %}
+              <div id="ref-place" class="row">
+                <div class="col-sm-6">Place of Publication</div>
+                <div class="col-sm-6">{{ content.place|field_value }}</div>
+              </div>
+            {% endif %}
+            {% if content.publisher|field_value %}
+              <div id="ref-publisher" class="row">
+                <div class="col-sm-6">Publisher</div>
+                <div class="col-sm-6">{{ content.publisher|field_value }}</div>
               </div>
             {% endif %}
             <div id="ref-pub-date" class="row">
@@ -90,8 +108,7 @@
               <div id="ref-language" class="row">
                 <div class="col-sm-6">Language(s)</div>
 
-                <div class="col-sm-6">          {#***#}
-
+                <div class="col-sm-6">
                   {%- for language in content.lang_names -%}
                     {%- if not loop.first -%}
                       {{ ', ' }}
@@ -102,31 +119,60 @@
                 </div>
               </div>
             {% endif %}
-            {% if content.issn|field_value %}
+            {% if content.isbn|field_value %}
               <div id="ref-isbn-issn" class="row">
                 <div class="col-sm-6">ISBN/ISSN</div>
-                <div class="col-sm-6">{{ content.issn|field_value }}</div>
+                <div class="col-sm-6">{{ content.isbn|field_value }}</div>
               </div>
             {% endif %}
           </div>
 
-          <div id="ref-description">
-            {% if content.abstract_note|field_value %}
+          {% if content.abstract_note|field_value
+            or content.num_pages|field_value
+            or content.physical_description|field_value %}
+            <div id="ref-description">
+
               <b>Description</b>
 
-              <div>
-                {{ content.abstract_note|field_value }}
-              </div>
+              {% if content.abstract_note|field_value %}
+                <div>
+                  {{ content.abstract_note|field_value }}
+                </div>
+              {% endif %}
 
-            {% endif %}
-          </div>
+              {% if content.physical_description|field_value
+              or content.num_pages|field_value %}
+                <p>
+                  <span id="ref-physical">
+                      {{ "Physical Description: " }}
+
+                      {%- if content.num_pages|field_value[0]['#context']['value'] -%}
+                        {%- set pages = content.num_pages|field_value[0]['#context']['value'] -%}
+                          {%- if pages == 'n. pag.' -%}
+                            {{- pages ~ " " -}}
+                          {% else %}
+                            {{- pages ~ " pp. "-}}
+                          {%- endif -%}
+                      {%- endif -%}
+
+                      {%- set pass_tags = '<br><h2><h3><h4><h5><h6><a><cite><blockquote><code><ul><ol><li><dl><dt><dd><sup><sub><img><table><caption><tbody><thead><tfoot><th><td><tr><div><small><span><strong><em><pre><s><hr>' %}
+                      
+                      {{- content.physical_description|field_value[0]['#text']|striptags(pass_tags)|raw -}}
+                  </span>
+                </p>
+              {% endif %}
+
+            </div>
+          {% else %}
+            <div id="ref-description"></div>
+          {% endif %}
 
           {% if content.archives or content.url|field_value %}
             <div id="ref-copies">
               <b>Copies</b>
 
               <div>
-                {% if content.archives %}
+                {% if content.archives or content.url %}
                   <ul>
                     {% for archive in content.archives %}
                       <li>{{ archive }}</li>
@@ -172,11 +218,12 @@
                   </a>
                 {%- endfor -%}
               </span>
+
             </div>
           {%- endif -%}
 
           {%- if content.collections|field_value -%}
-            <div id="ref-topics">
+            <div id="ref-collections">
               <b>Collections: </b>
 
               <span>

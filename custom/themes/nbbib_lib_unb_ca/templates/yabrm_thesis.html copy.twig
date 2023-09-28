@@ -1,80 +1,56 @@
 {#
 /**
- * @file yabrm_book.html.twig
- * Default theme implementation to present Book reference data.
+ * @file yabrm_thesis.html.twig
+ * Default theme implementation to present Thesis reference data.
  *
- * This template is used when viewing Book reference pages.
+ * This template is used when viewing Thesis reference pages.
  *
  *
  * Available variables:
  * - content: A list of content items. Use 'content' to print all content, or
  * - attributes: HTML attributes for the container element.
  *
- * @see template_preprocess_yabrm_book()
+ * @see template_preprocess_yabrm_thesis()
  *
  * @ingroup themeable
  */
 #}
-<div{{ attributes.addClass('yabrm-reference', 'yabrm-book', 'contrib-layout') }}>
+<div{{ attributes.addClass('yabrm-reference', 'yabrm-thesis', 'contrib-layout') }}>
   {% if content %}
     <div class="container">
       <div class="row">
         <div id="ref-body" class="col-sm-8">
 
-          <ul id="ref-contribs">
+        <ul id="ref-contribs">
 
-            {% if content.contribs_all %}
-              {% for contrib in content.contribs_all %}
+          {% if content.contribs_all %}
+            {% for contrib in content.contribs_all %}
 
-                {% if contrib.display_name == "Anonymous" %}
-                  <li>[Anonymous]</li>
-                {% else %}
-                  <li><a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
-                  {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
-                  </a></li>
-                {% endif %}
+              {% if contrib.display_name == "Anonymous" %}
+                <li>[Anonymous]</li>
+              {% else %}
+                <li><a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
+                {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
+                </a></li>
+              {% endif %}
 
-              {% endfor %}
-            {% else %}
-              <li>[Unknown]</li>
-            {% endif %}
-          </ul>
+            {% endfor %}
+          {% else %}
+            <li>[Unknown]</li>
+          {% endif %}
+        </ul>
 
           <h2>Publication Details</h2>
 
           <div id="ref-details" class="container">
             <div id="ref-type" class="row">
               <div class="col-sm-6">Item Type</div>
-              <div class="col-sm-6">Book</div>
+              <div class="col-sm-6">Thesis</div>
             </div>
-            {% if content.series|field_value %}
+            {% if content.thesis_type|field_value %}
               <div id="ref-series" class="row">
-                <div class="col-sm-6">Series</div>
-                <div class="col-sm-6">{{ content.series|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.series_number|field_value %}
-              <div id="ref-series-num" class="row">
-                <div class="col-sm-6">Series Number</div>
-                <div class="col-sm-6">{{ content.series_number|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.volume|field_value %}
-              <div id="ref-volume" class="row">
-                <div class="col-sm-6">Volume</div>
-                <div class="col-sm-6">{{ content.volume|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.num_volumes|field_value %}
-              <div id="ref-num-volumes" class="row">
-                <div class="col-sm-6">Number of Volumes</div>
-                <div class="col-sm-6">{{ content.num_volumes|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.edition|field_value %}
-              <div id="ref-edition" class="row">
-                <div class="col-sm-6">Edition</div>
-                <div class="col-sm-6">{{ content.edition|field_value }}</div>
+                <div class="col-sm-6">Thesis Type</div>
+                <div class="col-sm-6">{{ content.thesis_type|field_value }}</div>
               </div>
             {% endif %}
             {% if content.place|field_value %}
@@ -172,7 +148,7 @@
               <b>Copies</b>
 
               <div>
-                {% if content.archives or content.url %}
+                {% if content.archives %}
                   <ul>
                     {% for archive in content.archives %}
                       <li>{{ archive }}</li>
@@ -218,12 +194,11 @@
                   </a>
                 {%- endfor -%}
               </span>
-
             </div>
           {%- endif -%}
 
           {%- if content.collections|field_value -%}
-            <div id="ref-topics">
+            <div id="ref-collections">
               <b>Collections: </b>
 
               <span>

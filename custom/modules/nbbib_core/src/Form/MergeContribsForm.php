@@ -126,16 +126,13 @@ class MergeContribsForm extends FormBase {
       $name2 = $obj->getName();
 
       if (!$inst) {
-        $name2 = trim(
-          $obj->getFirstName() .
-          $obj->getLastName()
-        );
+        $name2 = $obj->getLastName();
       }
       // Get the percentage of similar characters in $perc.
       similar_text($name2, $name, $perc);
 
       // If characters match over 60%...
-      if ($perc > 60) {
+      if ($perc > 30) {
         // Add to results list.
         $results[] = $candidate;
       }

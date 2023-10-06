@@ -81,7 +81,21 @@
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
-    }
+    },
+    {
+    "package": {
+      "name": "drupal/login_return_page",
+      "source": {
+        "reference": "8.x-1.x",
+        "type": "git",
+        "url": "https://git.drupalcode.org/sandbox/gnuget-2824414.git"
+      },
+      "type": "drupal-module",
+      "version": "1.x-dev"
+    },
+    "type": "package"
+  }
+
   ],
   "require": {
     "drupal/admin_toolbar": "^3",

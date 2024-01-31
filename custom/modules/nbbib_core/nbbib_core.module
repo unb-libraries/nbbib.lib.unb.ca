@@ -921,7 +921,7 @@ function nbbib_core_views_pre_execute($view) {
     $exposed_input = $view->getExposedInput();
     if (isset($exposed_input['topic_names'])) {
       $filters = $view->display_handler->getOption('filters');
-      $filters['topic_names']['value'] = url_encode(['topic_names']['value']);
+      $filters['topic_names']['value'] = urlencode(['topic_names']['value']);
       $view->display_handler->overrideOption('filters', $filters);  
     }
   }

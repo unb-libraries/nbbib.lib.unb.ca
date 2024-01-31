@@ -916,13 +916,13 @@ function reindex_collection_refs($cid) {
 /**
  * Implements hook_views_pre_execute().
  */
-function nbbib_core_views_pre_execute($view) {
+function nbbib_core_views_pre_view($view) {
   if (isset($view) && $view->id() == 'nb_bibliography_citations') {
     $exposed_input = $view->getExposedInput();
     if (isset($exposed_input['topic_names'])) {
       $filters = $view->display_handler->getOption('filters');
       $filters['topic_names']['value']['value'] = urlencode($exposed_input['topic_names']);
-      $view->display_handler->overrideOption('filters', $filters);  
+      $view->display_handler->overrideOption('filters', $filters);
     }
   }
 }

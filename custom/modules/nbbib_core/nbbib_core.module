@@ -914,6 +914,20 @@ function reindex_collection_refs($cid) {
 }
 
 /**
+ * Implements hook_views_pre_execute().
+ */
+function nbbib_core_views_pre_execute($view) {
+  if (isset($view) && $view->id() == 'nb_bibliography_citations') {
+    $exposed_input = $view->getExposedInput();
+    if (isset($exposed_input['topic_names'])) {
+      $filters = $view->display_handler->getOption('filters');
+      $filters['topic_names']['value'] = url_encode(['topic_names']['value']);
+      $view->display_handler->overrideOption('filters', $filters);  
+    }
+  }
+}
+
+/**
  * Implements hook_views_pre_render().
  */
 function nbbib_core_views_pre_render($view) {

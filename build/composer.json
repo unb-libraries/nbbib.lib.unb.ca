@@ -123,7 +123,7 @@
     "drupal/twig_field_value": "^2",
     "drupal/twig_tweak": "^3",
     "drupal/views_contextual_filters_or": "^1",
-    "unb-libraries/composer-drupal-scaffold": "^10",
+    "unb-libraries/composer-drupal-scaffold": "10.0.0",
     "unb-libraries/saml_features": "dev-10.x-1.x"
   },
   "require-dev": {

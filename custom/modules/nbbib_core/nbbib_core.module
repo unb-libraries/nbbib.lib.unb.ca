@@ -262,8 +262,14 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
  * Implements hook_views_query_alter().
  * Adds published filter for contributors view only if user is not editor.
  */
-
 function nbbib_core_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  dump($query->getWhere()[1]['conditions']);
+  $conditions = $query->getWhere()[1]['conditions'];
+  foreach ($conditions as $i => $condition) { 
+    if ($condition[0] == 'topic_names') {
+      $conditions[$i][1] == urlencode($condition[1]);
+    }
+  }
   try {
     $userCurrent = \Drupal::currentUser();
     $uid = $userCurrent->id();
@@ -279,6 +285,20 @@ function nbbib_core_views_query_alter(ViewExecutable $view, QueryPluginBase $que
       ['%e' => $e]
     );
     return;
+  }
+}
+
+/**
+ * Implements hook_views_pre_execute().
+ */
+function nbbib_core_views_pre_view($view) {
+  if (isset($view) && $view->id() == 'nb_bibliography_citations') {
+    $exposed_input = $view->getExposedInput();
+    if (isset($exposed_input['topic_names'])) {
+      $filters = $view->display_handler->getOption('filters');
+      $filters['topic_names']['value']['value'] = urlencode($exposed_input['topic_names']);
+      $view->display_handler->overrideOption('filters', $filters);
+    }
   }
 }
 
@@ -911,20 +931,6 @@ function reindex_collection_refs($cid) {
   $msg = "<b>Please wait a few seconds to see the
     updated references.</b>";
   \Drupal::messenger()->addMessage(t($msg));
-}
-
-/**
- * Implements hook_views_pre_execute().
- */
-function nbbib_core_views_pre_view($view) {
-  if (isset($view) && $view->id() == 'nb_bibliography_citations') {
-    $exposed_input = $view->getExposedInput();
-    if (isset($exposed_input['topic_names'])) {
-      $filters = $view->display_handler->getOption('filters');
-      $filters['topic_names']['value']['value'] = urlencode($exposed_input['topic_names']);
-      $view->display_handler->overrideOption('filters', $filters);
-    }
-  }
 }
 
 /**

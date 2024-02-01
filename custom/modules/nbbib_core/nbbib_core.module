@@ -265,15 +265,13 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
  */
 function nbbib_core_views_query_alter($view, $query) {
   if ($view->id() == 'nb_bibliography_citations' && 
-    is_numeric($view->exposed_raw_input['topic_names']) && 
-    $view->exposed_raw_input['topic_names'] > 0) {
-
+  $view->exposed_raw_input['topic_names'] > 0) {
     // Traverse through the 'where' part of the query.
     $where = &$query->getWhere();
     foreach ($where as &$condition_group) {
       foreach ($condition_group['conditions'] as &$condition) {
-        // If this is the part of the query filtering on title, change the
-        // condition to filter on node ID.
+        // If this is the part of the query filtering on topic, change the
+        // condition to filter by clean topic_names.
         if ($condition[0] == 'topic_names') {
           $condition = [
             'topic_names',

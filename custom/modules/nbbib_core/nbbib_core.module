@@ -275,13 +275,14 @@ function nbbib_core_views_query_alter($view, $query) {
         if ($condition[0] == 'topic_names') {
           $condition = [
             'topic_names',
-            strclean($view->exposed_raw_input['topic_names']),
+            urlencode($view->exposed_raw_input['topic_names']),
             '=',
           ];
         }
       }
     }
   }
+  dump($query->getWhere());
   try {
     $userCurrent = \Drupal::currentUser();
     $uid = $userCurrent->id();

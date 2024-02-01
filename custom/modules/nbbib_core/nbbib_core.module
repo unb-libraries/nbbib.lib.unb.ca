@@ -282,7 +282,6 @@ function nbbib_core_views_query_alter($view, $query) {
       }
     }
   }
-  dump($query->getWhere());
   try {
     $userCurrent = \Drupal::currentUser();
     $uid = $userCurrent->id();

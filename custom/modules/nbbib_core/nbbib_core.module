@@ -282,7 +282,6 @@ function nbbib_core_views_query_alter($view, $query) {
       }
     }
   }
-  dump($query->getWhere());
   try {
     $userCurrent = \Drupal::currentUser();
     $uid = $userCurrent->id();
@@ -409,22 +408,9 @@ function strclean($string) {
   
   $string = strtr($string, $chars);
   $string = str_replace('-', ' ', $string); // Replaces all hyphens with spaces.
-  return preg_replace('/[^A-Za-z0-9\s]/', '', $string); // Removes special chars.
-}
-
-/**
- * Implements hook_views_pre_execute().
- */
-function nbbib_core_views_pre_view($view) {
-  if (isset($view) && $view->id() == 'nb_bibliography_citations') {
-    $exposed_input = $view->getExposedInput();
-    if (isset($exposed_input['topic_names'])) {
-      $filters = $view->display_handler->getOption('filters');
-      $filters['topic_names']['value']['value'] = urlencode($exposed_input['topic_names']);
-      $view->display_handler->overrideOption('filters', $filters);
-    }
-  }
-}
+  // Removes special chars, escapes spaces.
+  return preg_replace('/[^A-Za-z0-9\s]/', '', $string);
+} 
 
 /**
  * Implements hook_form_FORM_ID_alter().

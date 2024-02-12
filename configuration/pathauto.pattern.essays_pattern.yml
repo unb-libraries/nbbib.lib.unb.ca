@@ -1,0 +1,22 @@
+uuid: 563d66ed-e638-4d26-bbb4-ff2652daa033
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: essays_pattern
+label: 'Essays Pattern'
+type: 'canonical_entities:node'
+pattern: 'essays/[node:title]'
+selection_criteria:
+  836def65-45f4-4191-a5f5-a89f20ce1bb2:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 836def65-45f4-4191-a5f5-a89f20ce1bb2
+    context_mapping:
+      node: node
+    bundles:
+      nbbib_essay: nbbib_essay
+selection_logic: and
+weight: -5
+relationships: {  }

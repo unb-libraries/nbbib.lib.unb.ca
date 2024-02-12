@@ -1,0 +1,11 @@
+uuid: 3b38163a-ed27-4a77-b5ae-63105753ef75
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.nbbib_essay
+id: node.nbbib_essay
+target_entity_type_id: node
+target_bundle: nbbib_essay
+default_langcode: site_default
+language_alterable: false

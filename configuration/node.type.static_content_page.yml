@@ -10,7 +10,7 @@ third_party_settings:
     parent: ''
 name: 'Static Content Page'
 type: static_content_page
-description: 'Content type for static HTML pages in nbbib_lib_unb_ca.'
+description: 'Content type for static HTML pages in nbbib.lib.unb.ca'
 help: ''
 new_revision: false
 preview_mode: 1

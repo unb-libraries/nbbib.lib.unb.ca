@@ -32,3 +32,10 @@ nbbib_core.about:
     _title: 'About The Site'
   requirements:
     _permission: 'access content'
+nbbib_core.settings:
+  path: '/admin/config/nbbib_core/settings'
+  defaults:
+    _form: '\Drupal\nbbib_core\Form\NbbibSettingsForm'
+    _title: 'NBBIB settings'
+  requirements:
+    _role: 'nbbib_archivals_editor'

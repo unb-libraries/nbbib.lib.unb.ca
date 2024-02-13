@@ -1,0 +1,11 @@
+_core:
+  default_config_hash: PyIxbZYPmr87P0HYAohANvtLUa0_-_Cjtcr8du2OpcU
+langcode: en
+status: true
+id: nbbib_core
+Label: 'NBBIB Core'
+module: nbbib_core
+description: 'Provides configuration options for nbbib_core'
+core: 10.x
+view_headers:
+  nbbib_essays: '<p>NEW New text.</p>'

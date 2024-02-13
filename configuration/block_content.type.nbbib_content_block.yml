@@ -1,0 +1,8 @@
+uuid: 1b9f760c-3d8c-4490-b0fb-aaa6082ab84b
+langcode: en
+status: true
+dependencies: {  }
+id: nbbib_content_block
+label: 'NBBIB Content Block'
+revision: 0
+description: "Block type for general content in nbbib_lib_unb_ca.\t\r\n"

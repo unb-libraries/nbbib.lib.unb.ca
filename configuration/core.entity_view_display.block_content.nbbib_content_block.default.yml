@@ -1,0 +1,24 @@
+uuid: a2116041-40f4-4c46-8f09-3f298369a5e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.nbbib_content_block
+    - field.field.block_content.nbbib_content_block.body
+  module:
+    - text
+id: block_content.nbbib_content_block.default
+targetEntityType: block_content
+bundle: nbbib_content_block
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

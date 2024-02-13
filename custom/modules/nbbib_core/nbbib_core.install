@@ -47,6 +47,7 @@ function nbbib_core_install() {
     'theses',
   ];
 
+  // Work redirects.
   foreach ($works as $work) {
     Redirect::create([
       'redirect_source' => $work,
@@ -63,5 +64,4 @@ function nbbib_core_install() {
     'language' => 'und',
     'status_code' => '301',
   ])->save();
-
 }

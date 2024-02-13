@@ -34,6 +34,7 @@ module:
   link: 0
   menu_ui: 0
   mysql: 0
+  nbbib_core: 11
   node: 0
   options: 0
   page_cache: 0
@@ -61,7 +62,6 @@ module:
   yabrm: 0
   menu_link_content: 1
   views: 10
-  nbbib_core: 11
   paragraphs: 11
   saml_features: 12
   minimal: 1000

@@ -1065,6 +1065,11 @@ function nbbib_core_views_pre_render($view) {
   if (isset($view) && $view->id() == 'nb_bibliography_contributors') {
     $view->element['#attached']['library'][] = 'nbbib_core/contrib-alpha-pager';
   }
+
+  if (isset($view) && $view->id() == 'nbbib_essays') {
+    $view->header['area']->options['content']['value'] = 
+      \Drupal::config('nbbib_core.settings')->get('view_headers')['nbbib_essays'];
+  }
 }
 
 function nbbib_core_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {

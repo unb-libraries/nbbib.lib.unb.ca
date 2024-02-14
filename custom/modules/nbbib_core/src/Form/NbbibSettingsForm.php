@@ -40,7 +40,7 @@ class NbbibSettingsForm extends ConfigFormBase {
     $config = $this->config(static::SETTINGS);
     $form['nbbib_essays_header'] = [
       '#type' => 'text_format',
-      '#title' => $this->t('Header text for essays view'),
+      '#title' => $this->t('Custom header for Essays list page'),
       '#format' => 'unb_libraries',
       '#default_value' => $config->get('view_headers.nbbib_essays'),
     ];

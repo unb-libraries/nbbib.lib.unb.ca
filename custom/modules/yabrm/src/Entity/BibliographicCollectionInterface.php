@@ -53,6 +53,25 @@ interface BibliographicCollectionInterface extends ContentEntityInterface, Revis
   public function setDescription($description);
 
   /**
+   * Gets the Bibliographic Collection Essays.
+   *
+   * @return \Drupal\node\Entity\NodeInterface[]
+   *   The Essays of the Bibliographic Collection.
+   */
+  public function getEssays();
+
+  /**
+   * Sets the Bibliographic Collections Essays.
+   *
+   * @param \Drupal\yabrm\Entity\\Drupal\node\Entity\NodeInterface[] $essays
+   *   An array of Bibliographic Collection Essays.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicCollectionInterface
+   *   The called Bibliographic Collection entity.
+   */
+  public function setEssays(array $essays);
+
+  /**
    * Gets the Bibliographic Collection creation timestamp.
    *
    * @return int

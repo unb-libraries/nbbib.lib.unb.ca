@@ -986,7 +986,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    * {@inheritdoc}
    */
   public function getExternalKeyRef() {
-    return $this->get('short_title')->value;
+    return $this->get('external_key_ref')->value;
   }
 
   /**

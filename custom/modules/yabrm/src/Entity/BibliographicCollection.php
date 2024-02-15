@@ -138,6 +138,21 @@ class BibliographicCollection extends RevisionableContentEntityBase implements B
   /**
    * {@inheritdoc}
    */
+  public function getEssays() {
+    return $this->get('essays')->referencedEntities();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setEssays(array $essays) {
+    $this->set('essays', $essays);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getDescription() {
     return $this->get('description')->value;
   }
@@ -283,6 +298,41 @@ class BibliographicCollection extends RevisionableContentEntityBase implements B
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
+
+      $fields['essays'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Essays'))
+      ->setDescription(t('Essays associated with the collection.'))
+      ->setCardinality(BaseFieldDefinition::CARDINALITY_UNLIMITED)
+      ->setRevisionable(TRUE)
+      ->setSettings(
+        [
+          'target_type' => 'node',
+          'handler' => 'default',
+        ]
+      )
+      ->setSetting('handler_settings', 
+        ['target_bundles' => [
+          'nbbib_essay' => 'nbbib_essay'
+          ]
+        ]
+      )
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'author',
+        'weight' => 0,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 5,
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'size' => '60',
+          'placeholder' => '',
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))

@@ -551,7 +551,7 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   /**
    * Gets the Bibliographic Reference Collections.
    *
-   * @return \Drupal\taxonomy\TermInterface[]
+   * @return \Drupal\yabrm\Entity\BibliographicCollectionInterface[]
    *   The collections of the bibliographic reference.
    */
   public function getCollections();
@@ -559,8 +559,8 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   /**
    * Sets the Bibliographic Reference Collections.
    *
-   * @param \Drupal\taxonomy\TermInterface[] $collections
-   *   An array of taxonomy terms.
+   * @param \Drupal\yabrm\Entity\BibliographicCollectionInterface[] $collections
+   *   An array of Bibliographic Collections.
    *
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.

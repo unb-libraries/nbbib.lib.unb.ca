@@ -1071,7 +1071,7 @@ function nbbib_core_views_pre_render($view) {
     $userCurrent = \Drupal::currentUser();
     $uid = $userCurrent->id();
     // Display edit link for editor users only.
-    $edit = ($userCurrent->hasRole('nb_bibliography_contributor') or $userCurrent->id()) == 1 ?
+    $edit = ($userCurrent->hasRole('nb_bibliography_contributor') or $userCurrent->id() == 1) ?
       '[' . Link::createFromRoute('Edit', 'nbbib_core.settings', )->toString() . ']': NULL;
     $view->header['area']->options['content']['value'] = "$header$edit";
   }

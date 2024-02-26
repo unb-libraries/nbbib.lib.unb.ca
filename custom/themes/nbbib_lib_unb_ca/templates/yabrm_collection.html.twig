@@ -143,15 +143,24 @@
         {# Content #}
         {% block content %}
           <a id="main-content"></a>
-          <div>
-            {{ '[' }}<a href="/bibliography?search_api_fulltext=&collections_5={{ content.name.0['#context']['value'] }}">
-              View all items for this collection
-            </a>{{ ']' }}
-          </div>
           <div{{ attributes.addClass('yabrm_collection') }}>
             {% if content %}
-                <div>
+                <div id="description">
                   {{ content.description|field_value }}
+                </div>
+                {% if content.essays %}
+                  <div id="essays">
+                    <ul>
+                      {% for essay in content.essays|field_value %}
+                        <li>{{ essay }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+                <div id="collection-works">
+                  {% set cid = content.name['#object'].id() %}
+                  <h2 class="works-header">Bibliography Items</h2>
+                  {{ drupal_view('nb_bibliography_citations', 'page_4', cid, cid, cid, cid) }}
                 </div>
             {% endif %}
           </div>

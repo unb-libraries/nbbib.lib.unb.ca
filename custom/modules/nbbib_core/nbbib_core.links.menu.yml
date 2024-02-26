@@ -27,6 +27,13 @@ nbbib_core.topics:
   menu_name: main
   route_name: view.nb_bibliography_topics.page_1
   weight: 40
+nbbib_core.essays:
+  title: 'Essays'
+  description: 'Essays'
+  parent: main
+  menu_name: main
+  route_name: view.nbbib_essays.page_1
+  weight: 41
 nbbib_core.about:
   title: 'About'
   description: 'About'
@@ -129,3 +136,9 @@ nbbib_core.editor.new-thesis:
   url: internal:/yabrm/yabrm_thesis/add
   parent: nbbib_core.editor
   weight: 60
+nbbib_core.editor.new-essay:
+  title: 'Add New Essay'
+  description: 'Add a new Essay.'
+  url: internal:/node/add/nbbib_essay
+  parent: nbbib_core.editor
+  weight: 70

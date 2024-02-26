@@ -158,7 +158,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         }
       }
 
-      $archives[] = $arch_id ? $arch_id : NULL;
+      $archives[] = $arch_id ?? NULL;
 
       // URL.
       $source_url = $row->getSourceProperty('url');

@@ -1,0 +1,49 @@
+uuid: 305df312-715c-4fb8-b1a8-6481e3c73071
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_solr
+    - user
+    - yabrm
+id: yabrm_collection.yabrm_collection.default
+targetEntityType: yabrm_collection
+bundle: yabrm_collection
+mode: default
+content:
+  description:
+    type: solr_highlighted_text_default
+    label: above
+    settings:
+      prefix: '<strong>'
+      suffix: '</strong>'
+      strict: false
+    third_party_settings: {  }
+    weight: -3
+    region: content
+  essays:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  user_id:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

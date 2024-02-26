@@ -8,4 +8,4 @@ module: nbbib_core
 description: 'Provides configuration options for nbbib_core'
 core: 10.x
 view_headers:
-  nbbib_essays: '<p>Replace this with your custom header for Essays list page.</p>'
+  nbbib_essays: 'Enter custom view header text here.'

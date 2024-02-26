@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - filter.format.unb_libraries
+    - node.type.nbbib_essay
     - node.type.static_content_page
     - taxonomy.vocabulary.nbbib_archives
     - taxonomy.vocabulary.nbbib_locations
@@ -29,6 +30,7 @@ permissions:
   - 'add book section reference entities'
   - 'add journal article reference entities'
   - 'add thesis reference entities'
+  - 'create nbbib_essay content'
   - 'create static_content_page content'
   - 'create terms in nbbib_archives'
   - 'create terms in nbbib_locations'
@@ -41,14 +43,17 @@ permissions:
   - 'delete all journal article reference revisions'
   - 'delete all revisions'
   - 'delete all thesis reference revisions'
+  - 'delete any nbbib_essay content'
   - 'delete any static_content_page content'
   - 'delete bibliographic contributor entities'
   - 'delete book reference entities'
   - 'delete book section reference entities'
   - 'delete journal article reference entities'
+  - 'delete nbbib_essay revisions'
   - 'delete static_content_page revisions'
   - 'delete terms in yabrm_reference_topic'
   - 'delete thesis reference entities'
+  - 'edit any nbbib_essay content'
   - 'edit any static_content_page content'
   - 'edit bibliographic collection entities'
   - 'edit bibliographic contributor entities'
@@ -64,6 +69,7 @@ permissions:
   - 'revert all journal article reference revisions'
   - 'revert all revisions'
   - 'revert all thesis reference revisions'
+  - 'revert nbbib_essay revisions'
   - 'revert static_content_page revisions'
   - 'use text format unb_libraries'
   - 'view all bibliographic contributor revisions'
@@ -73,6 +79,7 @@ permissions:
   - 'view all journal article reference revisions'
   - 'view all revisions'
   - 'view all thesis reference revisions'
+  - 'view nbbib_essay revisions'
   - 'view published bibliographic collection entities'
   - 'view published bibliographic contributor entities'
   - 'view published book reference entities'

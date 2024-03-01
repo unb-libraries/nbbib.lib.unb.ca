@@ -38,4 +38,4 @@ nbbib_core.settings:
     _form: '\Drupal\nbbib_core\Form\NbbibSettingsForm'
     _title: 'NBBIB settings'
   requirements:
-    _role: 'nbbib_archivals_editor'
+    _role: 'nbbib_editor'

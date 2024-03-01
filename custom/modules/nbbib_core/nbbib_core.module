@@ -1066,16 +1066,6 @@ function nbbib_core_views_pre_render($view) {
   if (isset($view) && $view->id() == 'nb_bibliography_contributors') {
     $view->element['#attached']['library'][] = 'nbbib_core/contrib-alpha-pager';
   }
-
-  if (isset($view) && $view->id() == 'nbbib_essays') {
-    $header = \Drupal::config('nbbib_core.settings')->get('view_headers')['nbbib_essays'];
-    $userCurrent = \Drupal::currentUser();
-    $uid = $userCurrent->id();
-    // Display edit link for editor users only.
-    $edit = ($userCurrent->hasRole('nb_bibliography_contributor') or $userCurrent->id() == 1) ?
-      '[' . Link::createFromRoute('Edit', 'nbbib_core.settings', )->toString() . ']': NULL;
-    $view->header['area']->options['content']['value'] = "$header$edit";
-  }
 }
 
 function nbbib_core_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {

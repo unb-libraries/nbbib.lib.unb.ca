@@ -100,6 +100,7 @@
   "require": {
     "drupal/admin_toolbar": "^3",
     "drupal/autocomplete_deluxe": "^2",
+    "drupal/block_content_permissions": "^1.11",
     "drupal/bootstrap4": "^3",
     "drupal/color": "^1",
     "drupal/core": "^10",

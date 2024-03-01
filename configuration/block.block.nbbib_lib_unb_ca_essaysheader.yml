@@ -1,0 +1,30 @@
+uuid: 83760f8f-fbbf-4dbc-bdc4-7112dc186a49
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:nbbib_content_block:c6b5cf30-09e6-41b1-bb98-0f005ca3728c'
+  module:
+    - block_content
+    - system
+  theme:
+    - nbbib_lib_unb_ca
+id: nbbib_lib_unb_ca_essaysheader
+theme: nbbib_lib_unb_ca
+region: content
+weight: -3
+provider: null
+plugin: 'block_content:c6b5cf30-09e6-41b1-bb98-0f005ca3728c'
+settings:
+  id: 'block_content:c6b5cf30-09e6-41b1-bb98-0f005ca3728c'
+  label: 'Essays Header'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /essays

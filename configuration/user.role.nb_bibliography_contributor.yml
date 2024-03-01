@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - block_content.type.nbbib_content_block
     - filter.format.unb_libraries
     - node.type.nbbib_essay
     - node.type.static_content_page
@@ -11,9 +12,13 @@ dependencies:
     - taxonomy.vocabulary.nbbib_residences
     - taxonomy.vocabulary.yabrm_reference_topic
   module:
+    - block_content
+    - block_content_permissions
+    - contextual
     - filter
     - node
     - paragraphs
+    - quickedit
     - system
     - taxonomy
     - toolbar
@@ -24,12 +29,16 @@ weight: 2
 is_admin: null
 permissions:
   - 'access content overview'
+  - 'access contextual links'
+  - 'access in-place editing'
   - 'access toolbar'
   - 'add bibliographic contributor entities'
   - 'add book reference entities'
   - 'add book section reference entities'
   - 'add journal article reference entities'
   - 'add thesis reference entities'
+  - 'administer filters'
+  - 'create nbbib_content_block block content'
   - 'create nbbib_essay content'
   - 'create static_content_page content'
   - 'create terms in nbbib_archives'
@@ -43,6 +52,8 @@ permissions:
   - 'delete all journal article reference revisions'
   - 'delete all revisions'
   - 'delete all thesis reference revisions'
+  - 'delete any nbbib_content_block block content'
+  - 'delete any nbbib_content_block block content revisions'
   - 'delete any nbbib_essay content'
   - 'delete any static_content_page content'
   - 'delete bibliographic contributor entities'
@@ -53,6 +64,7 @@ permissions:
   - 'delete static_content_page revisions'
   - 'delete terms in yabrm_reference_topic'
   - 'delete thesis reference entities'
+  - 'edit any nbbib_content_block block content'
   - 'edit any nbbib_essay content'
   - 'edit any static_content_page content'
   - 'edit bibliographic collection entities'
@@ -69,8 +81,10 @@ permissions:
   - 'revert all journal article reference revisions'
   - 'revert all revisions'
   - 'revert all thesis reference revisions'
+  - 'revert any nbbib_content_block block content revisions'
   - 'revert nbbib_essay revisions'
   - 'revert static_content_page revisions'
+  - 'update any nbbib_content_block block content'
   - 'use text format unb_libraries'
   - 'view all bibliographic contributor revisions'
   - 'view all bibliographic reference revisions'
@@ -79,6 +93,7 @@ permissions:
   - 'view all journal article reference revisions'
   - 'view all revisions'
   - 'view all thesis reference revisions'
+  - 'view any nbbib_content_block block content history'
   - 'view nbbib_essay revisions'
   - 'view published bibliographic collection entities'
   - 'view published bibliographic contributor entities'

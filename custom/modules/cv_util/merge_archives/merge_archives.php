@@ -5,7 +5,12 @@
  * Contains merge_archives.php
  */
 
-$merges[] = [
+ use Drupal\yabrm\Entity\BookReference;
+ use Drupal\yabrm\Entity\BookSectionReference;
+ use Drupal\yabrm\Entity\JournalArticleReference;
+ use Drupal\yabrm\Entity\ThesisReference;
+
+$merges = [
   [
     'target' => 1352,
     'merged' => [
@@ -208,3 +213,69 @@ $merges[] = [
     ],
   ],
 ];
+
+foreach ($merges as $merge) {
+  $target = $merge['target'];
+  foreach($merge['merged'] as $merged) {
+    // Process books.
+    $ids = \Drupal::entityQuery('yabrm_book')
+    ->condition('archive', $merged, 'IN')
+    ->accessCheck(FALSE)
+    ->execute();
+    $archive = [];
+    foreach ($ids as $id) {
+      $ref = BookReference::load($id);
+      $title = $ref->title->getValue()[0]['value'];
+      $archive = $ref->archive->getValue();
+      $archive[] = ['target_id' => strval($target)];
+      $ref->setArchive($archive);
+      echo "Adding target archive [$target] to book [$title] with mergeable archive [$merged]\n";
+      $ref->save();
+    }  
+    // Process book sections.
+    $ids = \Drupal::entityQuery('yabrm_book_section')
+    ->condition('archive', $merged, 'IN')
+    ->accessCheck(FALSE)
+    ->execute();
+    $archive = [];
+    foreach ($ids as $id) {
+      $ref = BookSectionReference::load($id);
+      $title = $ref->title->getValue()[0]['value'];
+      $archive = $ref->archive->getValue();
+      $archive[] = ['target_id' => strval($target)];
+      $ref->setArchive($archive);
+      echo "Adding target archive [$target] to book section [$title] with mergeable archive [$merged]\n";
+      $ref->save();
+    }  
+    // Process journal articles.
+    $ids = \Drupal::entityQuery('yabrm_journal_article')
+    ->condition('archive', $merged, 'IN')
+    ->accessCheck(FALSE)
+    ->execute();
+    $archive = [];
+    foreach ($ids as $id) {
+      $ref = JournalArticleReference::load($id);
+      $title = $ref->title->getValue()[0]['value'];
+      $archive = $ref->archive->getValue();
+      $archive[] = ['target_id' => strval($target)];
+      $ref->setArchive($archive);
+      echo "Adding target archive [$target] to journal article [$title] with mergeable archive [$merged]\n";
+      $ref->save();
+    }  
+    // Process theses.
+    $ids = \Drupal::entityQuery('yabrm_thesis')
+    ->condition('archive', $merged, 'IN')
+    ->accessCheck(FALSE)
+    ->execute();
+    $archive = [];
+    foreach ($ids as $id) {
+      $ref = ThesisReference::load($id);
+      $title = $ref->title->getValue()[0]['value'];
+      $archive = $ref->archive->getValue();
+      $archive[] = ['target_id' => strval($target)];
+      $ref->setArchive($archive);
+      echo "Adding target archive [$target] to thesis [$title] with mergeable archive [$merged]\n";
+      $ref->save();
+    }  
+  }
+}

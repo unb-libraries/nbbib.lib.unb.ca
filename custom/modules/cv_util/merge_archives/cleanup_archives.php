@@ -230,7 +230,7 @@ $entities = $handler->loadMultiple(
 );
 foreach ($entities as $entity) {
   $id = $entity->id();
-  echo "Deleting merged archive [$id]";
+  echo "Deleting merged archive [$id]\n";
 }
 $handler->delete($entities);
 drupal_flush_all_caches();

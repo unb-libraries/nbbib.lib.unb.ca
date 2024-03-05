@@ -83,6 +83,53 @@
       "url": "https://packages.drupal.org/8"
     },
     {
+      "package": {
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.7/chosen_v1.8.7.zip"
+        },
+        "name": "harvesthq/chosen",
+        "type": "drupal-library",
+        "version": "1.8.7"
+      },
+      "type": "package"
+    },
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    },
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    {
+      "package": {
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/furf/jquery-ui-touch-punch/archive/refs/heads/master.zip"
+        },
+        "name": "furf/jquery-ui-touch-punch",
+        "type": "drupal-library",
+        "version": "dev-master"
+      },
+      "type": "package"
+    },
+    {
+      "package": {
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/simeydotme/jQuery-ui-Slider-Pips/archive/v1.11.4.zip"
+        },
+        "name": "simeydotme/jquery-ui-slider-pips",
+        "require": {
+          "composer/installers": "^2"
+        },
+        "type": "drupal-library",
+        "version": "1.11.4"
+      },
+      "type": "package"
+    },
+    {
     "package": {
       "name": "drupal/login_return_page",
       "source": {
@@ -124,6 +171,10 @@
     "drupal/twig_field_value": "^2",
     "drupal/twig_tweak": "^3",
     "drupal/views_contextual_filters_or": "^1",
+    "drupal/views_timelinejs": "^4",
+    "furf/jquery-ui-touch-punch": "dev-master",
+    "harvesthq/chosen": "^1",
+    "simeydotme/jquery-ui-slider-pips": "^1",
     "unb-libraries/composer-drupal-scaffold": "10.0.0",
     "unb-libraries/saml_features": "dev-10.x-1.x"
   },

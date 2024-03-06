@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - filter.format.unb_libraries
+    - node.type.essays_header
     - node.type.nbbib_essay
     - node.type.static_content_page
     - taxonomy.vocabulary.nbbib_archives
@@ -11,7 +12,6 @@ dependencies:
     - taxonomy.vocabulary.nbbib_residences
     - taxonomy.vocabulary.yabrm_reference_topic
   module:
-    - block_content_permissions
     - contextual
     - filter
     - node
@@ -36,7 +36,6 @@ permissions:
   - 'add journal article reference entities'
   - 'add thesis reference entities'
   - 'administer filters'
-  - 'create nbbib_content_block block content'
   - 'create nbbib_essay content'
   - 'create static_content_page content'
   - 'create terms in nbbib_archives'
@@ -48,9 +47,7 @@ permissions:
   - 'delete all book reference revisions'
   - 'delete all book section reference revisions'
   - 'delete all journal article reference revisions'
-  - 'delete all revisions'
   - 'delete all thesis reference revisions'
-  - 'delete any nbbib_content_block block content'
   - 'delete any nbbib_essay content'
   - 'delete any static_content_page content'
   - 'delete bibliographic contributor entities'
@@ -61,6 +58,7 @@ permissions:
   - 'delete static_content_page revisions'
   - 'delete terms in yabrm_reference_topic'
   - 'delete thesis reference entities'
+  - 'edit any essays_header content'
   - 'edit any nbbib_essay content'
   - 'edit any static_content_page content'
   - 'edit bibliographic collection entities'
@@ -75,18 +73,15 @@ permissions:
   - 'revert all book reference revisions'
   - 'revert all book section reference revisions'
   - 'revert all journal article reference revisions'
-  - 'revert all revisions'
   - 'revert all thesis reference revisions'
   - 'revert nbbib_essay revisions'
   - 'revert static_content_page revisions'
-  - 'update any nbbib_content_block block content'
   - 'use text format unb_libraries'
   - 'view all bibliographic contributor revisions'
   - 'view all bibliographic reference revisions'
   - 'view all book reference revisions'
   - 'view all book section reference revisions'
   - 'view all journal article reference revisions'
-  - 'view all revisions'
   - 'view all thesis reference revisions'
   - 'view nbbib_essay revisions'
   - 'view published bibliographic collection entities'

@@ -595,6 +595,13 @@ header {
         }
       }
 
+      // Essays header view.
+      #block-views-block-nb-bibliography-collection-essays-header-block-1 {
+        .views-field.views-field-operations:not(:has(.dropbutton-action)) {
+          display: none;
+        }
+      }
+
       // Pagination.
       .pager {
         max-width: fit-content;

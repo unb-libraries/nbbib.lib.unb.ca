@@ -11,7 +11,7 @@ logout_different_user: false
 drupal_login_roles:
   authenticated: '0'
   aaslp_editor: '0'
-sp_entity_id: 'https://dev-nbbib.lib.unb.ca'
+sp_entity_id: 'https://nbbib.lib.unb.ca'
 sp_name_id_format: ''
 sp_x509_certificate: ''
 sp_new_certificate: ''

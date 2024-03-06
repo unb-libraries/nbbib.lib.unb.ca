@@ -1,0 +1,17 @@
+uuid: 907b3333-ffcc-4f21-b09c-0271c6cb8db8
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Essays Header'
+type: essays_header
+description: 'Content type for essays view header in nbbib.lib.unb.ca'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

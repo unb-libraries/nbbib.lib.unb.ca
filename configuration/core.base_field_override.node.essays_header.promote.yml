@@ -1,0 +1,22 @@
+uuid: 95d2548a-9a55-4c2b-aff4-0c44953a31cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.essays_header
+id: node.essays_header.promote
+field_name: promote
+entity_type: node
+bundle: essays_header
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

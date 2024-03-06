@@ -1,24 +1,26 @@
-uuid: d6d7e827-1144-404c-88d1-00c17a1ee035
+uuid: 9599604f-abee-4b08-8c33-f2f688d5b5bd
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.nbbib_content_block
-    - field.storage.block_content.body
+    - field.storage.node.body
+    - filter.format.unb_libraries
+    - node.type.essays_header
   module:
     - text
-id: block_content.nbbib_content_block.body
+id: node.essays_header.body
 field_name: body
-entity_type: block_content
-bundle: nbbib_content_block
+entity_type: node
+bundle: essays_header
 label: Body
 description: ''
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
   display_summary: false
   required_summary: false
-  allowed_formats: {  }
+  allowed_formats:
+    - unb_libraries
 field_type: text_with_summary

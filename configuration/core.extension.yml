@@ -21,6 +21,8 @@ module:
   editor: 0
   entity_reference_revisions: 0
   externalauth: 0
+  facets: 0
+  facets_range_widget: 0
   field: 0
   field_ui: 0
   file: 0
@@ -31,6 +33,9 @@ module:
   history: 0
   image: 0
   inline_entity_form: 0
+  jquery_ui: 0
+  jquery_ui_slider: 0
+  jquery_ui_touch_punch: 0
   language: 0
   link: 0
   menu_ui: 0

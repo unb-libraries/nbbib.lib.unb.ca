@@ -16,7 +16,8 @@
       "cweagans/composer-patches": true,
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "drupal/core-composer-scaffold": true,
-      "phpstan/extension-installer": true
+      "phpstan/extension-installer": true,
+      "oomphinc/composer-installers-extender": true
     },
     "discard-changes": true,
     "preferred-install": {
@@ -154,10 +155,14 @@
     "drupal/core-composer-scaffold": "^10",
     "drupal/core-recommended": "^10",
     "drupal/easy_breadcrumb": "^2",
+    "drupal/facets": "^2",
     "drupal/fontawesome": "^2",
     "drupal/google_analytics": "^4",
     "drupal/health_check": "^1",
     "drupal/inline_entity_form": "^1",
+    "drupal/jquery_ui": "^1",
+    "drupal/jquery_ui_slider": "^2",
+    "drupal/jquery_ui_touch_punch": "^1",
     "drupal/paragraphs": "^1",
     "drupal/pathauto": "^1",
     "drupal/quickedit": "^1", 
@@ -174,6 +179,7 @@
     "drupal/views_timelinejs": "^4",
     "furf/jquery-ui-touch-punch": "dev-master",
     "harvesthq/chosen": "^1",
+    "oomphinc/composer-installers-extender": "^2",
     "simeydotme/jquery-ui-slider-pips": "^1",
     "unb-libraries/composer-drupal-scaffold": "10.0.0",
     "unb-libraries/saml_features": "dev-10.x-1.x"

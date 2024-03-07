@@ -1,0 +1,29 @@
+uuid: 04062cf1-e936-406d-83de-b381c7a9d041
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.publication_year
+  module:
+    - facets
+    - system
+  theme:
+    - nbbib_lib_unb_ca
+id: nbbib_lib_unb_ca_publicationyear
+theme: nbbib_lib_unb_ca
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:publication_year'
+settings:
+  id: 'facet_block:publication_year'
+  label: 'Publication Year'
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: nbbib_lib_unb_ca_publicationyear
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /bibliography

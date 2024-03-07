@@ -705,7 +705,7 @@ field_settings:
       module:
         - yabrm
   publication_year:
-    label: 'Publication Year'
+    label: 'Reference Publication Year'
     datasource_id: 'entity:yabrm_biblio_reference'
     property_path: publication_year
     type: text
@@ -713,7 +713,7 @@ field_settings:
       module:
         - yabrm
   publication_year_1:
-    label: 'Publication Year'
+    label: 'Book Publication Year'
     datasource_id: 'entity:yabrm_book'
     property_path: publication_year
     type: text
@@ -721,7 +721,7 @@ field_settings:
       module:
         - yabrm
   publication_year_2:
-    label: 'Publication Year'
+    label: 'Book Publication Year'
     datasource_id: 'entity:yabrm_book_section'
     property_path: publication_year
     type: text
@@ -729,7 +729,7 @@ field_settings:
       module:
         - yabrm
   publication_year_3:
-    label: 'Publication Year'
+    label: 'Book Publication Year'
     datasource_id: 'entity:yabrm_journal_article'
     property_path: publication_year
     type: text
@@ -737,7 +737,7 @@ field_settings:
       module:
         - yabrm
   publication_year_4:
-    label: 'Publication Year'
+    label: 'Thesis Publication Year'
     datasource_id: 'entity:yabrm_thesis'
     property_path: publication_year
     type: text
@@ -745,7 +745,7 @@ field_settings:
       module:
         - yabrm
   publication_year_5:
-    label: 'Publication Year'
+    label: 'General Publication Year'
     property_path: publication_year
     type: integer
   published:

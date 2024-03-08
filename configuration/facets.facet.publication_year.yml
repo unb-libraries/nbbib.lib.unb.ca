@@ -35,8 +35,8 @@ widget:
     min_type: fixed
     min_value: 1000.0
     max_type: fixed
-    max_value: 2035.0
-    step: 10.0
+    max_value: 2040.0
+    step: 20.0
 empty_behavior:
   behavior: none
 only_visible_when_facet_source_is_visible: true

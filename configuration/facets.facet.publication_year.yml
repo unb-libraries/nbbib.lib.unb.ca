@@ -36,31 +36,13 @@ widget:
     min_value: 1000.0
     max_type: search_result
     max_value: 2040.0
-    step: 10.0
+    step: 1.0
 empty_behavior:
   behavior: none
 only_visible_when_facet_source_is_visible: true
 show_only_one_result: true
 show_title: false
 processor_configs:
-  active_widget_order:
-    processor_id: active_widget_order
-    weights:
-      sort: 20
-    settings:
-      sort: DESC
-  count_widget_order:
-    processor_id: count_widget_order
-    weights:
-      sort: 30
-    settings:
-      sort: DESC
-  display_value_widget_order:
-    processor_id: display_value_widget_order
-    weights:
-      sort: 40
-    settings:
-      sort: ASC
   hierarchy_processor:
     processor_id: hierarchy_processor
     weights:
@@ -73,6 +55,12 @@ processor_configs:
       post_query: 60
       build: -8
     settings: {  }
+  raw_value_widget_order:
+    processor_id: raw_value_widget_order
+    weights:
+      sort: 50
+    settings:
+      sort: ASC
   url_processor_handler:
     processor_id: url_processor_handler
     weights:

@@ -748,6 +748,10 @@ field_settings:
     label: 'General Publication Year'
     property_path: publication_year
     type: integer
+  publication_year_slider:
+    label: 'Publication Year Slider'
+    property_path: publication_year_slider
+    type: integer
   published:
     label: Published
     property_path: published

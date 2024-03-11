@@ -178,6 +178,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $properties['publication_year'] = new ProcessorProperty($definition);
 
       $definition = [
+        'label' => $this->t('Publication Year Slider'),
+        'description' => $this->t('Publication year for facet range slider.'),
+        'type' => 'string',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['publication_year_slider'] = new ProcessorProperty($definition);
+
+      $definition = [
         'label' => $this->t('Author(s)'),
         'description' => $this->t('All contributors identified as Author for this bibliographic reference'),
         'type' => 'search_api_html',
@@ -310,7 +319,18 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'publication_year');
       foreach ($fields as $field) {
-        $field->addValue(intval($yabrm_entity->getPublicationYear()));
+        $value = intval($yabrm_entity->getPublicationYear());
+        $field->addValue($value);
+      }
+
+      // Publication year slider field.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'publication_year_slider');
+      foreach ($fields as $field) {
+        $value = intval($yabrm_entity->getPublicationYear());
+        if ($value != 0) {
+          $field->addValue($value);
+        }
       }
 
       // Contributors with role 'Author'.

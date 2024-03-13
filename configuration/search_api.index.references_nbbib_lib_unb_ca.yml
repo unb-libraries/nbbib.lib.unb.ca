@@ -140,7 +140,7 @@ field_settings:
       module:
         - yabrm
   bibliographic_authors:
-    label: Author(s)
+    label: 'General Author(s)'
     property_path: bibliographic_authors
     type: text
     boost: 5.0
@@ -154,9 +154,9 @@ field_settings:
     type: text
     boost: 5.0
   bibliographic_type:
-    label: 'Reference Type'
+    label: 'General Reference Type'
     property_path: bibliographic_type
-    type: text
+    type: string
   call_number:
     label: 'Call Number'
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -242,7 +242,7 @@ field_settings:
       module:
         - yabrm
   collections_5:
-    label: Collection(s)
+    label: 'General Collection(s)'
     property_path: collections
     type: text
   contributors:
@@ -757,7 +757,7 @@ field_settings:
     property_path: published
     type: boolean
   publisher:
-    label: Publisher
+    label: 'General Publisher'
     property_path: publisher
     type: text
   rights:

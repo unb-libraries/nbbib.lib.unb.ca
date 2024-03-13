@@ -9,7 +9,7 @@ dependencies:
     - search_api
 id: publication_year
 name: 'Publication Year Slider'
-weight: 0
+weight: -1
 min_count: 1
 missing: false
 missing_label: ''

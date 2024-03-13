@@ -10,7 +10,7 @@ dependencies:
 id: contextualbranding_2
 theme: nbbib_lib_unb_ca
 region: content
-weight: -2
+weight: -4
 provider: null
 plugin: context_branding_block
 settings:

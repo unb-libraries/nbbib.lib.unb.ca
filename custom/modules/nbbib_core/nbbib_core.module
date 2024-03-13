@@ -752,9 +752,11 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
   if (in_array($entity->bundle(), $types)) {
     // If this is an update operation.
     if ($entity->original) {
-      // Get original and new published (status) values.
+      // Get original and new values.
       $pub_old = $entity->original->status->getValue()[0]['value'];
       $pub_new = $entity->status->getValue()[0]['value'];
+      $year_old = $entity->original->publication_year->getValue()[0]['value'] ?? NULL;
+      $year_new = $entity->publication_year->getValue()[0]['value'] ?? NULL;
 
       // If the published status changed...
       if ($pub_old != $pub_new) {
@@ -803,6 +805,27 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
               }
             }
           }
+        }
+      }
+      // If the publication year changed...
+      if ($year_new != 0 and $year_new != $year_old) {
+        // Check/configure new edge values for facet.
+        $config = \Drupal::service('config.factory')->getEditable('facets.facet.publication_year');
+        $widget = $config->get('widget');
+        $old_min = $widget['config']['min_value']; 
+        $old_max = $widget['config']['max_value'];
+        $update = FALSE;
+        if ($year_new < $old_min) {
+          $widget['config']['min_value'] = $year_new;
+          $update = TRUE;
+        }
+        elseif ($year_new > $old_max) {
+          $widget['config']['max_value'] = $year_new;
+          $update = TRUE;
+        }
+        if ($update) {
+          $config->set('widget', $widget);
+          $config->save();
         }
       }
     }

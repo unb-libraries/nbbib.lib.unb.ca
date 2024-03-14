@@ -28,16 +28,44 @@ use Drupal\yabrm\Entity\BibliographicContributor;
  * Implements hook_cron().
  */
 function nbbib_core_cron() {
-  // Get current hour.
+  // Get current time.
+  $current_year = date('Y');
   $current_hour = date('G');
   $current_minute = date('i');
   $datestamp = date('c');
 
+  //if (TRUE) { // CRON DEV - RUN EVERY TIME!
   // If it's between 12:45-1am server time...
-  //if ($current_hour) { // CRON DEV - RUN EVERY CRON
   if ($current_hour < 1 and $current_minute > 44) {
-    \Drupal::logger('nbbib_core')->notice("NBBIB cleanup CRON job started at [$datestamp].");
-    // Cleanup orphan contribustors.
+    \Drupal::logger('nbbib_core')->notice("NBBIB maintenance CRON job started at [$datestamp].");
+    // Publication year config sync.
+    \Drupal::logger('nbbib_core')->notice("Starting publication year config sync...");
+    $query = \Drupal::database()->query(
+      'SELECT MIN(publication_year) AS db_min
+      FROM (
+      SELECT publication_year FROM yabrm_book t1
+      UNION
+      SELECT publication_year FROM yabrm_journal_article t2
+      UNION
+      SELECT publication_year FROM yabrm_book_section t3
+      UNION
+      SELECT publication_year FROM yabrm_thesis t4
+      ) AS t5'
+    );
+    $db_min = $query->fetchAll()[0]->db_min;
+    // Check/configure new edge values for facet.
+    $config = \Drupal::service('config.factory')->getEditable('facets.facet.publication_year');
+    $widget = $config->get('widget');
+    $old_min = $widget['config']['min_value']; 
+    if ($db_min > 0 and $db_min < $old_min) {
+      $widget['config']['min_value'] = $db_min;
+    }
+    $widget['config']['max_value'] = date('Y');
+    $config->set('widget', $widget);
+    $config->save();
+    \Drupal::logger('nbbib_core')->notice(dump($widget));
+
+    // Cleanup orphan contributors.
     \Drupal::logger('nbbib_core')->notice("Starting orphan contributor cleanup...");
     // Get all contributor ids with no matching contributor paragraphs.
     $query = \Drupal::database()->query(
@@ -45,20 +73,16 @@ function nbbib_core_cron() {
       FROM yabrm_contributor
       WHERE id NOT IN (SELECT field_yabrm_contributor_person_target_id FROM paragraph__field_yabrm_contributor_person)'
     );
-
     $contribs = $query->fetchAll();
     $contrib_no = count($contribs);
-
     // If orphans found...
     if ($contrib_no) {
       \Drupal::logger('nbbib_core')->notice("Found [$contrib_no] orphan contributors.");
-
       // Call contrib cleanup queue.
       /** @var QueueFactory $queue_factory */
       $queue_factory = \Drupal::service('queue');
       /** @var QueueInterface $queue */
       $queue = $queue_factory->get('contrib_cleanup');
-
       // Pass each contrib id to cleanup queue.
       foreach ($contribs as $contrib) {
         $item = new \stdClass();
@@ -756,13 +780,12 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
       $pub_old = $entity->original->status->getValue()[0]['value'];
       $pub_new = $entity->status->getValue()[0]['value'];
       $year_old = $entity->original->publication_year->getValue()[0]['value'] ?? NULL;
-      $year_new = $entity->publication_year->getValue()[0]['value'] ?? NULL;
-
+      
       // If the published status changed...
       if ($pub_old != $pub_new) {
         // Get referenced contributor paragraphs.
         $paragraphs = $entity->contributors->getValue();
-
+        
         // Iterate through paragraphs.
         foreach ($paragraphs as $paragraph) {
           // Load paragraph object.
@@ -774,12 +797,12 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
             $p_obj->set('status', $pub_new);
             // Save paragraph.
             $p_obj->save();
-
+            
             // Get contributor id.
             $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'];
             // Load paragraph object.
             $c_obj = BibliographicContributor::load($cid);
-
+            
             // If valid object...
             if ($c_obj) {
               // If the reference was unpublished...
@@ -791,13 +814,13 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
                   ->condition('status', TRUE)
                   ->accessCheck(FALSE)
                   ->execute();
-
-                // If none found...
-                if (!count($pids)) {
-                  // Unpublish contributor and save.
-                  $c_obj->set('status', FALSE);
-                  $c_obj->save();
-                }
+                  
+                  // If none found...
+                  if (!count($pids)) {
+                    // Unpublish contributor and save.
+                    $c_obj->set('status', FALSE);
+                    $c_obj->save();
+                  }
               } else {
                 // Publish contributor and save.
                 $c_obj->set('status', TRUE);
@@ -808,25 +831,18 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
         }
       }
       // If the publication year changed...
+      $year_new = $entity->publication_year->getValue()[0]['value'] ?? NULL;
       if ($year_new != 0 and $year_new != $year_old) {
         // Check/configure new edge values for facet.
         $config = \Drupal::service('config.factory')->getEditable('facets.facet.publication_year');
         $widget = $config->get('widget');
         $old_min = $widget['config']['min_value']; 
-        $old_max = $widget['config']['max_value'];
-        $update = FALSE;
         if ($year_new < $old_min) {
           $widget['config']['min_value'] = $year_new;
-          $update = TRUE;
         }
-        elseif ($year_new > $old_max) {
-          $widget['config']['max_value'] = $year_new;
-          $update = TRUE;
-        }
-        if ($update) {
-          $config->set('widget', $widget);
-          $config->save();
-        }
+        $widget['config']['max_value'] = date('Y');
+        $config->set('widget', $widget);
+        $config->save();
       }
     }
   }

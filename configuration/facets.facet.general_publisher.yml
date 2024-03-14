@@ -1,4 +1,4 @@
-uuid: 57bb7001-5441-4700-bfd8-e586de80894b
+uuid: 6759b8eb-8db6-40ce-bd6a-4a34d9c86f83
 langcode: en
 status: true
 dependencies:
@@ -7,15 +7,15 @@ dependencies:
     - views.view.nb_bibliography_citations
   module:
     - search_api
-id: general_reference_type
-name: 'General Reference Type'
+id: general_publisher
+name: 'General Publisher - String'
 weight: 0
 min_count: 1
 missing: false
 missing_label: others
-url_alias: general_reference_type
+url_alias: general_publisher
 facet_source_id: 'search_api:views_page__nb_bibliography_citations__page_1'
-field_identifier: bibliographic_type
+field_identifier: publisher_1
 query_operator: and
 hard_limit: 0
 exclude: false

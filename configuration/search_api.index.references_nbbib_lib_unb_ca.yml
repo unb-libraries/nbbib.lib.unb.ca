@@ -760,6 +760,10 @@ field_settings:
     label: 'General Publisher'
     property_path: publisher
     type: text
+  publisher_1:
+    label: 'General Publisher - String'
+    property_path: publisher
+    type: string
   rights:
     label: Rights
     datasource_id: 'entity:yabrm_biblio_reference'

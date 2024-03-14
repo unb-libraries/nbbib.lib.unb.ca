@@ -1,0 +1,29 @@
+uuid: 9279d9f7-6cb0-493e-b9e6-f1fdb9d40786
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.general_publisher
+  module:
+    - facets
+    - system
+  theme:
+    - nbbib_lib_unb_ca
+id: nbbib_lib_unb_ca_generalpublisher
+theme: nbbib_lib_unb_ca
+region: sidebar_first
+weight: -4
+provider: null
+plugin: 'facet_block:general_publisher'
+settings:
+  id: 'facet_block:general_publisher'
+  label: Publisher
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: nbbib_lib_unb_ca_generalpublisher
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /bibliography

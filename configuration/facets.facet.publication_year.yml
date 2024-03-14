@@ -32,10 +32,10 @@ widget:
     show_numbers: false
     prefix: ''
     suffix: ''
-    min_type: search_result
-    min_value: 1000.0
-    max_type: search_result
-    max_value: 2040.0
+    min_type: fixed
+    min_value: 188.0
+    max_type: fixed
+    max_value: 2024.0
     step: 1.0
 empty_behavior:
   behavior: none

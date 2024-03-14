@@ -33,7 +33,7 @@ widget:
     prefix: ''
     suffix: ''
     min_type: fixed
-    min_value: 188.0
+    min_value: 1672.0
     max_type: fixed
     max_value: 2024.0
     step: 1.0

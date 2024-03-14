@@ -8,6 +8,10 @@ html {
 
   body {
     font-family: 'Maven Pro', sans-serif;
+    ul.js-facets-widget, 
+    ul.item-list__range_slider {
+      list-style-type: none ;
+    }
 
     // Frontpage.
     &.path-frontpage {

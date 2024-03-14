@@ -57,7 +57,7 @@ function nbbib_core_cron() {
     $config = \Drupal::service('config.factory')->getEditable('facets.facet.publication_year');
     $widget = $config->get('widget');
     $old_min = $widget['config']['min_value']; 
-    if ($db_min > 0 and $db_min < $old_min) {
+    if ($db_min > 0) {
       $widget['config']['min_value'] = $db_min;
     }
     $widget['config']['max_value'] = date('Y');

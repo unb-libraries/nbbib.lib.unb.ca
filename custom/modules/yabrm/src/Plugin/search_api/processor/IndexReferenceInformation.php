@@ -196,6 +196,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $properties['bibliographic_authors'] = new ProcessorProperty($definition);
 
       $definition = [
+        'label' => $this->t('Contributor(s)'),
+        'description' => $this->t('All contributors for this bibliographic reference'),
+        'type' => 'string',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['bibliographic_contribs'] = new ProcessorProperty($definition);
+
+      $definition = [
         'label' => $this->t('Collection(s)'),
         'description' => $this->t('All associated with this bibliographic reference'),
         'type' => 'search_api_html',
@@ -203,6 +212,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         'processor_id' => $this->getPluginId(),
       ];
       $properties['collections'] = new ProcessorProperty($definition);
+
+      $definition = [
+        'label' => $this->t('Collection(s) - String'),
+        'description' => $this->t('All associated with this bibliographic reference'),
+        'type' => 'string',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['collections_string'] = new ProcessorProperty($definition);
 
       $definition = [
         'label' => $this->t('Sortable Date'),
@@ -246,6 +264,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $properties['bibliographic_citation'] = new ProcessorProperty($definition);
 
       $definition = [
+        'label' => $this->t('Languages'),
+        'description' => $this->t('Languages associated with the reference.'),
+        'type' => 'string',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['languages'] = new ProcessorProperty($definition);
+
+      $definition = [
         'label' => $this->t('Topic Names'),
         'description' => $this->t('Names of topics associated with the reference.'),
         'type' => 'search_api_html',
@@ -253,6 +280,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         'processor_id' => $this->getPluginId(),
       ];
       $properties['topic_names'] = new ProcessorProperty($definition);
+
+      $definition = [
+        'label' => $this->t('Topic Names - String'),
+        'description' => $this->t('Names of topics associated with the reference.'),
+        'type' => 'string',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['topic_names_string'] = new ProcessorProperty($definition);
 
       $definition = [
         'label' => $this->t('Topics'),
@@ -345,6 +381,18 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         }
       }
 
+      // Contributors.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'bibliographic_contribs');
+      foreach ($fields as $field) {
+        $authors = $yabrm_entity->getContributors();
+        foreach ($authors as $author) {
+          if (!empty($author)) {
+            $field->addValue($author->getName());
+          }
+        }
+      }
+
       // Collections.
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'collections');
@@ -357,6 +405,30 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         }
       }
 
+      // Collections - String.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'collections_string');
+      foreach ($fields as $field) {
+        $collections = $yabrm_entity->getCollections();
+        foreach ($collections as $collection) {
+          if (!empty($collection)) {
+            $field->addValue($collection->getName());
+          }
+        }
+      }
+
+      // Languages.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'languages');
+      foreach ($fields as $field) {
+        $languages = $yabrm_entity->getLanguage();
+        foreach ($languages as $language) {
+          if (!empty($languages)) {
+            $field->addValue($language);
+          }
+        }
+      }
+
       // Topics (by name).
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'topic_names');
@@ -365,6 +437,18 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         foreach ($topics as $topic) {
           if (!empty($topic)) {
             $field->addValue($topic->toLink()->toString());
+          }
+        }
+      }
+
+      // Topics (by name) - String.
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'topic_names_string');
+      foreach ($fields as $field) {
+        $topics = $yabrm_entity->getTopics();
+        foreach ($topics as $topic) {
+          if (!empty($topic)) {
+            $field->addValue($topic->getName());
           }
         }
       }

@@ -148,6 +148,10 @@ field_settings:
     label: 'Reference Citation'
     property_path: bibliographic_citation
     type: string
+  bibliographic_contribs:
+    label: Contributor(s)
+    property_path: bibliographic_contribs
+    type: string
   bibliographic_title:
     label: Title
     property_path: bibliographic_title
@@ -245,6 +249,10 @@ field_settings:
     label: 'General Collection(s)'
     property_path: collections
     type: text
+  collections_string:
+    label: 'Collection(s) - String'
+    property_path: collections_string
+    type: string
   contributors:
     label: Contributor(s)
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -952,6 +960,10 @@ field_settings:
     label: 'Topic Names'
     property_path: topic_names
     type: text
+  topic_names_string:
+    label: 'Topic Names - String'
+    property_path: topic_names_string
+    type: string
   topics:
     label: Topics
     property_path: topics

@@ -1,4 +1,4 @@
-uuid: 6759b8eb-8db6-40ce-bd6a-4a34d9c86f83
+uuid: ddf24b0a-f778-43e5-9200-5d0343e26be6
 langcode: en
 status: true
 dependencies:
@@ -7,17 +7,17 @@ dependencies:
     - views.view.nb_bibliography_citations
   module:
     - search_api
-id: general_publisher
-name: 'General Publisher - String'
+id: topic_names_string
+name: 'Topic Names - String'
 weight: 0
 min_count: 1
-missing: true
+missing: false
 missing_label: others
-url_alias: general_publisher
+url_alias: topic_names_string
 facet_source_id: 'search_api:views_page__nb_bibliography_citations__page_1'
-field_identifier: publisher_1
+field_identifier: topic_names_string
 query_operator: and
-hard_limit: 10
+hard_limit: 0
 exclude: false
 use_hierarchy: false
 keep_hierarchy_parents_active: false
@@ -40,7 +40,7 @@ widget:
 empty_behavior:
   behavior: none
 only_visible_when_facet_source_is_visible: true
-show_only_one_result: true
+show_only_one_result: false
 show_title: false
 processor_configs:
   active_widget_order:
@@ -48,7 +48,7 @@ processor_configs:
     weights:
       sort: 20
     settings:
-      sort: ASC
+      sort: DESC
   count_widget_order:
     processor_id: count_widget_order
     weights:

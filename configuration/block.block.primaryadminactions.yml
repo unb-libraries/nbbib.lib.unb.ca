@@ -9,7 +9,7 @@ _core:
 id: primaryadminactions
 theme: nbbib_lib_unb_ca
 region: content
-weight: -7
+weight: -9
 provider: null
 plugin: local_actions_block
 settings:

@@ -226,23 +226,23 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function setPublicationDay($day);
 
   /**
-   * Gets the Bibliographic Reference language.
+   * Gets the Bibliographic Reference language(s).
    *
-   * @return string
-   *   Language of the Bibliographic Reference.
+   * @return array
+   *   Language(s) of the Bibliographic Reference.
    */
   public function getLanguage();
 
   /**
    * Sets the Bibliographic Reference language.
    *
-   * @param string $language
-   *   The Bibliographic Reference language.
+   * @param array $languages
+   *   The Bibliographic Reference language(s).
    *
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.
    */
-  public function setLanguage($language);
+  public function setLanguage($languages);
 
   /**
    * Gets the Bibliographic Reference title.

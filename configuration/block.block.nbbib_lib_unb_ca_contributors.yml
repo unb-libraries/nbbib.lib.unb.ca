@@ -1,27 +1,27 @@
-uuid: f827a8d4-bb9b-422e-af4a-28a12bef63d0
+uuid: fbc949ff-b042-47d8-bc02-7db6cdef9792
 langcode: en
 status: true
 dependencies:
   config:
-    - facets.facet.general_reference_type
+    - facets.facet.contributor_s_
   module:
     - facets
     - system
   theme:
     - nbbib_lib_unb_ca
-id: nbbib_lib_unb_ca_generalreferencetype
+id: nbbib_lib_unb_ca_contributors
 theme: nbbib_lib_unb_ca
 region: sidebar_first
-weight: -6
+weight: -5
 provider: null
-plugin: 'facet_block:general_reference_type'
+plugin: 'facet_block:contributor_s_'
 settings:
-  id: 'facet_block:general_reference_type'
-  label: 'Reference Type'
+  id: 'facet_block:contributor_s_'
+  label: Contributors
   label_display: visible
   provider: facets
   context_mapping: {  }
-  block_id: nbbib_lib_unb_ca_generalreferencetype
+  block_id: nbbib_lib_unb_ca_contributors
 visibility:
   request_path:
     id: request_path

@@ -492,6 +492,10 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  languages:
+    label: 'General Languages'
+    property_path: languages
+    type: string
   library_catalog:
     label: 'Library Catalog'
     datasource_id: 'entity:yabrm_biblio_reference'

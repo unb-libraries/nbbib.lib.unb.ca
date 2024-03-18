@@ -421,11 +421,9 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'languages');
       foreach ($fields as $field) {
-        $languages = $yabrm_entity->getLanguage();
+        $languages = $yabrm_entity->language->getValue();
         foreach ($languages as $language) {
-          if (!empty($languages)) {
-            $field->addValue($language);
-          }
+          $field->addValue($language['value']);
         }
       }
 

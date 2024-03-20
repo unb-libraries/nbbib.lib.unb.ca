@@ -797,6 +797,44 @@ display:
             field_identifier: bibliographic_title
           exposed: true
       filters:
+        published:
+          id: published
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: published
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api_boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_references_nbbib_lib_unb_ca
@@ -840,457 +878,6 @@ display:
           parse_mode: terms
           min_length: null
           fields: {  }
-        bibliographic_title:
-          id: bibliographic_title
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_text
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: bibliographic_title_op
-            label: Title
-            description: ''
-            use_operator: false
-            operator: bibliographic_title_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: bibliographic_title
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        bibliographic_authors:
-          id: bibliographic_authors
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_authors
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_text
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: bibliographic_authors_op
-            label: Author/Editor(s)
-            description: ''
-            use_operator: false
-            operator: bibliographic_authors_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: bibliographic_authors
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        publisher:
-          id: publisher
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: publisher
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_text
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: publisher_op
-            label: Publisher
-            description: ''
-            use_operator: false
-            operator: publisher_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: publisher
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        place_4:
-          id: place_4
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: place_4
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_text
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: place_4_op
-            label: 'Publication Place'
-            description: ''
-            use_operator: false
-            operator: place_4_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: place_4
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        collections_5:
-          id: collections_5
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: collections_5
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_text
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: collections_5_op
-            label: Collection(s)
-            description: ''
-            use_operator: false
-            operator: collections_5_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: collections_5
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        publication_year_5:
-          id: publication_year_5
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: publication_year_5
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_numeric
-          operator: '>='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: publication_year_5_op
-            label: 'Publication Year'
-            description: ''
-            use_operator: false
-            operator: publication_year_5_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: publication_year_5
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        publication_year_5_1:
-          id: publication_year_5_1
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: publication_year_5
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_numeric
-          operator: '<='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: publication_year_5_1_op
-            label: To
-            description: ''
-            use_operator: false
-            operator: publication_year_5_1_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: publication_year_5_1
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        bibliographic_type:
-          id: bibliographic_type
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_text
-          operator: '='
-          value:
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: bibliographic_type_op
-            label: 'Reference Type'
-            description: ''
-            use_operator: false
-            operator: bibliographic_type_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: bibliographic_type
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              anonymous: '0'
-              authenticated: '0'
-              nb_bibliography_contributor: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          parse_mode: terms
-          min_length: ''
-          fields:
-            bibliographic_type: bibliographic_type
-        topic_names:
-          id: topic_names
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: topic_names
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_text
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: topic_names_op
-            label: Topic
-            description: ''
-            use_operator: false
-            operator: topic_names_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: topic_names
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        published:
-          id: published
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: published
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_boolean
-          operator: '='
-          value: '1'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
       filter_groups:
         operator: AND
         groups:

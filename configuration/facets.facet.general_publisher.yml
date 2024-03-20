@@ -17,7 +17,7 @@ url_alias: general_publisher
 facet_source_id: 'search_api:views_page__nb_bibliography_citations__page_1'
 field_identifier: publisher_1
 query_operator: and
-hard_limit: 10
+hard_limit: 0
 exclude: false
 use_hierarchy: false
 keep_hierarchy_parents_active: false

@@ -209,7 +209,7 @@ display:
           reset_button: true
           reset_button_label: 'Show All Titles'
           exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
+          expose_sort_order: false
           sort_asc_label: Ascending
           sort_desc_label: Descending
       access:
@@ -746,7 +746,6 @@ display:
         - url
         - url.query_args
         - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
         - 'search_api_list:references_nbbib_lib_unb_ca'
@@ -757,31 +756,31 @@ display:
     position: 1
     display_options:
       sorts:
-        search_api_relevance:
-          id: search_api_relevance
+        date_sort:
+          id: date_sort
           table: search_api_index_references_nbbib_lib_unb_ca
-          field: search_api_relevance
+          field: date_sort
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: search_api
           order: DESC
           expose:
-            label: ''
-            field_identifier: search_api_relevance
-          exposed: false
-        publication_year_5:
-          id: publication_year_5
+            label: 'Publication Date (newest first)'
+            field_identifier: date_sort
+          exposed: true
+        date_sort_1:
+          id: date_sort_1
           table: search_api_index_references_nbbib_lib_unb_ca
-          field: publication_year_5
+          field: date_sort
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: search_api
           order: ASC
           expose:
-            label: 'Publication Year'
-            field_identifier: publication_year_5
+            label: 'Publication Date (oldest first)'
+            field_identifier: date_sort_1
           exposed: true
         bibliographic_title:
           id: bibliographic_title
@@ -793,8 +792,34 @@ display:
           plugin_id: search_api
           order: ASC
           expose:
-            label: Title
+            label: 'Title (ascending)'
             field_identifier: bibliographic_title
+          exposed: true
+        bibliographic_title_1:
+          id: bibliographic_title_1
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: bibliographic_title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: 'Title (descending)'
+            field_identifier: bibliographic_title_1
+          exposed: true
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: Relevance
+            field_identifier: search_api_relevance
           exposed: true
       filters:
         published:
@@ -862,19 +887,27 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              nb_bibliography_contributor: '0'
+              nbbib_archivals_editor: '0'
+            expose_fields: false
             placeholder: ''
+            searched_fields_id: ''
+            value_maxlength: 1024
           is_grouped: false
           group_info:
-            label: ''
-            description: ''
-            identifier: ''
+            label: 'Fulltext search'
+            description: null
+            identifier: search_api_fulltext
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
+            group_items:
+              1: {  }
+              2: {  }
+              3: {  }
           parse_mode: terms
           min_length: null
           fields: {  }
@@ -913,7 +946,6 @@ display:
         - url
         - url.query_args
         - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
         - 'search_api_list:references_nbbib_lib_unb_ca'
@@ -934,6 +966,58 @@ display:
           sort_asc_label: Ascending
           sort_desc_label: Descending
       sorts:
+        date_sort:
+          id: date_sort
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: date_sort
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: 'Publication Date (newest first)'
+            field_identifier: date_sort
+          exposed: true
+        date_sort_1:
+          id: date_sort_1
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: date_sort
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: ASC
+          expose:
+            label: 'Publication Date (oldest first)'
+            field_identifier: date_sort_1
+          exposed: true
+        bibliographic_title:
+          id: bibliographic_title
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: bibliographic_title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: ASC
+          expose:
+            label: 'Title (ascending)'
+            field_identifier: bibliographic_title
+          exposed: true
+        bibliographic_title_1:
+          id: bibliographic_title_1
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: bibliographic_title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: 'Title (descending)'
+            field_identifier: bibliographic_title_1
+          exposed: true
         search_api_relevance:
           id: search_api_relevance
           table: search_api_index_references_nbbib_lib_unb_ca
@@ -1014,9 +1098,11 @@ display:
               authenticated: authenticated
               anonymous: '0'
               nb_bibliography_contributor: '0'
+              nbbib_archivals_editor: '0'
             expose_fields: false
             placeholder: ''
             searched_fields_id: ''
+            value_maxlength: 1024
           is_grouped: false
           group_info:
             label: ''
@@ -1051,6 +1137,8 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
         - 'search_api_list:references_nbbib_lib_unb_ca'

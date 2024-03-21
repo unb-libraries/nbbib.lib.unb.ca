@@ -220,57 +220,7 @@ function nbbib_core_entity_field_access($operation, FieldDefinitionInterface $fi
  * Implements hook_form_FORM_ID_alter().
  */
 function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id) {
-
-  // Target specific exposed form (bibliography).
-  if ($form['#id'] == "views-exposed-form-nb-bibliography-citations-page-1" or
-    $form['#id'] == "views-exposed-form-nb-bibliography-lister-page-1") {
-    // Override bibliographic_type input to dropdown.
-    $form['bibliographic_type']['#type'] = "select";
-    $form['bibliographic_type']['#size'] = NULL;
-    $form['bibliographic_type']['#validated'] = TRUE;
-
-    $form['bibliographic_type']['#options'] = [
-      '' => t('- Any -'),
-      'Book' => t('Book'),
-      'Book Section' => t('Book Section'),
-      'Journal Article' => t('Journal Article'),
-      'Thesis' => t('Thesis'),
-    ];
-
-    $form['bibliographic_type']['#default_value'] = 'All';
-
-    // Override collections input to dropdown.
-    $form['collections_5']['#type'] = "select";
-    $form['collections_5']['#size'] = NULL;
-    $form['collections_5']['#validated'] = TRUE;
-
-    $form['collections_5']['#options'] = [
-      '' => t('- Any -'),
-    ];
-
-    // Dynamically populate collection list.
-    // Get collection storage, query for ids.
-    $col_storage = \Drupal::entityTypeManager()->getStorage('yabrm_collection');
-    $cids = $col_storage->getQuery()->accessCheck(FALSE)->execute();
-    $collection = NULL;
-    // Iterate through ids, append each collection name.
-    foreach ($cids as $cid) {
-      $collection = $col_storage->load($cid)->getName();
-      $form['collections_5']['#options'][$collection] = t($collection);
-    }
-
-    $form['collections_5']['#default_value'] = 'All';
-
-    // Override keyword and title input to increase max length.
-    $form['search_api_fulltext']['#maxlength'] = 1024;
-    $form['search_api_fulltext_title']['#maxlength'] = 1024;
-  }
-
-  if ($form['#id'] == "views-exposed-form-nb-bibliography-citations-page-2") {
-    // Override keyword input to increase max length.
-    $form['search_api_fulltext']['#maxlength'] = 1024;
-  }
-
+  // Target specific exposed form.
   if ($form['#id'] == "views-exposed-form-nb-bibliography-lister-page-1") {
     // Override published input for better readability.
     $form['published']['#options']['1'] = 'Yes';

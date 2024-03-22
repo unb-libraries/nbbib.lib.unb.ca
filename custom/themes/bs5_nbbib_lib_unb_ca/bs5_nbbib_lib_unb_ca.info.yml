@@ -1,0 +1,23 @@
+name: 'Women Social Activists of Atlantic Canada'
+type: theme
+description: 'Women Social Activists of Atlantic Canada subtheme of Bootstrap 5.'
+core_version_requirement: ^9 || ^10
+base theme: bootstrap5
+libraries:
+  - bs5_nbbib_lib_unb_ca/global-styling
+ckeditor_stylesheets:
+  - css/style.css
+ckeditor5-stylesheets:
+  - css/ck5style.css
+regions:
+  header: Header
+  nav_branding: 'Navigation branding region'
+  nav_main: 'Main navigation region'
+  nav_additional: 'Additional navigation region (eg search form, social icons, etc)'
+  breadcrumb: Breadcrumbs
+  content: 'Main content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: Footer
+libraries-override:
+  bootstrap5/global-styling: false

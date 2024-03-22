@@ -1,0 +1,203 @@
+{#
+/**
+ * @file yabrm_journal_article.html.twig
+ * Default theme implementation to present Journal Article Reference data.
+ *
+ * This template is used when viewing Journal Article Reference pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_yabrm_journal_article()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('yabrm-reference', 'yabrm-journal-article', 'contrib-layout') }}>
+  {% if content %}
+    <div class="container">
+      <div class="row">
+        <div id="ref-body" class="col-sm-8">
+
+          <ul id="ref-contribs">
+
+            {% if content.contribs_all %}
+              {% for contrib in content.contribs_all %}
+
+                {% if contrib.display_name == "Anonymous" %}
+                  <li>[Anonymous]</li>
+                {% else %}
+                  <li><a href="/yabrm/yabrm_contributor/{{ contrib.cid }}">
+                  {{ contrib.display_name ~ ' (' ~ contrib.role ~ ')' }}
+                  </a></li>
+                {% endif %}
+
+              {% endfor %}
+            {% else %}
+              <li>[Unknown]</li>
+            {% endif %}
+          </ul>
+
+          <h2>Publication Details</h2>
+
+          <div id="ref-details" class="container">
+            <div id="ref-type" class="row">
+              <div class="col-sm-6">Item Type</div>
+              <div class="col-sm-6">Journal Article</div>
+            </div>
+            {% if content.publication_title|field_value %}
+              <div id="ref-pub-title" class="row">
+                <div class="col-sm-6">Journal Title</div>
+                <div class="col-sm-6">{{ content.publication_title|field_value }}</div>
+              </div>
+            {% endif %}
+            {% if content.volume|field_value %}
+              <div id="ref-volume" class="row">
+                <div class="col-sm-6">Volume</div>
+                <div class="col-sm-6">{{ content.volume|field_value }}</div>
+              </div>
+            {% endif %}
+            {% if content.issue|field_value %}
+              <div id="ref-issue" class="row">
+                <div class="col-sm-6">Issue</div>
+                <div class="col-sm-6">{{ content.issue|field_value }}</div>
+              </div>
+            {% endif %}
+            {% if content.pages|field_value %}
+              <div id="ref-pages" class="row">
+                <div class="col-sm-6">Pages</div>
+                <div class="col-sm-6">{{ content.pages|field_value }}</div>
+              </div>
+            {% endif %}
+            <div id="ref-pub-date" class="row">
+              <div class="col-sm-6">Publication Date</div>
+              {% if content.publication_year|field_value %}
+                <div class="col-sm-6">{{ content.publication_year|field_value }}</div>
+              {% else %}
+                <div class="col-sm-6">n.d.</div>
+              {% endif %}
+            </div>
+            {% if content.nb_imprint|field_value %}
+              <div id="ref-nb-imprint" class="row">
+                <div class="col-sm-6">NB Imprint</div>
+                <div class="col-sm-6">{{ content.nb_imprint|field_value }}</div>
+              </div>
+            {% endif %}
+            {% if content.language|field_value %}
+
+              <div id="ref-language" class="row">
+                <div class="col-sm-6">Language(s)</div>
+
+                <div class="col-sm-6">          {#***#}
+
+                  {%- for language in content.lang_names -%}
+                    {%- if not loop.first -%}
+                      {{ ', ' }}
+                    {%- endif -%}
+
+                    {{ language }}
+                  {%- endfor -%}
+                </div>
+              </div>
+            {% endif %}
+            {% if content.issn|field_value %}
+              <div id="ref-isbn-issn" class="row">
+                <div class="col-sm-6">ISBN/ISSN</div>
+                <div class="col-sm-6">{{ content.issn|field_value }}</div>
+              </div>
+            {% endif %}
+          </div>
+
+          <div id="ref-description">
+            {% if content.abstract_note|field_value %}
+              <b>Description</b>
+
+              <div>
+                {{ content.abstract_note|field_value }}
+              </div>
+
+            {% endif %}
+          </div>
+
+          {% if content.archives or content.url|field_value %}
+            <div id="ref-copies">
+              <b>Copies</b>
+
+              <div>
+                {% if content.archives %}
+                  <ul>
+                    {% for archive in content.archives %}
+                      <li>{{ archive }}</li>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% set urls = content.url %}
+                    {% for url in content.url|field_value %}
+                      <li>{{ url }}</li>
+                    {% endfor %}
+                  </ul>
+              </div>
+
+            </div>
+          {% endif %}
+
+          {% if content.notes|field_value %}
+            <div id="ref-notes">
+              <b>Notes</b>
+
+              <div>
+                {{ content.notes|field_value }}
+              </div>
+
+            </div>
+          {% endif %}
+
+          {%- if content.topics|field_value -%}
+            <div id="ref-topics">
+              <b>Topics: </b>
+
+              <span>
+                {%- for topic in content.topics|field_value -%}
+                  {%- set tname = topic['#options']['entity'].name() -%}
+                  {%- set tid = topic['#options']['entity'].id() -%}
+
+                  {%- if not loop.first -%}
+                    {{- ", " -}}
+                  {%- endif -%}
+
+                  <a href ="/bibliography?topic_names={{ tname }}">
+                    {{- tname -}}
+                  </a>
+                {%- endfor -%}
+              </span>
+            </div>
+          {%- endif -%}
+
+          {%- if content.collections|field_value -%}
+            <div id="ref-collections">
+              <b>Collections: </b>
+
+              <span>
+                {%- for collection in content.collections|field_value -%}
+                  
+                  {%- if not loop.first -%}
+                    {{- ", " -}}
+                  {%- endif -%}
+
+                  {{ collection }}
+                {%- endfor -%}
+              </span>
+
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div id="ref-picture" class="col-sm-4">
+          {{ content.cover_image|field_value }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

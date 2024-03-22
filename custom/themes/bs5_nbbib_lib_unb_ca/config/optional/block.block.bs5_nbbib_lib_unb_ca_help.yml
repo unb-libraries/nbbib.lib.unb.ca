@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - bs5_nbbib_lib_unb_ca
+id: bs5_nbbib_lib_unb_ca_help
+theme: bs5_nbbib_lib_unb_ca
+region: content
+weight: -3
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

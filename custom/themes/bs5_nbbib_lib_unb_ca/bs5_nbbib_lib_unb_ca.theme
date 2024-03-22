@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * Overrides template_preprocess_field().
+ */
+function bs5_nbbib_lib_unb_ca_preprocess_field(&$variables, $hook) {
+  $element = $variables['element'];
+
+  // Only for 'name' field.
+  if ($element['#field_name'] == 'name') {
+    $contrib = $element['#object'];
+
+    if ($contrib->bundle() == 'yabrm_contributor') {
+      $first_name = $contrib->get('first_name')->getValue()[0]['value'] ??
+        NULL;
+      $last_name = $contrib->get('last_name')->getValue()[0]['value'] ??
+        NULL;
+      $inst_name = $contrib->get('institution_name')->getValue()[0]['value'] ??
+        NULL;
+      $prefix = $contrib->get('prefix')->getValue()[0]['value'] ??
+        NULL;
+      $suffix = $contrib->get('suffix')->getValue()[0]['value'] ??
+        NULL;
+      $full_name = $inst_name ?? trim("$prefix $first_name $last_name $suffix");
+
+      // Replace field with fist_name last_name.
+      $variables['items'][0]['content']['#context']['value'] = $full_name;
+    }
+  }
+}
+
+/* Extends template_preprocess_menu_local_action().
+ *
+ * Override Bootstrap small button classes for selected task links.
+ *
+ * Default template: menu-local-action.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: A render element containing:
+ *     - #link: A menu link array with 'title', 'url', and (optionally)
+ *       'localized_options' keys.
+ */
+function bs5_nbbib_lib_unb_ca_preprocess_menu_local_action(&$variables) {
+  $titles = [
+    'Add content',
+  ];
+
+  if (in_array($variables['link']['#title'], $titles)) {
+    $variables['link']['#options']['attributes']['class'] = [];
+    $variables['link']['#options']['attributes']['class'][] = 'btn';
+    $variables['link']['#options']['attributes']['class'][] = 'btn-success';
+  }
+}
+
+function bs5_nbbib_lib_unb_ca_preprocess_facets_item_list(&$variables) {
+  $facet = $variables['facet'];
+  $widget = $facet->getWidget();
+  $widget['config']['min_value'] = 1700;
+  $widget['config']['max_value'] = 2000;
+  $facet->setWidget('range_slider', $widget['config']);
+  $variables['facet'] = $facet;
+}

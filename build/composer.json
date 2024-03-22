@@ -150,6 +150,7 @@
     "drupal/autocomplete_deluxe": "^2",
     "drupal/block_content_permissions": "^1",
     "drupal/bootstrap4": "^3",
+    "drupal/bootstrap5": "^3",
     "drupal/color": "^1",
     "drupal/core": "^10",
     "drupal/core-composer-scaffold": "^10",

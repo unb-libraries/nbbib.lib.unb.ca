@@ -1,0 +1,124 @@
+// Sub theme styling.
+@import 'variables_drupal';
+
+// Bootstrap overridden variables.
+// @see https://getbootstrap.com/docs/5.2/customize/sass/#variable-defaults.
+@import 'variables_bootstrap';
+
+// Include bootstrap 5.
+@import '../../../../../vendor/drupal/bootstrap5/scss/style';
+
+/* Subtheme styles */
+html {
+  body.path-frontpage {
+    main {
+      > .container {
+        padding: 0 !important;
+        .region-content {
+        }
+      }
+    }
+  }
+  body {
+    a {
+      text-decoration: none;
+    }
+    a:active,
+    a:focus,
+    a:focus-within,
+    a:target,
+    a:hover {
+      text-decoration: underline !important;
+      color: $secondary !important;
+    }
+    header {
+      nav.navbar {
+        padding: 0;
+        background-color: $secondary !important;
+        .container {
+          padding: 2rem 1rem 2rem 2rem;
+          background-color: $primary;
+          .region-nav-main {
+            .nav-item {
+              padding-left: 1rem;
+              .nav-link {
+                padding: .2rem 0;
+                text-decoration: none !important;
+                color: $light;
+                &.is-active {
+                  border-bottom: 1px $light solid;
+                }
+              }
+            }
+          }
+          .region-nav-branding {
+          }
+        }
+      }
+    }
+    main {
+      > .container {
+        padding: 2rem !important;
+        background-color: $light !important;
+        .region-content {
+          padding: 0;
+        }
+      }
+    }
+  }
+  footer {
+    &.mt-auto {
+      margin-top: 0 !important;
+    }
+    padding: 0;
+    .container {
+      padding: 0;
+      background-color: $primary !important;
+    }
+  }
+}
+
+@media screen and (max-width: 1399px) {
+  body.path-frontpage {
+    .view-content {
+      columns: 1 !important;
+    }
+  }
+}
+@media screen and (max-width: 1199px) {
+  header .navbar .container.d-flex {
+    flex-wrap: wrap;
+    .navbar-collapse {
+      justify-content: flex-start !important;
+      margin-top: 1rem;
+    }
+  } 
+}
+@media screen and (max-width: 991px) {
+  .region-nav-branding {
+    margin-bottom: 1rem;
+    max-width: 100%;
+    width: 100%;
+    .site-title {
+      margin: 0 !important;
+    }
+  }
+}
+@media screen and (max-width: 991px) {
+  body.path-frontpage {
+    .view-content {
+      .views-row {
+        margin: 1rem 0;
+        padding: 1rem 0 !important;
+        .slide-name {
+          padding-top: 0 !important;
+        }
+      }
+    }
+  }
+  nav > .container,
+  main > .container,
+  footer > .container {
+    max-width: 100%;
+  }
+}

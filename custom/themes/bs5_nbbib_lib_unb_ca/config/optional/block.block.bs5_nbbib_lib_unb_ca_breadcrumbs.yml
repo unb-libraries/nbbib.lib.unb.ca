@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bs5_nbbib_lib_unb_ca
+id: bs5_nbbib_lib_unb_ca_breadcrumbs
+theme: bs5_nbbib_lib_unb_ca
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

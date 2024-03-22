@@ -792,21 +792,8 @@ display:
           plugin_id: search_api
           order: ASC
           expose:
-            label: 'Title (ascending)'
+            label: Title
             field_identifier: bibliographic_title
-          exposed: true
-        bibliographic_title_1:
-          id: bibliographic_title_1
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: DESC
-          expose:
-            label: 'Title (descending)'
-            field_identifier: bibliographic_title_1
           exposed: true
         search_api_relevance:
           id: search_api_relevance
@@ -1002,21 +989,8 @@ display:
           plugin_id: search_api
           order: ASC
           expose:
-            label: 'Title (ascending)'
+            label: Title
             field_identifier: bibliographic_title
-          exposed: true
-        bibliographic_title_1:
-          id: bibliographic_title_1
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: DESC
-          expose:
-            label: 'Title (descending)'
-            field_identifier: bibliographic_title_1
           exposed: true
         search_api_relevance:
           id: search_api_relevance

@@ -952,59 +952,7 @@ display:
           expose_sort_order: true
           sort_asc_label: Ascending
           sort_desc_label: Descending
-      sorts:
-        date_sort:
-          id: date_sort
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: date_sort
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: DESC
-          expose:
-            label: 'Publication Date (newest first)'
-            field_identifier: date_sort
-          exposed: true
-        date_sort_1:
-          id: date_sort_1
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: date_sort
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: ASC
-          expose:
-            label: 'Publication Date (oldest first)'
-            field_identifier: date_sort_1
-          exposed: true
-        bibliographic_title:
-          id: bibliographic_title
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: bibliographic_title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: ASC
-          expose:
-            label: Title
-            field_identifier: bibliographic_title
-          exposed: true
-        search_api_relevance:
-          id: search_api_relevance
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: search_api_relevance
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: DESC
-          expose:
-            label: ''
-            field_identifier: search_api_relevance
-          exposed: false
+      sorts: {  }
       filters:
         published:
           id: published
@@ -1111,8 +1059,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
         - 'search_api_list:references_nbbib_lib_unb_ca'

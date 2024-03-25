@@ -182,7 +182,7 @@
     "harvesthq/chosen": "^1",
     "oomphinc/composer-installers-extender": "^2",
     "simeydotme/jquery-ui-slider-pips": "^1",
-    "unb-libraries/composer-drupal-scaffold": "10.0.0",
+    "unb-libraries/composer-drupal-scaffold": "^10",
     "unb-libraries/saml_features": "dev-10.x-1.x"
   },
   "require-dev": {

@@ -750,9 +750,9 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
             $p_obj->save();
             
             // Get contributor id.
-            $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'];
+            $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'] ?? NULL;
             // Load paragraph object.
-            $c_obj = BibliographicContributor::load($cid);
+            $c_obj = BibliographicContributor::load($cid) ?? NULL;
             
             // If valid object...
             if ($c_obj) {

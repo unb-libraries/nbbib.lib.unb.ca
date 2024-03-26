@@ -6,5 +6,6 @@ dependencies:
     - yabrm
 id: yabrm_biblio_reference.citation
 label: Citation
+description: ''
 targetEntityType: yabrm_biblio_reference
 cache: true

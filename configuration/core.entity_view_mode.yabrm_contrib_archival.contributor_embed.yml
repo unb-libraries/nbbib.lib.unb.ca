@@ -6,5 +6,6 @@ dependencies:
     - yabrm
 id: yabrm_contrib_archival.contributor_embed
 label: 'Contributor Embed'
+description: ''
 targetEntityType: yabrm_contrib_archival
 cache: true

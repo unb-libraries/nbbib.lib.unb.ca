@@ -30,7 +30,7 @@ widget:
   type: checkbox
   config:
     show_numbers: true
-    soft_limit: 0
+    soft_limit: 15
     show_reset_link: false
     reset_text: 'Show all'
     hide_reset_when_no_selection: false
@@ -48,7 +48,7 @@ processor_configs:
     weights:
       sort: 20
     settings:
-      sort: ASC
+      sort: DESC
   count_widget_order:
     processor_id: count_widget_order
     weights:

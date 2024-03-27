@@ -1,0 +1,29 @@
+uuid: deed4892-e004-4583-8e55-6eca54073b31
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.publication_year
+  module:
+    - facets
+    - system
+  theme:
+    - bs5_nbbib_lib_unb_ca
+id: bs5_nbbib_lib_unb_ca_publicationyearslider
+theme: bs5_nbbib_lib_unb_ca
+region: sidebar_first
+weight: -8
+provider: null
+plugin: 'facet_block:publication_year'
+settings:
+  id: 'facet_block:publication_year'
+  label: 'Publication Year'
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: bs5_nbbib_lib_unb_ca_publicationyearslider
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/bibliography*'

@@ -1,0 +1,22 @@
+uuid: a89cfbcd-146a-454d-a303-a14a3a7ef125
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bs5_nbbib_lib_unb_ca
+_core:
+  default_config_hash: VoCGdJlj8dMDeJsGl4Uxm3ZYVg6lO5INX1glk3tT9pg
+id: bs5_nbbib_lib_unb_ca_messages
+theme: bs5_nbbib_lib_unb_ca
+region: content
+weight: -6
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  label_display: '0'
+  provider: system
+visibility: {  }

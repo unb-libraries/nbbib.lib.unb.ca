@@ -1,0 +1,29 @@
+uuid: 88c08bc5-96bc-4818-8289-54718b2a15b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.collection_s_string
+  module:
+    - facets
+    - system
+  theme:
+    - bs5_nbbib_lib_unb_ca
+id: bs5_nbbib_lib_unb_ca_collectionsstring
+theme: bs5_nbbib_lib_unb_ca
+region: sidebar_first
+weight: -7
+provider: null
+plugin: 'facet_block:collection_s_string'
+settings:
+  id: 'facet_block:collection_s_string'
+  label: Collections
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: bs5_nbbib_lib_unb_ca_collectionsstring
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/bibliography*'

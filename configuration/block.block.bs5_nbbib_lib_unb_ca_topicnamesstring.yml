@@ -1,0 +1,29 @@
+uuid: e807ff17-b962-441e-9d04-a4a7d6cd85f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.topic_names_string
+  module:
+    - facets
+    - system
+  theme:
+    - bs5_nbbib_lib_unb_ca
+id: bs5_nbbib_lib_unb_ca_topicnamesstring
+theme: bs5_nbbib_lib_unb_ca
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:topic_names_string'
+settings:
+  id: 'facet_block:topic_names_string'
+  label: Topics
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: bs5_nbbib_lib_unb_ca_topicnamesstring
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/bibliography*'

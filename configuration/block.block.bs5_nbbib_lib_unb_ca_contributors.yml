@@ -1,0 +1,29 @@
+uuid: c50f41c2-f08b-4ae1-9043-ef714deebdf4
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.contributor_s_
+  module:
+    - facets
+    - system
+  theme:
+    - bs5_nbbib_lib_unb_ca
+id: bs5_nbbib_lib_unb_ca_contributors
+theme: bs5_nbbib_lib_unb_ca
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:contributor_s_'
+settings:
+  id: 'facet_block:contributor_s_'
+  label: Contributors
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: bs5_nbbib_lib_unb_ca_contributors
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/bibliography*'

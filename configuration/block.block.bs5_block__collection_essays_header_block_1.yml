@@ -1,0 +1,29 @@
+uuid: fca04830-152f-473a-b595-c8bc364c132c
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.nb_bibliography_collection_essays_header
+  module:
+    - system
+    - views
+  theme:
+    - bs5_nbbib_lib_unb_ca
+id: bs5_block__collection_essays_header_block_1
+theme: bs5_nbbib_lib_unb_ca
+region: content
+weight: -3
+provider: null
+plugin: 'views_block:nb_bibliography_collection_essays_header-block_1'
+settings:
+  id: 'views_block:nb_bibliography_collection_essays_header-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /essays

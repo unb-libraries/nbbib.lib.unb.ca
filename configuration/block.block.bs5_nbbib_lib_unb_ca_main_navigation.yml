@@ -1,0 +1,27 @@
+uuid: 25018528-f373-45c7-a40d-fdb4d5ddacb2
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - bs5_nbbib_lib_unb_ca
+_core:
+  default_config_hash: yGS6pNSKbC7pphMxNeXBsgvjX8iDfbbv2YdvA_ut5D4
+id: bs5_nbbib_lib_unb_ca_main_navigation
+theme: bs5_nbbib_lib_unb_ca
+region: nav_main
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }

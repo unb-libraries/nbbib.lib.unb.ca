@@ -1,0 +1,29 @@
+uuid: 319cc109-ebb5-482d-bdfe-2754842c977e
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.general_publisher
+  module:
+    - facets
+    - system
+  theme:
+    - bs5_nbbib_lib_unb_ca
+id: bs5_nbbib_lib_unb_ca_generalpublisherstring
+theme: bs5_nbbib_lib_unb_ca
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:general_publisher'
+settings:
+  id: 'facet_block:general_publisher'
+  label: Publishers
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: bs5_nbbib_lib_unb_ca_generalpublisherstring
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/bibliography*'

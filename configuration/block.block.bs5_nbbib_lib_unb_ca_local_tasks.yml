@@ -1,0 +1,22 @@
+uuid: 5a2fc27c-5c11-4b29-a3f2-abcb25751045
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bs5_nbbib_lib_unb_ca
+_core:
+  default_config_hash: BDn2uOwYaIESmjAyNvRBCEdc13icwStevfM8TWZ7US8
+id: bs5_nbbib_lib_unb_ca_local_tasks
+theme: bs5_nbbib_lib_unb_ca
+region: content
+weight: -1
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

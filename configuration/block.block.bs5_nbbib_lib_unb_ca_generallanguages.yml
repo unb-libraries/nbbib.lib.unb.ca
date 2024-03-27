@@ -1,0 +1,29 @@
+uuid: b207f0ec-40fe-48ed-9383-16a21a737460
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.general_languages
+  module:
+    - facets
+    - system
+  theme:
+    - bs5_nbbib_lib_unb_ca
+id: bs5_nbbib_lib_unb_ca_generallanguages
+theme: bs5_nbbib_lib_unb_ca
+region: sidebar_first
+weight: -5
+provider: null
+plugin: 'facet_block:general_languages'
+settings:
+  id: 'facet_block:general_languages'
+  label: Languages
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: bs5_nbbib_lib_unb_ca_generallanguages
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/bibliography*'

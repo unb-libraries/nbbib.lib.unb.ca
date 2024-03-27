@@ -1,0 +1,22 @@
+uuid: 3762eb36-c32e-41f2-bf8f-40176e84354a
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bs5_nbbib_lib_unb_ca
+_core:
+  default_config_hash: C9Q2sSUbXRwi0wtMzM88ZEXPzaVkWq1E8OAFgHCj9uM
+id: bs5_nbbib_lib_unb_ca_content
+theme: bs5_nbbib_lib_unb_ca
+region: content
+weight: 1
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -13,12 +13,25 @@
   "minimum-stability": "dev",
   "name": "unb-libraries/nbbib.lib.unb.ca",
   "prefer-stable": true,
+  "replace": {
+    "drupal/core": "*"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
   "require-dev": {
+    "drupal/bootstrap5": "^3",
     "unb-libraries/dockworker-drupal": "^6"
   },
   "scripts": {
     "post-update-cmd": [
       "vendor/bin/dockworker git:setup-hooks"
     ]
+  },
+  "require": {
+    "drupal/quick_node_clone": "^1.17"
   }
 }

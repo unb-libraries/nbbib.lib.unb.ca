@@ -1,7 +1,7 @@
 // Bootstrap variables (overrides).
-$primary: $primary !default;
-$secondary: $secondary !default;
-$light: $light !default;
+$primary: $nbbib_blue !default;
+$secondary: $nbbib_text !default;
+$light: $nbbib_paper !default;
 
 // Override default bootstrap colors for accessibility
 $white: #fff !default;
@@ -10,12 +10,12 @@ $blue: #003CC5 !default;
 $cyan: #006170 !default;
 $pink: #e21181 !default;
 $green: #008a00 !default;
-$breadcrumb-divider-color: $gray-700 !default;
-$breadcrumb-active-color: $gray-700 !default;
-$navbar-light-color: rgba($black, .6) !default;
-$navbar-dark-color: rgba($white, .6) !default;
+$breadcrumb-divider-color: $nbbib_text !default;
+$breadcrumb-active-color: $nbbib_blue !default;
+$navbar-light-color: $nbbib_paper !default;
+$navbar-dark-color: $nbbib_blue !default;
 
-// Geberal.
+// General.
 $form-text-margin-top: 0;
 $legend-font-size: 1rem;
 $table-cell-padding-x: .75rem;

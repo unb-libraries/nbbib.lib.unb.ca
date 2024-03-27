@@ -1,6 +1,6 @@
-name: 'Women Social Activists of Atlantic Canada'
+name: 'New Brunswick Bibliography'
 type: theme
-description: 'Women Social Activists of Atlantic Canada subtheme of Bootstrap 5.'
+description: 'New Brunswick Bibliography subtheme of Bootstrap 5.'
 core_version_requirement: ^9 || ^10
 base theme: bootstrap5
 libraries:

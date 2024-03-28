@@ -20,6 +20,7 @@ html {
     }
   }
   body {
+    background-color: $light !important;
     a {
       text-decoration: none;
     }
@@ -32,12 +33,11 @@ html {
       color: $secondary !important;
     }
     header {
+      //background-color: $light !important;
       nav.navbar {
         padding: 0;
-        background-color: $secondary !important;
         .container {
           padding: 2rem 1rem 2rem 2rem;
-          background-color: $primary;
           .region-nav-main {
             .nav-item {
               padding-left: 1rem;
@@ -67,13 +67,14 @@ html {
     }
   }
   footer {
+    background-color: $light !important;
     &.mt-auto {
       margin-top: 0 !important;
     }
     padding: 0;
     .container {
       padding: 0;
-      background-color: $primary !important;
+      background-color: $light !important;
     }
   }
 }

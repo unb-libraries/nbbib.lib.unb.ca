@@ -10,6 +10,48 @@
 
 /* Subtheme styles */
 html {
+  h1 {
+    font-family: libre-franklin, arial, sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+  }
+  h2 {
+    font-family: libre-franklin, arial, sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    padding: 0 15px;
+    border-bottom: 1px, $base-400;
+  }
+  h3 {
+    font-family: libre-franklin, arial, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    padding: 0 15px;
+    border-bottom: 1px, $base-400;
+  }
+  h4 {
+    font-family: libre-franklin, arial, sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+    padding: 0 15px;
+    border-bottom: 1px, $base-400;
+  }
+  h5 {
+    font-family: libre-franklin, arial, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 0 15px;
+    border-bottom: 1px, $base-400;
+  }
+  h6 {
+    font-family: libre-franklin, arial, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.09rem; /* 9% */
+    color: $base-600;
+    padding: 0 15px;
+  }
   body.path-frontpage {
     main {
       > .container {
@@ -30,7 +72,7 @@ html {
     a:target,
     a:hover {
       text-decoration: underline !important;
-      color: $secondary !important;
+      color: $link-hover !important;
     }
     header {
       //background-color: $light !important;
@@ -44,7 +86,16 @@ html {
               .nav-link {
                 padding: .2rem 0;
                 text-decoration: none !important;
-                color: $light;
+                color: $base-950;
+                &:active,
+                &:focus,
+                &:focus-within,
+                &:target,
+                &:hover {
+                  text-decoration: underline !important;
+                  color: $link-hover !important;
+                }        
+    
                 &.is-active {
                   border-bottom: 1px $light solid;
                 }
@@ -52,6 +103,17 @@ html {
             }
           }
           .region-nav-branding {
+            a {
+              color: $link !important;
+            }
+            a:active,
+            a:focus,
+            a:focus-within,
+            a:target,
+            a:hover {
+              text-decoration: none !important;
+              color: $link-hover !important;
+            }        
           }
         }
       }

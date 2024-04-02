@@ -126,7 +126,7 @@ html {
         .container.d-flex {
           flex-wrap: wrap;
           padding: 2rem 0;
-          border-bottom: 1px, $base-400 !important;
+          border-bottom: 1px $base-200 solid !important;
           .navbar-collapse {
             justify-content: flex-end !important;
           }

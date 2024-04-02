@@ -10,41 +10,39 @@
 
 /* Subtheme styles */
 html {
-  h1 {
-    font-family: libre-franklin, arial, sans-serif;
+  font-family: libre-franklin, arial, sans-serif;
+  font-weight: 500;
+  line-height: 140%;
+  font-size: 18px;
+  h1, .site-title {
     font-weight: 700;
-    font-size: 36px;
+    font-size: 36px !important;
   }
   h2 {
-    font-family: libre-franklin, arial, sans-serif;
     font-weight: 700;
     font-size: 30px;
     padding: 0 15px;
     border-bottom: 1px, $base-400;
   }
   h3 {
-    font-family: libre-franklin, arial, sans-serif;
     font-weight: 700;
     font-size: 24px;
     padding: 0 15px;
     border-bottom: 1px, $base-400;
   }
   h4 {
-    font-family: libre-franklin, arial, sans-serif;
     font-weight: 700;
     font-size: 21px;
     padding: 0 15px;
     border-bottom: 1px, $base-400;
   }
   h5 {
-    font-family: libre-franklin, arial, sans-serif;
     font-weight: 700;
     font-size: 18px;
     padding: 0 15px;
     border-bottom: 1px, $base-400;
   }
   h6 {
-    font-family: libre-franklin, arial, sans-serif;
     font-weight: 600;
     font-size: 15px;
     text-transform: uppercase;
@@ -52,11 +50,58 @@ html {
     color: $base-600;
     padding: 0 15px;
   }
+  .text-xxl {
+    font-size: 30px;
+  }
+  .text-xl {
+    font-size: 27px;
+  }
+  .text-l {
+    font-size: 21px;
+  }
+  .text-base {
+    font-size: 18px;
+  }
+  .text-s {
+    font-size: 15px;
+  }
+  .text-xs {
+    font-size: 12px;
+  }
   body.path-frontpage {
     main {
       > .container {
         padding: 0 !important;
         .region-content {
+          form#views-exposed-form-nb-bibliography-citations-page-2 {
+            label {
+              font-weight: 700;
+            }
+            div.form-item-search-api-fulltext {
+              width: 1064px;
+              margin-right: 2rem;
+              input#edit-search-api-fulltext {
+                margin-right: 1rem;
+                background-color: $light !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                border-top: none !important;
+                border-left: none !important;
+                border-right: none !important;
+                border-bottom: 1px solid $base-800;
+              }
+            }
+            #edit-actions {
+              display: inline-block;
+              margin-top: 1.8rem;
+              width: 220px;
+              input {
+                padding: .6rem 4rem;
+                font-weight: 700 !important;
+                font-size: 22px !important;
+              }
+            }
+          }
         }
       }
     }
@@ -80,15 +125,17 @@ html {
         padding: 0;
         .container.d-flex {
           flex-wrap: wrap;
-          padding: 2rem 1rem 2rem 2rem;
+          padding: 2rem 0;
+          border-bottom: 1px, $base-400 !important;
           .navbar-collapse {
-            justify-content: flex-start !important;
-            margin-top: 1rem;
+            justify-content: flex-end !important;
           }
           .region-nav-main {
             .nav-item {
               padding-left: 1rem;
               .nav-link {
+                font-weight: 700;
+                font-size: 22px;
                 padding: .2rem 0;
                 text-decoration: none !important;
                 color: $base-950;
@@ -108,6 +155,9 @@ html {
             }
           }
           .region-nav-branding {
+            .site-title {
+              text-transform: none !important;
+            }
             a, h1 {
               color: $link !important;
             }

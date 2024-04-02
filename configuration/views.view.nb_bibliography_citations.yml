@@ -1006,8 +1006,8 @@ display:
           exposed: true
           expose:
             operator_id: search_api_fulltext_op
-            label: Search
-            description: 'Search by title, author, publisher, year, etc.'
+            label: 'Search by title, author, publisher, year, etc.'
+            description: ''
             use_operator: false
             operator: search_api_fulltext_op
             operator_limit_selection: false

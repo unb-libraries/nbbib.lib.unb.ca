@@ -78,8 +78,13 @@ html {
       //background-color: $light !important;
       nav.navbar {
         padding: 0;
-        .container {
+        .container.d-flex {
+          flex-wrap: wrap;
           padding: 2rem 1rem 2rem 2rem;
+          .navbar-collapse {
+            justify-content: flex-start !important;
+            margin-top: 1rem;
+          }
           .region-nav-main {
             .nav-item {
               padding-left: 1rem;
@@ -148,14 +153,7 @@ html {
     }
   }
 }
-@media screen and (max-width: 1199px) {
-  header .navbar .container.d-flex {
-    flex-wrap: wrap;
-    .navbar-collapse {
-      justify-content: flex-start !important;
-      margin-top: 1rem;
-    }
-  } 
+@media screen and (max-width: 1199px) { 
 }
 @media screen and (max-width: 991px) {
   .region-nav-branding {

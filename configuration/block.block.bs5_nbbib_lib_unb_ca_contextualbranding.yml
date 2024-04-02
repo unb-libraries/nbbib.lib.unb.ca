@@ -8,7 +8,7 @@ dependencies:
     - bs5_nbbib_lib_unb_ca
 id: bs5_nbbib_lib_unb_ca_contextualbranding
 theme: bs5_nbbib_lib_unb_ca
-region: nav_main
+region: nav_branding
 weight: -9
 provider: null
 plugin: context_branding_block

@@ -11,7 +11,7 @@ _core:
 id: bs5_nbbib_lib_unb_ca_messages
 theme: bs5_nbbib_lib_unb_ca
 region: content
-weight: -6
+weight: -8
 provider: null
 plugin: system_messages_block
 settings:

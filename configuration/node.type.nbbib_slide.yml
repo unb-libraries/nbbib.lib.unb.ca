@@ -1,0 +1,17 @@
+uuid: 81277ee0-89fe-436b-b712-0cf622e44f79
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'NBBIB Slide'
+type: nbbib_slide
+description: 'Content type for homepage slideshow slides.'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

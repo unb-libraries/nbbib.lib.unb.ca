@@ -9,7 +9,7 @@ _core:
 id: bs5_nbbib_lib_unb_ca_local_actions
 theme: bs5_nbbib_lib_unb_ca
 region: content
-weight: -5
+weight: -7
 provider: null
 plugin: local_actions_block
 settings:

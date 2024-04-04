@@ -1,0 +1,24 @@
+uuid: 8b614e33-bd2a-4f1f-a40a-daa22d47a433
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.nbbib_slide.field_image
+    - node.type.nbbib_slide
+  module:
+    - user
+id: node.nbbib_slide.teaser
+targetEntityType: node
+bundle: nbbib_slide
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_image: true
+  langcode: true
+  search_api_excerpt: true

@@ -216,7 +216,7 @@ display:
         type: none
         options: {  }
       cache:
-        type: none
+        type: search_api_none
         options: {  }
       empty:
         area_text_custom:
@@ -1553,7 +1553,7 @@ display:
           empty_zero: false
           hide_alter_empty: false
       cache:
-        type: none
+        type: search_api_none
         options: {  }
       sorts:
         publication_year_5:
@@ -2266,7 +2266,7 @@ display:
           empty_zero: false
           hide_alter_empty: false
       cache:
-        type: none
+        type: search_api_none
         options: {  }
       sorts:
         publication_year_5:

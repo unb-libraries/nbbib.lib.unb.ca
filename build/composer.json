@@ -131,18 +131,33 @@
       "type": "package"
     },
     {
-    "package": {
-      "name": "drupal/login_return_page",
-      "source": {
-        "reference": "8.x-1.x",
-        "type": "git",
-        "url": "https://git.drupalcode.org/sandbox/gnuget-2824414.git"
+      "package": {
+        "dist": {
+          "type": "file",
+          "url": "https://malsup.github.io/jquery.cycle.all.js"
+        },
+        "name": "malsup/jquery.cycle",
+        "require": {
+          "composer/installers": "^2"
+        },
+        "type": "drupal-library",
+        "version": "1.0"
       },
-      "type": "drupal-module",
-      "version": "1.x-dev"
+      "type": "package"
     },
+    {
+      "package": {
+        "name": "drupal/login_return_page",
+        "source": {
+          "reference": "8.x-1.x",
+          "type": "git",
+          "url": "https://git.drupalcode.org/sandbox/gnuget-2824414.git"
+        },
+        "type": "drupal-module",
+        "version": "1.x-dev"
+      },
     "type": "package"
-  }
+    }
 
   ],
   "require": {
@@ -178,8 +193,10 @@
     "drupal/twig_tweak": "^3",
     "drupal/views_contextual_filters_or": "^1",
     "drupal/views_timelinejs": "^4",
+    "drupal/views_slideshow": "^5",
     "furf/jquery-ui-touch-punch": "dev-master",
     "harvesthq/chosen": "^1",
+    "malsup/jquery.cycle": "^1",
     "oomphinc/composer-installers-extender": "^2",
     "simeydotme/jquery-ui-slider-pips": "^1",
     "unb-libraries/composer-drupal-scaffold": "^10",

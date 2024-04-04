@@ -16,6 +16,7 @@ module:
   contextual: 0
   datetime: 0
   dblog: 0
+  devel_generate: 0
   dynamic_page_cache: 0
   easy_breadcrumb: 0
   editor: 0
@@ -63,6 +64,8 @@ module:
   update: 0
   user: 0
   views_contextual_filters_or: 0
+  views_slideshow: 0
+  views_slideshow_cycle: 0
   views_ui: 0
   yabrm: 0
   menu_link_content: 1

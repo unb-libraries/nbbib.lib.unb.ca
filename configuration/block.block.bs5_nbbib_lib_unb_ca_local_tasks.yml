@@ -9,7 +9,7 @@ _core:
 id: bs5_nbbib_lib_unb_ca_local_tasks
 theme: bs5_nbbib_lib_unb_ca
 region: content
-weight: -1
+weight: -3
 provider: null
 plugin: local_tasks_block
 settings:

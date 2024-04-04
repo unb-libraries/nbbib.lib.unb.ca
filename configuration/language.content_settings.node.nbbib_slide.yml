@@ -1,0 +1,11 @@
+uuid: 90fa1f75-3ef1-4082-ab7b-8afc2bc4d7aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.nbbib_slide
+id: node.nbbib_slide
+target_entity_type_id: node
+target_bundle: nbbib_slide
+default_langcode: site_default
+language_alterable: false

@@ -1,22 +1,22 @@
-uuid: fca04830-152f-473a-b595-c8bc364c132c
+uuid: c5a5db02-8728-4a8f-bc0f-58819760259b
 langcode: en
 status: true
 dependencies:
   config:
-    - views.view.nb_bibliography_collection_essays_header
+    - views.view.nbbib_slideshow
   module:
     - system
     - views
   theme:
     - bs5_nbbib_lib_unb_ca
-id: bs5_block__collection_essays_header_block_1
+id: bs5_nbbib_lib_unb_ca_views_block__nbbib_slideshow_block_1
 theme: bs5_nbbib_lib_unb_ca
 region: content
-weight: -5
+weight: -9
 provider: null
-plugin: 'views_block:nb_bibliography_collection_essays_header-block_1'
+plugin: 'views_block:nbbib_slideshow-block_1'
 settings:
-  id: 'views_block:nb_bibliography_collection_essays_header-block_1'
+  id: 'views_block:nbbib_slideshow-block_1'
   label: ''
   label_display: '0'
   provider: views
@@ -26,4 +26,4 @@ visibility:
   request_path:
     id: request_path
     negate: false
-    pages: /essays
+    pages: '<front>'

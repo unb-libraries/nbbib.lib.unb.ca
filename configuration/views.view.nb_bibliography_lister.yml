@@ -551,7 +551,7 @@ display:
           role:
             nb_bibliography_contributor: nb_bibliography_contributor
       cache:
-        type: none
+        type: search_api_none
         options: {  }
       empty:
         area_text_custom:

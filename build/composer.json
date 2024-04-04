@@ -147,6 +147,21 @@
     },
     {
       "package": {
+        "dist": {
+          "type": "file",
+          "url": "https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.js"
+        },
+        "name": "cdnjs/json2",
+        "require": {
+          "composer/installers": "^2"
+        },
+        "type": "drupal-library",
+        "version": "1.0"
+      },
+      "type": "package"
+    },
+    {
+      "package": {
         "name": "drupal/login_return_page",
         "source": {
           "reference": "8.x-1.x",
@@ -161,6 +176,7 @@
 
   ],
   "require": {
+    "cdnjs/json2": "^1",
     "drupal/admin_toolbar": "^3",
     "drupal/autocomplete_deluxe": "^2",
     "drupal/block_content_permissions": "^1",

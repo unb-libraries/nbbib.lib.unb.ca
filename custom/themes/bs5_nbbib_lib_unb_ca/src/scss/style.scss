@@ -215,11 +215,12 @@ html {
           top: 0;
           left: 0;
           z-index: 100;
+          // $light = rgba(255, 249, 232, 1) but function must be used.
           background-image: linear-gradient(
             to right, 
             rgba(255, 249, 232, 1), 
-            rgba(255, 249, 232, 0) 10%,
-            rgba(255, 249, 232, 0) 90%,
+            rgba(255, 249, 232, 0) 5%,
+            rgba(255, 249, 232, 0) 95%,
             rgba(255, 249, 232, 1) 100% 
           );
         }

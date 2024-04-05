@@ -112,8 +112,12 @@ display:
         options:
           perm: 'access content'
       cache:
-        type: tag
-        options: {  }
+        type: time
+        options:
+          results_lifespan: 21600
+          results_lifespan_custom: 0
+          output_lifespan: 21600
+          output_lifespan_custom: 0
       empty: {  }
       sorts:
         created:
@@ -208,10 +212,10 @@ display:
             effect: scrollLeft
             transition_advanced: 1
             timeout: '0'
-            speed: '30000'
-            delay: '-30000'
+            speed: '40000'
+            delay: '-40000'
             sync: 1
-            random: 1
+            random: 0
             pause: 0
             pause_on_click: 1
             action_advanced: 1
@@ -221,7 +225,7 @@ display:
             pause_when_hidden: 0
             pause_when_hidden_type: full
             amount_allowed_visible: ''
-            nowrap: 0
+            nowrap: 1
             fixed_height: 0
             items_per_slide: '6'
             items_per_slide_first: 0

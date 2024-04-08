@@ -73,6 +73,54 @@ html {
       > .container {
         padding: 0 !important;
         .region-content {
+          padding: 0;
+          #block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1 {
+            div[data-block="content"] {
+              position: relative;
+              #views_slideshow_cycle_teaser_section_nbbib_slideshow-block_1 {
+                width: 100% !important;
+                > .views_slideshow_cycle_slide {
+                  display: flex !important;
+                  padding: 0 1rem;
+                  justify-content: space-between;
+                  width: 100% !important;
+                  height: 320px !important;
+                  background-color: $light !important;
+                  .views-row {
+                    display: flex !important;
+                    &:nth-of-type(odd) {
+                      align-items: center;
+                    }
+                    &:nth-of-type(2n + 2) {
+                      align-items: start;
+                    }
+                    &:nth-of-type(4n + 4) {
+                      align-items: end;
+                    }
+                    img {
+                      border-radius: .5rem;
+                    }
+                  }
+                }
+              }
+              #fade-overlay {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 100;
+                // $light = rgba(255, 249, 232, 1) but function must be used.
+                background-image: linear-gradient(
+                  to right, 
+                  rgba(255, 249, 232, 1), 
+                  rgba(255, 249, 232, 0) 5%,
+                  rgba(255, 249, 232, 0) 95%,
+                  rgba(255, 249, 232, 1) 100% 
+                );
+              }
+            }
+          }
           form#views-exposed-form-nb-bibliography-citations-page-2 {
             label {
               font-weight: 700;
@@ -179,50 +227,6 @@ html {
         background-color: $light !important;
         .region-content {
           padding: 0;
-          .view-content {
-            #views_slideshow_cycle_teaser_section_nbbib_slideshow-block_1 {
-              width: 100% !important;
-              > .views_slideshow_cycle_slide {
-                display: flex !important;
-                padding: 0 1rem;
-                justify-content: space-between;
-                width: 100% !important;
-                height: 320px !important;
-                background-color: $light !important;
-                .views-row {
-                  display: flex !important;
-                  &:nth-of-type(odd) {
-                    align-items: center;
-                  }
-                  &:nth-of-type(2n + 2) {
-                    align-items: start;
-                  }
-                  &:nth-of-type(4n + 4) {
-                    align-items: end;
-                  }
-                  img {
-                    border-radius: .5rem;
-                  }
-                }
-              }
-            }
-          }
-        }
-        #fade-overlay {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 100;
-          // $light = rgba(255, 249, 232, 1) but function must be used.
-          background-image: linear-gradient(
-            to right, 
-            rgba(255, 249, 232, 1), 
-            rgba(255, 249, 232, 0) 5%,
-            rgba(255, 249, 232, 0) 95%,
-            rgba(255, 249, 232, 1) 100% 
-          );
         }
       }
     }

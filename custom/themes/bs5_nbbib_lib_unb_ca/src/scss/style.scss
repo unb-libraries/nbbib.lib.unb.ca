@@ -265,14 +265,32 @@ html {
     }
   }
   footer {
-    background-color: $light !important;
-    &.mt-auto {
-      margin-top: 0 !important;
-    }
     padding: 0;
+    background-color: $light !important;
     .container {
+      margin-top: 2rem;
+      max-width: 1400px;
       padding: 0;
       background-color: $light !important;
+      opacity: 70%;
+    }
+    // Footer logo.
+    #footer-logo-div {
+      img {
+        width: 260px;
+      }
+    }
+    // Footer copy.
+    #footer-copy {
+      p {
+        margin: 0;
+        padding-top: 1.5rem;
+        padding-bottom: 0;
+        text-align: right;
+        a {
+          color: inherit;
+        }
+      }
     }
   }
 }

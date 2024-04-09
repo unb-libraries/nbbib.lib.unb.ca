@@ -73,10 +73,10 @@ html {
   }
   body.path-frontpage {
     main {
-      > .container {
-        padding: 0 !important;
-        .region-content {
-          padding: 0;
+      padding: 0 !important;
+        > .container {
+      .region-content {
+        padding: 0;
           #block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1 {
             div[data-block="content"] {
               position: relative;
@@ -216,7 +216,7 @@ html {
                   text-decoration: underline !important;
                   color: $link-hover !important;
                 }        
-    
+                
                 &.is-active {
                   border-bottom: 1px $light solid;
                 }
@@ -243,8 +243,17 @@ html {
       }
     }
     main {
+      // Breadcrumbs.
+      .breadcrumb {
+        margin-top: .2rem;
+        li {
+          a {
+            margin: .5rem !important;
+          }
+        }
+      }    
       > .container {
-        padding: 2rem !important;
+        padding: 0 !important;
         background-color: $light !important;
         .region-content {
           padding: 0;

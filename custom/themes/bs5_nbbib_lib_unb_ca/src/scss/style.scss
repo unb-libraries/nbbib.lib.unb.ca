@@ -10,7 +10,7 @@
 
 /* Subtheme styles */
 html {
-  font-family: libre-franklin, arial, sans-serif;
+  font-family: libre-franklin, arial, sans-serif !important;
   font-weight: 500;
   line-height: 140%;
   font-size: 18px;
@@ -122,12 +122,27 @@ html {
             }
           }
           form#views-exposed-form-nb-bibliography-citations-page-2 {
-            label {
-              font-weight: 700;
-            }
             div.form-item-search-api-fulltext {
+              position: relative;
               width: 1064px;
               margin-right: 2rem;
+              label[for="edit-search-api-fulltext"] {
+                position: absolute;
+                font-size: 21px;
+                font-weight: 700;
+                &:not(.active) {
+                  &:hover {
+                    cursor: pointer;
+                    color: $link-hover;
+                    transition: color .3s;
+                  }
+                }
+                &.active {
+                  top: -1rem;
+                  font-size: 18px;
+                  transition: all .3s;
+                }
+              }
               input#edit-search-api-fulltext {
                 margin-right: 1rem;
                 background-color: $light !important;
@@ -145,8 +160,8 @@ html {
               width: 220px;
               input {
                 padding: .6rem 4rem;
+                font-size: 24px !important;
                 font-weight: 700 !important;
-                font-size: 22px !important;
               }
             }
           }
@@ -155,6 +170,10 @@ html {
     }
   }
   body {
+    font-family: libre-franklin, arial, sans-serif !important;
+    font-weight: 500;
+    line-height: 140%;
+    font-size: 18px;  
     background-color: $light !important;
     a {
       text-decoration: none;
@@ -183,7 +202,7 @@ html {
               padding-left: 1rem;
               .nav-link {
                 font-weight: 700;
-                font-size: 22px;
+                font-size: 24px;
                 padding: .2rem 0;
                 text-decoration: none !important;
                 color: $base-950;

@@ -3,3 +3,11 @@ global-styling:
     theme:
       dist/css/style.css: {}
       dist/css/print.css: { media: print, minified: true }
+
+global-scripts:
+  version: 1.x
+  js:
+    js/front-search-transition.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

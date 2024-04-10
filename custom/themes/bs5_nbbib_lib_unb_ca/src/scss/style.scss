@@ -277,65 +277,70 @@ html {
         padding: 0 !important;
         background-color: $light !important;
         max-width: 1400px;
-        .region-content {
-          padding: 0;
-          form#views-exposed-form-nb-bibliography-citations-page-1 {
-            position: relative;
-            height: 10rem;
-            div.form-item-search-api-fulltext {
+        .order-1 {
+          margin-left: 2rem;
+          width: 72%;
+          .region-content {
+            padding: 0;
+            form#views-exposed-form-nb-bibliography-citations-page-1 {
               position: relative;
-              margin-right: 2rem;
-              label[for="edit-search-api-fulltext"] {
-                position: absolute;
-                font-size: 21px;
-                font-weight: 700;
-                &:has(+ input:not(:focus)) {
-                  &:hover {
-                    cursor: pointer;
-                    color: $link-hover;
-                    transition: color .3s;
+              height: 10rem;
+              div.form-item-search-api-fulltext {
+                width: 66%;
+                position: relative;
+                margin-right: 2rem;
+                label[for="edit-search-api-fulltext"] {
+                  position: absolute;
+                  font-size: 21px;
+                  font-weight: 700;
+                  &:has(+ input:not(:focus)) {
+                    &:hover {
+                      cursor: pointer;
+                      color: $link-hover;
+                      transition: color .3s;
+                    }
+                  }
+                  &:has(+ input:focus) {
+                    top: -1rem;
+                    font-size: 18px;
+                    transition: all .3s;
                   }
                 }
-                &:has(+ input:focus) {
-                  top: -1rem;
-                  font-size: 18px;
-                  transition: all .3s;
+                input#edit-search-api-fulltext {
+                  margin-right: 1rem;
+                  background-color: $light !important;
+                  border-radius: 0 !important;
+                  border-top: none !important;
+                  border-left: none !important;
+                  border-right: none !important;
+                  border-bottom: 1px solid $base-800;
                 }
               }
-              input#edit-search-api-fulltext {
-                margin-right: 1rem;
-                background-color: $light !important;
-                border-radius: 0 !important;
-                border-top: none !important;
-                border-left: none !important;
-                border-right: none !important;
-                border-bottom: 1px solid $base-800;
+              #edit-actions {
+                display: inline-block;
+                margin-top: 0;
+                input {
+                  padding: .6rem 6rem;
+                  font-size: 24px !important;
+                  font-weight: 700 !important;
+                }
+              }
+              .form-item-sort-by {
+                display: block;
+                position: absolute;
+                top: 10rem;
+                left: 0;
+                right: 0;
+                margin-left: auto;
+                margin-right: 0;
+                margin-top: 0;
+                margin-bottom: 0;
+                width: 400px;
               }
             }
-            #edit-actions {
-              display: inline-block;
-              margin-top: 0;
-              input {
-                padding: .6rem 6rem;
-                font-size: 24px !important;
-                font-weight: 700 !important;
-              }
+            .view-content {
+              margin-top: 4rem;
             }
-            .form-item-sort-by {
-              display: block;
-              position: absolute;
-              top: 10rem;
-              left: 0;
-              right: 0;
-              margin-left: auto;
-              margin-right: 0;
-              margin-top: 0;
-              margin-bottom: 0;
-              width: 400px;
-            }
-          }
-          .view-content {
-            margin-top: 4rem;
           }
         }
       }

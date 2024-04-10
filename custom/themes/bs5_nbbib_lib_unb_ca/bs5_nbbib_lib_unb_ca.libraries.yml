@@ -2,4 +2,3 @@ global-styling:
   css:
     theme:
       dist/css/style.css: {}
-      dist/css/print.css: { media: print, minified: true }

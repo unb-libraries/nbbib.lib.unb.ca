@@ -78,7 +78,7 @@ html {
       .region-content {
         padding: 0;
           #block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1 {
-            margin: 2rem 0 !important;
+            margin: 4rem 0 !important;
             div[data-block="content"] {
               position: relative;
               #views_slideshow_cycle_teaser_section_nbbib_slideshow-block_1 {
@@ -128,7 +128,7 @@ html {
           form#views-exposed-form-nb-bibliography-citations-page-2 {
             div.form-item-search-api-fulltext {
               position: relative;
-              width: 1144px;
+              width: 1064px;
               margin-right: 2rem;
               label[for="edit-search-api-fulltext"] {
                 position: absolute;
@@ -160,13 +160,16 @@ html {
             #edit-actions {
               display: inline-block;
               margin-top: 0;
-              width: 220px;
+              width: 300px;
               input {
-                padding: .6rem 4rem;
+                padding: .6rem 6rem;
                 font-size: 24px !important;
                 font-weight: 700 !important;
               }
             }
+          }
+          #block-bs5-nbbib-lib-unb-ca-content {
+            margin-top: 4rem;
           }
         }
       }
@@ -260,6 +263,47 @@ html {
         max-width: 1400px;
         .region-content {
           padding: 0;
+          form#views-exposed-form-nb-bibliography-citations-page-1 {
+            div.form-item-search-api-fulltext {
+              position: relative;
+              margin-right: 2rem;
+              label[for="edit-search-api-fulltext"] {
+                position: absolute;
+                font-size: 21px;
+                font-weight: 700;
+                &:has(+ input:not(:focus)) {
+                  &:hover {
+                    cursor: pointer;
+                    color: $link-hover;
+                    transition: color .3s;
+                  }
+                }
+                &:has(+ input:focus) {
+                  top: -1rem;
+                  font-size: 18px;
+                  transition: all .3s;
+                }
+              }
+              input#edit-search-api-fulltext {
+                margin-right: 1rem;
+                background-color: $light !important;
+                border-radius: 0 !important;
+                border-top: none !important;
+                border-left: none !important;
+                border-right: none !important;
+                border-bottom: 1px solid $base-800;
+              }
+            }
+            #edit-actions {
+              display: inline-block;
+              margin-top: 0;
+              input {
+                padding: .6rem 6rem;
+                font-size: 24px !important;
+                font-weight: 700 !important;
+              }
+            }
+          }
         }
       }
     }
@@ -268,7 +312,7 @@ html {
     padding: 0;
     background-color: $light !important;
     .container {
-      margin-top: 2rem;
+      margin-top: 4rem;
       max-width: 1400px;
       padding: 0;
       background-color: $light !important;

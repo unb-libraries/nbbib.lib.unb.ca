@@ -280,6 +280,8 @@ html {
         .region-content {
           padding: 0;
           form#views-exposed-form-nb-bibliography-citations-page-1 {
+            position: relative;
+            height: 10rem;
             div.form-item-search-api-fulltext {
               position: relative;
               margin-right: 2rem;
@@ -319,6 +321,21 @@ html {
                 font-weight: 700 !important;
               }
             }
+            .form-item-sort-by {
+              display: block;
+              position: absolute;
+              top: 10rem;
+              left: 0;
+              right: 0;
+              margin-left: auto;
+              margin-right: 0;
+              margin-top: 0;
+              margin-bottom: 0;
+              width: 400px;
+            }
+          }
+          .view-content {
+            margin-top: 4rem;
           }
         }
       }
@@ -357,20 +374,13 @@ html {
 
 @media screen and (max-width: 1399px) {
   body.path-frontpage {
-    .view-content {
-      columns: 1 !important;
-    }
   }
 }
 @media screen and (max-width: 1199px) { 
 }
 @media screen and (max-width: 991px) {
   .region-nav-branding {
-    margin-bottom: 1rem;
-    max-width: 100%;
-    width: 100%;
     .site-title {
-      margin: 0 !important;
     }
   }
 }
@@ -378,11 +388,6 @@ html {
   body.path-frontpage {
     .view-content {
       .views-row {
-        margin: 1rem 0;
-        padding: 1rem 0 !important;
-        .slide-name {
-          padding-top: 0 !important;
-        }
       }
     }
   }

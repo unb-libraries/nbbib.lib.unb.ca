@@ -6,4 +6,3 @@ tests/features/bootstrap
 build/scripts/local
 configuration/.htaccess
 /build/vendor
-configuration/language.entity.en.yml

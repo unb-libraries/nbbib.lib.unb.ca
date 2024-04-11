@@ -72,6 +72,10 @@ html {
   .text-xs {
     font-size: 12px;
   }
+  input[type="checkbox"] {
+    margin-right: .5rem;
+    color: $base-300;
+  }
   body.path-frontpage {
     header {
       nav.navbar {
@@ -274,7 +278,7 @@ html {
             a:hover {
               text-decoration: none !important;
               color: $link-hover !important;
-              transition: color .3s;
+              transition: transform .5s;
             }        
           }
         }
@@ -299,6 +303,41 @@ html {
         ul {
           padding: 0;
           list-style: none;
+          li {
+            .ui-slider-line {
+              background: $base-300 !important;
+            }
+            .ui-slider-label {
+              color: $primary !important;
+            }
+            .ui-slider-handle, 
+            .ui-widget-content, 
+            .ui-slider-range {
+              border-radius: 1rem;
+              border-color: $base-300;
+              background-color: $light;
+            }
+            .ui-slider-range {
+              background-color: $base-300;
+            }
+            label {
+              font-size: 15px;
+            }
+          }
+        }
+        .facets-soft-limit-link {
+          svg {
+            display: none;
+            &:first-child {
+              display: initial;
+              margin-left: .5rem;
+            }
+          }
+          &.open {
+            svg {
+              transform: rotate(180deg);
+            }
+          }
         }
       }
       > .container {

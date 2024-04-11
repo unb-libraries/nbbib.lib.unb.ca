@@ -2,3 +2,12 @@ global-styling:
   css:
     theme:
       dist/css/style.css: {}
+
+facet-limit-decor:
+  version: VERSION
+  js:
+    src/js/facet-limit-decor.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once

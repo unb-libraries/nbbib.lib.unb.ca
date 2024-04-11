@@ -20,30 +20,31 @@ html {
   h1, .site-title {
     font-weight: 700;
     font-size: 36px !important;
+    color: $body-color !important;
   }
   h2 {
     font-weight: 700;
     font-size: 30px;
-    padding: 0 15px;
-    border-bottom: 1px, $base-400;
+    padding: 0 0 15px 0;
+    border-bottom: 1px solid $base-300;
   }
   h3 {
     font-weight: 700;
     font-size: 24px;
     padding: 0 15px;
-    border-bottom: 1px, $base-400;
+    border-bottom: 1px solid $base-300;
   }
   h4 {
     font-weight: 700;
     font-size: 21px;
     padding: 0 15px;
-    border-bottom: 1px, $base-400;
+    border-bottom: 1px solid $base-300;
   }
   h5 {
     font-weight: 700;
     font-size: 18px;
     padding: 0 15px;
-    border-bottom: 1px, $base-400;
+    border-bottom: 1px solid $base-300;
   }
   h6 {
     font-weight: 600;
@@ -86,6 +87,16 @@ html {
     }
     main {
       padding: 0 !important;
+      // Breadcrumbs.
+      .breadcrumb {
+        margin-top: .2rem;
+        margin-bottom: 0;
+        li {
+          a {
+            margin: .5rem !important;
+          }
+        }
+      }          
       > .container {
         .order-1 {
           margin-left: 0;
@@ -93,7 +104,7 @@ html {
           .region-content {
             padding: 0;
             #block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1 {
-              margin: 4rem 0 !important;
+              margin: 2rem 0 4rem 0 !important;
               div[data-block="content"] {
                 position: relative;
                 #views_slideshow_cycle_teaser_section_nbbib_slideshow-block_1 {
@@ -169,7 +180,7 @@ html {
                   border-top: none !important;
                   border-left: none !important;
                   border-right: none !important;
-                  border-bottom: 1px solid $base-800;
+                  border-bottom: 1px solid $body-color;
                 }
               }
               #edit-actions {
@@ -230,19 +241,21 @@ html {
                 font-size: 24px;
                 padding: .2rem 0;
                 text-decoration: none !important;
-                color: $base-950;
+                color: $body-color;
                 &:active,
-                &:focus,
-                &:focus-within,
                 &:target,
                 &:hover {
                   text-decoration: underline !important;
                   color: $link-hover !important;
                 }        
-                
-                &.is-active {
-                  border-bottom: 1px $light solid;
-                }
+                &.dropdown-toggle[aria-expanded="false"]::after {
+                  transform: initial;
+                  transition: transform .5s;
+                } 
+                &.dropdown-toggle[aria-expanded="true"]::after {
+                  transform: rotate(180deg);
+                  transition: transform .5s;
+                } 
               }
             }
           }
@@ -271,12 +284,23 @@ html {
       // Breadcrumbs.
       .breadcrumb {
         margin-top: .2rem;
+        margin-bottom: 4rem;
         li {
           a {
             margin: .5rem !important;
           }
         }
       }    
+      .block-facets {
+        margin-bottom: 4rem;
+        h2 {
+          font-size: 21px !important;
+        }
+        ul {
+          padding: 0;
+          list-style: none;
+        }
+      }
       > .container {
         padding: 0 !important;
         background-color: $light !important;
@@ -317,7 +341,7 @@ html {
                     border-top: none !important;
                     border-left: none !important;
                     border-right: none !important;
-                    border-bottom: 1px solid $base-800;
+                    border-bottom: 1px solid $body-color;
                   }
                 }
                 #edit-actions {

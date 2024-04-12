@@ -186,6 +186,10 @@ html {
                   border-left: none !important;
                   border-right: none !important;
                   border-bottom: 1px solid $body-color;
+                  &:focus {
+                    background-color: $base-150 !important;
+                    transition: background-color .3s;
+                  }
                 }
               }
               #edit-actions {

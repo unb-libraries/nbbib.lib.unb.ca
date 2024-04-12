@@ -207,7 +207,7 @@ display:
         options:
           submit_button: Search
           reset_button: true
-          reset_button_label: 'Show All Titles'
+          reset_button_label: 'Show all titles'
           exposed_sorts_label: 'Sort by'
           expose_sort_order: false
           sort_asc_label: Ascending

@@ -449,18 +449,24 @@ html {
                   padding-top: 0;
                   border-top: 1px solid $base-200;
                   .page-item {
+                    border-radius: 0 !important;
                     border: 1px solid transparent;
                     .page-link {
+                      border-radius: 0 !important;
+                      top: -1px;
                       background-color: $light !important;
                       border: none;
                       border-radius: 0;
                       font-size: 15px;
                     }
-                    &:first-of-type {
+                    &:first-of-type a {
                       border-right: 1px solid $base-200;
                     }
-                    &:last-of-type {
-                      border-left: 2px solid $base-200;
+                    &:last-of-type a {
+                      border-left: 1px solid $base-200;
+                    }
+                    &.active a {
+                      color: $body-color;
                     }
                   }
                 }

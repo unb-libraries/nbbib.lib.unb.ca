@@ -163,20 +163,18 @@ html {
                 margin-right: 2rem;
                 label[for="edit-search-api-fulltext"] {
                   position: absolute;
-                  font-size: 21px;
+                  top: -1.4rem;
+                  font-size: 15px;
                   font-weight: 700;
-                  &:has(+ input:not(:focus):placeholder-shown) {
+                  transition: all .3s;
+                  &:has(+ input:not(:focus)) {
+                    top: 0;
+                    font-size: 21px;
                     &:hover {
                       cursor: pointer;
                       color: $link-hover;
                       transition: color .3s;
                     }
-                  }
-                  &:has(+ input:focus),
-                  &:has(input:not(:placeholder-shown)) {
-                    top: -1.4rem;
-                    font-size: 15px;
-                    transition: all .3s;
                   }
                 }
                 input#edit-search-api-fulltext {
@@ -374,19 +372,18 @@ html {
                   margin-right: 2rem;
                   label[for="edit-search-api-fulltext"] {
                     position: absolute;
-                    font-size: 21px;
+                    top: -1.4rem;
+                    font-size: 15px;
                     font-weight: 700;
+                    transition: all .3s;
                     &:has(+ input:not(:focus)) {
+                      top: 0;
+                      font-size: 21px;
                       &:hover {
                         cursor: pointer;
                         color: $link-hover;
                         transition: color .3s;
                       }
-                    }
-                    &:has(+ input:focus) {
-                      top: -1.4rem;
-                      font-size: 15px;
-                      transition: all .3s;
                     }
                   }
                   input#edit-search-api-fulltext {

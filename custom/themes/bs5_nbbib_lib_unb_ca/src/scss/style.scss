@@ -317,6 +317,9 @@ html {
           ul {
             padding: 0;
             list-style: none;
+            &:has(input[type="checkbox"]) li {
+              display: flex;
+            }
             li {
               margin-bottom: .5rem;
               .ui-slider-line {
@@ -334,6 +337,9 @@ html {
               }
               .ui-slider-range {
                 background-color: $base-300;
+              }
+              input[type="checkbox"] {
+                margin-top: .2rem;
               }
               label {
                 vertical-align: text-bottom;

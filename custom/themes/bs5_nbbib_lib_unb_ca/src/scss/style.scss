@@ -311,7 +311,7 @@ html {
         }
       }
       .region-sidebar-first {
-        margin-top: 1.25rem;
+        margin-top: 5.6rem;
         .block-facets {
           margin-bottom: 3rem;
           h2 {
@@ -378,7 +378,14 @@ html {
         .order-1 {
           .region-content {
             padding: 0;
+            #block-bs5-nbbib-lib-unb-ca-page-title {
+              h1 {
+                margin-left: 2rem;
+                font-size: 30px !important;
+              }
+            }
             .view-id-nb_bibliography_citations.view-display-id-page_1 {
+              margin-top: 2rem;
               margin-left: 2rem;
               form#views-exposed-form-nb-bibliography-citations-page-1 {
                 position: relative;

@@ -207,7 +207,7 @@ display:
         options:
           submit_button: Search
           reset_button: true
-          reset_button_label: 'Show all titles'
+          reset_button_label: 'Show all'
           exposed_sorts_label: 'Sort by'
           expose_sort_order: false
           sort_asc_label: Ascending
@@ -1022,7 +1022,7 @@ display:
               nb_bibliography_contributor: '0'
               nbbib_archivals_editor: '0'
             expose_fields: false
-            placeholder: ''
+            placeholder: ' '
             searched_fields_id: ''
             value_maxlength: 1024
           is_grouped: false

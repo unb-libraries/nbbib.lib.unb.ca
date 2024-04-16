@@ -416,7 +416,6 @@ html {
             padding: 0;
             #block-bs5-nbbib-lib-unb-ca-page-title {
               h1 {
-                margin-left: 2rem;
                 font-size: 30px !important;
               }
             }
@@ -499,6 +498,31 @@ html {
                   }
                   &:last-child {
                     border-bottom: none;
+                  }
+                }
+              }
+            }
+            .view-id-nb_bibliography_collections.view-display-id-page_1 {
+              * {
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 0;
+                padding-right: 0;
+                .views-field {
+                  border-bottom: 1px solid $base-200;
+                  .container {
+                    margin-top: 1rem;
+                    padding-bottom: 1rem;
+                    max-width: 100%;
+                    .row {
+                      h2 {
+                        border-bottom: none !important;
+                        font-size: 21px;
+                      }
+                      p.h6 {
+                        float: right;
+                      }
+                    }
                   }
                 }
               }

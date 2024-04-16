@@ -227,6 +227,10 @@ html {
       text-decoration: underline !important;
       color: $link-hover !important;
     }
+    select {
+      background-color: $light !important;
+      border: 1px solid $base-200 !important;
+    }
     header {
       //background-color: $light !important;
       nav.navbar {
@@ -255,7 +259,10 @@ html {
                 &:hover {
                   text-decoration: underline !important;
                   color: $link-hover !important;
-                }        
+                }
+                &.is-active {
+                  color: $link !important;
+                }       
                 &.dropdown-toggle[aria-expanded="false"]::after {
                   transform: initial;
                   transition: transform .5s;
@@ -419,9 +426,10 @@ html {
                   margin-right: 1rem;
                   margin-top: 0;
                   margin-bottom: 0;
-                  width: 400px;
+                  width: 420px;
                   #edit-sort-by {
                     display: inline-block;
+                    margin-left: 1rem;
                     width: 18rem;
                   }
                 }

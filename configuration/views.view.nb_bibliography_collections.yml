@@ -218,11 +218,14 @@ display:
       arguments: {  }
       filters: {  }
       style:
-        type: default
+        type: html_list
         options:
           grouping: {  }
-          row_class: row-collection
-          default_row_class: false
+          row_class: ''
+          default_row_class: true
+          type: ul
+          wrapper_class: item-list
+          class: ''
       row:
         type: fields
       query:

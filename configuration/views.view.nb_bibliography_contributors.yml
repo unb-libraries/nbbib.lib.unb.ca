@@ -995,8 +995,8 @@ display:
           exposed: true
           expose:
             operator_id: name_op
-            label: ''
-            description: 'Search by first name, last name, or institution.'
+            label: 'Search by first name, last name, or institution.'
+            description: ''
             use_operator: false
             operator: name_op
             operator_limit_selection: false
@@ -1009,6 +1009,7 @@ display:
               authenticated: authenticated
               anonymous: '0'
               nb_bibliography_contributor: '0'
+              nbbib_archivals_editor: '0'
             placeholder: ''
           is_grouped: false
           group_info:

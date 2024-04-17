@@ -1,12 +1,4 @@
-// Sub theme styling.
-@import 'variables_drupal';
-
-// Bootstrap overridden variables.
-// @see https://getbootstrap.com/docs/5.2/customize/sass/#variable-defaults.
-@import 'variables_bootstrap';
-
-// Include bootstrap 5.
-@import '../../../../../vendor/drupal/bootstrap5/scss/style';
+@import 'import';
 
 /* Subtheme styles */
 html {
@@ -243,6 +235,16 @@ html {
         background-color: $light !important;
       }
     }
+    .attachment-before .pager .pagination {
+      margin-bottom: 0;
+      margin-top: 2rem;
+      padding-bottom: 0;
+      border-top: none !important;
+      border-bottom: 1px solid $base-200;
+      .page-link {
+        top: 1px !important;
+      }
+    }
     .pager {
       .pagination {
         margin-top: 3rem;
@@ -270,6 +272,10 @@ html {
           }
         }
       }
+    }
+    .view-header {
+      color: $base-600;
+      font-style: italic;
     }
     header {
       //background-color: $light !important;
@@ -508,42 +514,104 @@ html {
                 margin-right: 0;
                 padding-left: 0;
                 padding-right: 0;
-                .item-list {
-                  ul {
-                    list-style: none;
-                    li {
-                      &:first-of-type {
-                        margin-top: 2rem;
-                        padding-top: 1rem;
-                        border-top: 1px solid $base-200;
-                      }
-                      border-bottom: 1px solid $base-200;
-                      margin-top: 1rem;
-                      margin-bottom: 0;
-                      padding-bottom: 1rem;
-                      .container {
-                        max-width: 100%;
-                        width: 100%;
-                        .row {
-                          h2 {
-                            margin-bottom: 0;
-                            padding-bottom: 0;
-                            border-bottom: none !important;
-                            font-size: 21px;
-                          }
-                          p.h6 {
-                            font-size: 15px;
-                            float: right;
-                          }
+              }
+              .item-list {
+                ul {
+                  list-style: none;
+                  li {
+                    &:first-of-type {
+                      margin-top: 2rem;
+                      padding-top: 1rem;
+                      border-top: 1px solid $base-200;
+                    }
+                    border-bottom: 1px solid $base-200;
+                    margin-top: 1rem;
+                    margin-bottom: 0;
+                    padding-bottom: 1rem;
+                    .container {
+                      max-width: 100%;
+                      width: 100%;
+                      .row {
+                        h2 {
+                          margin-bottom: 0;
+                          padding-bottom: 0;
+                          border-bottom: none !important;
+                          font-size: 21px;
+                        }
+                        p.h6 {
+                          font-size: 15px;
+                          float: right;
                         }
                       }
-                      p {
-                        margin-bottom: 0;
-                        margin-top: .5rem;
-                        text-align: justify;
+                    }
+                    p {
+                      margin-bottom: 0;
+                      margin-top: .5rem;
+                      text-align: justify;
+                    }
+                  }
+                }
+              }
+            }
+            .view-id-nb_bibliography_contributors.view-display-id-page_1 {
+              form#views-exposed-form-nb-bibliography-contributors-page-1 {
+                position: relative;
+                margin-top: 1rem;
+                height: 6rem;
+                div.form-item-name {
+                  width: 78%;
+                  position: relative;
+                  margin-right: 2rem;
+                  label[for="edit-name"] {
+                    position: absolute;
+                    top: -1.4rem;
+                    font-size: 15px;
+                    font-weight: 700;
+                    transition: all .3s;
+                    &:has(+ input:not(:focus)) {
+                      top: 0;
+                      font-size: 21px;
+                      &:hover {
+                        cursor: pointer;
+                        color: $link-hover;
+                        transition: color .3s;
                       }
                     }
                   }
+                  input#edit-name {
+                    margin-right: 1rem;
+                    background-color: $light !important;
+                    border-radius: 0 !important;
+                    border-top: none !important;
+                    border-left: none !important;
+                    border-right: none !important;
+                    border-bottom: 1px solid $body-color;
+                    &:focus {
+                      background-color: $base-50 !important;
+                      transition: background-color .3s;
+                    }
+                  }
+                }
+                #edit-actions {
+                  display: inline-block;
+                  margin-top: .85rem;
+                  input {
+                    padding: .3rem 1rem;
+                    font-size: 21px !important;
+                    font-weight: 700 !important;
+                  }
+                }
+              }
+              .attachment + .view-content {
+                margin-top: 2rem;
+                column-count: 3;
+                column-gap: 4rem;
+                .row-contrib {
+                  padding-top: 1rem;
+                  padding-bottom: 1rem;
+                  border-bottom: 1px solid $base-200;
+                  font-size: 15px;
+                  font-weight: 600;
                 }
               }
             }

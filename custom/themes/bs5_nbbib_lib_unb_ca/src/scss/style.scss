@@ -508,19 +508,39 @@ html {
                 margin-right: 0;
                 padding-left: 0;
                 padding-right: 0;
-                .views-field {
-                  border-bottom: 1px solid $base-200;
-                  .container {
-                    margin-top: 1rem;
-                    padding-bottom: 1rem;
-                    max-width: 100%;
-                    .row {
-                      h2 {
-                        border-bottom: none !important;
-                        font-size: 21px;
+                .item-list {
+                  ul {
+                    list-style: none;
+                    li {
+                      &:first-of-type {
+                        margin-top: 2rem;
+                        padding-top: 1rem;
+                        border-top: 1px solid $base-200;
                       }
-                      p.h6 {
-                        float: right;
+                      border-bottom: 1px solid $base-200;
+                      margin-top: 1rem;
+                      margin-bottom: 0;
+                      padding-bottom: 1rem;
+                      .container {
+                        max-width: 100%;
+                        width: 100%;
+                        .row {
+                          h2 {
+                            margin-bottom: 0;
+                            padding-bottom: 0;
+                            border-bottom: none !important;
+                            font-size: 21px;
+                          }
+                          p.h6 {
+                            font-size: 15px;
+                            float: right;
+                          }
+                        }
+                      }
+                      p {
+                        margin-bottom: 0;
+                        margin-top: .5rem;
+                        text-align: justify;
                       }
                     }
                   }

@@ -612,6 +612,10 @@ html {
                   border-bottom: 1px solid $base-200;
                   font-size: 15px;
                   font-weight: 600;
+                  .years {
+                    float: right;
+                    font-size: 12px;
+                  }
                 }
               }
             }

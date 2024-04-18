@@ -86,11 +86,12 @@ html {
       padding: 0 !important;
       // Breadcrumbs.
       .breadcrumb {
-        margin-top: .2rem;
+        margin-top: 0;
         margin-bottom: 0;
         li {
           a {
             margin: .5rem !important;
+            font-size: 15px;
           }
         }
       }          
@@ -228,11 +229,25 @@ html {
       color: $link-hover !important;
     }
     select,
-    ul.dropdown-menu {
+    ul.dropdown-menu,
+    div.dropbutton-widget {
       background-color: $light !important;
       border: 1px solid $base-200 !important;
       a:hover {
         background-color: $light !important;
+      }
+      .dropbutton-action {
+        a {
+          border-radius: 8px;
+        }
+      }
+      .secondary-action {
+        border-top: none;
+      }
+      .dropbutton-toggle {
+        .dropbutton-arrow {
+          color: $base-700;
+        }
       }
     }
     .attachment-before .pager .pagination {
@@ -243,6 +258,7 @@ html {
       border-bottom: 1px solid $base-200;
       .page-link {
         top: 1px !important;
+        border-left: none !important;
       }
     }
     .pager {
@@ -269,6 +285,7 @@ html {
           }
           &.active a {
             color: $body-color;
+            font-weight: 600;
           }
         }
       }
@@ -284,7 +301,7 @@ html {
         padding: 0;
         .container.d-flex {
           flex-wrap: wrap;
-          margin: 2rem 0 .5rem 0;
+          margin: 2rem 0 .2rem 0;
           padding: 0 0 2rem 0 !important;
           border-bottom: 1px $base-200 solid !important;
           max-width: 1400px;
@@ -344,11 +361,15 @@ html {
     main {
       // Breadcrumbs.
       .breadcrumb {
-        margin-top: .2rem;
+        margin-top: .0;
         margin-bottom: 4rem;
         li {
           a {
             margin: .5rem !important;
+            font-size: 15px;
+          }
+          &:not(:first-child) {
+            font-style: italic;
           }
         }
       }
@@ -547,7 +568,6 @@ html {
                     p {
                       margin-bottom: 0;
                       margin-top: .5rem;
-                      text-align: justify;
                     }
                   }
                 }
@@ -632,15 +652,40 @@ html {
                   padding-bottom: 1rem;
                   border-bottom: 1px solid $base-200;
                   a.topic {
-                    color: $base-700;
+                    color: $body-color;
                     font-size: 15px;
                     font-weight: 600;
                   }
                   .ops {
                     float: right;
-                    color: $base-700;
+                    color: $base-600;
                     font-size: 15px;
                     font-weight: lighter;
+                  }
+                }
+              }
+            }
+            .view-id-nb_bibliography_collection_essays_header.view-display-id-block_1 {
+              margin-top: 2rem;
+            }
+            .view-id-nbbib_essays.view-display-id-page_1 {
+              margin-top: 2rem;
+              column-gap: 4rem;
+              .view-header {
+                margin-top: 2rem;
+              }
+              .view-content {
+                .item-list {
+                  ul {
+                    list-style: none;
+                    .row-essay {
+                      margin-left: 0;
+                      padding-top: 1rem;
+                      padding-bottom: 1rem;
+                      border-bottom: 1px solid $base-200;
+                      font-size: 15px;
+                      font-weight: 600;
+                    }
                   }
                 }
               }

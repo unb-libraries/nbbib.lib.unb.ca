@@ -168,7 +168,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<span>{{ name }}\r\n{% if 'nb_bibliography_contributor' in drupal_token('current-user:roles:keys') %}\r\n<span class=\"ops\">\r\n{{ '[' }}<a href=\"/taxonomy/term/{{ tid }}/edit?destination=/topics\">Edit</a>{{ ']' }}\r\n{{ '[' }}<a href=\"/taxonomy/term/{{ tid }}/delete?destination=/topics\">Delete</a>{{ ']' }}\r\n</span>\r\n{% endif %}\r\n</span>"
+            text: "<span>{{ name }}\r\n{% if 'nb_bibliography_contributor' in drupal_token('current-user:roles:keys') %}\r\n<span class=\"ops\">\r\n<a href=\"/taxonomy/term/{{ tid }}/edit?destination=/topics\">Edit</a>{{ \" | \" }}\r\n<a href=\"/taxonomy/term/{{ tid }}/delete?destination=/topics\">Delete</a>\r\n</span>\r\n{% endif %}\r\n</span>"
             make_link: false
             path: ''
             absolute: false

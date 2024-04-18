@@ -539,7 +539,7 @@ html {
                           font-size: 21px;
                         }
                         p.h6 {
-                          font-size: 15px;
+                          font-size: 12px;
                           float: right;
                         }
                       }
@@ -615,6 +615,32 @@ html {
                   .years {
                     float: right;
                     font-size: 12px;
+                  }
+                }
+              }
+            }
+            .view-id-nb_bibliography_topics.view-display-id-page_1 {
+              .view-header {
+                margin-top: 2rem;
+              }
+              .view-content {
+                margin-top: 2rem;
+                column-count: 3;
+                column-gap: 4rem;
+                .row-topic {
+                  padding-top: 1rem;
+                  padding-bottom: 1rem;
+                  border-bottom: 1px solid $base-200;
+                  a.topic {
+                    color: $base-700;
+                    font-size: 15px;
+                    font-weight: 600;
+                  }
+                  .ops {
+                    float: right;
+                    color: $base-700;
+                    font-size: 15px;
+                    font-weight: lighter;
                   }
                 }
               }

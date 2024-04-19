@@ -19,13 +19,9 @@
   {% if content %}
     <div class="container">
       <div class="row">
-        <div id="ref-body" class="col-sm-8">
-
         <ul id="ref-contribs">
-
           {% if content.contribs_all %}
             {% for contrib in content.contribs_all %}
-
               {% if contrib.display_name == "Anonymous" %}
                 <li>[Anonymous]</li>
               {% else %}
@@ -39,9 +35,10 @@
             <li>[Unknown]</li>
           {% endif %}
         </ul>
-
+      </div>
+      <div class="row">
+        <div id="ref-body" class="col-sm-8">
           <h2>Publication Details</h2>
-
           <div id="ref-details" class="container">
             <div id="ref-type" class="row">
               <div class="col-sm-6">Item Type</div>

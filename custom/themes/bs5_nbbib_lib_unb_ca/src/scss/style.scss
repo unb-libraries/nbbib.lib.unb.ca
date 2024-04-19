@@ -191,8 +191,8 @@ html {
                 width: 300px;
                 input {
                   padding: .3rem 6rem;
-                  font-size: 21px !important;
-                  font-weight: 700 !important;
+                  font-size: 18px !important;
+                  font-weight: 500 !important;
                 }
               }
             }
@@ -208,6 +208,45 @@ html {
     #block-bs5-nbbib-lib-unb-ca-page-title {
       h1 {
         @include visually-hidden;
+      }
+    }
+  }
+  body.path-yabrm {
+    .field--name-title,
+    .nav-tabs {
+      margin: 0 auto;
+      width: 1320px;
+    }
+    .yabrm-reference {
+      #ref-contribs {
+        list-style: none;
+      }
+      > .container {
+        padding-left: 0;
+        #ref-body {
+          margin-top: 3rem;
+          padding-right: 3rem;
+          h2 {
+            font-size: 24px;
+          }
+          #ref-details {
+            padding: 0;
+            .row {
+              margin-left: 0;
+              padding-left: 0;
+              padding-top: 1rem;
+              padding-bottom: 1rem;
+              border-bottom: 1px solid $base-150;
+              .col-sm-6 {
+                padding-left: 0;
+              }
+            }
+          }
+        }
+        .image-style-contrib-photo {
+          margin-top: 5.4rem;
+          border-radius: 1rem;
+        }
       }
     }
   }
@@ -492,8 +531,8 @@ html {
                   margin-top: .85rem;
                   input {
                     padding: .3rem 1rem;
-                    font-size: 21px !important;
-                    font-weight: 700 !important;
+                    font-size: 18px !important;
+                    font-weight: 500 !important;
                   }
                 }
                 .form-item-sort-by {
@@ -619,8 +658,8 @@ html {
                   margin-top: .85rem;
                   input {
                     padding: .3rem 1rem;
-                    font-size: 21px !important;
-                    font-weight: 700 !important;
+                    font-size: 18px !important;
+                    font-weight: 500 !important;
                   }
                 }
               }
@@ -667,6 +706,9 @@ html {
             }
             .view-id-nb_bibliography_collection_essays_header.view-display-id-block_1 {
               margin-top: 2rem;
+              .dropbutton-wrapper {
+                width: fit-content;
+              }
             }
             .view-id-nbbib_essays.view-display-id-page_1 {
               margin-top: 2rem;

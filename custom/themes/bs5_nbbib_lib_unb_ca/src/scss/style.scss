@@ -206,7 +206,7 @@ html {
   }
   body.path-bibliography {
     #block-bs5-nbbib-lib-unb-ca-page-title {
-      .js-quickedit-page-title {
+      h1 {
         @include visually-hidden;
       }
     }

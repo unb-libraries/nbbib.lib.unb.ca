@@ -158,11 +158,12 @@ html {
                   top: -1.4rem;
                   font-size: 15px;                    
                   position: absolute;
-                  font-weight: 700;
+                  font-weight: normal;
                   transition: all .3s;
                   &:has(+ input:not(:focus).empty) {
                     top: 0;
                     font-size: 21px;
+                    font-weight: 700;
                     &:hover {
                       cursor: pointer;
                       color: $link-hover;
@@ -208,6 +209,8 @@ html {
       .js-quickedit-page-title {
         @include visually-hidden;
         @include visually-hidden-focusable;
+        @include sr-only;
+        @include sr-only-focusable;
       }
     }
   }
@@ -460,11 +463,12 @@ html {
                     position: absolute;
                     top: -1.4rem;
                     font-size: 15px;
-                    font-weight: 700;
+                    font-weight: normal;
                     transition: all .3s;
                     &:has(+ input:not(:focus).empty) {
                       top: 0;
                       font-size: 21px;
+                      font-weight: 700;
                       &:hover {
                         cursor: pointer;
                         color: $link-hover;
@@ -591,6 +595,7 @@ html {
                     &:has(+ input:not(:focus).empty) {
                       top: 0;
                       font-size: 21px;
+                      font-weight: normal;
                       &:hover {
                         cursor: pointer;
                         color: $link-hover;

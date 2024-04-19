@@ -155,12 +155,12 @@ html {
                 width: 1064px;
                 margin-right: 2rem;
                 label[for="edit-search-api-fulltext"] {
-                  position: absolute;
                   top: -1.4rem;
-                  font-size: 15px;
+                  font-size: 15px;                    
+                  position: absolute;
                   font-weight: 700;
                   transition: all .3s;
-                  &:has(+ input:not(:focus)) {
+                  &:has(+ input:not(:focus).empty) {
                     top: 0;
                     font-size: 21px;
                     &:hover {
@@ -179,7 +179,7 @@ html {
                   border-right: none !important;
                   border-bottom: 1px solid $body-color;
                   &:focus {
-                    background-color: $base-150 !important;
+                    background-color: $base-50 !important;
                     transition: background-color .3s;
                   }
                 }
@@ -462,7 +462,7 @@ html {
                     font-size: 15px;
                     font-weight: 700;
                     transition: all .3s;
-                    &:has(+ input:not(:focus)) {
+                    &:has(+ input:not(:focus).empty) {
                       top: 0;
                       font-size: 21px;
                       &:hover {
@@ -588,7 +588,7 @@ html {
                     font-size: 15px;
                     font-weight: 700;
                     transition: all .3s;
-                    &:has(+ input:not(:focus)) {
+                    &:has(+ input:not(:focus).empty) {
                       top: 0;
                       font-size: 21px;
                       &:hover {
@@ -630,8 +630,7 @@ html {
                   padding-top: 1rem;
                   padding-bottom: 1rem;
                   border-bottom: 1px solid $base-200;
-                  font-size: 15px;
-                  font-weight: 600;
+                  font-size: 18px;
                   .years {
                     float: right;
                     font-size: 12px;
@@ -653,8 +652,7 @@ html {
                   border-bottom: 1px solid $base-200;
                   a.topic {
                     color: $body-color;
-                    font-size: 15px;
-                    font-weight: 600;
+                    font-size: 18px;
                   }
                   .ops {
                     float: right;
@@ -683,8 +681,7 @@ html {
                       padding-top: 1rem;
                       padding-bottom: 1rem;
                       border-bottom: 1px solid $base-200;
-                      font-size: 15px;
-                      font-weight: 600;
+                      font-size: 18px;
                     }
                   }
                 }

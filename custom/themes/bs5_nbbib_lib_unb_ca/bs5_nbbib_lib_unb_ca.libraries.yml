@@ -3,10 +3,10 @@ global-styling:
     theme:
       dist/css/style.css: {}
 
-facet-limit-decor:
-  version: VERSION
+global-scripts:
   js:
-    src/js/facet-limit-decor.js: {}
+    dist/js/facet-limit-decor.js: {}
+    dist/js/fancy-text-box.js: {}
   dependencies:
     - core/drupal
     - core/jquery

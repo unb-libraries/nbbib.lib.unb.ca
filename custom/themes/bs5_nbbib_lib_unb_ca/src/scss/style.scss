@@ -232,6 +232,7 @@ html {
           #ref-details {
             padding: 0;
             .row {
+              width: 821.5px;
               margin-left: 0;
               padding-left: 0;
               padding-top: 1rem;
@@ -239,7 +240,19 @@ html {
               border-bottom: 1px solid $base-150;
               .col-sm-6 {
                 padding-left: 0;
+                padding-right: 0;
               }
+            }
+          }
+          #ref-description {
+            margin-top: 3rem;
+            b {
+              display: block;
+              padding-bottom: 1rem;
+              border-bottom: 1px solid $base-200;
+            }
+            p {
+              margin-top: 1rem;
             }
           }
         }

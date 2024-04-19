@@ -208,9 +208,6 @@ html {
     #block-bs5-nbbib-lib-unb-ca-page-title {
       .js-quickedit-page-title {
         @include visually-hidden;
-        @include visually-hidden-focusable;
-        @include sr-only;
-        @include sr-only-focusable;
       }
     }
   }

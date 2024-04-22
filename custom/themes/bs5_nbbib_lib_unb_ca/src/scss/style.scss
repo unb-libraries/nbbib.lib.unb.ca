@@ -213,15 +213,22 @@ html {
   }
   body.path-yabrm {
     .field--name-title,
+    .field--name-name,
     .nav-tabs {
       margin: 0 auto;
       width: 1320px;
+      &.yabrm-collection--title {
+        padding: 0 0 15px 0;
+        border-bottom: 1px solid $base-300;
+      }
+    }
+    [role="main"].container {
+      padding-left: 0;
     }
     .yabrm-reference {
       #ref-contribs {
       }
       > .container {
-        padding-left: 0;
         #ref-body {
           margin-top: 3rem;
           padding-right: 3rem;
@@ -519,7 +526,8 @@ html {
                 font-size: 30px !important;
               }
             }
-            .view-id-nb_bibliography_citations.view-display-id-page_1 {
+            .view-id-nb_bibliography_citations.view-display-id-page_1,
+            .view-id-nb_bibliography_citations.view-display-id-page_4 {
               margin-top: 2rem;
               margin-left: 2rem;
               form#views-exposed-form-nb-bibliography-citations-page-1 {

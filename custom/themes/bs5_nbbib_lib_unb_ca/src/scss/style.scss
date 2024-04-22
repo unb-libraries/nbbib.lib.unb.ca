@@ -219,7 +219,6 @@ html {
     }
     .yabrm-reference {
       #ref-contribs {
-        list-style: none;
       }
       > .container {
         padding-left: 0;
@@ -241,24 +240,35 @@ html {
               .col-sm-6 {
                 padding-left: 0;
                 padding-right: 0;
+                &:last-of-type {
+                  font-weight: 600;
+                }
               }
             }
           }
           #ref-description {
-            margin-top: 3rem;
-            b {
-              display: block;
-              padding-bottom: 1rem;
-              border-bottom: 1px solid $base-200;
-            }
-            p {
-              margin-top: 1rem;
-            }
           }
         }
-        .image-style-contrib-photo {
-          margin-top: 5.4rem;
-          border-radius: 1rem;
+        #ref-picture {
+          img {
+            margin-top: 5.4rem;
+            border-radius: 1rem;
+          }
+          #ref-copies b {
+            margin-top: 3.05rem;
+          }
+        }
+        div[id] {
+          b {
+            display: block;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid $base-200;
+          }
+          p, a {
+            font-weight: 600;
+          }
         }
       }
     }
@@ -279,6 +289,10 @@ html {
     a:hover {
       text-decoration: underline !important;
       color: $link-hover !important;
+    }
+    ul {
+      padding-left: 0;
+      list-style: none;
     }
     select,
     ul.dropdown-menu,
@@ -443,7 +457,6 @@ html {
           }
           ul {
             padding: 0;
-            list-style: none;
             &:has(input[type="checkbox"]) li {
               display: flex;
             }
@@ -599,7 +612,6 @@ html {
               }
               .item-list {
                 ul {
-                  list-style: none;
                   li {
                     &:first-of-type {
                       margin-top: 2rem;
@@ -740,7 +752,6 @@ html {
               .view-content {
                 .item-list {
                   ul {
-                    list-style: none;
                     .row-essay {
                       margin-left: 0;
                       padding-top: 1rem;

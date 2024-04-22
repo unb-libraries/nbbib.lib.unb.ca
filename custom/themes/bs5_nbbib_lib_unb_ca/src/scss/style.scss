@@ -382,9 +382,17 @@ html {
                   transform: initial;
                   transition: transform .5s;
                 } 
-                &.dropdown-toggle[aria-expanded="true"]::after {
-                  transform: rotate(180deg);
-                  transition: transform .5s;
+                &.dropdown-toggle[aria-expanded="true"] {
+                  + .dropdown-menu[data-bs-popper] {
+                    left: -16rem;
+                  }
+                  &::after {
+                    transform: rotate(180deg);
+                    transition: transform .5s;
+                    & + dropdown-menu[data-bs-popper] {
+                      left: -16rem;
+                    }
+                  } 
                 } 
               }
             }

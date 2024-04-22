@@ -2269,6 +2269,19 @@ display:
         type: search_api_none
         options: {  }
       sorts:
+        publication_year_5_1:
+          id: publication_year_5_1
+          table: search_api_index_references_nbbib_lib_unb_ca
+          field: publication_year_5
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: DESC
+          expose:
+            label: 'Publication Date (newest first)'
+            field_identifier: publication_year_5_1
+          exposed: true
         publication_year_5:
           id: publication_year_5
           table: search_api_index_references_nbbib_lib_unb_ca
@@ -2279,9 +2292,9 @@ display:
           plugin_id: search_api
           order: ASC
           expose:
-            label: 'Publication Year'
+            label: 'Publication Date (oldest first)'
             field_identifier: publication_year_5
-          exposed: false
+          exposed: true
       arguments:
         id_5:
           id: id_5
@@ -2485,6 +2498,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'url.query_args:sort_by'
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
         - 'search_api_list:references_nbbib_lib_unb_ca'

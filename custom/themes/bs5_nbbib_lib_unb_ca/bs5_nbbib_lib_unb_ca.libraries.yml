@@ -5,7 +5,6 @@ global-styling:
 
 global-scripts:
   js:
-    dist/js/facet-limit-decor.js: {}
     dist/js/fancy-text-box.js: {}
   dependencies:
     - core/drupal

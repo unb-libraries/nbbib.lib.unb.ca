@@ -279,6 +279,26 @@ html {
         }
       }
     }
+    .yabrm-contributor {
+      .container {
+        #archival-container {
+          .archival-material {
+            .archival-collapse {
+              &[aria-expanded="false"] {
+                &::after {
+                  content: "\25BC";
+                }
+              }
+              &[aria-expanded="true"] {
+                &::after {
+                  content: "\25B2";
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
   body {
     font-family: libre-franklin, arial, sans-serif !important;
@@ -289,9 +309,6 @@ html {
     a {
       text-decoration: none;
     }
-    a:active,
-    a:focus,
-    a:focus-within,
     a:target,
     a:hover {
       text-decoration: underline !important;

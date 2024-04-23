@@ -79,6 +79,11 @@
                     {{ content.pic_caption }}
                   </figcaption>
                 {% endif %}
+                {% if content.pic_credit|field_value %}
+                  <figcaption>
+                    {{ content.pic_credit }}
+                  </figcaption>`
+                {% endif %}
               </figure>
             {% endif %}
             {% if content.birth_year|field_value or content.death_year|field_value %}

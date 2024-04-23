@@ -185,7 +185,7 @@ display:
         type: full
         options:
           offset: 0
-          items_per_page: 25
+          items_per_page: 10
           total_pages: null
           id: 0
           tags:
@@ -2281,20 +2281,7 @@ display:
           expose:
             label: 'Publication Date (newest first)'
             field_identifier: publication_year_5_1
-          exposed: true
-        publication_year_5:
-          id: publication_year_5
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: publication_year_5
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: ASC
-          expose:
-            label: 'Publication Date (oldest first)'
-            field_identifier: publication_year_5
-          exposed: true
+          exposed: false
       arguments:
         id_5:
           id: id_5
@@ -2490,7 +2477,7 @@ display:
       footer: {  }
       exposed_block: false
       display_extenders: {  }
-      path: by-collection
+      path: collection/%node
     cache_metadata:
       max-age: -1
       contexts:
@@ -2498,7 +2485,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'url.query_args:sort_by'
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
         - 'search_api_list:references_nbbib_lib_unb_ca'

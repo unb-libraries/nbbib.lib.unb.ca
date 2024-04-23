@@ -310,6 +310,25 @@ interface BibliographicContributorInterface extends ContentEntityInterface, Revi
   public function setPicCaption($pic_caption);
 
   /**
+   * Gets the Bibliographic Contributor picture credit.
+   *
+   * @return string
+   *   Picture credit of the Bibliographic Contributor.
+   */
+  public function getPicCredit();
+
+  /**
+   * Sets the Bibliographic Contributor picture credit.
+   *
+   * @param string $pic_credit
+   *   The Bibliographic Contributor picture credit.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicContributorInterface
+   *   The called Bibliographic Contributor entity.
+   */
+  public function setPicCredit($pic_credit);
+
+  /**
    * Gets the birth year of the contributor.
    *
    * @return int

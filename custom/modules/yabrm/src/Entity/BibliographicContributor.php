@@ -333,6 +333,21 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
   /**
    * {@inheritdoc}
    */
+  public function setPicCredit($pic_credit) {
+    $this->set('pic_credit', $pic_credit);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPicCredit() {
+    return $this->get('pic_credit')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getDescription() {
     return $this->get('description')->value;
   }
@@ -703,6 +718,28 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
     $fields['pic_caption'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Picture Caption'))
       ->setDescription(t('Contributor picture caption.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'default_value' => '',
+        'max_length' => 2048,
+        'text_processing' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'text_textarea',
+        'weight' => -3,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'text_textarea',
+        'text_processing' => 0,
+        'weight' => -3,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['pic_credit'] = BaseFieldDefinition::create('text_long')
+      ->setLabel(t('Picture Credit'))
+      ->setDescription(t('Contributor picture credit.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'default_value' => '',

@@ -26,13 +26,13 @@
           or content.death_year|field_value 
           or content.nb_residences|field_value 
           or content.nble_url|field_value %}
-        <div id="contrib-description" class="col-sm-8">
+          <div id="contrib-description" class="col-sm-8">
         {% else %}
-        <div id="contrib-description" class="col-sm-12">
+          <div id="contrib-description" class="col-sm-12">
         {% endif %}
-          {% if content.description|field_value %}
-              {{ content.description|field_value }}
-          {% endif %}
+        {% if content.description|field_value %}
+          {{ content.description|field_value }}
+        {% endif %}
           {% if content.archival_note|field_value or content.archival|field_value %}            
             <h2 class="archival-header smaller">Archival Material</h2>
             {% if content.archival_note %}
@@ -53,12 +53,7 @@
               </ul>
             {%- endif -%}
           {%- endif -%}
-          <div id="contributor-works">
-            {% set cid = content.name['#object'].id() %}
-            <h2 class="works-header">Bibliography Items</h2>
-            {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
           </div>
-        </div>
 
         {% if content.picture|field_value 
           or content.cover 
@@ -122,8 +117,12 @@
             {%- endif -%}
           </div>
         {% endif %}
+          <div class="row" id="contributor-works">
+            {% set cid = content.name['#object'].id() %}
+            <h2 class="works-header">Bibliography Items</h2>
+            {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
+          </div>
+      </div>
     </div>
-  </div>
-
   {% endif %}
 </div>

@@ -230,14 +230,14 @@ html {
       }
       > .container {
         #ref-body {
-          padding-right: 3rem;
+          padding-right: 5rem;
           h2 {
             font-size: 24px;
           }
           #ref-details {
             padding: 0;
             .row {
-              width: 821.5px;
+              width: 100%;
               margin-left: 0;
               padding-left: 0;
               padding-top: 1rem;
@@ -281,17 +281,26 @@ html {
     }
     .yabrm-contributor {
       .container {
-        #archival-container {
-          .archival-material {
-            .archival-collapse {
-              &[aria-expanded="false"] {
+        #contrib-description {
+          padding-right: 5rem;
+          .archival-header {
+            font-size: 24px;
+          }
+          #archival-container {
+            .archival-material {
+              .archival-collapse {
                 &::after {
-                  content: "\25BC";
+                  float: right;
                 }
-              }
-              &[aria-expanded="true"] {
-                &::after {
-                  content: "\25B2";
+                &[aria-expanded="false"] {
+                  &::after {
+                    content: "\25BC";
+                  }
+                }
+                &[aria-expanded="true"] {
+                  &::after {
+                    content: "\25B2";
+                  }
                 }
               }
             }
@@ -701,12 +710,12 @@ html {
                     position: absolute;
                     top: -1.4rem;
                     font-size: 15px;
-                    font-weight: 700;
+                    font-weight: normal;
                     transition: all .3s;
                     &:has(+ input:not(:focus).empty) {
                       top: 0;
+                      font-weight: 700;
                       font-size: 21px;
-                      font-weight: normal;
                       &:hover {
                         cursor: pointer;
                         color: $link-hover;

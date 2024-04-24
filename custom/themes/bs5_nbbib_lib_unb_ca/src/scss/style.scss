@@ -217,7 +217,7 @@ html {
     .nav-tabs {
       margin: 0 auto;
       width: 1320px;
-      &.yabrm-collection--title {
+      &.field--name-name {
         padding: 0 0 15px 0;
         border-bottom: 1px solid $base-300;
       }
@@ -230,7 +230,6 @@ html {
       }
       > .container {
         #ref-body {
-          margin-top: 3rem;
           padding-right: 3rem;
           h2 {
             font-size: 24px;
@@ -257,6 +256,7 @@ html {
           }
         }
         #ref-picture {
+          padding: 0;
           img {
             margin-top: 5.4rem;
             border-radius: 1rem;
@@ -306,6 +306,9 @@ html {
     line-height: 140%;
     font-size: 18px;  
     background-color: $light !important;
+    p {
+      text-align: justify;
+    }
     a {
       text-decoration: none;
     }
@@ -543,6 +546,17 @@ html {
                 font-size: 30px !important;
               }
             }
+            #block-bs5-nbbib-lib-unb-ca-content {
+              margin-top: 4rem;
+              > div > .container {
+                padding: 0;
+                .row:has(> #ref-contribs) {
+                  position: relative;
+                  top: -3rem;
+                  margin-bottom: 0;
+                }
+              }
+            }    
             .view-id-nb_bibliography_citations.view-display-id-page_1,
             .view-id-nb_bibliography_citations.view-display-id-page_4 {
               margin-top: 2rem;

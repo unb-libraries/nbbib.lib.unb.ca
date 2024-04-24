@@ -363,6 +363,21 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
   /**
    * {@inheritdoc}
    */
+  public function getSource() {
+    return $this->get('source')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSource($source) {
+    $this->set('source', $source);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getBirthYear() {
     return $this->get('birth_year')->value;
   }
@@ -802,6 +817,28 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
     $fields['description'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Description'))
       ->setDescription(t('Description of the Bibliographic Contributor entity.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'default_value' => '',
+        'max_length' => 2048,
+        'text_processing' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'text_textarea',
+        'weight' => -3,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'text_textarea',
+        'text_processing' => 0,
+        'weight' => -3,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['source'] = BaseFieldDefinition::create('text_long')
+      ->setLabel(t('Source'))
+      ->setDescription(t('Source of the Bibliographic Contributor entity.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'default_value' => '',

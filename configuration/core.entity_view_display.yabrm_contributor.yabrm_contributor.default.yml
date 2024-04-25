@@ -98,7 +98,7 @@ content:
     region: content
   pic_caption:
     type: solr_highlighted_text_default
-    label: above
+    label: visually_hidden
     settings:
       prefix: '<strong>'
       suffix: '</strong>'
@@ -108,7 +108,7 @@ content:
     region: content
   pic_credit:
     type: solr_highlighted_text_default
-    label: above
+    label: inline
     settings:
       prefix: '<strong>'
       suffix: '</strong>'
@@ -163,7 +163,7 @@ content:
     region: content
   user_id:
     type: author
-    label: hidden
+    label: visually_hidden
     settings: {  }
     third_party_settings: {  }
     weight: 0

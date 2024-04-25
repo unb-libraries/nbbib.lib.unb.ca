@@ -753,7 +753,7 @@ class BibliographicContributor extends RevisionableContentEntityBase implements 
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['pic_credit'] = BaseFieldDefinition::create('text_long')
-      ->setLabel(t('Picture Credit'))
+      ->setLabel(t('Credit'))
       ->setDescription(t('Contributor picture credit.'))
       ->setRevisionable(TRUE)
       ->setSettings([

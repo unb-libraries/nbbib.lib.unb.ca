@@ -302,13 +302,23 @@ html {
                 font-size: 15px;
               }
             }
+            #nb-res-label {
+              margin-bottom: .5rem;
+              font-size: 15px;
+            }
             .archival-header {
               margin-top: 3rem;
               font-size: 24px;
             }
             #archival-container {
               .archival-material {
+                padding-bottom: 1rem;
+                border-bottom: 1px solid $base-300;
+                &:not(:first-of-type) {
+                  margin-top: 1rem;
+                }
                 .archival-collapse {
+                  font-weight: 600;
                   &::after {
                     float: right;
                   }
@@ -322,6 +332,21 @@ html {
                       content: "\25B2";
                     }
                   }
+                  + [id^="archival-content"] {
+                    margin-top: 2rem;
+                    div, p {
+                      color: $base-600;
+                    }
+                    .field__label {
+                      margin-top: 1rem;
+                      width: 100%;
+                      font-weight: normal;
+                      font-size: 15px;
+                      &::after {
+                        content: ":" !important;
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -333,6 +358,33 @@ html {
               top: -36rem;
               font-style: italic;
               color: $base-600;
+            }
+            #credit-label {
+              font-style: italic;
+            }
+            .field--name-pic-credit {
+              * {
+                font-size: 15px;
+                &:not(a):not(a *) {
+                  color: $base-600;
+                }
+              }
+              .field__label {
+                font-style: italic;
+                font-weight: normal;
+              }
+            }
+            .field--name-pic-credit {
+              p {
+                font-size: 15px;
+              }
+              .field__label {
+                font-style: italic;
+                font-weight: normal;
+              }
+            }
+            .field--name-pic-caption {
+              margin-top: 1rem;
             }
           }
           #contributor-works {
@@ -438,7 +490,6 @@ html {
       font-style: italic;
     }
     header {
-      //background-color: $light !important;
       nav.navbar {
         justify-content: center;
         padding: 0;

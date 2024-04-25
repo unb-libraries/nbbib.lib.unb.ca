@@ -1,14 +1,12 @@
-uuid: 87f27ef7-6afb-4ead-94e7-e26e14a16492
+uuid: 371af86e-646a-4291-8da9-f721824a8094
 langcode: en
 status: true
 dependencies:
-  config:
-    - image.style.contrib_photo
   module:
     - image
-    - link
     - search_api_solr
     - text
+    - user
     - yabrm
 id: yabrm_contributor.yabrm_contributor.default
 targetEntityType: yabrm_contributor
@@ -17,18 +15,18 @@ mode: default
 content:
   archival:
     type: entity_reference_label
-    label: visually_hidden
+    label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 4
+    weight: 0
     region: content
   archival_note:
     type: text_default
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: -3
     region: content
   birth_year:
     type: number_integer
@@ -37,7 +35,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 9
+    weight: 4
     region: content
   death_year:
     type: number_integer
@@ -46,14 +44,17 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 10
+    weight: 4
     region: content
   description:
-    type: text_default
+    type: solr_highlighted_text_default
     label: above
-    settings: {  }
+    settings:
+      prefix: '<strong>'
+      suffix: '</strong>'
+      strict: false
     third_party_settings: {  }
-    weight: 3
+    weight: -3
     region: content
   first_name:
     type: string
@@ -61,7 +62,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 8
+    weight: -4
     region: content
   institution_name:
     type: string
@@ -69,7 +70,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 13
+    weight: -4
     region: content
   last_name:
     type: string
@@ -77,15 +78,15 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 11
+    weight: -4
     region: content
   name:
     type: string
-    label: hidden
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 5
+    weight: -4
     region: content
   nb_residences:
     type: entity_reference_label
@@ -93,40 +94,38 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 2
-    region: content
-  nble_url:
-    type: link
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 15
+    weight: 0
     region: content
   pic_caption:
     type: solr_highlighted_text_default
-    label: visually_hidden
+    label: above
     settings:
       prefix: '<strong>'
       suffix: '</strong>'
       strict: false
     third_party_settings: {  }
-    weight: 0
+    weight: -3
+    region: content
+  pic_credit:
+    type: solr_highlighted_text_default
+    label: above
+    settings:
+      prefix: '<strong>'
+      suffix: '</strong>'
+      strict: false
+    third_party_settings: {  }
+    weight: -3
     region: content
   picture:
     type: image
     label: above
     settings:
       image_link: ''
-      image_style: contrib_photo
+      image_style: ''
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    weight: 6
+    weight: 0
     region: content
   prefix:
     type: string
@@ -134,7 +133,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 7
+    weight: -4
     region: content
   sort_name:
     type: string
@@ -142,7 +141,17 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 14
+    weight: -4
+    region: content
+  source:
+    type: solr_highlighted_text_default
+    label: above
+    settings:
+      prefix: '<strong>'
+      suffix: '</strong>'
+      strict: false
+    third_party_settings: {  }
+    weight: -3
     region: content
   suffix:
     type: string
@@ -150,11 +159,25 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 12
+    weight: -4
+    region: content
+  user_id:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  zotero_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
     region: content
 hidden:
   langcode: true
+  nble_url: true
   search_api_excerpt: true
   status: true
-  user_id: true
-  zotero_name: true

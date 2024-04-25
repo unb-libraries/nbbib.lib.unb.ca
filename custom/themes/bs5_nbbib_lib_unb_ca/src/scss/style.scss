@@ -287,28 +287,63 @@ html {
     }
     .yabrm-contributor {
       .container {
-        #contrib-description {
-          padding-right: 5rem;
-          .archival-header {
-            font-size: 24px;
-          }
-          #archival-container {
-            .archival-material {
-              .archival-collapse {
-                &::after {
-                  float: right;
-                }
-                &[aria-expanded="false"] {
+        .description-pic {
+          --bs-gutter-x: 0;
+          #contrib-description {
+            padding-right: 5rem;
+            #source-label {
+              font-style: italic;
+              color: $base-600;
+              font-size: 15px;
+              + p {
+                display: inline-block;
+                margin-left: .5rem;
+                color: $base-600;
+                font-size: 15px;
+              }
+            }
+            .archival-header {
+              margin-top: 3rem;
+              font-size: 24px;
+            }
+            #archival-container {
+              .archival-material {
+                .archival-collapse {
                   &::after {
-                    content: "\25BC";
+                    float: right;
                   }
-                }
-                &[aria-expanded="true"] {
-                  &::after {
-                    content: "\25B2";
+                  &[aria-expanded="false"] {
+                    &::after {
+                      content: "\25BC";
+                    }
+                  }
+                  &[aria-expanded="true"] {
+                    &::after {
+                      content: "\25B2";
+                    }
                   }
                 }
               }
+            }
+          }
+          #contrib-picture {
+            #birth-death {
+              position: relative;
+              float: right;
+              top: -36rem;
+              font-style: italic;
+              color: $base-600;
+            }
+          }
+          #contributor-works {
+            padding-right: 0;
+            .works-header {
+              margin: 3rem 0;
+              padding-left: 0;
+              padding-right: 0;
+            }
+            .views-element-container {
+              padding: 0;
             }
           }
         }
@@ -562,7 +597,7 @@ html {
               }
             }
             #block-bs5-nbbib-lib-unb-ca-content {
-              margin-top: 4rem;
+              margin-top: 3rem;
               > div > .container {
                 padding: 0;
                 .row:has(> #ref-contribs) {
@@ -642,7 +677,7 @@ html {
                 }
               }
               .view-content {
-                margin-top: 4rem;
+                margin-top: 3rem;
                 .search-result {
                   margin-top: 2rem;
                   border-bottom: 1px solid $base-200;
@@ -830,7 +865,7 @@ html {
     padding: 0;
     background-color: $light !important;
     .container {
-      margin-top: 4rem;
+      margin-top: 3rem;
       max-width: 1400px;
       padding: 0;
       background-color: $light !important;

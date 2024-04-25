@@ -33,6 +33,9 @@
         {% if content.description|field_value %}
           {{ content.description|field_value }}
         {% endif %}
+        {% if content.source|field_value %}
+          {{ content.source|field_value }}
+        {% endif %}
           {% if content.archival_note|field_value or content.archival|field_value %}            
             <h2 class="archival-header smaller">Archival Material</h2>
             {% if content.archival_note %}

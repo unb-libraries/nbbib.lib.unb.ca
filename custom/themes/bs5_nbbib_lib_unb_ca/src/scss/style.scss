@@ -212,6 +212,13 @@ html {
     }
   }
   body.path-yabrm {
+    .col-sm-4:has(img) {
+      padding: 0;
+        img {
+          width: 100%;
+          border-radius: 1rem;
+        }
+    }
     .field--name-title,
     .field--name-name,
     .nav-tabs {
@@ -258,8 +265,7 @@ html {
         #ref-picture {
           padding: 0;
           img {
-            margin-top: 5.4rem;
-            border-radius: 1rem;
+            margin-top: 2.4rem;
           }
           #ref-copies b {
             margin-top: 3.05rem;

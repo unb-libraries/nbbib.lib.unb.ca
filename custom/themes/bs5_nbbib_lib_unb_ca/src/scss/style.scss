@@ -318,18 +318,26 @@ html {
                   margin-top: 1rem;
                 }
                 .archival-collapse {
+                  display: block;
+                  width: 100%;
                   font-weight: 600;
-                  &::after {
+                  .archival-caret {
                     float: right;
                   }
                   &[aria-expanded="false"] {
-                    &::after {
-                      content: "\25BC";
+                    .archival-caret-up {
+                      display: initial;
                     }
+                    .archival-caret-down {
+                      display: none;
+                    }                  
                   }
                   &[aria-expanded="true"] {
-                    &::after {
-                      content: "\25B2";
+                    .archival-caret-up {
+                      display: none;
+                    }
+                    .archival-caret-down {
+                      display: initial;
                     }
                   }
                   + [id^="archival-content"] {

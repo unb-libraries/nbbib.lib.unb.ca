@@ -325,20 +325,16 @@ html {
                     float: right;
                   }
                   &[aria-expanded="false"] {
-                    .archival-caret-up {
-                      display: initial;
-                    }
-                    .archival-caret-down {
-                      display: none;
-                    }                  
+                    .archival-caret {
+                      transform: initial;
+                      transition: all .3s;
+                    }            
                   }
                   &[aria-expanded="true"] {
-                    .archival-caret-up {
-                      display: none;
-                    }
-                    .archival-caret-down {
-                      display: initial;
-                    }
+                    .archival-caret {
+                      transform: rotate(180deg);
+                      transition: all .3s;
+                    }            
                   }
                   + [id^="archival-content"] {
                     margin-top: 1rem;

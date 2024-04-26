@@ -43,7 +43,7 @@ html {
     font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 0.09rem; /* 9% */
-    color: $base-600;
+    color: $base-700;
     padding: 0 15px;
   }
   .text-xxl {
@@ -291,15 +291,16 @@ html {
           --bs-gutter-x: 0;
           #contrib-description {
             padding-right: 5rem;
-            #source-label {
-              font-style: italic;
-              color: $base-600;
-              font-size: 15px;
-              + p {
-                display: inline-block;
-                margin-left: .5rem;
-                color: $base-600;
+            .field--name-source {
+              * {
                 font-size: 15px;
+                &:not(a):not(a *) {
+                  color: $base-700;
+                }
+              }
+              .field__label {
+                font-style: italic;
+                font-weight: normal;
               }
             }
             #nb-res-label {
@@ -338,7 +339,10 @@ html {
                   }
                   + [id^="archival-content"] {
                     div {
-                      color: $base-600;
+                      color: $base-700;
+                    }
+                    p {
+                      text-align: start;
                     }
                     .field__label {
                       margin-top: 1rem;
@@ -355,31 +359,29 @@ html {
             }
           }
           #contrib-picture {
+            > figure {
+              margin-bottom: 0;
+            }
+            #nble-url {
+              display: inline-block;
+              position: relative;
+              top: -2rem;
+              text-align: start;
+              color: $base-700;
+            }
             #birth-death {
               position: relative;
               float: right;
               top: -35.5rem;
               font-style: italic;
-              color: $base-600;
-            }
-            #credit-label {
-              font-style: italic;
+              color: $base-700;
             }
             .field--name-pic-credit {
               * {
                 font-size: 15px;
                 &:not(a):not(a *) {
-                  color: $base-600;
+                  color: $base-700;
                 }
-              }
-              .field__label {
-                font-style: italic;
-                font-weight: normal;
-              }
-            }
-            .field--name-pic-credit {
-              p {
-                font-size: 15px;
               }
               .field__label {
                 font-style: italic;
@@ -494,7 +496,7 @@ html {
       }
     }
     .view-header {
-      color: $base-600;
+      color: $base-700;
       font-style: italic;
     }
     header {
@@ -743,7 +745,7 @@ html {
                   .views-field-collections-5 {
                     margin-top: .5rem;
                     font-size: 15px;
-                    color: $base-600;
+                    color: $base-700;
                   }
                   &:last-child {
                     border-bottom: none;
@@ -881,7 +883,7 @@ html {
                   }
                   .ops {
                     float: right;
-                    color: $base-600;
+                    color: $base-700;
                     font-size: 15px;
                     font-weight: lighter;
                   }

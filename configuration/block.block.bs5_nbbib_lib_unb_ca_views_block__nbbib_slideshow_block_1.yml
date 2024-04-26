@@ -12,7 +12,7 @@ dependencies:
 id: bs5_nbbib_lib_unb_ca_views_block__nbbib_slideshow_block_1
 theme: bs5_nbbib_lib_unb_ca
 region: content
-weight: -9
+weight: -11
 provider: null
 plugin: 'views_block:nbbib_slideshow-block_1'
 settings:

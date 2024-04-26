@@ -12,7 +12,7 @@ dependencies:
 id: bs5_nbbib_lib_unb_ca_generalreferencetype
 theme: bs5_nbbib_lib_unb_ca
 region: sidebar_first
-weight: -6
+weight: -8
 provider: null
 plugin: 'facet_block:general_reference_type'
 settings:

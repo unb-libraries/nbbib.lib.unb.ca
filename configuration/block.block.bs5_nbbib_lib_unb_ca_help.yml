@@ -11,7 +11,7 @@ _core:
 id: bs5_nbbib_lib_unb_ca_help
 theme: bs5_nbbib_lib_unb_ca
 region: content
-weight: -2
+weight: -4
 provider: null
 plugin: help_block
 settings:

@@ -34,7 +34,7 @@
           {{ content.description|field_value }}
         {% endif %}
         {% if content.source|field_value %}
-          <span id="source-label">Source:</span>{{ content.source|field_value }}
+          {{ content.source }}
         {% endif %}
         {%- if content.nb_residences|field_value -%}
           <p id="nb-res-label">Predominant New Brunswick Residences:</p>
@@ -97,7 +97,7 @@
             </figure>
           {% endif %}
           {% if content.birth_year|field_value or content.death_year|field_value %}
-            <p><span id="birth-death">
+            <p id="birth-death">
               {%- if content.birth_year -%}
                 {{ content.birth_year|field_value }}
               {%- endif -%}
@@ -105,16 +105,16 @@
               {%- if content.death_year -%}
                 {{ content.death_year|field_value }}
               {%- endif -%}
-            </span></p>
+            </p>
           {% endif %}
           {%- if content.nble_url|field_value -%}
-            <p><span>
+            <p id="nble-url">
               See the
               <a href="{{ content.nble_url|field_value[0]['#title'] }}">
                 New Brunswick Literary Encyclopedia
               </a>
                 entry.
-            </span></p>
+            </p>
           {%- endif -%}
         </div>
       {% endif %}

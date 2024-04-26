@@ -324,6 +324,8 @@ html {
                   font-weight: 600;
                   .archival-caret {
                     float: right;
+                    font-weight: 100;
+                    font-size: 30px;      
                   }
                   &[aria-expanded="false"] {
                     .archival-caret {
@@ -636,11 +638,15 @@ html {
             font-size: 15px;
             &::after {
               margin-left: .2rem;
-              content: "\25BC";
+              content: "\2304";
+              font-weight: 100;
+              font-size: 30px;
             }
             &.open::after {
+              position: relative;
+              top: .7rem;
               margin-left: .2rem;
-              content: "\25B2";
+              content: "\2303";
             }
           }
         }

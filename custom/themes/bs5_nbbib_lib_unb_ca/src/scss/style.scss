@@ -223,7 +223,7 @@ html {
     .field--name-name,
     .nav-tabs {
       margin: 0 auto;
-      width: 1320px;
+      width: 100%;
       &.field--name-name {
         padding: 0 0 15px 0;
         border-bottom: 1px solid $base-300;
@@ -234,6 +234,7 @@ html {
     }
     .yabrm-reference {
       #ref-contribs {
+        margin-top: .5rem;
       }
       > .container {
         #ref-body {

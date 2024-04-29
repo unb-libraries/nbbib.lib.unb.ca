@@ -115,4 +115,5 @@ settings:
         - '<h4 id class>'
         - '<h5 id class>'
         - '<h6 id class>'
+        - '<p class>'
 image_upload: {  }

@@ -423,6 +423,9 @@ html {
     background-color: $light !important;
     p {
       text-align: justify;
+      + ul {
+        list-style: disc;
+      }
     }
     a {
       text-decoration: none;

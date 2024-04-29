@@ -32,6 +32,6 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<br> <p> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <a hreflang id class href> <cite class> <blockquote cite class> <code class> <ul type class> <ol type class start> <li class> <dl class> <dt class> <dd class> <sup class> <sub class> <img src alt data-entity-type data-entity-uuid data-align data-caption class> <table class> <caption class> <tbody class> <thead class> <tfoot class> <th class rowspan colspan> <td class rowspan colspan> <tr class> <div class> <small class> <span class> <strong> <em> <pre> <s> <hr>'
+      allowed_html: '<br> <p> <h2 id class> <h3 id class> <h4 id class> <h5 id class> <h6 id class> <a hreflang id class href> <cite class> <blockquote cite class> <code class> <ul type class> <ol type class start> <li class> <dl class> <dt class> <dd class> <sup class> <sub class> <img src alt data-entity-type data-entity-uuid data-align data-caption class> <table class> <caption class> <tbody class> <thead class> <tfoot class> <th class rowspan colspan> <td class rowspan colspan> <tr class> <div class> <small class> <span class> <strong> <em> <pre> <s> <hr>'
       filter_html_help: true
       filter_html_nofollow: false

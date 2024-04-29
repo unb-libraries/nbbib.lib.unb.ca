@@ -118,12 +118,12 @@
           {%- endif -%}
         </div>
       {% endif %}
+    </div>
       <div class="row" id="contributor-works">
         {% set cid = content.name['#object'].id() %}
         <h2 class="works-header">Bibliography Items</h2>
         {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
       </div>
-    </div>
   </div>
 {% endif %}
 </div>

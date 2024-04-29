@@ -212,6 +212,11 @@ html {
     }
   }
   body.path-yabrm {
+    .block-page-title-block,
+    .block-local-tasks-block {
+      width: 1320px;
+      margin: 0 auto;
+    }
     .col-sm-4:has(img) {
       padding: 0;
         img {
@@ -234,7 +239,7 @@ html {
     }
     .yabrm-reference {
       #ref-contribs {
-        margin-top: .5rem;
+        margin-top: 1.5rem;
       }
       > .container {
         #ref-body {
@@ -395,20 +400,21 @@ html {
               margin-top: 1rem;
             }
           }
-          #contributor-works {
+        }
+        #contributor-works {
+          --bs-gutter-x: 0;
+          padding-right: 0;
+          .works-header {
+            margin: 3rem 0;
+            padding-left: 0;
             padding-right: 0;
-            .works-header {
-              margin: 3rem 0;
-              padding-left: 0;
-              padding-right: 0;
-            }
-            .views-element-container {
-              padding: 0;
-              .view-header {
-                position: relative;
-                top: -5rem;
-                float: right;
-              }
+          }
+          .views-element-container {
+            padding: 0;
+            .view-header {
+              position: relative;
+              top: -5rem;
+              float: right;
             }
           }
         }
@@ -668,7 +674,7 @@ html {
               }
             }
             #block-bs5-nbbib-lib-unb-ca-content {
-              margin-top: 3rem;
+              margin-top: 2rem;
               > div > .container {
                 padding: 0;
                 .row:has(> #ref-contribs) {
@@ -748,7 +754,9 @@ html {
                 }
               }
               .view-content {
-                margin-top: 3rem;
+                margin-top: 2rem;
+                padding-top: 2rem;
+                border-top: 1px solid $base-200;
                 .search-result {
                   margin-top: 2rem;
                   border-bottom: 1px solid $base-200;

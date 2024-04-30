@@ -906,14 +906,16 @@ html {
                   padding-bottom: 1rem;
                   border-bottom: 1px solid $base-200;
                   a.topic {
-                    color: $body-color;
+                    color: $link;
                     font-size: 18px;
                   }
                   .ops {
                     float: right;
-                    color: $base-700;
                     font-size: 15px;
                     font-weight: lighter;
+                    a {
+                      color: $base-700;
+                    }
                   }
                 }
               }

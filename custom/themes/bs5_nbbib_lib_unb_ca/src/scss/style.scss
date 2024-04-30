@@ -564,6 +564,9 @@ html {
                       left: -16rem;
                     }
                   } 
+                }
+                &:has(+ ul .is-active) {
+                  color: $link !important;
                 } 
               }
             }

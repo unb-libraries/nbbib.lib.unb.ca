@@ -143,13 +143,14 @@
         {# Content #}
         {% block content %}
           <a id="main-content"></a>
-          <div{{ attributes.addClass('yabrm_collection') }}>
+          <div{{ attributes.addClass('yabrm-collection') }}>
             {% if content %}
                 <div id="description">
                   {{ content.description|field_value }}
                 </div>
                 {% if content.essays %}
                   <div id="essays">
+                  <h2 class="works-header">Related Essays</h2>
                     <ul>
                       {% for essay in content.essays|field_value %}
                         <li>{{ essay }}</li>
@@ -158,8 +159,8 @@
                   </div>
                 {% endif %}
                 <div id="collection-works">
+                <h2 class="works-header">Bibliography Items</h2>
                   {% set cid = content.name['#object'].id() %}
-                  <h2 class="works-header">Bibliography Items</h2>
                   {{ drupal_view('nb_bibliography_citations', 'page_4', cid, cid, cid, cid) }}
                 </div>
             {% endif %}

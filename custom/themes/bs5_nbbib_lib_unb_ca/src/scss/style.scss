@@ -680,9 +680,6 @@ html {
               margin-top: 2rem;
               > div > .container {
                 padding: 0;
-                ul {
-                  list-style: disc;
-                }
                 .row:has(> #ref-contribs) {
                   position: relative;
                   top: -3rem;
@@ -690,6 +687,12 @@ html {
                 }
               }
               .node__content {
+                ul {
+                  list-style: disc;
+                  li {
+                    margin-left: 1rem;
+                  }
+                }
                 .subnav {
                   margin-top: 2rem;
                   padding-top: 1rem;

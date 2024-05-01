@@ -533,10 +533,10 @@ html {
           }
           .region-nav-main {
             .nav-item {
-              padding-left: 1rem;
+              padding-left: .8rem;
               .nav-link {
                 font-weight: 700;
-                font-size: 24px;
+                font-size: 21px;
                 padding: .2rem 0;
                 text-decoration: none !important;
                 color: $body-color;
@@ -618,10 +618,7 @@ html {
           ul {
             padding: 0;
             &:has(input[type="checkbox"]) li {
-              display: flex;
-            }
-            li {
-              margin-bottom: .5rem;
+              display: flex;nav-link
               .ui-slider-line {
                 background: $base-300 !important;
               }
@@ -906,6 +903,7 @@ html {
                   padding-bottom: 1rem;
                   border-bottom: 1px solid $base-200;
                   a.topic {
+                    max-width: 70%;
                     color: $link;
                     font-size: 18px;
                   }
@@ -985,6 +983,15 @@ html {
 
 @media screen and (max-width: 1399px) {
   body.path-frontpage {
+  }
+}
+@media screen and (max-width: 1306px) {
+  #navbarSupportedContent {
+    margin-top: 1rem;
+    justify-content: flex-start !important;
+    .nav-item:first-of-type {
+      padding-left: 0;
+    }
   }
 }
 @media screen and (max-width: 1199px) { 

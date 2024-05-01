@@ -12,7 +12,8 @@ html {
   h1, .site-title {
     font-weight: 700;
     font-size: 36px !important;
-    color: $body-color !important;
+    padding: 0 0 15px 0;
+    border-bottom: 1px solid $base-300;
   }
   h2 {
     font-weight: 700;
@@ -434,12 +435,6 @@ html {
     line-height: 140%;
     font-size: 18px;  
     background-color: $light !important;
-    p {
-      text-align: justify;
-      + ul {
-        list-style: disc;
-      }
-    }
     a {
       text-decoration: none;
     }
@@ -575,6 +570,7 @@ html {
             .site-title {
               margin: 0 !important;
               text-transform: none !important;
+              border: none !important;
             }
             h1 {
               color: $link !important;
@@ -684,10 +680,37 @@ html {
               margin-top: 2rem;
               > div > .container {
                 padding: 0;
+                ul {
+                  list-style: disc;
+                }
                 .row:has(> #ref-contribs) {
                   position: relative;
                   top: -3rem;
                   margin-bottom: 0;
+                }
+              }
+              .node__content {
+                .subnav {
+                  margin-top: 2rem;
+                  padding-top: 1rem;
+                  border-top: 1px solid $base-200;
+                  a {
+                    display: inline-block;
+                    font-weight: 600;
+                    &.subnav-prev {
+                      &::before {
+                        margin-right: .5rem;
+                        content: "\00AB";
+                      }
+                    }
+                    &.subnav-next {
+                      float: right;
+                      &::after {
+                        margin-left: .5rem;
+                        content: "\00BB";
+                      }
+                    }
+                  }
                 }
               }
             }    

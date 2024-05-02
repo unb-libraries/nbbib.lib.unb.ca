@@ -233,7 +233,6 @@ html {
         }
     }
     .field--name-title,
-    .field--name-name,
     .nav-tabs {
       margin: 0 auto;
       width: 100%;
@@ -432,6 +431,14 @@ html {
       h2 {
         margin-top: 3rem;
         font-size: 24px;
+      }
+      #essays {
+        .essays-header {
+          & + ul li {
+            padding: .4rem 0;
+            border-bottom: 1px solid $base-300;
+          }
+        }
       }
     }
   }

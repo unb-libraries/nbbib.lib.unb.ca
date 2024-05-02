@@ -148,9 +148,9 @@
                 <div id="description">
                   {{ content.description|field_value }}
                 </div>
-                {% if content.essays %}
+                {% if content.essays|field_value %}
                   <div id="essays">
-                  <h2 class="works-header">Related Essays</h2>
+                  <h2 class="essays-header">Related Essays</h2>
                     <ul>
                       {% for essay in content.essays|field_value %}
                         <li>{{ essay }}</li>
@@ -158,11 +158,6 @@
                     </ul>
                   </div>
                 {% endif %}
-                <div id="collection-works">
-                <h2 class="works-header">Bibliography</h2>
-                  {% set cid = content.name['#object'].id() %}
-                  {{ drupal_view('nb_bibliography_citations', 'page_4', cid, cid, cid, cid) }}
-                </div>
             {% endif %}
           </div>
         {% endblock %}

@@ -11,7 +11,43 @@ nbbib_core.collections:
   parent: main
   menu_name: main
   route_name: nbbib_core.collections
+  expanded: TRUE
   weight: 20
+nbbib_core.collections.architecture:
+  title: 'Architecture'
+  description: 'Architecture'
+  parent: nbbib_core.collections
+  menu_name: main
+  url: internal:/collections/architecture
+  weight: 10
+nbbib_core.collections.bibliographies:
+  title: 'Bibliographies'
+  description: 'Bibliographies'
+  parent: nbbib_core.collections
+  menu_name: main
+  url: internal:/collections/bibliographies
+  weight: 20
+nbbib_core.collections.nbapp:
+  title: "NB Authors' Archival Papers"
+  description: "NB Authors' Archival Papers Project"
+  parent: nbbib_core.collections
+  menu_name: main
+  url: internal:/collections/nb-authors-archival-papers-project
+  weight: 30
+nbbib_core.collections.nb_imprints:
+  title: 'New Brunswick Imprints'
+  description: 'New Brunswick Imprints'
+  parent: nbbib_core.collections
+  menu_name: main
+  url: internal:/collections/new_brunswick_imprints
+  weight: 40
+nbbib_core.collections.religion:
+  title: 'Religion'
+  description: 'Religion'
+  parent: nbbib_core.collections
+  menu_name: main
+  url: internal:/collections/religion
+  weight: 50
 nbbib_core.contributors:
   title: 'Contributors'
   description: 'Contributors'

@@ -187,9 +187,12 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
   if (!empty($authors)) {
     // Build formatted list.
     $au_names = array_column($authors, 'name');
-    $au_wad = count($au_names) > 1 ?
+    $au_wad = count($au_names) > 2 ?
       implode(', ', array_slice($au_names, 0, -1)) . ', and ' . end($au_names)
       : $au_names[0];
+    if (count($au_names) == 2) {
+      $au_wad = $au_names[0] . ' and ' . $au_names[1];
+    }
   }
   // If there are editors...
   if (!empty($editors)) {

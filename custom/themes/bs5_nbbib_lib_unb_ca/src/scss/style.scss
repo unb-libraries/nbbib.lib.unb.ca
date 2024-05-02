@@ -614,36 +614,36 @@ html {
           ul {
             padding: 0;
             &:has(input[type="checkbox"]) li {
-              display: flex;nav-link
-              .ui-slider-line {
-                background: $base-300 !important;
-              }
-              .ui-slider-label {
-                color: $primary !important;
-              }
-              .ui-slider-handle, 
-              .ui-widget-content, 
-              .ui-slider-range {
-                border-radius: 1rem;
-                border-color: $base-300;
-                background-color: $light;
-              }
-              .ui-slider-range {
-                background-color: $base-300;
-              }
-              input[type="checkbox"] {
-                margin-top: .2rem;
-              }
-              label {
-                vertical-align: text-bottom;
-                font-size: 15px;
-                color: $base-700;
-                &:hover {
-                  cursor: pointer;
-                  text-decoration: underline;
-                  color: $primary;
-                  transition: color .3s;
-                }
+              display: flex;
+            }
+            .nav-link.ui-slider-line {
+              background: $base-300 !important;
+            }
+            .ui-slider-label {
+              color: $primary !important;
+            }
+            .ui-slider-handle, 
+            .ui-widget-content, 
+            .ui-slider-range {
+              border-radius: 1rem;
+              border-color: $base-300;
+              background-color: $light;
+            }
+            .ui-slider-range {
+              background-color: $base-300;
+            }
+            input[type="checkbox"] {
+              margin-top: .2rem;
+            }
+            label {
+              vertical-align: text-bottom;
+              font-size: 15px;
+              color: $base-700;
+              &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+                color: $primary;
+                transition: color .3s;
               }
             }
           }

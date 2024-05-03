@@ -216,7 +216,7 @@ display:
         type: none
         options: {  }
       cache:
-        type: search_api_none
+        type: search_api_tag
         options: {  }
       empty:
         area_text_custom:
@@ -927,13 +927,20 @@ display:
       display_extenders: {  }
       path: bibliography
     cache_metadata:
-      max-age: -1
+      max-age: 0
       contexts:
         - 'languages:language_interface'
         - url
         - url.query_args
         - 'url.query_args:sort_by'
       tags:
+        - 'config:facets.facet.collection_s_string'
+        - 'config:facets.facet.contributor_s_'
+        - 'config:facets.facet.general_languages'
+        - 'config:facets.facet.general_publisher'
+        - 'config:facets.facet.general_reference_type'
+        - 'config:facets.facet.publication_year'
+        - 'config:facets.facet.topic_names_string'
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
         - 'search_api_list:references_nbbib_lib_unb_ca'
   page_2:

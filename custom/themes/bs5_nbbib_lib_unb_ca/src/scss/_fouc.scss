@@ -1,8 +1,14 @@
-/* Flash of Unstyled Content: make visible */
+// Flash of Unstyled Content
+// Contributor view glossary attachment visible onload layout adjustment
 .attachment-before .pagination {
   visibility: visible!important;
 }
 
+// Front views slideshow visible onload layout adjustment
+#block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1 {
+  height: 400px;
+  max-height: 100%;
+}
 .views_slideshow_cycle_slide {
   position: absolute;
   top: 0;

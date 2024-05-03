@@ -738,6 +738,9 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
       $pub_old = $entity->original->status->getValue()[0]['value'];
       $pub_new = $entity->status->getValue()[0]['value'];
       $year_old = $entity->original->publication_year->getValue()[0]['value'] ?? NULL;
+      $contribs_old = array_column($entity->original->contributors->getValue(), 'target_id');
+      $contribs_new = array_column($entity->contributors->getValue(), 'target_id');
+      $contribs_diff = array_diff($contribs_old, $contribs_new);
       
       // If the published status changed...
       if ($pub_old != $pub_new) {
@@ -758,7 +761,7 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
             
             // Get contributor id.
             $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'] ?? NULL;
-            // Load paragraph object.
+            // Load contributor object.
             $c_obj = BibliographicContributor::load($cid) ?? NULL;
             
             // If valid object...
@@ -802,6 +805,89 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
         $config->set('widget', $widget);
         $config->save();
       }
+      // If the contributor list is SHORTER after reference update.
+      if (!empty($contribs_diff)) {
+        // Cycle through removed contributor paragraphs.
+        foreach ($contribs_diff as $pid) {
+          // Get contributor entity ID.
+          $p_obj = Paragraph::load($pid);
+          $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'];
+          $p_obj->delete();
+          // Fetch all references that point to the target contributor.
+          $books = "
+            SELECT entity_id
+            FROM yabrm_book__contributors
+            WHERE contributors_target_id IN (
+              SELECT entity_id
+              FROM paragraph__field_yabrm_contributor_person
+              WHERE field_yabrm_contributor_person_target_id = $cid
+              AND entity_id IN (
+                SELECT id
+                FROM paragraphs_item_field_data
+                WHERE status = 1
+              )
+            )
+          ";
+          $sections = "
+            SELECT entity_id
+            FROM yabrm_book_section__contributors
+            WHERE contributors_target_id IN (
+              SELECT entity_id
+              FROM paragraph__field_yabrm_contributor_person
+              WHERE field_yabrm_contributor_person_target_id = $cid
+              AND entity_id IN (
+                SELECT id
+                FROM paragraphs_item_field_data
+                WHERE status = 1
+              )
+            )
+          ";
+          $articles = "
+            SELECT entity_id
+            FROM yabrm_journal_article__contributors
+            WHERE contributors_target_id IN (
+              SELECT entity_id
+              FROM paragraph__field_yabrm_contributor_person
+              WHERE field_yabrm_contributor_person_target_id = $cid
+              AND entity_id IN (
+                SELECT id
+                FROM paragraphs_item_field_data
+                WHERE status = 1
+              )
+            )
+          ";
+          $theses = "
+            SELECT entity_id
+            FROM yabrm_thesis__contributors
+            WHERE contributors_target_id IN (
+              SELECT entity_id
+              FROM paragraph__field_yabrm_contributor_person
+              WHERE field_yabrm_contributor_person_target_id = $cid
+              AND entity_id IN (
+                SELECT id
+                FROM paragraphs_item_field_data
+                WHERE status = 1
+              )
+            )
+          ";
+          $book_ids =
+            array_column(\Drupal::database()->query($books)->fetchAll(), 'entity_id');
+          $section_ids =
+            array_column(\Drupal::database()->query($sections)->fetchAll(), 'entity_id');
+          $article_ids =
+            array_column(\Drupal::database()->query($articles)->fetchAll(), 'entity_id');
+          $thesis_ids =
+            array_column(\Drupal::database()->query($theses)->fetchAll(), 'entity_id');
+          // If no published reference contributor paragraphs are associated to this contributor...
+          if (empty($book_ids) and empty($section_ids) and empty($article_ids) and empty($thesis_ids)) {
+            // Load contributor object.
+            $c_obj = BibliographicContributor::load($cid) ?? NULL;
+            // Unpublish contributor and save.
+            $c_obj->set('status', FALSE);
+            $c_obj->save();            
+          }
+        }
+      } 
     }
   }
 }

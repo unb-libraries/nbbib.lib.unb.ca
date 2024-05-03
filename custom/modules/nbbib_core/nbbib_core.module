@@ -34,9 +34,9 @@ function nbbib_core_cron() {
   $current_minute = date('i');
   $datestamp = date('c');
 
-  //if (TRUE) { // CRON DEV - RUN EVERY TIME!
+  if (TRUE) { // CRON DEV - RUN EVERY TIME!
   // If it's between 12:45-1am server time...
-  if ($current_hour < 1 and $current_minute > 44) {
+  // if ($current_hour < 1 and $current_minute > 44) {
     \Drupal::logger('nbbib_core')->notice("NBBIB maintenance CRON job started at [$datestamp].");
     // Publication year config sync.
     \Drupal::logger('nbbib_core')->notice("Starting publication year config sync...");
@@ -72,7 +72,14 @@ function nbbib_core_cron() {
     $query = \Drupal::database()->query(
       'SELECT id
       FROM yabrm_contributor
-      WHERE id NOT IN (SELECT field_yabrm_contributor_person_target_id FROM paragraph__field_yabrm_contributor_person)'
+      WHERE id NOT IN (
+      SELECT field_yabrm_contributor_person_target_id 
+      FROM paragraph__field_yabrm_contributor_person
+      WHERE entity_id IN (
+      SELECT id 
+      FROM paragraphs_item_field_data
+      WHERE status = 1
+      ))'
     );
     $contribs = $query->fetchAll();
     $contrib_no = count($contribs);

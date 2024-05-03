@@ -34,9 +34,9 @@ function nbbib_core_cron() {
   $current_minute = date('i');
   $datestamp = date('c');
 
-  if (TRUE) { // CRON DEV - RUN EVERY TIME!
+  //if (TRUE) { // CRON DEV - RUN EVERY TIME!
   // If it's between 12:45-1am server time...
-  // if ($current_hour < 1 and $current_minute > 44) {
+  if ($current_hour < 1 and $current_minute > 44) {
     \Drupal::logger('nbbib_core')->notice("NBBIB maintenance CRON job started at [$datestamp].");
     // Publication year config sync.
     \Drupal::logger('nbbib_core')->notice("Starting publication year config sync...");
@@ -569,13 +569,12 @@ function validate_contrib_form($element, &$form_state) {
 }
 
 /**
- * Submit handler for yabrm_book_edit. Removes empty contributors before saving to avoid errors.
+ * Submit handler for references. Removes empty contributors before saving to avoid errors.
  */
 function clr_blank_contribs(&$form, FormStateInterface $form_state) {
   $contribs = $form_state->getValue('contributors') ?? NULL;
-
   foreach ($contribs as $key => $contrib) {
-    if (empty($contrib['subform']['field_yabrm_contributor_person'])) {
+    if ($key != 'add_more' and empty($contrib['subform']['field_yabrm_contributor_person']['entities'])) {
       if (is_int($key)) {
         unset($contribs[$key]);
       }
@@ -811,80 +810,82 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
         foreach ($contribs_diff as $pid) {
           // Get contributor entity ID.
           $p_obj = Paragraph::load($pid);
-          $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'];
+          $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'] ?? NULL;
           $p_obj->delete();
-          // Fetch all references that point to the target contributor.
-          $books = "
-            SELECT entity_id
-            FROM yabrm_book__contributors
-            WHERE contributors_target_id IN (
+          if ($cid) {
+            // Fetch all references that point to the target contributor.
+            $books = "
               SELECT entity_id
-              FROM paragraph__field_yabrm_contributor_person
-              WHERE field_yabrm_contributor_person_target_id = $cid
-              AND entity_id IN (
-                SELECT id
-                FROM paragraphs_item_field_data
-                WHERE status = 1
+              FROM yabrm_book__contributors
+              WHERE contributors_target_id IN (
+                SELECT entity_id
+                FROM paragraph__field_yabrm_contributor_person
+                WHERE field_yabrm_contributor_person_target_id = $cid
+                AND entity_id IN (
+                  SELECT id
+                  FROM paragraphs_item_field_data
+                  WHERE status = 1
+                )
               )
-            )
-          ";
-          $sections = "
-            SELECT entity_id
-            FROM yabrm_book_section__contributors
-            WHERE contributors_target_id IN (
+            ";
+            $sections = "
               SELECT entity_id
-              FROM paragraph__field_yabrm_contributor_person
-              WHERE field_yabrm_contributor_person_target_id = $cid
-              AND entity_id IN (
-                SELECT id
-                FROM paragraphs_item_field_data
-                WHERE status = 1
+              FROM yabrm_book_section__contributors
+              WHERE contributors_target_id IN (
+                SELECT entity_id
+                FROM paragraph__field_yabrm_contributor_person
+                WHERE field_yabrm_contributor_person_target_id = $cid
+                AND entity_id IN (
+                  SELECT id
+                  FROM paragraphs_item_field_data
+                  WHERE status = 1
+                )
               )
-            )
-          ";
-          $articles = "
-            SELECT entity_id
-            FROM yabrm_journal_article__contributors
-            WHERE contributors_target_id IN (
+            ";
+            $articles = "
               SELECT entity_id
-              FROM paragraph__field_yabrm_contributor_person
-              WHERE field_yabrm_contributor_person_target_id = $cid
-              AND entity_id IN (
-                SELECT id
-                FROM paragraphs_item_field_data
-                WHERE status = 1
+              FROM yabrm_journal_article__contributors
+              WHERE contributors_target_id IN (
+                SELECT entity_id
+                FROM paragraph__field_yabrm_contributor_person
+                WHERE field_yabrm_contributor_person_target_id = $cid
+                AND entity_id IN (
+                  SELECT id
+                  FROM paragraphs_item_field_data
+                  WHERE status = 1
+                )
               )
-            )
-          ";
-          $theses = "
-            SELECT entity_id
-            FROM yabrm_thesis__contributors
-            WHERE contributors_target_id IN (
+            ";
+            $theses = "
               SELECT entity_id
-              FROM paragraph__field_yabrm_contributor_person
-              WHERE field_yabrm_contributor_person_target_id = $cid
-              AND entity_id IN (
-                SELECT id
-                FROM paragraphs_item_field_data
-                WHERE status = 1
+              FROM yabrm_thesis__contributors
+              WHERE contributors_target_id IN (
+                SELECT entity_id
+                FROM paragraph__field_yabrm_contributor_person
+                WHERE field_yabrm_contributor_person_target_id = $cid
+                AND entity_id IN (
+                  SELECT id
+                  FROM paragraphs_item_field_data
+                  WHERE status = 1
+                )
               )
-            )
-          ";
-          $book_ids =
-            array_column(\Drupal::database()->query($books)->fetchAll(), 'entity_id');
-          $section_ids =
-            array_column(\Drupal::database()->query($sections)->fetchAll(), 'entity_id');
-          $article_ids =
-            array_column(\Drupal::database()->query($articles)->fetchAll(), 'entity_id');
-          $thesis_ids =
-            array_column(\Drupal::database()->query($theses)->fetchAll(), 'entity_id');
-          // If no published reference contributor paragraphs are associated to this contributor...
-          if (empty($book_ids) and empty($section_ids) and empty($article_ids) and empty($thesis_ids)) {
-            // Load contributor object.
-            $c_obj = BibliographicContributor::load($cid) ?? NULL;
-            // Unpublish contributor and save.
-            $c_obj->set('status', FALSE);
-            $c_obj->save();            
+            ";
+            $book_ids =
+              array_column(\Drupal::database()->query($books)->fetchAll(), 'entity_id');
+            $section_ids =
+              array_column(\Drupal::database()->query($sections)->fetchAll(), 'entity_id');
+            $article_ids =
+              array_column(\Drupal::database()->query($articles)->fetchAll(), 'entity_id');
+            $thesis_ids =
+              array_column(\Drupal::database()->query($theses)->fetchAll(), 'entity_id');
+            // If no published reference contributor paragraphs are associated to this contributor...
+            if (empty($book_ids) and empty($section_ids) and empty($article_ids) and empty($thesis_ids)) {
+              // Load contributor object.
+              $c_obj = BibliographicContributor::load($cid) ?? NULL;
+              // Unpublish contributor and save.
+              $c_obj->set('status', FALSE);
+              $c_obj->save();            
+            }
           }
         }
       } 

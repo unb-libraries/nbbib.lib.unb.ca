@@ -22,6 +22,7 @@ settings:
       - bulletedList
       - numberedList
       - drupalInsertImage
+      - drupalMedia
       - blockQuote
       - insertTable
       - horizontalLine

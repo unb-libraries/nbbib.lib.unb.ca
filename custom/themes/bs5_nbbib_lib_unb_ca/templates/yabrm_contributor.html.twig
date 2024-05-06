@@ -119,11 +119,13 @@
         </div>
       {% endif %}
     </div>
+    {% set cid = content.name['#object'].id() %}
+    {% if drupal_view_result('nb_bibliography_citations', 'page_3', cid, cid, cid, cid)|length > 0 %}
       <div class="row" id="contributor-works">
-        {% set cid = content.name['#object'].id() %}
-        <h2 class="works-header">Bibliography</h2>
+        <h2 class="works-header">Bibliography Items</h2>
         {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
       </div>
+    {% endif %}
   </div>
 {% endif %}
 </div>

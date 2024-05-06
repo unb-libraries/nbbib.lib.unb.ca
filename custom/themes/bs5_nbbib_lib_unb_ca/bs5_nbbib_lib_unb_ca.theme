@@ -56,8 +56,10 @@ function bs5_nbbib_lib_unb_ca_preprocess_menu_local_action(&$variables) {
 function bs5_nbbib_lib_unb_ca_preprocess_facets_item_list(&$variables) {
   $facet = $variables['facet'];
   $widget = $facet->getWidget();
-  $widget['config']['min_value'] = 1700;
-  $widget['config']['max_value'] = 2000;
-  $facet->setWidget('range_slider', $widget['config']);
-  $variables['facet'] = $facet;
+  if ($widget == 'range_slider') {
+    $widget['config']['min_value'] = 1700;
+    $widget['config']['max_value'] = 2000;
+    $facet->setWidget('range_slider', $widget['config']);
+    $variables['facet'] = $facet;
+    }
 }

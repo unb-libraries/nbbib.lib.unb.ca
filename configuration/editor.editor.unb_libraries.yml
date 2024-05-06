@@ -43,7 +43,11 @@ settings:
         startIndex: true
       multiBlock: true
     ckeditor5_sourceEditing:
-      allowed_tags: {  }
+      allowed_tags:
+        - '<p class>'
+        - '<a class>'
+        - '<span class>'
+        - '<div class>'
     media_media:
       allow_view_mode_override: false
 image_upload:

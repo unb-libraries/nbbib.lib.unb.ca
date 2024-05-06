@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - media
 name: 'UNB Libraries'
 format: unb_libraries
 weight: -50
@@ -32,6 +33,15 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<br> <p class> <h2 id class> <h3 id class> <h4 id class> <h5 id class> <h6 id class> <a hreflang id class href> <cite class> <blockquote cite class> <code class> <ul type class> <ol type class start> <li class> <dl class> <dt class> <dd class> <sup class> <sub class> <img src alt data-entity-type data-entity-uuid data-align data-caption class> <table class> <caption class> <tbody class> <thead class> <tfoot class> <th class rowspan colspan> <td class rowspan colspan> <tr class> <div class> <small class> <span class> <strong> <em> <pre> <s> <hr>'
+      allowed_html: '<br> <p> <h2> <h3> <h4> <h5> <h6> <strong> <em> <s> <sub> <sup> <blockquote> <a href> <ul> <ol start> <li> <hr> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <img src alt height width data-caption data-align> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align>'
       filter_html_help: true
       filter_html_nofollow: false
+  media_embed:
+    id: media_embed
+    provider: media
+    status: true
+    weight: 100
+    settings:
+      default_view_mode: default
+      allowed_view_modes: {  }
+      allowed_media_types: {  }

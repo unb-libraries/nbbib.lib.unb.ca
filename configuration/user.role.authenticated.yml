@@ -5,6 +5,7 @@ dependencies:
   module:
     - fontawesome
     - google_analytics
+    - media
     - system
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
@@ -16,3 +17,4 @@ permissions:
   - 'access content'
   - 'access fontawesome additional settings'
   - 'opt-in or out of google analytics tracking'
+  - 'view media'

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - media
     - samlauth
     - system
     - yabrm
@@ -14,6 +15,7 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'view media'
   - 'view published bibliographic collection entities'
   - 'view published bibliographic contributor entities'
   - 'view published book reference entities'

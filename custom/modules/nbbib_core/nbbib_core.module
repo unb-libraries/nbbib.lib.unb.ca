@@ -740,9 +740,10 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
       $contribs_old = array_column($entity->original->contributors->getValue(), 'target_id');
       $contribs_new = array_column($entity->contributors->getValue(), 'target_id');
       $contribs_diff = array_diff($contribs_old, $contribs_new);
+      $contribs_xdif = array_diff($contribs_new, $contribs_old);
       
-      // If the published status changed...
-      if ($pub_old != $pub_new) {
+      // If the published status changed or contributors were added...
+      if ($pub_old != $pub_new or !empty($contribs_xdif)) {
         // Get referenced contributor paragraphs.
         $paragraphs = $entity->contributors->getValue();
         

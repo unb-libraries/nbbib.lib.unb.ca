@@ -443,7 +443,6 @@ html {
     }
   }
   body {
-    padding: 0 1rem;
     font-family: libre-franklin, arial, sans-serif !important;
     font-weight: 500;
     line-height: 140%;
@@ -528,14 +527,14 @@ html {
       font-style: italic;
     }
     header {
+      border-bottom: 1px $base-200 solid !important;
       nav.navbar {
+        padding: 0 1rem;
         justify-content: center;
-        padding: 0;
         .container.d-flex {
           flex-wrap: wrap;
           margin: 2rem 0 .2rem 0;
           padding: 0 0 2rem 0 !important;
-          border-bottom: 1px $base-200 solid !important;
           max-width: 1400px;
           .navbar-collapse {
             justify-content: flex-end !important;
@@ -602,9 +601,10 @@ html {
       }
     }
     main {
+      padding: 0 1rem;
       // Breadcrumbs.
       .breadcrumb {
-        margin-top: .0;
+        margin-top: .2rem;
         margin-bottom: 4rem;
         li {
           a {
@@ -990,7 +990,7 @@ html {
   }
   footer {
     margin-bottom: 1rem;
-    padding: 0;
+    padding: 0 1rem;
     background-color: $light !important;
     .container {
       margin-top: 3rem;

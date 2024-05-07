@@ -1,17 +1,17 @@
-uuid: 5b6cd50f-b49a-4645-8b4c-6bacbb2c6919
+uuid: a1ce17d3-7bd2-4f03-a060-945c8526a588
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.media.media_library
-    - field.field.media.nbbib_file_media_type.field_media_file
+    - field.field.media.video_url.field_media_oembed_video
     - image.style.medium
-    - media.type.nbbib_file_media_type
+    - media.type.video_url
   module:
     - image
-id: media.nbbib_file_media_type.media_library
+id: media.video_url.media_library
 targetEntityType: media
-bundle: nbbib_file_media_type
+bundle: video_url
 mode: media_library
 content:
   thumbnail:
@@ -27,7 +27,7 @@ content:
     region: content
 hidden:
   created: true
-  field_media_file: true
+  field_media_oembed_video: true
   langcode: true
   name: true
   search_api_excerpt: true

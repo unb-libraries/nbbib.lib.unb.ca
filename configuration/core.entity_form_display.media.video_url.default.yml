@@ -1,16 +1,16 @@
-uuid: 7be79314-f1a9-442f-927e-5cd36f53ab53
+uuid: dab744c4-d831-4111-9a27-480012b929cd
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.media.nbbib_file_media_type.field_media_file
-    - media.type.nbbib_file_media_type
+    - field.field.media.video_url.field_media_oembed_video
+    - media.type.video_url
   module:
-    - file
+    - media
     - path
-id: media.nbbib_file_media_type.default
+id: media.video_url.default
 targetEntityType: media
-bundle: nbbib_file_media_type
+bundle: video_url
 mode: default
 content:
   created:
@@ -19,12 +19,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_media_file:
-    type: file_generic
+  field_media_oembed_video:
+    type: oembed_textfield
     weight: 0
     region: content
     settings:
-      progress_indicator: throbber
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -32,14 +33,6 @@ content:
     region: content
     settings:
       include_locked: true
-    third_party_settings: {  }
-  name:
-    type: string_textfield
-    weight: -5
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   path:
     type: path
@@ -64,4 +57,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  name: true

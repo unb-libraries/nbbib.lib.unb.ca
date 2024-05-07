@@ -1,13 +1,13 @@
-uuid: 20950559-d692-4913-bcc0-9a5fe73bec99
+uuid: ab350550-511f-43ce-93e9-5298683ce6a9
 langcode: en
 status: true
 dependencies: {  }
-id: nbbib_file_media_type
-label: 'NBBIB File Media Type'
+id: image
+label: Image
 description: ''
-source: file
+source: image
 queue_thumbnail_downloads: false
 new_revision: false
 source_configuration:
-  source_field: field_media_file
+  source_field: field_media_image
 field_map: {  }

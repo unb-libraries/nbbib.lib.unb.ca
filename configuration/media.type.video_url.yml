@@ -1,0 +1,15 @@
+uuid: 34eca7c1-c71e-44b3-a722-cb6fd8e0f8bf
+langcode: en
+status: true
+dependencies: {  }
+id: video_url
+label: 'Video URL'
+description: ''
+source: 'oembed:video'
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_oembed_video
+  thumbnails_directory: 'public://oembed_thumbnails/[date:custom:Y-m]'
+  providers: {  }
+field_map: {  }

@@ -13,20 +13,18 @@ function bs5_nbbib_lib_unb_ca_preprocess_field(&$variables, $hook) {
     $contrib = $element['#object'];
 
     if ($contrib->bundle() == 'yabrm_contributor') {
-      $first_name = $contrib->get('first_name')->getValue()[0]['value'] ??
-        NULL;
-      $last_name = $contrib->get('last_name')->getValue()[0]['value'] ??
-        NULL;
-      $inst_name = $contrib->get('institution_name')->getValue()[0]['value'] ??
-        NULL;
-      $prefix = $contrib->get('prefix')->getValue()[0]['value'] ??
-        NULL;
-      $suffix = $contrib->get('suffix')->getValue()[0]['value'] ??
-        NULL;
+      $first_name = $contrib->get('first_name')->getValue()[0]['value'] ?? NULL;
+      $last_name = $contrib->get('last_name')->getValue()[0]['value'] ?? NULL;
+      $inst_name = $contrib->get('institution_name')->getValue()[0]['value'] ?? NULL;
+      $prefix = $contrib->get('prefix')->getValue()[0]['value'] ?? NULL;
+      $suffix = $contrib->get('suffix')->getValue()[0]['value'] ?? NULL;
+      $birth = $contrib->get('birth_year')->getValue()[0]['value'] ?? '?';
+      $death = $contrib->get('death_year')->getValue()[0]['value'] ?? NULL;
+      $birth_death = ($birth == '?' and $death == NULL) ? NULL : "$birth-$death";
       $full_name = $inst_name ?? trim("$prefix $first_name $last_name $suffix");
-
       // Replace field with fist_name last_name.
       $variables['items'][0]['content']['#context']['value'] = $full_name;
+      $variables['birth_death'] = $birth_death;
     }
   }
 }

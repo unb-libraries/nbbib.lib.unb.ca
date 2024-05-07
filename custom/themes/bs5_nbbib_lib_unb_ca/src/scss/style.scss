@@ -384,13 +384,6 @@ html {
               text-align: start;
               color: $base-700;
             }
-            #birth-death {
-              position: relative;
-              float: right;
-              top: -35.5rem;
-              font-style: italic;
-              color: $base-700;
-            }
             .field--name-pic-credit {
               * {
                 font-size: 15px;
@@ -685,8 +678,18 @@ html {
           .region-content {
             padding: 0;
             #block-bs5-nbbib-lib-unb-ca-page-title {
+              max-width: 100%;
               h1 {
+                display: flex;
+                align-items: baseline;
                 font-size: 30px !important;
+              }
+              .birth-death {
+                margin-left: auto;
+                font-style: italic;
+                color: $base-700;
+                font-size: 18px;
+                font-weight: normal;
               }
             }
             #block-bs5-nbbib-lib-unb-ca-content {

@@ -63,6 +63,8 @@
   </div>
 {% else %}
   {% for item in items %}
-    <div{{ attributes.addClass(classes, 'field--item') }}>{{ item.content }}</div>
+    <div{{ attributes.addClass(classes, 'field--item', 'd-inline-block') }}>{{ item.content }}</div>
   {% endfor %}
 {% endif %}
+<div{{ attributes.addClass('birth-death', 'd-inline-block') }}>{{ birth_death }}</div>
+

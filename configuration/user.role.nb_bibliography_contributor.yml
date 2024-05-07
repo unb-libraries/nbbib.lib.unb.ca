@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - filter.format.unb_libraries
+    - media.type.image
+    - media.type.video_url
     - node.type.essays_header
     - node.type.nbbib_essay
     - node.type.static_content_page
@@ -14,6 +16,7 @@ dependencies:
   module:
     - contextual
     - filter
+    - media
     - node
     - paragraphs
     - quickedit
@@ -36,6 +39,7 @@ permissions:
   - 'add journal article reference entities'
   - 'add thesis reference entities'
   - 'administer filters'
+  - 'create media'
   - 'create nbbib_essay content'
   - 'create static_content_page content'
   - 'create terms in nbbib_archives'
@@ -48,6 +52,7 @@ permissions:
   - 'delete all book section reference revisions'
   - 'delete all journal article reference revisions'
   - 'delete all thesis reference revisions'
+  - 'delete any media'
   - 'delete any nbbib_essay content'
   - 'delete any static_content_page content'
   - 'delete bibliographic contributor entities'
@@ -74,16 +79,21 @@ permissions:
   - 'revert all book section reference revisions'
   - 'revert all journal article reference revisions'
   - 'revert all thesis reference revisions'
+  - 'revert any image media revisions'
+  - 'revert any video_url media revisions'
   - 'revert nbbib_essay revisions'
   - 'revert static_content_page revisions'
+  - 'update any media'
   - 'use text format unb_libraries'
   - 'view all bibliographic contributor revisions'
   - 'view all bibliographic reference revisions'
   - 'view all book reference revisions'
   - 'view all book section reference revisions'
   - 'view all journal article reference revisions'
+  - 'view all media revisions'
   - 'view all thesis reference revisions'
   - 'view nbbib_essay revisions'
+  - 'view own unpublished media'
   - 'view published bibliographic collection entities'
   - 'view published bibliographic contributor entities'
   - 'view published book reference entities'

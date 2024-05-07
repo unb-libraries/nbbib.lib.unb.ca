@@ -775,12 +775,19 @@ html {
                   }
                 }
                 #edit-actions {
+                  width: 30%;
                   display: inline-block;
                   margin-top: .85rem;
                   input {
+                    width: 46%;
+                  }
+                  #edit-submit-nb-bibliography-citations {
                     padding: .3rem 1rem;
                     font-size: 18px !important;
                     font-weight: 500 !important;
+                    &:not(:has(+ #edit-reset)) {
+                      width: 100%;
+                    } 
                   }
                 }
                 .form-item-sort-by {

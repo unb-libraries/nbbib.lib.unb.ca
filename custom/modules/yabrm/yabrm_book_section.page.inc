@@ -259,7 +259,7 @@ function template_preprocess_yabrm_book_section(array &$variables) {
     $pub_wad .= ', ' . trim($pages);
   }
 
-  $variables['content']['pub_wad'] = $pub_wad . '. [book section]';
+  $variables['content']['pub_wad'] = $pub_wad . '. <em class="cite-type">[ book section ]</em>';
 }
 
 /**

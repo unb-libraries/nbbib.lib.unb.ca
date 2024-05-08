@@ -265,7 +265,7 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
     $pub_wad .= ', ' . trim($pages);
   }
 
-  $variables['content']['pub_wad'] = $pub_wad . '. [journal article]';
+  $variables['content']['pub_wad'] = $pub_wad . '. <em class="cite-type">[ journal article ]</em>';
 }
 
 /**

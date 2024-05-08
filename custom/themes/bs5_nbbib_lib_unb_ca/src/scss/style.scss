@@ -819,6 +819,12 @@ html {
                 .search-result {
                   margin-top: 2rem;
                   border-bottom: 1px solid $base-200;
+                  .views-field-bibliographic-citation {
+                    .cite-type {
+                      text-wrap: nowrap;
+                      font-style: normal !important;
+                    }
+                  }
                   .views-field-collections-5 {
                     margin-top: .5rem;
                     font-size: 15px;

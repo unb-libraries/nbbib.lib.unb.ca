@@ -255,5 +255,5 @@ function template_preprocess_yabrm_book(array &$variables) {
     $pub_wad = trim($pages) == 'n. pag.' ? $pub_wad : $pub_wad . ' pp.';
   }
 
-  $variables['content']['pub_wad'] = $pub_wad . ' [book]';
+  $variables['content']['pub_wad'] = $pub_wad . '. <em class="cite-type">[ book ]</em>';
 }

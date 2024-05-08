@@ -557,6 +557,9 @@ html {
                   &::after {
                     transform: rotate(180deg);
                     transition: transform .5s;
+                  }
+                  + ul .is-active {
+                    color: $link !important;
                   } 
                 }
                 &:has(+ ul .is-active) {
@@ -573,8 +576,9 @@ html {
           .region-nav-branding {
             .site-title {
               margin: 0 !important;
-              text-transform: none !important;
               border: none !important;
+              text-transform: none !important;
+              letter-spacing: 1px;
             }
             h1 {
               color: $link !important;

@@ -6,6 +6,13 @@ contrib-alpha-pager:
     - core/drupal
     - core/jquery
 
+navbar-active:
+  version: 1.x
+  js:
+    js/navbar-active.js: {}
+  dependencies:
+    - core/jquery
+
 toolbar-overrides:
   version: VERSION
   css:

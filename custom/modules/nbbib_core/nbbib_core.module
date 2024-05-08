@@ -202,6 +202,7 @@ function nbbib_core_page_attachments(array &$attachments) {
   }
 
   $attachments['#attached']['library'][] = 'nbbib_core/toolbar-overrides';
+  $attachments['#attached']['library'][] = 'nbbib_core/navbar-active';
 }
 
 /**

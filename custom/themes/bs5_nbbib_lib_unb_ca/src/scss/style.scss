@@ -479,7 +479,7 @@ html {
       margin-top: 2rem;
       padding-bottom: 0;
       border-top: none !important;
-      border-bottom: 1px solid $base-200;
+      border-bottom: 1px solid $base-150;
       .page-link {
         top: 1px !important;
         border-left: none !important;
@@ -489,7 +489,7 @@ html {
       .pagination {
         margin-top: 3rem;
         padding-top: 0;
-        border-top: 1px solid $base-200;
+        border-top: 1px solid $base-150;
         .page-item {
           border-radius: 0 !important;
           border: 1px solid transparent;
@@ -502,10 +502,10 @@ html {
             font-size: 15px;
           }
           &:first-of-type a {
-            border-right: 1px solid $base-200;
+            border-right: 1px solid $base-150;
           }
           &:last-of-type a {
-            border-left: 1px solid $base-200;
+            border-left: 1px solid $base-150;
           }
           &.active a {
             color: $body-color;
@@ -843,8 +843,13 @@ html {
                 }
               }
             }
-            .view-id-nb_bibliography_citations.view-display-id-page_4 {
+            .view-id-nb_bibliography_citations.view-display-id-page_3 {
               margin-left: 0;
+                .views-field-collections-5 {
+                margin-top: .5rem;
+                font-size: 15px;
+                color: #5e5c52;
+                }
             }
             .view-id-nb_bibliography_collections.view-display-id-page_1 {
               * {

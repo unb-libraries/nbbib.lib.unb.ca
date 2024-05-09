@@ -3,8 +3,7 @@ contrib-alpha-pager:
   js:
     js/contrib-alpha-pager.js: {}
   dependencies:
-    - core/drupal
-    - core/jquery
+     - core/jquery
 
 facet-hard-limit-plus:
   version: VERSION

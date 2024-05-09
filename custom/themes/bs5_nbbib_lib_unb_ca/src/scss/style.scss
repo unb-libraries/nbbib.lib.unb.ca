@@ -598,6 +598,7 @@ html {
     }
     main {
       padding: 0 1rem;
+      min-height: calc(100vh - 320px);
       // Breadcrumbs.
       .breadcrumb {
         margin-top: .2rem;
@@ -610,6 +611,12 @@ html {
           &:not(:first-child) {
             font-style: italic;
           }
+        }
+      }
+      #description {
+        ul {
+          padding-left: 2rem !important;
+          list-style: disc;
         }
       }
       .region-sidebar-first {
@@ -709,7 +716,7 @@ html {
                 ul {
                   list-style: disc;
                   li {
-                    margin-left: 1rem;
+                    margin-left: 2rem;
                   }
                 }
                 .subnav {

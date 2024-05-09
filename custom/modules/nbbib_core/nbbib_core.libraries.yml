@@ -6,6 +6,13 @@ contrib-alpha-pager:
     - core/drupal
     - core/jquery
 
+facet-hard-limit-plus:
+  version: VERSION
+  js:
+    js/facet_hard_limit_plus.js: {}
+  dependencies:
+    - core/jquery
+
 navbar-active:
   version: 1.x
   js:

@@ -197,6 +197,12 @@ function nbbib_core_theme($existing, $type, $theme, $path) {
  * Implements hook_page_attachments().
  */
 function nbbib_core_page_attachments(array &$attachments) {
+  $current_route = \Drupal::routeMatch()->getRouteName();
+
+  if($current_route === 'nbbib_core.bibliography') {
+    // Attach custom facet feature to Bibliography view.
+    $attachments['#attached']['library'][] = 'nbbib_core/facet-hard-limit-plus';
+  }
   if (!\Drupal::currentUser()->hasPermission('access toolbar')) {
     return;
   }

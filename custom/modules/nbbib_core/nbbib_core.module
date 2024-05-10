@@ -197,6 +197,7 @@ function nbbib_core_theme($existing, $type, $theme, $path) {
  * Implements hook_page_attachments().
  */
 function nbbib_core_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'nbbib_core/navbar-active';
   $current_route = \Drupal::routeMatch()->getRouteName();
 
   if($current_route === 'nbbib_core.bibliography') {
@@ -208,7 +209,6 @@ function nbbib_core_page_attachments(array &$attachments) {
   }
 
   $attachments['#attached']['library'][] = 'nbbib_core/toolbar-overrides';
-  $attachments['#attached']['library'][] = 'nbbib_core/navbar-active';
 }
 
 /**

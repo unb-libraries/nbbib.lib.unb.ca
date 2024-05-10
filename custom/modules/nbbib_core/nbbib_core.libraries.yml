@@ -1,7 +1,7 @@
 contrib-alpha-pager:
-  version: 1.x
+  version: VERSION
   js:
-    js/contrib-alpha-pager.js: {}
+    js/contrib_alpha_pager.js: {}
   dependencies:
      - core/jquery
 
@@ -13,9 +13,9 @@ facet-hard-limit-plus:
     - core/jquery
 
 navbar-active:
-  version: 1.x
+  version: VERSION
   js:
-    js/navbar-active.js: {}
+    js/navbar_active.js: {}
   dependencies:
     - core/jquery
 

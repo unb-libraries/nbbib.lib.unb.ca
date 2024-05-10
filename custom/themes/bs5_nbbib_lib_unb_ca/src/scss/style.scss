@@ -84,7 +84,7 @@ html {
       }
     }
     main {
-      padding: 0 !important;
+      padding: 0 1rem !important;
       // Breadcrumbs.
       .breadcrumb {
         margin-top: 0;
@@ -1037,15 +1037,17 @@ html {
     }
     // Footer logo.
     #footer-logo-div {
+      width: 48%;
       img {
         width: 260px;
       }
     }
     // Footer copy.
     #footer-copy {
+      width: 52%;
       p {
         margin: 0;
-        padding-top: 1.5rem;
+        padding-top: .7rem;
         padding-bottom: 0;
         text-align: right;
         a {
@@ -1070,6 +1072,11 @@ html {
   }
 }
 @media screen and (max-width: 1199px) { 
+  form#views-exposed-form-nb-bibliography-citations-page-2 {
+    div.form-item-search-api-fulltext {
+      width: 100% !important;
+    }
+  }
 }
 @media screen and (max-width: 991px) {
   .region-nav-branding {

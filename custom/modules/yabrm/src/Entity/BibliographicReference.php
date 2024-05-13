@@ -853,7 +853,10 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
     $year = $this->getPublicationYear();
     $month = $this->getPublicationMonth();
     $day = $this->getPublicationDay();
-
+    if ($year < 101) {
+      return -59999999999 - $year;
+    }
+    
     if (!empty($year) && !empty($month) && !empty($day)) {
       return mktime(1, 1, 1, $month, $day, $year);
     }

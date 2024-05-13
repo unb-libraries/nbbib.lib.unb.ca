@@ -34,22 +34,22 @@ function nbbib_core_cron() {
   $current_minute = date('i');
   $datestamp = date('c');
 
-  //if (TRUE) { // CRON DEV - RUN EVERY TIME!
+  if (TRUE) { // CRON DEV - RUN EVERY TIME!
   // If it's between 12:45-1am server time...
-  if ($current_hour < 1 and $current_minute > 44) {
+  //if ($current_hour < 1 and $current_minute > 44) {
     \Drupal::logger('nbbib_core')->notice("NBBIB maintenance CRON job started at [$datestamp].");
     // Publication year config sync.
     \Drupal::logger('nbbib_core')->notice("Starting publication year config sync...");
     $query = \Drupal::database()->query(
       'SELECT MIN(publication_year) AS db_min
       FROM (
-      SELECT publication_year FROM yabrm_book t1 WHERE publication_year > 0
+      SELECT publication_year FROM yabrm_book t1 WHERE publication_year > 0 AND status = 1
       UNION
-      SELECT publication_year FROM yabrm_journal_article t2 WHERE publication_year > 0
+      SELECT publication_year FROM yabrm_journal_article t2 WHERE publication_year > 0 AND status = 1
       UNION
-      SELECT publication_year FROM yabrm_book_section t3 WHERE publication_year > 0
+      SELECT publication_year FROM yabrm_book_section t3 WHERE publication_year > 0 AND status = 1
       UNION
-      SELECT publication_year FROM yabrm_thesis t4 WHERE publication_year > 0
+      SELECT publication_year FROM yabrm_thesis t4 WHERE publication_year > 0 AND status = 1
       ) AS t5'
     );
     $db_min = $query->fetchAll()[0]->db_min;

@@ -54,8 +54,9 @@ class ArchiveCleanup extends QueueWorkerBase implements ContainerFactoryPluginIn
     $archive = Term::load($tid);
 
     if ($archive) {
-      $archive->delete();
-      $this->logger->notice("Cleanup: Deleted orphan archive [$tid].");
+      $archive->set('status', FALSE);
+      $archive->save();
+      $this->logger->notice("Cleanup: Unpublished orphan archive [$tid].");
     }
   }
 

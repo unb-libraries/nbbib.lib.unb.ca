@@ -54,8 +54,9 @@ class TopicCleanup extends QueueWorkerBase implements ContainerFactoryPluginInte
     $topic = Term::load($tid);
 
     if ($topic) {
-      $topic->delete();
-      $this->logger->notice("Cleanup: Deleted orphan topic [$tid].");
+      $topic->set('status', FALSE);
+      $topic->save();
+      $this->logger->notice("Cleanup: Unpublished orphan topic [$tid].");
     }
   }
 

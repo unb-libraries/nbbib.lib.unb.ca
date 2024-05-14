@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   cron = {"time" = 60}
  * )
  */
-class ArchiveCleanup extends QueueWorkerBase implements ContainerFactoryPluginInterface {
+class ArchiveCleanupHard extends QueueWorkerBase implements ContainerFactoryPluginInterface {
   /**
    * The logger service.
    *
@@ -54,9 +54,8 @@ class ArchiveCleanup extends QueueWorkerBase implements ContainerFactoryPluginIn
     $archive = Term::load($tid);
 
     if ($archive) {
-      $archive->set('status', FALSE);
-      $archive->save();
-      $this->logger->notice("Cleanup: Unpublished orphan archive [$tid].");
+      $archive->delete();
+      $this->logger->notice("Cleanup: Deleted orphan archive [$tid].");
     }
   }
 

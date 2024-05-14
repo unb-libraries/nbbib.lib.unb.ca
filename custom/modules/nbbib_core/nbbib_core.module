@@ -34,9 +34,9 @@ function nbbib_core_cron() {
   $current_minute = date('i');
   $datestamp = date('c');
 
-  if (TRUE) { // CRON DEV - RUN EVERY TIME!
+  // if (TRUE) { // CRON DEV - RUN EVERY TIME!
   // If it's between 12:45-1am server time...
-  //if ($current_hour < 1 and $current_minute > 44) {
+  if ($current_hour < 1 and $current_minute > 44) {
     \Drupal::logger('nbbib_core')->notice("NBBIB maintenance CRON job started at [$datestamp].");
     // Publication year config sync.
     \Drupal::logger('nbbib_core')->notice("Starting publication year facet sync...");
@@ -102,7 +102,8 @@ function nbbib_core_cron() {
     }
 
     // Cleanup orphan topics.
-    \Drupal::logger('nbbib_core')->notice("Starting orphan topic term cleanup...");
+    // Unpublish.
+    \Drupal::logger('nbbib_core')->notice("Starting orphan topic term cleanup (unpublish)...");
     $query = \Drupal::database()->query(
       "SELECT tid
       FROM taxonomy_term_field_data
@@ -119,13 +120,47 @@ function nbbib_core_cron() {
 
     // If orphans found...
     if ($topic_no) {
-      \Drupal::logger('nbbib_core')->notice("Found [$topic_no] orphan topics.");
+      \Drupal::logger('nbbib_core')->notice("Found [$topic_no] orphan topics (unpublish).");
 
       // Call topics cleanup queue.
       /** @var QueueFactory $queue_factory */
       $queue_factory = \Drupal::service('queue');
       /** @var QueueInterface $queue */
       $queue = $queue_factory->get('topic_cleanup');
+
+      // Pass each contrib id to cleanup queue (unpublish).
+      foreach ($topics as $topic) {
+        $item = new \stdClass();
+        $item->tid = $topic->tid;
+        $queue->createItem($item);
+      }
+    }
+    else {
+      \Drupal::logger('nbbib_core')->notice("No orphan topics found (unpublish).");
+    }
+    // Delete.
+    \Drupal::logger('nbbib_core')->notice("Starting orphan topic term cleanup (delete)...");
+    $query = \Drupal::database()->query(
+      "SELECT tid
+      FROM taxonomy_term_field_data
+      WHERE vid = 'yabrm_reference_topic'
+      AND status = 1
+      AND tid NOT IN (SELECT topics_target_id FROM yabrm_book__topics)
+      AND tid NOT IN (SELECT topics_target_id FROM yabrm_book_section__topics)
+      AND tid NOT IN (SELECT topics_target_id FROM yabrm_journal_article__topics)
+      AND tid NOT IN (SELECT topics_target_id FROM yabrm_thesis__topics)"
+    );
+
+    $topics = $query->fetchAll();
+    $topic_no = count($topics);
+
+    // If orphans found...
+    if ($topic_no) {
+      \Drupal::logger('nbbib_core')->notice("Found [$topic_no] orphan topics (delete).");
+
+      // Call topics cleanup queue (delete).
+      /** @var QueueInterface $queue */
+      $queue = $queue_factory->get('topic_cleanup_hard');
 
       // Pass each contrib id to cleanup queue.
       foreach ($topics as $topic) {
@@ -135,11 +170,12 @@ function nbbib_core_cron() {
       }
     }
     else {
-      \Drupal::logger('nbbib_core')->notice("No orphan topics found.");
+      \Drupal::logger('nbbib_core')->notice("No orphan topics found (delete).");
     }
 
     // Cleanup orphan archives.
-    \Drupal::logger('nbbib_core')->notice("Starting orphan archive term cleanup...");
+    // Unpublish.
+    \Drupal::logger('nbbib_core')->notice("Starting orphan archive term cleanup (unpublish)...");
     $query = \Drupal::database()->query(
       "SELECT tid
       FROM taxonomy_term_field_data
@@ -156,13 +192,46 @@ function nbbib_core_cron() {
 
     // If orphans found...
     if ($archive_no) {
-      \Drupal::logger('nbbib_core')->notice("Found [$archive_no] orphan archives.");
+      \Drupal::logger('nbbib_core')->notice("Found [$archive_no] orphan archives (unpublish).");
 
-      // Call topics cleanup queue.
+      // Call topics cleanup queue (unpublish).
       /** @var QueueFactory $queue_factory */
       $queue_factory = \Drupal::service('queue');
       /** @var QueueInterface $queue */
       $queue = $queue_factory->get('archive_cleanup');
+
+      // Pass each contrib id to cleanup queue (unpublish).
+      foreach ($archives as $archive) {
+        $item = new \stdClass();
+        $item->tid = $archive->tid;
+        $queue->createItem($item);
+      }
+    }
+    else {
+      \Drupal::logger('nbbib_core')->notice("No orphan archives found (unpublish).");
+    }
+    // Delete.
+    \Drupal::logger('nbbib_core')->notice("Starting orphan archive term cleanup (delete)...");
+    $query = \Drupal::database()->query(
+      "SELECT tid
+      FROM taxonomy_term_field_data
+      WHERE vid = 'nbbib_archives'
+      AND status = 1
+      AND tid NOT IN (SELECT archive_target_id FROM yabrm_book__archive)
+      AND tid NOT IN (SELECT archive_target_id FROM yabrm_book_section__archive)
+      AND tid NOT IN (SELECT archive_target_id FROM yabrm_journal_article__archive)
+      AND tid NOT IN (SELECT archive_target_id FROM yabrm_thesis__archive)"
+    );
+
+    $archives = $query->fetchAll();
+    $archive_no = count($archives);
+
+    // If orphans found...
+    if ($archive_no) {
+      \Drupal::logger('nbbib_core')->notice("Found [$archive_no] orphan archives (delete).");
+
+      // Call topics cleanup queue (delete).
+      $queue = $queue_factory->get('archive_cleanup_hard');
 
       // Pass each contrib id to cleanup queue.
       foreach ($archives as $archive) {
@@ -172,7 +241,7 @@ function nbbib_core_cron() {
       }
     }
     else {
-      \Drupal::logger('nbbib_core')->notice("No orphan archives found.");
+      \Drupal::logger('nbbib_core')->notice("No orphan archives found (delete).");
     }
   }
   else {
@@ -729,16 +798,16 @@ function nbbib_core_user_presave(EntityInterface $entity) {
 * Implements hook_ENTITY_presave().
 */
 function nbbib_core_entity_presave(EntityInterface $entity) {
-  // Publish contributors if bibliographic reference becomes published.
   $types = [
     'yabrm_book',
     'yabrm_book_section',
     'yabrm_journal_article',
     'yabrm_thesis',
   ];
-
+  
   // If updated entity has a bibliographic reference type...
   if (in_array($entity->bundle(), $types)) {
+    // Publish contributors, topics, and archives if bibliographic reference becomes published.
     // If this is an update operation.
     if ($entity->original) {
       // Get original and new values.
@@ -749,9 +818,15 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
       $contribs_new = array_column($entity->contributors->getValue(), 'target_id');
       $contribs_diff = array_diff($contribs_old, $contribs_new);
       $contribs_xdif = array_diff($contribs_new, $contribs_old);
+      $topics_old = array_column($entity->original->topics->getValue(), 'target_id');
+      $topics_new = array_column($entity->topics->getValue(), 'target_id');
+      $topics_xdif = array_diff($topics_new, $topics_old);
+      $archives_old = array_column($entity->original->archive->getValue(), 'target_id');
+      $archives_new = array_column($entity->archive->getValue(), 'target_id');
+      $archives_xdif = array_diff($archives_new, $archives_old);
       
-      // If the published status changed or contributors were added...
-      if ($pub_old != $pub_new or !empty($contribs_xdif)) {
+      // If the published status changed or contributors/topics/archives were added...
+      if ($pub_old != $pub_new or !empty($contribs_xdif) or !empty($topics_xdif) or !empty($archives_xdif)) {
         // Get referenced contributor paragraphs.
         $paragraphs = $entity->contributors->getValue();
         
@@ -796,6 +871,38 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
                 $c_obj->save();
               }
             }
+          }
+        }
+        // Get referenced topics.
+        $topics = $entity->topics->getValue();
+        
+        // Iterate through topics.
+        foreach ($topics as $topic) {
+          // Load term object.
+          $tid = $topic['target_id'];
+          $t_obj = Term::load($tid);
+          // If valid object...
+          if ($t_obj) {
+            // Update term published status to reflect reference.
+            $t_obj->set('status', $pub_new);
+            // Save topic.
+            $t_obj->save();
+          }
+        }
+        // Get referenced archives.
+        $archives = $entity->archive->getValue();
+        
+        // Iterate through archives.
+        foreach ($archives as $archive) {
+          // Load term object.
+          $tid = $archive['target_id'];
+          $t_obj = Term::load($tid);
+          // If valid object...
+          if ($t_obj) {
+            // Update term published status to reflect reference.
+            $t_obj->set('status', $pub_new);
+            // Save archive.
+            $t_obj->save();
           }
         }
       }

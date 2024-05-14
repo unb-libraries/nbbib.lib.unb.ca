@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   cron = {"time" = 60}
  * )
  */
-class TopicCleanup extends QueueWorkerBase implements ContainerFactoryPluginInterface {
+class TopicCleanupHard extends QueueWorkerBase implements ContainerFactoryPluginInterface {
   /**
    * The logger service.
    *
@@ -54,9 +54,8 @@ class TopicCleanup extends QueueWorkerBase implements ContainerFactoryPluginInte
     $topic = Term::load($tid);
 
     if ($topic) {
-      $topic->set('status', FALSE);
-      $topic->save();
-      $this->logger->notice("Cleanup: Unpublished orphan topic [$tid].");
+      $topic->delete();
+      $this->logger->notice("Cleanup: Deleted orphan topic [$tid].");
     }
   }
 

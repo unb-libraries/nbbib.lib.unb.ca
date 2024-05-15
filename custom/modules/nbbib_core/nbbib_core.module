@@ -1247,20 +1247,17 @@ function reindex_collection_refs($cid) {
  */
 function nbbib_core_views_pre_render($view) {
   if (isset($view) && $view->id() == 'nb_bibliography_citations') {
-    // Include current collection in view title.
-    $token = !empty($view->getExposedInput()['collections_5']) ?
-      $view->getExposedInput()['collections_5'] : NULL;
-
-    if (!empty($token)) {
-      $view->setTitle($view->getTitle() . ' - ' . $token);
+    // Include current facets in view title.
+    $active_facets = active_facet_page_title_get_active_facets();
+    if (empty($active_facets)) {
+      return;
     }
-    // Include current topic in view title.
-    $token = !empty($view->getExposedInput()['topic_names']) ?
-      $view->getExposedInput()['topic_names'] : NULL;
-
-    if (!empty($token)) {
-      $view->setTitle($view->getTitle() . ' - ' . $token);
-    }
+    $title = 'Bibliography: ' . implode(', ', $active_facets);
+    // Set the view title.
+    $view->setTitle($title);
+    // Set the route title.
+    $route = \Drupal::routeMatch()->getCurrentRouteMatch()->getRouteObject();
+    $route->setDefault('_title', $title);  
   }
 
   if (isset($view) && $view->id() == 'nb_bibliography_contributors') {
@@ -1268,8 +1265,34 @@ function nbbib_core_views_pre_render($view) {
   }
 }
 
+/**
+ * Gets an array of the active facets.
+ */
+function active_facet_page_title_get_active_facets() {
+  /** @var \Drupal\facets\FacetManager\DefaultFacetManager $facetManager */
+  $facetManager = \Drupal::service('facets.manager');
+  $enabled_facets = $facetManager->getEnabledFacets();
+  $items = [];
+  foreach ($enabled_facets as $facet) {
+    $processed = $facetManager->returnProcessedFacet($facet);
+    if ($processed) {
+      $facetManager->build($processed);
+      $results = $processed->getResults();
+      $active = $processed->getActiveItems();
+      foreach ($results as $result) {
+        if (in_array($result->getRawValue(), $active)) {
+          $items[] = $result->getDisplayValue();
+        }
+      }
+    }
+  }
+
+  return $items;
+}
+
 function nbbib_core_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {
   if ($data['tabs'] and is_array($data['tabs']) and str_contains(key(reset($data['tabs'])), 'entity.version_history:')) {
     array_shift($data['tabs'][0]);
   }
 }
+

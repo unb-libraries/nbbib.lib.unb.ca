@@ -4,10 +4,8 @@ status: true
 dependencies:
   config:
     - taxonomy.vocabulary.yabrm_reference_topic
-    - user.role.nb_bibliography_contributor
   module:
     - taxonomy
-    - user
 id: nb_bibliography_topics
 label: 'NB Bibliography Topics'
 module: views
@@ -237,10 +235,8 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: role
-        options:
-          role:
-            nb_bibliography_contributor: nb_bibliography_contributor
+        type: none
+        options: {  }
       cache:
         type: tag
         options: {  }
@@ -336,7 +332,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user.roles
       tags: {  }
   page_1:
     id: page_1
@@ -361,5 +356,4 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user.roles
       tags: {  }

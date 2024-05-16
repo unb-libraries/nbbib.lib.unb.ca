@@ -359,6 +359,11 @@ html {
                     p {
                       text-align: start;
                     }
+                    .field--name-field-website {
+                      a > svg {
+                        margin-left: .5rem;
+                      }
+                    }
                     .field__label {
                       margin-top: 1rem;
                       width: 100%;
@@ -830,7 +835,9 @@ html {
                   .views-field-bibliographic-citation {
                     .cite-type {
                       text-wrap: nowrap;
+                      color: $base-700;
                       font-style: normal !important;
+                      font-size: 15px;
                     }
                   }
                   .views-field-collections-5 {
@@ -846,8 +853,9 @@ html {
             }
             .views-field-bibliographic-citation .cite-type {
               text-wrap: nowrap;
+              color: $base-700;
               font-style: normal !important;
-            }
+              font-size: 15px;    }
             .view-id-nb_bibliography_citations.view-display-id-page_3 {
               margin-left: 0;
                 .views-field-collections-5 {

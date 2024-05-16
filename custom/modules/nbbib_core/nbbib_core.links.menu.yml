@@ -39,7 +39,7 @@ nbbib_core.collections.nb_imprints:
   description: 'New Brunswick Imprints'
   parent: nbbib_core.collections
   menu_name: main
-  url: internal:/collections/new_brunswick_imprints
+  url: internal:/collections/new-brunswick-imprints
   weight: 40
 nbbib_core.collections.religion:
   title: 'Religion'

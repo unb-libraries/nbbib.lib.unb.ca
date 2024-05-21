@@ -1,4 +1,4 @@
-uuid: 97c8c960-0378-409e-b008-50615cad064f
+uuid: 0751ba03-cd90-470f-b92e-02e0b8bb80ee
 langcode: en
 status: true
 dependencies:
@@ -6,12 +6,10 @@ dependencies:
     - system
   theme:
     - bs5_nbbib_lib_unb_ca
-_core:
-  default_config_hash: 3TdLB4ugGikiLZNF2yV24OnZZQxalGkd1SNd6sDaDUU
-id: bs5_nbbib_lib_unb_ca_page_title
+id: bs5_nbbib_lib_unb_ca_pagetitle
 theme: bs5_nbbib_lib_unb_ca
-region: content
-weight: -8
+region: breadcrumb
+weight: 0
 provider: null
 plugin: page_title_block
 settings:
@@ -22,5 +20,5 @@ settings:
 visibility:
   request_path:
     id: request_path
-    negate: true
-    pages: "<front>\r\n/bibliography*"
+    negate: false
+    pages: '/bibliography*'

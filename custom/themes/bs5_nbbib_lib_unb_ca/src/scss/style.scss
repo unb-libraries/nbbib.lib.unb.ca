@@ -1128,13 +1128,15 @@ html {
         width: 20% !important;
       }
       #edit-submit-nb-bibliography-citations {
-        width: 100% !important;
         margin: 0;
+        padding: 0 !important;
+        width: 100% !important;
       }
       #edit-reset {
         margin: 0 !important;
         padding-top: 0;
         width: 100% !important;
+        height: 2.4rem !important;
         border: none !important;
         background-color: $light !important;
         color: $link !important;

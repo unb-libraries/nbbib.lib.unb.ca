@@ -155,14 +155,14 @@ html {
               }
             }
             form#views-exposed-form-nb-bibliography-citations-page-2 {
-              width: 900px;
+              width: 66%;
               margin: auto;
               div.form-item-search-api-fulltext {
                 position: relative;
                 margin: 0;
                 width: 80%;
                 label[for="edit-search-api-fulltext"] {
-                  top: -1.4rem;
+                  top: -1.8rem;
                   left: 1rem;
                   font-size: 15px;                    
                   position: absolute;
@@ -774,7 +774,7 @@ html {
                   margin-right: 2rem;
                   label[for="edit-search-api-fulltext"] {
                     position: absolute;
-                    top: -1.4rem;
+                    top: -1.8rem;
                     font-size: 15px;
                     font-weight: normal;
                     transition: all .3s;
@@ -930,7 +930,7 @@ html {
                   margin-right: 2rem;
                   label[for="edit-name"] {
                     position: absolute;
-                    top: -1.4rem;
+                    top: -1.8rem;
                     font-size: 15px;
                     font-weight: normal;
                     transition: all .3s;
@@ -1093,8 +1093,11 @@ html {
 }
 @media screen and (max-width: 1199px) { 
   form#views-exposed-form-nb-bibliography-citations-page-2 {
-    div.form-item-search-api-fulltext {
-      width: 100% !important;
+    width: 100% !important;
+    label[for="edit-search-api-fulltext"] {
+      top: -1.8rem !important;
+      left: 1rem !important;
+      font-size: 15px !important;                    
     }
   }
 }

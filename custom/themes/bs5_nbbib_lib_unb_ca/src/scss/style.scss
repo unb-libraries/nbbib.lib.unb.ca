@@ -630,6 +630,9 @@ html {
           }
         }
       }
+      #block-bs5-nbbib-lib-unb-ca-pagetitle {
+        margin-bottom: 2rem !important;
+      }
       #description {
         ul {
           padding-left: 2rem !important;
@@ -814,8 +817,8 @@ html {
                   input {
                     width: 45%;
                     height: 100%;
-                    font-size: 18px !important;
-                    font-weight: 600 !important;
+                    font-size: 18px;
+                    font-weight: 600;
                     &#edit-submit-nb-bibliography-citations {  
                       border-start-start-radius: 0;
                       border-end-start-radius: 0;
@@ -1088,8 +1091,14 @@ html {
   }
 }
 
-@media screen and (max-width: 1399px) {
-  body.path-frontpage {
+@media screen and (max-width: 1416px) {
+  .view-nb-bibliography-citations {
+    div.form-item-search-api-fulltext {
+      width: 70% !important;
+    }
+    #edit-actions {
+      width: 30% !important;
+    }
   }
 }
 @media screen and (max-width: 1306px) {
@@ -1102,12 +1111,39 @@ html {
   }
 }
 @media screen and (max-width: 1199px) { 
-  form#views-exposed-form-nb-bibliography-citations-page-2 {
-    width: 100% !important;
-    label[for="edit-search-api-fulltext"] {
-      top: -1.8rem !important;
-      left: 1rem !important;
-      font-size: 15px !important;                    
+  .view-nb-bibliography-citations {
+    margin: 0 !important;
+    form#views-exposed-form-nb-bibliography-citations-page-1,
+    form#views-exposed-form-nb-bibliography-citations-page-2 {
+      width: 100% !important;
+      div.form-item-search-api-fulltext {
+        width: 80% !important;
+      }
+      label[for="edit-search-api-fulltext"] {
+        top: -1.8rem !important;
+        left: 1rem !important;
+        font-size: 15px !important;                    
+      }
+      #edit-actions {
+        width: 20% !important;
+      }
+      #edit-submit-nb-bibliography-citations {
+        width: 100% !important;
+        margin: 0;
+      }
+      #edit-reset {
+        margin: 0 !important;
+        padding-top: 0;
+        width: 100% !important;
+        border: none !important;
+        background-color: $light !important;
+        color: $link !important;
+        font-size: 15px !important;
+        &:hover {
+          color: $link-hover;
+          text-decoration: underline;
+        }
+      }
     }
   }
 }

@@ -613,6 +613,9 @@ html {
         }
       }
     }
+    #block-bs5-nbbib-lib-unb-ca-pagetitle {
+      margin-bottom: 1rem !important;
+    }
     main {
       padding: 0 1rem;
       min-height: calc(100vh - 320px);
@@ -630,9 +633,6 @@ html {
           }
         }
       }
-      #block-bs5-nbbib-lib-unb-ca-pagetitle {
-        margin-bottom: 2rem !important;
-      }
       #description {
         ul {
           padding-left: 2rem !important;
@@ -640,7 +640,7 @@ html {
         }
       }
       .region-sidebar-first {
-        margin-top: 3.25rem;
+        margin-top: 4.25rem;
         margin-right: 2rem;
         .block-facets {
           margin-bottom: 3rem;
@@ -724,7 +724,7 @@ html {
               }
             }
             #block-bs5-nbbib-lib-unb-ca-content {
-              margin-top: 2rem;
+              margin-top: 3rem;
               > div > .container {
                 padding: 0;
                 .row:has(> #ref-contribs) {
@@ -935,22 +935,26 @@ html {
             .view-id-nb_bibliography_contributors.view-display-id-page_1 {
               form#views-exposed-form-nb-bibliography-contributors-page-1 {
                 position: relative;
-                margin-top: 1rem;
-                height: 6rem;
+                margin: auto;
+                height: 10rem;
+                width: 66%;
                 div.form-item-name {
-                  width: 78%;
                   position: relative;
-                  margin-right: 2rem;
+                  margin: 0;
+                  width: 75%;
                   label[for="edit-name"] {
-                    position: absolute;
                     top: -1.8rem;
+                    left: 1rem;
                     font-size: 15px;
-                    font-weight: normal;
+                    position: absolute;
+                    font-weight: 600;
+                    color: $primary;
                     transition: all .3s;
                     &:has(+ input:not(:focus).empty) {
-                      top: 0;
-                      font-weight: 700;
+                      top: 1rem;
+                      left: 1rem;
                       font-size: 21px;
+                      font-weight: 700;
                       &:hover {
                         cursor: pointer;
                         color: $link-hover;
@@ -959,26 +963,57 @@ html {
                     }
                   }
                   input#edit-name {
-                    margin-right: 1rem;
+                    height: 3.4rem;
                     background-color: $light !important;
-                    border-radius: 0 !important;
-                    border-top: none !important;
-                    border-left: none !important;
-                    border-right: none !important;
-                    border-bottom: 1px solid $body-color;
-                    &:focus {
+                    border: 4px solid $primary;
+                    border-end-end-radius: 0;
+                    border-start-end-radius: 0;
+                    &:focus, 
+                    &:hover {
+                      border-color: $link-hover;
                       background-color: $base-50 !important;
-                      transition: background-color .3s;
+                      transition: all .3s;
                     }
                   }
                 }
                 #edit-actions {
                   display: inline-block;
-                  margin-top: .85rem;
+                  margin: 0;
+                  width: 25%;
+                  height: 3.4rem;
                   input {
+                    width: 45%;
+                    height: 100%;
+                    font-size: 18px;
+                    font-weight: 600;
+                    &#edit-submit-nb-bibliography-contributors {  
+                      border-start-start-radius: 0;
+                      border-end-start-radius: 0;
+                    }
+                  }
+                  #edit-submit-nb-bibliography-contributors {
                     padding: .3rem 1rem;
                     font-size: 18px !important;
-                    font-weight: 500 !important;
+                    &:not(:has(+ #edit-reset)) {
+                      width: 100%;
+                    } 
+                  }
+                }
+                .form-item-sort-by {
+                  display: block;
+                  position: absolute;
+                  top: 10rem;
+                  left: 0;
+                  right: 0;
+                  margin-left: auto;
+                  margin-right: 1rem;
+                  margin-top: 0;
+                  margin-bottom: 0;
+                  width: 420px;
+                  #edit-sort-by {
+                    display: inline-block;
+                    margin-left: 1rem;
+                    width: 18rem;
                   }
                 }
               }
@@ -1110,16 +1145,22 @@ html {
     }
   }
 }
-@media screen and (max-width: 1199px) { 
-  .view-nb-bibliography-citations {
+@media screen and (max-width: 1380px) { 
+  .view-nb-bibliography-citations,
+  .view-nb-bibliography-contributors {
     margin: 0 !important;
     form#views-exposed-form-nb-bibliography-citations-page-1,
-    form#views-exposed-form-nb-bibliography-citations-page-2 {
+    form#views-exposed-form-nb-bibliography-citations-page-2,
+    form#views-exposed-form-nb-bibliography-contributors-page-1 {
       width: 100% !important;
       div.form-item-search-api-fulltext {
         width: 80% !important;
       }
-      label[for="edit-search-api-fulltext"] {
+      div.form-item-name {
+        width: 80% !important;
+      }
+      label[for="edit-search-api-fulltext"],
+      label[for="edit-name"] {
         top: -1.8rem !important;
         left: 1rem !important;
         font-size: 15px !important;                    
@@ -1127,7 +1168,8 @@ html {
       #edit-actions {
         width: 20% !important;
       }
-      #edit-submit-nb-bibliography-citations {
+      #edit-submit-nb-bibliography-citations,
+      #edit-submit-nb-bibliography-contributors {
         margin: 0;
         padding: 0 !important;
         width: 100% !important;

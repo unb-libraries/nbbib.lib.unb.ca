@@ -1151,7 +1151,8 @@ html {
 }
 @media screen and (max-width: 1380px) { 
   .view-nb-bibliography-citations,
-  .view-nb-bibliography-contributors {
+  .view-nb-bibliography-contributors,
+  .block-views-exposed-filter-blocknb-bibliography-citations-page-2 {
     margin: 0 !important;
     form#views-exposed-form-nb-bibliography-citations-page-1,
     form#views-exposed-form-nb-bibliography-citations-page-2,

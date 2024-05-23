@@ -1252,7 +1252,7 @@ function nbbib_core_views_pre_render($view) {
     if (empty($active_facets)) {
       return;
     }
-    $title = 'Bibliography: ' . end($active_facets);
+    $title = 'Search - ' . end($active_facets);
     // Set the view title.
     $view->setTitle($title);
     // Set the route title.

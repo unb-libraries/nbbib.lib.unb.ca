@@ -145,19 +145,25 @@
           <a id="main-content"></a>
           <div{{ attributes.addClass('yabrm-collection') }}>
             {% if content %}
-                <div id="description">
-                  {{ content.description|field_value }}
-                </div>
-                {% if content.essays|field_value %}
-                  <div id="essays">
-                  <h2 class="essays-header">Related Essays</h2>
-                    <ul>
-                      {% for essay in content.essays|field_value %}
-                        <li>{{ essay }}</li>
-                      {% endfor %}
-                    </ul>
+              <div class="container">
+                <div class="row">
+                  <div id="description" class="col-md-8">
+                    {{ content.description|field_value }}
                   </div>
-                {% endif %}
+                  <div id="browse-search" class="col-md-4">
+                  </div>
+                </div>
+              </div>
+              {% if content.essays|field_value %}
+                <div id="essays">
+                <h2 class="essays-header">Related Essays</h2>
+                  <ul>
+                    {% for essay in content.essays|field_value %}
+                      <li>{{ essay }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
             {% endif %}
           </div>
         {% endblock %}

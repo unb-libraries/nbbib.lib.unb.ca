@@ -166,14 +166,14 @@ html {
                   left: 1rem;
                   font-size: 15px;                    
                   position: absolute;
-                  font-weight: 600;
+                  font-weight: 400;
                   color: $primary;
                   transition: all .3s;
                   &:has(+ input:not(:focus).empty) {
                     top: 1rem;
                     left: 1rem;
                     font-size: 21px;
-                    font-weight: 700;
+                    font-weight: 400;
                     &:hover {
                       cursor: pointer;
                       color: $link-hover;
@@ -780,14 +780,14 @@ html {
                     left: 1rem;
                     font-size: 15px;
                     position: absolute;
-                    font-weight: 600;
+                    font-weight: 400;
                     color: $primary;
                     transition: all .3s;
                     &:has(+ input:not(:focus).empty) {
                       top: 1rem;
                       left: 1rem;
                       font-size: 21px;
-                      font-weight: 700;
+                      font-weight: 400;
                       &:hover {
                         cursor: pointer;
                         color: $link-hover;
@@ -954,7 +954,7 @@ html {
                       top: 1rem;
                       left: 1rem;
                       font-size: 21px;
-                      font-weight: 700;
+                      font-weight: 400;
                       &:hover {
                         cursor: pointer;
                         color: $link-hover;

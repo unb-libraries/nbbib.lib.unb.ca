@@ -659,6 +659,11 @@ html {
           }
           &:not(:first-child) {
             font-weight: 600;
+            &::before {
+              content: "\203A" !important;
+              color: $base-300;
+              font-size: 25px;
+            }
           }
         }
       }

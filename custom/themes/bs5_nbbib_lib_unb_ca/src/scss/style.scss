@@ -498,7 +498,8 @@ html {
     ul.dropdown-menu,
     div.dropbutton-widget {
       background-color: $light !important;
-      border: 1px solid $base-200 !important;
+      border: 1px solid $base-150 !important;
+      box-shadow: -2px 4px 12px $base-200 !important;
       a:hover {
         background-color: $light !important;
       }

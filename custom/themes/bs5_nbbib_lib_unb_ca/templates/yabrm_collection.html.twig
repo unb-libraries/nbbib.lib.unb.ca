@@ -145,12 +145,16 @@
           <a id="main-content"></a>
           <div{{ attributes.addClass('yabrm-collection') }}>
             {% if content %}
-              <div class="container">
+              <div id="description-search" class="container">
                 <div class="row">
-                  <div id="description" class="col-md-8">
+                  <div id="description" class="col-md-9">
                     {{ content.description|field_value }}
                   </div>
-                  <div id="browse-search" class="col-md-4">
+                  <div id="search" class="col-md-3">
+                    <h2>Search this collection</h2>
+                    <p>Discover all tiles on record for this collection.</p>
+                    {% set collection = content.name['#object'].getName() %}
+                    <a href="/bibliography?f[0]=collection_s_string:{{ collection }}" class="btn btn-primary">Browse & Search</a>
                   </div>
                 </div>
               </div>

@@ -70,8 +70,10 @@ html {
     height: 1rem;
     width: 1rem;
   }
+  .btn {
+  }
   .btn:hover {
-    border-color: $link-hover;
+    border-color: $link-hover !important;
     background-color: $link-hover;
   }
   body.path-frontpage {
@@ -441,11 +443,34 @@ html {
         margin-top: 3rem;
         font-size: 24px;
       }
+      #search {
+        height: fit-content;
+        padding-bottom: 1rem;
+        background-color: $nbbib-lblue;
+        border-radius: 1rem;
+        h2 {
+          margin-top: 1rem;
+          border: none !important;
+          font-size: 21px;
+        }
+        * {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .btn {
+          width: 100%;
+          color: $nbbib-paper !important;
+          text-decoration: initial !important;
+        }
+        p {
+          font-size: 15px;
+        }
+      }
       #essays {
         .essays-header {
           & + ul li {
             padding: .4rem 0;
-            border-bottom: 1px solid $base-300;
+            border-bottom: 1px solid $base-150;
           }
         }
       }

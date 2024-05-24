@@ -561,13 +561,13 @@ html {
       font-style: italic;
     }
     header {
-      border-bottom: 1px $base-200 solid !important;
+      border-bottom: 1px $base-150 solid !important;
       nav.navbar {
         padding: 0 1rem;
         justify-content: center;
         .container.d-flex {
           flex-wrap: wrap;
-          margin: 2rem 0 .2rem 0;
+          margin: 2rem 0 0 0;
           padding: 0 0 2rem 0 !important;
           max-width: 1400px;
           .navbar-collapse {
@@ -575,9 +575,9 @@ html {
           }
           .region-nav-main {
             .nav-item {
-              padding-left: .8rem;
+              padding-left: 1.4rem;
               .nav-link {
-                font-weight: 700;
+                font-weight: 600;
                 font-size: 21px;
                 padding: .2rem 0;
                 text-decoration: none !important;
@@ -585,20 +585,34 @@ html {
                 &:active,
                 &:target,
                 &:hover {
-                  text-decoration: underline !important;
+                  text-decoration: none !important;
                   color: $link-hover !important;
                 }
                 &.is-active {
                   color: $link !important;
+                }
+                &.dropdown-toggle::after {
+                  position: relative;
+                  margin-left: 0;
+                  font-size: 36px;
+                  font-weight: normal;
+                  content: "\2304";
+                  border: none !important;
+                  &:hover {
+                    text-decoration: none !important;
+                    border: none !important;
+                  }
                 }       
                 &.dropdown-toggle[aria-expanded="false"]::after {
+                  top: -.4rem;
                   transform: initial;
-                  transition: transform .5s;
+                  transition: all .5s;
                 } 
                 &.dropdown-toggle[aria-expanded="true"] {
                   &::after {
+                    top: .2rem;
                     transform: rotate(180deg);
-                    transition: transform .5s;
+                    transition: all .5s;
                   }
                   + ul .is-active {
                     color: $link !important;
@@ -620,7 +634,8 @@ html {
               margin: 0 !important;
               border: none !important;
               text-transform: none !important;
-              letter-spacing: 1px;
+              letter-spacing: 0 !important;
+              font-weight: 600;
               color: $base-800;
             }
             h1 {
@@ -650,7 +665,7 @@ html {
       min-height: calc(100vh - 320px);
       // Breadcrumbs.
       .breadcrumb {
-        margin-top: .2rem;
+        margin-top: .4rem;
         margin-bottom: 4rem;
         li {
           a {

@@ -295,9 +295,6 @@ html {
             padding-bottom: 1rem;
             border-bottom: 1px solid $base-200;
           }
-          p, a {
-            //font-weight: 600;
-          }
         }
       }
     }
@@ -488,7 +485,6 @@ html {
     div.dropbutton-widget {
       background-color: $light !important;
       border: 1px solid $base-150 !important;
-      box-shadow: -2px 4px 12px $base-200 !important;
       a:hover {
         background-color: $light !important;
       }
@@ -603,6 +599,9 @@ html {
                     top: .2rem;
                     transform: rotate(180deg);
                     transition: all .5s;
+                  }
+                  + ul {
+                    box-shadow: -2px 4px 12px $base-200 !important;
                   }
                   + ul .is-active {
                     color: $link !important;

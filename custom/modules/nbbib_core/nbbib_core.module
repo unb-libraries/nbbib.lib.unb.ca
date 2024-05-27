@@ -314,6 +314,10 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
     // Override published input for better readability.
     $form['status']['#options']['1'] = 'Yes';
     $form['status']['#options']['0'] = 'No';
+  }  
+  if ($form['#id'] == "views-exposed-form-nb-bibliography-citations-page-1") {
+    $form['actions']['reset']['#access'] = (isset($form_state->getUserInput()['search_api_fulltext']) or 
+      isset($form_state->getUserInput()['f']));
   }
 }
 
@@ -346,12 +350,12 @@ function nbbib_core_views_query_alter($view, $query) {
     $userCurrent = \Drupal::currentUser();
     $uid = $userCurrent->id();
     // For non-editor users…
-    if($view->id() === 'nb_bibliography_citations' and $view->getTitle() === 'page_3' and !$userCurrent->hasRole('nb_bibliography_contributor')) {
+    if ($view->id() === 'nb_bibliography_citations' and $view->getTitle() === 'page_3' and !$userCurrent->hasRole('nb_bibliography_contributor')) {
       // …add a WHERE condition to only display published content.
       $query->addWhere(0, 'status', TRUE);
     }
   }
-  catch(Error $e) {
+  catch (Error $e) {
     drupal_set_message('The server encountered a problem. Please contact the site\'s administrator.', 'error');
     \Drupal::logger('nbbib_core')->error("Error adding filter to view in nbbib_core.module : %e",
       ['%e' => $e]

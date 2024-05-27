@@ -19,10 +19,10 @@
     {% for item in breadcrumb %}
       {% if (item.text != "Node") %}
         <li {{ item.attributes }}>
-          {% if item.url %}
+          {% if item.url and not loop.last %}
             <a href="{{ item.url }}">{{ item.text }}</a>
           {% else %}
-            {{ item.text }}
+            <span>{{ item.text }}</span>
           {% endif %}
         </li>
       {% endif %}

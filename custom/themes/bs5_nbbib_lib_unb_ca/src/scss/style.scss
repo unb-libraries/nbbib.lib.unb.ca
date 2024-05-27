@@ -90,18 +90,7 @@ html {
       }
     }
     main {
-      padding: 0 1rem !important;
-      // Breadcrumbs.
-      .breadcrumb {
-        margin-top: 0;
-        margin-bottom: 0;
-        li {
-          a {
-            margin: .5rem !important;
-            font-size: 15px;
-          }
-        }
-      }          
+      padding: 0 1rem !important;       
       > .container {
         .order-1 {
           margin-left: 0;
@@ -669,12 +658,15 @@ html {
         margin-top: .4rem;
         margin-bottom: 4rem;
         li {
-          a {
+          a, span {
             margin: .5rem !important;
             font-size: 15px;
           }
+          span {
+            color: $base-700;
+          }
           &:not(:first-child) {
-            font-weight: 600;
+            font-weight: 400;
             &::before {
               content: "\203A" !important;
               color: $base-300;

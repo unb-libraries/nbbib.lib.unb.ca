@@ -169,20 +169,20 @@
               <b>Copies</b>
 
               <div>
-                {% if content.archives %}
+                {% if content.archives or content.url %}
                   <ul>
                     {% for archive in content.archives %}
                       <li>{{ archive }}</li>
                     {% endfor %}
-                    {% endif %}
 
                     {% set urls = content.url %}
                     {% for url in content.url|field_value %}
                       <li>{{ url }}</li>
                     {% endfor %}
                   </ul>
+                {% endif %}
               </div>
-
+              
             </div>
           {% endif %}
         </div>

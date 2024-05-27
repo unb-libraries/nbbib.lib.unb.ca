@@ -579,18 +579,14 @@ html {
                 }
                 &.dropdown-toggle::after {
                   position: relative;
-                  margin-left: 0;
-                  font-size: 36px;
+                  margin-left: .4rem;
                   font-weight: normal;
-                  content: "\2304";
-                  border: none !important;
                   &:hover {
                     text-decoration: none !important;
                     border: none !important;
                   }
                 }       
                 &.dropdown-toggle[aria-expanded="false"]::after {
-                  top: -.4rem;
                   transform: initial;
                   transition: all .5s;
                 } 

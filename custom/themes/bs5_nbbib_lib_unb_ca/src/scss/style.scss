@@ -592,7 +592,6 @@ html {
                 } 
                 &.dropdown-toggle[aria-expanded="true"] {
                   &::after {
-                    top: .2rem;
                     transform: rotate(180deg);
                     transition: all .5s;
                   }

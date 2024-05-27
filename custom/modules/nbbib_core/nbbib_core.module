@@ -318,8 +318,8 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
   if ($form['#id'] == "views-exposed-form-nb-bibliography-citations-page-1") {
     // Display reset button if either Search API or facet input is present. 
     $input = $form_state->getUserInput();
-    $form['actions']['reset']['#access'] = (isset(input['search_api_fulltext']) or 
-      isset(input['f']));
+    $form['actions']['reset']['#access'] = (isset($input['search_api_fulltext']) or 
+      isset($input['f']));
   }
 }
 

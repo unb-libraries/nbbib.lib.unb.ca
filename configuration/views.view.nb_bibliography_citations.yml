@@ -20,7 +20,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Bibliography
+      title: Search
       fields:
         bibliographic_type:
           id: bibliographic_type

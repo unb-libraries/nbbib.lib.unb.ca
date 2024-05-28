@@ -47,7 +47,12 @@
   {{ title_suffix }}
   {% if exposed %}
     <div class="view-filters">
-      {{ exposed }}
+      {% if rows %}
+        {{ exposed }}
+      {% else %}
+        {% set exposed = exposed|filter((v, k) => k != 'sort_by') %}
+        {{ exposed }}
+      {% endif %}
     </div>
   {% endif %}
   {% if header %}

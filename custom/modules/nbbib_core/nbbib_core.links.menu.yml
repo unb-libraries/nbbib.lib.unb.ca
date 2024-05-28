@@ -1,6 +1,6 @@
 nbbib_core.biblio:
-  title: 'Bibliography'
-  description: 'Bibliography'
+  title: 'Search'
+  description: 'Search'
   parent: main
   menu_name: main
   route_name: nbbib_core.bibliography

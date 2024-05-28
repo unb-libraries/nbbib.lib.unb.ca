@@ -1,3 +1,18 @@
 "nid","alias","title","body"
-"1",,"Home","<p>Aliis pluribus ad comitatum imperatoris vinctum perduceret: quo percitus ille exitio urgente abrupto ferro eundem adoritur paulum. et quia languente dextera, letaliter ferire non potuit, iam districtum mucronem in proprium latus inpegit. hocque deformi genere mortis excessit e vita iustissimus rector ausus miserabiles casus levare multorum. hinc ille commotus ut iniusta perferens et indigna praefecti custodiam protectoribus mandaverat fidis. quo conperto montius tunc quaestor acer quidem sed ad lenitatem propensior, consulens in commune advocatos palatinarum primos scholarum adlocutus est mollius docens nec decere haec fieri nec prodesse addensque vocis obiurgatorio sonu quod si id placeret, post statuas constantii deiectas super adimenda vita praefecto conveniet securius cogitari. constituendi autem sunt qui sint in amicitia fines et quasi termini diligendi. de quibus tres video sententias ferri, quarum nullam probo, unam, ut eodem modo erga amicum adfecti simus, quo erga nosmet ipsos, alteram, ut nostra in amicos benevolentia illorum erga nos benevolentiae pariter aequaliterque respondeat, tertiam, ut, quanti quisque se ipse facit, tanti fiat ab amicis. eodem tempore etiam hymetii praeclarae indolis viri negotium est actitatum, cuius hunc novimus esse textum. cum.</p>"
-"2","/about","About","<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+"1",,"Home","<div class='container'>
+    <div class='row'>
+        <div class='col-12 col-md-8'>
+            <p class='fs-4 lh-base me-3'>
+                The <em>Tide &amp; Time: a New Brunswick Bibliography</em> is an ongoing project aimed at documenting New Brunswick’s printed heritage, and compiling a searchable bibliography of books, chapters, pamphlets, articles and other items about New Brunswick or by New Brunswick authors.
+            </p>
+        </div>
+        <div class='col-12 col-md-4'>
+            <p class='text-start'>
+                This broad, multidisciplinary resource includes focused topical bibliographical collections, profiles of NB authors, links to selected digital resources, and more.
+            </p>
+            <p class='text-start'>
+                Find out more <a href='/project-overview'>about the project</a>, including the <a href='/print-series'>NB Bibliography Series</a> from Gaspereau Press.
+            </p>
+        </div>
+    </div>
+</div>"

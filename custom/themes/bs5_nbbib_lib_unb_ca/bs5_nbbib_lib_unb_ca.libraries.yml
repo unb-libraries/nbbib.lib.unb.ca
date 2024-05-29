@@ -6,6 +6,8 @@ global-styling:
 global-scripts:
   js:
     dist/js/fancy-text-box.js: {}
+    dist/js/slideshow.js: {}
+    /libraries/siema/dist/siema.min.js: {}
   dependencies:
     - core/drupal
     - core/jquery

@@ -177,7 +177,7 @@
       "package": {
         "dist": {
           "type": "zip",
-          "url": "https://github.com/pawelgrzybek/siema/releases/tag/v1.5.1"
+          "url": "https://github.com/pawelgrzybek/siema/archive/refs/tags/v1.5.1.zip"
         },
         "name": "pawelgrzybek/siema",
         "type": "drupal-library",
@@ -225,6 +225,7 @@
     "harvesthq/chosen": "^1",
     "malsup/jquery.cycle": "^1",
     "oomphinc/composer-installers-extender": "^2",
+    "pawelgrzybek/siema": "1.5.1",
     "simeydotme/jquery-ui-slider-pips": "^1",
     "unb-libraries/composer-drupal-scaffold": "^10",
     "unb-libraries/saml_features": "dev-10.x-1.x"

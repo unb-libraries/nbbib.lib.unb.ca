@@ -72,7 +72,11 @@
     {% if count == 1 %}
       <div class="view-content">
     {% else %}
+      {% if id == 'nbbib_slideshow' %}
+        <div class="view-content multicol siema">
+      {% else %}
       <div class="view-content multicol">
+      {% endif %}
     {% endif %}
       {{ rows }}
     </div>

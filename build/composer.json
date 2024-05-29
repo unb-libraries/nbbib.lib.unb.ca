@@ -172,6 +172,18 @@
         "version": "1.x-dev"
       },
     "type": "package"
+    },
+    {
+      "package": {
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/OwlCarousel2/OwlCarousel2/archive/2.3.4.zip"
+        },
+        "name": "owlcarousel2/owlcarousel2",
+        "type": "drupal-library",
+        "version": "2.3.4"
+      },
+      "type": "package"
     }
   ],
   "require": {
@@ -194,6 +206,7 @@
     "drupal/jquery_ui": "^1",
     "drupal/jquery_ui_slider": "^2",
     "drupal/jquery_ui_touch_punch": "^1",
+    "drupal/owlcarousel2": "^2",
     "drupal/paragraphs": "^1",
     "drupal/pathauto": "^1",
     "drupal/quickedit": "^1", 
@@ -213,6 +226,7 @@
     "harvesthq/chosen": "^1",
     "malsup/jquery.cycle": "^1",
     "oomphinc/composer-installers-extender": "^2",
+    "owlcarousel2/owlcarousel2": "2.3.4",
     "simeydotme/jquery-ui-slider-pips": "^1",
     "unb-libraries/composer-drupal-scaffold": "^10",
     "unb-libraries/saml_features": "dev-10.x-1.x"

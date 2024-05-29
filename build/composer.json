@@ -172,18 +172,6 @@
         "version": "1.x-dev"
       },
     "type": "package"
-    },
-    {
-      "type":"package",
-      "package": {
-        "name":"ganlanyuan/tiny-slider",
-        "version":"2.9.3",
-        "type":"drupal-library",
-        "dist": {
-          "type":"zip",
-          "url":"https://github.com/ganlanyuan/tiny-slider/archive/refs/tags/v2.9.3.zip"
-        }
-      }
     }
   ],
   "require": {
@@ -215,7 +203,6 @@
     "drupal/search_api": "^1",
     "drupal/search_api_autocomplete": "^1",
     "drupal/search_api_solr": "^4",
-    "drupal/tiny_slider": "^1",
     "drupal/token": "^1",
     "drupal/twig_field_value": "^2",
     "drupal/twig_tweak": "^3",
@@ -223,7 +210,6 @@
     "drupal/views_timelinejs": "^4",
     "drupal/views_slideshow": "^5",
     "furf/jquery-ui-touch-punch": "dev-master",
-    "ganlanyuan/tiny-slider": "^2",
     "harvesthq/chosen": "^1",
     "malsup/jquery.cycle": "^1",
     "oomphinc/composer-installers-extender": "^2",

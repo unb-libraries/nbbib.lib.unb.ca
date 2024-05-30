@@ -177,30 +177,6 @@
       "package": {
         "dist": {
           "type": "zip",
-          "url": "https://github.com/pawelgrzybek/siema/archive/refs/tags/v1.5.1.zip"
-        },
-        "name": "pawelgrzybek/siema",
-        "type": "drupal-library",
-        "version": "1.5.1"
-      },
-      "type": "package"
-    },
-    {
-      "package": {
-        "dist": {
-          "type": "zip",
-          "url": "https://github.com/ganlanyuan/tiny-slider/archive/refs/tags/v2.9.3.zip"
-        },
-        "name": "ganlanyuan/tiny-slider",
-        "type": "drupal-library",
-        "version": "2.9.3"
-      },
-      "type": "package"
-    },
-    {
-      "package": {
-        "dist": {
-          "type": "zip",
           "url": "https://github.com/OwlCarousel2/OwlCarousel2/archive/2.3.4.zip"
         },
         "name": "owlcarousel2/owlcarousel2",
@@ -246,12 +222,10 @@
     "drupal/views_timelinejs": "^4",
     "drupal/views_slideshow": "^5",
     "furf/jquery-ui-touch-punch": "dev-master",
-    "ganlanyuan/tiny-slider": "2.9.3",
     "harvesthq/chosen": "^1",
     "malsup/jquery.cycle": "^1",
     "oomphinc/composer-installers-extender": "^2",
     "owlcarousel2/owlcarousel2": "2.3.4",
-    "pawelgrzybek/siema": "1.5.1",
     "simeydotme/jquery-ui-slider-pips": "^1",
     "unb-libraries/composer-drupal-scaffold": "^10",
     "unb-libraries/saml_features": "dev-10.x-1.x"

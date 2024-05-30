@@ -2,6 +2,7 @@ global-styling:
   css:
     theme:
       dist/css/style.css: {}
+      /libraries/owlcarousel2/dist/assets/owl.carousel.min.css: { minified: true }
 
 global-scripts:
   js:

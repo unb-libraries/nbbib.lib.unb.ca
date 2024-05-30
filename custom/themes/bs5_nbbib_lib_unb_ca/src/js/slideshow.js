@@ -1,6 +1,6 @@
 (function ($) {
   $(document).ready(function() {
-    $('nbbib-slideshow').owlCarousel({
+    $('owl-carousel').owlCarousel({
       items: 6,
       slideBy: 'page',
       loop: true,
@@ -26,4 +26,3 @@
     });
   });
 })(jQuery);
-  

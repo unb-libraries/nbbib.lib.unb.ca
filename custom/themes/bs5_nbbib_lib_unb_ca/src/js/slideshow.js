@@ -1,21 +1,29 @@
-(function($) {
-    'use strict';
-  
-    Drupal.behaviors.slideshow = {
-      attach: function (context, settings) {
-        $(document).ready( function() {
-          const mySiema = new Siema({
-            duration: 10000,
-            loop: true,
-            easing: 'linear',
-            perPage: 6,
-          });
-          
-          // listen for keydown event
-          mySiema.next();0
-          setInterval(() => mySiema.next(), 10000)
-        });
-      },
-    };
-  })(jQuery);
+(function ($) {
+  $(document).ready(function() {
+    $('nbbib-slideshow').owlCarousel({
+      items: 6,
+      slideBy: 'page',
+      loop: true,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      autoplaySpeed: 5000,
+      margin: 10,
+      slideTransition: 'linear',
+      dots: false,
+      nav: false,
+      autoplayHoverPause: true,
+      responsive: {
+        0: {
+          items:1
+        },
+        576: {
+          items:3
+        },
+        992: {
+          items:5
+        }
+      }
+    });
+  });
+})(jQuery);
   

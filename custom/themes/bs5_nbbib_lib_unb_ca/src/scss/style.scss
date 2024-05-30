@@ -101,32 +101,6 @@ html {
               margin: 2rem 0 4rem 0 !important;
               div[data-block="content"] {
                 position: relative;
-                #views_slideshow_cycle_teaser_section_nbbib_slideshow-block_1 {
-                  width: 100% !important;
-                  > .views_slideshow_cycle_slide {
-                    display: flex !important;
-                    padding: 0 1rem;
-                    justify-content: space-between;
-                    width: 100% !important;
-                    height: 400px;
-                    background-color: $light !important;
-                    .views-row {
-                      display: flex !important;
-                      &:nth-of-type(odd) {
-                        align-items: center;
-                      }
-                      &:nth-of-type(2n + 2) {
-                        align-items: start;
-                      }
-                      &:nth-of-type(4n + 4) {
-                        align-items: end;
-                      }
-                      img {
-                        border-radius: .5rem;
-                      }
-                    }
-                  }
-                }
                 #fade-overlay {
                   width: 100%;
                   height: 100%;

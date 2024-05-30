@@ -1,6 +1,6 @@
 (function ($) {
   $(document).ready(function() {
-    $('owl-carousel').owlCarousel({
+    $('.owl-carousel').owlCarousel({
       items: 6,
       slideBy: 'page',
       loop: true,

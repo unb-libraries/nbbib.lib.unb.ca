@@ -6,7 +6,7 @@
       slideBy: 'page',
       loop: true,
       autoplay: true,
-      autoplayTimeout: 50000,
+      autoplayTimeout: 5000,
       autoplaySpeed: 5000,
       slideTransition: 'linear',
       dots: false,

@@ -4,10 +4,9 @@
     owl.owlCarousel({
       loop: true,
       autoplay: true,
-      autoplayTimeout: 3000,
-      autoplaySpeed: 3000,
+      autoplayTimeout: 10000,
+      autoplaySpeed: 10000,
       autoplayHoverPause: true,
-      margin: 10,
       slideTransition: 'linear',
       dots: false,
       nav: false,
@@ -21,14 +20,12 @@
         992: {
           items:6
         }
-      }
+      },
     });
-    /*$('#block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1').on('mouseover', function() {
-      owl.trigger('stop.owl.autoplay');
+    owl.on('changed.owl.carousel', function () {
+      $('.owl-item').attr('style', 'width: fit-content !important');
     });
-    $('#block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1').on('mouseout', function() {
-      owl.trigger('play.owl.autoplay');
-    });*/
+    $('.owl-item').attr('style', 'width: fit-content !important');
   });
 })(jQuery);
   

@@ -103,8 +103,10 @@ html {
                 position: relative;
                 .owl-stage {
                   display: flex;
+                  column-gap: 2rem;
                   .owl-item {
                     display: flex;
+                    justify-content: center;
                     &:nth-of-type(odd) {
                       align-items: center;
                     }

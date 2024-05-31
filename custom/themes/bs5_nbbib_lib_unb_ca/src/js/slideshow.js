@@ -1,8 +1,8 @@
 (function ($) {
   $(document).ready(function() {
-    $('.owl-carousel').owlCarousel({
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
       items: 6,
-      slideBy: 'page',
       loop: true,
       autoplay: true,
       autoplayTimeout: 5000,
@@ -24,5 +24,9 @@
         }
       }
     });
+    $('#block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1').on('mouseover', function() {
+      owl.trigger('stop.owl.autoplay');
+    });  
   });
 })(jQuery);
+  

@@ -108,4 +108,8 @@
     </div>
   {% endif %}
 </div>
-<div id="fade-overlay"></div>
+{# <div id="fade-overlay"></div> #}
+{% if attributes.hasClass('view-nbbib-slideshow') %}
+  <div id="fade-overlay-left"></div>
+  <div id="fade-overlay-right"></div>
+{% endif %}

@@ -135,6 +135,28 @@ html {
                     rgba(255, 249, 232, 1) 100% 
                   );
                 }
+                #fade-overlay-left {
+                  width: 5%;
+                  height: 100%;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  z-index: 100;
+                  background-image: linear-gradient(to left,
+                      rgba(255, 249, 232, 0) 50%,
+                      rgb(255, 249, 232) 100%)
+                }
+                #fade-overlay-right {
+                  width: 5%;
+                  height: 100%;
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                  z-index: 100;
+                  background-image: linear-gradient(to right,
+                      rgba(255, 249, 232, 0) 50%,
+                      rgb(255, 249, 232) 100%)
+                }
               }
             }
             form#views-exposed-form-nb-bibliography-citations-page-2 {

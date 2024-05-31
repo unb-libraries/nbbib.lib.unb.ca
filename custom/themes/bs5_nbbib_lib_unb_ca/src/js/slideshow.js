@@ -11,7 +11,6 @@
       slideTransition: 'linear',
       dots: false,
       nav: false,
-      autoplayHoverPause: true,
       responsive: {
         0: {
           items:1
@@ -26,6 +25,9 @@
     });
     $('#block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1').on('mouseover', function() {
       owl.trigger('stop.owl.autoplay');
+    });  
+    $('#block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1').on('mouseout', function() {
+      owl.trigger('play.owl.autoplay');
     });  
   });
 })(jQuery);

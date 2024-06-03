@@ -26,11 +26,9 @@
       $('.owl-item').attr('style', 'width: fit-content !important');
     });
     $('.owl-item').attr('style', 'width: fit-content !important');
-    /*
     owl.autoplayTimeout = 0;
     owl.trigger('play.autoplay.owl');
     owl.autoplayTimeout = 4000;
-    */
   });
 })(jQuery);
   

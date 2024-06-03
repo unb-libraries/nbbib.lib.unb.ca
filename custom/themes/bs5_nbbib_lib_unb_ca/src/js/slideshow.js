@@ -26,12 +26,9 @@
       $('.owl-item').attr('style', 'width: fit-content !important');
     });
     $('.owl-item').attr('style', 'width: fit-content !important');
-    setTimeout(() => {
-      var carouselData = $carousel.data();
-      var carouselOptions = carouselData['owl.carousel'].options;
-        carouselOptions.autoplayTimeout = 6000;
-      $carousel.trigger('refresh.owl.carousel');
-    }, 1000);  
+    owl.autoplayTimeout = 0;
+    owl.trigger('play.autoplay.owl');
+    owl.autoplayTimeout = 4000;
   });
 })(jQuery);
   

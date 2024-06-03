@@ -4,7 +4,7 @@
     owl.owlCarousel({
       loop: true,
       autoplay: true,
-      autoplayTimeout: 4000,
+      autoplayTimeout: 3000,
       autoplaySpeed: 4000,
       autoplayHoverPause: true,
       slideTransition: 'linear',
@@ -28,7 +28,7 @@
     $('.owl-item').attr('style', 'width: fit-content !important');
     owl.autoplayTimeout = 0;
     owl.trigger('play.autoplay.owl');
-    owl.autoplayTimeout = 4000;
+    owl.autoplayTimeout = 3000;
   });
 })(jQuery);
   

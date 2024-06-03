@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.node.nbbib_slide.field_image
+    - field.field.node.nbbib_slide.field_image_media
     - image.style.thumbnail
     - node.type.nbbib_slide
   module:
     - image
+    - media_library
     - path
 id: node.nbbib_slide.default
 targetEntityType: node
@@ -27,6 +29,13 @@ content:
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_image_media:
+    type: media_library_widget
+    weight: 123
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   langcode:
     type: language_select

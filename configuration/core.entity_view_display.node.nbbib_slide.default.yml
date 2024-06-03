@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.nbbib_slide.field_image
+    - field.field.node.nbbib_slide.field_image_media
     - node.type.nbbib_slide
   module:
     - image
@@ -23,6 +24,15 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_image_media:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 103
     region: content
   links:
     settings: {  }

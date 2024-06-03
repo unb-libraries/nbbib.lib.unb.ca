@@ -81,7 +81,7 @@ display:
             image_link: ''
             image_style: medium
             image_loading:
-              attribute: lazy
+              attribute: eager
           group_column: ''
           group_columns: {  }
           group_rows: true

@@ -1,0 +1,13 @@
+uuid: 292e0146-a138-4090-a60a-7282aa833157
+langcode: en
+status: true
+dependencies: {  }
+id: nbbib_slides
+label: 'NBBIB Slides'
+media_types:
+  image: image
+  video_url: 0
+form_mode: default
+upload_location: slides
+show_alt: null
+show_title: null

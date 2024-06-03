@@ -31,4 +31,3 @@
     owl.autoplayTimeout = 3000;
   });
 })(jQuery);
-  

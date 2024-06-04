@@ -137,7 +137,7 @@ nbbib_core.editor.content.contribs:
   parent: nbbib_core.editor.content
   weight: 20
 nbbib_core.editor.content.other:
-  title: 'Essays/Pages'
+  title: 'Essays/Pages/Slides'
   description: 'Other site content.'
   url: internal:/admin/content
   parent: nbbib_core.editor.content

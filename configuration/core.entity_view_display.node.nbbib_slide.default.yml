@@ -4,10 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.node.nbbib_slide.field_image
-    - field.field.node.nbbib_slide.field_image_media
+    - field.field.node.nbbib_slide.field_link_to
     - node.type.nbbib_slide
   module:
     - image
+    - link
     - user
 id: node.nbbib_slide.default
 targetEntityType: node
@@ -25,12 +26,15 @@ content:
     third_party_settings: {  }
     weight: 102
     region: content
-  field_image_media:
-    type: entity_reference_entity_view
+  field_link_to:
+    type: link
     label: above
     settings:
-      view_mode: default
-      link: false
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
     third_party_settings: {  }
     weight: 103
     region: content

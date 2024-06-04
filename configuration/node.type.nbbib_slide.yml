@@ -8,9 +8,9 @@ third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-name: 'NBBIB Slide'
+name: 'Front Page Slide'
 type: nbbib_slide
-description: 'Content type for homepage slideshow slides.'
+description: 'Content type for front page slideshow slides.'
 help: ''
 new_revision: false
 preview_mode: 0

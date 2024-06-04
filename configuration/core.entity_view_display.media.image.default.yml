@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.media.image.field_media_image
-    - image.style.large
+    - image.style.contrib_photo
     - media.type.image
   module:
     - image
@@ -17,10 +17,10 @@ content:
     type: image
     label: visually_hidden
     settings:
-      image_link: ''
-      image_style: large
+      image_link: content
+      image_style: contrib_photo
       image_loading:
-        attribute: lazy
+        attribute: eager
     third_party_settings: {  }
     weight: 0
     region: content

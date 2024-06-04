@@ -132,36 +132,6 @@
     },
     {
       "package": {
-        "dist": {
-          "type": "file",
-          "url": "https://malsup.github.io/jquery.cycle.all.js"
-        },
-        "name": "malsup/jquery.cycle",
-        "require": {
-          "composer/installers": "^2"
-        },
-        "type": "drupal-library",
-        "version": "1.0"
-      },
-      "type": "package"
-    },
-    {
-      "package": {
-        "dist": {
-          "type": "file",
-          "url": "https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.js"
-        },
-        "name": "cdnjs/json2",
-        "require": {
-          "composer/installers": "^2"
-        },
-        "type": "drupal-library",
-        "version": "1.0"
-      },
-      "type": "package"
-    },
-    {
-      "package": {
         "name": "drupal/login_return_page",
         "source": {
           "reference": "8.x-1.x",
@@ -184,22 +154,9 @@
         "version": "2.3.4"
       },
       "type": "package"
-    },
-    {
-      "type": "package",
-      "package": {
-          "name": "enyo/dropzone",
-          "version": "6.0.0-beta.2",
-          "type": "drupal-library",
-          "dist": {
-              "url": "https://github.com/dropzone/dropzone/releases/download/v6.0.0-beta.2/dist.zip",
-              "type": "zip"
-          }
-      }
-  }
+    }
   ],
   "require": {
-    "cdnjs/json2": "^1",
     "drupal/admin_toolbar": "^3",
     "drupal/autocomplete_deluxe": "^2",
     "drupal/block_content_permissions": "^1",
@@ -209,7 +166,6 @@
     "drupal/core": "^10",
     "drupal/core-composer-scaffold": "^10",
     "drupal/core-recommended": "^10",
-    "drupal/dropzonejs": "^2",
     "drupal/easy_breadcrumb": "^2",
     "drupal/facets": "^2",
     "drupal/fontawesome": "^2",
@@ -219,7 +175,6 @@
     "drupal/jquery_ui": "^1",
     "drupal/jquery_ui_slider": "^2",
     "drupal/jquery_ui_touch_punch": "^1",
-    "drupal/media_bulk_upload": "^3",
     "drupal/paragraphs": "^1",
     "drupal/pathauto": "^1",
     "drupal/quickedit": "^1", 
@@ -233,12 +188,8 @@
     "drupal/twig_field_value": "^2",
     "drupal/twig_tweak": "^3",
     "drupal/views_contextual_filters_or": "^1",
-    "drupal/views_timelinejs": "^4",
-    "drupal/views_slideshow": "^5",
-    "enyo/dropzone": "6.0.0-beta.2",
     "furf/jquery-ui-touch-punch": "dev-master",
     "harvesthq/chosen": "^1",
-    "malsup/jquery.cycle": "^1",
     "oomphinc/composer-installers-extender": "^2",
     "owlcarousel2/owlcarousel2": "2.3.4",
     "simeydotme/jquery-ui-slider-pips": "^1",

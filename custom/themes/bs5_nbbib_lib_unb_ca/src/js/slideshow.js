@@ -22,6 +22,11 @@
         }
       },
     });
+    slides = $('.owl-item img');
+    slides.each( function() {
+      randomWidth = Math.floor(Math.random() * 50) + 200;
+      $(this).attr('style', `width: ${randomWidth}px !important;`);
+    });
     owl.on('changed.owl.carousel', function () {
       $('.owl-item').attr('style', 'width: fit-content !important');
     });

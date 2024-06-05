@@ -8,6 +8,7 @@ dependencies:
     - media.type.video_url
     - node.type.essays_header
     - node.type.nbbib_essay
+    - node.type.nbbib_slide
     - node.type.static_content_page
     - taxonomy.vocabulary.nbbib_archives
     - taxonomy.vocabulary.nbbib_locations
@@ -41,6 +42,7 @@ permissions:
   - 'administer filters'
   - 'create media'
   - 'create nbbib_essay content'
+  - 'create nbbib_slide content'
   - 'create static_content_page content'
   - 'create terms in nbbib_archives'
   - 'create terms in nbbib_locations'
@@ -54,17 +56,20 @@ permissions:
   - 'delete all thesis reference revisions'
   - 'delete any media'
   - 'delete any nbbib_essay content'
+  - 'delete any nbbib_slide content'
   - 'delete any static_content_page content'
   - 'delete bibliographic contributor entities'
   - 'delete book reference entities'
   - 'delete book section reference entities'
   - 'delete journal article reference entities'
   - 'delete nbbib_essay revisions'
+  - 'delete own nbbib_slide content'
   - 'delete static_content_page revisions'
   - 'delete terms in yabrm_reference_topic'
   - 'delete thesis reference entities'
   - 'edit any essays_header content'
   - 'edit any nbbib_essay content'
+  - 'edit any nbbib_slide content'
   - 'edit any static_content_page content'
   - 'edit bibliographic collection entities'
   - 'edit bibliographic contributor entities'

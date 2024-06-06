@@ -90,14 +90,21 @@ class ContextBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
    */
   public function build() {
     $is_front = $this->pathMatcher->isFrontPage();
-    $site_config = $this->configFactory->get('system.site');
-    // $site_name = $site_config->get('name');
-    $site_slogan = $site_config->get('slogan');
     $dom = new \DomDocument();
-    // Current php-dom supports <svg> tags, but mistakenly returns warnings. Error supporession used.  
-    @$html = $dom->loadHTMLFile('modules/custom/context_branding/src/html/site-logo.html');
-    $logo = $dom->getElementById('logo');
-    $site_name = $dom->saveHTML($logo);
+    // Current php-dom supports <svg> tags, but mistakenly returns warnings. Error suppression used.  
+    @$logo = $dom->loadHTMLFile('modules/custom/context_branding/src/html/site-logo.html');
+    // If there is a logo file...
+    if ($logo) {
+      $site_logo = $dom->getElementById('site-logo');
+      $site_name = $dom->saveHTML($site_logo);
+      $slogan = $dom->getElementById('site-slogan');
+      $site_slogan = $dom->saveHTML($slogan);
+    }
+    else {
+      $site_config = $this->configFactory->get('system.site');
+      $site_name = $site_config->get('name'); 
+      $site_slogan = $site_config->get('slogan');
+    }
 
     if ($is_front) {
       $site_title = "
@@ -138,16 +145,4 @@ class ContextBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
   public function getCacheMaxAge() {
     return 0;
   }
-
-  /**
-   * {@inheritdoc}
-   */
-  function getInnerHtml($node) {
-    $innerHTML= '';
-    $children = $node->childNodes;
-    foreach ($children as $child) {
-      $innerHTML .= $child->ownerDocument->saveXML($child);
-    }
-    return $innerHTML;
-  }  
 }

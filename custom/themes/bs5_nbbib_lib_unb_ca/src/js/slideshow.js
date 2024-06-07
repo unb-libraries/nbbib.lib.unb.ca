@@ -6,7 +6,7 @@
       items: 12,
       loop: true,
       autoplay: true,
-      autoplayTimeout: 2680,
+      autoplayTimeout: 3000,
       autoplaySpeed: 4000,
       autoplayHoverPause: true,
       slideTransition: 'linear',

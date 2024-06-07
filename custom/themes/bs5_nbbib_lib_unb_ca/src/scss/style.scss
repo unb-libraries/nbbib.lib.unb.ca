@@ -120,16 +120,11 @@ html {
                   .owl-item {
                     display: flex;
                     justify-content: center;
-                    &:nth-of-type(odd) {
-                      align-items: center;
-                    }
-                    &:nth-of-type(2n + 2) {
-                      align-items: start;
-                    }
-                    &:nth-of-type(4n + 4) {
-                      align-items: end;
+                    a {
+                      display: flex;
                     }
                     img {
+                      display: flex;
                       border-radius: .5rem;
                       max-width: 250px !important;
                     }
@@ -189,7 +184,7 @@ html {
                   position: absolute;
                   font-weight: 400;
                   color: $primary;
-                  transition: all .15s !important;
+                  transition: all .2s !important;
                   &:has(+ input:not(:focus).empty) {
                     top: 1rem;
                     left: 1rem;
@@ -198,7 +193,7 @@ html {
                     &:hover {
                       cursor: pointer;
                       color: $link-hover;
-                      transition: color .15s !important;
+                      transition: color .2s !important;
                     }
                   }
                 }
@@ -212,7 +207,7 @@ html {
                   &:hover {
                     border-color: $link-hover;
                     background-color: $base-50 !important;
-                    transition: all .15s !important;
+                    transition: all .2s !important;
                   }
                 }
               }
@@ -373,13 +368,13 @@ html {
                   &[aria-expanded="false"] {
                     .archival-caret {
                       transform: initial;
-                      transition: all .15s !important;
+                      transition: all .2s !important;
                     }            
                   }
                   &[aria-expanded="true"] {
                     .archival-caret {
                       transform: rotate(180deg);
-                      transition: all .15s !important;
+                      transition: all .2s !important;
                     }            
                   }
                   + [id^="archival-content"] {
@@ -619,12 +614,12 @@ html {
                 }       
                 &.dropdown-toggle[aria-expanded="false"]::after {
                   transform: initial;
-                  transition: all .5s;
+                  transition: all .2s;
                 } 
                 &.dropdown-toggle[aria-expanded="true"] {
                   &::after {
                     transform: rotate(180deg);
-                    transition: all .5s;
+                    transition: all .2s;
                   }
                   + ul {
                     box-shadow: -2px 4px 12px $base-200 !important;
@@ -658,7 +653,7 @@ html {
               cursor: pointer;
               svg {
                 fill: $link-hover;
-                transition: fill .15s;
+                transition: fill .2s;
               }
             }
             h1 {
@@ -671,7 +666,7 @@ html {
             a:hover {
               text-decoration: none !important;
               color: $link-hover !important;
-              transition: color .5s;
+              transition: color .2s;
             }        
           }
         }
@@ -755,7 +750,7 @@ html {
                 cursor: pointer;
                 text-decoration: underline;
                 color: $primary;
-                transition: color .15s !important;
+                transition: color .2s !important;
               }
             }
           }
@@ -857,7 +852,7 @@ html {
                     position: absolute;
                     font-weight: 400;
                     color: $primary;
-                    transition: all .15s !important;
+                    transition: all .2s !important;
                     &:has(+ input:not(:focus).empty) {
                       top: 1rem;
                       left: 1rem;
@@ -866,7 +861,7 @@ html {
                       &:hover {
                         cursor: pointer;
                         color: $link-hover;
-                        transition: color .15s !important;
+                        transition: color .2s !important;
                       }
                     }
                   }
@@ -880,7 +875,7 @@ html {
                     &:hover {
                       border-color: $link-hover;
                       background-color: $base-50 !important;
-                      transition: all .15s !important;
+                      transition: all .2s !important;
                     }
                   }
                 }
@@ -1024,7 +1019,7 @@ html {
                     position: absolute;
                     font-weight: 600;
                     color: $primary;
-                    transition: all .15s !important;
+                    transition: all .2s !important;
                     &:has(+ input:not(:focus).empty) {
                       top: 1rem;
                       left: 1rem;
@@ -1033,7 +1028,7 @@ html {
                       &:hover {
                         cursor: pointer;
                         color: $link-hover;
-                        transition: color .15s !important;
+                        transition: color .2s !important;
                       }
                     }
                   }
@@ -1047,7 +1042,7 @@ html {
                     &:hover {
                       border-color: $link-hover;
                       background-color: $base-50 !important;
-                      transition: all .15s !important;
+                      transition: all .2s !important;
                     }
                   }
                 }

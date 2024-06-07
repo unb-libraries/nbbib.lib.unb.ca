@@ -49,6 +49,6 @@
     // Start autoplay ASAP.
     owl.autoplayTimeout = 0;
     owl.trigger('play.autoplay.owl');
-    owl.autoplayTimeout = 2680;
+    owl.autoplayTimeout = 3000;
   });
 })(jQuery);

@@ -653,6 +653,7 @@ html {
               .navbar-brand {
                 .site-title,
                 .site-slogan {
+                  display: block !important;
                   border: none !important;
                   svg {
                     width: 100%;
@@ -662,8 +663,8 @@ html {
                 }
                 .site-title {
                   svg {
-                    width: 70% !important;
-                    height: 70% !important;
+                    width: 60% !important;
+                    height: 60% !important;
                   }
                 }
                 &:hover {

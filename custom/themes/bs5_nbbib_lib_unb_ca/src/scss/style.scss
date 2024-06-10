@@ -79,13 +79,14 @@ html {
   body.path-frontpage {
     header {
       .region-nav-branding {
+        margin-top: .5rem !important;
         .site-title,
         .site-slogan {
           svg {
             fill: $primary !important;
           }
         }
-        &:hover {
+        &:hover, *:hover {
           cursor: auto !important; 
         }
       }
@@ -95,7 +96,7 @@ html {
           margin-left: -.8rem;
           padding: 0 0 1.75rem 0 !important;
           #navbarSupportedContent {
-            padding-top: .25rem;
+            margin-top: .5rem !important;
           }
         }
       }

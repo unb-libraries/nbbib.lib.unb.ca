@@ -588,7 +588,7 @@ html {
           padding: 0 0 2rem 0 !important;
           max-width: 1400px;
           .navbar-collapse {
-            justify-content: flex-end !important;
+            justify-content: flex-end;
           }
           .region-nav-main {
             .nav-item {
@@ -1232,15 +1232,6 @@ html {
     }
   }
 }
-@media screen and (max-width: 1306px) {
-  #navbarSupportedContent {
-    margin-top: 1rem;
-    justify-content: flex-start !important;
-    .nav-item:first-of-type {
-      padding-left: 0;
-    }
-  }
-}
 @media screen and (max-width: 1380px) { 
   .view-nb-bibliography-citations,
   .view-nb-bibliography-contributors,
@@ -1288,10 +1279,15 @@ html {
     }
   }
 }
-@media screen and (max-width: 991px) {
-  .region-nav-branding {
-    .site-title {
+@media screen and (max-width: 1106px) {
+  #navbarSupportedContent {
+    margin-top: 1rem;
+    justify-content: flex-start !important;
+    .nav-item:first-of-type {
+      padding-left: 0;
     }
+  }
+  .site-title {
   }
 }
 @media screen and (max-width: 991px) {

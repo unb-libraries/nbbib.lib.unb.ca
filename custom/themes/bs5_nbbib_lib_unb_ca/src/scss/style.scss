@@ -82,8 +82,6 @@ html {
         .site-title,
         .site-slogan {
           svg {
-            width: 100%;
-            height: 100%;
             fill: $primary !important;
           }
         }
@@ -640,34 +638,49 @@ html {
             }
           }
           .region-nav-branding {
-            .site-title,
-            .site-slogan {
-              border: none !important;
-              svg {
-                width: 100%;
-                height: 100%;
-                fill: $base-800;
+            * {
+              margin: 0 !important;
+              padding: 0 !important;
+            }
+            #block-bs5-nbbib-lib-unb-ca-contextualbranding {
+              text-align: center;
+              .navbar-brand {
+                .site-title,
+                .site-slogan {
+                  border: none !important;
+                  svg {
+                    width: 100%;
+                    height: 100%;
+                    fill: $base-800;
+                  }
+                }
+                .site-title {
+                  svg {
+                    width: 70% !important;
+                    height: 70% !important;
+                  }
+                }
+                &:hover {
+                  cursor: pointer;
+                  svg {
+                    fill: $link-hover;
+                    transition: fill .2s;
+                  }
+                }
+                h1 {
+                  color: $link !important;
+                }
+                a:active,
+                a:focus,
+                a:focus-within,
+                a:target,
+                a:hover {
+                  text-decoration: none !important;
+                  color: $link-hover !important;
+                  transition: color .2s;
+                }        
               }
             }
-            &:hover {
-              cursor: pointer;
-              svg {
-                fill: $link-hover;
-                transition: fill .2s;
-              }
-            }
-            h1 {
-              color: $link !important;
-            }
-            a:active,
-            a:focus,
-            a:focus-within,
-            a:target,
-            a:hover {
-              text-decoration: none !important;
-              color: $link-hover !important;
-              transition: color .2s;
-            }        
           }
         }
       }

@@ -487,6 +487,7 @@ html {
   }
   body {
     &.page-node-type-static-content-page:has(.node__content h2),
+    &.page-node-type-static-content-page:has(.node__content article),
     &:has(.views-exposed-form),
     &:has(.pager) {
       padding-left: .8rem !important;

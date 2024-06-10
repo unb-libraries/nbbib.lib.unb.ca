@@ -486,7 +486,8 @@ html {
     }
   }
   body {
-    &:has(.views-exposed-form) {
+    &:has(.views-exposed-form),
+    &:has(.view-header) {
       padding-left: .8rem !important;
     } 
     font-family: libre-franklin, arial, sans-serif !important;

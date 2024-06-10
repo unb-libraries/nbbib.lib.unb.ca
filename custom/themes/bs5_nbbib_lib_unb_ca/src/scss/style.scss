@@ -102,7 +102,6 @@ html {
       }
     }
     main {
-      padding: 0 1rem !important;       
       > .container {
         .order-1 {
           margin-left: 0;
@@ -487,6 +486,9 @@ html {
     }
   }
   body {
+    &:has(.views-exposed-form) {
+      padding-left: .8rem !important;
+    } 
     font-family: libre-franklin, arial, sans-serif !important;
     font-weight: 500;
     line-height: 140%;
@@ -572,6 +574,7 @@ html {
       font-style: italic;
     }
     header {
+      padding: 0 1rem;
       border-bottom: 1px $base-150 solid !important;
       nav.navbar {
         padding: 0 1rem;

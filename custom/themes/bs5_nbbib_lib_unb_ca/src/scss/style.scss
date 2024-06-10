@@ -486,8 +486,9 @@ html {
     }
   }
   body {
+    &.page-node-type-static-content-page:has(.node__content h2),
     &:has(.views-exposed-form),
-    &:has(.view-header) {
+    &:has(.pager) {
       padding-left: .8rem !important;
     } 
     font-family: libre-franklin, arial, sans-serif !important;

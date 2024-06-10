@@ -1221,7 +1221,7 @@ html {
     }
   }
 }
-
+/*
 @media screen and (max-width: 1416px) {
   .view-nb-bibliography-citations {
     div.form-item-search-api-fulltext {
@@ -1232,20 +1232,25 @@ html {
     }
   }
 }
-@media screen and (max-width: 1380px) { 
+*/
+@media screen and (max-width: 1428px) { 
   .view-nb-bibliography-citations,
   .view-nb-bibliography-contributors,
   .block-views-exposed-filter-blocknb-bibliography-citations-page-2 {
+    * {
+      border-radius: 8px !important;
+    }
     margin: 0 !important;
     form#views-exposed-form-nb-bibliography-citations-page-1,
     form#views-exposed-form-nb-bibliography-citations-page-2,
     form#views-exposed-form-nb-bibliography-contributors-page-1 {
       width: 100% !important;
       div.form-item-search-api-fulltext {
-        width: 80% !important;
+        margin-bottom: 1rem !important;
+        width: 100% !important;
       }
       div.form-item-name {
-        width: 80% !important;
+        width: 100% !important;
       }
       label[for="edit-search-api-fulltext"],
       label[for="edit-name"] {
@@ -1253,33 +1258,29 @@ html {
         left: 1rem !important;
         font-size: 15px !important;                    
       }
-      #edit-actions {
-        width: 20% !important;
-      }
-      #edit-submit-nb-bibliography-citations,
-      #edit-submit-nb-bibliography-contributors {
-        margin: 0;
-        padding: 0 !important;
-        width: 100% !important;
-      }
-      #edit-reset {
-        margin: 0 !important;
-        padding-top: 0;
-        width: 100% !important;
-        height: 2.4rem !important;
-        border: none !important;
-        background-color: $light !important;
-        color: $link !important;
-        font-size: 15px !important;
-        &:hover {
-          color: $link-hover;
-          text-decoration: underline;
-        }
-      }
+    }
+  }
+  #edit-actions {
+    width: 40% !important;
+  }
+}
+@media screen and (max-width: 1376px) { 
+  #edit-actions {
+    display: flex !important;
+    justify-content: space-between;
+    input {
+      margin: 0 !important;
+      width: 49% !important;
+    }
+    #edit-submit-nb-bibliography-citations:not(:has(+ #edit-reset)) {
+      width: 100% !important;
     }
   }
 }
 @media screen and (max-width: 1106px) {
+  #edit-actions {
+    width: 100% !important;
+  }
   #navbarSupportedContent {
     margin-top: 1rem;
     justify-content: flex-start !important;
@@ -1297,20 +1298,6 @@ html {
       }
     }
   }
-  /*
-  #block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1 {
-    height: 200px !important;
-    #fade-overlay {
-      height: 200px !important;
-    }
-    .views-row {
-      margin: .4rem;
-    }
-    .views_slideshow_cycle_slide {
-      height: 200px !important;
-    }
-  }
-  */
   nav > .container,
   main > .container,
   footer > .container {

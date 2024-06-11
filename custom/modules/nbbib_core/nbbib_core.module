@@ -544,7 +544,6 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
     $form['url']['widget']['#after_build'][] = '_remove_url_help';
   }
 
-
   $contrib_forms = [
     'yabrm_contributor_edit_form',
     'yabrm_contributor_add_form',
@@ -581,6 +580,9 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
     $form['location']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
   };
 
+  if ($form_id == 'node_nbbib_slide_form') {
+    unset($form['field_link_to']['widget'][0]['uri']['#description']);
+  }
 }
 
 /**
@@ -798,6 +800,17 @@ function nbbib_core_user_presave(EntityInterface $entity) {
     $entity->addRole('nb_bibliography_contributor');
     $entity->addRole('nbbib_archivals_editor');
   }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function nbbib_core_node_presave(EntityInterface $entity) {
+  If ($entity->bundle() == "nbbib_slide") {
+    $title = $entity->field_link_to->getValue()[0]['title'];
+    $entity->set('title', $title);
+  }
+  dump($entity);
 }
 
 /**

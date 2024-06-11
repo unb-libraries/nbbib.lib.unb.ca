@@ -23,7 +23,7 @@ settings:
   file_directory: slides
   file_extensions: 'png gif jpg jpeg webp'
   max_filesize: ''
-  max_resolution: ''
+  max_resolution: 300x300
   min_resolution: ''
   alt_field: true
   alt_field_required: true

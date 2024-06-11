@@ -12,7 +12,7 @@ field_name: field_link_to
 entity_type: node
 bundle: nbbib_slide
 label: 'Link to'
-description: 'A URL the slide will link to on click.'
+description: 'Enter a full Tide & Time URL to a contributor record or a bibliographic record, eg. https://nbbib.lib.unb.ca/contributors/mccarthy-thandiwe'
 required: false
 translatable: false
 default_value: {  }

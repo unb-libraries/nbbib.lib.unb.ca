@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_image
     - field.storage.node.field_link_to
-    - image.style.medium
     - node.type.nbbib_slide
   module:
     - image
@@ -215,7 +214,7 @@ display:
           type: image
           settings:
             image_link: ''
-            image_style: medium
+            image_style: ''
             image_loading:
               attribute: eager
           group_column: ''

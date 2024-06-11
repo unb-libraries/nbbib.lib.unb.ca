@@ -125,7 +125,7 @@ class ContextBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
         </a>
       ";
       $site_slogan = "
-        <a href='/' title='Home' rel='home' class='site-slogan'>
+        <a href='/' title='Home' rel='home' class='site-slogan' tabindex='-1'>
           $site_slogan
         </a>
       ";

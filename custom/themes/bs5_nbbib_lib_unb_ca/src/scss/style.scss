@@ -92,9 +92,9 @@ html {
       }
       nav.navbar {
         .container.d-flex {
-          margin-top: 1.5rem;
+          margin-top: .5rem;
           margin-left: -.8rem;
-          padding: 0 0 1.75rem 0 !important;
+          padding: 0 0 .75rem 0 !important;
           #navbarSupportedContent {
             margin-top: .5rem !important;
           }
@@ -585,8 +585,8 @@ html {
         justify-content: center;
         .container.d-flex {
           flex-wrap: wrap;
-          margin: 2rem 0 0 0;
-          padding: 0 0 2rem 0 !important;
+          margin: 1rem 0 0 0;
+          padding: 0 0 1rem 0 !important;
           max-width: 1400px;
           .navbar-collapse {
             justify-content: flex-end;

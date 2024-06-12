@@ -1286,9 +1286,14 @@ html {
   }
 }
 @media screen and (max-width: 991px) {
-  body.path-frontpage {
-    .view-content {
-      .views-row {
+  #navbarSupportedContent {
+    margin-top: 1rem;
+    .navbar-nav {
+      .nav-item {
+        padding-left: 0;
+        .nav-link.dropdown-toggle {
+          justify-content: flex-start !important;
+        }
       }
     }
   }

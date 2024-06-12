@@ -76,6 +76,8 @@ html {
   .btn:focus {
     border-color: $link-hover !important;
     background-color: $link-hover !important;
+    text-decoration: initial !important;
+    color: $light !important;
   }
   body.path-frontpage {
     header {
@@ -470,8 +472,6 @@ html {
         }
         .btn {
           width: 100%;
-          color: $nbbib-paper !important;
-          text-decoration: initial !important;
         }
         p {
           font-size: 15px;
@@ -738,6 +738,10 @@ html {
           list-style: disc;
         }
       }
+      #collapseFacets {
+        display: none;
+        width: 100%;
+      }
       .region-sidebar-first {
         margin-top: 4.25rem;
         margin-right: 2rem;
@@ -875,8 +879,19 @@ html {
                   position: relative;
                   margin: 0;
                   width: 75%;
-                  li {
-                    &:first-of-type {
+                  label[for="edit-search-api-fulltext"] {
+                    top: -1.8rem;
+                    left: 1rem;
+                    font-size: 15px;
+                    position: absolute;
+                    font-weight: 400;
+                    color: $primary;
+                    transition: all .2s !important;
+                    &:has(+ input:not(:focus).empty) {
+                      top: 1rem;
+                      left: 1rem;
+                      font-size: 21px;
+                      font-weight: 400;
                       &:hover,
                       &:focus {
                         cursor: pointer;
@@ -1301,6 +1316,20 @@ html {
   main > .container,
   footer > .container {
     max-width: 100%;
+  }
+  #collapseFacets {
+    display: block !important;
+  }
+  .region-sidebar-first {
+    margin: 2rem 0 0 0 !important;
+  }
+  main {
+    .order-1 {
+      order: 2 !important;
+    }
+    .order-2 {
+      order: 1 !important;
+    }
   }
 }
 @media screen and (max-width: 640px) {

@@ -14,9 +14,8 @@
             exposedTextBox.removeClass("empty");
           }
         });
-        // On clicking the facet soft-limit link.
+        // Set empty class when leaving the box (blur).
         exposedTextBox.on('blur', function() {
-          // Append fontawesome icon to facet soft-limit link.
           if ( !$(this).val() ) {
             $(this).addClass("empty");
           } 

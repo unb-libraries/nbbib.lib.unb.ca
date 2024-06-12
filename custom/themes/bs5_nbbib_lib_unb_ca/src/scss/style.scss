@@ -875,19 +875,8 @@ html {
                   position: relative;
                   margin: 0;
                   width: 75%;
-                  label[for="edit-search-api-fulltext"] {
-                    top: -1.8rem;
-                    left: 1rem;
-                    font-size: 15px;
-                    position: absolute;
-                    font-weight: 400;
-                    color: $primary;
-                    transition: all .2s !important;
-                    &:has(+ input:not(:focus).empty) {
-                      top: 1rem;
-                      left: 1rem;
-                      font-size: 21px;
-                      font-weight: 400;
+                  li {
+                    &:first-of-type {
                       &:hover,
                       &:focus {
                         cursor: pointer;
@@ -1307,6 +1296,24 @@ html {
   main > .container,
   footer > .container {
     max-width: 100%;
+  }
+}
+@media screen and (max-width: 640px) {
+  footer {
+    .container {
+      .row.clearfix {
+        justify-content: center;
+        #footer-logo-div {
+          width: fit-content;
+        }
+        #footer-copy {
+          width: 100%;
+          p {
+            text-align: center;
+          }
+        }
+      }
+    }
   }
 }
 

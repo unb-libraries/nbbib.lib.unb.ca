@@ -901,6 +901,18 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: false
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: "<p><b>Your search did not match any authors, editors, illustrators, etc. in our records.</b></p>\r\n\r\n<p><i>Tide &amp; Time</i> is very much a work in progress, and you may have entered a search for someone that hasn’t been added yet. As more collections are added, the scope of the bibliography will improve.</p>\r\n\r\n<p>Bear in mind that many of the contributors listed in <i>Tide &amp; Time</i> are historical, which may use spelling variations of the name.</p>"
+          tokenize: false
       arguments:
         sort_name:
           id: sort_name
@@ -1045,6 +1057,7 @@ display:
           separator: ''
           hide_empty: false
       defaults:
+        empty: false
         style: false
         row: false
         fields: false

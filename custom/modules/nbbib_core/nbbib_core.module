@@ -810,7 +810,6 @@ function nbbib_core_node_presave(EntityInterface $entity) {
     $title = $entity->field_link_to->getValue()[0]['title'];
     $entity->set('title', $title);
   }
-  dump($entity);
 }
 
 /**

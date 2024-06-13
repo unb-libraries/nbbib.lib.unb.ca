@@ -902,7 +902,16 @@ display:
         operator: AND
         groups:
           1: AND
+      query:
+        type: search_api_query
+        options:
+          bypass_access: false
+          skip_access: false
+          preserve_facet_query_args: true
+          query_tags: {  }
+          contextual_filters_or: false
       defaults:
+        query: false
         relationships: false
         fields: true
         sorts: false

@@ -652,6 +652,7 @@ html {
             }
           }
           .region-nav-branding {
+            margin-right: 6rem !important;
             * {
               margin: 0 !important;
               padding: 0 !important;
@@ -695,6 +696,20 @@ html {
                   color: $link-hover !important;
                   transition: color .2s;
                 }        
+              }
+            }
+          }
+          .navbar-toggler {
+            width: 8rem;
+            .navbar-toggler-icon {
+              float: right;
+              &::before {
+                vertical-align: sub;
+                margin-left: -7rem;
+                color: $base-800;
+                font-size: 21px;
+                font-weight: 600;
+                content: "Menu";
               }
             }
           }
@@ -1332,7 +1347,21 @@ html {
     }
   }
 }
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 638px) {
+  header {
+    .navbar {
+      > .container {
+        .navbar-toggler {
+          margin-top: 1rem !important;
+          width: 16.5rem !important;
+          .navbar-toggler-icon {
+            float: initial !important;
+            margin-left: 4rem !important;
+          }
+        }
+      }
+    }
+  }
   footer {
     .container {
       .row.clearfix {

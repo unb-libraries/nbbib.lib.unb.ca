@@ -143,7 +143,7 @@ field_settings:
     label: 'General Author(s)'
     property_path: bibliographic_authors
     type: text
-    boost: 5.0
+    boost: 8.0
   bibliographic_citation:
     label: 'Reference Citation'
     property_path: bibliographic_citation
@@ -156,7 +156,7 @@ field_settings:
     label: Title
     property_path: bibliographic_title
     type: text
-    boost: 5.0
+    boost: 13.0
   bibliographic_type:
     label: 'General Reference Type'
     property_path: bibliographic_type
@@ -964,10 +964,12 @@ field_settings:
     label: 'Topic Names'
     property_path: topic_names
     type: text
+    boost: 3.0
   topic_names_string:
     label: 'Topic Names - String'
     property_path: topic_names_string
     type: string
+    boost: 3.0
   topics:
     label: Topics
     property_path: topics

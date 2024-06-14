@@ -818,6 +818,11 @@ html {
               content: "\2303";
             }
           }
+          .facet-complete-link {
+            padding: .4rem .3rem .4rem .3rem !important;
+            line-height: .4rem !important;
+            font-size: 15px;
+          }
         }
       }
       > .container {

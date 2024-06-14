@@ -12,7 +12,7 @@
 
         // Topics facet.
         const top_facet_block = '.block-facet-blocktopic-names-string';
-        const top_listing_url = (new URL("/topics/all", base)).href; // TO DO.
+        const top_listing_url = (new URL("/topics", base)).href; // TO DO.
 
         const con_facet_block_child = top_facet_block_child = '.facets-widget-checkbox';
         const con_facet_item = top_facet_item = '.facet-item';
@@ -46,7 +46,7 @@ function generateFacetLink(facet_block_selector, facet_block_child_selector, url
     let widget = $(facet_block_selector + ' ' + facet_block_child_selector);
     $(widget).append(
         '<a href="' + url +
-        '" class="badge fw-normal lh-lg text-bg-light facet-complete-link float-end">' +
-        'Complete list<i class="fa-solid fa-angles-right fa-2xs"></i></a>'
+        '" class="btn btn-secondary btn-sm fw-normal lh-lg facet-complete-link float-end">' +
+        'Complete list</a>'
     );
 }

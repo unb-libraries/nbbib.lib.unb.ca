@@ -1351,6 +1351,10 @@ html {
   header {
     .navbar {
       > .container {
+        align-items: center;
+        .region-nav-branding {
+          margin-right: 0 !important;
+        }
         .navbar-toggler {
           margin-top: 1rem !important;
           width: 16.5rem !important;

@@ -20,3 +20,11 @@
 .ief-form .js-text-format-wrapper .js-filter-wrapper {
   display: none;
 }
+
+// Remove bottom margin to match help text fields on slide URL.
+#node-nbbib-slide-form,
+#node-nbbib-slide-edit-form {
+  .form-item--field-link-to-0-title {
+    margin-bottom: 0;
+  }
+}

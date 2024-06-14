@@ -12,7 +12,7 @@ field_name: field_link_to
 entity_type: node
 bundle: nbbib_slide
 label: 'Link to'
-description: ''
+description: 'Enter the author’s name or name of the work featured.'
 required: false
 translatable: false
 default_value: {  }

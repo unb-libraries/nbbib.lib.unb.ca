@@ -95,19 +95,7 @@
                 {{ content.pic_credit }}
               {% endif %}
             </figure>
-          {% endif %} {#
-          {% if content.birth_year|field_value or content.death_year|field_value %}
-            <p id="birth-death">
-              {%- if content.birth_year -%}
-                {{ content.birth_year|field_value }}
-              {%- endif -%}
-              -
-              {%- if content.death_year -%}
-                {{ content.death_year|field_value }}
-              {%- endif -%}
-            </p>
           {% endif %}
-          #}
           {%- if content.nble_url|field_value -%}
             <p id="nble-url">
               See the

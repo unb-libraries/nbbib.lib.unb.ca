@@ -10,30 +10,22 @@
         const con_facet_block = '.block-facet-blockcontributor-s-';
         const con_listing_url = (new URL("/contributors/all", base)).href;
 
-        // Publishers facet.
-        const pub_facet_block = '.block-facet-blockgeneral-publisher';
-        const pub_listing_url = (new URL("/publishers/all", base)).href; // TO DO.
-
         // Topics facet.
         const top_facet_block = '.block-facet-blocktopic-names-string';
         const top_listing_url = (new URL("/topics/all", base)).href; // TO DO.
 
-        const con_facet_block_child = pub_facet_block_child = top_facet_block_child = '.facets-widget-checkbox';
-        const con_facet_item = pub_facet_item = top_facet_item = '.facet-item';
-        const con_facet_hard_limit = pub_facet_hard_limit = top_facet_hard_limit = 50;
+        const con_facet_block_child = top_facet_block_child = '.facets-widget-checkbox';
+        const con_facet_item = top_facet_item = '.facet-item';
+        const con_facet_hard_limit = top_facet_hard_limit = 50;
 
         // Check & generate 'complete' link for known hard-limited facets.
         if( $(con_facet_block + ' ' + con_facet_item).length === con_facet_hard_limit) {
             generateFacetLink(con_facet_block, con_facet_block_child, con_listing_url);
         }
-        /*
-        if( $(pub_facet_block + ' ' + pub_facet_item).length === pub_facet_hard_limit) {
-            generateFacetLink(pub_facet_block, pub_facet_block_child, pub_listing_url);
-        }
+
         if( $(top_facet_block + ' ' + top_facet_item).length === top_facet_hard_limit) {
             generateFacetLink(top_facet_block, top_facet_block_child, top_listing_url);
         }
-        */
     });
 })(jQuery);
 

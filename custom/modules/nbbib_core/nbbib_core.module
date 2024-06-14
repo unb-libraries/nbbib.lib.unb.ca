@@ -571,7 +571,7 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
 
   $archival_forms = [
     'yabrm_contributor_archival_edit_form',
-    'yabrm_contributor_archival_edit_form',
+    'yabrm_contributor_archival_add_form',
   ];
 
   if (in_array($form_id, $archival_forms)) {
@@ -580,8 +580,17 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
     $form['location']['widget']['#after_build'][] = '_allowed_formats_remove_textarea_help';
   };
 
-  if ($form_id == 'node_nbbib_slide_form') {
-    unset($form['field_link_to']['widget'][0]['uri']['#description']);
+  $slide_forms = [
+    'node_nbbib_slide_edit_form',
+    'node_nbbib_slide_form',
+  ];
+
+  if (in_array($form_id, $slide_forms)) {
+    $help = "
+      Enter a full Tide & Time URL to a contributor record or a bibliographic record, 
+      eg. https://nbbib.lib.unb.ca/contributors/mccarthy-thandiwe
+    ";
+    $form['field_link_to']['widget'][0]['uri']['#description'] = $help;
   }
 }
 

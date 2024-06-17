@@ -255,11 +255,13 @@ html {
       margin-right: auto;
       max-width: 1014px;
     }
+    img {
+      border-radius: 1rem;
+    }
     .col-sm-4:has(img) {
       padding: 0;
         img {
           width: 100%;
-          border-radius: 1rem;
         }
     }
     .field--name-title,

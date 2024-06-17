@@ -181,7 +181,7 @@
     "drupal/redirect": "^1",
     "drupal/redis": "^1",
     "drupal/samlauth": "^3",
-    "drupal/search_api": "^1",
+    "drupal/search_api": "1.34",
     "drupal/search_api_autocomplete": "^1",
     "drupal/search_api_solr": "^4",
     "drupal/token": "^1",

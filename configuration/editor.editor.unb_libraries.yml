@@ -22,7 +22,6 @@ settings:
       - bulletedList
       - numberedList
       - drupalInsertImage
-      - drupalMedia
       - blockQuote
       - insertTable
       - horizontalLine
@@ -57,7 +56,7 @@ settings:
     media_media:
       allow_view_mode_override: false
 image_upload:
-  status: false
+  status: true
   scheme: public
   directory: inline-images
   max_size: ''

@@ -49,6 +49,11 @@ settings:
         - '<a class>'
         - '<span class>'
         - '<div class>'
+        - '<h2 class id>'
+        - '<h3 class id>'
+        - '<h4 class id>'
+        - '<h5 class id>'
+        - '<h6 class id>'
     media_media:
       allow_view_mode_override: false
 image_upload:

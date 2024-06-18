@@ -1287,8 +1287,8 @@ function nbbib_core_views_pre_render($view) {
     $route->setDefault('_title', $title);  
   }
 
-  if (isset($view) && $view->id() == 'nb_bibliography_contributors') {
-    $view->element['#attached']['library'][] = 'nbbib_core/contrib-alpha-pager';
+  if (isset($view) && ($view->id() == 'nb_bibliography_contributors' or $view->id() == 'nb_bibliography_topics')) {
+    $view->element['#attached']['library'][] = 'nbbib_core/alpha-pager';
   }
 }
 

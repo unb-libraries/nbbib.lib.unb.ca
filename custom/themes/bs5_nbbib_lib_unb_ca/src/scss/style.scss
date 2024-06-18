@@ -547,6 +547,11 @@ html {
         top: 1px !important;
         border-left: none !important;
       }
+      li:not(:first-child) {
+        .page-link {
+          text-transform: uppercase;
+        }
+      }
     }
     .pager {
       margin-bottom: 1rem;
@@ -1165,7 +1170,7 @@ html {
               .view-header {
                 margin-top: 2rem;
               }
-              .view-content {
+              .attachment + .view-content {
                 margin-top: 2rem;
                 column-count: 3;
                 column-gap: 4rem;

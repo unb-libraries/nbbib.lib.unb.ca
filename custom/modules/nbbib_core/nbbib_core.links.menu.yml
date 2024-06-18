@@ -61,7 +61,8 @@ nbbib_core.topics:
   description: 'Topics'
   parent: main
   menu_name: main
-  route_name: view.nb_bibliography_topics.page_1
+  route_name: nbbib_core.topics
+  route_parameters: { filter: 'all' }
   weight: 40
 nbbib_core.essays:
   title: 'Essays'

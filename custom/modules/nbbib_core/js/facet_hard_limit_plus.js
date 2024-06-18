@@ -12,7 +12,7 @@
 
         // Topics facet.
         const top_facet_block = '.block-facet-blocktopic-names-string';
-        const top_listing_url = (new URL("/topics", base)).href; // TO DO.
+        const top_listing_url = (new URL("/topics/all", base)).href; // TO DO.
 
         const con_facet_block_child = top_facet_block_child = '.facets-widget-checkbox';
         const con_facet_item = top_facet_item = '.facet-item';

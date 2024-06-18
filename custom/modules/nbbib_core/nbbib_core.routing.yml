@@ -30,6 +30,8 @@ nbbib_core.merge_contribs.confirm:
     _form: '\Drupal\nbbib_core\Form\MergeContribsConfirmForm'
   options:
     _admin_route: TRUE
+nbbib_core.topics:
+  path: '/topics/{filter}'
 nbbib_core.about:
   path: '/about'
   defaults:

@@ -1,7 +1,7 @@
-contrib-alpha-pager:
+alpha-pager:
   version: VERSION
   js:
-    js/contrib_alpha_pager.js: {}
+    js/alpha_pager.js: {}
   dependencies:
      - core/jquery
 

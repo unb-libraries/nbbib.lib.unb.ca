@@ -4,28 +4,34 @@
   $(document).ready( function() {
     // Preserve is-active class in menu when alpha facet is engaged.
     var url = window.location.href;
-
-    // Add is-active to "Contributors" if URL includes "/Contributors/".
-    if (url.includes("/contributors/")) {
-      $(".region-nav-main .nav-item[title='Contributors']").addClass('is-active');
-    }
-
-    // Create extra list item to display reset contributor list.
+    // Create extra list item to display pager reset option.
     var resetLi = $("<li></li>");
 
     if (!$(".view-display-id-attachment_1 li a.is-active").length) {
       resetLi.addClass("is-active active");
     }
-
-    $("<a>", {
-      text: "All",
-      href: "/contributors/all",
-    }).appendTo(resetLi);
+    
+    // Add reset option to pager and is-active to "Contributors" if URL includes "/Contributors/".
+    if (url.includes("/contributors/")) {
+      $(".region-nav-main .nav-item[title='Contributors']").addClass('is-active');
+      $("<a>", {
+        text: "All",
+        href: "/contributors/all",
+      }).appendTo(resetLi);
+    }
+    // Add is-active to "Topics" if URL includes "/Topics/".
+    if (url.includes("/topics/")) {
+      $(".region-nav-main .nav-item[title='Topics']").addClass('is-active');
+      $("<a>", {
+        text: "All",
+        href: "/topics/all",
+      }).appendTo(resetLi);
+    }
 
     // Prepend new reset item.
     $(".view-display-id-attachment_1 ul").prepend(resetLi);
 
-    // Configure classes to macth bootstrap4 pagination.
+    // Configure classes to macth bootstrap5 pagination.
     $(".view-display-id-attachment_1 .item-list").addClass(
       "pager");
     $(".view-display-id-attachment_1 .item-list").removeClass(

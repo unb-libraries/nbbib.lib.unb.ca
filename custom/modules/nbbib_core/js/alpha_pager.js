@@ -13,7 +13,7 @@
     
     // Add reset option to pager and is-active to "Contributors" if URL includes "/Contributors/".
     if (url.includes("/contributors/")) {
-      $(".region-nav-main .nav-item[title='Contributors']").addClass('is-active');
+      $(".region-nav-main .nav-link[title='Contributors']").addClass('is-active');
       $("<a>", {
         text: "All",
         href: "/contributors/all",
@@ -21,7 +21,7 @@
     }
     // Add is-active to "Topics" if URL includes "/Topics/".
     if (url.includes("/topics/")) {
-      $(".region-nav-main .nav-item[title='Topics']").addClass('is-active');
+      $(".region-nav-main .nav-link[title='Topics']").addClass('is-active');
       $("<a>", {
         text: "All",
         href: "/topics/all",

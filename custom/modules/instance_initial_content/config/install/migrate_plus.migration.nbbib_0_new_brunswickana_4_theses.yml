@@ -200,29 +200,98 @@ process:
     not_equals: true
     value: thesis
     source: item_type
-  external_key_ref: key
-  title: title
-  abstract_note: abstract_note
-  publication_year: publication_year
-  publication_month: publication_month
-  publication_day: publication_day
-  publication_title: publication_title
-  num_pages: num_pages
-  short_title: short_title
-  publisher: publisher
-  place: place
-  language: language
-  rights: rights
-  thesis_type: thesis_type
-  archive: archive
-  archive_location: archive_location
-  library_catalog: library_catalog
-  call_number: call_number
-  extra: extra
-  notes: notes
-  notes_private: notes_private
-  translator: translator
-  physical_description: physical_description
+  external_key_ref: 
+    plugin: callback
+    callable: trim
+    source: key
+  title: 
+    plugin: callback
+    callable: trim
+    source: title
+  abstract_note: 
+    plugin: callback
+    callable: trim
+    source: abstract_note
+  publication_year: 
+    plugin: callback
+    callable: trim
+    source: publication_year
+  publication_month: 
+    plugin: callback
+    callable: trim
+    source: publication_month
+  publication_day: 
+    plugin: callback
+    callable: trim
+    source: publication_day
+  publication_title: 
+    plugin: callback
+    callable: trim
+    source: publication_title
+  num_pages: 
+    plugin: callback
+    callable: trim
+    source: num_pages
+  short_title: 
+    plugin: callback
+    callable: trim
+    source: short_title
+  publisher: 
+    plugin: callback
+    callable: trim
+    source: publisher
+  place: 
+    plugin: callback
+    callable: trim
+    source: place
+  language: 
+    plugin: callback
+    callable: trim
+    source: language
+  rights: 
+    plugin: callback
+    callable: trim
+    source: rights
+  thesis_type: 
+    plugin: callback
+    callable: trim
+    source: thesis_type
+  archive: 
+    plugin: callback
+    callable: trim
+    source: archive
+  archive_location: 
+    plugin: callback
+    callable: trim
+    source: archive_location
+  library_catalog: 
+    plugin: callback
+    callable: trim
+    source: library_catalog
+  call_number: 
+    plugin: callback
+    callable: trim
+    source: call_number
+  extra: 
+    plugin: callback
+    callable: trim
+    source: extra
+  notes: 
+    plugin: callback
+    callable: trim
+    source: notes
+  notes_private: 
+    plugin: callback
+    callable: trim
+    source: notes_private
+  translator: 
+    plugin: callback
+    callable: trim
+    source: translator
+  physical_description: 
+    plugin: callback
+    callable: trim
+    source: physical_description
 
 destination:
   plugin: entity:yabrm_thesis

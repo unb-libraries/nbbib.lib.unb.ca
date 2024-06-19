@@ -1155,6 +1155,8 @@ html {
                 column-count: 3;
                 column-gap: 4rem;
                 .row-contrib {
+                  display: inline-block;
+                  width: 100%;
                   padding-top: 1rem;
                   padding-bottom: 1rem;
                   border-bottom: 1px solid $base-200;
@@ -1175,6 +1177,8 @@ html {
                 column-count: 3;
                 column-gap: 4rem;
                 .row-topic {
+                  display: inline-block;
+                  width: 100%;
                   padding-top: 1rem;
                   padding-bottom: 1rem;
                   border-bottom: 1px solid $base-200;

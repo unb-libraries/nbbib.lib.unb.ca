@@ -1267,9 +1267,9 @@ html {
     }
   }
 }
+
 @media screen and (max-width: 1428px) {
-  form#views-exposed-form-nb-bibliography-citations-page-1,
-  form#views-exposed-form-nb-bibliography-contributors-page-1 {
+  form#views-exposed-form-nb-bibliography-citations-page-1 {
     width: 100% !important;
     div.form-item-search-api-fulltext,
     div.form-item-name {
@@ -1278,6 +1278,17 @@ html {
     }
     #edit-actions {
       width: 40% !important;
+    }
+  }
+  form#views-exposed-form-nb-bibliography-contributors-page-1 {
+    width: 100% !important;
+    div.form-item-search-api-fulltext,
+    div.form-item-name {
+      margin-bottom: 1rem !important;
+      width: 70% !important;
+    }
+    #edit-actions {
+      width: 30% !important;
     }
   }
 }
@@ -1324,18 +1335,17 @@ html {
         width: 100% !important;
       }
       #edit-actions {
-        width: 40% !important;
-      }
-      #edit-actions {
         display: flex !important;
         justify-content: space-between;
+        width: 100% !important;
         input {
           margin: 0 !important;
           width: 49% !important;
         }
-        #edit-submit-nb-bibliography-citations:not(:has(+ #edit-reset)),
-        #edit-submit-nb-bibliography-contributors:not(:has(+ #edit-reset)) {
-          width: 100% !important;
+        &:not(:has(input + #edit-reset)) {
+          input {
+            width: 100% !important;
+          }
         }
       }
     }

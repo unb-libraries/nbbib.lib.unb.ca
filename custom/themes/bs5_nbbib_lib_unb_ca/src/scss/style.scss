@@ -1292,10 +1292,6 @@ html {
     }
   }
 }
-@media screen and (max-width: 1376px) {
-  body:not(.path-frontpage) {
-  }
-}
 @media screen and (max-width: 1200px) {
   body:not(.path-frontpage) {
     #navbarSupportedContent {
@@ -1428,7 +1424,8 @@ html {
 @media screen and (max-width: 482px) {
   #views-exposed-form-nb-bibliography-citations-page-2 {
     label[for="edit-search-api-fulltext"] {
-      width: 130% !important;
+      left: 0 !important;
+      width: 140% !important;
     }
     #edit-submit-nb-bibliography-citations {
       padding: 0 !important;
@@ -1445,12 +1442,13 @@ html {
     }
   }
 }
-@media screen and (max-width: 388px) {
+@media screen and (max-width: 390px) {
   form#views-exposed-form-nb-bibliography-citations-page-1,
   form#views-exposed-form-nb-bibliography-contributors-page-1 {
     label[for="edit-search-api-fulltext"],
     label[for="edit-name"] {
-      width: 130% !important;
+      left: 0 !important;
+      width: 140% !important;
     }
     div.form-item-search-api-fulltext,
     div.form-item-name {
@@ -1458,6 +1456,25 @@ html {
     }
     #edit-actions {
       width: 30% !important;
+    }
+  }
+  form#views-exposed-form-nb-bibliography-citations-page-2 {
+    * {
+      border-radius: 8px !important;
+    }
+    width: 100% !important;
+    div.form-item-search-api-fulltext {
+      margin-bottom: 1rem !important;
+      width: 100% !important;
+    }
+    #edit-actions {
+      display: flex !important;
+      justify-content: space-between;
+      width: 100% !important;
+      input {
+        margin: 0 !important;
+        width: 100% !important;
+      }
     }
   }
 }

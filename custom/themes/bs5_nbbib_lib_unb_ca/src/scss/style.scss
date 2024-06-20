@@ -1428,7 +1428,7 @@ html {
 @media screen and (max-width: 482px) {
   #views-exposed-form-nb-bibliography-citations-page-2 {
     label[for="edit-search-api-fulltext"] {
-      width: 100% !important;
+      width: 130% !important;
     }
     #edit-submit-nb-bibliography-citations {
       padding: 0 !important;
@@ -1437,9 +1437,6 @@ html {
 }
 @media screen and (max-width: 457px) {
   #views-exposed-form-nb-bibliography-citations-page-2 {
-    label[for="edit-search-api-fulltext"] {
-      top: -2.8rem !important;
-    }
     div.form-item-search-api-fulltext {
       width: 70% !important;
     }
@@ -1453,7 +1450,7 @@ html {
   form#views-exposed-form-nb-bibliography-contributors-page-1 {
     label[for="edit-search-api-fulltext"],
     label[for="edit-name"] {
-      top: -2.8rem !important;
+      width: 130% !important;
     }
     div.form-item-search-api-fulltext,
     div.form-item-name {

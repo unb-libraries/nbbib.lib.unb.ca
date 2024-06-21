@@ -1315,10 +1315,18 @@ html {
     }
   }
 }
+@media screen and (min-width: 639px) and (max-width: 1200px) {
+  .view-id-nb_bibliography_topics.view-display-id-page_1,
+  .view-id-nb_bibliography_contributors.view-display-id-page_1 {
+    .attachment + .view-content {
+      column-count: 2 !important;
+    }
+  }
+}
 @media screen and (max-width: 991px) {
   .view-nb-bibliography-citations,
   .view-nb-bibliography-contributors {
-    * {
+    input, .btn {
       border-radius: 8px !important;
     }
     margin: 0 !important;
@@ -1402,6 +1410,12 @@ html {
           }
         }
       }
+    }
+  }
+  .view-id-nb_bibliography_topics.view-display-id-page_1,
+  .view-id-nb_bibliography_contributors.view-display-id-page_1 {
+    .view-content {
+      column-count: 1 !important;
     }
   }
   footer {

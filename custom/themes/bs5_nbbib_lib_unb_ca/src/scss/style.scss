@@ -494,7 +494,6 @@ html {
     &.page-node-type-static-content-page:has(.node__content article),
     &:has(.views-exposed-form),
     &:has(.pager) {
-      padding-left: .8rem !important;
     } 
     font-family: libre-franklin, arial, sans-serif !important;
     font-weight: 500;
@@ -659,7 +658,7 @@ html {
             }
           }
           .region-nav-branding {
-            margin-right: 6rem !important;
+            margin-right: 6rem;
             * {
               margin: 0 !important;
               padding: 0 !important;
@@ -1324,6 +1323,16 @@ html {
   }
 }
 @media screen and (max-width: 991px) {
+  body {
+    padding: 0 1rem !important;
+    header {
+      nav {
+        .container.d-flex {
+          justify-content: center !important;
+        }
+      }
+    }
+  }
   .view-nb-bibliography-citations,
   .view-nb-bibliography-contributors {
     input, .btn {

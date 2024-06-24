@@ -446,7 +446,7 @@ html {
             padding: 0;
             .view-header {
               position: relative;
-              top: -5rem;
+              top: -5.2rem;
               float: right;
             }
           }
@@ -1440,6 +1440,16 @@ html {
   .view-id-nb_bibliography_contributors.view-display-id-page_1 {
     .view-content {
       column-count: 1 !important;
+    }
+  }
+  #contributor-works {
+    .views-element-container {
+      .view-header {
+        position: initial !important;
+        float: initial !important;
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
     }
   }
   footer {

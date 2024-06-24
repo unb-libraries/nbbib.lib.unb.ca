@@ -488,6 +488,12 @@ html {
         }
       }
     }
+    .node--type-static-content-page {
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
   }
   body {
     &.page-node-type-static-content-page:has(.node__content h2),

@@ -228,7 +228,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: 'The search did not match any records.'
+          content: "<p><b>Your search did not match any records.</b></p>\r\n\r\n<p><i>Tide &amp; Time</i> is very much a work in progress, and you may have entered a search for something that hasn’t been added yet. As more collections are added, the scope of the bibliography will improve.</p>\r\n\r\n<p>Bear in mind that many of the titles listed in <i>Tide &amp; Time</i> are historical works, which may use spelling variations or defunct terminology. Try to use variant terms or explore the <a href=\"/topics\">Topics list</a> to locate a keyword.</p>\r\n\r\n<p>You cannot limit your search to a specific field. If you are searching for a particular contributor or topic, use the search facets.</p>\r\n\r\n<p>You can combine search terms, and the database will connect them with AND.<br>\r\nExample: <b>medley music</b> or <b>nowlan 2004</b></p>"
           tokenize: false
       sorts:
         publication_year_5:
@@ -765,7 +765,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: "<p><b>Your search did not match any records.</b></p>\r\n\r\n<p><i>Tide &amp; Time</i> is very much a work in progress, and you may have entered a search for something that hasn’t been added yet. As more collections are added, the scope of the bibliography will improve.</p>\r\n\r\n<p>Bear in mind that many of the titles listed in <i>Tide &amp; Time</i> are historical works, which may use spelling variations or defunct terminology. Try to use variant terms or explore the <a href=\"/topics\">Topics list</a> to locate a keyword.</p>\r\n\r\n<p>You cannot limit your search to a specific field. If you are searching for a particular contributor or topic, use the search facets.</p>\r\n\r\n<p>You can combine search terms, and the database will connect them with AND.<br>\r\nExample: <b>medley music</b> or <b>nowlan 2004</b></p>\r\nFor Contributors page:\r\n\r\n\r\n\r\n<p><b>Your search did not match any authors, editors, illustrators, etc. in our records.</b></p>\r\n\r\n<p><i>Tide &amp; Time</i> is very much a work in progress, and you may have entered a search for someone that hasn’t been added yet. As more collections are added, the scope of the bibliography will improve.</p>\r\n\r\n<p>Bear in mind that many of the contributors listed in <i>Tide &amp; Time</i> are historical, which may use spelling variations of the name.</p>"
+          content: "<p><b>Your search did not match any records.</b></p>\r\n\r\n<p><i>Tide &amp; Time</i> is very much a work in progress, and you may have entered a search for something that hasn’t been added yet. As more collections are added, the scope of the bibliography will improve.</p>\r\n\r\n<p>Bear in mind that many of the titles listed in <i>Tide &amp; Time</i> are historical works, which may use spelling variations or defunct terminology. Try to use variant terms or explore the <a href=\"/topics\">Topics list</a> to locate a keyword.</p>\r\n\r\n<p>You cannot limit your search to a specific field. If you are searching for a particular contributor or topic, use the search facets.</p>\r\n\r\n<p>You can combine search terms, and the database will connect them with AND.<br>\r\nExample: <b>medley music</b> or <b>nowlan 2004</b></p>"
           tokenize: false
       sorts:
         date_sort:

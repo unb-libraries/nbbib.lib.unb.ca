@@ -1299,13 +1299,6 @@ html {
 }
 @media screen and (max-width: 1200px) {
   body:not(.path-frontpage) {
-    #navbarSupportedContent {
-      margin-top: 1rem;
-      justify-content: flex-start !important;
-      .nav-item:first-of-type {
-        padding-left: 0;
-      }
-    }
     .form-item-sort-by {
       margin-left: 0 !important;
     }
@@ -1317,6 +1310,13 @@ html {
       top: -1.8rem !important;
       left: 1rem !important;
       font-size: 15px !important;                    
+    }
+  }
+  #navbarSupportedContent {
+    margin-top: 1rem;
+    justify-content: flex-start !important;
+    .nav-item:first-of-type {
+      padding-left: 0;
     }
   }
 }

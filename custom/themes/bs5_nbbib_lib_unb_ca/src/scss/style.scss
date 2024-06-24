@@ -605,7 +605,7 @@ html {
           padding: 0 0 1rem 0 !important;
           max-width: 1400px;
           .navbar-collapse {
-            justify-content: flex-end;
+            justify-content: flex-end !important;
           }
           .region-nav-main {
             .nav-item {
@@ -1334,10 +1334,29 @@ html {
     header {
       nav {
         .container.d-flex {
+          max-width: 596px !important;
           justify-content: center !important;
         }
       }
     }
+    header {
+      .navbar {
+        > .container {
+          align-items: center;
+          .region-nav-branding {
+            margin-right: 0 !important;
+          }
+          .navbar-toggler {
+            margin-top: 1rem !important;
+            width: 16.5rem !important;
+            .navbar-toggler-icon {
+              float: initial !important;
+              margin-left: 4rem !important;
+            }
+          }
+        }
+      }
+    }  
   }
   .view-nb-bibliography-citations,
   .view-nb-bibliography-contributors {
@@ -1370,7 +1389,9 @@ html {
     }
   }
   #navbarSupportedContent {
+    max-width: 300px;
     margin-top: 1rem;
+    padding-left: 1rem;
     .navbar-nav {
       .nav-item {
         padding-left: 0;
@@ -1415,24 +1436,6 @@ html {
   }
 }
 @media screen and (max-width: 638px) {
-  header {
-    .navbar {
-      > .container {
-        align-items: center;
-        .region-nav-branding {
-          margin-right: 0 !important;
-        }
-        .navbar-toggler {
-          margin-top: 1rem !important;
-          width: 16.5rem !important;
-          .navbar-toggler-icon {
-            float: initial !important;
-            margin-left: 4rem !important;
-          }
-        }
-      }
-    }
-  }
   .breadcrumb {
     margin-bottom: 2rem !important;
   }

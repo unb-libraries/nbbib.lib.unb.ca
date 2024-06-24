@@ -1403,6 +1403,11 @@ html {
     }
   }
 }
+@media screen and (min-width: 483px) and (max-width: 991px) {
+  #contrib-description {
+    padding-right: 1rem !important;
+  }
+}
 @media screen and (max-width: 638px) {
   header {
     .navbar {
@@ -1446,6 +1451,11 @@ html {
         }
       }
     }
+  }
+}
+@media screen and (max-width: 576px) {
+  #contrib-description {
+    padding-right: 0 !important;
   }
 }
 @media screen and (max-width: 482px) {

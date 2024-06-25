@@ -26,7 +26,7 @@
     });
     // Randomize slide photo sizes.
     var mobile = window.matchMedia("(max-width: 991px)")
-    var baseWidth = mobile.matches ? 40 : 60;
+    var baseWidth = mobile.matches ? 50 : 60;
     photos = $('.owl-item img');
     photos.each( function() {
       randomWidth = Math.floor(Math.random() * baseWidth) + baseWidth * 3;

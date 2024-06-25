@@ -127,7 +127,7 @@ html {
                     img {
                       display: flex;
                       border-radius: .5rem;
-                      max-width: 250px !important;
+                      aspect-ratio: auto;
                     }
                   }
                 }

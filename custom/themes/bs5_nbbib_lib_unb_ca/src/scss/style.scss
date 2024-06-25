@@ -112,7 +112,7 @@ html {
           .region-content {
             padding: 0;
             #block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1 {
-              margin: 2rem 0 4rem 0 !important;
+              margin: 2rem 0 4rem 0;
               div[data-block="content"] {
                 position: relative;
                 .owl-stage {
@@ -1357,6 +1357,10 @@ html {
         }
       }
     }  
+  }
+  #block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1 {
+    margin-top: 0 !important;
+    height: 300px !important;
   }
   .view-nb-bibliography-citations,
   .view-nb-bibliography-contributors {

@@ -25,9 +25,11 @@
       },
     });
     // Randomize slide photo sizes.
+    var mobile = window.matchMedia("(max-width: 991px)")
+    var baseWidth = mobile.matches ? 40 : 60;
     photos = $('.owl-item img');
     photos.each( function() {
-      randomWidth = Math.floor(Math.random() * 70) + 180;
+      randomWidth = Math.floor(Math.random() * baseWidth) + baseWidth * 3;
       $(this).attr('style', `width: ${randomWidth}px !important;`);
     });
     // Align slides in a wave and set to fit content width.

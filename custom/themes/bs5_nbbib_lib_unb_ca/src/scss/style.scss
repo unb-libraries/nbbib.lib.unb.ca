@@ -1477,20 +1477,20 @@ html {
   }
 }
 @media screen and (max-width: 576px) {
-  #contrib-description {
-    padding-right: 0 !important;
-  }
-}
-@media screen and (max-width: 482px) {
   #views-exposed-form-nb-bibliography-citations-page-2 {
     label[for="edit-search-api-fulltext"] {
       left: 0 !important;
       width: 140% !important;
     }
     #edit-submit-nb-bibliography-citations {
-      padding: 0 !important;
+      padding: initial !important;
     }
   }
+  #contrib-description {
+    padding-right: 0 !important;
+  }
+}
+@media screen and (max-width: 482px) {
 }
 @media screen and (max-width: 457px) {
   #views-exposed-form-nb-bibliography-citations-page-2 {

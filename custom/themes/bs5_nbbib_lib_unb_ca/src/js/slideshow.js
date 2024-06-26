@@ -14,13 +14,15 @@
       nav: false,
       responsive: {
         0: {
-          items:1
+          items:2,
+          autoplayTimeout: 2400,
         },
         576: {
-          items:3
+          items:3,
         },
         992: {
-          items:6
+          items:6,
+          autoplayTimeout: 3000,
         }
       },
     });
@@ -48,9 +50,5 @@
         $(this).attr('style', 'align-items: start !important; width: fit-content !important');
       }
     });
-    // Start autoplay ASAP.
-    owl.autoplayTimeout = 0;
-    owl.trigger('play.autoplay.owl');
-    owl.autoplayTimeout = mobile.matches ? 2500 : 3000;
   });
 })(jQuery);

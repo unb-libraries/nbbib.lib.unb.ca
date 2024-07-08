@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Contains unblib_marc.module.php
+ * UNB Libraries utilities for the processing of MARC (machine-readable cataloging) files
+ */
+

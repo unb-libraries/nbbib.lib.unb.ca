@@ -1,0 +1,6 @@
+name: UNB Libraries MARC
+type: module
+description: UNB Libraries utilities for the processing of MARC (machine-readable cataloging) files
+core: 8.x
+core_version_requirement: ^9 || ^10
+package: CUSTOM

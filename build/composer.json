@@ -193,6 +193,8 @@
     "harvesthq/chosen": "^1",
     "oomphinc/composer-installers-extender": "^2",
     "owlcarousel2/owlcarousel2": "2.3.4",
+    "pear/file_marc": "^1",
+    "scriptotek/marc": "^3",
     "simeydotme/jquery-ui-slider-pips": "^1",
     "unb-libraries/composer-drupal-scaffold": "^10",
     "unb-libraries/saml_features": "dev-10.x-1.x"

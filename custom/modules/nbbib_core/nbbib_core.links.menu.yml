@@ -27,6 +27,13 @@ nbbib_core.collections.bibliographies:
   menu_name: main
   url: internal:/collections/bibliographies
   weight: 20
+nbbib_core.collections.cbbp:
+  title: 'Children’s Books of Brunswick Press'
+  description: 'Children’s Books of Brunswick Press'
+  parent: nbbib_core.collections
+  menu_name: main
+  url: internal:/collections/childrens-books-of-brunswick-press
+  weight: 21
 nbbib_core.collections.nbapp:
   title: "NB Authors' Archival Papers"
   description: "NB Authors' Archival Papers Project"

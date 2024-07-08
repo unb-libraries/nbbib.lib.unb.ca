@@ -7,12 +7,15 @@ $source = 'modules/custom/unblib_marc/data/portolan.mrc';
 $collection = Collection::fromFile($source);
 
 foreach ($collection as $record) {
-  echo getMarcValue($record, '245', 'a') . "\n";
+  echo getMarcValue($record, '245', 'a', TRUE) . "\n";
 }
 
-function getMarcValue(Record $record, string $field, string $subfield) {
+function getMarcValue(Record $record, string $field, string $subfield, bool $clean = FALSE) {
   if ($field_data = $record->getField($field)) {
-    return $field_data->getSubfield($subfield)->getData();
+    $data = $field_data->getSubfield($subfield)->getData();
+    $data = (is_string($data) and $clean) ? preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $data) : $data;
+    
+    return $data;
   }
 
   return NULL;

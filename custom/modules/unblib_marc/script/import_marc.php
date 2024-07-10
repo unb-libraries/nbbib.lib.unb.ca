@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\yabrm\Entity\BookReference;
 use Scriptotek\Marc\Collection;
 use Scriptotek\Marc\Record;
 
@@ -7,9 +8,6 @@ $source = 'modules/custom/unblib_marc/data/portolan.mrc';
 $collection = Collection::fromFile($source);
 
 $map = [
-  'item_type' => [
-    'value' => 'book',
-  ],
   'external_key_ref' => [
     'marc' => '015',
     'marc_fallback' => '020',
@@ -21,10 +19,12 @@ $map = [
   'abstract_note' => [
     'marc' => '520$a',
   ],
+  /* @TODO Fields requiring processing are not supported yet.
   'publication_date' => [
     'marc' => '260$a',
     'process' => 'date2dmy',
   ],
+  */
   'short_title' => [
     'marc' => '246$a',
   ],
@@ -73,8 +73,44 @@ $map = [
   ],
 ];
 
-foreach ($collection as $record) {
-  echo getMarcValue($record, '300', '', TRUE) . "\n";
+migrateMarc(
+  'modules/custom/unblib_marc/data/portolan.mrc',
+  'yabrm_book',
+  $map
+);
+
+function migrateMarc(string $source, string $entity_type, array $map) {
+  $collection = Collection::fromFile($source);
+
+  foreach ($collection as $record) {
+    $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create();
+    
+    foreach ($map as $field => $mapping) {
+      if (isset($mapping['marc'])) {
+        $params = explode('$', $mapping['marc']);
+      }
+      elseif (isset($mapping['marc_fallback'])) {
+        $params = explode('$', $mapping['marc_fallback']);
+      }
+      $marc_field = $params[0] ?? NULL; 
+      $marc_subfield = $params[1] ?? '';
+        
+      if ($marc_field) {
+        $value = getMarcValue($record, $marc_field, $marc_subfield, TRUE);
+      }
+      elseif (isset($mapping['default'])) {
+        $value = $mapping['default'];
+      }
+      elseif (isset($mapping['value'])) {
+        $value = $mapping['value'];
+      }
+
+      $entity->set($field, $value);
+    }
+
+    // @TODO: Pass array of mandatory fields and only save if constraints met.
+    $entity->save(); 
+  }
 }
 
 function getMarcValue(Record $record, string $field, string $subfield, bool $cleanup = FALSE) {

@@ -420,7 +420,7 @@ html {
             #nble-url {
               display: inline-block;
               top: -2rem;
-              width: 74%;
+              width: 76%;
               text-align: start;
               color: $base-700;
             }
@@ -1447,6 +1447,18 @@ html {
 @media screen and (min-width: 483px) and (max-width: 991px) {
   #contrib-description {
     padding-right: 1rem !important;
+  }
+}
+@media screen and (min-width: 576px) and (max-width: 991px) {
+  #contrib-picture {
+    #nble-logo {
+      margin-bottom: .4rem !important;
+      height: 2.6rem !important;
+      width: auto !important;
+    }
+    #nble-url {
+      width: 100% !important;
+    }
   }
 }
 @media screen and (max-width: 638px) {

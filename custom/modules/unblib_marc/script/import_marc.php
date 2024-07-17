@@ -48,7 +48,7 @@ $map = [
     'marc' => '050$a',
   ],
   'notes' => [
-    'marc' => '500$a',
+    'marc' => '700',
   ],
   'isbn' => [
     'marc' => '020$a',
@@ -103,6 +103,9 @@ function migrateMarc(string $source, string $entity_type, array $map) {
       }
       elseif (isset($mapping['value'])) {
         $value = $mapping['value'];
+      }
+
+      if(isset($mapping['process'])) {
       }
 
       $entity->set($field, $value);

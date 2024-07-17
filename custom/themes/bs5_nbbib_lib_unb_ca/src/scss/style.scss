@@ -410,9 +410,17 @@ html {
             > figure {
               margin-bottom: 0;
             }
+            #nble-logo {
+              display: inline-block;
+              margin-bottom: 1.8rem;
+              border-radius: 0;
+              height: 2.6rem;
+              width: auto;
+            }
             #nble-url {
               display: inline-block;
               top: -2rem;
+              width: 74%;
               text-align: start;
               color: $base-700;
             }

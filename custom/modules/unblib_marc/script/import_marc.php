@@ -19,9 +19,7 @@ $map = [
   'abstract_note' => [
     'marc' => '520$a',
   ],
-  // @TODO Publication date (260$c) needs to be mapped across all 3 component fields.
-  // Temporarily mapping to notes_private.
-  'notes_private' => [
+  'publication_year' => [
     'marc' => '260$c',
     'process' => 'date2dmy',
   ],
@@ -163,11 +161,10 @@ function getMarcValue(
 function date2dmy($field, $date) {
   $date = preg_match('~\b\d{4}\b\+?~', $date, $year);
   if (isset($year[0])) {
-    $year = $year[0];    
+    echo "\n$year[0]\n";
+    return $year[0];
   }
   
-  echo "\n$year\n";
-  return $year;
 }
 
 $arg1 = $extra[0];

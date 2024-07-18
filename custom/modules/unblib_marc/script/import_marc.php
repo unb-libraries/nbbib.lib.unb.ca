@@ -9,8 +9,8 @@ $collection = Collection::fromFile($source);
 
 $map = [
   'external_key_ref' => [
-    'marc' => '015',
-    'marc_fallback' => '020',
+    'marc' => '001',
+    'marc_fallback' => '020$a',
     'default' => 'NO_EXTERNAL_KEY'
   ],
   'title' => [
@@ -19,12 +19,12 @@ $map = [
   'abstract_note' => [
     'marc' => '520$a',
   ],
-  /* @TODO Fields requiring processing are not supported yet.
-  'publication_date' => [
-    'marc' => '260$a',
+  // @TODO Publication date (260$c) needs to be mapped across all 3 component fields.
+  // Temporarily mapping to notes_private.
+  'notes_private' => [
+    'marc' => '260$c',
     'process' => 'date2dmy',
   ],
-  */
   'short_title' => [
     'marc' => '246$a',
   ],
@@ -81,6 +81,7 @@ migrateMarc(
 
 function migrateMarc(string $source, string $entity_type, array $map) {
   $collection = Collection::fromFile($source);
+  $n = 0;
 
   foreach ($collection as $record) {
     $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create();
@@ -94,9 +95,10 @@ function migrateMarc(string $source, string $entity_type, array $map) {
       }
       $marc_field = $params[0] ?? NULL; 
       $marc_subfield = $params[1] ?? '';
+      $multival = isset($mapping['multival']) and $mapping['multival'];
         
       if ($marc_field) {
-        $value = getMarcValue($record, $marc_field, $marc_subfield, TRUE);
+        $value = getMarcValue($record, $marc_field, $marc_subfield, TRUE, $multival);
       }
       elseif (isset($mapping['default'])) {
         $value = $mapping['default'];
@@ -106,17 +108,35 @@ function migrateMarc(string $source, string $entity_type, array $map) {
       }
 
       if(isset($mapping['process'])) {
+        $callback = $mapping['process'];
+        if (is_callable($callback)) {
+          if (function_exists($callback)) {
+            $value = $callback($field, $value);
+          }
+        }
       }
-
+ 
       $entity->set($field, $value);
     }
+    $n++;
+    
+    if ($n == 100) {
+      exit;
+    }
+    
 
     // @TODO: Pass array of mandatory fields and only save if constraints met.
     $entity->save(); 
   }
 }
 
-function getMarcValue(Record $record, string $field, string $subfield, bool $cleanup = FALSE) {
+function getMarcValue(
+  Record $record, 
+  string $field, 
+  string $subfield, 
+  bool $cleanup = FALSE,
+  bool $multival = FALSE
+  ) {
   // If there is field data...
   if ($field_data = $record->getField($field)) {
     // If a subfield is requested and valid...
@@ -138,6 +158,16 @@ function getMarcValue(Record $record, string $field, string $subfield, bool $cle
   }
   
   return NULL;
+}
+
+function date2dmy($field, $date) {
+  $date = preg_match('~\b\d{4}\b\+?~', $date, $year);
+  if (isset($year[0])) {
+    $year = $year[0];    
+  }
+  
+  echo "\n$year\n";
+  return $year;
 }
 
 $arg1 = $extra[0];

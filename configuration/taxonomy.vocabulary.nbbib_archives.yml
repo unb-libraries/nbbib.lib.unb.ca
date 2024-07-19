@@ -6,3 +6,4 @@ name: 'NBBIB Archives'
 vid: nbbib_archives
 description: 'NBBIB Archives'
 weight: 0
+new_revision: false

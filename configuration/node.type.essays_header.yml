@@ -11,7 +11,7 @@ third_party_settings:
 name: 'Essays Header'
 type: essays_header
 description: 'Content type for essays view header in nbbib.lib.unb.ca'
-help: ''
+help: null
 new_revision: false
 preview_mode: 0
 display_submitted: false

@@ -6,3 +6,4 @@ name: 'NBBIB Locations'
 vid: nbbib_locations
 description: 'NBBIB Locations'
 weight: 0
+new_revision: false

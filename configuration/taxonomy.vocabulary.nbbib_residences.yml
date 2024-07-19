@@ -6,3 +6,4 @@ name: 'NBBIB Residences'
 vid: nbbib_residences
 description: 'NBBIB Residences'
 weight: 0
+new_revision: false

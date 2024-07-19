@@ -1,0 +1,19 @@
+uuid: 20275709-1d04-4b63-a827-1d386f05be96
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: SYAah-i4HbJnc3ZnKC9NmY4M0UAFYpfobYzxg0eMunM
+name: Footnote
+format: footnote
+weight: 0
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<br> <p> <strong> <em> <a href>'
+      filter_html_help: true
+      filter_html_nofollow: false

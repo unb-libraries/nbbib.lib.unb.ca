@@ -6,3 +6,4 @@ name: 'YABRM Contributor Roles'
 vid: yabrm_contributor_roles
 description: 'YABRM Contributor Roles'
 weight: 0
+new_revision: false

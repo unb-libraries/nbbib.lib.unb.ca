@@ -23,6 +23,11 @@ $map = [
     'marc' => '260$c',
     'process' => 'date2dmy',
   ],
+  'contributors' => [
+    'marc' => '700$a',
+    'multivalue' => TRUE,
+    'process' => 'create_contribs',
+  ],
   'short_title' => [
     'marc' => '246$a',
   ],
@@ -113,8 +118,10 @@ function migrateMarc(string $source, string $entity_type, array $map) {
           }
         }
       }
- 
-      $entity->set($field, $value);
+      
+      if ($value) {
+        $entity->set($field, $value);
+      }
     }
     $n++;
     
@@ -136,7 +143,8 @@ function getMarcValue(
   bool $multival = FALSE
   ) {
   // If there is field data...
-  if ($field_data = $record->getField($field)) {
+  $field_data = $multival ? $record->query($field) : $record->getField($field);
+  if ($field_data) {
     // If a subfield is requested and valid...
     if ($subfield and gettype($field_data->getSubfield($subfield)) == 'object') {
       // Get data.
@@ -144,7 +152,7 @@ function getMarcValue(
     }
     else {
       // Get raw broad field data.
-      $data = $field_data->toRaw();
+      $data = $multival ? $data : $field_data->toRaw();
     }
     // If cleanup is requested, trim spaces and special characters.
     $data = (is_string($data) and $cleanup) ? 
@@ -159,13 +167,17 @@ function getMarcValue(
 }
 
 function date2dmy($field, $date) {
-  $date = preg_match('~\b\d{4}\b\+?~', $date, $year);
+  preg_match('~\b\d{4}\b\+?~', $date, $year);
+
   if (isset($year[0])) {
-    echo "\n$year[0]\n";
     return $year[0];
   }
   
+  return;
 }
+
+function create_contribs($field, $contribs) {
+} 
 
 $arg1 = $extra[0];
 

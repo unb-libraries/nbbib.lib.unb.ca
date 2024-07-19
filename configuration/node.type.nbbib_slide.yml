@@ -11,7 +11,7 @@ third_party_settings:
 name: 'Front Page Slide'
 type: nbbib_slide
 description: 'Content type for front page slideshow slides.'
-help: ''
+help: null
 new_revision: false
 preview_mode: 0
 display_submitted: false

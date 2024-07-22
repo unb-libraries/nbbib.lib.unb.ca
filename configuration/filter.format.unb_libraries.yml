@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - footnotes
     - media
 name: 'UNB Libraries'
 format: unb_libraries
@@ -27,13 +28,23 @@ filters:
     status: true
     weight: 9
     settings: {  }
+  filter_footnotes:
+    id: filter_footnotes
+    provider: footnotes
+    status: true
+    weight: 0
+    settings:
+      footnotes_collapse: false
+      footnotes_css: true
+      footnotes_dialog: false
+      footnotes_footer_disable: false
   filter_html:
     id: filter_html
     provider: filter
     status: true
     weight: -10
     settings:
-      allowed_html: '<br> <p class> <h2 class id> <h3 class id> <h4 class id> <h5 class id> <h6 class id> <a class href> <span class> <div class> <strong> <em> <s> <sub> <sup> <blockquote> <ul> <ol start> <li> <hr> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <img src alt height width data-entity-uuid data-entity-type data-caption data-align> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align>'
+      allowed_html: '<br> <p class> <h2 class id> <h3 class id> <h4 class id> <h5 class id> <h6 class id> <div class> <strong> <em> <s> <sub> <sup> <blockquote> <a href id class> <ul class> <ol start> <li class> <hr> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <img src alt height width data-entity-uuid data-entity-type data-caption data-align> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align> <span class> <footnotes-placeholder> <footnotes data-text data-value>'
       filter_html_help: true
       filter_html_nofollow: false
   media_embed:

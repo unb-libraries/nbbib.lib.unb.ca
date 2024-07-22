@@ -503,11 +503,6 @@ html {
     }
   }
   body {
-    &.page-node-type-static-content-page:has(.node__content h2),
-    &.page-node-type-static-content-page:has(.node__content article),
-    &:has(.views-exposed-form),
-    &:has(.pager) {
-    } 
     font-family: libre-franklin, arial, sans-serif !important;
     font-weight: 500;
     line-height: 140%;
@@ -1239,7 +1234,17 @@ html {
             #edit-reset {
               border-color: $base-800;
               background-color: $base-800;
-            } 
+            }
+            .footnotes.js-footnotes {
+              margin: 2rem 0 2rem;
+              border-top: 1px solid $base-400;
+              .footnotes__item-wrapper.js-footnote-reference {
+                grid-template-columns: minmax(auto, 2rem) 1fr;
+                p {
+                  margin-bottom: .2rem;
+                }
+              }
+            }
           }
         }
       }

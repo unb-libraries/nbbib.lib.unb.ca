@@ -18,6 +18,7 @@ settings:
       - superscript
       - subscript
       - '|'
+      - footnotes
       - link
       - bulletedList
       - numberedList
@@ -45,8 +46,6 @@ settings:
     ckeditor5_sourceEditing:
       allowed_tags:
         - '<p class>'
-        - '<a class>'
-        - '<span class>'
         - '<div class>'
         - '<h2 class id>'
         - '<h3 class id>'

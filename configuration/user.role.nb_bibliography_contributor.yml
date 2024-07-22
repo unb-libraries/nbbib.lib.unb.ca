@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.footnote
     - filter.format.unb_libraries
     - media.type.image
     - media.type.video_url
@@ -89,6 +90,7 @@ permissions:
   - 'revert nbbib_essay revisions'
   - 'revert static_content_page revisions'
   - 'update any media'
+  - 'use text format footnote'
   - 'use text format unb_libraries'
   - 'view all bibliographic contributor revisions'
   - 'view all bibliographic reference revisions'

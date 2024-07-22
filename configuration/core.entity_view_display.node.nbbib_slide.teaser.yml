@@ -22,5 +22,6 @@ content:
 hidden:
   field_image: true
   field_link_to: true
+  footnotes_group: true
   langcode: true
   search_api_excerpt: true

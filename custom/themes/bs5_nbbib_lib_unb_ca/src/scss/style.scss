@@ -1237,6 +1237,7 @@ html {
             }
             .footnotes.js-footnotes {
               margin: 2rem 0 2rem;
+              padding-top: .5rem;
               border-top: 1px solid $base-400;
               .footnotes__item-wrapper.js-footnote-reference {
                 grid-template-columns: minmax(auto, 2rem) 1fr;

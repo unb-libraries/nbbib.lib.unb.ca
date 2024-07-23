@@ -1240,7 +1240,8 @@ html {
               padding-top: .5rem;
               border-top: 1px solid $base-400;
               .footnotes__item-wrapper.js-footnote-reference {
-                grid-template-columns: minmax(auto, 2rem) 1fr;
+                grid-template-columns: minmax(auto, .6rem) 1fr;
+                margin-left: 0 !important;
                 p {
                   margin-bottom: .2rem;
                 }

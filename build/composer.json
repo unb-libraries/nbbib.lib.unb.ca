@@ -168,7 +168,7 @@
     "drupal/core-recommended": "^10",
     "drupal/easy_breadcrumb": "^2",
     "drupal/facets": "^2",
-    "drupal/footnotes": "^4.0@beta",
+    "drupal/footnotes": "^4.x-dev",
     "drupal/fontawesome": "^2",
     "drupal/google_analytics": "^4",
     "drupal/health_check": "^1",

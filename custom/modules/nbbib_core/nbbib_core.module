@@ -813,7 +813,15 @@ function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
   $last_name = trim($entity->getLastName());
   $institution_name = $entity->getInstitutionName() ? trim($entity->getInstitutionName()) : NULL;
   $names = generate_names($first_name, $last_name, $institution_name);
-  $entity->setName($names['name']);
+  // Old display name implementation below.
+  // $entity->setName($names['name']);
+  if ($institution_name) {
+    $entity->setName("$institution_name");
+  }
+  else {
+    $entity->setName("$first_name $last_name");
+  }
+
   $entity->setSortName($names['sort_name']);
 }
 

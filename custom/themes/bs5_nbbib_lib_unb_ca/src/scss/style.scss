@@ -1235,6 +1235,14 @@ html {
               border-color: $base-800;
               background-color: $base-800;
             }
+            .footnote__citation, .footnote__citation-separator {
+              position: relative;
+              top: -0.28em;
+              vertical-align: top;
+              font-size: 0.73em;
+              display: inline-block;
+              padding: 0 1px 0 2px;
+            }
             .footnotes.js-footnotes {
               margin: 2rem 0 2rem;
               padding-top: .5rem;
@@ -1242,6 +1250,10 @@ html {
               .footnotes__item-wrapper.js-footnote-reference {
                 grid-template-columns: minmax(auto, .6rem) 1fr;
                 margin-left: 0 !important;
+                .footnotes__item-backlinks {
+                  display: inline-block;
+                  min-width: 25px;
+                }
                 p {
                   margin-bottom: .2rem;
                 }

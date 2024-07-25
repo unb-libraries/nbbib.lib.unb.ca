@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Contains nbbib_util.module.php
+ */
+
+/**
+ * {@inheritdoc}
+ */
+function nbbib_util_yabrm_biblio_reference_load($entities) {
+  kint($entities);
+}

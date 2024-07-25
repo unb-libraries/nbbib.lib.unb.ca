@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains instance_initial_content.install.
+ * Contains nbbib_initial_content.install.
  */
 
 use Symfony\Component\Finder\Finder;

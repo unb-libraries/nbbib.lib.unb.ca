@@ -1,9 +1,6 @@
 <?php
 
-upd_entities('yabrm_book');
-upd_entities('yabrm_book_section');
-upd_entities('yabrm_journal_article');
-upd_entities('yabrm_thesis');
+upd_entities('yabrm_contributor');
 
 function upd_entities($type) {
   $handler = \Drupal::entityTypeManager()->getStorage($type);

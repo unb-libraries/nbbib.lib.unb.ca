@@ -15,6 +15,8 @@ function upd_entities($type) {
     else {
         $entity->setName("$first_name $last_name");
     }
+
+    $entity->save();
   }  
   echo "All entities of type [$type] updated.\n";
 }

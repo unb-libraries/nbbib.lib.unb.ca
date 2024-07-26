@@ -45,6 +45,8 @@ services:
       - "4097:8025"
     networks:
       - nbbib.lib.unb.ca
+    profiles:
+      - mailhog
   nbbib-lib-unb-ca:
     build:
       context: .

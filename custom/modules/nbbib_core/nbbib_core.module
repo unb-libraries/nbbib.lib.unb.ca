@@ -819,7 +819,7 @@ function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
     $entity->setName("$institution_name");
   }
   else {
-    $entity->setName("$first_name $last_name");
+    $entity->setName("$last_name, $first_name");
   }
 
   $entity->setSortName($names['sort_name']);

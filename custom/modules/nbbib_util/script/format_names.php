@@ -1,8 +1,13 @@
 <?php
 
-upd_entities('yabrm_contributor');
+/**
+ * @file
+ * Contains format_names.php.
+ */
 
-function upd_entities($type) {
+ format_names('yabrm_contributor');
+
+function format_names($type) {
   $handler = \Drupal::entityTypeManager()->getStorage($type);
   $entities = $handler->loadMultiple(\Drupal::entityQuery($type)->accessCheck(FALSE)->execute());
   foreach ($entities as $entity) {
@@ -10,7 +15,7 @@ function upd_entities($type) {
     $last_name = trim($entity->getLastName());
     $institution_name = $entity->getInstitutionName() ? trim($entity->getInstitutionName()) : NULL;
     if (!$institution_name) {
-      $entity->setName("$first_name $last_name");
+      $entity->setName("$last_name, $first_name");
       $entity->save();
       echo "\nUpdated contributor [$first_name $last_name]";
     }

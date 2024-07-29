@@ -5,7 +5,6 @@ dependencies:
   config:
     - image.style.thumbnail
   module:
-    - autocomplete_deluxe
     - image
     - link
     - paragraphs
@@ -26,21 +25,14 @@ content:
     third_party_settings: {  }
     text_processing: 0
   archive:
-    type: autocomplete_deluxe
+    type: entity_reference_autocomplete
     weight: 22
     region: content
     settings:
       match_operator: CONTAINS
-      autocomplete_route_name: autocomplete_deluxe.autocomplete
+      match_limit: 10
       size: 60
-      selection_handler: default
-      limit: 10
-      min_length: 0
-      delimiter: ''
-      not_found_message_allow: false
-      not_found_message: "The term '@term' will be added"
-      new_terms: true
-      no_empty_message: 'No terms could be found. Please type in order to add a new term.'
+      placeholder: ''
     third_party_settings: {  }
   call_number:
     type: string_textfield
@@ -51,21 +43,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   collections:
-    type: autocomplete_deluxe
+    type: entity_reference_autocomplete
     weight: 18
     region: content
     settings:
       match_operator: CONTAINS
-      autocomplete_route_name: autocomplete_deluxe.autocomplete
+      match_limit: 10
       size: 60
-      selection_handler: default
-      limit: 10
-      min_length: 0
-      delimiter: ''
-      not_found_message_allow: false
-      not_found_message: "The term '@term' will be added"
-      new_terms: false
-      no_empty_message: 'No terms could be found. Please type in order to add a new term.'
+      placeholder: ''
     third_party_settings: {  }
   contributors:
     type: paragraphs
@@ -267,21 +252,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   topics:
-    type: autocomplete_deluxe
+    type: entity_reference_autocomplete
     weight: 11
     region: content
     settings:
       match_operator: CONTAINS
-      autocomplete_route_name: autocomplete_deluxe.autocomplete
+      match_limit: 10
       size: 60
-      selection_handler: default
-      limit: 10
-      min_length: 0
-      delimiter: ''
-      not_found_message_allow: false
-      not_found_message: "The term '@term' will be added"
-      new_terms: true
-      no_empty_message: 'No terms could be found. Please type in order to add a new term.'
+      placeholder: ''
     third_party_settings: {  }
   url:
     type: link_default

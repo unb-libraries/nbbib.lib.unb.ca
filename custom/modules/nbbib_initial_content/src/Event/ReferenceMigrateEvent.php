@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\instance_initial_content\Event;
+namespace Drupal\nbbib_initial_content\Event;
 
 use Drupal\Core\Entity\EntityTypeManager;
-use Drupal\instance_initial_content\NbBibMigrationTrait;
+use Drupal\nbbib_initial_content\NbBibMigrationTrait;
 use Drupal\migrate\Event\MigrateEvents;
 use Drupal\migrate\Event\MigrateImportEvent;
 use Drupal\migrate_plus\Event\MigrateEvents as MigratePlusEvents;

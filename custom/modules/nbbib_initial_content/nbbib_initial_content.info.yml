@@ -1,6 +1,6 @@
-name: Instance Content Import
+name: NBBIB Content Import
 type: module
-description: Import initial instance content.
+description: Import initial NBBIB content.
 core: 8.x
 core_version_requirement: ^9 || ^10
 package: Migration

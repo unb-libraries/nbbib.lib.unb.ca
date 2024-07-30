@@ -1,11 +1,11 @@
 services:
-  instance_initial_content.0_reference_migrate_subscriber:
-    class: Drupal\instance_initial_content\Event\ReferenceMigrateEvent
+  nbbib_initial_content.0_reference_migrate_subscriber:
+    class: Drupal\nbbib_initial_content\Event\ReferenceMigrateEvent
     arguments: ['@entity_type.manager']
     tags:
       - { name: event_subscriber }
-  instance_initial_content.0_reference_migrate_subscriber_paragraphs:
-    class: Drupal\instance_initial_content\Event\ReferenceMigrateParagraphEvent
+  nbbib_initial_content.0_reference_migrate_subscriber_paragraphs:
+    class: Drupal\nbbib_initial_content\Event\ReferenceMigrateParagraphEvent
     arguments: ['@entity_type.manager']
     tags:
       - { name: event_subscriber }

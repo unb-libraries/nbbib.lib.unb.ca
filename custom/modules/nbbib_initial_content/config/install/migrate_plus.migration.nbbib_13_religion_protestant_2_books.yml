@@ -7,7 +7,7 @@ migration_tags:
 
 source:
   plugin: csv
-  path: '/app/html/modules/custom/instance_initial_content/data/csv/nbbib_13_religion_protestant.csv'
+  path: '/app/html/modules/custom/nbbib_initial_content/data/csv/nbbib_13_religion_protestant.csv'
   header_row_count: 1
   ids: [key]
 
@@ -232,7 +232,7 @@ destination:
 
 dependencies:
   module:
-    - instance_initial_content
+    - nbbib_initial_content
   enforced:
     module:
-    - instance_initial_content
+    - nbbib_initial_content

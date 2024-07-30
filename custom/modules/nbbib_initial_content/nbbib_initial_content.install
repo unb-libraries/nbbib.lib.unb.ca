@@ -7,14 +7,14 @@
 
 use Symfony\Component\Finder\Finder;
 
-function instance_initial_content_install() {
+function nbbib_initial_content_install() {
   /*
    * Get access to drush functions. NO LONGER WORKS in Drupal 9.
    * module_load_include('inc', 'migrate_tools', 'migrate_tools.drush');
    */
 
   // Determine migrations to run. If there is a migrate_plus.migration file, we assume a migration.
-  $import_config_path = DRUPAL_ROOT . '/' . \Drupal::service('extension.list.module')->getPath('instance_initial_content') . '/config/install';
+  $import_config_path = DRUPAL_ROOT . '/' . \Drupal::service('extension.list.module')->getPath('nbbib_initial_content') . '/config/install';
   $finder = new Finder();
   $finder->files()->name('migrate_plus.migration.*.yml')->in($import_config_path);
 

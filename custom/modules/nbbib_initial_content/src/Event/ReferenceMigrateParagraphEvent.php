@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\instance_initial_content\Event;
+namespace Drupal\nbbib_initial_content\Event;
 
 use Drupal\Core\Entity\EntityTypeManager;
-use Drupal\instance_initial_content\NbBibMigrationTrait;
+use Drupal\nbbib_initial_content\NbBibMigrationTrait;
 use Drupal\migrate\Event\MigrateEvents;
 use Drupal\migrate\Event\MigratePostRowSaveEvent;
 use Drupal\migrate\Row;
@@ -79,7 +79,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         $reviewed_authors
       );
 
-      // Instance and update reference.
+      // Nbbib and update reference.
       $item_type = $row->getSourceProperty('item_type');
       $entity_type = self::getZoteroTypeMappings()[$item_type];
 

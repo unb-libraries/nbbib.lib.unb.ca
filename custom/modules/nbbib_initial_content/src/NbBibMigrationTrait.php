@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\instance_initial_content;
+namespace Drupal\nbbib_initial_content;
 
 /**
  * Trait for defining global properties for NBBIB migrations.

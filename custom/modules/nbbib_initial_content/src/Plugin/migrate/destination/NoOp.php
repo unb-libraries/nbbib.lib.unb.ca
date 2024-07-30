@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\instance_initial_content\Plugin\migrate\destination;
+namespace Drupal\nbbib_initial_content\Plugin\migrate\destination;
 
 use Drupal\migrate\Plugin\migrate\destination\DestinationBase;
 use Drupal\migrate\Plugin\MigrateIdMapInterface;

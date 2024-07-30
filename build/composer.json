@@ -154,6 +154,18 @@
         "version": "2.3.4"
       },
       "type": "package"
+    },
+    {
+      "package": {
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/select2/select2/archive/4.0.13.zip"
+        },
+        "name": "select2/select2",
+        "type": "drupal-library",
+        "version": "4.0.13"
+      },
+      "type": "package"
     }
   ],
   "require": {
@@ -186,16 +198,17 @@
     "drupal/search_api": "1.34",
     "drupal/search_api_autocomplete": "^1",
     "drupal/search_api_solr": "^4",
+    "drupal/select2": "^1",
     "drupal/token": "^1",
     "drupal/twig_field_value": "^2",
     "drupal/twig_tweak": "^3",
     "drupal/views_contextual_filters_or": "^1",
     "furf/jquery-ui-touch-punch": "dev-master",
-    "harvesthq/chosen": "^1",
     "oomphinc/composer-installers-extender": "^2",
     "owlcarousel2/owlcarousel2": "2.3.4",
     "pear/file_marc": "^1",
     "scriptotek/marc": "^3",
+    "select2/select2": "^4",
     "simeydotme/jquery-ui-slider-pips": "^1",
     "unb-libraries/composer-drupal-scaffold": "^10",
     "unb-libraries/saml_features": "dev-10.x-1.x"

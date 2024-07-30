@@ -8,6 +8,7 @@ dependencies:
     - image
     - inline_entity_form
     - link
+    - select2
     - text
     - yabrm
 id: yabrm_contributor.yabrm_contributor.default
@@ -90,14 +91,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   nb_residences:
-    type: entity_reference_autocomplete
+    type: select2_entity_reference
     weight: 26
     region: content
     settings:
+      width: 100%
+      autocomplete: true
       match_operator: CONTAINS
       match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   nble_url:
     type: link_default

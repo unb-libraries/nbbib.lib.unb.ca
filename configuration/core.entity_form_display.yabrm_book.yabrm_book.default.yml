@@ -8,6 +8,7 @@ dependencies:
     - image
     - link
     - paragraphs
+    - select2
     - text
     - yabrm
 id: yabrm_book.yabrm_book.default
@@ -25,14 +26,14 @@ content:
     third_party_settings: {  }
     text_processing: 0
   archive:
-    type: entity_reference_autocomplete
+    type: select2_entity_reference
     weight: 22
     region: content
     settings:
+      width: 100%
+      autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   call_number:
     type: string_textfield
@@ -43,14 +44,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   collections:
-    type: entity_reference_autocomplete
+    type: select2_entity_reference
     weight: 18
     region: content
     settings:
+      width: 100%
+      autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   contributors:
     type: paragraphs
@@ -252,14 +253,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   topics:
-    type: entity_reference_autocomplete
+    type: select2_entity_reference
     weight: 11
     region: content
     settings:
+      width: 100%
+      autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   url:
     type: link_default

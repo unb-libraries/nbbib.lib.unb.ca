@@ -40,7 +40,8 @@ function dedupe_terms(string $vid, string $type, string $field) {
     // Escape characters for injecting into SQL.
     $name = str_replace("'", "\'", $name);
     $name = str_replace(",", "\,", $name);
-    $name = str_replace(";", "\;", $name);
+    // Remove semicolons (skips all records that contain them).
+    $name = str_replace(";", "", $name);
     echo "\n$name\n";
 
     // Query for duplicates.

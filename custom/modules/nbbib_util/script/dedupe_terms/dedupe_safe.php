@@ -36,6 +36,7 @@ function dedupe_terms(string $vid, string $type, string $field) {
   foreach($set as $term) {
     $tid = $term->tid;
     $name = $term->name;
+    echo "\n$name\n";
     // Escape characters for injecting into SQL.
     $name = str_replace("'", "\'", $name);
     $name = str_replace(",", "\,", $name);

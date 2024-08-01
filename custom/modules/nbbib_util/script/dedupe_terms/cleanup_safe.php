@@ -29,8 +29,10 @@ function cleanup_terms(string $vid) {
   // Iterate through first instances of terms.
   foreach($set as $term) {
     $tid = $term->tid;
-    // Escape quotation marks for injecting into SQL.
+    // Escape characters for injecting into SQL.
     $name = str_replace("'", "\'", $term->name);
+    $name = str_replace(",", "\,", $term->name);
+    $name = str_replace(";", "\;", $term->name);
 
     // Query for duplicates.
     $query = \Drupal::database()->query(

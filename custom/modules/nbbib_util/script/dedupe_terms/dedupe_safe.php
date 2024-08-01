@@ -91,7 +91,7 @@ function dedupe_terms(string $vid, string $type, string $field) {
         }
         else {
           $value[] = ['target_id' => strval($target)];
-          $entity->set($field, $term);
+          $entity->set($field, $value);
           echo "Adding target $field [$target] to $type [$id] with mergeable $field [$merged]\n";
           // $entity->save();
         }

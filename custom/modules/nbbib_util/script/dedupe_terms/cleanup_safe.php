@@ -10,10 +10,10 @@ use Drupal\yabrm\Entity\BookSectionReference;
 use Drupal\yabrm\Entity\JournalArticleReference;
 use Drupal\yabrm\Entity\ThesisReference;
 
-dedupe_terms('nbbib_residences');
-dedupe_terms('nbbib_archives');
-dedupe_terms('nbbib_reference_topics');
-dedupe_terms('nbbib_locations');
+cleanup_terms('nbbib_residences');
+cleanup_terms('nbbib_archives');
+cleanup_terms('nbbib_reference_topics');
+cleanup_terms('nbbib_locations');
  
 function cleanup_terms(string $vid) {
   // Query unique terms.

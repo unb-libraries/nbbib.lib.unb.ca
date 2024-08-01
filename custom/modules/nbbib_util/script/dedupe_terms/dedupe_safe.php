@@ -24,7 +24,7 @@
 function dedupe_terms(string $vid, string $type, string $field) {
   // Query unique terms.
   $query = \Drupal::database()->query(
-    "SELECT tid, name
+    "SELECT min(tid) as tid, name
     FROM taxonomy_term_field_data
     WHERE vid = '$vid'
     GROUP BY name"
@@ -32,12 +32,13 @@ function dedupe_terms(string $vid, string $type, string $field) {
 
   $set = $query->fetchAll();
   $merges = [];
-  // Iterate through unique terms.
+  // Iterate through first instances of terms.
   foreach($set as $term) {
     $tid = $term->tid;
     // Escape quotation marks for injecting into SQL.
     $name = str_replace("'", "\'", $term->name);
 
+    // Query for duplicates.
     $query = \Drupal::database()->query(
       "SELECT tid
       FROM taxonomy_term_field_data

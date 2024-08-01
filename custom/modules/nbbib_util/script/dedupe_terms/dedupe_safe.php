@@ -39,6 +39,7 @@ function dedupe_terms(string $vid, string $type, string $field) {
     $name = str_replace("'", "\'", $term->name);
     $name = str_replace(",", "\,", $term->name);
     $name = str_replace(";", "\;", $term->name);
+    echo "\n$name\n";
 
     // Query for duplicates.
     $query = \Drupal::database()->query(

@@ -35,10 +35,11 @@ function dedupe_terms(string $vid, string $type, string $field) {
   // Iterate through first instances of terms.
   foreach($set as $term) {
     $tid = $term->tid;
+    $name = $term->name;
     // Escape characters for injecting into SQL.
-    $name = str_replace("'", "\'", $term->name);
-    $name = str_replace(",", "\,", $term->name);
-    $name = str_replace(";", "\;", $term->name);
+    $name = str_replace("'", "\'", $name);
+    $name = str_replace(",", "\,", $name);
+    $name = str_replace(";", "\;", $name);
     echo "\n$name\n";
 
     // Query for duplicates.

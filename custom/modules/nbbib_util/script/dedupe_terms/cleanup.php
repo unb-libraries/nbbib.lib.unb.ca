@@ -78,7 +78,7 @@ function cleanup_terms(string $vid) {
     );
     foreach ($entities as $entity) {
       $id = $entity->id();
-      echo "Deleting merged $vid [$id]\n";
+      echo "\nDeleting merged $vid [$id]\n";
     }
     $handler->delete($entities);
     drupal_flush_all_caches();

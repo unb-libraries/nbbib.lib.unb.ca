@@ -67,9 +67,6 @@ function cleanup_terms(string $vid) {
     $ids = array_merge($ids, $merge);
   }
   
-  echo "\n" . print_r($ids);
-  echo "\n" . print_r($merges);
-
   if (!empty($ids)) {
     $handler = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
     $entities = $handler->loadMultiple(

@@ -39,7 +39,7 @@ function cleanup_terms(string $vid) {
     // Query for duplicates.
     $query = \Drupal::database()->query(
       "SELECT tid
-      FROM taxonomy_term_field_data
+      FROM taxonomy_term_field_data 
       WHERE name = '$name'
       AND tid <> $tid"
     );
@@ -67,19 +67,24 @@ function cleanup_terms(string $vid) {
     $ids = array_merge($ids, $merge);
   }
   
-  $handler = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
-  $entities = $handler->loadMultiple(
-    \Drupal::entityQuery('taxonomy_term')
-      ->condition('vid', $vid)
-      ->condition('tid', $ids, 'IN')
-      ->accessCheck(FALSE)
-      ->execute()
-  );
-  foreach ($entities as $entity) {
-    $id = $entity->id();
-    echo "Deleting merged $vid [$id]\n";
+  echo "\n" . print_r($ids);
+  echo "\n" . print_r($merges);
+
+  if (!empty($ids)) {
+    $handler = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+    $entities = $handler->loadMultiple(
+      \Drupal::entityQuery('taxonomy_term')
+        ->condition('vid', $vid)
+        ->condition('tid', $ids, 'IN')
+        ->accessCheck(FALSE)
+        ->execute()
+    );
+    foreach ($entities as $entity) {
+      $id = $entity->id();
+      echo "Deleting merged $vid [$id]\n";
+    }
+    // $handler->delete($entities);
+    // drupal_flush_all_caches();
   }
-  // $handler->delete($entities);
-  // drupal_flush_all_caches();
 }
 

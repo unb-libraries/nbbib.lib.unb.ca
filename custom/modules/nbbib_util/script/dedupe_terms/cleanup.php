@@ -67,19 +67,21 @@ function cleanup_terms(string $vid) {
     $ids = array_merge($ids, $merge);
   }
   
-  $handler = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
-  $entities = $handler->loadMultiple(
-    \Drupal::entityQuery('taxonomy_term')
-      ->condition('vid', $vid)
-      ->condition('tid', $ids, 'IN')
-      ->accessCheck(FALSE)
-      ->execute()
-  );
-  foreach ($entities as $entity) {
-    $id = $entity->id();
-    echo "Deleting merged $vid [$id]\n";
+  if (!empty($ids)) {
+    $handler = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+    $entities = $handler->loadMultiple(
+      \Drupal::entityQuery('taxonomy_term')
+        ->condition('vid', $vid)
+        ->condition('tid', $ids, 'IN')
+        ->accessCheck(FALSE)
+        ->execute()
+    );
+    foreach ($entities as $entity) {
+      $id = $entity->id();
+      echo "Deleting merged $vid [$id]\n";
+    }
+    $handler->delete($entities);
+    drupal_flush_all_caches();
   }
-  $handler->delete($entities);
-  drupal_flush_all_caches();
 }
 

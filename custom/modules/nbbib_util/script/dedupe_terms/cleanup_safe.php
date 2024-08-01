@@ -30,9 +30,10 @@ function cleanup_terms(string $vid) {
   foreach($set as $term) {
     $tid = $term->tid;
     // Escape characters for injecting into SQL.
-    $name = str_replace("'", "\'", $term->name);
-    $name = str_replace(",", "\,", $term->name);
-    $name = str_replace(";", "\;", $term->name);
+    $name = str_replace("'", "\'", $name);
+    $name = str_replace(",", "\,", $name);
+    // Remove semicolons (skips all records that contain them).
+    $name = str_replace(";", "", $name);
 
     // Query for duplicates.
     $query = \Drupal::database()->query(

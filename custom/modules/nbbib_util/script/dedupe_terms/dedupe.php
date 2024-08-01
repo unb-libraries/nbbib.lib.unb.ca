@@ -10,17 +10,17 @@
  use Drupal\yabrm\Entity\JournalArticleReference;
  use Drupal\yabrm\Entity\ThesisReference;
 
-dedupe_terms('nbbib_residences', 'yabrm_contributor', 'nb_residences');
-dedupe_terms('nbbib_archives', 'yabrm_book', 'archive');
-dedupe_terms('nbbib_archives', 'yabrm_book_section', 'archive');
-dedupe_terms('nbbib_archives', 'yabrm_journal_article', 'archive');
-dedupe_terms('nbbib_archives', 'yabrm_thesis', 'archive');
-dedupe_terms('nbbib_reference_topics', 'yabrm_book', 'topics');
-dedupe_terms('nbbib_reference_topics', 'yabrm_book_section', 'archive');
-dedupe_terms('nbbib_reference_topics', 'yabrm_journal_article', 'archive');
-dedupe_terms('nbbib_reference_topics', 'yabrm_thesis', 'archive');
-dedupe_terms('nbbib_locations', 'yabrm_contrib_archival', 'field_location');
-
+ dedupe_terms('nbbib_residences', 'yabrm_contributor', 'nb_residences');
+ dedupe_terms('nbbib_archives', 'yabrm_book', 'archive');
+ dedupe_terms('nbbib_archives', 'yabrm_book_section', 'archive');
+ dedupe_terms('nbbib_archives', 'yabrm_journal_article', 'archive');
+ dedupe_terms('nbbib_archives', 'yabrm_thesis', 'archive');
+ dedupe_terms('nbbib_reference_topics', 'yabrm_book', 'topics');
+ dedupe_terms('nbbib_reference_topics', 'yabrm_book_section', 'archive');
+ dedupe_terms('nbbib_reference_topics', 'yabrm_journal_article', 'archive');
+ dedupe_terms('nbbib_reference_topics', 'yabrm_thesis', 'archive');
+ dedupe_terms('nbbib_locations', 'yabrm_contrib_archival', 'field_location');
+ 
 function dedupe_terms(string $vid, string $type, string $field) {
   // Query unique terms.
   $query = \Drupal::database()->query(
@@ -35,10 +35,12 @@ function dedupe_terms(string $vid, string $type, string $field) {
   // Iterate through first instances of terms.
   foreach($set as $term) {
     $tid = $term->tid;
+    $name = $term->name;
     // Escape characters for injecting into SQL.
-    $name = str_replace("'", "\'", $term->name);
-    $name = str_replace(",", "\,", $term->name);
-    $name = str_replace(";", "\;", $term->name);
+    $name = str_replace("'", "\'", $name);
+    $name = str_replace(",", "\,", $name);
+    // Remove semicolons (skips all records that contain them).
+    $name = str_replace(";", "", $name);
 
     // Query for duplicates.
     $query = \Drupal::database()->query(

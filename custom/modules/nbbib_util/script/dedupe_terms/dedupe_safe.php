@@ -43,15 +43,16 @@ function dedupe_terms(string $vid, string $type, string $field) {
     $name = str_replace(";", "", $name);
 
     // Query for duplicates.
-    $query = \Drupal::database()->query(
+    $qstring = 
       "SELECT tid
       FROM taxonomy_term_field_data
       WHERE name = '$name'
-      AND tid <> $tid"
-    );
+      AND tid <> $tid";
+
+    $query = \Drupal::database()->query($qstring);
 
     echo "\nTerm: $name";
-    echo print_r($query);
+    echo print_r($qstring);
     echo print_r($merges);
     echo "**********";
 

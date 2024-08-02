@@ -5,21 +5,21 @@
  * Contains dedupe_safe.php
  */
 
- use Drupal\yabrm\Entity\BookReference;
- use Drupal\yabrm\Entity\BookSectionReference;
- use Drupal\yabrm\Entity\JournalArticleReference;
- use Drupal\yabrm\Entity\ThesisReference;
+use Drupal\yabrm\Entity\BookReference;
+use Drupal\yabrm\Entity\BookSectionReference;
+use Drupal\yabrm\Entity\JournalArticleReference;
+use Drupal\yabrm\Entity\ThesisReference;
 
- dedupe_terms('nbbib_residences', 'yabrm_contributor', 'nb_residences');
- dedupe_terms('nbbib_archives', 'yabrm_book', 'archive');
- dedupe_terms('nbbib_archives', 'yabrm_book_section', 'archive');
- dedupe_terms('nbbib_archives', 'yabrm_journal_article', 'archive');
- dedupe_terms('nbbib_archives', 'yabrm_thesis', 'archive');
- dedupe_terms('yabrm_reference_topic', 'yabrm_book', 'topics');
- dedupe_terms('yabrm_reference_topic', 'yabrm_book_section', 'archive');
- dedupe_terms('yabrm_reference_topic', 'yabrm_journal_article', 'archive');
- dedupe_terms('yabrm_reference_topic', 'yabrm_thesis', 'archive');
- dedupe_terms('nbbib_locations', 'yabrm_contrib_archival', 'field_location');
+dedupe_terms('nbbib_residences', 'yabrm_contributor', 'nb_residences');
+dedupe_terms('nbbib_archives', 'yabrm_book', 'archive');
+dedupe_terms('nbbib_archives', 'yabrm_book_section', 'archive');
+dedupe_terms('nbbib_archives', 'yabrm_journal_article', 'archive');
+dedupe_terms('nbbib_archives', 'yabrm_thesis', 'archive');
+dedupe_terms('yabrm_reference_topic', 'yabrm_book', 'topics');
+dedupe_terms('yabrm_reference_topic', 'yabrm_book_section', 'topics');
+dedupe_terms('yabrm_reference_topic', 'yabrm_journal_article', 'topics');
+dedupe_terms('yabrm_reference_topic', 'yabrm_thesis', 'topics');
+dedupe_terms('nbbib_locations', 'yabrm_contrib_archival', 'field_location');
  
 function dedupe_terms(string $vid, string $type, string $field) {
   // Query unique terms.

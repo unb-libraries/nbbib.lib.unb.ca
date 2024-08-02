@@ -12,7 +12,7 @@ use Drupal\yabrm\Entity\ThesisReference;
 
 cleanup_terms('nbbib_residences');
 cleanup_terms('nbbib_archives');
-cleanup_terms('nbbib_reference_topics');
+cleanup_terms('yabrm_reference_topic');
 cleanup_terms('nbbib_locations');
  
 function cleanup_terms(string $vid) {

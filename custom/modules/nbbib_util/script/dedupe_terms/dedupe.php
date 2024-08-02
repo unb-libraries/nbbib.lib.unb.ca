@@ -15,10 +15,10 @@
  dedupe_terms('nbbib_archives', 'yabrm_book_section', 'archive');
  dedupe_terms('nbbib_archives', 'yabrm_journal_article', 'archive');
  dedupe_terms('nbbib_archives', 'yabrm_thesis', 'archive');
- dedupe_terms('nbbib_reference_topics', 'yabrm_book', 'topics');
- dedupe_terms('nbbib_reference_topics', 'yabrm_book_section', 'archive');
- dedupe_terms('nbbib_reference_topics', 'yabrm_journal_article', 'archive');
- dedupe_terms('nbbib_reference_topics', 'yabrm_thesis', 'archive');
+ dedupe_terms('yabrm_reference_topic', 'yabrm_book', 'topics');
+ dedupe_terms('yabrm_reference_topic', 'yabrm_book_section', 'archive');
+ dedupe_terms('yabrm_reference_topic', 'yabrm_journal_article', 'archive');
+ dedupe_terms('yabrm_reference_topic', 'yabrm_thesis', 'archive');
  dedupe_terms('nbbib_locations', 'yabrm_contrib_archival', 'field_location');
  
 function dedupe_terms(string $vid, string $type, string $field) {
@@ -43,12 +43,13 @@ function dedupe_terms(string $vid, string $type, string $field) {
     $name = str_replace(";", "", $name);
 
     // Query for duplicates.
-    $query = \Drupal::database()->query(
+    $qstring = 
       "SELECT tid
       FROM taxonomy_term_field_data
       WHERE name = '$name'
-      AND tid <> $tid"
-    );
+      AND tid <> $tid";
+
+    $query = \Drupal::database()->query($qstring);
 
     $dupes = $query->fetchAll();
     // If there are duplicates...

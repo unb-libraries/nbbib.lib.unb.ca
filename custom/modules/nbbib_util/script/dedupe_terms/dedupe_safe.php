@@ -50,6 +50,11 @@ function dedupe_terms(string $vid, string $type, string $field) {
       AND tid <> $tid"
     );
 
+    echo "\nTerm: $name";
+    echo print_r($query);
+    echo print_r($merges);
+    echo "**********";
+
     $dupes = $query->fetchAll();
     // If there are duplicates...
     if (!empty($dupes)) {

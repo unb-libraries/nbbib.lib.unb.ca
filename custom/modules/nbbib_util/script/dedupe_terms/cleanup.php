@@ -39,7 +39,7 @@ function cleanup_terms(string $vid) {
     // Query for duplicates.
     $query = \Drupal::database()->query(
       "SELECT tid
-      FROM taxonomy_term_field_data
+      FROM taxonomy_term_field_data 
       WHERE name = '$name'
       AND tid <> $tid"
     );

@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.yabrm_bibliographic_contributor
   module:
     - inline_entity_form
+    - select2
 id: paragraph.yabrm_bibliographic_contributor.default
 targetEntityType: paragraph
 bundle: yabrm_bibliographic_contributor
@@ -29,16 +30,17 @@ content:
       collapsible: false
       collapsed: false
       revision: false
+      removed_reference: optional
     third_party_settings: {  }
   field_yabrm_contributor_role:
-    type: entity_reference_autocomplete
+    type: select2_entity_reference
     weight: 2
     region: content
     settings:
+      width: 100%
+      autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
 hidden:
   created: true

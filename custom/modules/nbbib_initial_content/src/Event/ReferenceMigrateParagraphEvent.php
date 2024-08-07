@@ -209,8 +209,8 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
     // Create contrib.
     foreach ($contrib_names as $contrib_name) {
-      // Trim whitespace and remove periods.
-      $contrib_name = trim($contrib_name, " \t\n\r\0\x0B\x2E");
+    // Trim whitespace, tabs, etc.
+    $contrib_name = trim($contrib_name, " \t\n\r\0\x0B");
       // Keep exact trimmed copy to prevent duplicate import.
       $zotero_name = $contrib_name;
       // If contributor is anonymous...

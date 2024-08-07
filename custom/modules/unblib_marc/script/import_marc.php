@@ -18,8 +18,7 @@ $map = [
     'cleanup' => TRUE,
   ],
   'title' => [
-    'marc' => '245',
-    'process' => 'full_title'
+    'marc' => '245$a',
   ],
   'abstract_note' => [
     'marc' => '520$a',
@@ -32,6 +31,7 @@ $map = [
   ],
   'author' => [
     'marc' => '100$a',
+    'target' => 'contributors',
     'process' => 'create_author',
     'cleanup' => TRUE,
   ],
@@ -123,6 +123,8 @@ function migrateMarc(string $source, string $entity_type, array $map) {
       elseif (isset($mapping['marc_fallback'])) {
         $params = explode('$', $mapping['marc_fallback']);
       }
+
+      $field = isset($mapping['target']) ? $mapping['target'] : $field;
       $marc_field = $params[0] ?? NULL; 
       $marc_subfield = $params[1] ?? '';
       $cleanup = isset($mapping['cleanup']) and $mapping['cleanup'];
@@ -150,10 +152,9 @@ function migrateMarc(string $source, string $entity_type, array $map) {
           }
         }
       }
-      echo "\n|FIELD_POST|$field: $value|CALLBACK: $reached";
       
       if ($value) {
-        //$entity->set($field, $value);
+        $entity->set($field, $value);
       }
     }
     $n++;
@@ -165,6 +166,7 @@ function migrateMarc(string $source, string $entity_type, array $map) {
     
     // @TODO: Pass array of mandatory fields and only save if constraints met.
     $entity->save(); 
+
   }
 }
 
@@ -215,8 +217,8 @@ function date2dmy($date, &$entity) {
   return;
 }
 
-function create_author($contrib_name, &$entity) {
-  return $entity->getTitle();
+function create_author($author_name, &$entity) {
+  return createContributors([$author_name], 'Author');
 }
 
 function create_contribs($contrib_blob, &$entity) {
@@ -242,17 +244,17 @@ function createContributors($contrib_names, $contrib_role) {
 
   // Create contribs.
   foreach ($contrib_names as $contrib_name) {
-    // Trim whitespace and remove periods.
-    $contrib_name = trim($contrib_name, " \t\n\r\0\x0B\x2E");
+    // Trim whitespace, tabs, etc.
+    $contrib_name = trim($contrib_name, " \t\n\r\0\x0B");
     // Keep exact trimmed copy to prevent duplicate import.
-    $zotero_name = $contrib_name;
+
     // If contributor is anonymous...
     if (strpos(mb_strtolower($contrib_name), 'anonymous')) {
       $zotero_name = $contrib_name = 'Anonymous';
     }
 
     if (!empty($contrib_name)) {
-      $existing = $this->typeManager->getStorage('yabrm_contributor')
+      $existing = \Drupal::entityTypeManager()->getStorage('yabrm_contributor')
         ->getQuery()
         ->condition('zotero_name', $zotero_name)
         ->accessCheck(FALSE)
@@ -306,7 +308,7 @@ function createContributors($contrib_names, $contrib_role) {
   foreach ($contrib_ids as $contrib_id) {
     // Retrieve contributor role ID, or create term.
     $role_term = ucwords(str_replace('_', ' ', $contrib_role));
-    $role_tid = $this->taxTermExists($role_term, $field, $voc);
+    $role_tid = taxTermExists($role_term, $field, $voc);
 
     if (!$role_tid) {
       $term = Term::create([
@@ -330,7 +332,7 @@ function createContributors($contrib_names, $contrib_role) {
       ],
     ];
 
-    $contributors[] = $this->createParagraph('yabrm_bibliographic_contributor', $values);
+    $contributors[] = createParagraph('yabrm_bibliographic_contributor', $values);
   }
 
   return $contributors;
@@ -350,7 +352,7 @@ function createContributors($contrib_names, $contrib_role) {
  *   Contains an INT of the tid if exists, FALSE otherwise.
  */
 function taxTermExists($value, $field, $vocabulary) {
-  $query = $this->typeManager->getStorage('taxonomy_term')->getQuery();
+  $query = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->getQuery();
   $query->condition('vid', $vocabulary);
   $query->condition($field, $value);
   $tids = $query->accessCheck(FALSE)->execute();

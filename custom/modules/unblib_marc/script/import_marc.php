@@ -19,6 +19,7 @@ $map = [
   ],
   'title' => [
     'marc' => '245$a',
+    'cleanup' => TRUE,
   ],
   'abstract_note' => [
     'marc' => '520$a',
@@ -36,7 +37,7 @@ $map = [
     'cleanup' => TRUE,
   ],
   'contributors' => [
-    'marc' => '700',
+    'marc' => '700$a$e',
     'multival' => TRUE,
     'process' => 'create_contribs',
   ],
@@ -106,102 +107,84 @@ $map = [
 migrateMarc(
   'modules/custom/unblib_marc/data/portolan.mrc',
   'yabrm_book',
-  $map
+  $map,
+  FALSE
 );
 
-function migrateMarc(string $source, string $entity_type, array $map) {
+function migrateMarc(string $source, string $entity_type, array $map, bool $publish) {
   $collection = Collection::fromFile($source);
-  $n = 0;
+  $n = 0; // Debug.
 
   foreach ($collection as $record) {
     $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create();
     
     foreach ($map as $field => $mapping) {
-      if (isset($mapping['marc'])) {
-        $params = explode('$', $mapping['marc']);
-      }
-      elseif (isset($mapping['marc_fallback'])) {
-        $params = explode('$', $mapping['marc_fallback']);
-      }
-
-      $field = isset($mapping['target']) ? $mapping['target'] : $field;
-      $marc_field = $params[0] ?? NULL; 
-      $marc_subfield = $params[1] ?? '';
+      $field = $mapping['target'] ?? $mapping['target'] ?? $field;
+      $marc = $mapping['marc'] ?? $mapping['marc_fallback'] ?? NULL;
       $cleanup = isset($mapping['cleanup']) and $mapping['cleanup'];
       $multival = isset($mapping['multival']) and $mapping['multival'];
-        
-      if ($marc_field) {
-        $value = getMarcValue($record, $marc_field, $marc_subfield, $cleanup, $multival);
+
+      if ($marc) {
+        $value = getMarcValue($record, $marc, $cleanup, $multival);
       }
-      elseif (isset($mapping['default'])) {
-        $value = $mapping['default'];
-      }
-      elseif (isset($mapping['value'])) {
-        $value = $mapping['value'];
+      elseif ($mapping['default']) {
+        $value = $mapping['default']; 
       }
 
       echo "\n|FIELD|$field: $value";
-      $reached = 'NO';
 
-      if(isset($mapping['process'])) {
-        $callback = $mapping['process'];
-        if (is_callable($callback)) {
-          if (function_exists($callback)) {
-            $value = $callback($value, $entity);
-            $reached = 'YES';
+      if ($value) {
+        if(isset($mapping['process'])) {
+          $callback = $mapping['process'];
+          if (is_callable($callback)) {
+            if (function_exists($callback)) {
+              $value = $callback($value, $entity);
+            }
           }
         }
-      }
       
-      if ($value) {
         $entity->set($field, $value);
       }
     }
-    $n++;
+    $n++; // Debug.
     echo "\n**********";
     
-    if ($n == 100) {
+    if ($n == 100) { // Debug.
       exit;
     }
     
     // @TODO: Pass array of mandatory fields and only save if constraints met.
-    $entity->save(); 
-
+    if ($entity->getTitle()) {
+      $entity->setPublished($publish);
+      $entity->save();
+    } 
   }
 }
 
 function getMarcValue(
   Record $record, 
-  string $marc_field, 
-  string $marc_subfield, 
+  string $marc, 
   bool $cleanup = FALSE,
   bool $multival = FALSE
   ) {
   // If multivalue, run query. If single value, get field.
-  $field_data = $multival ? $record->query($marc_field) : [$record->getField($marc_field)];
+  $field_data = $record->query($marc);
   $data = "";
   $entries = 0;
 
   foreach ($field_data as $entry) {
     if ($entry) {
-      if ($marc_subfield and gettype($entry->getSubfield($marc_subfield)) == 'object') {
-        // Get entry data.
-        $entry_data = $entry->getSubfield($marc_subfield)->getData();
-      }
-      else {
-        // Get raw, broad field data.
-        $entry_data = $entry->toRaw();
-      }
-
-      // If cleanup is requested, trim spaces and special characters.
-      $entry_data = (is_string($entry_data) and $cleanup) ? 
-      preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $entry_data) : $entry_data;
-      // Restore trailing period if last character appears to be an initial.
-      $entry_data = (substr($entry_data, -2, 1) == ' ') ? "$entry_data." : $entry_data;
-      // Concatenate data string.
-      $data .= $entries > 0 ? "|$entry_data" : $entry_data;
-      $entries++;
+      $entry_data = $entry->toRaw();
     }
+
+    // If cleanup is requested, trim spaces and special characters.
+    $entry_data = (is_string($entry_data) and $cleanup) ? 
+    preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $entry_data) : $entry_data;
+    // Restore trailing period if last character appears to be an initial.
+    $entry_data = (is_string($entry_data) and  substr($entry_data, -2, 1) == ' ') ? "$entry_data." : $entry_data;
+    // Concatenate data string.
+    $data .= $entries > 0 ? "|$entry_data" : $entry_data;
+    $entries++;
   }
 
   return $data;
@@ -222,6 +205,7 @@ function create_author($author_name, &$entity) {
 }
 
 function create_contribs($contrib_blob, &$entity) {
+  echo "\nCONTRIB BLOB: $contrib_blob";
   return;
 }
 
@@ -250,8 +234,10 @@ function createContributors($contrib_names, $contrib_role) {
 
     // If contributor is anonymous...
     if (strpos(mb_strtolower($contrib_name), 'anonymous')) {
-      $zotero_name = $contrib_name = 'Anonymous';
+      $contrib_name = 'Anonymous';
     }
+
+    $zotero_name = $contrib_name;
 
     if (!empty($contrib_name)) {
       $existing = \Drupal::entityTypeManager()->getStorage('yabrm_contributor')

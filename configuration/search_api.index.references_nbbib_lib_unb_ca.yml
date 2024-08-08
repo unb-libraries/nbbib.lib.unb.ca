@@ -412,6 +412,10 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  id_9:
+    label: ID
+    property_path: id
+    type: integer
   isbn:
     label: ISBN
     datasource_id: 'entity:yabrm_book'

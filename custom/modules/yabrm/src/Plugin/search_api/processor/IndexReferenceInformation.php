@@ -133,6 +133,15 @@ class IndexReferenceInformation extends ProcessorPluginBase {
 
     if (!$datasource) {
       $definition = [
+        'label' => $this->t('ID'),
+        'description' => $this->t('The entity ID of the bibliographic reference.'),
+        'type' => 'integer',
+        'is_list' => TRUE,
+        'processor_id' => $this->getPluginId(),
+      ];
+      $properties['id'] = new ProcessorProperty($definition);
+
+      $definition = [
         'label' => $this->t('Reference Type'),
         'description' => $this->t('The type of the bibliographic reference.'),
         'type' => 'string',
@@ -311,6 +320,20 @@ class IndexReferenceInformation extends ProcessorPluginBase {
     if (in_array($entity->getEntityTypeId(), self::APPLIES_ENTITY_TYPES)) {
       $yabrm_entity = $item->getOriginalObject()->getValue();
 
+      // Entity ID.
+      if (method_exists($yabrm_entity, 'id')) {
+        $id = $yabrm_entity->id();
+      }
+      else {
+        $id = NULL;
+      }
+
+      $fields = $this->getFieldsHelper()
+        ->filterForPropertyPath($item->getFields(), NULL, 'id');
+      foreach ($fields as $field) {
+        $field->addValue($id);
+      }
+      
       // The type of reference.
       $fields = $this->getFieldsHelper()
         ->filterForPropertyPath($item->getFields(), NULL, 'bibliographic_type');

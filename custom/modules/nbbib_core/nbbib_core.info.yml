@@ -9,5 +9,10 @@ dependencies:
   - redirect
 
 libraries:
-  - nbbib_core/contrib-alpha-pager
-  - nbbib_core/modal-forms
+  - nbbib_core/alpha-pager
+  - nbbib_core/cite-copy
+  - nbbib-core/facet-hard-limit-plus
+  - nbbib-core/navbar-active
+  - nbbib-core/toolbar-overrides
+
+

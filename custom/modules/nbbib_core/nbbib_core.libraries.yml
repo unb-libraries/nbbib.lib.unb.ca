@@ -5,6 +5,13 @@ alpha-pager:
   dependencies:
      - core/jquery
 
+cite-copy:
+  version: VERSION
+  js:
+    js/cite_copy.js: {}
+  dependencies:
+     - core/jquery
+
 facet-hard-limit-plus:
   version: VERSION
   js:

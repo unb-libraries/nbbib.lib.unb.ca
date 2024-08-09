@@ -732,6 +732,7 @@ display:
           bypass_access: false
           skip_access: false
       relationships: {  }
+      use_ajax: true
       header:
         result:
           id: result
@@ -2528,6 +2529,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      title: Citation
       fields:
         bibliographic_citation:
           id: bibliographic_citation
@@ -2684,9 +2686,14 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: false
+      pager:
+        type: none
+        options:
+          offset: 0
       cache:
         type: search_api_none
         options: {  }
+      empty: {  }
       sorts:
         publication_year_5_1:
           id: publication_year_5_1
@@ -2782,8 +2789,11 @@ display:
           preserve_facet_query_args: false
           contextual_filters_or: true
       defaults:
+        empty: false
         cache: false
         query: false
+        title: false
+        pager: false
         fields: false
         sorts: false
         arguments: false
@@ -2792,27 +2802,16 @@ display:
         header: false
         footer: false
       display_description: ''
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: result
-          empty: false
-          content: 'Displaying @start - @end of @total'
+      header: {  }
       footer: {  }
       exposed_block: false
       display_extenders: {  }
-      path: collection/%node
+      path: cite/%uuid
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_interface'
         - url
-        - url.query_args
       tags:
         - 'config:search_api.index.references_nbbib_lib_unb_ca'
         - 'search_api_list:references_nbbib_lib_unb_ca'

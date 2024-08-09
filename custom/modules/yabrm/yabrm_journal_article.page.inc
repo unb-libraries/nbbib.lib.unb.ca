@@ -30,6 +30,10 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
 
+  // Extract and pass Entity UUID.
+  $uuid = $yabrm_journal_article->uuid();
+  $variables['content']['uuid'] = $uuid;
+  
   // Pass archives as plain names.
   $src_archives = $yabrm_journal_article->get('archive')->getValue();
   $archives = [];

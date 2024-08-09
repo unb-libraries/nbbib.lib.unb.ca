@@ -30,6 +30,10 @@ function template_preprocess_yabrm_thesis(array &$variables) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
 
+  // Extract and pass Entity UUID.
+  $uuid = $yabrm_thesis->uuid();
+  $variables['content']['uuid'] = $uuid;
+  
   // Pass archives as plain names.
   $src_archives = $yabrm_thesis->get('archive')->getValue();
   $archives = [];

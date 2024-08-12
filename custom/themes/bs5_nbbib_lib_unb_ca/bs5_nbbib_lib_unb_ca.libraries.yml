@@ -11,5 +11,6 @@ global-scripts:
     /libraries/owlcarousel2/dist/owl.carousel.min.js: {}
   dependencies:
     - core/drupal
+    - core/drupal.dialog.ajax
     - core/jquery
     - core/once

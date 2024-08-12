@@ -31,8 +31,8 @@ function template_preprocess_yabrm_book(array &$variables) {
   }
 
   // Extract and pass Entity UUID.
-  $uuid = $yabrm_book->uuid();
-  $variables['content']['uuid'] = $uuid;
+  $id = $yabrm_book->id();
+  $variables['content']['id'] = $id;
 
   // Pass archives as plain names.
   $src_archives = $yabrm_book->get('archive')->getValue();

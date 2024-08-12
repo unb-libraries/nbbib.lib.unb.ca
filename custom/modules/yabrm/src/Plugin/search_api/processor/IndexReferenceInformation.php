@@ -134,7 +134,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
     if (!$datasource) {
       $definition = [
         'label' => $this->t('ID'),
-        'description' => $this->t('The entity UUID of the bibliographic reference.'),
+        'description' => $this->t('The entity ID of the bibliographic reference.'),
         'type' => 'integer',
         'is_list' => TRUE,
         'processor_id' => $this->getPluginId(),
@@ -321,8 +321,8 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $yabrm_entity = $item->getOriginalObject()->getValue();
 
       // Entity ID.
-      if (method_exists($yabrm_entity, 'uuid')) {
-        $id = $yabrm_entity->uuid();
+      if (method_exists($yabrm_entity, 'id')) {
+        $id = $yabrm_entity->id();
       }
       else {
         $id = NULL;

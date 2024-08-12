@@ -4,15 +4,17 @@
 A simple ```dockworker start-over``` is enough to spin up a local development instance.
 
 Some quick notes:
-* The configured theme is ```nbbib_lib_unb_ca```, and all changes should be made to it. Its location in the repository is ```/themes/custom```.
-* The theme ```custom``` inherits from ```bootstrap4```.
+* The configured theme is ```bs5_nbbib_lib_unb_ca```, and all changes should be made to it. Its location in the repository is ```/themes/custom```.
+* The theme ```bs5_nbbib_lib_unb_ca``` inherits from ```bootstrap5```.
 * There is also a minor-customization admin theme named ```nbbib_admin```.
-* The teme ```nbbib_admin``` inherits from ```seven```.  
+* The teme ```nbbib_admin``` inherits from ```claro```.  
 * Once deployed locally, any changes to the _themes_ or _assets_ can then be updated with the usual: ```dockworker theme:build-all```
 
 ## Data Overview
 NBBIB uses a combination of Drupal content structures and custom entities. All custom entities are defined and configured in module *yabrm*. Other content structures include:
 * Static Content Page (content type/node) — For static pages.
+* Essay (content type/node) — For accompanying essays.
+* Essays Header (content type/node) — Single instance node, imported as the header for the "Essays" page. 
 * Contributor (Drupal Paragraph) — A relationship structure connecting contributors and roles to their assigned references.
 * NBBIB Archives (taxonomy) — Controlled vocabulary to store reference archives.
 * NBBIB Locations (taxonomy) — Controlled vocabulary to store reference locations.
@@ -33,7 +35,8 @@ YABRM stands for Yet Another Bibliographic Reference Module. There is little reu
 
 ## Module Overview
 * context_branding: Offers a custom branding block which renders the site title as a no-link H1 header on homepage only.
-* cv_util: Provides utility scripts for maintenance tasks. E.g. rm_contribs.php removes all contributors from the Drupal database.
-* instance_initial_content: Contains the initial site data migration, originally from an older version of the site.
+* nbbib_util: Provides utility scripts for maintenance tasks. E.g. rm_contribs.php removes all contributors from the Drupal database.
+* nbbib_initial_content: Contains the initial site data migration, originally from an older version of the site.
 * nbbib_core: Contais all custom functionality extending Drupal capabilities. All hooks pertainig to data behaviour during ingestion and storage, as well as what data is available for display, should be found in the .module file here.
+* unblib_marc: WIP scripot collection to facilitate imporing MARC 21 data into NBBIB, specifically the Portolan collection. 
 * yabrm: The previously-mentioned module defining custom data entities.

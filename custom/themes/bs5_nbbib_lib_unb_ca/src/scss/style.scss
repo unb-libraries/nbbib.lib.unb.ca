@@ -70,14 +70,19 @@ html {
     height: 1rem;
     width: 1rem;
   }
-  .btn {
-  }
   .btn:hover,
   .btn:focus {
     border-color: $link-hover !important;
     background-color: $link-hover !important;
     text-decoration: initial !important;
     color: $light !important;
+  }
+  .ui-dialog {
+    border-radius: 1rem !important;
+    width: 500px !important;
+    .ui-dialog-titlebar {
+      border-radius: 1rem 1rem 0 0 !important;
+    }
   }
   body.path-frontpage {
     header {

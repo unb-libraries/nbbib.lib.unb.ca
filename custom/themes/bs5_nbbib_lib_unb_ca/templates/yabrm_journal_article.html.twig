@@ -164,33 +164,31 @@
 
         <div id="ref-picture" class="col-sm-4">
           {{ content.cover_image|field_value }}
-          {% if content.archives or content.url|field_value %}
-            <div id="ref-copies">
-              <b>Copies</b>
+          <div id="ref-cite">
+            <a data-dialog-type="modal" href="/cite/journal_article/{{ content.id }}" id="cite-open" class="use-ajax btn btn-secondary btn-sm fw-normal lh-lg float-end">
+              Cite this journal article
+            </a>
+          </div>
+          <div id="ref-copies">
+            <b>Copies</b>
 
-              <div>
-                {% if content.archives or content.url %}
-                  <ul>
-                    {% for archive in content.archives %}
-                      <li>{{ archive }}</li>
-                    {% endfor %}
+            <div>
+              {% if content.archives or content.url %}
+                <ul>
+                  {% for archive in content.archives %}
+                    <li>{{ archive }}</li>
+                  {% endfor %}
 
-                    {% set urls = content.url %}
-                    {% for url in content.url|field_value %}
-                      <li>{{ url }}</li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-              </div>
-              
+                  {% set urls = content.url %}
+                  {% for url in content.url|field_value %}
+                    <li>{{ url }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
             </div>
-          {% endif %}
+
+          </div>
         </div>
-      </div>
-      <div id="ref-cite">
-        <a data-dialog-type="modal" href="/cite/journal_article/{{ content.id }}" id="cite-open" class="use-ajax btn btn-secondary btn-sm fw-normal lh-lg float-end">
-          Cite this record
-        </a>
       </div>
     </div>
   {% endif %}

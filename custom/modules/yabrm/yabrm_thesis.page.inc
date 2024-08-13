@@ -250,49 +250,6 @@ function template_preprocess_yabrm_thesis(array &$variables) {
     $pub_wad .= '.';
   }
 
-  $variables['content']['pub_wad'] = $pub_wad . '. <em class="cite-type">[ thesis ]</em>';
-}
-
-/**
- * Prepares contributors for passing to template.
- *
- * @param array $contributors
- *   An associative array containing:
- *   - name: Contributor display name.
- *   - first_name: Contributor first name.
- *   - last_name: Contributor last name.
- */
-function thesis_contribs_wad(array $contributors) {
-  $contribs_wad = '';
-  $et_al = FALSE;
-
-  // Only act if there's a name.
-  if (!empty($contributors[0]['name'])) {
-    // Content.
-    $contribs_wad .= $contributors[0]['name'];
-    // If there is a second.
-    if (!empty($contributors[1]['name'])) {
-      // If there is a third.
-      if (!empty($contributors[2]['name'])) {
-        $et_al = TRUE;
-        $contribs_wad .= ', ';
-      }
-      else {
-        $contribs_wad .= ' and ';
-      }
-
-      $contribs_wad .= $contributors[1]['name'];
-
-      if ($et_al) {
-        $contribs_wad .= ' et al';
-      }
-    }
-  }
-
-  // Only add period if last character is not punctuation.
-  if (!preg_match("/[.!?,;:]$/", $contribs_wad)) {
-    $contribs_wad .= '.';
-  }
-
-  return $contribs_wad;
+  $pub_wad = substr($pub_wad, -1) == '.' ? $pub_wad : "$pub_wad.";
+  $variables['content']['pub_wad'] = $pub_wad . ' <em class="cite-type">[ thesis ]</em>';
 }

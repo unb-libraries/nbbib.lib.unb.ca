@@ -2753,7 +2753,18 @@ display:
         footer: false
       display_description: ''
       header: {  }
-      footer: {  }
+      footer:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: false
+          content: "<a id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\">Copy citation</a>\r\n"
+          tokenize: false
       exposed_block: false
       display_extenders: {  }
       path: cite/book/%id
@@ -2987,7 +2998,18 @@ display:
         footer: false
       display_description: ''
       header: {  }
-      footer: {  }
+      footer:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: false
+          content: '<a id="cite" class="btn btn-secondary fw-normal lh-lg float-end">Copy citation</a>'
+          tokenize: false
       exposed_block: false
       display_extenders: {  }
       path: cite/book_section/%id
@@ -3221,7 +3243,18 @@ display:
         footer: false
       display_description: ''
       header: {  }
-      footer: {  }
+      footer:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: false
+          content: '<a id="cite" class="btn btn-secondary fw-normal lh-lg float-end">Copy citation</a>'
+          tokenize: false
       exposed_block: false
       display_extenders: {  }
       path: cite/journal_article/%id
@@ -3455,7 +3488,18 @@ display:
         footer: false
       display_description: ''
       header: {  }
-      footer: {  }
+      footer:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: false
+          content: '<a id="cite" class="btn btn-secondary fw-normal lh-lg float-end">Copy citation</a>'
+          tokenize: false
       exposed_block: false
       display_extenders: {  }
       path: cite/thesis/%id

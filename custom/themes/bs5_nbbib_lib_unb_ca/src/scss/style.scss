@@ -83,6 +83,10 @@ html {
     .ui-dialog-titlebar {
       border-radius: 1rem 1rem 0 0 !important;
     }
+    #cite {
+      text-decoration: none !important;
+      color: $light !important;
+    }
   }
   body.path-frontpage {
     header {

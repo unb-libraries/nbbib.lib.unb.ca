@@ -2537,7 +2537,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      title: Citation
+      title: 'Cite this book'
       fields:
         bibliographic_citation:
           id: bibliographic_citation
@@ -2550,8 +2550,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ bibliographic_citation|replace({ ''[ book ]'': ""})|raw }}'
             make_link: false
             path: ''
             absolute: false
@@ -2771,7 +2771,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      title: Citation
+      title: 'Cite this book section'
       fields:
         bibliographic_citation:
           id: bibliographic_citation
@@ -2784,8 +2784,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ bibliographic_citation|replace({ ''[ book section ]'': ""})|raw }}'
             make_link: false
             path: ''
             absolute: false
@@ -3005,7 +3005,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      title: Citation
+      title: 'Cite this journal article'
       fields:
         bibliographic_citation:
           id: bibliographic_citation
@@ -3018,8 +3018,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ bibliographic_citation|replace({ ''[ journal article ]'': ""})|raw }}'
             make_link: false
             path: ''
             absolute: false
@@ -3239,7 +3239,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      title: Citation
+      title: 'Cite this thesis'
       fields:
         bibliographic_citation:
           id: bibliographic_citation
@@ -3252,8 +3252,8 @@ display:
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ bibliographic_citation|replace({ ''[ thesis ]'': ""})|raw }}'
             make_link: false
             path: ''
             absolute: false

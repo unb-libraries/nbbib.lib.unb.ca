@@ -11,11 +11,9 @@
 #}
 {% if breadcrumb %}
   <ol class="breadcrumb">
-    {% if breadcrumb|first.text != "Node" %}
     <li>
       <a href="/"><i class="fa fa-home"></i></a>
     </li>
-    {% endif %}
     {% for item in breadcrumb %}
       {% if (item.text != "Node") %}
         <li {{ item.attributes }}>

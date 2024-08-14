@@ -269,7 +269,7 @@ function nbbib_core_theme($existing, $type, $theme, $path) {
 function nbbib_core_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'nbbib_core/navbar-active';
   $current_route = \Drupal::routeMatch()->getRouteName();
-
+  
   if($current_route === 'nbbib_core.bibliography') {
     // Attach custom facet feature to Bibliography view.
     $attachments['#attached']['library'][] = 'nbbib_core/facet-hard-limit-plus';
@@ -1310,6 +1310,8 @@ function reindex_collection_refs($cid) {
  */
 function nbbib_core_views_pre_render($view) {
   if (isset($view) && $view->id() == 'nb_bibliography_citations') {
+    // Attach citation button library.
+    $view->element['#attached']['library'][] = 'nbbib_core/cite-copy';
     // Include current facets in view title.
     $active_facets = active_facet_page_title_get_active_facets();
     if (empty($active_facets)) {

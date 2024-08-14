@@ -6,7 +6,7 @@
   $(document).ready(function (e) {
     // Transcription copy button.
     $('#cite').click(function() {
-      navigator.clipboard.writeText($('#citation').html().toString().replace(/<\/?[^>]+>/gi, '')).then(
+      navigator.clipboard.writeText($('.views-field-bibliographic-citation > .field-content').html().toString().replace(/<\/?[^>]+>/gi, '')).then(
         function() {
           // Clipboard successfully set.
           window.alert('Citation copied to clipboard') 

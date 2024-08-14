@@ -17,7 +17,8 @@
         }
       );
     });
-    $('.ui-dialog-titlebar-close').click(function() {
+    $('.ui-dialog-titlebar-close').click(function(e) {
+      e.preventDefault();
       location.reload(true);
     });
   });

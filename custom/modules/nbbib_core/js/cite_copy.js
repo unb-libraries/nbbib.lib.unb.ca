@@ -6,7 +6,8 @@
   $(document).ready(function (e) {
     // Transcription copy button.
     $('#cite').click(function() {
-      navigator.clipboard.writeText($('.views-field-bibliographic-citation > .field-content').html().toString().replace(/<\/?[^>]+>/gi, '')).then(
+      // Copy html, convert to string,remove tags, replace breaks with spaces.
+      navigator.clipboard.writeText($('.views-field-bibliographic-citation > .field-content').html().toString().replace(/<\/?[^>]+>/gi, '').replace(/\n/g, " ")).then(
         function() {
           // Clipboard successfully set.
           window.alert('Citation copied to clipboard') 
@@ -18,6 +19,7 @@
       );
     });
     $('.ui-dialog-titlebar-close').click(function(e) {
+      // Prevent default and reload on window close to reset.
       e.preventDefault();
       location.reload(true);
     });

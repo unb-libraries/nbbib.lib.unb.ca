@@ -10,7 +10,9 @@ cite-copy:
   js:
     js/cite_copy.js: {}
   dependencies:
+     - core/drupal
      - core/jquery
+     - core/once
 
 facet-hard-limit-plus:
   version: VERSION

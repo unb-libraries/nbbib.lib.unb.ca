@@ -11,13 +11,13 @@
       navigator.clipboard.writeText($('.views-field-bibliographic-citation > .field-content').html().toString().replace(/<\/?[^>]+>/gi, '').replace(/\n/g, " ")).then(
         function() {
           // Clipboard successfully set.
-          $('#cite-success').removeClass('d-none');
+          window.alert('Citation copied to clipboard') 
         }, 
         function() {
           // Clipboard write failed.
-          $('#cite-error').removeClass('d-none');
+          window.alert('ERROR: Clipboard API unsupported by browser')
         }
-  );
+      );
     });
     $('.ui-dialog-titlebar-close').click(function(e) {
       // Prevent default and reload on window close to reset.

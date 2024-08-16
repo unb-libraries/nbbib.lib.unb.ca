@@ -25,10 +25,5 @@
         }
   );
     });
-    $('.ui-dialog-titlebar-close').click(function(e) {
-      // Prevent default and reload on window close to reset.
-      e.preventDefault();
-      location.reload(true);
-    });
   });
 })(jQuery);

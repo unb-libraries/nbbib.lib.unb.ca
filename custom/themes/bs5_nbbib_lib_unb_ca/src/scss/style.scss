@@ -77,15 +77,30 @@ html {
     text-decoration: initial !important;
     color: $light !important;
   }
+  .btn.btn-secondary:focus {
+    border-color: $secondary !important;
+    background-color: $secondary !important;
+  }
   .ui-dialog {
     border-radius: 1rem !important;
     width: 500px !important;
     .ui-dialog-titlebar {
       border-radius: 1rem 1rem 0 0 !important;
+      button.ui-dialog-titlebar-close:before {
+        position: relative;
+        left: -3rem;
+        top: -.15rem;
+        content: "Close";
+      }
     }
-    #cite {
-      text-decoration: none !important;
-      color: $light !important;
+    #drupal-modal {
+      .search-result {
+        margin: 1rem 0;
+      }
+      #cite {
+        text-decoration: none !important;
+        color: $light !important;
+      }
     }
   }
   body.path-frontpage {

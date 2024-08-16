@@ -71,7 +71,7 @@ $map = [
     'cleanup' => TRUE,
   ],
   'notes' => [
-    'marc' => '700',
+    'marc' => '700$a$d$e$l',
     'cleanup' => TRUE,
   ],
   'isbn' => [
@@ -183,7 +183,7 @@ function getMarcValue(
     // Restore trailing period if last character appears to be an initial.
     $entry_data = (is_string($entry_data) and  substr($entry_data, -2, 1) == ' ') ? "$entry_data." : $entry_data;
     // Concatenate data string.
-    $data .= $entries > 0 ? "|$entry_data" : $entry_data;
+    $data .= "||$entry_data";
     $entries++;
   }
 

@@ -93,6 +93,9 @@ html {
         content: "Close";
       }
     }
+    .ui-dialog-content {
+      padding: 1em 1em;
+    }
     #drupal-modal {
       .search-result {
         margin: 1rem 0;
@@ -100,6 +103,9 @@ html {
       #cite {
         text-decoration: none !important;
         color: $light !important;
+        svg {
+          margin-left: .4rem;
+        }
       }
     }
   }

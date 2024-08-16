@@ -3008,7 +3008,18 @@ display:
         header: false
         footer: false
       display_description: ''
-      header: {  }
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: false
+          content: "<div id=\"cite-success\" class=\"messages messages--status visually-hidden\" role=\"status\">Copied the citation to clipboard.</div>\r\n<div id =\"cite-error\" class=\"messages messages--error visually-hidden\" role=\"status\">Copied the citation to clipboard.</div>"
+          tokenize: false
       footer:
         area_text_custom:
           id: area_text_custom
@@ -3253,7 +3264,18 @@ display:
         header: false
         footer: false
       display_description: ''
-      header: {  }
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: false
+          content: "<div id=\"cite-success\" class=\"messages messages--status visually-hidden\" role=\"status\">Copied the citation to clipboard.</div>\r\n<div id =\"cite-error\" class=\"messages messages--error visually-hidden\" role=\"status\">Copied the citation to clipboard.</div>"
+          tokenize: false
       footer:
         area_text_custom:
           id: area_text_custom
@@ -3498,7 +3520,18 @@ display:
         header: false
         footer: false
       display_description: ''
-      header: {  }
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: false
+          content: "<div id=\"cite-success\" class=\"messages messages--status visually-hidden\" role=\"status\">Copied the citation to clipboard.</div>\r\n<div id =\"cite-error\" class=\"messages messages--error visually-hidden\" role=\"status\">Copied the citation to clipboard.</div>"
+          tokenize: false
       footer:
         area_text_custom:
           id: area_text_custom

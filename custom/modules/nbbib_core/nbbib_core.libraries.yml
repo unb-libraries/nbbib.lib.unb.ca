@@ -3,16 +3,17 @@ alpha-pager:
   js:
     js/alpha_pager.js: {}
   dependencies:
-     - core/jquery
+    - core/jquery
 
 cite-copy:
   version: VERSION
   js:
     js/cite_copy.js: {}
   dependencies:
-     - core/drupal
-     - core/jquery
-     - core/once
+    - core/drupal
+    - core/drupal.dialog.ajax
+    - core/jquery
+    - core/once
 
 facet-hard-limit-plus:
   version: VERSION

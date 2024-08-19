@@ -77,10 +77,6 @@ html {
     text-decoration: initial !important;
     color: $light !important;
   }
-  .btn.btn-secondary:focus {
-    border-color: $secondary !important;
-    background-color: $secondary !important;
-  }
   .ui-dialog {
     border-radius: 1rem !important;
     width: 500px !important;
@@ -97,6 +93,9 @@ html {
       padding: 1em 1em;
     }
     #drupal-modal {
+      svg {
+        display: none;
+      }
       .search-result {
         margin: 1rem 0 2rem 0;
         .views-field-bibliographic-citation {
@@ -108,6 +107,7 @@ html {
         text-decoration: none !important;
         color: $light !important;
         svg {
+          display: inline-block;
           margin-left: .4rem;
         }
       }

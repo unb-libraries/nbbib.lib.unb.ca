@@ -21,8 +21,8 @@ function format_initials($type) {
 
       if (ctype_alpha($lastchar) && $prevchar == ' ') {
         echo "\nUpdating contributor [$first_name $last_name] -> [$first_name. $last_name]";
-        // $entity->setFirstName("$last_name, $first_name");
-        // $entity->save();
+        $entity->setFirstName("$last_name, $first_name");
+        $entity->save();
       }
     }
   }  

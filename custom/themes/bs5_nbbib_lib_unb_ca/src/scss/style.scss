@@ -79,7 +79,7 @@ html {
   }
   .ui-dialog {
     border-radius: 1rem !important;
-    width: 500px !important;
+    width: 500px;
     .ui-dialog-titlebar {
       border-radius: 1rem 1rem 0 0 !important;
       button.ui-dialog-titlebar-close:before {
@@ -1568,6 +1568,10 @@ html {
   }
   #contrib-description {
     padding-right: 0 !important;
+  }
+  .ui-dialog {
+    margin: 1rem !important;
+    width: 90% !important;
   }
 }
 @media screen and (max-width: 482px) {

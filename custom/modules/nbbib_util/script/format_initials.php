@@ -19,7 +19,7 @@ function format_initials($type) {
       $lastchar = substr($first_name, -1);
       $prevchar = substr($first_name, -2, 1);
 
-      if (ctype_alpha($lastchar) && ($prevchar == ' ' or $prevchar == '' )) {
+      if (ctype_alpha($lastchar) && ($prevchar == ' ')) {
         echo "\nUpdating contributor [$first_name $last_name] -> [$first_name. $last_name]";
         $entity->setFirstName("$first_name.");
         $entity->save();

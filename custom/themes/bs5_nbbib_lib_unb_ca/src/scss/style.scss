@@ -902,7 +902,7 @@ html {
             }
             #block-bs5-nbbib-lib-unb-ca-content {
               margin-top: 3rem;
-              & + #block-bs5-block-collection-essays-header-block-1 {
+              &:has(.view-id-nbbib_essays.view-display-id-page_1) {
                 margin-top: 0;
               }
               > div > .container {
@@ -1254,8 +1254,7 @@ html {
               }
             }
             .view-id-nbbib_essays.view-display-id-page_1 {
-              margin-top: 2rem;
-              column-gap: 4rem;
+              margin-top: 1.5rem;
               .view-header {
                 margin-top: 2rem;
               }

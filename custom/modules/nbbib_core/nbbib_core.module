@@ -678,8 +678,8 @@ function validate_contrib_form($element, &$form_state) {
     if (empty($first_name) and empty($last_name)) {
       $form_state->setErrorByName('contributors', t('Either institution or individual names are required for contributors.'));
     }
-    elseif (empty($first_name) or empty($last_name)) {
-      $form_state->setErrorByName('contributors', t('Full names are required for individual contributors.'));
+    elseif (empty($last_name)) {
+      $form_state->setErrorByName('contributors', t('Last names are required for individual contributors.'));
     }
   }
   elseif (!empty($last_name)) {
@@ -725,8 +725,8 @@ function validate_contrib_subform($element, &$form_state) {
     if (empty($first_name) and empty($last_name)) {
       $form_state->setErrorByName('contributors', t('Either institution or individual names are required for contributors.'));
     }
-    elseif (empty($first_name) or empty($last_name)) {
-      $form_state->setErrorByName('contributors', t('Full names are required for individual contributors.'));
+    elseif (empty($last_name)) {
+      $form_state->setErrorByName('contributors', t('Last names are required for individual contributors.'));
     }
   }
   elseif (!empty($last_name)) {
@@ -780,16 +780,7 @@ function generate_names($first_name, $last_name, $institution_name) {
     $sort_name .= str_replace(['"',"'"], "", $last_name);
 
     if (!empty($first_name)) {
-      $given_names = explode(' ', $first_name);
-
-      if (!empty($given_names[1])) {
-        $first_name = $given_names[0];
-        $middle_init = substr($given_names[1], 0, 1);
-        $name .= ", $first_name $middle_init.";
-      }
-      else {
-        $name .= ", $first_name";
-      }
+      $name .= ", $first_name";
     }
   }
   else {
@@ -809,19 +800,11 @@ function generate_names($first_name, $last_name, $institution_name) {
  */
 function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
   // Populate name (display) and sort name on save.
-  $first_name = trim($entity->getFirstName());
+  $first_name = $entity->getFirstName() ? trim($entity->getFirstName()) : '';
   $last_name = trim($entity->getLastName());
   $institution_name = $entity->getInstitutionName() ? trim($entity->getInstitutionName()) : NULL;
   $names = generate_names($first_name, $last_name, $institution_name);
-  // Old display name implementation below.
-  // $entity->setName($names['name']);
-  if ($institution_name) {
-    $entity->setName("$institution_name");
-  }
-  else {
-    $entity->setName("$last_name, $first_name");
-  }
-
+  $entity->setName($names['name']);
   $entity->setSortName($names['sort_name']);
 }
 

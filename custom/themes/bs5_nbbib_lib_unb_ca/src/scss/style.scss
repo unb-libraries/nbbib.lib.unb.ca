@@ -902,6 +902,9 @@ html {
             }
             #block-bs5-nbbib-lib-unb-ca-content {
               margin-top: 3rem;
+              & + #block-bs5-block-collection-essays-header-block-1 {
+                margin-top: 0;
+              }
               > div > .container {
                 padding: 0;
                 .row:has(> #ref-contribs) {

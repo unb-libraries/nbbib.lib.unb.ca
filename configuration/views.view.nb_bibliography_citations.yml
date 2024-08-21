@@ -2600,20 +2600,7 @@ display:
         type: search_api_none
         options: {  }
       empty: {  }
-      sorts:
-        publication_year_5_1:
-          id: publication_year_5_1
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: publication_year_5
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: DESC
-          expose:
-            label: 'Publication Date (newest first)'
-            field_identifier: publication_year_5_1
-          exposed: false
+      sorts: {  }
       arguments:
         id_9:
           id: id_9
@@ -2856,20 +2843,7 @@ display:
         type: search_api_none
         options: {  }
       empty: {  }
-      sorts:
-        publication_year_5_1:
-          id: publication_year_5_1
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: publication_year_5
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: DESC
-          expose:
-            label: 'Publication Date (newest first)'
-            field_identifier: publication_year_5_1
-          exposed: false
+      sorts: {  }
       arguments:
         id_9:
           id: id_9
@@ -3112,20 +3086,7 @@ display:
         type: search_api_none
         options: {  }
       empty: {  }
-      sorts:
-        publication_year_5_1:
-          id: publication_year_5_1
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: publication_year_5
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: DESC
-          expose:
-            label: 'Publication Date (newest first)'
-            field_identifier: publication_year_5_1
-          exposed: false
+      sorts: {  }
       arguments:
         id_9:
           id: id_9
@@ -3368,20 +3329,7 @@ display:
         type: search_api_none
         options: {  }
       empty: {  }
-      sorts:
-        publication_year_5_1:
-          id: publication_year_5_1
-          table: search_api_index_references_nbbib_lib_unb_ca
-          field: publication_year_5
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api
-          order: DESC
-          expose:
-            label: 'Publication Date (newest first)'
-            field_identifier: publication_year_5_1
-          exposed: false
+      sorts: {  }
       arguments:
         id_9:
           id: id_9

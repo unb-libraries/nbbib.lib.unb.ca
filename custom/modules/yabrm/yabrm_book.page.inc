@@ -30,7 +30,7 @@ function template_preprocess_yabrm_book(array &$variables) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
 
-  // Extract and pass Entity UUID.
+  // Extract and pass Entity ID.
   $id = $yabrm_book->id();
   $variables['content']['id'] = $id;
 

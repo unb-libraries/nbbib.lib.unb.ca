@@ -30,6 +30,10 @@ function template_preprocess_yabrm_contributor(array &$variables) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
 
+  // Extract and pass Entity ID.
+  $id = $yabrm_contributor->id();
+  $variables['content']['id'] = $id;  
+
   // Load reference cover if no contributor photo.
   $entity = $yabrm_contributor;
 

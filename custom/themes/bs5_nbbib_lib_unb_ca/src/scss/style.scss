@@ -309,6 +309,11 @@ html {
     [role="main"].container {
       padding-left: 0;
     }
+    #cite-open {
+      padding: .4rem .3rem .4rem .3rem !important;
+      line-height: .4rem !important;
+      font-size: 15px;
+    }
     .yabrm-reference {
       #ref-contribs {
         margin-top: 1.5rem;
@@ -348,11 +353,6 @@ html {
           #ref-copies b {
             margin-top: 3.05rem;
           }
-        }
-        #cite-open {
-          padding: .4rem .3rem .4rem .3rem !important;
-          line-height: .4rem !important;
-          font-size: 15px;
         }
         div[id] {
           b {

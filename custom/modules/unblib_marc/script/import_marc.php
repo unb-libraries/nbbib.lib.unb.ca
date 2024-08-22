@@ -104,12 +104,14 @@ $map = [
   ],
 ];
 
+/** */
 migrateMarc(
   'modules/custom/unblib_marc/data/portolan.mrc',
   'yabrm_book',
   $map,
   FALSE
 );
+/** */
 
 function migrateMarc(string $source, string $entity_type, array $map, bool $publish) {
   $collection = Collection::fromFile($source);
@@ -187,6 +189,7 @@ function getMarcValue(
     $entries++;
   }
 
+  $data = $data ?? "$data||";
   return $data;
 }
 
@@ -201,12 +204,23 @@ function date2dmy($date, &$entity) {
 }
 
 function create_author($author_name, &$entity) {
-  return createContributors([$author_name], 'Author');
+  $author = parseSub('a', $author_name);
+  return createContributors([$author], 'Author');
 }
 
 function create_contribs($contrib_blob, &$entity) {
   echo "\nCONTRIB BLOB: $contrib_blob";
   return;
+}
+
+function parseSub($subfield, $data) {
+  $pattern = "/\|\|$subfield(.*?)\|\|/";
+  if (preg_match($pattern, $data, $matches)) {
+    return $matches[1];
+  }
+  else {
+    return 'ERR';
+  }
 }
 
 /**
@@ -379,6 +393,6 @@ function full_title($title, &$entity) {
   return $title;
 }
 
-$arg1 = $extra[0];
+// $arg1 = $extra[0];
 
-echo "\n$arg1\n";
+// echo "\n$arg1\n";

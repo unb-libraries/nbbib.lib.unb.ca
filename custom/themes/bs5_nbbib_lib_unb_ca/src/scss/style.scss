@@ -96,9 +96,12 @@ html {
       svg {
         display: none;
       }
-      .search-result {
+      .view-content {
         margin: 1rem 0 2rem 0;
-        .views-field-bibliographic-citation {
+        li {
+          margin: 0 !important;
+        }
+        .views-field {
           padding-left: 1rem;
           border-left: 1px solid $base-200;
         }

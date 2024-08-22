@@ -1292,7 +1292,12 @@ function reindex_collection_refs($cid) {
  * Implements hook_views_pre_render().
  */
 function nbbib_core_views_pre_render($view) {
-  if (isset($view) && $view->id() == 'nb_bibliography_citations') {
+  $cite_views = [
+    'nb_bibliography_citations',
+    'nb_bibliography_contributors',
+  ];
+
+  if (isset($view) and in_array($view->id(), $cite_views)) {
     // Attach citation button library.
     $view->element['#attached']['library'][] = 'nbbib_core/cite-copy';
     // Include current facets in view title.

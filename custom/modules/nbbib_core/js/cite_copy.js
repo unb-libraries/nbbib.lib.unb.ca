@@ -13,12 +13,13 @@
           // Transcription copy button.
           $('#cite').click(function() {
             // Copy html, convert to string,remove tags, replace breaks with spaces.
-            navigator.clipboard.writeText($('.views-field-bibliographic-citation > .field-content')
+            navigator.clipboard.writeText($('#drupal-modal .views-field > .field-content')
             .html()
             .toString()
             .replace(/<\/?[^>]+>/gi, '')
             .replace(/\n/g, ' ')
             .replace(/\s+/g, ' ')
+            .replace('&amp;', '&')
             .trim()).then(
               function() {
                 // Clipboard successfully set.

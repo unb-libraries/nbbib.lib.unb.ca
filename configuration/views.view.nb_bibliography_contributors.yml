@@ -333,7 +333,12 @@ display:
           contextual_filters_or: false
       relationships: {  }
       header: {  }
-      footer: {  }
+      footer:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          plugin_id: text_custom
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -1175,8 +1180,8 @@ display:
           label: ''
           exclude: true
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: "{% if name__value|slice(-1, 1) == \".\" %}\r\n{{ name__value[:-1] }}\r\n{% endif %}\r\n{% if name__value|slice(-1, 1) != \".\" %}\r\n{{ name__value }}\r\n{% endif %}\r\n"
             make_link: false
             path: ''
             absolute: false
@@ -1292,7 +1297,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "\"{{ name }}.\" <em>Tide & Time: A New Brunswick Bibliography</em>, UNB Libraries, {{ view_yabrm_contributor }}, Accessed on {{ drupal_token('date:custom:d') }} {{ drupal_token('date:custom:F') }} {{ drupal_token('date:custom:Y') }}."
+            text: "\"{{ name|trim }}.\" <em>{{ 'Tide & Time: A New Brunswick Bibliography' }}</em>, UNB Libraries, {{ view_yabrm_contributor }}, accessed on {{ drupal_token('date:custom:d') }} {{ drupal_token('date:custom:F') }} {{ drupal_token('date:custom:Y') }}."
             make_link: false
             path: ''
             absolute: false
@@ -1336,6 +1341,7 @@ display:
       cache:
         type: none
         options: {  }
+      empty: {  }
       sorts: {  }
       arguments:
         id:
@@ -1379,6 +1385,7 @@ display:
         operator: AND
         groups: {  }
       defaults:
+        empty: false
         cache: false
         title: false
         use_ajax: false
@@ -1388,8 +1395,34 @@ display:
         arguments: false
         filters: false
         filter_groups: false
+        header: false
+        footer: false
       use_ajax: true
       display_description: ''
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: false
+          content: "<div id=\"cite-success\" class=\"messages messages--status visually-hidden\" role=\"status\">Copied the citation to clipboard.</div>\r\n<div id =\"cite-error\" class=\"messages messages--error visually-hidden\" role=\"status\">Copied the citation to clipboard.</div>"
+          tokenize: false
+      footer:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: false
+          content: "<b>Note:</b>\r\n<p>This citation uses a modified MLA (Modern Language Association) style.</p>\r\n<a href=\"#\" id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\">Copy citation<i class=\"fa fa-paperclip\"></a></button>"
+          tokenize: false
       display_extenders: {  }
       path: cite/contributor/%id
     cache_metadata:

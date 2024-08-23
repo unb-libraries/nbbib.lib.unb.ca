@@ -576,6 +576,8 @@ display:
         arguments: false
         filters: false
         filter_groups: false
+        footer: false
+      footer: {  }
       display_extenders: {  }
       displays:
         page_1: page_1
@@ -1071,6 +1073,7 @@ display:
         filters: false
         filter_groups: false
         header: false
+        footer: false
       header:
         result:
           id: result
@@ -1082,6 +1085,7 @@ display:
           plugin_id: result
           empty: false
           content: 'Displaying @start - @end of @total'
+      footer: {  }
       display_extenders: {  }
       path: contributors/%
     cache_metadata:
@@ -1180,7 +1184,7 @@ display:
           label: ''
           exclude: true
           alter:
-            alter_text: true
+            alter_text: false
             text: "{% if name__value|slice(-1, 1) == \".\" %}\r\n{{ name__value[:-1] }}\r\n{% endif %}\r\n{% if name__value|slice(-1, 1) != \".\" %}\r\n{{ name__value }}\r\n{% endif %}\r\n"
             make_link: false
             path: ''
@@ -1421,7 +1425,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: "<b>Note:</b>\r\n<p>This citation uses a modified MLA (Modern Language Association) style.</p>\r\n<a href=\"#\" id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\">Copy citation<i class=\"fa fa-paperclip\"></a></button>"
+          content: "<b>Note:</b>\r\n<p>This citation uses a modified MLA (Modern Language Association) style.</p>\r\n<a href=\"#\" id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\">Copy citation<i class=\"fa fa-paperclip\"></a>"
           tokenize: false
       display_extenders: {  }
       path: cite/contributor/%id

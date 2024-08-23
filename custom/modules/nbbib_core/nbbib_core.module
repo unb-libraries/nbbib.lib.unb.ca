@@ -1292,12 +1292,8 @@ function reindex_collection_refs($cid) {
  * Implements hook_views_pre_render().
  */
 function nbbib_core_views_pre_render($view) {
-  $cite_views = [
-    'nb_bibliography_citations',
-    'nb_bibliography_contributors',
-  ];
 
-  if (isset($view) and in_array($view->id(), $cite_views)) {
+  if (isset($view) and $view->id() == 'nb_bibliography_citations') {
     // Attach citation button library.
     $view->element['#attached']['library'][] = 'nbbib_core/cite-copy';
     // Include current facets in view title.
@@ -1312,9 +1308,14 @@ function nbbib_core_views_pre_render($view) {
     $route = \Drupal::routeMatch()->getCurrentRouteMatch()->getRouteObject();
     $route->setDefault('_title', $title);  
   }
-
+  
   if (isset($view) && ($view->id() == 'nb_bibliography_contributors' or $view->id() == 'nb_bibliography_topics')) {
     $view->element['#attached']['library'][] = 'nbbib_core/alpha-pager';
+  }
+
+  if (isset($view) && ($view->id() == 'nb_bibliography_contributors')) {
+    // Attach citation button library.
+    $view->element['#attached']['library'][] = 'nbbib_core/cite-copy';
   }
 }
 

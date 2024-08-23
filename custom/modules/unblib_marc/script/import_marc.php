@@ -169,7 +169,7 @@ function getMarcValue(
   bool $cleanup = FALSE,
   bool $multival = FALSE
   ) {
-  // If multivalue, run query. If single value, get field.
+  // Run query.
   $field_data = $record->query($marc);
   $data = "";
   $entries = 0;
@@ -209,6 +209,8 @@ function create_author($author_name, &$entity) {
 }
 
 function create_contribs($contrib_blob, &$entity) {
+  $name = parseSub('a', $contrib_blob);
+
   echo "\nCONTRIB BLOB: $contrib_blob";
   return;
 }

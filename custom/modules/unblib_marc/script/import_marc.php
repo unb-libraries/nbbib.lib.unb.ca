@@ -185,7 +185,7 @@ function getMarcValue(
     // Restore trailing period if last character appears to be an initial.
     $entry_data = (is_string($entry_data) and  substr($entry_data, -2, 1) == ' ') ? "$entry_data." : $entry_data;
     // Concatenate data string.
-    $data .= "||$entry_data";
+    $data .= $multival ? "||$entry_data" : substr($entry_data, 1);
     $entries++;
   }
 
@@ -204,15 +204,17 @@ function date2dmy($date, &$entity) {
 }
 
 function create_author($author_name, &$entity) {
-  $author = parseSub('a', $author_name);
-  return createContributors([$author], 'Author');
+  //$author = parseSub('a', $author_name);
+  //return createContributors([$author], 'Author');
+  return createContributors([$author_name], 'Author');
 }
 
-function create_contribs($contrib_blob, &$entity) {
-  $name = parseSub('a', $contrib_blob);
-
-  echo "\nCONTRIB BLOB: $contrib_blob";
-  return;
+function create_contribs($contribs_blob, &$entity) {
+  /*
+  $name = parseSub('a', $contribs_blob);
+  $role = ucwords(parseSub('e', $contrib_blob));
+  return createContributors([$name], $role);
+  */
 }
 
 function parseSub($subfield, $data) {

@@ -15,103 +15,84 @@ $map = [
     'marc' => '001',
     'marc_fallback' => '020$a',
     'default' => 'NO_EXTERNAL_KEY',
-    'cleanup' => TRUE,
   ],
   'title' => [
     'marc' => '245$a',
-    'cleanup' => TRUE,
   ],
   'abstract_note' => [
     'marc' => '520$a',
-    'cleanup' => TRUE,
   ],
   'publication_year' => [
     'marc' => '260$c',
     'process' => 'date2dmy',
-    'cleanup' => TRUE,
   ],
   'author' => [
     'marc' => '100$a',
     'target' => 'contributors',
     'process' => 'create_author',
-    'cleanup' => TRUE,
   ],
   'contributors' => [
     'marc' => '700$a$e',
-    'multival' => TRUE,
     'process' => 'create_contribs',
+    'multival' => TRUE,
+    'append' => TRUE,
   ],
   'short_title' => [
     'marc' => '246$a',
-    'cleanup' => TRUE,
   ],
   'language' => [
     'marc' => '041$a',
     'process' => 'marc2lang',
-    'cleanup' => TRUE,
   ],
   'rights' => [
     'marc' => '540$a',
-    'cleanup' => TRUE,
   ],
   'archive' => [
     'marc' => '850$a',
-    'cleanup' => TRUE,
   ],
   'archive_location' => [
     'marc' => '852$a',
-    'cleanup' => TRUE,
   ],
   'library_catalog' => [
     'marc' => '040$a',
-    'cleanup' => TRUE,
   ],  
   'call_number' => [
     'marc' => '050$a',
-    'cleanup' => TRUE,
   ],
   'notes' => [
     'marc' => '700$a$d$e$l',
-    'cleanup' => TRUE,
   ],
   'isbn' => [
     'marc' => '020$a',
-    'cleanup' => TRUE,
   ],
   'volume' => [
     'marc' => '490$v',
-    'cleanup' => TRUE,
   ],
   'series' => [
     'marc' => '490$a',
-    'cleanup' => TRUE,
   ],
   'publisher' => [
     'marc' => '260$b',
-    'cleanup' => TRUE,
   ],
   'place' => [
     'marc' => '260$a',
-    'cleanup' => TRUE,
   ],
   'edition' => [
     'marc' => '250$a',
-    'cleanup' => TRUE,
   ],
   'physical_description' => [
     'marc' => '300',
-    'cleanup' => TRUE,
   ],
 ];
 
-/** */
+///*
 migrateMarc(
   'modules/custom/unblib_marc/data/portolan.mrc',
   'yabrm_book',
   $map,
   FALSE
 );
-/** */
+//*/
 
 function migrateMarc(string $source, string $entity_type, array $map, bool $publish) {
   $collection = Collection::fromFile($source);
@@ -123,11 +104,11 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
     foreach ($map as $field => $mapping) {
       $field = $mapping['target'] ?? $mapping['target'] ?? $field;
       $marc = $mapping['marc'] ?? $mapping['marc_fallback'] ?? NULL;
-      $cleanup = isset($mapping['cleanup']) and $mapping['cleanup'];
       $multival = isset($mapping['multival']) and $mapping['multival'];
+      $append = isset($mapping['append']) and $mapping['append'];
 
       if ($marc) {
-        $value = getMarcValue($record, $marc, $cleanup, $multival);
+        $value = getMarcValue($record, $marc, $multival);
       }
       elseif ($mapping['default']) {
         $value = $mapping['default']; 
@@ -140,24 +121,41 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
           $callback = $mapping['process'];
           if (is_callable($callback)) {
             if (function_exists($callback)) {
-              $value = $callback($value, $entity);
+              $value = $callback($value);
             }
           }
         }
-      
-        $entity->set($field, $value);
+        
+        if ($append) {
+          $update = $entity->get($field)->getValue()[0];
+          
+          if (is_array($update)) {
+            $update[] = $value;
+            $entity->set($field, $update);
+          }
+          else {  
+            $entity->set($field, $value);
+          }
+        }
+        else {
+          $value = is_string($value) ?
+            preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $value) :
+            $value;
+          $entity->set($field, $value);
+        }
       }
     }
     $n++; // Debug.
     echo "\n**********";
     
-    if ($n == 100) { // Debug.
+    if ($n == 10) { // Debug.
       exit;
     }
     
     // @TODO: Pass array of mandatory fields and only save if constraints met.
     if ($entity->getTitle()) {
-      $entity->setPublished($publish);
+      //$entity->setPublished($publish);
+      $entity->setPublished(TRUE);
       $entity->save();
     } 
   }
@@ -166,7 +164,6 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
 function getMarcValue(
   Record $record, 
   string $marc, 
-  bool $cleanup = FALSE,
   bool $multival = FALSE
   ) {
   // Run query.
@@ -176,24 +173,20 @@ function getMarcValue(
 
   foreach ($field_data as $entry) {
     if ($entry) {
-      $entry_data = $entry->toRaw();
+      $entry_data = $entry->__toString();
     }
-
-    // If cleanup is requested, trim spaces and special characters.
-    $entry_data = (is_string($entry_data) and $cleanup) ? 
-    preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $entry_data) : $entry_data;
+    // preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $entry_data) : $entry_data;
     // Restore trailing period if last character appears to be an initial.
     $entry_data = (is_string($entry_data) and  substr($entry_data, -2, 1) == ' ') ? "$entry_data." : $entry_data;
     // Concatenate data string.
-    $data .= $multival ? "||$entry_data" : substr($entry_data, 1);
+    $data .= $multival ? trim($entry_data) : trim(substr($entry_data, 3));
     $entries++;
   }
 
-  $data = $data ?? "$data||";
   return $data;
 }
 
-function date2dmy($date, &$entity) {
+function date2dmy($date) {
   preg_match('~\b\d{4}\b\+?~', $date, $year);
 
   if (isset($year[0])) {
@@ -203,27 +196,37 @@ function date2dmy($date, &$entity) {
   return;
 }
 
-function create_author($author_name, &$entity) {
-  //$author = parseSub('a', $author_name);
-  //return createContributors([$author], 'Author');
-  return createContributors([$author_name], 'Author');
+function create_author($author_name) {
+  $author = parseSub('a', $author_name);
+    echo "\n";
+    echo var_dump($author);
+  $id = createContributors([$author], 'Author');
+  return $id;
 }
 
-function create_contribs($contribs_blob, &$entity) {
+function create_contribs($contribs_blob) {
   /*
   $name = parseSub('a', $contribs_blob);
-  $role = ucwords(parseSub('e', $contrib_blob));
-  return createContributors([$name], $role);
+  $role = ucwords(parseSub('e', $contribs_blob));
+  $id = createContributors([$name], $role);
+  return $id;
   */
 }
 
 function parseSub($subfield, $data) {
-  $pattern = "/\|\|$subfield(.*?)\|\|/";
-  if (preg_match($pattern, $data, $matches)) {
-    return $matches[1];
+  $pattern = "/\[$subfield\]: (.*?)\[/";
+  $results = preg_match_all($pattern, $data, $matches);
+
+  if ($results) {
+    if (count($matches) == 1) {
+      return $matches[1][0];
+    }
+    else {
+      return $matches[1];
+    }
   }
   else {
-    return 'ERR';
+    return $data;
   }
 }
 
@@ -292,7 +295,7 @@ function createContributors($contrib_names, $contrib_role) {
           'first_name' => $first_name,
           'last_name' => $last_name,
           'sort_name' => $sort_name,
-          'status' => FALSE,
+          //'status' => FALSE,
         ]);
 
         $contrib->save();

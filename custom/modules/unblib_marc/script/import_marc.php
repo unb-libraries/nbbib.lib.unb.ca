@@ -179,7 +179,7 @@ function getMarcValue(
     // Restore trailing period if last character appears to be an initial.
     $entry_data = (is_string($entry_data) and  substr($entry_data, -2, 1) == ' ') ? "$entry_data." : $entry_data;
     // Concatenate data string.
-    $data .= $multival ? trim($entry_data) : trim(substr($entry_data, 3));
+    $data .= $multival ? trim($entry_data) : trim(substr($entry_data, 5));
     $entries++;
   }
 

@@ -128,6 +128,8 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
         
         if ($append) {
           $update = $entity->get($field)->getValue()[0];
+          var_dump($update);
+          var_dump($value);
           
           if (is_array($update)) {
             $update[] = $value;
@@ -197,24 +199,30 @@ function date2dmy($date) {
 }
 
 function create_author($author_name) {
-  $author = parseSub('a', $author_name);
-    echo "\n";
-    echo var_dump($author);
+  $author = parseRecords('a', $author_name);
   $id = createContributors([$author], 'Author');
   return $id;
 }
 
 function create_contribs($contribs_blob) {
-  /*
-  $name = parseSub('a', $contribs_blob);
-  $role = ucwords(parseSub('e', $contribs_blob));
-  $id = createContributors([$name], $role);
-  return $id;
-  */
+  $records = parseRecords('a', $contribs_blob);
+  $ids = [];
+  
+  foreach ($records as $record) {
+    $name = parseSub('a', $record);
+    $name = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $name));
+    $name = substr($name, -2, 1) == ' ' ? "$name." : $name;
+    $role = parseSub('e', $record);
+    $role = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $role));
+    $ids[] = createContributors([$name], $role);
+  }
+
+  return $ids;
 }
 
-function parseSub($subfield, $data) {
-  $pattern = "/\[$subfield\]: (.*?)\[/";
+function parseRecords($subfield, $data) {
+  // If $subfield == 'a', match everything starting with [a]:<space> and ending before [a] or end of string.  
+  $pattern = "/\[$subfield\]: (.*?)(?=\[$subfield\]|$)/";
   $results = preg_match_all($pattern, $data, $matches);
 
   if ($results) {
@@ -222,8 +230,21 @@ function parseSub($subfield, $data) {
       return $matches[1][0];
     }
     else {
-      return $matches[1];
+      return $matches[0];
     }
+  }
+  else {
+    return $data;
+  }
+}
+
+function parseSub($subfield, $data) {
+  // If $subfield == 'a', match everything starting with [a]:<space> and ending before [ or end of string.  
+  $pattern = "/\[$subfield\]: (.*?)(?=\[|$)/";
+  $results = preg_match($pattern, $data, $matches);
+
+  if ($results) {
+    return $matches[1];
   }
   else {
     return $data;

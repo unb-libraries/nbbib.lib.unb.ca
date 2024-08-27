@@ -199,7 +199,7 @@
     "drupal/search_api_solr": "^4",
     "drupal/select2": "^1",
     "drupal/token": "^1",
-    "drupal/twig_field_value": "^2",
+    "drupal/twig_field_value": "2.0.2",
     "drupal/twig_tweak": "^3",
     "drupal/views_contextual_filters_or": "^1",
     "furf/jquery-ui-touch-punch": "dev-master",

@@ -173,7 +173,7 @@ function getMarcValue(
 
   foreach ($field_data as $entry) {
     if ($entry) {
-      $entry_data = $entry->__toString();
+      $entry_data = trim($entry->__toString());
     }
     // preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $entry_data) : $entry_data;
     // Restore trailing period if last character appears to be an initial.

@@ -127,12 +127,19 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
         }
         
         if ($append) {
-          $update = $entity->get($field)->getValue()[0];
+          $update = $entity->get($field)->getValue();
+          echo "\n*****";
           var_dump($update);
-          var_dump($value);
+          echo "\n*****";
           
           if (is_array($update)) {
-            $update[] = $value;
+            echo "\n*****";
+            var_dump($value);
+            echo "\n*****";
+            $update = array_merge($update, $value);
+            echo "\n*****";
+            var_dump($update);
+            echo "\n*****";
             $entity->set($field, $update);
           }
           else {  
@@ -206,7 +213,7 @@ function create_author($author_name) {
 
 function create_contribs($contribs_blob) {
   $records = parseRecords('a', $contribs_blob);
-  $ids = [];
+  $refs = [];
   
   foreach ($records as $record) {
     $name = parseSub('a', $record);
@@ -214,10 +221,14 @@ function create_contribs($contribs_blob) {
     $name = substr($name, -2, 1) == ' ' ? "$name." : $name;
     $role = parseSub('e', $record);
     $role = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $role));
-    $ids[] = createContributors([$name], $role);
+    $id = createContributors([$name], $role)[0]->id();
+    $refs[] = [
+      'target_id' => $id,
+      'target_revision_id' => $id,
+    ];
   }
 
-  return $ids;
+  return $refs;
 }
 
 function parseRecords($subfield, $data) {
@@ -362,6 +373,7 @@ function createContributors($contrib_names, $contrib_role) {
 
     $contributors[] = createParagraph('yabrm_bibliographic_contributor', $values);
   }
+
 
   return $contributors;
 }

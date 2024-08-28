@@ -81,7 +81,9 @@ $map = [
     'marc' => '250$a',
   ],
   'physical_description' => [
-    'marc' => '300',
+    'marc' => '300$a$b$c',
+    'process' => 'create_physical',
+    'multival' => TRUE,
   ],
 ];
 
@@ -195,6 +197,9 @@ function date2dmy($date) {
 
 function create_author($author_name) {
   $author = parseRecords('a', $author_name);
+  $author = substr($author, -1) == ',' ? substr($author, 0, -1) : $author; 
+  $author = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $author));
+  $author = substr($author, -2, 1) == ' ' ? "$author." : $author;
   $id = createContributors([$author], 'Author');
   return $id;
 }
@@ -208,10 +213,12 @@ function create_contribs($contribs_blob) {
     $role = parseSub('e', $record);
 
     if ($name and $role) {
+      $name = substr($name, -1) == ',' ? substr($name, 0, -1) : $name; 
       $name = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $name));
       $name = substr($name, -2, 1) == ' ' ? "$name." : $name;
       $role = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $role));
       $id = createContributors([$name], $role)[0]->id();
+
       $refs[] = [
         'target_id' => $id,
         'target_revision_id' => $id,
@@ -220,6 +227,12 @@ function create_contribs($contribs_blob) {
   }
 
   return $refs;
+}
+
+function create_physical($data) {
+  echo "\n*****";
+  echo "\n$data";
+  return $data;
 }
 
 function parseRecords($subfield, $data) {

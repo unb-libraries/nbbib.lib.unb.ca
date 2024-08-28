@@ -114,8 +114,6 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
         $value = $mapping['default']; 
       }
 
-      echo "\n|FIELD|$field: $value";
-
       if ($value) {
         if(isset($mapping['process'])) {
           $callback = $mapping['process'];
@@ -128,19 +126,10 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
         
         if ($append) {
           $update = $entity->get($field)->getValue();
-          echo "\n*****";
-          var_dump($update);
-          echo "\n*****";
           
           if (is_array($update)) {
-            echo "\n*****";
-            var_dump($value);
-            echo "\n*****";
             $update = array_merge($update, $value);
-            echo "\n*****";
-            var_dump($update);
-            echo "\n*****";
-            $entity->set($field, $update);
+             $entity->set($field, $update);
           }
           else {  
             $entity->set($field, $value);
@@ -155,9 +144,8 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
       }
     }
     $n++; // Debug.
-    echo "\n**********";
     
-    if ($n == 10) { // Debug.
+    if ($n == 100) { // Debug.
       exit;
     }
     
@@ -217,15 +205,18 @@ function create_contribs($contribs_blob) {
   
   foreach ($records as $record) {
     $name = parseSub('a', $record);
-    $name = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $name));
-    $name = substr($name, -2, 1) == ' ' ? "$name." : $name;
     $role = parseSub('e', $record);
-    $role = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $role));
-    $id = createContributors([$name], $role)[0]->id();
-    $refs[] = [
-      'target_id' => $id,
-      'target_revision_id' => $id,
-    ];
+
+    if ($name and $role) {
+      $name = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $name));
+      $name = substr($name, -2, 1) == ' ' ? "$name." : $name;
+      $role = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $role));
+      $id = createContributors([$name], $role)[0]->id();
+      $refs[] = [
+        'target_id' => $id,
+        'target_revision_id' => $id,
+      ];
+    }
   }
 
   return $refs;
@@ -250,6 +241,9 @@ function parseRecords($subfield, $data) {
 }
 
 function parseSub($subfield, $data) {
+  if (!str_contains($data, "[$subfield]")) {
+    return NULL;
+  }
   // If $subfield == 'a', match everything starting with [a]:<space> and ending before [ or end of string.  
   $pattern = "/\[$subfield\]: (.*?)(?=\[|$)/";
   $results = preg_match($pattern, $data, $matches);

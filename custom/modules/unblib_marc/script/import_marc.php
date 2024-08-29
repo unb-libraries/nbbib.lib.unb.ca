@@ -64,6 +64,8 @@ $map = [
   ],
   'isbn' => [
     'marc' => '020$a',
+    'process' => 'parse_isbn',
+    'multival' => TRUE,
   ],
   'volume' => [
     'marc' => '490$v',
@@ -125,6 +127,9 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
             }
           }
         }
+
+        echo "\n*****$field\n";
+        var_dump($value);
         
         if ($append) {
           $update = $entity->get($field)->getValue();
@@ -192,20 +197,26 @@ function date2dmy($date) {
     return $year[0];
   }
   
-  return;
+  return $data;
 }
 
 function create_author($author_name) {
-  $author = parseRecords('a', $author_name);
+  $author = parseRecord('a', $author_name);
   $author = substr($author, -1) == ',' ? substr($author, 0, -1) : $author; 
   $author = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $author));
   $author = substr($author, -2, 1) == ' ' ? "$author." : $author;
-  $id = createContributors([$author], 'Author');
-  return $id;
+  $id = createContributors([$author], 'Author')[0]->id();
+  
+  $ref = [
+    'target_id' => $id,
+    'target_revision_id' => $id,
+  ];
+
+  return $ref;
 }
 
 function create_contribs($contribs_blob) {
-  $records = parseRecords('a', $contribs_blob);
+  $records = parseRecord('a', $contribs_blob);
   $refs = [];
   
   foreach ($records as $record) {
@@ -229,13 +240,29 @@ function create_contribs($contribs_blob) {
   return $refs;
 }
 
+function parse_isbn($data) {
+  $records = parseRecord('a', $data);
+  
+  foreach ($records as $record) {
+    $isbn = parseSub('a', $record);
+
+    if (strlen($isbn) == 13) {
+      return $isbn;
+    }
+  }
+
+  return $data;
+}
+
+/*
 function create_physical($data) {
   echo "\n*****";
   echo "\n$data";
   return $data;
 }
+*/
 
-function parseRecords($subfield, $data) {
+function parseRecord($subfield, $data) {
   // If $subfield == 'a', match everything starting with [a]:<space> and ending before [a] or end of string.  
   $pattern = "/\[$subfield\]: (.*?)(?=\[$subfield\]|$)/";
   $results = preg_match_all($pattern, $data, $matches);
@@ -380,7 +407,6 @@ function createContributors($contrib_names, $contrib_role) {
 
     $contributors[] = createParagraph('yabrm_bibliographic_contributor', $values);
   }
-
 
   return $contributors;
 }

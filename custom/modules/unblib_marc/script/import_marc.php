@@ -144,13 +144,15 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
         }
       }
 
+      if ($field == 'language' and $value) {
       echo "\n*****$field\n";
       var_dump($value);
+      }
     }
     $n++; // Debug.
     
     if ($n == 100) { // Debug.
-      exit;
+      //exit;
     }
     
     // @TODO: Pass array of mandatory fields and only save if constraints met.
@@ -191,7 +193,7 @@ function date2dmy($date) {
     return $year[0];
   }
   
-  return $data;
+  return $date;
 }
 
 function create_author($author_name) {
@@ -271,6 +273,39 @@ function create_physical($data) {
   return $physical;
 }
 
+function marc2lang($language) {
+  if (!empty($language)) {
+    if (strstr($language, 'ara') || strstr('ara', $language)) {
+      $language = 'ara';
+    }
+    elseif (strstr($language, 'deu') || strstr('deu', $language)) {
+      $language = 'deu';
+    }
+    elseif (strstr($language, 'fre') || strstr('fre', $language)) {
+      $language = 'fre';
+    }
+    elseif (strstr($language, 'lat') || strstr('lat', $language)) {
+      $language = 'lat';
+    }
+    elseif (strstr($language, "mic") || strstr("mic", $language)) {
+      $language = 'mic';
+    }
+    elseif (strstr($language, "pqm") || strstr("pqm", $language)) {
+      $language = 'pqm';
+    }
+    elseif (strstr($language, 'spa') || strstr('spa', $language)) {
+      $language = 'spa';
+    }
+    else {
+      $language = 'eng';
+    }
+  }
+  else {
+    $language = 'eng';
+  }
+
+  return $language;
+}
 
 function parseRecord($subfield, $data) {
   // If $subfield == 'a', match everything starting with [a]:<space> and ending before [a] or end of string.  

@@ -2,6 +2,7 @@
 
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\yabrm\Entity\BibliographicCollection;
 use Drupal\yabrm\Entity\BibliographicContributor;
 use Scriptotek\Marc\Collection;
 use Scriptotek\Marc\Fields\Field;
@@ -9,8 +10,12 @@ use Scriptotek\Marc\Record;
 
 $source = 'modules/custom/unblib_marc/data/portolan.mrc';
 $collection = Collection::fromFile($source);
+$yabrm_collection = create_yabrm_collection("Children's Books of Brunswick Press");
 
 $map = [
+  'collections' => [
+    'default' => $yabrm_collection,
+  ],
   'external_key_ref' => [
     'marc' => '001',
     'marc_fallback' => '020$a',
@@ -432,7 +437,7 @@ function createContributors($contrib_names, $contrib_role) {
           'first_name' => $first_name,
           'last_name' => $last_name,
           'sort_name' => $sort_name,
-          //'status' => FALSE,
+          'status' => FALSE,
         ]);
 
         $contrib->save();
@@ -532,6 +537,32 @@ function createParagraph($type, array $values) {
   $paragraph->save();
   return $paragraph;
 }
+
+function create_yabrm_collection($collection_name) {
+  $existing = \Drupal::entityTypeManager()->getStorage('yabrm_collection')
+    ->getQuery()
+    ->condition('name', $collection_name)
+    ->accessCheck(FALSE)
+    ->execute();
+
+  reset($existing);
+  $col_id = key($existing);
+
+  // Create collection if doesn't exist.
+  if (empty($col_id)) {
+    $collection = BibliographicCollection::create([
+      'name' => $collection_name,
+    ]);
+
+    $collection->save();
+  }
+  else {
+    $collection = BibliographicCollection::load($col_id);
+  }
+
+  return $collection;
+}
+
 
 // $arg1 = $extra[0];
 

@@ -44,9 +44,6 @@ $map = [
     'marc' => '041$a',
     'process' => 'marc2lang',
   ],
-  'rights' => [
-    'marc' => '540$a',
-  ],
   'archive' => [
     'marc' => '850$a',
   ],
@@ -83,7 +80,7 @@ $map = [
     'marc' => '250$a',
   ],
   'physical_description' => [
-    'marc' => '300$a$b$c',
+    'marc' => '300$b$c',
     'process' => 'create_physical',
     'multival' => TRUE,
   ],
@@ -127,16 +124,13 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
             }
           }
         }
-
-        echo "\n*****$field\n";
-        var_dump($value);
         
         if ($append) {
           $update = $entity->get($field)->getValue();
           
           if (is_array($update)) {
             $update = array_merge($update, $value);
-             $entity->set($field, $update);
+            $entity->set($field, $update);
           }
           else {  
             $entity->set($field, $value);
@@ -144,11 +138,14 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
         }
         else {
           $value = is_string($value) ?
-            preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $value) :
-            $value;
+          text_trim($value) :
+          $value;
           $entity->set($field, $value);
         }
       }
+
+      echo "\n*****$field\n";
+      var_dump($value);
     }
     $n++; // Debug.
     
@@ -179,9 +176,6 @@ function getMarcValue(
     if ($entry) {
       $entry_data = trim($entry->__toString());
     }
-    // preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $entry_data) : $entry_data;
-    // Restore trailing period if last character appears to be an initial.
-    $entry_data = (is_string($entry_data) and  substr($entry_data, -2, 1) == ' ') ? "$entry_data." : $entry_data;
     // Concatenate data string.
     $data .= $multival ? trim($entry_data) : trim(substr($entry_data, 5));
     $entries++;
@@ -254,13 +248,16 @@ function parse_isbn($data) {
   return $data;
 }
 
-/*
 function create_physical($data) {
-  echo "\n*****";
-  echo "\n$data";
-  return $data;
+  $details = ucfirst(strtolower(trim(parseSub('b', $data))));
+  $dimensions = ucfirst(strtolower(trim(parseSub('c', $data))));
+  $details = $details and substr($details, -1) == '.' ? $details : "$details.";
+  $dimensions = $dimensions and substr($dimensions, -1) == '.' ? $dimensions : "$dimensions.";
+  $physical = "$details $dimensions";
+
+  return $physical;
 }
-*/
+
 
 function parseRecord($subfield, $data) {
   // If $subfield == 'a', match everything starting with [a]:<space> and ending before [a] or end of string.  
@@ -294,6 +291,29 @@ function parseSub($subfield, $data) {
   else {
     return $data;
   }
+}
+
+function text_trim(string $text) {
+  $first = substr($text, 0, 1);
+  $last = substr($text, -1);
+  $starters = ["'", '"'];
+  $enders = ['.', '!', '?' , "'", '"'];
+  
+  while (!ctype_alnum($first) and !in_array($first, $starters)) {
+    $text = substr($text, 1);
+    $first = substr($text, 0, 1);
+  }
+  
+  while (!ctype_alnum($last) and !in_array($last, $enders)) {
+    $text = substr($text, 0, -1);
+    $last = substr($text, -1);
+  }
+
+  return $text;
+}
+
+function text_period($text) {
+  $text = substr($text, -1) == '.' ? $text : "$text.";
 }
 
 /**
@@ -460,10 +480,6 @@ function createParagraph($type, array $values) {
   $paragraph->set('status', FALSE);
   $paragraph->save();
   return $paragraph;
-}
-
-function full_title($title, &$entity) {
-  return $title;
 }
 
 // $arg1 = $extra[0];

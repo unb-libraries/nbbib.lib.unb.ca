@@ -16,6 +16,10 @@ $map = [
     'marc_fallback' => '020$a',
     'default' => 'NO_EXTERNAL_KEY',
   ],
+  'extra' => [
+    'marc' => '001',
+    'process' => 'create_extra'
+  ],
   'title' => [
     'marc' => '245$a',
   ],
@@ -97,7 +101,6 @@ migrateMarc(
 
 function migrateMarc(string $source, string $entity_type, array $map, bool $publish) {
   $collection = Collection::fromFile($source);
-  $n = 0; // Debug.
 
   foreach ($collection as $record) {
     $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create();
@@ -143,25 +146,19 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
           $entity->set($field, $value);
         }
       }
+    }
 
-      if ($field == 'language' and $value) {
-      echo "\n*****$field\n";
-      var_dump($value);
-      }
-    }
-    $n++; // Debug.
-    
-    if ($n == 100) { // Debug.
-      //exit;
-    }
-    
+    $title = $entity->getTitle();
+
     // @TODO: Pass array of mandatory fields and only save if constraints met.
-    if ($entity->getTitle()) {
-      //$entity->setPublished($publish);
-      $entity->setPublished(TRUE);
+    if ($title) {
+      echo "\nSaving unpublished [$entity_type] [$title]";
+      $entity->setPublished($publish);
       $entity->save();
     } 
   }
+
+  echo "\n";
 }
 
 function getMarcValue(
@@ -305,6 +302,11 @@ function marc2lang($language) {
   }
 
   return $language;
+}
+
+function create_extra($data) {
+  $data = filter_var($data, FILTER_SANITIZE_NUMBER_INT);
+  return "OCLC: $data";
 }
 
 function parseRecord($subfield, $data) {

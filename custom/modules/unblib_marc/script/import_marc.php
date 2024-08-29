@@ -197,7 +197,7 @@ function date2dmy($date) {
 function create_author($author_name) {
   $author = parseRecord('a', $author_name);
   $author = substr($author, -1) == ',' ? substr($author, 0, -1) : $author; 
-  $author = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $author));
+  $author = ucwords(text_trim($author));
   $author = substr($author, -2, 1) == ' ' ? "$author." : $author;
   $id = createContributors([$author], 'Author')[0]->id();
   
@@ -219,9 +219,9 @@ function create_contribs($contribs_blob) {
 
     if ($name and $role) {
       $name = substr($name, -1) == ',' ? substr($name, 0, -1) : $name; 
-      $name = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $name));
+      $name = ucwords(text_trim($name));
       $name = substr($name, -2, 1) == ' ' ? "$name." : $name;
-      $role = ucwords(preg_replace('(^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$)u', '', $role));
+      $role = ucwords(text_trim($role));
       $id = createContributors([$name], $role)[0]->id();
 
       $refs[] = [
@@ -249,12 +249,25 @@ function parse_isbn($data) {
 }
 
 function create_physical($data) {
-  $details = ucfirst(strtolower(trim(parseSub('b', $data))));
-  $dimensions = ucfirst(strtolower(trim(parseSub('c', $data))));
-  $details = $details and substr($details, -1) == '.' ? $details : "$details.";
-  $dimensions = $dimensions and substr($dimensions, -1) == '.' ? $dimensions : "$dimensions.";
-  $physical = "$details $dimensions";
-
+  $details = parseSub('b', $data);
+  $details = $details ? ucfirst(strtolower(text_trim($details))) : NULL;
+  $dimensions = parseSub('c', $data);
+  $dimensions = $dimensions ? ucfirst(strtolower(text_trim($dimensions))) : NULL;
+  $physical = '';
+  
+  if ($details) {
+    $physical .= text_period($details);
+    
+    if ($dimensions) {
+      $physical .= ' ' . text_period($dimensions);
+    }
+  }
+  elseif ($dimensions) {
+    $physical = text_period($dimensions);
+  }
+  
+  $physical = $physical ? $physical : $data;
+  
   return $physical;
 }
 
@@ -313,7 +326,8 @@ function text_trim(string $text) {
 }
 
 function text_period($text) {
-  $text = substr($text, -1) == '.' ? $text : "$text.";
+  $text = (substr($text, -1) == '.') ? $text : "$text.";
+  return $text;
 }
 
 /**

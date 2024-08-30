@@ -367,7 +367,7 @@ function text_trim(string $text) {
   return $text;
 }
 
-function text_period($text) {
+function text_period(string $text) {
   $text = (substr($text, -1) == '.') ? $text : "$text.";
   return $text;
 }

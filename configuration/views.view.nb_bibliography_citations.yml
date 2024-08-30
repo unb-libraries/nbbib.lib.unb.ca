@@ -2761,7 +2761,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: "<b>Note:</b>\r\n<p>This citation uses a modified MLA (Modern Language Association) style. Contributors (authors) use a standardized name format across all works by the same author.</p>\r\n<a href=\"#\" id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\">Copy citation<i class=\"fa fa-paperclip\"></a></button>"
+          content: "<b>Note:</b>\r\n<p>This citation uses a modified MLA (Modern Language Association) style. Contributors (authors) use a standardized name format across all works by the same author.</p>\r\n<a id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\" tabindex=\"1\">Copy citation<i class=\"fa fa-paperclip\">"
           tokenize: false
       exposed_block: false
       display_extenders: {  }
@@ -3004,7 +3004,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: "<b>Note:</b>\r\n<p>This citation uses a modified MLA (Modern Language Association) style. Contributors (authors) use a standardized name format across all works by the same author.</p>\r\n<a href=\"#\" id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\">Copy citation<i class=\"fa fa-paperclip\"></a></button>"
+          content: "<b>Note:</b>\r\n<p>This citation uses a modified MLA (Modern Language Association) style. Contributors (authors) use a standardized name format across all works by the same author.</p>\r\n<a id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\" tabindex=\"1\">Copy citation<i class=\"fa fa-paperclip\">"
           tokenize: false
       exposed_block: false
       display_extenders: {  }
@@ -3247,7 +3247,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: "<b>Note:</b>\r\n<p>This citation uses a modified MLA (Modern Language Association) style. Contributors (authors) use a standardized name format across all works by the same author.</p>\r\n<a href=\"#\" id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\">Copy citation<i class=\"fa fa-paperclip\"></a></button>"
+          content: "<b>Note:</b>\r\n<p>This citation uses a modified MLA (Modern Language Association) style. Contributors (authors) use a standardized name format across all works by the same author.</p>\r\n<a id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\" tabindex=\"1\">Copy citation<i class=\"fa fa-paperclip\">"
           tokenize: false
       exposed_block: false
       display_extenders: {  }
@@ -3490,7 +3490,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: false
-          content: "<b>Note:</b>\r\n<p>This citation uses a modified MLA (Modern Language Association) style. Contributors (authors) use a standardized name format across all works by the same author.</p>\r\n<a href=\"#\" id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\">Copy citation<i class=\"fa fa-paperclip\"></a></button>"
+          content: "<b>Note:</b>\r\n<p>This citation uses a modified MLA (Modern Language Association) style. Contributors (authors) use a standardized name format across all works by the same author.</p>\r\n<a id=\"cite\" class=\"btn btn-secondary fw-normal lh-lg float-end\" tabindex=\"1\">Copy citation<i class=\"fa fa-paperclip\">"
           tokenize: false
       exposed_block: false
       display_extenders: {  }

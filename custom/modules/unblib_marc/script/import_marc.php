@@ -107,6 +107,7 @@ migrateMarc(
 function migrateMarc(string $source, string $entity_type, array $map, bool $publish) {
   $collection = Collection::fromFile($source);
 
+  $n = 0; // Debug.
   foreach ($collection as $record) {
     $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create();
     
@@ -162,7 +163,11 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
       $entity->save();
     }
 
-    exit;
+    $n++;
+
+    if ($n > 5) {
+      exit;
+    }
   }
 
   echo "\n";
@@ -545,6 +550,7 @@ function createParagraph($type, array $values) {
   // Migrate all paragraphs as unpublished.
   //$paragraph->set('status', FALSE);
   $paragraph->save();
+  
   return $paragraph;
 }
 

@@ -10,7 +10,7 @@ use Scriptotek\Marc\Record;
 
 $source = 'modules/custom/unblib_marc/data/portolan.mrc';
 $collection = Collection::fromFile($source);
-$yabrm_collection = create_yabrm_collection("Children's Books of Brunswick Press");
+$yabrm_collection = create_yabrm_collection("Portolan");
 
 $map = [
   'collections' => [
@@ -158,9 +158,11 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
     // @TODO: Pass array of mandatory fields and only save if constraints met.
     if ($title) {
       echo "\nSaving unpublished [$entity_type] [$title]";
-      $entity->setPublished($publish);
+      //$entity->setPublished($publish);
       $entity->save();
-    } 
+    }
+
+    exit;
   }
 
   echo "\n";
@@ -209,7 +211,9 @@ function create_author($author_name) {
     'target_id' => $id,
     'target_revision_id' => $id,
   ];
-
+  
+  echo "\nContributors listing:\n";
+  var_dump($ref);
   return $ref;
 }
 
@@ -235,6 +239,8 @@ function create_contribs($contribs_blob) {
     }
   }
 
+  echo "\nContributors listing:\n";
+  var_dump($refs);
   return $refs;
 }
 
@@ -437,11 +443,12 @@ function createContributors($contrib_names, $contrib_role) {
           'first_name' => $first_name,
           'last_name' => $last_name,
           'sort_name' => $sort_name,
-          'status' => FALSE,
+          //'status' => FALSE,
         ]);
-
+        
         $contrib->save();
         $contrib_id = $contrib->id();
+        echo "\nNo existing contributor. Adding contributor [$contrib_id].";
       }
 
       // Populate array with contributor ids.
@@ -481,8 +488,11 @@ function createContributors($contrib_names, $contrib_role) {
       ],
     ];
 
+    echo "\nAdding contributor paragraph with the following data:\n";
+    var_dump($values);
+    
     $contributors[] = createParagraph('yabrm_bibliographic_contributor', $values);
-  }
+    }
 
   return $contributors;
 }
@@ -533,7 +543,7 @@ function createParagraph($type, array $values) {
   }
 
   // Migrate all paragraphs as unpublished.
-  $paragraph->set('status', FALSE);
+  //$paragraph->set('status', FALSE);
   $paragraph->save();
   return $paragraph;
 }
@@ -562,8 +572,3 @@ function create_yabrm_collection($collection_name) {
 
   return $collection;
 }
-
-
-// $arg1 = $extra[0];
-
-// echo "\n$arg1\n";

@@ -107,70 +107,70 @@ migrateMarc(
 function migrateMarc(string $source, string $entity_type, array $map, bool $publish) {
   $collection = Collection::fromFile($source);
 
-  $n = 0; // Debug.
   foreach ($collection as $record) {
-    $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create();
+    $jurisdiction = getMarcValue($record, '593');
+    $filter = str_contains(strtolower($jurisdiction), 'brunswick');
     
-    foreach ($map as $field => $mapping) {
-      $field = $mapping['target'] ?? $mapping['target'] ?? $field;
-      $marc = $mapping['marc'] ?? $mapping['marc_fallback'] ?? NULL;
-      $multival = isset($mapping['multival']) and $mapping['multival'];
-      $append = isset($mapping['append']) and $mapping['append'];
+    if ($filter) {
+      $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create();
 
-      if ($marc) {
-        $value = getMarcValue($record, $marc, $multival);
-      }
-      elseif ($mapping['default']) {
-        $value = $mapping['default']; 
-      }
+      foreach ($map as $field => $mapping) {
+        $field = $mapping['target'] ?? $mapping['target'] ?? $field;
+        $marc = $mapping['marc'] ?? $mapping['marc_fallback'] ?? NULL;
+        $multival = isset($mapping['multival']) and $mapping['multival'];
+        $append = isset($mapping['append']) and $mapping['append'];
 
-      if ($value) {
-        if(isset($mapping['process'])) {
-          $callback = $mapping['process'];
-          if (is_callable($callback)) {
-            if (function_exists($callback)) {
-              $value = $callback($value);
+        if ($marc) {
+          $value = getMarcValue($record, $marc, $multival);
+        }
+        elseif ($mapping['default']) {
+          $value = $mapping['default']; 
+        }
+
+        if ($value) {
+          if(isset($mapping['process'])) {
+            $callback = $mapping['process'];
+            if (is_callable($callback)) {
+              if (function_exists($callback)) {
+                $value = $callback($value);
+              }
             }
           }
-        }
-        
-        if ($append) {
-          $update = $entity->get($field)->getValue();
           
-          if (is_array($update)) {
-            $update = array_merge($update, $value);
-            $entity->set($field, $update);
+          if ($append) {
+            $update = $entity->get($field)->getValue();
+            
+            if (is_array($update)) {
+              $update = array_merge($update, $value);
+              $entity->set($field, $update);
+            }
+            else {  
+              $entity->set($field, $value);
+            }
           }
-          else {  
+          else {
+            $value = is_string($value) ?
+            text_trim($value) :
+            $value;
             $entity->set($field, $value);
           }
         }
-        else {
-          $value = is_string($value) ?
-          text_trim($value) :
-          $value;
-          $entity->set($field, $value);
-        }
       }
-    }
 
-    $title = $entity->getTitle();
+      $title = $entity->getTitle();
 
-    // @TODO: Pass array of mandatory fields and only save if constraints met.
-    if ($title) {
-      echo "\nSaving unpublished [$entity_type] [$title]";
-      //$entity->setPublished($publish);
-      $contribs = $entity->getContributors();
-      //var_dump($contribs);
-      $entity->save();
-      $contribs = $entity->getContributors();
-      //var_dump($contribs);
-    }
+      // @TODO: Pass array of mandatory fields and only save if constraints met.
+      if ($title) {
+        echo "\nSaving unpublished [$entity_type] [$title]";
+        //$entity->setPublished($publish);
+        $contribs = $entity->getContributors();
+        //var_dump($contribs);
+        $entity->save();
+        $contribs = $entity->getContributors();
+        //var_dump($contribs);
+      }
 
-    $n++;
-
-    if ($n > 5) {
-      exit;
+      $n++;
     }
   }
 

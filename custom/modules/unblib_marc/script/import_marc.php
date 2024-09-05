@@ -161,10 +161,10 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
       echo "\nSaving unpublished [$entity_type] [$title]";
       //$entity->setPublished($publish);
       $contribs = $entity->getContributors();
-      var_dump($contribs);
+      //var_dump($contribs);
       $entity->save();
       $contribs = $entity->getContributors();
-      var_dump($contribs);
+      //var_dump($contribs);
     }
 
     $n++;
@@ -214,14 +214,15 @@ function create_author($author_name) {
   $author = substr($author, -1) == ',' ? substr($author, 0, -1) : $author; 
   $author = ucwords(text_trim($author));
   $author = substr($author, -2, 1) == ' ' ? "$author." : $author;
-  $id = createContributors([$author], 'Author')[0]->id();
+  $paragraph = createContributors([$author], 'Author')[0];
+  $id = $paragraph->id();
+  $rid = $paragraph->getRevisionId();
   
   $ref = [
     'target_id' => $id,
+    'target_revision_id' => $rid,
   ];
   
-  echo "\nContributors listing:\n";
-  var_dump($ref);
   return $ref;
 }
 
@@ -238,16 +239,17 @@ function create_contribs($contribs_blob) {
       $name = ucwords(text_trim($name));
       $name = substr($name, -2, 1) == ' ' ? "$name." : $name;
       $role = ucwords(text_trim($role));
-      $id = createContributors([$name], $role)[0]->id();
-
+      $paragraph = createContributors([$name], $role)[0];
+      $id = $paragraph->id();
+      $rid = $paragraph->getRevisionId();
+      
       $refs[] = [
         'target_id' => $id,
+        'target_revision_id' => $rid,
       ];
-    }
+      }
   }
 
-  echo "\nContributors listing:\n";
-  var_dump($refs);
   return $refs;
 }
 

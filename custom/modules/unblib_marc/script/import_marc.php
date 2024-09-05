@@ -218,7 +218,6 @@ function create_author($author_name) {
   
   $ref = [
     'target_id' => $id,
-    'target_revision_id' => $id,
   ];
   
   echo "\nContributors listing:\n";
@@ -243,7 +242,6 @@ function create_contribs($contribs_blob) {
 
       $refs[] = [
         'target_id' => $id,
-        'target_revision_id' => $id,
       ];
     }
   }

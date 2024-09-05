@@ -161,6 +161,8 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
       echo "\nSaving unpublished [$entity_type] [$title]";
       //$entity->setPublished($publish);
       $entity->save();
+      $contribs = $entity->getContributors();
+      var_dump($contribs);
     }
 
     $n++;

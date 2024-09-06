@@ -29,7 +29,8 @@ $map = [
     'marc' => '245$a',
   ],
   'abstract_note' => [
-    'marc' => '520$a',
+    'marc' => '590$a',
+    'process' => 'create_abstract',
   ],
   'publication_year' => [
     'marc' => '260$c',
@@ -66,7 +67,7 @@ $map = [
     'marc' => '050$a',
   ],
   'notes' => [
-    'marc' => '700$a$d$e$l',
+    'marc' => '500$a',
   ],
   'isbn' => [
     'marc' => '020$a',
@@ -106,10 +107,12 @@ migrateMarc(
 
 function migrateMarc(string $source, string $entity_type, array $map, bool $publish) {
   $collection = Collection::fromFile($source);
+  $n = 0;
 
   foreach ($collection as $record) {
     $jurisdiction = getMarcValue($record, '593');
-    $filter = str_contains(strtolower($jurisdiction), 'brunswick');
+    $filter = str_contains(strtolower($jurisdiction), 'new brunswick') and
+    str_contains(strtolower($jurisdiction), 'jurisdiction');
     
     if ($filter) {
       $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create();
@@ -124,18 +127,20 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
           $value = getMarcValue($record, $marc, $multival);
         }
         elseif ($mapping['default']) {
-          $value = $mapping['default']; 
+          $value = $mapping['default'];
         }
 
         if ($value) {
+          
           if(isset($mapping['process'])) {
             $callback = $mapping['process'];
             if (is_callable($callback)) {
               if (function_exists($callback)) {
-                $value = $callback($value);
+                $value = $callback($value, $record);
               }
             }
           }
+
           
           if ($append) {
             $update = $entity->get($field)->getValue();
@@ -147,11 +152,14 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
             else {  
               $entity->set($field, $value);
             }
+            
           }
           else {
-            $value = is_string($value) ?
-            text_trim($value) :
-            $value;
+            echo "\n***$field***";
+            if (is_string($value)) {
+              var_dump($value);
+            }
+            $value = is_string($value) ? text_trim($value) : $value;
             $entity->set($field, $value);
           }
         }
@@ -170,11 +178,12 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
         //var_dump($contribs);
       }
 
-      $n++;
     }
+
+    $n++;
   }
 
-  echo "\n";
+  echo "\n***$n records processed***\n";
 }
 
 function getMarcValue(
@@ -199,7 +208,7 @@ function getMarcValue(
   return $data;
 }
 
-function date2dmy($date) {
+function date2dmy($date, $record) {
   preg_match('~\b\d{4}\b\+?~', $date, $year);
 
   if (isset($year[0])) {
@@ -209,7 +218,7 @@ function date2dmy($date) {
   return $date;
 }
 
-function create_author($author_name) {
+function create_author($author_name, $record) {
   $author = parseRecord('a', $author_name);
   $author = substr($author, -1) == ',' ? substr($author, 0, -1) : $author; 
   $author = ucwords(text_trim($author));
@@ -226,7 +235,7 @@ function create_author($author_name) {
   return $ref;
 }
 
-function create_contribs($contribs_blob) {
+function create_contribs($contribs_blob, $record) {
   $records = parseRecord('a', $contribs_blob);
   $refs = [];
   
@@ -247,13 +256,13 @@ function create_contribs($contribs_blob) {
         'target_id' => $id,
         'target_revision_id' => $rid,
       ];
-      }
+    }
   }
 
   return $refs;
 }
 
-function parse_isbn($data) {
+function parse_isbn($data, $record) {
   $records = parseRecord('a', $data);
   
   foreach ($records as $record) {
@@ -267,7 +276,7 @@ function parse_isbn($data) {
   return $data;
 }
 
-function create_physical($data) {
+function create_physical($data, $record) {
   $details = parseSub('b', $data);
   $details = $details ? ucfirst(strtolower(text_trim($details))) : NULL;
   $dimensions = parseSub('c', $data);
@@ -290,7 +299,7 @@ function create_physical($data) {
   return $physical;
 }
 
-function marc2lang($language) {
+function marc2lang($language, $record) {
   if (!empty($language)) {
     if (strstr($language, 'ara') || strstr('ara', $language)) {
       $language = 'ara';
@@ -324,7 +333,7 @@ function marc2lang($language) {
   return $language;
 }
 
-function create_extra($data) {
+function create_extra($data, $record) {
   $data = filter_var($data, FILTER_SANITIZE_NUMBER_INT);
   return "OCLC: $data";
 }
@@ -345,6 +354,11 @@ function parseRecord($subfield, $data) {
   else {
     return $data;
   }
+}
+
+function create_abstract($abstract, $record) {
+  $append = getMarcValue($record, '594$a');
+  return "$abstract\n$append";
 }
 
 function parseSub($subfield, $data) {
@@ -496,9 +510,6 @@ function createContributors($contrib_names, $contrib_role) {
         'value' => $role_tid,
       ],
     ];
-
-    echo "\nAdding contributor paragraph with the following data:\n";
-    var_dump($values);
     
     $contributors[] = createParagraph('yabrm_bibliographic_contributor', $values);
     }

@@ -140,7 +140,6 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
               }
             }
           }
-
           
           if ($append) {
             $update = $entity->get($field)->getValue();
@@ -180,7 +179,11 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
 
     }
 
-    $n++;
+    //$n++;
+
+    if ($n > 5) {
+      exit;
+    }
   }
 
   echo "\n***$n records processed***\n";

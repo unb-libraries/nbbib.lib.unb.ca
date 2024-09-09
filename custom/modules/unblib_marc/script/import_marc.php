@@ -159,10 +159,6 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
             
           }
           else {
-            echo "\n***$field***";
-            if (is_string($value)) {
-              var_dump($value);
-            }
             $value = is_string($value) ? text_trim($value) : $value;
             $entity->set($field, $value);
           }
@@ -438,7 +434,7 @@ function createContributors($contrib_names, $contrib_role) {
 
     $zotero_name = $contrib_name;
 
-    if (!empty($contrib_name)) {
+    if ($contrib_name) {
       $existing = \Drupal::entityTypeManager()->getStorage('yabrm_contributor')
         ->getQuery()
         ->condition('zotero_name', $zotero_name)
@@ -480,6 +476,9 @@ function createContributors($contrib_names, $contrib_role) {
         $contrib_id = $contrib->id();
         echo "\nNo existing contributor. Adding contributor [$contrib_id].";
       }
+      else {
+        echo "\nEXISTING CONTRIBUTOR FOUND. Adding contributor [$contrib_id].";
+      }
 
       // Populate array with contributor ids.
       $contrib_ids[] = $contrib_id;
@@ -519,18 +518,6 @@ function createContributors($contrib_names, $contrib_role) {
     ];
     
     $contributors[] = createParagraph('yabrm_bibliographic_contributor', $values);
-    }
-
-    $pid = $contributors[0]->id();
-    $paragraph = Paragraph::load($pid);
-    $person = $paragraph->field_yabrm_contributor_person->getValue()[0]['target_id'];
-    var_dump($person);
-
-    if (!is_numeric($person)) {
-      echo "\nSUSPICIOUS CONTRIBUTOR PARAGRAPH [$pid] HAS PERSON [$person]\n";
-      echo "\nVALUES\n";
-      var_dump($values);
-      sleep(120);
     }
 
   return $contributors;

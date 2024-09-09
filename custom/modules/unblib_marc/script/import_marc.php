@@ -508,6 +508,17 @@ function createContributors($contrib_names, $contrib_role) {
       $role_tid = $term->id();
     }
 
+    if (!$contrib_id) {
+      echo "\nCreating contributor paragraph with no contrib_id";
+      echo "contrib_names\n";
+      var_dump($contrib_names);
+      echo "contrib_name\n";
+      var_dump($contrib_name);
+      echo "contrib_ids\n";
+      var_dump($contrib_ids);
+      sleep(120);
+    } 
+
     // Create Paragraph.
     $values = [
       [

@@ -118,9 +118,9 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
       $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create();
 
       foreach ($map as $field => $mapping) {
-        $field = $mapping['target'] ? $mapping['target'] : $field;
+        $field = isset($mapping['target']) ? $mapping['target'] : $field;
         $marc = $mapping['marc'] ?? $mapping['marc'];
-        $fallback = $mapping['fallback'] ?? $mapping['fallback']; 
+        $fallback = isset($mapping['fallback']) ?? $mapping['fallback']; 
         $multival = isset($mapping['multival']) and $mapping['multival'];
         $append = isset($mapping['append']) and $mapping['append'];
 
@@ -190,8 +190,6 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
       exit;
     }
   }
-
-  echo "\n***$n records processed***\n";
 }
 
 function getMarcValue(
@@ -508,17 +506,6 @@ function createContributors($contrib_names, $contrib_role) {
       $role_tid = $term->id();
     }
 
-    if (!$contrib_id) {
-      echo "\nCreating contributor paragraph with no contrib_id";
-      echo "contrib_names\n";
-      var_dump($contrib_names);
-      echo "contrib_name\n";
-      var_dump($contrib_name);
-      echo "contrib_ids\n";
-      var_dump($contrib_ids);
-      sleep(120);
-    } 
-
     // Create Paragraph.
     $values = [
       [
@@ -532,6 +519,18 @@ function createContributors($contrib_names, $contrib_role) {
     ];
     
     $contributors[] = createParagraph('yabrm_bibliographic_contributor', $values);
+    }
+
+    $pid = $contributors[0]->id();
+    $paragraph = Paragraph::load($pid);
+    $person = $paragraph->field_yabrm_contributor_person->getValue()[0]['target_id'];
+    var_dump($person);
+
+    if (!is_numeric($person)) {
+      echo "\nSUSPICIOUS CONTRIBUTOR PARAGRAPH [$pid] HAS PERSON [$person]\n";
+      echo "\nVALUES\n";
+      var_dump($values);
+      sleep(120);
     }
 
   return $contributors;

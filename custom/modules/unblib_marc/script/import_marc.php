@@ -118,13 +118,18 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
       $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create();
 
       foreach ($map as $field => $mapping) {
-        $field = $mapping['target'] ?? $mapping['target'] ?? $field;
-        $marc = $mapping['marc'] ?? $mapping['marc_fallback'] ?? NULL;
+        $field = $mapping['target'] ? $mapping['target'] : $field;
+        $marc = $mapping['marc'] ?? $mapping['marc'];
+        $fallback = $mapping['fallback'] ?? $mapping['fallback']; 
         $multival = isset($mapping['multival']) and $mapping['multival'];
         $append = isset($mapping['append']) and $mapping['append'];
 
         if ($marc) {
           $value = getMarcValue($record, $marc, $multival);
+
+          if (!$value and $fallback) {
+            $value = getMarcValue($record, $fallback, $multival);
+          }
         }
         elseif ($mapping['default']) {
           $value = $mapping['default'];
@@ -246,10 +251,11 @@ function create_contribs($contribs_blob, $record) {
     $name = parseSub('a', $record);
     $role = parseSub('e', $record);
 
-    if ($name and $role) {
+    if ($name) {
       $name = substr($name, -1) == ',' ? substr($name, 0, -1) : $name; 
       $name = ucwords(text_trim($name));
       $name = substr($name, -2, 1) == ' ' ? "$name." : $name;
+      $role = $role ? $role : 'Author';
       $role = ucwords(text_trim($role));
       $paragraph = createContributors([$name], $role)[0];
       $id = $paragraph->id();

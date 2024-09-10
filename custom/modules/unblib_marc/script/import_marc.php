@@ -30,6 +30,7 @@ $map = [
   ],
   'abstract_note' => [
     'marc' => '590$a',
+    'marc_fallback' => '520$a',
     'process' => 'create_abstract',
   ],
   'publication_year' => [
@@ -238,12 +239,16 @@ function create_author($author_name, $record) {
 }
 
 function create_contribs($contribs_blob, $record) {
-  $records = parseRecord('a', $contribs_blob);
+  $results = parseRecord('a', $contribs_blob);
   $refs = [];
+
+  echo "\n";
+  var_dump($results);
+  echo "\n";
   
-  foreach ($records as $record) {
-    $name = parseSub('a', $record);
-    $role = parseSub('e', $record);
+  foreach ($results as $result) {
+    $name = parseSub('a', $result);
+    $role = parseSub('e', $result);
 
     if ($name) {
       $name = substr($name, -1) == ',' ? substr($name, 0, -1) : $name; 
@@ -351,7 +356,7 @@ function parseRecord($subfield, $data) {
       return $matches[1][0];
     }
     else {
-      return $matches[0];
+      return array_unique($matches[0]);
     }
   }
   else {
@@ -361,7 +366,7 @@ function parseRecord($subfield, $data) {
 
 function create_abstract($abstract, $record) {
   $append = getMarcValue($record, '594$a');
-  return "$abstract\n$append";
+  return "$abstract\n\n$append";
 }
 
 function parseSub($subfield, $data) {
@@ -477,7 +482,7 @@ function createContributors($contrib_names, $contrib_role) {
         echo "\nNo existing contributor. Adding contributor [$contrib_id].";
       }
       else {
-        echo "\nEXISTING CONTRIBUTOR FOUND. Adding contributor [$contrib_id].";
+        echo "\nEXISTING CONTRIBUTOR FOUND. Adding contributor [$contrib_id].\n";
       }
 
       // Populate array with contributor ids.

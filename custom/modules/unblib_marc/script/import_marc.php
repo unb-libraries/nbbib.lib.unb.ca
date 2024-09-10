@@ -442,7 +442,7 @@ function createContributors($contrib_names, $contrib_role) {
         ->execute();
 
       reset($existing);
-      $contrib_id = key($existing);
+      $contrib_id = current($existing);
 
       // Create contributor if doesn't exist.
       if (empty($contrib_id)) {

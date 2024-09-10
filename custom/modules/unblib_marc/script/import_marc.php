@@ -119,7 +119,7 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
 
       foreach ($map as $field => $mapping) {
         $field = isset($mapping['target']) ? $mapping['target'] : $field;
-        $marc = $mapping['marc'] ?? $mapping['marc'];
+        $marc = $mapping['marc'] ?? NULL;
         $fallback = isset($mapping['fallback']) ?? $mapping['fallback']; 
         $multival = isset($mapping['multival']) and $mapping['multival'];
         $append = isset($mapping['append']) and $mapping['append'];
@@ -169,7 +169,7 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
 
       // @TODO: Pass array of mandatory fields and only save if constraints met.
       if ($title) {
-        echo "\nSaving unpublished [$entity_type] [$title]";
+        echo "\nSaving unpublished [$entity_type] [$title]\n";
         //$entity->setPublished($publish);
         $contribs = $entity->getContributors();
         //var_dump($contribs);

@@ -27,6 +27,7 @@ $map = [
   ],
   'title' => [
     'marc' => '245$a',
+    'process' => 'create_title',
   ],
   'abstract_note' => [
     'marc' => '590$a',
@@ -50,6 +51,7 @@ $map = [
   ],
   'short_title' => [
     'marc' => '246$a',
+    'process' => 'text_trim_sentence',
   ],
   'language' => [
     'marc' => '041$a',
@@ -57,18 +59,23 @@ $map = [
   ],
   'archive' => [
     'marc' => '850$a',
+    'process' => 'text_trim',
   ],
   'archive_location' => [
     'marc' => '852$a',
+    'process' => 'text_trim',
   ],
   'library_catalog' => [
     'marc' => '040$a',
+    'process' => 'text_trim',
   ],  
   'call_number' => [
     'marc' => '050$a',
+    'process' => 'text_trim',
   ],
   'notes' => [
-    'marc' => '500$a',
+    'marc' => '245$a',
+    'process' => 'text_trim_sentence',
   ],
   'isbn' => [
     'marc' => '020$a',
@@ -77,18 +84,23 @@ $map = [
   ],
   'volume' => [
     'marc' => '490$v',
+    'process' => 'text_trim',
   ],
   'series' => [
     'marc' => '490$a',
+    'process' => 'text_trim',
   ],
   'publisher' => [
     'marc' => '260$b',
+    'process' => 'text_trim',
   ],
   'place' => [
     'marc' => '260$a',
+    'process' => 'text_trim',
   ],
   'edition' => [
     'marc' => '250$a',
+    'process' => 'text_trim',
   ],
   'physical_description' => [
     'marc' => '300$b$c',
@@ -138,7 +150,7 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
 
         if ($value) {
           
-          if(isset($mapping['process'])) {
+          if (isset($mapping['process'])) {
             $callback = $mapping['process'];
             if (is_callable($callback)) {
               if (function_exists($callback)) {
@@ -160,7 +172,7 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
             
           }
           else {
-            $value = is_string($value) ? text_trim($value) : $value;
+            $value = is_string($value) ? $value : $value;
             $entity->set($field, $value);
           }
         }
@@ -180,9 +192,9 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
       }
 
     }
-
+    
     //$n++;
-
+    
     if ($n > 5) {
       exit;
     }
@@ -194,38 +206,58 @@ function getMarcValue(
   string $marc, 
   bool $multival = FALSE
   ) {
-  // Run query.
-  $field_data = $record->query($marc);
-  $data = "";
-  $entries = 0;
-
-  foreach ($field_data as $entry) {
-    if ($entry) {
-      $entry_data = trim($entry->__toString());
+    // Run query.
+    $field_data = $record->query($marc);
+    $data = "";
+    $entries = 0;
+    
+    foreach ($field_data as $entry) {
+      if ($entry) {
+        $entry_data = trim($entry->__toString());
+      }
+      // Concatenate data string.
+      $data .= $multival ? trim($entry_data) : trim(substr($entry_data, 5));
+      $entries++;
     }
-    // Concatenate data string.
-    $data .= $multival ? trim($entry_data) : trim(substr($entry_data, 5));
-    $entries++;
+    
+    return $data;
+}
+  
+function create_title($data, $record) {
+  $title = $data;
+  $title = $title ? ucfirst(strtolower(text_trim($title, TRUE))) : NULL;
+  $subtitle = getMarcValue($record, '245$b');
+  $subtitle = $subtitle ? ucfirst(strtolower(text_trim($subtitle))) : NULL;
+  $full_title = '';
+  
+  if ($title) {
+    $full_title .= $title;
+    
+    if ($subtitle) {
+      $full_title = "$full_title: $subtitle";
+    }
   }
 
-  return $data;
+  $full_title = $full_title ? $full_title : $data;
+  
+  return text_trim($full_title, TRUE);
 }
-
+  
 function date2dmy($date, $record) {
   preg_match('~\b\d{4}\b\+?~', $date, $year);
-
+  
   if (isset($year[0])) {
     return $year[0];
   }
   
   return $date;
 }
-
+  
 function create_author($author_name, $record) {
   $author = parseRecord('a', $author_name);
   $author = substr($author, -1) == ',' ? substr($author, 0, -1) : $author; 
   $author = ucwords(text_trim($author));
-  $author = substr($author, -2, 1) == ' ' ? "$author." : $author;
+  $author = (substr($author, -2, 1) == ' ') ? "$author." : $author;
   $paragraph = createContributors([$author], 'Author')[0];
   $id = $paragraph->id();
   $rid = $paragraph->getRevisionId();
@@ -241,16 +273,13 @@ function create_author($author_name, $record) {
 function create_contribs($contribs_blob, $record) {
   $results = parseRecord('a', $contribs_blob);
   $refs = [];
-
-  echo "\n";
-  var_dump($results);
-  echo "\n";
+  $prev_name = '';
   
   foreach ($results as $result) {
     $name = parseSub('a', $result);
     $role = parseSub('e', $result);
-
-    if ($name) {
+    
+    if ($name and text_trim($name) != $prev_name) {
       $name = substr($name, -1) == ',' ? substr($name, 0, -1) : $name; 
       $name = ucwords(text_trim($name));
       $name = substr($name, -2, 1) == ' ' ? "$name." : $name;
@@ -264,6 +293,8 @@ function create_contribs($contribs_blob, $record) {
         'target_id' => $id,
         'target_revision_id' => $rid,
       ];
+
+      $prev_name = $name;
     }
   }
 
@@ -286,9 +317,9 @@ function parse_isbn($data, $record) {
 
 function create_physical($data, $record) {
   $details = parseSub('b', $data);
-  $details = $details ? ucfirst(strtolower(text_trim($details))) : NULL;
+  $details = $details ? ucfirst(strtolower(text_trim($details, TRUE))) : NULL;
   $dimensions = parseSub('c', $data);
-  $dimensions = $dimensions ? ucfirst(strtolower(text_trim($dimensions))) : NULL;
+  $dimensions = $dimensions ? ucfirst(strtolower(text_trim($dimensions, TRUE))) : NULL;
   $physical = '';
   
   if ($details) {
@@ -302,7 +333,7 @@ function create_physical($data, $record) {
     $physical = text_period($dimensions);
   }
   
-  $physical = $physical ? $physical : $data;
+  $physical = $physical ?? $data;
   
   return $physical;
 }
@@ -385,18 +416,22 @@ function parseSub($subfield, $data) {
   }
 }
 
-function text_trim(string $text) {
+function text_trim_sentence(string $text) {
+  return text_trim($text, NULL, TRUE);
+}
+
+function text_trim(string $text, $record = NULL, bool $sentence = FALSE) {
   $first = substr($text, 0, 1);
   $last = substr($text, -1);
-  $starters = ["'", '"'];
-  $enders = ['.', '!', '?' , "'", '"'];
+  $starters = $sentence ? ["'", '"'] : [];
+  $enders = $sentence ? ['.', '!', '?' , "'", '"', ')'] : [];
   
-  while (!ctype_alnum($first) and !in_array($first, $starters)) {
+  while (!ctype_alnum($first) and (!in_array($first, $starters) or substr($text, 1, 1) == ' ')) {
     $text = substr($text, 1);
     $first = substr($text, 0, 1);
   }
   
-  while (!ctype_alnum($last) and !in_array($last, $enders)) {
+  while (!ctype_alnum($last) and (!in_array($last, $enders) or substr($text, -2) == ' ')) {
     $text = substr($text, 0, -1);
     $last = substr($text, -1);
   }

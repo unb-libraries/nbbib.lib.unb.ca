@@ -10,7 +10,7 @@ use Scriptotek\Marc\Record;
 
 $source = 'modules/custom/unblib_marc/data/portolan.mrc';
 $collection = Collection::fromFile($source);
-$yabrm_collection = create_yabrm_collection("Portolan");
+$yabrm_collection = create_yabrm_collection("Children's Literature");
 
 $map = [
   'collections' => [
@@ -74,7 +74,7 @@ $map = [
     'process' => 'text_trim',
   ],
   'notes' => [
-    'marc' => '245$a',
+    'marc' => '245$c',
     'process' => 'text_trim_sentence',
   ],
   'isbn' => [
@@ -106,6 +106,24 @@ $map = [
     'marc' => '300$b$c',
     'process' => 'create_physical',
     'multival' => TRUE,
+  ],
+  'location' => [
+    'marc' => '691$a',
+    'target' => 'topics',
+    'process' => 'create_topic',
+    'append' => TRUE,
+  ],
+  'descriptor' => [
+    'marc' => '690$a',
+    'target' => 'topics',
+    'process' => 'create_descriptors',
+    'append' => TRUE,
+  ],
+  'location' => [
+    'marc' => '691$a',
+    'target' => 'topics',
+    'process' => 'create_topic',
+    'append' => TRUE,
   ],
 ];
 
@@ -398,6 +416,42 @@ function parseRecord($subfield, $data) {
 function create_abstract($abstract, $record) {
   $append = getMarcValue($record, '594$a');
   return "$abstract\n\n$append";
+}
+
+function create_descriptors($data, $record) {
+  $descriptors = explode('.', $data);
+  $topics = [];
+  
+  foreach ($descriptors as $desc) {
+    $term = create_topic($desc, $record);
+    echo "\n";
+    var_dump($term);
+    echo "\n";
+    $topics[] = $term;
+  }
+
+  return $topics;
+}
+
+function create_topic($data, $record) {
+  $topic = text_trim($data);
+  $voc = 'yabrm_reference_topic';
+  $field = 'name';
+  $tid = taxTermExists($topic, $field, $voc);
+  
+  if (!$tid) {
+    $term = Term::create([
+      'vid' => $voc,
+      $field => $topic,
+    ]);
+ 
+    $term->save();
+    $tid = $term->id();
+  }
+
+  $ref = ['target_id' => $tid];
+
+  return $ref;
 }
 
 function parseSub($subfield, $data) {

@@ -122,7 +122,7 @@ $map = [
   'location' => [
     'marc' => '691$a',
     'target' => 'topics',
-    'process' => 'create_topic',
+    'process' => 'create_descriptors',
     'append' => TRUE,
   ],
 ];
@@ -433,7 +433,7 @@ function create_descriptors($data, $record) {
   return $topics;
 }
 
-function create_topic($data, $record) {
+function create_topic($data) {
   $topic = text_trim($data);
   $voc = 'yabrm_reference_topic';
   $field = 'name';

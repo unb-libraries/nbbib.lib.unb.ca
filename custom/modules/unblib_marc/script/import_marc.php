@@ -70,8 +70,8 @@ $map = [
     'process' => 'text_trim',
   ],  
   'call_number' => [
-    'marc' => '050$a',
-    'process' => 'text_trim',
+    'marc' => '050',
+    'process' => 'create_callno',
   ],
   'notes' => [
     'marc' => '245$c',
@@ -203,10 +203,8 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
         echo "\nSaving unpublished [$entity_type] [$title]\n";
         //$entity->setPublished($publish);
         $contribs = $entity->getContributors();
-        //var_dump($contribs);
         $entity->save();
         $contribs = $entity->getContributors();
-        //var_dump($contribs);
       }
 
     }
@@ -224,21 +222,21 @@ function getMarcValue(
   string $marc, 
   bool $multival = FALSE
   ) {
-    // Run query.
-    $field_data = $record->query($marc);
-    $data = "";
-    $entries = 0;
-    
-    foreach ($field_data as $entry) {
-      if ($entry) {
-        $entry_data = trim($entry->__toString());
-      }
-      // Concatenate data string.
-      $data .= $multival ? trim($entry_data) : trim(substr($entry_data, 5));
-      $entries++;
+  // Run query.
+  $field_data = $record->query($marc);
+  $data = "";
+  $entries = 0;
+  
+  foreach ($field_data as $entry) {
+    if ($entry) {
+      $entry_data = trim($entry->__toString());
     }
-    
-    return $data;
+    // Concatenate data string.
+    $data .= $multival ? trim($entry_data) : trim(substr($entry_data, 5));
+    $entries++;
+  }
+  
+  return $data;
 }
   
 function create_title($data, $record) {
@@ -423,14 +421,17 @@ function create_descriptors($data, $record) {
   $topics = [];
   
   foreach ($descriptors as $desc) {
-    $term = create_topic($desc, $record);
-    echo "\n";
-    var_dump($term);
-    echo "\n";
-    $topics[] = $term;
+
+    if ($desc) {
+      $term = create_topic($desc);
+      $topics[] = $term;
+    }
   }
 
   return $topics;
+}
+
+function create_callno($data, $record) {
 }
 
 function create_topic($data) {
@@ -444,13 +445,12 @@ function create_topic($data) {
       'vid' => $voc,
       $field => $topic,
     ]);
- 
+    
     $term->save();
     $tid = $term->id();
   }
-
+  
   $ref = ['target_id' => $tid];
-
   return $ref;
 }
 
@@ -568,10 +568,6 @@ function createContributors($contrib_names, $contrib_role) {
         
         $contrib->save();
         $contrib_id = $contrib->id();
-        echo "\nNo existing contributor. Adding contributor [$contrib_id].";
-      }
-      else {
-        echo "\nEXISTING CONTRIBUTOR FOUND. Adding contributor [$contrib_id].\n";
       }
 
       // Populate array with contributor ids.

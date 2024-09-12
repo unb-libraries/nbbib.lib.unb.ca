@@ -432,6 +432,19 @@ function create_descriptors($data, $record) {
 }
 
 function create_callno($data, $record) {
+  $call_number = '';
+
+  foreach ($record->getFields('852') as $subfields) {
+    foreach ($subfields->getSubfields() as $code => $value) {
+      if ($code == 'c' || $code == 'h' || $code == 'i') {
+        $call_number .= " {$value->getData()}";
+      }
+    }
+  }
+  
+  var_dump($call_number);
+  echo "\nREACHED\n";
+  return $call_number;
 }
 
 function create_topic($data) {

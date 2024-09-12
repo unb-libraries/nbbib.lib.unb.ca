@@ -70,7 +70,7 @@ $map = [
     'process' => 'text_trim',
   ],  
   'call_number' => [
-    'marc' => '050',
+    'marc' => '852',
     'process' => 'create_callno',
   ],
   'notes' => [
@@ -137,33 +137,48 @@ migrateMarc(
 //*/
 
 function migrateMarc(string $source, string $entity_type, array $map, bool $publish) {
-  $collection = Collection::fromFile($source);
+  $collection = Collection::fromFile($source)->toArray();
+  $collection = array_reverse($collection);
   $n = 0;
 
   foreach ($collection as $record) {
-    $jurisdiction = getMarcValue($record, '593');
+    $callno = create_callno('', $record);
+    $last_callno = $callno == '' ? $last_callno : $callno;
+    $jurisdiction = '';
+    $jurisdictions = $record->query('593');
+
+    foreach ($jurisdictions as $entry) {
+      $jurisdiction .= $entry;
+    }
+
     $filter = str_contains(strtolower($jurisdiction), 'new brunswick') and
-    str_contains(strtolower($jurisdiction), 'jurisdiction');
+      str_contains(strtolower($jurisdiction), 'jurisdiction');
     
     if ($filter) {
       $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->create();
-
+      
       foreach ($map as $field => $mapping) {
         $field = isset($mapping['target']) ? $mapping['target'] : $field;
         $marc = $mapping['marc'] ?? NULL;
         $fallback = isset($mapping['fallback']) ?? $mapping['fallback']; 
         $multival = isset($mapping['multival']) and $mapping['multival'];
         $append = isset($mapping['append']) and $mapping['append'];
-
+        
         if ($marc) {
           $value = getMarcValue($record, $marc, $multival);
-
+          
           if (!$value and $fallback) {
             $value = getMarcValue($record, $fallback, $multival);
           }
         }
         elseif ($mapping['default']) {
           $value = $mapping['default'];
+        }
+        
+        if ($marc == '852') {
+          $value = trim($last_callno);
+          unset($mapping['process']);
+          $append = FALSE;
         }
 
         if ($value) {
@@ -441,10 +456,8 @@ function create_callno($data, $record) {
       }
     }
   }
-  
-  var_dump($call_number);
-  echo "\nREACHED\n";
-  return $call_number;
+
+  return($call_number);
 }
 
 function create_topic($data) {

@@ -36,6 +36,7 @@ $map = [
   ],
   'publication_year' => [
     'marc' => '260$c',
+    'marc_fallback' => '264$c',
     'process' => 'date2dmy',
   ],
   'author' => [
@@ -160,7 +161,7 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
       foreach ($map as $field => $mapping) {
         $field = isset($mapping['target']) ? $mapping['target'] : $field;
         $marc = $mapping['marc'] ?? NULL;
-        $fallback = isset($mapping['fallback']) ?? $mapping['fallback']; 
+        $fallback = $mapping['marc_fallback'] ?? NULL; 
         $multival = isset($mapping['multival']) and $mapping['multival'];
         $append = isset($mapping['append']) and $mapping['append'];
         
@@ -280,7 +281,7 @@ function date2dmy($date, $record) {
   if (isset($year[0])) {
     return $year[0];
   }
-  
+
   return $date;
 }
   
@@ -355,9 +356,6 @@ function create_physical($data, $record) {
   $dimensions = $dimensions ? text_period(ucfirst(text_trim_sentence(text_trim($dimensions)))) : NULL;
   $physical = trim("$details $dimensions $pages") ?? $data;
   
-  echo "\n";
-  var_dump($data, $physical);
-  echo "\n";
   return $physical;
 }
 

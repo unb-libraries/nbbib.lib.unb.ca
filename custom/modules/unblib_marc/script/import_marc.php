@@ -103,7 +103,7 @@ $map = [
     'process' => 'text_trim',
   ],
   'physical_description' => [
-    'marc' => '300$b$c',
+    'marc' => '300$a$b$c',
     'process' => 'create_physical',
     'multival' => TRUE,
   ],
@@ -347,25 +347,17 @@ function parse_isbn($data, $record) {
 }
 
 function create_physical($data, $record) {
+  $pages = parseSub('a', $data);
+  $pages = $pages ? text_period(ucfirst(strtolower(text_trim_sentence($pages)))) : NULL;
   $details = parseSub('b', $data);
-  $details = $details ? ucfirst(strtolower(text_trim($details, TRUE))) : NULL;
+  $details = $details ? text_period(ucfirst(strtolower(text_trim_sentence($details)))) : NULL;
   $dimensions = parseSub('c', $data);
-  $dimensions = $dimensions ? ucfirst(strtolower(text_trim($dimensions, TRUE))) : NULL;
-  $physical = '';
+  $dimensions = $dimensions ? text_period(ucfirst(text_trim_sentence(text_trim($dimensions)))) : NULL;
+  $physical = trim("$details $dimensions $pages") ?? $data;
   
-  if ($details) {
-    $physical .= text_period($details);
-    
-    if ($dimensions) {
-      $physical .= ' ' . text_period($dimensions);
-    }
-  }
-  elseif ($dimensions) {
-    $physical = text_period($dimensions);
-  }
-  
-  $physical = $physical ?? $data;
-  
+  echo "\n";
+  var_dump($data, $physical);
+  echo "\n";
   return $physical;
 }
 

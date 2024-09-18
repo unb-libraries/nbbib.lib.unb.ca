@@ -93,6 +93,7 @@ $map = [
   ],
   'publisher' => [
     'marc' => '260$b',
+    'marc_fallback' => '264$b',
     'process' => 'text_trim',
   ],
   'place' => [

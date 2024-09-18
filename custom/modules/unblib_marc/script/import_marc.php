@@ -97,7 +97,7 @@ $map = [
   ],
   'place' => [
     'marc' => '260$a',
-    'process' => 'text_trim',
+    'process' => 'text_trim_sentence',
   ],
   'edition' => [
     'marc' => '250$a',
@@ -167,7 +167,8 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
         
         if ($marc) {
           $value = getMarcValue($record, $marc, $multival);
-          
+          $og_value = $value;
+
           if (!$value and $fallback) {
             $value = getMarcValue($record, $fallback, $multival);
           }
@@ -206,7 +207,11 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
             
           }
           else {
-            $value = is_string($value) ? $value : $value;
+            if (is_string($value) and (str_contains($value, '[') or str_contains($value, '['))) {
+              echo "\nCONTAINS []\n";
+              var_dump($field, $og_value, $value);
+              echo "\n";
+            }
             $entity->set($field, $value);
           }
         }
@@ -257,9 +262,9 @@ function getMarcValue(
   
 function create_title($data, $record) {
   $title = $data;
-  $title = $title ? ucfirst(strtolower(text_trim($title, TRUE))) : NULL;
+  $title = $title ? text_trim_sentence($title) : NULL;
   $subtitle = getMarcValue($record, '245$b');
-  $subtitle = $subtitle ? ucfirst(strtolower(text_trim($subtitle))) : NULL;
+  $subtitle = $subtitle ? text_trim_sentence($subtitle) : NULL;
   $full_title = '';
   
   if ($title) {
@@ -276,9 +281,14 @@ function create_title($data, $record) {
 }
   
 function date2dmy($date, $record) {
-  preg_match('~\b\d{4}\b\+?~', $date, $year);
+  $found = preg_match('/\d+/', $date, $year);
+  if (!$found) {
+    echo "\nYEAR ZERO\n";
+    var_dump($date);
+    echo "\n";
+  }
   
-  if (isset($year[0])) {
+  if (isset($year[0])) {    
     return $year[0];
   }
 
@@ -475,7 +485,7 @@ function parseSub($subfield, $data) {
     return NULL;
   }
   // If $subfield == 'a', match everything starting with [a]:<space> and ending before [ or end of string.  
-  $pattern = "/\[$subfield\]: (.*?)(?=\[|$)/";
+  $pattern = "/\[$subfield\]: (.*?)(?=\[[a-z]\]|$)/";
   $results = preg_match($pattern, $data, $matches);
 
   if ($results) {
@@ -494,7 +504,7 @@ function text_trim(string $text, $record = NULL, bool $sentence = FALSE) {
   $first = substr($text, 0, 1);
   $last = substr($text, -1);
   $starters = $sentence ? ["'", '"'] : [];
-  $enders = $sentence ? ['.', '!', '?' , "'", '"', ')'] : [];
+  $enders = $sentence ? ['.', '!', '?' , "'", '"', ')', ']'] : [];
   
   while (!ctype_alnum($first) and (!in_array($first, $starters) or substr($text, 1, 1) == ' ')) {
     $text = substr($text, 1);

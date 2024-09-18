@@ -503,7 +503,7 @@ function text_trim_sentence(string $text) {
 function text_trim(string $text, $record = NULL, bool $sentence = FALSE) {
   $first = substr($text, 0, 1);
   $last = substr($text, -1);
-  $starters = $sentence ? ["'", '"'] : [];
+  $starters = $sentence ? ["'", '"', '(', '['] : [];
   $enders = $sentence ? ['.', '!', '?' , "'", '"', ')', ']'] : [];
   
   while (!ctype_alnum($first) and (!in_array($first, $starters) or substr($text, 1, 1) == ' ')) {

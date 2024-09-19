@@ -78,7 +78,8 @@ function nbbib_core_cron() {
       SELECT id 
       FROM paragraphs_item_field_data
       WHERE status = 1
-      ))'
+      ))
+      WHERE status = 1'
     );
     $contribs = $query->fetchAll();
     $contrib_no = count($contribs);
@@ -100,6 +101,7 @@ function nbbib_core_cron() {
     else {
       \Drupal::logger('nbbib_core')->notice("No orphan contributors found.");
     }
+
     // Cleanup orphan contributor paragraphs.
     \Drupal::logger('nbbib_core')->notice("Starting orphan contributor paragraph cleanup...");
     $query = \Drupal::database()->query(

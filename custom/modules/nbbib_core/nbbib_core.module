@@ -34,9 +34,9 @@ function nbbib_core_cron() {
   $current_minute = date('i');
   $datestamp = date('c');
 
-  // if (TRUE) { // CRON DEV - RUN EVERY TIME!
+  if (TRUE) { // CRON DEV - RUN EVERY TIME!
   // If it's between 12:45-1am server time...
-  if ($current_hour < 1 and $current_minute > 44) {
+  //if ($current_hour < 1 and $current_minute > 44) {
     \Drupal::logger('nbbib_core')->notice("NBBIB maintenance CRON job started at [$datestamp].");
     // Publication year config sync.
     \Drupal::logger('nbbib_core')->notice("Starting publication year facet sync...");
@@ -99,6 +99,31 @@ function nbbib_core_cron() {
     }
     else {
       \Drupal::logger('nbbib_core')->notice("No orphan contributors found.");
+    }
+    // Cleanup orphan contributor paragraphs.
+    \Drupal::logger('nbbib_core')->notice("Starting orphan contributor paragraph cleanup...");
+    $query = \Drupal::database()->query(
+      "SELECT id
+      FROM paragraphs_item
+      WHERE type = 'yabrm_bibliographic_contributor'
+      AND id NOT IN (SELECT contributors_target_id FROM yabrm_book__contributors)
+      AND id NOT IN (SELECT contributors_target_id FROM yabrm_book_section__contributors)
+      AND id NOT IN (SELECT contributors_target_id FROM yabrm_journal_article__contributors)
+      AND id NOT IN (SELECT contributors_target_id FROM yabrm_thesis__contributors)"
+    );
+    $ids = array_column($query->fetchAll(), 'id');
+    $id_no = count($ids);
+    
+    if ($id_no > 0) {
+      \Drupal::logger('nbbib_core')->notice("Found [$id_no] orphan contributor paragraphs.");
+      $handler = \Drupal::entityTypeManager()->getStorage('paragraph');
+      $entities = $handler->loadMultiple($ids);
+      $notice = "Deleting the following orphan contributor paragraphs:\n" . var_dump($ids);
+      \Drupal::logger('nbbib_core')->notice($notice);
+      $handler->delete($entities);
+    }
+    else {
+      \Drupal::logger('nbbib_core')->notice("No orphan contributor paragraphs found.");
     }
 
     // Cleanup orphan topics.

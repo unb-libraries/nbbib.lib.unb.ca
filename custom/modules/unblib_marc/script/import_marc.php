@@ -144,7 +144,7 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
   $n = 0;
 
   foreach ($collection as $record) {
-    $callno = create_callno('', $record);
+    $callno = create_callno('', $record, $entity = NULL);
     $last_callno = $callno == '' ? $last_callno : $callno;
     $jurisdiction = '';
     $jurisdictions = $record->query('593');
@@ -190,7 +190,7 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
             $callback = $mapping['process'];
             if (is_callable($callback)) {
               if (function_exists($callback)) {
-                $value = $callback($value, $record);
+                $value = $callback($value, $record, $entity);
               }
             }
           }
@@ -213,22 +213,20 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
               var_dump($field, $og_value, $value);
               echo "\n";
             }
+            
             $entity->set($field, $value);
           }
         }
       }
 
       $title = $entity->getTitle();
-
+      
       // @TODO: Pass array of mandatory fields and only save if constraints met.
       if ($title) {
         echo "\nSaving unpublished [$entity_type] [$title]\n";
         //$entity->setPublished($publish);
-        $contribs = $entity->getContributors();
         $entity->save();
-        $contribs = $entity->getContributors();
       }
-
     }
     
     //$n++;
@@ -261,7 +259,7 @@ function getMarcValue(
   return $data;
 }
   
-function create_title($data, $record) {
+function create_title($data, $record, $entity) {
   $title = $data;
   $title = $title ? text_trim_sentence($title) : NULL;
   $subtitle = getMarcValue($record, '245$b');
@@ -278,16 +276,11 @@ function create_title($data, $record) {
 
   $full_title = $full_title ? $full_title : $data;
   
-  return text_trim($full_title, TRUE);
+  return text_trim($full_title, $entity, TRUE);
 }
   
-function date2dmy($date, $record) {
+function date2dmy($date, $record, $entity) {
   $found = preg_match('/\d+/', $date, $year);
-  if (!$found) {
-    echo "\nYEAR ZERO\n";
-    var_dump($date);
-    echo "\n";
-  }
   
   if (isset($year[0])) {    
     return $year[0];
@@ -296,7 +289,7 @@ function date2dmy($date, $record) {
   return $date;
 }
   
-function create_author($author_name, $record) {
+function create_author($author_name, $record, $entity) {
   $author = parseRecord('a', $author_name);
   $author = substr($author, -1) == ',' ? substr($author, 0, -1) : $author; 
   $author = ucwords(text_trim($author));
@@ -313,7 +306,18 @@ function create_author($author_name, $record) {
   return $ref;
 }
 
-function create_contribs($contribs_blob, $record) {
+function create_contribs($contribs_blob, $record, $entity) {
+  $paragraphs = $entity->get('contributors')->referencedEntities();
+  $existing = [];
+
+  foreach ($paragraphs as $paragraph) {
+    $contrib = $paragraph->field_yabrm_contributor_person->referencedEntities();
+    $role_term = $paragraph->field_yabrm_contributor_role->referencedEntities();
+    $name = $contrib[0]->getName();
+    $role = $role_term[0]->name->value;
+    $existing[] = [$name, $role];
+  }
+
   $results = parseRecord('a', $contribs_blob);
   $refs = [];
   $prev_name = '';
@@ -322,29 +326,33 @@ function create_contribs($contribs_blob, $record) {
     $name = parseSub('a', $result);
     $role = parseSub('e', $result);
     
-    if ($name and text_trim($name) != $prev_name) {
+    if ($name) {
       $name = substr($name, -1) == ',' ? substr($name, 0, -1) : $name; 
       $name = ucwords(text_trim($name));
       $name = substr($name, -2, 1) == ' ' ? "$name." : $name;
-      $role = $role ? $role : 'Author';
+      $role = $role ? $role : 'Unknown';
       $role = ucwords(text_trim($role));
-      $paragraph = createContributors([$name], $role)[0];
-      $id = $paragraph->id();
-      $rid = $paragraph->getRevisionId();
-      
-      $refs[] = [
-        'target_id' => $id,
-        'target_revision_id' => $rid,
-      ];
 
-      $prev_name = $name;
+      if (!in_array([$name, $role], $existing)
+        and !($role == 'Unknown' and in_array($name, array_column($existing, 0)))) {
+        $paragraph = createContributors([$name], $role)[0];
+        $id = $paragraph->id();
+        $rid = $paragraph->getRevisionId();
+        
+        $refs[] = [
+          'target_id' => $id,
+          'target_revision_id' => $rid,
+        ];
+
+        $existing[] = [$name, $role];
+      }
     }
   }
 
   return $refs;
 }
 
-function parse_isbn($data, $record) {
+function parse_isbn($data, $record, $entity) {
   $records = parseRecord('a', $data);
   
   foreach ($records as $record) {
@@ -358,7 +366,7 @@ function parse_isbn($data, $record) {
   return $data;
 }
 
-function create_physical($data, $record) {
+function create_physical($data, $record, $entity) {
   $pages = parseSub('a', $data);
   $pages = $pages ? text_period(ucfirst(strtolower(text_trim_sentence($pages)))) : NULL;
   $details = parseSub('b', $data);
@@ -370,7 +378,7 @@ function create_physical($data, $record) {
   return $physical;
 }
 
-function marc2lang($language, $record) {
+function marc2lang($language, $record, $entity) {
   if (!empty($language)) {
     if (strstr($language, 'ara') || strstr('ara', $language)) {
       $language = 'ara';
@@ -404,7 +412,7 @@ function marc2lang($language, $record) {
   return $language;
 }
 
-function create_extra($data, $record) {
+function create_extra($data, $record, $entity) {
   $data = filter_var($data, FILTER_SANITIZE_NUMBER_INT);
   return "OCLC: $data";
 }
@@ -427,12 +435,12 @@ function parseRecord($subfield, $data) {
   }
 }
 
-function create_abstract($abstract, $record) {
+function create_abstract($abstract, $record, $entity) {
   $append = getMarcValue($record, '594$a');
   return "$abstract\n\n$append";
 }
 
-function create_descriptors($data, $record) {
+function create_descriptors($data, $record, $entity) {
   $descriptors = explode('.', $data);
   $topics = [];
   
@@ -447,7 +455,7 @@ function create_descriptors($data, $record) {
   return $topics;
 }
 
-function create_callno($data, $record) {
+function create_callno($data, $record, $entity) {
   $call_number = '';
 
   foreach ($record->getFields('852') as $subfields) {
@@ -498,10 +506,10 @@ function parseSub($subfield, $data) {
 }
 
 function text_trim_sentence(string $text) {
-  return text_trim($text, NULL, TRUE);
+  return text_trim($text, NULL, NULL, TRUE);
 }
 
-function text_trim(string $text, $record = NULL, bool $sentence = FALSE) {
+function text_trim(string $text, $record = NULL, $entity = NULL, bool $sentence = FALSE) {
   $first = substr($text, 0, 1);
   $last = substr($text, -1);
   $starters = $sentence ? ["'", '"', '(', '['] : [];

@@ -207,13 +207,7 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
             }
             
           }
-          else {
-            if (is_string($value) and (str_contains($value, '[') or str_contains($value, '['))) {
-              echo "\nCONTAINS []\n";
-              var_dump($field, $og_value, $value);
-              echo "\n";
-            }
-            
+          else {            
             $entity->set($field, $value);
           }
         }

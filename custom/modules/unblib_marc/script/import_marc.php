@@ -98,6 +98,7 @@ $map = [
   ],
   'place' => [
     'marc' => '260$a',
+    'marc_fallback' => '264$a',
     'process' => 'text_trim_sentence',
   ],
   'edition' => [

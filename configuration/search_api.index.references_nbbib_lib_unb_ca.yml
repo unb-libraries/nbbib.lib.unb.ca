@@ -255,10 +255,6 @@ field_settings:
     label: 'Collection(s) - String'
     property_path: collections_string
     type: string
-  contrib_roles:
-    label: 'Contributor Roles'
-    property_path: contrib_roles
-    type: string
   contributors:
     label: Contributor(s)
     datasource_id: 'entity:yabrm_biblio_reference'

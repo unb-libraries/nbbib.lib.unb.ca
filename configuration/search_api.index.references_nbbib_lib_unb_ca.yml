@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_yabrm_contributor_person
+    - field.storage.paragraph.field_yabrm_contributor_role
     - search_api.server.drupal_solr_lib_unb_ca
   module:
     - search_api_solr
     - yabrm
     - paragraphs
+    - taxonomy
     - search_api
 third_party_settings:
   search_api_solr:
@@ -252,6 +254,10 @@ field_settings:
   collections_string:
     label: 'Collection(s) - String'
     property_path: collections_string
+    type: string
+  contrib_roles:
+    label: 'Contributor Roles'
+    property_path: contrib_roles
     type: string
   contributors:
     label: Contributor(s)
@@ -539,6 +545,54 @@ field_settings:
     type: text
     dependencies:
       module:
+        - yabrm
+  name:
+    label: 'Contributor(s) » Paragraph » Role » Taxonomy term » Name'
+    datasource_id: 'entity:yabrm_book'
+    property_path: 'contributors:entity:field_yabrm_contributor_role:entity:name'
+    type: solr_text_unstemmed
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_role
+      module:
+        - paragraphs
+        - taxonomy
+        - yabrm
+  name_1:
+    label: 'Contributor(s) » Paragraph » Role » Taxonomy term » Name'
+    datasource_id: 'entity:yabrm_book_section'
+    property_path: 'contributors:entity:field_yabrm_contributor_role:entity:name'
+    type: solr_text_unstemmed
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_role
+      module:
+        - paragraphs
+        - taxonomy
+        - yabrm
+  name_2:
+    label: 'Contributor(s) » Paragraph » Role » Taxonomy term » Name'
+    datasource_id: 'entity:yabrm_journal_article'
+    property_path: 'contributors:entity:field_yabrm_contributor_role:entity:name'
+    type: solr_text_unstemmed
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_role
+      module:
+        - paragraphs
+        - taxonomy
+        - yabrm
+  name_3:
+    label: 'Contributor(s) » Paragraph » Role » Taxonomy term » Name'
+    datasource_id: 'entity:yabrm_thesis'
+    property_path: 'contributors:entity:field_yabrm_contributor_role:entity:name'
+    type: solr_text_unstemmed
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_role
+      module:
+        - paragraphs
+        - taxonomy
         - yabrm
   num_pages:
     label: 'Number of Pages'

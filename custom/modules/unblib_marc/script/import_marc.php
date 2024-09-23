@@ -216,18 +216,11 @@ function migrateMarc(string $source, string $entity_type, array $map, bool $publ
 
       $title = $entity->getTitle();
       
-      // @TODO: Pass array of mandatory fields and only save if constraints met.
       if ($title) {
         echo "\nSaving unpublished [$entity_type] [$title]\n";
-        //$entity->setPublished($publish);
+        $entity->setPublished($publish);
         $entity->save();
       }
-    }
-    
-    //$n++;
-    
-    if ($n > 5) {
-      exit;
     }
   }
 }
@@ -593,7 +586,7 @@ function createContributors($contrib_names, $contrib_role) {
           'first_name' => $first_name,
           'last_name' => $last_name,
           'sort_name' => $sort_name,
-          //'status' => FALSE,
+          'status' => FALSE,
         ]);
         
         $contrib->save();
@@ -689,7 +682,7 @@ function createParagraph($type, array $values) {
   }
 
   // Migrate all paragraphs as unpublished.
-  //$paragraph->set('status', FALSE);
+  $paragraph->set('status', FALSE);
   $paragraph->save();
   
   return $paragraph;

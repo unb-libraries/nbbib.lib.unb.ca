@@ -206,26 +206,28 @@
               Cite this book section
             </a>
           </div>
-          {{ content.cover_image|field_value }}
-          <div id="ref-copies">
-            <b>Copies</b>
+          {% if content.cover_image|field_value %}
+            {{ content.cover_image|field_value }}
+          {% endif %}
 
-            <div>
-              {% if content.archives or content.url %}
+          {% if content.archives|field_value or content.url|field_value %}
+            <div id="ref-copies">
+              <b>Copies</b>
+              <div>
                 <ul>
                   {% for archive in content.archives %}
                     <li>{{ archive }}</li>
                   {% endfor %}
 
                   {% set urls = content.url %}
+
                   {% for url in content.url|field_value %}
                     <li>{{ url }}</li>
                   {% endfor %}
                 </ul>
-              {% endif %}
+              </div>
             </div>
-
-          </div>
+          {% endif %}
         </div>
       </div>
     </div>

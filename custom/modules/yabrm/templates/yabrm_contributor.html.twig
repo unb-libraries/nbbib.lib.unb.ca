@@ -20,16 +20,7 @@
   {% if content %}
     <div class="container">
       <div class="row description-pic">
-        {% if content.picture|field_value 
-          or content.cover 
-          or content.birth_year|field_value 
-          or content.death_year|field_value 
-          or content.nb_residences|field_value 
-          or content.nble_url|field_value %}
-          <div id="contrib-description" class="col-sm-8">
-        {% else %}
-          <div id="contrib-description" class="col-sm-12">
-        {% endif %}
+        <div id="contrib-description" class="col-sm-8">
         {% if content.description|field_value %}
           {{ content.description|field_value }}
         {% endif %}
@@ -71,58 +62,45 @@
           {%- endif -%}
         {%- endif -%}
       </div>
-
-      {% if content.picture|field_value 
-        or content.cover 
-        or content.birth_year|field_value 
-        or content.death_year|field_value 
-        or content.nb_residences|field_value 
-        or content.nble_url|field_value %}
-        <div id="contrib-picture" class="col-sm-4 pl-4">
-          {% if content.picture|field_value or content.cover %}
-            <figure>
-              {% if content.picture|field_value %}
-                {{ content.picture|field_value }}
-              {% elseif content.cover %}
-                {{ content.cover }}
-              {% endif %}
-              {% if content.pic_caption|field_value %}
-                <figcaption>
-                  {{ content.pic_caption }}
-                </figcaption>
-              {% endif %}
-              {% if content.pic_credit|field_value %}
-                {{ content.pic_credit }}
-              {% endif %}
-            </figure>
-          {% endif %}
-          {% if content.birth_year|field_value or content.death_year|field_value %}
-            <p id="birth-death">
-              {%- if content.birth_year -%}
-                {{ content.birth_year|field_value }}
-              {%- endif -%}
-              -
-              {%- if content.death_year -%}
-                {{ content.death_year|field_value }}
-              {%- endif -%}
-            </p>
-          {% endif %}
-          {%- if content.nble_url|field_value -%}
-            <p id="nble-url">
-              See the
-              <a href="{{ content.nble_url|field_value[0]['#title'] }}">
-                New Brunswick Literary Encyclopedia
-              </a>
-                entry.
-            </p>
-          {%- endif -%}
+      <div id="contrib-picture" class="col-sm-4 pl-4">
+        {% if content.picture|field_value or content.cover %}
+          <figure>
+            {% if content.picture|field_value %}
+              {{ content.picture|field_value }}
+            {% elseif content.cover %}
+              {{ content.cover }}
+            {% endif %}
+            {% if content.pic_caption|field_value %}
+              <figcaption>
+                {{ content.pic_caption }}
+              </figcaption>
+            {% endif %}
+            {% if content.pic_credit|field_value %}
+              {{ content.pic_credit }}
+            {% endif %}
+          </figure>
+        {% endif %}
+        {%- if content.nble_url|field_value -%}
+          <img src="/themes/custom/bs5_nbbib_lib_unb_ca/src/img/nble-logo.svg" id="nble-logo">
+          <p id="nble-url">
+            See the
+            <a href="{{ content.nble_url|field_value[0]['#title'] }}">
+              New Brunswick Literary Encyclopedia
+            </a>
+              entry.
+          </p>
+        {%- endif -%}
+        <div id="ref-cite">
+          <a data-dialog-options="{&quot;width&quot;:500}" data-dialog-type="modal" href="/cite/contributor/{{ content.id }}" id="cite-open" class="use-ajax btn btn-secondary btn-sm fw-normal lh-lg float-end">
+            Cite this page
+          </a>
         </div>
-      {% endif %}
+      </div>
     </div>
     {% set cid = content.name['#object'].id() %}
     {% if drupal_view_result('nb_bibliography_citations', 'page_3', cid, cid, cid, cid)|length > 0 %}
       <div class="row" id="contributor-works">
-        <h2 class="works-header">Bibliography</h2>
+        <h2 class="works-header">Bibliography Items</h2>
         {{ drupal_view('nb_bibliography_citations', 'page_3', cid, cid, cid, cid) }}
       </div>
     {% endif %}

@@ -185,26 +185,31 @@
         </div>
 
         <div id="ref-picture" class="col-sm-4">
-          {{ content.cover_image|field_value }}
-          {% if content.archives or content.url|field_value %}
+          <div id="ref-cite">
+            <a data-dialog-options="{&quot;width&quot;:500}" data-dialog-type="modal" href="/cite/thesis/{{ content.id }}" id="cite-open" class="use-ajax btn btn-secondary btn-sm fw-normal lh-lg float-end">
+              Cite this thesis
+            </a>
+          </div>
+          {% if content.cover_image|field_value %}
+            {{ content.cover_image|field_value }}
+          {% endif %}
+
+          {% if content.archives|field_value or content.url|field_value %}
             <div id="ref-copies">
               <b>Copies</b>
-
               <div>
-                {% if content.archives %}
-                  <ul>
-                    {% for archive in content.archives %}
-                      <li>{{ archive }}</li>
-                    {% endfor %}
-                    {% endif %}
+                <ul>
+                  {% for archive in content.archives %}
+                    <li>{{ archive }}</li>
+                  {% endfor %}
 
-                    {% set urls = content.url %}
-                    {% for url in content.url|field_value %}
-                      <li>{{ url }}</li>
-                    {% endfor %}
-                  </ul>
+                  {% set urls = content.url %}
+                  
+                  {% for url in content.url|field_value %}
+                    <li>{{ url }}</li>
+                  {% endfor %}
+                </ul>
               </div>
-
             </div>
           {% endif %}
         </div>

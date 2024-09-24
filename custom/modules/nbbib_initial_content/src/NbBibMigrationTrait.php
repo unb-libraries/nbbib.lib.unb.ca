@@ -79,6 +79,10 @@ trait NbBibMigrationTrait {
       'nbbib_15_religion_united_2_books' => 'Religion: United',
       'nbbib_15_religion_united_3_book_sections' => 'Religion: United',
       'nbbib_15_religion_united_4_theses' => 'Religion: United',
+      'nbbib_16_business_unb_1_journal_articles' => 'Business',
+      'nbbib_16_business_unb_2_books' => 'Business',
+      'nbbib_16_business_unb_3_book_sections' => 'Business',
+      'nbbib_16_business_unb_4_theses' => 'Business',
     ];
   }
 

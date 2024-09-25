@@ -83,6 +83,10 @@ trait NbBibMigrationTrait {
       'nbbib_16_business_unb_2_books' => 'Business',
       'nbbib_16_business_unb_3_book_sections' => 'Business',
       'nbbib_16_business_unb_4_theses' => 'Business',
+      'nbbib_17_business_leglib_1_journal_articles' => 'Business',
+      'nbbib_17_business_leglib_2_books' => 'Business',
+      'nbbib_17_business_leglib_3_book_sections' => 'Business',
+      'nbbib_17_business_leglib_4_theses' => 'Business',
     ];
   }
 

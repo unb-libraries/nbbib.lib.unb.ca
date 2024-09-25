@@ -171,27 +171,25 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       if (in_array($migration_id, $biz_unb)) {
         $arch_name = 'UNB';
 
-        if (!empty($arch_name)) {
-          $existing = $this->typeManager->getStorage('taxonomy_term')
-            ->getQuery()
-            ->condition('name', $arch_name)
-            ->condition('vid', 'nbbib_archives')
-            ->accessCheck(FALSE)
-            ->execute();
-  
-          reset($existing);
-          $arch_id = key($existing);
-  
-          // Create archive if doesn't exist.
-          if (empty($arch_id)) {
-            $archive = Term::create([
-              'name' => $arch_name,
-              'vid' => 'nbbib_archives',
-            ]);
-  
-            $archive->save();
-            $arch_id = $archive->id();
-          }
+        $existing = $this->typeManager->getStorage('taxonomy_term')
+          ->getQuery()
+          ->condition('name', $arch_name)
+          ->condition('vid', 'nbbib_archives')
+          ->accessCheck(FALSE)
+          ->execute();
+
+        reset($existing);
+        $arch_id = key($existing);
+
+        // Create archive if doesn't exist.
+        if (empty($arch_id)) {
+          $archive = Term::create([
+            'name' => $arch_name,
+            'vid' => 'nbbib_archives',
+          ]);
+
+          $archive->save();
+          $arch_id = $archive->id();
         }
   
         $archives[] = $arch_id ?? NULL;  
@@ -207,27 +205,25 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       if (in_array($migration_id, $biz_leglib)) {
         $arch_name = 'NB Legislative Library ';
 
-        if (!empty($arch_name)) {
-          $existing = $this->typeManager->getStorage('taxonomy_term')
-            ->getQuery()
-            ->condition('name', $arch_name)
-            ->condition('vid', 'nbbib_archives')
-            ->accessCheck(FALSE)
-            ->execute();
-  
-          reset($existing);
-          $arch_id = key($existing);
-  
-          // Create archive if doesn't exist.
-          if (empty($arch_id)) {
-            $archive = Term::create([
-              'name' => $arch_name,
-              'vid' => 'nbbib_archives',
-            ]);
-  
-            $archive->save();
-            $arch_id = $archive->id();
-          }
+        $existing = $this->typeManager->getStorage('taxonomy_term')
+          ->getQuery()
+          ->condition('name', $arch_name)
+          ->condition('vid', 'nbbib_archives')
+          ->accessCheck(FALSE)
+          ->execute();
+
+        reset($existing);
+        $arch_id = key($existing);
+
+        // Create archive if doesn't exist.
+        if (empty($arch_id)) {
+          $archive = Term::create([
+            'name' => $arch_name,
+            'vid' => 'nbbib_archives',
+          ]);
+
+          $archive->save();
+          $arch_id = $archive->id();
         }
   
         $archives[] = $arch_id ?? NULL;  

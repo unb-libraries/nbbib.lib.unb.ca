@@ -132,7 +132,8 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
       $collections[] = $col_id ? $col_id : NULL;
 
-      // Archive.
+      // Archives.
+      $archives = [];
       $arch_name = $row->getSourceProperty('archive');
 
       if (!empty($arch_name)) {
@@ -159,6 +160,78 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       }
 
       $archives[] = $arch_id ?? NULL;
+
+      $biz_unb = [
+        'nbbib_16_business_unb_1_journal_articles',
+        'nbbib_16_business_unb_2_books',
+        'nbbib_16_business_unb_3_book_sections',
+        'nbbib_16_business_unb_4_theses',
+      ];
+
+      if (in_array($migration_id, $biz_unb)) {
+        $arch_name = 'UNB';
+
+        if (!empty($arch_name)) {
+          $existing = $this->typeManager->getStorage('taxonomy_term')
+            ->getQuery()
+            ->condition('name', $arch_name)
+            ->condition('vid', 'nbbib_archives')
+            ->accessCheck(FALSE)
+            ->execute();
+  
+          reset($existing);
+          $arch_id = key($existing);
+  
+          // Create archive if doesn't exist.
+          if (empty($arch_id)) {
+            $archive = Term::create([
+              'name' => $arch_name,
+              'vid' => 'nbbib_archives',
+            ]);
+  
+            $archive->save();
+            $arch_id = $archive->id();
+          }
+        }
+  
+        $archives[] = $arch_id ?? NULL;  
+      }
+
+      $biz_leglib = [
+        'nbbib_17_business_leglib_1_journal_articles',
+        'nbbib_17_business_leglib_2_books',
+        'nbbib_17_business_leglib_3_book_sections',
+        'nbbib_17_business_leglib_4_theses',
+      ];
+      
+      if (in_array($migration_id, $biz_leglib)) {
+        $arch_name = 'NB Legislative Library ';
+
+        if (!empty($arch_name)) {
+          $existing = $this->typeManager->getStorage('taxonomy_term')
+            ->getQuery()
+            ->condition('name', $arch_name)
+            ->condition('vid', 'nbbib_archives')
+            ->accessCheck(FALSE)
+            ->execute();
+  
+          reset($existing);
+          $arch_id = key($existing);
+  
+          // Create archive if doesn't exist.
+          if (empty($arch_id)) {
+            $archive = Term::create([
+              'name' => $arch_name,
+              'vid' => 'nbbib_archives',
+            ]);
+  
+            $archive->save();
+            $arch_id = $archive->id();
+          }
+        }
+  
+        $archives[] = $arch_id ?? NULL;  
+      }
 
       // URL.
       $source_url = $row->getSourceProperty('url');

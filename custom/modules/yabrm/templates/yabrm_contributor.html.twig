@@ -20,7 +20,7 @@
   {% if content %}
     <div class="container">
       <div class="row description-pic">
-        <div id="contrib-description" class="col-sm-8">
+        <div id="contrib-description" class="col-sm-8 order-sm-1 order-2">
         {% if content.description|field_value %}
           {{ content.description|field_value }}
         {% endif %}
@@ -62,7 +62,7 @@
           {%- endif -%}
         {%- endif -%}
       </div>
-      <div id="contrib-picture" class="col-sm-4 pl-4">
+      <div id="contrib-picture" class="col-sm-4 pl-4 order-sm-2 mb-2">
         {% if content.picture|field_value or content.cover %}
           <figure>
             {% if content.picture|field_value %}
@@ -90,8 +90,8 @@
               entry.
           </p>
         {%- endif -%}
-        <div id="ref-cite">
-          <a data-dialog-options="{&quot;width&quot;:500}" data-dialog-type="modal" href="/cite/contributor/{{ content.id }}" id="cite-open" class="use-ajax btn btn-secondary btn-sm fw-normal lh-lg float-end">
+        <div id="ref-cite" class="text-sm-end">
+          <a data-dialog-options="{&quot;width&quot;:500}" data-dialog-type="modal" href="/cite/contributor/{{ content.id }}" id="cite-open" class="use-ajax btn btn-secondary btn-sm fw-normal lh-lg">
             Cite this page
           </a>
         </div>

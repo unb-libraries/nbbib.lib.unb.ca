@@ -68,7 +68,3 @@ dockworker:
             - .dockworker/tests/e2e/nbbib.lib.unb.ca.yml
           namespaces:
             - prod
-    local:
-      additional_hostnames:
-        - nbbib.lib.unb.ca
-        - nbbib.lib.unb.ca.local

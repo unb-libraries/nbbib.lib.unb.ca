@@ -20,6 +20,7 @@ dependencies:
     - filter
     - media
     - node
+    - override_node_options
     - paragraphs
     - quickedit
     - system
@@ -79,6 +80,7 @@ permissions:
   - 'edit journal article reference entities'
   - 'edit terms in yabrm_reference_topic'
   - 'edit thesis reference entities'
+  - 'override nbbib_essay published option'
   - 'revert all bibliographic contributor revisions'
   - 'revert all bibliographic reference revisions'
   - 'revert all book reference revisions'
@@ -100,6 +102,7 @@ permissions:
   - 'view all media revisions'
   - 'view all thesis reference revisions'
   - 'view nbbib_essay revisions'
+  - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view published bibliographic collection entities'
   - 'view published bibliographic contributor entities'

@@ -187,6 +187,7 @@
     "drupal/jquery_ui": "^1",
     "drupal/jquery_ui_slider": "^2",
     "drupal/jquery_ui_touch_punch": "^1",
+    "drupal/override_node_options": "^2",
     "drupal/paragraphs": "^1",
     "drupal/pathauto": "^1",
     "drupal/quickedit": "^1",

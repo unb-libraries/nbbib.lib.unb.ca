@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff505b8d0f8c85b3d8523e0f944540c3",
+    "content-hash": "1c43cf91697978c9cad0586a6df0d557",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3629,6 +3629,50 @@
             }
         },
         {
+            "name": "drupal/sticky",
+            "version": "2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/sticky.git",
+                "reference": "2.2.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/sticky-2.2.2.zip",
+                "reference": "2.2.2",
+                "shasum": "fe0b74e6c2ed5ec8a03a8ea0d682593a1ef3625f"
+            },
+            "require": {
+                "drupal/core": "^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.2.2",
+                    "datestamp": "1724825948",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "f0ns",
+                    "homepage": "https://www.drupal.org/user/723426"
+                }
+            ],
+            "description": "Sticky is a module that gives you the ability to make any element on your website to always stay visible.",
+            "homepage": "https://www.drupal.org/project/sticky",
+            "support": {
+                "source": "https://git.drupalcode.org/project/sticky"
+            }
+        },
+        {
             "name": "drupal/token",
             "version": "1.15.0",
             "source": {
@@ -4085,6 +4129,16 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/furf/jquery-ui-touch-punch/archive/refs/heads/master.zip"
+            },
+            "type": "drupal-library"
+        },
+        {
+            "name": "garand/sticky",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/garand/sticky.git",
+                "reference": "1.0.3"
             },
             "type": "drupal-library"
         },
@@ -10697,16 +10751,16 @@
         },
         {
             "name": "google/protobuf",
-            "version": "v4.29.0",
+            "version": "v4.29.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/protocolbuffers/protobuf-php.git",
-                "reference": "0ef6b2eb74b782f3f9023276c324d22e440f7587"
+                "reference": "6042b5483f8029e42473faeb8ef75ba266278381"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/0ef6b2eb74b782f3f9023276c324d22e440f7587",
-                "reference": "0ef6b2eb74b782f3f9023276c324d22e440f7587",
+                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/6042b5483f8029e42473faeb8ef75ba266278381",
+                "reference": "6042b5483f8029e42473faeb8ef75ba266278381",
                 "shasum": ""
             },
             "require": {
@@ -10735,9 +10789,9 @@
                 "proto"
             ],
             "support": {
-                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v4.29.0"
+                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v4.29.1"
             },
-            "time": "2024-11-27T18:37:40+00:00"
+            "time": "2024-12-03T22:07:45+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -15067,10 +15121,10 @@
             },
             "type": "composer-plugin",
             "extra": {
+                "class": "Nevay\\SPI\\Composer\\Plugin",
                 "branch-alias": {
                     "dev-main": "0.2.x-dev"
                 },
-                "class": "Nevay\\SPI\\Composer\\Plugin",
                 "plugin-optional": true
             },
             "autoload": {

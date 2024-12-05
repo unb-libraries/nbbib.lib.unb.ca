@@ -168,20 +168,7 @@
         "version": "4.0.13"
       },
       "type": "package"
-    },
-    {
-    "type": "package",
-    "package": {
-        "name": "garand/sticky",
-        "version": "1.0.3",
-        "type": "drupal-library",
-        "source": {
-            "url": "https://github.com/garand/sticky.git",
-            "type": "git",
-            "reference": "1.0.3"
-        }
     }
-  }  
   ],
   "require": {
     "drupal/admin_toolbar": "^3",
@@ -213,14 +200,12 @@
     "drupal/search_api": "1.34",
     "drupal/search_api_autocomplete": "^1",
     "drupal/search_api_solr": "^4",
-    "drupal/sticky": "^2",
     "drupal/select2": "^1",
     "drupal/token": "^1",
     "drupal/twig_field_value": "2.0.2",
     "drupal/twig_tweak": "^3",
     "drupal/views_contextual_filters_or": "^1",
     "furf/jquery-ui-touch-punch": "dev-master",
-    "garand/sticky": "^1",
     "oomphinc/composer-installers-extender": "^2",
     "owlcarousel2/owlcarousel2": "2.3.4",
     "pear/file_marc": "^1",

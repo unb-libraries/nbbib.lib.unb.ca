@@ -77,6 +77,17 @@ html {
     text-decoration: initial !important;
     color: $light !important;
   }
+  .toolbar-tab a:focus, 
+  .toolbar-tab a:hover, 
+  #toolbar-bar .toolbar-tray a:hover, 
+  #toolbar-bar .toolbar-tray a:focus {
+    background: initial;
+    color: #fff;
+  }
+  #toolbar-administration + .dialog-off-canvas-main-canvas > .sticky-top {
+    top: 80px;
+    z-index: 500;
+  }
   .ui-dialog {
     border-radius: 1rem !important;
     width: 500px;
@@ -639,6 +650,7 @@ html {
     header {
       padding: 0 1rem;
       border-bottom: 1px $base-150 solid !important;
+      background-color: $light;
       nav.navbar {
         padding: 0 1rem;
         justify-content: center;
@@ -785,6 +797,7 @@ html {
         margin-top: .4rem;
         margin-bottom: 4rem;
         li {
+          line-height: 1.2rem !important;
           a, span {
             margin: .5rem !important;
             font-size: 15px;

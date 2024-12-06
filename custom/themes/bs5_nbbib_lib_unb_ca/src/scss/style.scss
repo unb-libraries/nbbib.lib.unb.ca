@@ -651,6 +651,10 @@ html {
       padding: 0 1rem;
       border-bottom: 1px $base-150 solid !important;
       background-color: $light;
+      &.scrolling {
+        background-color: $base-200;
+        transition: all, .5s;
+      }
       nav.navbar {
         padding: 0 1rem;
         justify-content: center;

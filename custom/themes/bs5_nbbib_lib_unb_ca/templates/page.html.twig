@@ -56,7 +56,10 @@ set footer_classes = ' ' ~
   (b5_footer_bg_schema != 'none' ? " bg-#{b5_footer_bg_schema}" : ' ')
 %}
 
-<header role="banner" class="sticky-top">
+{#
+<header role="banner" class="sticky-top"> 
+#}
+<header role="banner">
   {{ page.header }}
 
   {% if page.nav_branding or page.nav_main or page.nav_additional %}

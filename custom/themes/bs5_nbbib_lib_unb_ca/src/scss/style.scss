@@ -89,9 +89,14 @@ html {
     background: initial;
     color: #fff;
   }
-  #toolbar-administration + .dialog-off-canvas-main-canvas > .sticky-top {
-    top: 80px;
+  .dialog-off-canvas-main-canvas > .sticky-top {
     z-index: 500;
+  }
+  #toolbar-administration + .dialog-off-canvas-main-canvas > .sticky-top {
+    top: 39px;
+  }
+  body.toolbar-tray-open #toolbar-administration + .dialog-off-canvas-main-canvas > .sticky-top {
+    top: 79px;
   }
   .ui-dialog {
     border-radius: 1rem !important;
@@ -657,7 +662,7 @@ html {
       border-bottom: 1px $base-150 solid !important;
       background-color: $light;
       &.scrolling {
-        background-color: $base-200;
+        background-color: $base-150;
         transition: all, .5s;
       }
       nav.navbar {

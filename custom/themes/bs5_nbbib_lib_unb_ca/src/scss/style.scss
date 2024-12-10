@@ -663,7 +663,33 @@ html {
       background-color: $light;
       &.scrolling {
         background-color: $base-150;
-        transition: all, .5s;
+        transition: background-color, .3s;
+        > .navbar > .container.d-flex {
+          margin-top: .4rem !important;
+          padding-bottom: .4rem !important;
+          transition: all, .3s;
+          #block-bs5-nbbib-lib-unb-ca-contextualbranding {
+            text-align: start !important;
+            transition: text-align, .3s;
+            .navbar-brand {
+              > div {
+                position: relative;
+                left: -2rem !important;
+                #site-logo {
+                  width: 30% !important;
+                  height: 30% !important;
+                  transition: all, .3s;
+                  #time, #tide {
+                    display: none;
+                  }
+                }
+                #site-slogan {
+                  display: none;
+                }
+              }  
+            }
+          }
+        }
       }
       nav.navbar {
         padding: 0 1rem;

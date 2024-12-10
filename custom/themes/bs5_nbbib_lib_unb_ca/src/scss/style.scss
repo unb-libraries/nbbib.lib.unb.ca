@@ -658,11 +658,12 @@ html {
       font-style: italic;
     }
     header {
-      padding: 0 1rem;
+      padding: 0;
       border-bottom: 1px $base-150 solid !important;
       background-color: $light;
       &.scrolling {
         background-color: $base-150;
+        box-shadow: -2px 4px 12px $base-200 !important;
         transition: background-color, .3s;
         > .navbar > .container.d-flex {
           margin-top: .4rem !important;
@@ -674,16 +675,28 @@ html {
             .navbar-brand {
               > div {
                 position: relative;
-                left: -2rem !important;
                 #site-logo {
                   width: 30% !important;
                   height: 30% !important;
+                  padding-bottom: .4rem !important;
                   transition: all, .3s;
                 }
                 #site-slogan {
                   display: none;
                 }
               }  
+            }
+          }
+        }
+        nav.navbar {
+          .container.d-flex {
+            .region-nav-main {
+              .nav-item {
+                .nav-link {
+                  font-size: 18px !important;
+                  transition: font-size, .3s;
+                }
+              }
             }
           }
         }

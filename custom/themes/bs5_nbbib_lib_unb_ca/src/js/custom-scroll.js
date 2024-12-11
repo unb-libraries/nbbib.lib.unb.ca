@@ -13,6 +13,15 @@
           banner.classList.remove('scrolling');
         }
       });
+      $(window).on('resize', function() {
+        if (window.innerWidth < 992) {
+          banner.classList.remove('sticky-top');
+        }
+        else {
+          banner.classList.add('sticky-top');
+
+        }
+      });
     }
   };
 })(jQuery, Drupal, once);

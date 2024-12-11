@@ -1364,47 +1364,7 @@ html {
                 grid-template-columns: minmax(auto, .6rem) 1fr;
                 margin-left: 0 !important;
                 .footnotes__item-backlinks {
-                  display: inline-block;      &.scrolling {
-                    background-color: $base-150;
-                    box-shadow: -2px 4px 12px $base-200 !important;
-                    transition: background-color, .3s;
-                    > .navbar > .container.d-flex {
-                      margin-top: .4rem !important;
-                      padding-bottom: .4rem !important;
-                      transition: all, .3s;
-                      #block-bs5-nbbib-lib-unb-ca-contextualbranding {
-                        text-align: start !important;
-                        transition: text-align, .3s;
-                        .navbar-brand {
-                          > div {
-                            position: relative;
-                            #site-logo {
-                              width: 36% !important;
-                              height: 36% !important;
-                              padding-bottom: .4rem !important;
-                              transition: all, .3s;
-                            }
-                            #site-slogan {
-                              display: none;
-                            }
-                          }  
-                        }
-                      }
-                    }
-                    nav.navbar {
-                      .container.d-flex {
-                        .region-nav-main {
-                          .nav-item {
-                            .nav-link {
-                              font-size: 18px !important;
-                              transition: font-size, .3s;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-            
+                  display: inline-block;
                   min-width: 35px;
                 }
                 p {

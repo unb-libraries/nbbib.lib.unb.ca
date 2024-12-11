@@ -1377,6 +1377,21 @@ html {
       }
     }
   }
+  body.page-node-type-nbbib-essay {
+    figure {
+      display: table;
+      width: fit-content;
+      margin: 1.2rem 1.4em;
+    }
+    .caption > figcaption {
+      display: table-caption;
+      max-width: none;
+      caption-side: bottom;
+      text-align: center;
+      font-size: .8rem;
+      padding-top: .4rem;
+    }
+  }
   footer {
     margin-bottom: 1rem;
     padding: 0 1rem;

@@ -79,14 +79,10 @@ trait NbBibMigrationTrait {
       'nbbib_15_religion_united_2_books' => 'Religion: United',
       'nbbib_15_religion_united_3_book_sections' => 'Religion: United',
       'nbbib_15_religion_united_4_theses' => 'Religion: United',
-      'nbbib_16_business_unb_1_journal_articles' => 'Business',
-      'nbbib_16_business_unb_2_books' => 'Business',
-      'nbbib_16_business_unb_3_book_sections' => 'Business',
-      'nbbib_16_business_unb_4_theses' => 'Business',
-      'nbbib_17_business_leglib_1_journal_articles' => 'Business',
-      'nbbib_17_business_leglib_2_books' => 'Business',
-      'nbbib_17_business_leglib_3_book_sections' => 'Business',
-      'nbbib_17_business_leglib_4_theses' => 'Business',
+      'nbbib_16_business_unb_1_journal_articles' => 'Business and Industry',
+      'nbbib_16_business_unb_2_books' => 'Business and Industry',
+      'nbbib_16_business_unb_3_book_sections' => 'Business and Industry',
+      'nbbib_16_business_unb_4_theses' => 'Business and Industry',
     ];
   }
 

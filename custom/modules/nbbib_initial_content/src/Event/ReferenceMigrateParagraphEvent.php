@@ -138,7 +138,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       // Archives.
       $archives = [];
       $arch_name = $row->getSourceProperty('archive');
-
+      
       if (!empty($arch_name)) {
         $existing = $this->typeManager->getStorage('taxonomy_term')
           ->getQuery()
@@ -146,46 +146,48 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           ->condition('vid', 'nbbib_archives')
           ->accessCheck(FALSE)
           ->execute();
-
-        reset($existing);
-        $arch_id = key($existing);
-
-        // Create archive if doesn't exist.
-        if (empty($arch_id)) {
-          $archive = Term::create([
-            'name' => $arch_name,
-            'vid' => 'nbbib_archives',
-          ]);
-
-          $archive->save();
-          $arch_id = $archive->id();
+          
+          reset($existing);
+          $this->tdump('arch existing', $existing);
+          $arch_id = $existing;
+          
+          // Create archive if doesn't exist.
+          if (empty($arch_id)) {
+            $archive = Term::create([
+              'name' => $arch_name,
+              'vid' => 'nbbib_archives',
+            ]);
+            
+            $archive->save();
+            $arch_id = $archive->id();
+          }
         }
-      }
-
-      $archives[] = $arch_id ?? NULL;
-
-      $biz_unb = [
-        'nbbib_16_business_unb_1_journal_articles',
-        'nbbib_16_business_unb_2_books',
-        'nbbib_16_business_unb_3_book_sections',
-        'nbbib_16_business_unb_4_theses',
-      ];
-
-      if (in_array($migration_id, $biz_unb)) {
-        $arch_name = 'UNB';
-
-        $existing = $this->typeManager->getStorage('taxonomy_term')
+        
+        $archives[] = $arch_id ?? NULL;
+        
+        $biz_unb = [
+          'nbbib_16_business_unb_1_journal_articles',
+          'nbbib_16_business_unb_2_books',
+          'nbbib_16_business_unb_3_book_sections',
+          'nbbib_16_business_unb_4_theses',
+        ];
+        
+        if (in_array($migration_id, $biz_unb)) {
+          $arch_name = 'UNB';
+          
+          $existing = $this->typeManager->getStorage('taxonomy_term')
           ->getQuery()
           ->condition('name', $arch_name)
           ->condition('vid', 'nbbib_archives')
           ->accessCheck(FALSE)
           ->execute();
-
-        reset($existing);
-        $arch_id = key($existing);
-
-        // Create archive if doesn't exist.
-        if (empty($arch_id)) {
+          
+          $this->tdump('arch_name', $arch_name);
+          reset($existing);
+          $arch_id = key($existing);
+          
+          // Create archive if doesn't exist.
+          if (empty($arch_id)) {
           $archive = Term::create([
             'name' => $arch_name,
             'vid' => 'nbbib_archives',
@@ -194,8 +196,10 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           $archive->save();
           $arch_id = $archive->id();
         }
-  
+        
+        $this->tdump('arch_id', $arch_id);
         $archives[] = $arch_id ?? NULL;  
+        $this->tdump('archives', $archives);
       }
 
       // URL.

@@ -23,7 +23,7 @@ function rm_entities($type, $timestamp) {
     ->execute());
 
   $handler->delete($entities);
-  echo "All entities of type [$type] created after [$readable] removed.\n";
+  echo "All entities of type [$type] changed after [$readable] removed.\n";
 }
 
 function rm_terms($timestamp) {
@@ -35,5 +35,5 @@ function rm_terms($timestamp) {
     ->execute());
 
   $handler->delete($entities);
-  echo "All taxonomy terms created after [$readable] removed.\n";
+  echo "All taxonomy terms changed after [$readable] removed.\n";
 }

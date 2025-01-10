@@ -118,12 +118,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         ->execute();
         
         $this->tdump('existing', $existing);
-        reset($existing);
-        $col_id = NULL;
-
-        if (isset($existing[0])) {
-          $col_id = $existing[0];
-        }
+        $col_id = !empty($existing) ? reset($existing) : NULL; 
         $this->tdump('col_id', $col_id);
 
         // Create collection if doesn't exist.
@@ -151,14 +146,9 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           ->accessCheck(FALSE)
           ->execute();
           
-          reset($existing);
           $this->tdump('arch existing', $existing);
-          $arch_id = NULL;
+          $arch_id = !empty($existing) ? reset($existing) : NULL; 
 
-          if (isset($existing[0])) {
-            $arch_id = $existing[0];
-          }  
-          
           // Create archive if doesn't exist.
           if (empty($arch_id)) {
             $archive = Term::create([
@@ -191,13 +181,8 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           ->execute();
           
           $this->tdump('arch_name', $arch_name);
-          reset($existing);
-          $arch_id = NULL;
+          $arch_id = !empty($existing) ? reset($existing) : NULL; 
 
-          if (isset($existing[0])) {
-            $arch_id = $existing[0];
-          }  
-          
           // Create archive if doesn't exist.
           if (empty($arch_id)) {
           $archive = Term::create([
@@ -281,12 +266,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           ->accessCheck(FALSE)
           ->execute();
 
-        reset($existing);
-
-        $contrib_id = NULL;
-        if (isset($existing[0])) {
-          $contrib_id = $existing[0];
-        }
+        $contrib_id = !empty($existing) ? reset($existing) : NULL; 
 
         // Create contributor if doesn't exist.
         if (empty($contrib_id)) {

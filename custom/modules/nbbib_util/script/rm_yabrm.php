@@ -19,7 +19,7 @@ function rm_entities($type, $timestamp) {
   $handler = \Drupal::entityTypeManager()->getStorage($type);
   $entities = $handler->loadMultiple(\Drupal::entityQuery($type)
     ->accessCheck(FALSE)
-    ->condition('created', $timestamp, '>')
+    ->condition('changed', $timestamp, '>')
     ->execute());
 
   $handler->delete($entities);

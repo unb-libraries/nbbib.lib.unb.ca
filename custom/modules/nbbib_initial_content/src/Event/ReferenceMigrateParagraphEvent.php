@@ -119,7 +119,11 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         
         $this->tdump('existing', $existing);
         reset($existing);
-        $col_id = key($existing);
+        $col_id = NULL;
+
+        if (isset($existing[0])) {
+          $col_id = $existing[0];
+        }
         $this->tdump('col_id', $col_id);
 
         // Create collection if doesn't exist.
@@ -149,7 +153,11 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           
           reset($existing);
           $this->tdump('arch existing', $existing);
-          $arch_id = $existing;
+          $arch_id = NULL;
+
+          if (isset($existing[0])) {
+            $arch_id = $existing[0];
+          }  
           
           // Create archive if doesn't exist.
           if (empty($arch_id)) {
@@ -184,7 +192,11 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           
           $this->tdump('arch_name', $arch_name);
           reset($existing);
-          $arch_id = key($existing);
+          $arch_id = NULL;
+
+          if (isset($existing[0])) {
+            $arch_id = $existing[0];
+          }  
           
           // Create archive if doesn't exist.
           if (empty($arch_id)) {
@@ -197,6 +209,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           $arch_id = $archive->id();
         }
         
+        $this->tdump('arch_name', $arch_name);
         $this->tdump('arch_id', $arch_id);
         $archives[] = $arch_id ?? NULL;  
         $this->tdump('archives', $archives);
@@ -269,7 +282,11 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           ->execute();
 
         reset($existing);
-        $contrib_id = key($existing);
+
+        $contrib_id = NULL;
+        if (isset($existing[0])) {
+          $contrib_id = $existing[0];
+        }
 
         // Create contributor if doesn't exist.
         if (empty($contrib_id)) {

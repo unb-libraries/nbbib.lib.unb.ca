@@ -108,16 +108,19 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       if ($parts[0] == 'Religion') {
         $collection_name = $parts[0];
       }
-
+      
+      $this->tdump('collection_name', $collection_name);
       if (!empty($collection_name)) {
         $existing = $this->typeManager->getStorage('yabrm_collection')
-          ->getQuery()
-          ->condition('name', $collection_name)
-          ->accessCheck(FALSE)
-          ->execute();
-
+        ->getQuery()
+        ->condition('name', $collection_name)
+        ->accessCheck(FALSE)
+        ->execute();
+        
+        $this->tdump('existing', $existing);
         reset($existing);
         $col_id = key($existing);
+        $this->tdump('col_id', $col_id);
 
         // Create collection if doesn't exist.
         if (empty($col_id)) {
@@ -129,7 +132,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           $col_id = $collection->id();
         }
       }
-
+      
       $collections[] = $col_id ? $col_id : NULL;
 
       // Archives.
@@ -195,40 +198,6 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         $archives[] = $arch_id ?? NULL;  
       }
 
-      $biz_leglib = [
-        'nbbib_17_business_leglib_1_journal_articles',
-        'nbbib_17_business_leglib_2_books',
-        'nbbib_17_business_leglib_3_book_sections',
-        'nbbib_17_business_leglib_4_theses',
-      ];
-      
-      if (in_array($migration_id, $biz_leglib)) {
-        $arch_name = 'NB Legislative Library ';
-
-        $existing = $this->typeManager->getStorage('taxonomy_term')
-          ->getQuery()
-          ->condition('name', $arch_name)
-          ->condition('vid', 'nbbib_archives')
-          ->accessCheck(FALSE)
-          ->execute();
-
-        reset($existing);
-        $arch_id = key($existing);
-
-        // Create archive if doesn't exist.
-        if (empty($arch_id)) {
-          $archive = Term::create([
-            'name' => $arch_name,
-            'vid' => 'nbbib_archives',
-          ]);
-
-          $archive->save();
-          $arch_id = $archive->id();
-        }
-  
-        $archives[] = $arch_id ?? NULL;  
-      }
-
       // URL.
       $source_url = $row->getSourceProperty('url');
       $uri = substr(trim($source_url), 0, 4) === 'http' ? $source_url : NULL;
@@ -251,6 +220,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
       $reference->setContributors($contributors);
       $reference->setPublicationYear($pub_year);
+      $this->tdump('collections', $collections);
       $reference->setCollections($collections);
       $reference->setArchive($archives);
       $reference->setPublished(FALSE);
@@ -435,7 +405,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
     $query->condition('vid', $vocabulary);
     $query->condition($field, $value);
     $tids = $query->accessCheck(FALSE)->execute();
-
+    
     if (!empty($tids)) {
       foreach ($tids as $tid) {
         return $tid;
@@ -443,5 +413,23 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
     }
     return FALSE;
   }
+  
+  /**
+   * Dump item to terminal
+   *
+   * @param string $label
+   *   A label for identification.
+   * @param mixed $item
+   *   The item to dump.
+   */
+  public function tdump($label, $item) {
+    $label = strtoupper($label);
+    echo "\n";
+    echo "***$label***\n";
+    echo var_dump($item);
+    echo "***$label***";
+    echo "\n\n";
+  }
 
 }
+

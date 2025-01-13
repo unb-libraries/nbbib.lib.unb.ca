@@ -95,6 +95,8 @@ trait NbBibMigrationTrait {
   public function getZoteroTypeMappings() {
     return [
       'journalArticle' => 'yabrm_journal_article',
+      'conferencePaper' => 'yabrm_journal_article',
+      'report' => 'yabrm_journal_article',
       'book' => 'yabrm_book',
       'bookSection' => 'yabrm_book_section',
       'thesis' => 'yabrm_thesis',

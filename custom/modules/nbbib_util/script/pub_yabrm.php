@@ -22,11 +22,11 @@ function pub_entities($type, $timestamp) {
     ->condition('created', $timestamp, '>')
     ->execute());
 
+  $update = $arg2 ? 'published' : 'unpublished';
+
   foreach ($entities as $entity) {
     $entity->setPublished($arg2)->save();
   }
-
-  $update = $arg2 ? 'published' : 'unpublished';
 
   echo "All entities of type [$type] modified after [$readable] $update.\n";
 }

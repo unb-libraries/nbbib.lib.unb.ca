@@ -69,6 +69,36 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
   /**
    * {@inheritdoc}
    */
+  public function getName() {
+    return $this->get('name')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setName($name) {
+    $this->set('name', $name);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getFormat() {
+    return $this->get('format')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setFormat($format) {
+    $this->set('format', $format);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getPlace() {
     return $this->get('place')->value;
   }
@@ -84,75 +114,15 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
   /**
    * {@inheritdoc}
    */
-  public function getEdition() {
-    return $this->get('edition')->value;
+  public function getConferencePlace() {
+    return $this->get('conference_place')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setEdition($edition) {
-    $this->set('edition', $edition);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getSeries() {
-    return $this->get('series')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setSeries($series) {
-    $this->set('series', $series);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getSeriesNumber() {
-    return $this->get('series_number')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setSeriesNumber($series_number) {
-    $this->set('series_number', $series_number);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getNumberOfVolumes() {
-    return $this->get('num_volumes')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setNumberOfVolumes($num_volumes) {
-    $this->set('num_volumes', $num_volumes);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getVolume() {
-    return $this->get('volume')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setVolume($volume) {
-    $this->set('volume', $volume);
+  public function setConferencePlace($conference_place) {
+    $this->set('conference_place', $conference_place);
     return $this;
   }
 
@@ -232,86 +202,6 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['volume'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Volume'))
-      ->setRevisionable(TRUE)
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['num_volumes'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Number of Volumes'))
-      ->setRevisionable(TRUE)
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['series'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Series'))
-      ->setRevisionable(TRUE)
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['series_number'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Series Number'))
-      ->setRevisionable(TRUE)
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
     $fields['place'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Place'))
       ->setDescription(t('Place of publication for the item.'))
@@ -333,8 +223,51 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['edition'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Edition'))
+    $fields['conference_place'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Conference Place'))
+      ->setDescription(t('Place where the conference happened.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 512,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['format'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Format'))
+      ->setDescription(t('Format of the conference.'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 512,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['name'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Name'))
+      ->setDescription(t('Name of the conference.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,

@@ -114,21 +114,6 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
   /**
    * {@inheritdoc}
    */
-  public function getConferencePlace() {
-    return $this->get('conference_place')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setConferencePlace($conference_place) {
-    $this->set('conference_place', $conference_place);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getNumberOfPages() {
     return $this->get('num_pages')->value;
   }
@@ -204,28 +189,7 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
 
     $fields['place'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Place'))
-      ->setDescription(t('Place of publication for the item.'))
-      ->setRevisionable(TRUE)
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['conference_place'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Conference Place'))
-      ->setDescription(t('Place where the conference happened.'))
+      ->setDescription(t('Place associated to the item.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,

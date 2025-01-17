@@ -53,42 +53,23 @@ interface ConferenceReferenceInterface extends ContentEntityInterface, RevisionL
   public function setNumberOfPages($num_pages);
 
   /**
-   * Gets the publication place of the conference.
-   *
-   * @return string
-   *   The publication place of the conference.
-   */
-  public function getPlace();
-
-  /**
-   * Sets the publication place of the conference.
-   *
-   * @param string $place
-   *   The publication place of the conference.
-   *
-   * @return \Drupal\yabrm\Entity\ConferenceReferenceInterface
-   *   The called Conference Reference entity.
-   */
-  public function setPlace($place);
-
-  /**
    * Gets the place of the conference.
    *
    * @return string
    *   The place of the conference.
    */
-  public function getConferencePlace();
+  public function getPlace();
 
   /**
    * Sets the place of the conference.
    *
-   * @param string $conference_place
+   * @param string $place
    *   The place of the conference.
    *
    * @return \Drupal\yabrm\Entity\ConferenceReferenceInterface
    *   The called Conference Reference entity.
    */
-  public function setConferencePlace($conference_place);
+  public function setPlace($place);
 
   /**
    * Gets the name of the conference.

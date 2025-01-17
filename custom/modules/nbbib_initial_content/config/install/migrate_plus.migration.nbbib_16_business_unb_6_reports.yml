@@ -103,8 +103,8 @@ source:
       name: rights
       label: Rights
     30:
-      name: thesis_type
-      label: Thesis Type
+      name: conference_type
+      label: Conference Type
     31:
       name: archive
       label: Archive
@@ -192,6 +192,84 @@ source:
     60:
       name: edition
       label: Edition
+    61:
+      name: running_time
+      label: Running Time
+    62:
+      name: scale
+      label: Scale
+    63:
+      name:	medium
+      label: Medium
+    64:	
+      name: artwork_size
+      label: Artwork Size	
+    65:
+      name: filing_date
+      label: Filing Date
+    66:
+      name: application_number
+      label: Application Number
+    67:
+      name: assignee
+      label: Assignee	
+    68:
+      name: issuing_authority
+      label: Issuing Authority
+    69:
+      name: country
+      label: Country	
+    70:
+      name: meeting_name
+      label: Meeting Name	
+    71:
+      name: conference_name
+      label: Conference Name
+    72:
+      name: court
+      label: Court
+    73: 
+      name: references
+      label: References
+    74:	
+      name: reporter
+      label: Reporter
+    75:	
+      name: legal_status
+      label: Legal Status
+    76:	
+      name: priority_numbers
+      label: Priority Numbers
+    77:	
+      name: programming_language
+      label: Programming Language
+    78:
+      name: version
+      label: Version
+    79:
+      name:	system
+      label: System
+    80:
+      name: code	
+      label: Code
+    81:	
+      name: code_number
+      label: Code Number
+    82:
+      name: section
+      label: Section
+    83:
+      name: session
+      label: Session
+    84:	
+      name: commitee
+      label: Committee
+    85:	
+      name: history
+      label: History
+    86:
+      name: legislative_body
+      label: Legislative Body
 
 process:
   type:

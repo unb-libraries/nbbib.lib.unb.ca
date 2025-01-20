@@ -114,78 +114,8 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
   /**
    * {@inheritdoc}
    */
-  public function getNumberOfPages() {
-    return $this->get('num_pages')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setNumberOfPages($num_pages) {
-    $this->set('num_pages', $num_pages);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getIsbn() {
-    return $this->get('isbn')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setIsbn($isbn) {
-    $this->set('isbn', $isbn);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
-
-    $fields['isbn'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('ISBN'))
-      ->setRevisionable(TRUE)
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['num_pages'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Number of Pages'))
-      ->setRevisionable(TRUE)
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
 
     $fields['place'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Place'))

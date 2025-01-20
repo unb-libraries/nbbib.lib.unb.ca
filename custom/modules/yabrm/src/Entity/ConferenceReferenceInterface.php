@@ -15,44 +15,6 @@ use Drupal\user\EntityOwnerInterface;
 interface ConferenceReferenceInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityOwnerInterface {
 
   /**
-   * Gets the conference procedure ISBN.
-   *
-   * @return string
-   *   The ISBN of the conference.
-   */
-  public function getIsbn();
-
-  /**
-   * Sets the ISBN of the conference.
-   *
-   * @param string $isbn
-   *   The ISBN of the conference.
-   *
-   * @return \Drupal\yabrm\Entity\ConferenceReferenceInterface
-   *   The called Conference Reference entity.
-   */
-  public function setIsbn($isbn);
-
-  /**
-   * Gets the number of pages in the conference.
-   *
-   * @return string
-   *   The number of pages in the conference.
-   */
-  public function getNumberOfPages();
-
-  /**
-   * Sets the number of pages in the conference.
-   *
-   * @param string $num_pages
-   *   The number of pages in the conference.
-   *
-   * @return \Drupal\yabrm\Entity\ConferenceReferenceInterface
-   *   The called Conference Reference entity.
-   */
-  public function setNumberOfPages($num_pages);
-
-  /**
    * Gets the place of the conference.
    *
    * @return string

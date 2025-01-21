@@ -73,17 +73,19 @@ class NbbibSettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Transform text back into configuration array.
     $types = $form_state->getValue('nbbib_types');
-    $lines = explode("\n", $types);
+    $lines = str_replace("\r", '', explode("\n", $types));
     $types = [];
 
     foreach ($lines as $line) {
       $tokens = explode(':', $line);
 
-      $types[] = [
-        'entity' => $tokens[0],
-        'singular' => $tokens[1],
-        'plural' => $tokens[2],
-      ];
+      if (!empty($tokens)) {
+        $types[] = [
+          'entity' => $tokens[0],
+          'singular' => $tokens[1],
+          'plural' => str_replace("\r", '', $tokens[2]),
+        ];
+      }
     }
 
     // Retrieve the configuration.

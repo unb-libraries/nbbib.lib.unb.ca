@@ -9,24 +9,24 @@ description: 'Provides configuration options for nbbib_core'
 core: 10.x
 nbbib_types:
   -
-    enttity: yabrm_book
-    label: Book
+    entity: yabrm_book
+    singular: Book
     plural: Books
   -
-    enttity: yabrm_book_section
-    label: Book Section
-    plural: Book Sections
+    entity: yabrm_book_section
+    singular: 'Book Section'
+    plural: 'Book Sections'
   -
-    enttity: yabrm_journal_article
-    label: Journal Article
-    plural: Journal Articles
+    entity: yabrm_journal_article
+    singular: 'Journal Article'
+    plural: 'Journal Articles'
   -
-    enttity: yabrm_thesis
-    label: Thesis
+    entity: yabrm_thesis
+    singular: Thesis
     plural: Theses
   -
-    enttity: yabrm_conference
-    label: Conference Proceeding
-    plural: Conference Proceedings
+    entity: yabrm_conference
+    singular: 'Conference Proceeding'
+    plural: 'Conference Proceedings'
 view_headers:
   nbbib_essays: 'Enter custom view header text here.'

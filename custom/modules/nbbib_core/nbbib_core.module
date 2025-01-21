@@ -34,9 +34,9 @@ function nbbib_core_cron() {
   $current_minute = date('i');
   $datestamp = date('c');
 
-  if (TRUE) { // CRON DEV - RUN EVERY TIME!
+  // if (TRUE) { // CRON DEV - RUN EVERY TIME!
   // If it's between 12:45-1am server time...
-  //if ($current_hour < 1 and $current_minute > 44) {
+  if ($current_hour < 1 and $current_minute > 44) {
     \Drupal::logger('nbbib_core')->notice("NBBIB maintenance CRON job started at [$datestamp].");
     // Publication year config sync.
     \Drupal::logger('nbbib_core')->notice("Starting publication year facet sync...");
@@ -533,7 +533,7 @@ function strclean($string) {
 } 
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implements hook_FORM_ID_alter().
  * Overrides contrib delete/cancel redirects.
  */
 function nbbib_core_form_yabrm_contributor_delete_form_alter(&$form, $form_state, $form_id) {
@@ -647,6 +647,16 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
       eg. https://nbbib.lib.unb.ca/contributors/mccarthy-thandiwe
     ";
     $form['field_link_to']['widget'][0]['uri']['#description'] = $help;
+  }
+
+  if ($form_id == 'nbbib_settings_form') {
+      // Check if the current user has the right permissions.
+    if (!\Drupal::currentUser()->hasPermission('administer site configuration')) {
+      // Restrict access to the 'restricted_field'.
+      if (isset($form['nbbib_types'])) {
+        $form['nbbib_types']['#access'] = FALSE;
+      }
+    }
   }
 }
 

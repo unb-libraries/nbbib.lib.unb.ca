@@ -187,6 +187,33 @@ entity.yabrm_thesis.delete_form:
   title: Delete
   weight: 10
 
+# Conference reference routing definition
+yabrm_conference.settings_tab:
+  route_name: yabrm_conference.settings
+  title: 'Settings'
+  base_route: yabrm_conference.settings
+
+entity.yabrm_conference.canonical:
+  route_name: entity.yabrm_conference.canonical
+  base_route: entity.yabrm_conference.canonical
+  title: 'View'
+
+entity.yabrm_conference.edit_form:
+  route_name: entity.yabrm_conference.edit_form
+  base_route: entity.yabrm_conference.canonical
+  title: 'Edit'
+
+entity.yabrm_conference.version_history:
+  route_name: entity.yabrm_conference.version_history
+  base_route: entity.yabrm_conference.canonical
+  title: 'Revisions'
+
+entity.yabrm_conference.delete_form:
+  route_name:  entity.yabrm_conference.delete_form
+  base_route:  entity.yabrm_conference.canonical
+  title: Delete
+  weight: 11
+
 # Contrib Archival routing definition
 yabrm_contrib_archival.settings_tab:
   route_name: yabrm_contrib_archival.settings

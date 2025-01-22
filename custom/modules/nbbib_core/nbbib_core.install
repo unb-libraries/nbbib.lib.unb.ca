@@ -14,12 +14,17 @@ function nbbib_core_install() {
 
   // Default redirects.
   // Redirect after delete.
-  $del_redirs = [
-    'yabrm/yabrm_book',
-    'yabrm/yabrm_book_section',
-    'yabrm/yabrm_journal_article',
-    'yabrm/yabrm_thesis',
-  ];
+  // Load reference types from configuration.
+  $config = \Drupal::config('nbbib_core.settings');
+  $types = $config->get('nbbib_types');
+  $types = array_column($types, 'entity');
+  $del_redirs = [];
+  $works = [];
+
+  foreach ($types as $type) {
+    $del_redirs[] = "yabrm/$type";
+    $works[] = substr($type, 6) . 's';
+  }
 
   foreach ($del_redirs as $del_redir) {
     Redirect::create([
@@ -39,16 +44,9 @@ function nbbib_core_install() {
     'status_code' => '301',
   ])->save();
 
-  // Works.
-  $works = [
-    'books',
-    'book_sections',
-    'journal_articles',
-    'theses',
-  ];
-
   // Work redirects.
   foreach ($works as $work) {
+    $work = ($work == 'thesiss') ? 'theses' : $work;
     Redirect::create([
       'redirect_source' => $work,
       'redirect_redirect' => 'internal:/bibliography',

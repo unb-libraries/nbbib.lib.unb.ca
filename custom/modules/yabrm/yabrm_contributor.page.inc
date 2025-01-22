@@ -48,60 +48,54 @@ function template_preprocess_yabrm_contributor(array &$variables) {
       ->condition('field_yabrm_contributor_person', $cid)
       ->accessCheck(FALSE)
       ->execute();
+    
+    // Load reference types from configuration.
+    $config = \Drupal::config('nbbib_core.settings');
+    $types = $config->get('nbbib_types');
+    $types = array_column($types, 'entity');
 
+    // Iterate through contributor paragraph ids.
     foreach ($pids as $pid) {
-      $type = 'yabrm_book';
 
-      $rid = \Drupal::entityQuery($type)
+      // Iterate through reference types.
+      foreach ($types as $type) {
+        $entity_storage = \Drupal::entityTypeManager()->getStorage($type);
+
+        // Query for matching references.
+        $rids = \Drupal::entityQuery($type)
         ->condition('contributors', $pid, 'IN')
+        ->condition('status', 1)
         ->accessCheck(FALSE)
         ->execute();
 
-      if (empty($rid)) {
-        $type = 'yabrm_book_section';
+        // Iterate through matching references.
+        foreach ($rids as $rid) {
+          // Get reference cover image.
+          $reference = $entity_storage->load($rid);
 
-        $rid = \Drupal::entityQuery($type)
-          ->condition('contributors', $pid, 'IN')
-          ->accessCheck(FALSE)
-          ->execute();
-      }
-
-      if (empty($rid)) {
-        $type = 'yabrm_journal_article';
-
-        $rid = \Drupal::entityQuery($type)
-          ->condition('contributors', $pid, 'IN')
-          ->accessCheck(FALSE)
-          ->execute();
-      }
-
-      if (empty($rid)) {
-        $type = 'yabrm_thesis';
-
-        $rid = \Drupal::entityQuery($type)
-          ->condition('contributors', $pid, 'IN')
-          ->accessCheck(FALSE)
-          ->execute();
+          if ($reference) {
+            $img_item = $reference->get('cover_image')->getIterator()[0];
+          }
+          // Escape all 3 loops if image found.
+          if ($img_item->getValue()['target_id']) {
+            break 3;
+          }
+        }
       }
     }
 
-    if (!empty($rid)) {
-      $entity_storage = \Drupal::entityTypeManager()->getStorage($type);
-      $reference = $entity_storage->load(reset($rid));
-      $img_item = $reference->get('cover_image')->getIterator()[0];
-      $iid = $img_item->get('target_id')->getValue();
+    $iid = $img_item->get('target_id')->getValue();
 
-      if ($iid) {
-        $file = File::load($iid);
+    if ($iid) {
+      $file = File::load($iid);
 
-        $variables['content']['cover'] = [
-          '#theme' => 'image',
-          '#uri' => $file->getFileUri(),
-          '#width' => '300',
-          '#height' => '400',
-          '#style' => 'contrib_photo',
-        ];
-      }
+      $variables['content']['cover'] = [
+        '#theme' => 'image',
+        '#uri' => $file->getFileUri(),
+        '#width' => '300',
+        '#height' => '400',
+        '#style' => 'contrib_photo',
+      ];
     }
   }
 

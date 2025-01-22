@@ -109,7 +109,6 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         $collection_name = $parts[0];
       }
       
-      $this->tdump('collection_name', $collection_name);
       if (!empty($collection_name)) {
         $existing = $this->typeManager->getStorage('yabrm_collection')
         ->getQuery()
@@ -117,9 +116,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         ->accessCheck(FALSE)
         ->execute();
         
-        $this->tdump('existing', $existing);
         $col_id = !empty($existing) ? reset($existing) : NULL; 
-        $this->tdump('col_id', $col_id);
 
         // Create collection if doesn't exist.
         if (empty($col_id)) {
@@ -146,7 +143,6 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           ->accessCheck(FALSE)
           ->execute();
           
-          $this->tdump('arch existing', $existing);
           $arch_id = !empty($existing) ? reset($existing) : NULL; 
 
           // Create archive if doesn't exist.
@@ -180,7 +176,6 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           ->accessCheck(FALSE)
           ->execute();
           
-          $this->tdump('arch_name', $arch_name);
           $arch_id = !empty($existing) ? reset($existing) : NULL; 
 
           // Create archive if doesn't exist.
@@ -194,10 +189,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           $arch_id = $archive->id();
         }
         
-        $this->tdump('arch_name', $arch_name);
-        $this->tdump('arch_id', $arch_id);
         $archives[] = $arch_id ?? NULL;  
-        $this->tdump('archives', $archives);
       }
 
       // URL.
@@ -222,7 +214,6 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
       $reference->setContributors($contributors);
       $reference->setPublicationYear($pub_year);
-      $this->tdump('collections', $collections);
       $reference->setCollections($collections);
       $reference->setArchive($archives);
       $reference->setPublished(FALSE);

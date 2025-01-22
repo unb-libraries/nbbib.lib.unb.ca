@@ -178,6 +178,7 @@ revert all book section reference revisions:
 delete all book section reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Book section reference revisions</em> and <em>delete rights</em> for book section reference entities in question or <em>administer book section reference entities</em>.'
+
 add thesis reference entities:
   title: 'Create new Thesis reference entities'
 
@@ -208,6 +209,38 @@ revert all thesis reference revisions:
 delete all thesis reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Thesis reference revisions</em> and <em>delete rights</em> for thesis reference entities in question or <em>administer thesis reference entities</em>.'
+
+add conference proceeding reference entities:
+  title: 'Create new Conference Proceeding reference entities'
+
+administer conference proceeding reference entities:
+  title: 'Administer Conference Proceeding reference entities'
+  description: 'Allow to access the administration form to configure Conference Proceeding reference entities.'
+  restrict access: true
+
+delete conference proceeding reference entities:
+  title: 'Delete Conference Proceeding reference entities'
+
+edit conference proceeding reference entities:
+  title: 'Edit Conference Proceeding reference entities'
+
+view published conference proceeding reference entities:
+  title: 'View published Conference Proceeding reference entities'
+
+view unpublished conference proceeding reference entities:
+  title: 'View unpublished Conference Proceeding reference entities'
+
+view all conference proceeding reference revisions:
+  title: 'View all Conference Proceeding reference revisions'
+
+revert all conference proceeding reference revisions:
+  title: 'Revert all Conference Proceeding reference revisions'
+  description: 'Role requires permission <em>view Conference Proceeding reference revisions</em> and <em>edit rights</em> for conference proceeding reference entities in question or <em>administer conference proceeding reference entities</em>.'
+
+delete all conference proceeding reference revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Conference Proceeding reference revisions</em> and <em>delete rights</em> for conference proceeding reference entities in question or <em>administer conference proceeding reference entities</em>.'
+
 add contrib archival entities:
   title: 'Create new Contrib Archival entities'
 

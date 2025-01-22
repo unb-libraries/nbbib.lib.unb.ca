@@ -97,6 +97,20 @@ yabrm_thesis.admin.structure.settings:
   route_name: yabrm_thesis.settings
   parent: system.admin_structure
 
+# Conference reference menu items definition
+entity.yabrm_conference.collection:
+  title: 'Conference Proceeding reference list'
+  route_name: entity.yabrm_conference.collection
+  description: 'List Conference Proceeding reference entities'
+  parent: system.admin_structure
+  weight: 100
+
+yabrm_conference.admin.structure.settings:
+  title: 'Conference Proceeding reference settings'
+  description: 'Configure Conference Proceeding reference entities'
+  route_name: yabrm_conference.settings
+  parent: system.admin_structure
+
 # Contrib Archival menu items definition
 entity.yabrm_contrib_archival.collection:
   title: 'Contrib Archival list'

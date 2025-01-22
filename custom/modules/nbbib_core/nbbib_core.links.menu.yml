@@ -180,6 +180,12 @@ nbbib_core.editor.new-thesis:
   url: internal:/yabrm/yabrm_thesis/add
   parent: nbbib_core.editor
   weight: 60
+nbbib_core.editor.new-conference:
+  title: 'Add New Conference Proceeding'
+  description: 'Add new conference proceeding reference.'
+  url: internal:/yabrm/yabrm_conference/add
+  parent: nbbib_core.editor
+  weight: 61
 nbbib_core.editor.new-essay:
   title: 'Add New Essay'
   description: 'Add a new Essay.'

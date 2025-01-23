@@ -29,13 +29,17 @@ function yabrm_help($route_name, RouteMatchInterface $route_match) {
  */
 function yabrm_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
   $entity_types = [
-    'yabrm_book',
-    'yabrm_book_section',
-    'yabrm_journal_article',
-    'yabrm_thesis',
     'yabrm_collection',
     'yabrm_contributor',
   ];
+
+  // Load reference types from configuration.
+  $config = \Drupal::config('nbbib_core.settings');
+  $ref_types = $config->get('nbbib_types');
+  $ref_types = array_column($ref_types, 'entity');
+  // Add them to entity types array.
+  $entity_types = array_merge($entity_types, $ref_types);
+  
   if (in_array($hook, $entity_types)) {
     $view_mode = $variables['elements']['#view_mode'];
     $suggestions[] = "{$hook}__" . $view_mode;
@@ -84,77 +88,31 @@ function yabrm_theme() {
     'file' => 'yabrm_biblio_reference.page.inc',
   ];
 
-  // Set up to use custom Book entity template.
-  $theme['yabrm_book'] = [
-    'render element' => 'elements',
-    'file' => 'yabrm_book.page.inc',
-    'template' => 'yabrm_book',
-  ];
-  $theme['yabrm_book_content_add_list'] = [
-    'render element' => 'content',
-    'variables' => ['content' => NULL],
-    'file' => 'yabrm_book.page.inc',
-  ];
+  // Load reference types from configuration.
+  $config = \Drupal::config('nbbib_core.settings');
+  $ref_types = $config->get('nbbib_types');
+  $ref_types = array_column($ref_types, 'entity');
+  
+  // Build template suggestions for reference types.
+  foreach($ref_types as $ref_type) {
+    // Set up to use custom type entity template.
+    $theme[$ref_type] = [
+      'render element' => 'elements',
+      'file' => "$ref_type.page.inc",
+      'template' => $ref_type,
+    ];
+    $theme[$ref_type . '_content_add_list'] = [
+      'render element' => 'content',
+      'variables' => ['content' => NULL],
+      'file' => "$ref_type.page.inc",
+    ];
 
-  // Set up to use custom Book Section entity template.
-  $theme['yabrm_book_section'] = [
-    'render element' => 'elements',
-    'file' => 'yabrm_book_section.page.inc',
-    'template' => 'yabrm_book_section',
-  ];
-  $theme['yabrm_book_section_content_add_list'] = [
-    'render element' => 'content',
-    'variables' => ['content' => NULL],
-    'file' => 'yabrm_book_section.page.inc',
-  ];
-
-  // Set up to use custom Journal Article entity template.
-  $theme['yabrm_journal_article'] = [
-    'render element' => 'elements',
-    'file' => 'yabrm_journal_article.page.inc',
-    'template' => 'yabrm_journal_article',
-  ];
-  $theme['yabrm_journal_article_content_add_list'] = [
-    'render element' => 'content',
-    'variables' => ['content' => NULL],
-    'file' => 'yabrm_journal_article.page.inc',
-  ];
-
-  // Set up to use custom Thesis entity template.
-  $theme['yabrm_thesis'] = [
-    'render element' => 'elements',
-    'file' => 'yabrm_thesis.page.inc',
-    'template' => 'yabrm_thesis',
-  ];
-  $theme['yabrm_thesis_content_add_list'] = [
-    'render element' => 'content',
-    'variables' => ['content' => NULL],
-    'file' => 'yabrm_thesis.page.inc',
-  ];
-
-  // Set up to use custom reference Citation view mode for books.
-  $theme['yabrm_book__citation'] = [
-    'template'  => 'yabrm_biblio_reference__citation',
-    'base hook' => 'yabrm_book',
-  ];
-
-  // Set up to use custom reference Citation view mode for book sections.
-  $theme['yabrm_book_section__citation'] = [
-    'template'  => 'yabrm_biblio_reference__citation',
-    'base hook' => 'yabrm_book_section',
-  ];
-
-  // Set up to use custom reference Citation view mode for jornal articles.
-  $theme['yabrm_journal_article__citation'] = [
-    'template'  => 'yabrm_biblio_reference__citation',
-    'base hook' => 'yabrm_journal_article',
-  ];
-
-  // Set up to use custom reference Citation view mode for thesis.
-  $theme['yabrm_thesis__citation'] = [
-    'template'  => 'yabrm_biblio_reference__citation',
-    'base hook' => 'yabrm_thesis',
-  ];
-
+    // Set up to use custom reference Citation view mode for type.
+    $theme[$ref_type . '__citation'] = [
+      'template'  => 'yabrm_biblio_reference__citation',
+      'base hook' => $ref_type,
+    ];
+  }
+  
   return $theme;
 }

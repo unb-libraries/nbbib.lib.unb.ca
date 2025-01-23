@@ -109,9 +109,9 @@ class IndexReferenceInformation extends ProcessorPluginBase {
    * Returns array containing all config supported reference type entity ids.
    * {@inheritdoc}
    */
-  public static function types() {
+  public function types() {
     // Load reference types from configuration.
-    $config = \Drupal::config('nbbib_core.settings');
+    $config = $this->configFactory->get('nbbib_core.settings');
     $types = $config->get('nbbib_types');
     $entities = array_column($types, 'entity');
     $entities[] = 'yabrm_reference';
@@ -122,9 +122,9 @@ class IndexReferenceInformation extends ProcessorPluginBase {
    * Returns array containing all config supported reference type labels by class path.
    * {@inheritdoc}
    */
-  public static function typeClasses() {
+  public function typeClasses() {
     // Load reference types from configuration.
-    $config = \Drupal::config('nbbib_core.settings');
+    $config = $this->configFactory->get('nbbib_core.settings');
     $types = $config->get('nbbib_types');
     $labels = array_column($types, 'singular');
     $map['Drupal\yabrm\Entity\BibliographicReference'] = 'Reference';

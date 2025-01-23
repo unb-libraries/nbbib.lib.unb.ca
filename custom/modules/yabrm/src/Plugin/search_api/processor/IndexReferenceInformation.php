@@ -2,6 +2,7 @@
 
 namespace Drupal\yabrm\Plugin\search_api\processor;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Render\Renderer;
 use Drupal\search_api\Datasource\DatasourceInterface;
@@ -42,6 +43,11 @@ class IndexReferenceInformation extends ProcessorPluginBase {
   protected $renderer;
 
   /**
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
    * Class constructor.
    *
    * @param array $configuration
@@ -53,17 +59,21 @@ class IndexReferenceInformation extends ProcessorPluginBase {
    * @param Drupal\Core\Entity\EntityTypeManager $entity_type_manager
    *   Path matcher service dependency injection.
    * @param Drupal\Core\Render\Renderer $renderer
-   *   Config factory service dependency injection.
+   *   Renderer service dependency injection.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The configuration factory.
    */
   public function __construct(
     array $configuration,
     $plugin_id,
     $plugin_definition,
     EntityTypeManager $entity_type_manager,
-    Renderer $renderer) {
+    Renderer $renderer,
+    ConfigFactoryInterface $config_factory) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->entityTypeManager = $entity_type_manager;
     $this->renderer = $renderer;
+    $this->configFactory = $config_factory;
   }
 
   /**
@@ -90,25 +100,43 @@ class IndexReferenceInformation extends ProcessorPluginBase {
       $plugin_id,
       $plugin_definition,
       $container->get('entity_type.manager'),
-      $container->get('renderer')
+      $container->get('renderer'),
+      $container->get('config.factory')
     );
   }
 
-  const APPLIES_ENTITY_TYPES = [
-    'yabrm_biblio_reference',
-    'yabrm_journal_article',
-    'yabrm_book',
-    'yabrm_book_section',
-    'yabrm_thesis',
-  ];
+  /**
+   * Returns array containing all config supported reference type entity ids.
+   * {@inheritdoc}
+   */
+  public static function types() {
+    // Load reference types from configuration.
+    $config = \Drupal::config('nbbib_core.settings');
+    $types = $config->get('nbbib_types');
+    $entities = array_column($types, 'entity');
+    $entities[] = 'yabrm_reference';
+    return $entities;    
+  }
 
-  const ENTITY_TYPE_LABELS = [
-    'Drupal\yabrm\Entity\BibliographicReference' => 'Reference',
-    'Drupal\yabrm\Entity\JournalArticleReference' => 'Journal Article',
-    'Drupal\yabrm\Entity\BookReference' => 'Book',
-    'Drupal\yabrm\Entity\BookSectionReference' => 'Book Section',
-    'Drupal\yabrm\Entity\ThesisReference' => 'Thesis',
-  ];
+  /**
+   * Returns array containing all config supported reference type labels by class path.
+   * {@inheritdoc}
+   */
+  public static function typeClasses() {
+    // Load reference types from configuration.
+    $config = \Drupal::config('nbbib_core.settings');
+    $types = $config->get('nbbib_types');
+    $labels = array_column($types, 'singular');
+    $map['Drupal\yabrm\Entity\BibliographicReference'] = 'Reference';
+    
+    foreach ($labels as $label) {
+      $class = str_replace(' ', '', $label);
+      $path = "Drupal\yabrm\Entity\\$class.php";
+      $map[$path] = $label; 
+    }
+    
+    return $map;
+  }
 
   /**
    * Only enabled for an index that indexes the yabrm_biblio_reference entity.
@@ -116,7 +144,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
    * {@inheritdoc}
    */
   public static function supportsIndex(IndexInterface $index) {
-    $supported_entity_types = self::APPLIES_ENTITY_TYPES;
+    $supported_entity_types = $this->types();
     foreach ($index->getDatasources() as $datasource) {
       if (in_array($datasource->getEntityTypeId(), $supported_entity_types)) {
         return TRUE;
@@ -317,7 +345,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
    */
   public function addFieldValues(ItemInterface $item) {
     $entity = $item->getDatasource();
-    if (in_array($entity->getEntityTypeId(), self::APPLIES_ENTITY_TYPES)) {
+    if (in_array($entity->getEntityTypeId(), $this->types())) {
       $yabrm_entity = $item->getOriginalObject()->getValue();
 
       // Entity ID.
@@ -339,9 +367,9 @@ class IndexReferenceInformation extends ProcessorPluginBase {
         ->filterForPropertyPath($item->getFields(), NULL, 'bibliographic_type');
       foreach ($fields as $field) {
         $class_name = get_class($yabrm_entity);
-        if (!empty(self::ENTITY_TYPE_LABELS[$class_name])) {
+        if (!empty($this->typeClasses()[$class_name])) {
           $field->addValue(
-            self::ENTITY_TYPE_LABELS[$class_name]
+            $this->typeClasses()[$class_name]
           );
         }
       }

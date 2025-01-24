@@ -111,15 +111,19 @@ function nbbib_core_cron() {
 
     // Cleanup orphan contributor paragraphs.
     \Drupal::logger('nbbib_core')->notice("Starting orphan contributor paragraph cleanup...");
-    $query = \Drupal::database()->query(
-      "SELECT id
+    $qtext = "
+      SELECT id
       FROM paragraphs_item
       WHERE type = 'yabrm_bibliographic_contributor'
-      AND id NOT IN (SELECT contributors_target_id FROM yabrm_book__contributors)
-      AND id NOT IN (SELECT contributors_target_id FROM yabrm_book_section__contributors)
-      AND id NOT IN (SELECT contributors_target_id FROM yabrm_journal_article__contributors)
-      AND id NOT IN (SELECT contributors_target_id FROM yabrm_thesis__contributors)"
-    );
+    ";
+
+    foreach($types as $type) {
+      $qtext .= "
+        AND id NOT IN (SELECT contributors_target_id FROM $type" ."__contributors)
+      ";
+    }
+
+    $query = \Drupal::database()->query($qtext);
     $ids = array_column($query->fetchAll(), 'id');
     $id_no = count($ids);
     
@@ -134,34 +138,42 @@ function nbbib_core_cron() {
     else {
       \Drupal::logger('nbbib_core')->notice("No orphan contributor paragraphs found.");
     }
-
+    
     // Cleanup orphan topics.
     // Unpublish.
     \Drupal::logger('nbbib_core')->notice("Starting orphan topic term cleanup (unpublish)...");
-    $query = \Drupal::database()->query(
-      "SELECT tid
+    $qtext = "
+      SELECT tid
       FROM taxonomy_term_field_data
       WHERE vid = 'yabrm_reference_topic'
       AND status = 1
-      AND tid NOT IN (SELECT topics_target_id FROM yabrm_book__topics WHERE entity_id in (SELECT id FROM yabrm_book WHERE status = 1))
-      AND tid NOT IN (SELECT topics_target_id FROM yabrm_book_section__topics WHERE entity_id in (SELECT id FROM yabrm_book_section WHERE status = 1))
-      AND tid NOT IN (SELECT topics_target_id FROM yabrm_journal_article__topics WHERE entity_id in (SELECT id FROM yabrm_journal_article WHERE status = 1))
-      AND tid NOT IN (SELECT topics_target_id FROM yabrm_thesis__topics WHERE entity_id in (SELECT id FROM yabrm_thesis WHERE status = 1))"
-    );
+    ";
 
+    foreach($types as $type) {
+      $qtext .= "
+        AND tid NOT IN (
+          SELECT topics_target_id FROM $type" . "__topics 
+          WHERE entity_id in (
+            SELECT id FROM $type WHERE status = 1
+          )
+        )      
+      ";
+    }
+
+    $query = \Drupal::database()->query($qtext);
     $topics = $query->fetchAll();
     $topic_no = count($topics);
-
+    
     // If orphans found...
     if ($topic_no) {
       \Drupal::logger('nbbib_core')->notice("Found [$topic_no] orphan topics (unpublish).");
-
+      
       // Call topics cleanup queue.
       /** @var QueueFactory $queue_factory */
       $queue_factory = \Drupal::service('queue');
       /** @var QueueInterface $queue */
       $queue = $queue_factory->get('topic_cleanup');
-
+      
       // Pass each contrib id to cleanup queue (unpublish).
       foreach ($topics as $topic) {
         $item = new \stdClass();
@@ -174,28 +186,35 @@ function nbbib_core_cron() {
     }
     // Delete.
     \Drupal::logger('nbbib_core')->notice("Starting orphan topic term cleanup (delete)...");
-    $query = \Drupal::database()->query(
-      "SELECT tid
+    $qtext = "
+      SELECT tid
       FROM taxonomy_term_field_data
       WHERE vid = 'yabrm_reference_topic'
-      AND status = 1
-      AND tid NOT IN (SELECT topics_target_id FROM yabrm_book__topics)
-      AND tid NOT IN (SELECT topics_target_id FROM yabrm_book_section__topics)
-      AND tid NOT IN (SELECT topics_target_id FROM yabrm_journal_article__topics)
-      AND tid NOT IN (SELECT topics_target_id FROM yabrm_thesis__topics)"
-    );
+    ";
 
+    foreach($types as $type) {
+      $qtext .= "
+        AND tid NOT IN (
+          SELECT topics_target_id 
+          FROM $type" . "__topics
+        )
+      ";
+    }
+
+    $query = \Drupal::database()->query($qtext);    
     $topics = $query->fetchAll();
     $topic_no = count($topics);
-
+    
     // If orphans found...
     if ($topic_no) {
       \Drupal::logger('nbbib_core')->notice("Found [$topic_no] orphan topics (delete).");
-
+      
       // Call topics cleanup queue (delete).
+      /** @var QueueFactory $queue_factory */
+      $queue_factory = \Drupal::service('queue');
       /** @var QueueInterface $queue */
       $queue = $queue_factory->get('topic_cleanup_hard');
-
+      
       // Pass each contrib id to cleanup queue.
       foreach ($topics as $topic) {
         $item = new \stdClass();
@@ -210,24 +229,32 @@ function nbbib_core_cron() {
     // Cleanup orphan archives.
     // Unpublish.
     \Drupal::logger('nbbib_core')->notice("Starting orphan archive term cleanup (unpublish)...");
-    $query = \Drupal::database()->query(
-      "SELECT tid
+    $qtext = "
+      SELECT tid
       FROM taxonomy_term_field_data
       WHERE vid = 'nbbib_archives'
       AND status = 1
-      AND tid NOT IN (SELECT archive_target_id FROM yabrm_book__archive WHERE entity_id in (SELECT id FROM yabrm_book WHERE status = 1))
-      AND tid NOT IN (SELECT archive_target_id FROM yabrm_book_section__archive WHERE entity_id in (SELECT id FROM yabrm_book_section WHERE status = 1))
-      AND tid NOT IN (SELECT archive_target_id FROM yabrm_journal_article__archive WHERE entity_id in (SELECT id FROM yabrm_journal_article WHERE status = 1))
-      AND tid NOT IN (SELECT archive_target_id FROM yabrm_thesis__archive WHERE entity_id in (SELECT id FROM yabrm_thesis WHERE status = 1))"
-    );
+    ";
 
+    foreach($types as $type) {
+      $qtext .= "
+        AND tid NOT IN (
+          SELECT archive_target_id FROM $type" . "__archive 
+          WHERE entity_id in (
+            SELECT id FROM $type WHERE status = 1
+          )
+        )      
+      ";
+    }
+
+    $query = \Drupal::database()->query($qtext);
     $archives = $query->fetchAll();
     $archive_no = count($archives);
-
+    
     // If orphans found...
     if ($archive_no) {
       \Drupal::logger('nbbib_core')->notice("Found [$archive_no] orphan archives (unpublish).");
-
+      
       // Call topics cleanup queue (unpublish).
       /** @var QueueFactory $queue_factory */
       $queue_factory = \Drupal::service('queue');
@@ -246,6 +273,23 @@ function nbbib_core_cron() {
     }
     // Delete.
     \Drupal::logger('nbbib_core')->notice("Starting orphan archive term cleanup (delete)...");
+    $qtext = "
+      SELECT tid
+      FROM taxonomy_term_field_data
+      WHERE vid = 'nbbib_archives'
+    ";
+
+    foreach($types as $type) {
+      $qtext .= "
+        AND tid NOT IN (
+          SELECT archive_target_id 
+          FROM $type" . "__archive
+        )
+      ";
+    }
+
+    $query = \Drupal::database()->query($qtext);    
+    /*
     $query = \Drupal::database()->query(
       "SELECT tid
       FROM taxonomy_term_field_data
@@ -256,7 +300,7 @@ function nbbib_core_cron() {
       AND tid NOT IN (SELECT archive_target_id FROM yabrm_journal_article__archive)
       AND tid NOT IN (SELECT archive_target_id FROM yabrm_thesis__archive)"
     );
-
+    */
     $archives = $query->fetchAll();
     $archive_no = count($archives);
 
@@ -264,7 +308,10 @@ function nbbib_core_cron() {
     if ($archive_no) {
       \Drupal::logger('nbbib_core')->notice("Found [$archive_no] orphan archives (delete).");
 
-      // Call topics cleanup queue (delete).
+      // Call archives cleanup queue (delete).
+      /** @var QueueFactory $queue_factory */
+      $queue_factory = \Drupal::service('queue');
+      /** @var QueueInterface $queue */
       $queue = $queue_factory->get('archive_cleanup_hard');
 
       // Pass each contrib id to cleanup queue.
@@ -582,17 +629,17 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
   }
 
   // Target all reference add/edit forms.
-  $ref_forms = [
-    'yabrm_book_add_form',
-    'yabrm_book_edit_form',
-    'yabrm_book_section_add_form',
-    'yabrm_book_section_edit_form',
-    'yabrm_thesis_add_form',
-    'yabrm_thesis_edit_form',
-    'yabrm_journal_article_add_form',
-    'yabrm_journal_article_edit_form',
-  ];
+  // Load reference types from configuration.
+  $config = \Drupal::config('nbbib_core.settings');
+  $type_ids = $config->get('nbbib_types');
+  $type_ids = array_column($type_ids, 'entity');
+  $ref_forms = [];
 
+  foreach ($type_ids as $type) {
+    $ref_forms[] = $type . '_add_form';
+    $ref_forms[] = $type . '_edit_form';
+  }
+  
   // For all reference edit and add forms.
   if (in_array($form_id, $ref_forms)) {
     // Add a top priority submit handler.
@@ -889,12 +936,10 @@ function nbbib_core_node_presave(EntityInterface $entity) {
 * Implements hook_ENTITY_presave().
 */
 function nbbib_core_entity_presave(EntityInterface $entity) {
-  $types = [
-    'yabrm_book',
-    'yabrm_book_section',
-    'yabrm_journal_article',
-    'yabrm_thesis',
-  ];
+  // Load reference types from configuration.
+  $config = \Drupal::config('nbbib_core.settings');
+  $types = $config->get('nbbib_types');
+  $types = array_column($types, 'entity');
   
   // If updated entity has a bibliographic reference type...
   if (in_array($entity->bundle(), $types)) {
@@ -1019,22 +1064,37 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
           $p_obj = Paragraph::load($pid);
           $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'] ?? NULL;
           $p_obj->delete();
+
+
           if ($cid) {
             // Fetch all references that point to the target contributor.
-            $books = "
-              SELECT entity_id
-              FROM yabrm_book__contributors
-              WHERE contributors_target_id IN (
+            // Load reference types from configuration.
+            $config = \Drupal::config('nbbib_core.settings');
+            $type_ids = $config->get('nbbib_types');
+            $type_ids = array_column($type_ids, 'entity');
+            $matches = [];
+
+            foreach ($type_ids as $type) {
+              $qtext = "
                 SELECT entity_id
-                FROM paragraph__field_yabrm_contributor_person
-                WHERE field_yabrm_contributor_person_target_id = $cid
-                AND entity_id IN (
-                  SELECT id
-                  FROM paragraphs_item_field_data
-                  WHERE status = 1
+                FROM $type" . "__contributors
+                WHERE contributors_target_id IN (
+                  SELECT entity_id
+                  FROM paragraph__field_yabrm_contributor_person
+                  WHERE field_yabrm_contributor_person_target_id = $cid
+                  AND entity_id IN (
+                    SELECT id
+                    FROM paragraphs_item_field_data
+                    WHERE status = 1
+                  )
                 )
-              )
-            ";
+              ";
+
+              $results = array_column(\Drupal::database()->query($qtext)->fetchAll(), 'entity_id');
+              $matches = array_merge($matches, $results);
+            }
+
+            /*
             $sections = "
               SELECT entity_id
               FROM yabrm_book_section__contributors
@@ -1087,6 +1147,8 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
               array_column(\Drupal::database()->query($theses)->fetchAll(), 'entity_id');
             // If no published reference contributor paragraphs are associated to this contributor...
             if (empty($book_ids) and empty($section_ids) and empty($article_ids) and empty($thesis_ids)) {
+            */
+            if (empty($matches)) {
               // Load contributor object.
               $c_obj = BibliographicContributor::load($cid) ?? NULL;
               // Unpublish contributor and save.
@@ -1148,12 +1210,10 @@ function nbbib_core_entity_update(EntityInterface $entity) {
 */
 function nbbib_core_entity_delete(EntityInterface $entity) {
   // Delete orphan paragraphs on bibliographic reference delete.
-  $types = [
-    'yabrm_book',
-    'yabrm_book_section',
-    'yabrm_journal_article',
-    'yabrm_thesis',
-  ];
+  // Load reference types from configuration.
+  $config = \Drupal::config('nbbib_core.settings');
+  $types = $config->get('nbbib_types');
+  $types = array_column($types, 'entity');
 
   // If deleted entity has a bibliographic reference type...
   if (in_array($entity->bundle(), $types)) {

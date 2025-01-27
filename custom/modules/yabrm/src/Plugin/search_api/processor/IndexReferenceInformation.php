@@ -144,7 +144,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
    * {@inheritdoc}
    */
   public static function supportsIndex(IndexInterface $index) {
-    $supported_entity_types = $this->types();
+    $supported_entity_types = $index->getProcessor('index_bibliographic_info')->types();
     foreach ($index->getDatasources() as $datasource) {
       if (in_array($datasource->getEntityTypeId(), $supported_entity_types)) {
         return TRUE;

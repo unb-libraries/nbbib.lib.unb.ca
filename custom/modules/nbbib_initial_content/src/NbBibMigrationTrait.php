@@ -83,6 +83,7 @@ trait NbBibMigrationTrait {
       'nbbib_16_business_unb_2_books' => 'Business and Industry',
       'nbbib_16_business_unb_3_book_sections' => 'Business and Industry',
       'nbbib_16_business_unb_4_theses' => 'Business and Industry',
+      'nbbib_16_business_unb_5_conference_papers' => 'Business and Industry',
     ];
   }
 

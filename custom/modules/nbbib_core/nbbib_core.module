@@ -894,7 +894,7 @@ function generate_names($first_name, $last_name, $institution_name) {
 function nbbib_core_yabrm_contributor_presave(EntityInterface $entity) {
   // Populate name (display) and sort name on save.
   $first_name = $entity->getFirstName() ? trim($entity->getFirstName()) : '';
-  $last_name = trim($entity->getLastName());
+  $last_name = $entity->getLastName() ? trim($entity->getLastName()) : '';
   $institution_name = $entity->getInstitutionName() ? trim($entity->getInstitutionName()) : NULL;
   $names = generate_names($first_name, $last_name, $institution_name);
   $entity->setName($names['name']);

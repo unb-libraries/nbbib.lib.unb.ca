@@ -39,6 +39,7 @@ function template_preprocess_yabrm_contributor(array &$variables) {
 
   // If no picture added to contributor, use reference picture if available.
   $picture = $entity->getPicture();
+  $img_item = NULL;
 
   if (empty($picture['target_id'])) {
     $cid = $entity->id();
@@ -84,9 +85,8 @@ function template_preprocess_yabrm_contributor(array &$variables) {
       }
     }
 
-    $iid = $img_item->get('target_id')->getValue();
-
-    if ($iid) {
+    if ($img_item) {
+      $iid = $img_item->get('target_id')->getValue();
       $file = File::load($iid);
 
       $variables['content']['cover'] = [

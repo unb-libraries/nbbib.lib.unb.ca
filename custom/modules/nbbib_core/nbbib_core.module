@@ -290,18 +290,6 @@ function nbbib_core_cron() {
     }
 
     $query = \Drupal::database()->query($qtext);    
-    /*
-    $query = \Drupal::database()->query(
-      "SELECT tid
-      FROM taxonomy_term_field_data
-      WHERE vid = 'nbbib_archives'
-      AND status = 1
-      AND tid NOT IN (SELECT archive_target_id FROM yabrm_book__archive)
-      AND tid NOT IN (SELECT archive_target_id FROM yabrm_book_section__archive)
-      AND tid NOT IN (SELECT archive_target_id FROM yabrm_journal_article__archive)
-      AND tid NOT IN (SELECT archive_target_id FROM yabrm_thesis__archive)"
-    );
-    */
     $archives = $query->fetchAll();
     $archive_no = count($archives);
 
@@ -398,9 +386,9 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
       '#options' => [
         '' => '- Any -',
         'Book' => 'Book', 
-        'Jornal Article' => 'Journal Article', 
+        'Book Section' => 'Book Section',
+        'Journal Article' => 'Journal Article', 
         'Thesis' => 'Thesis',
-        'Book Section'
       ],
       '#default_value' => '',
     ];

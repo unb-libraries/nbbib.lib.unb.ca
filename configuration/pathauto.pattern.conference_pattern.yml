@@ -7,7 +7,7 @@ dependencies:
 id: conference_pattern
 label: 'Conference Pattern'
 type: 'canonical_entities:yabrm_conference'
-pattern: "\tconferences/[yabrm_conference:title]"
+pattern: 'conferences/[yabrm_conference:title]'
 selection_criteria: {  }
 selection_logic: and
 weight: 0

@@ -114,7 +114,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
     $config = $this->configFactory->get('nbbib_core.settings');
     $types = $config->get('nbbib_types');
     $entities = array_column($types, 'entity');
-    $entities[] = 'yabrm_reference';
+    $entities[] = 'yabrm_biblio_reference';
     return $entities;    
   }
 
@@ -131,7 +131,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
     
     foreach ($labels as $label) {
       $class = str_replace(' ', '', $label);
-      $path = "Drupal\yabrm\Entity\\$class.php";
+      $path = "Drupal\\yabrm\\Entity\\{$class}Reference";
       $map[$path] = $label; 
     }
     
@@ -145,6 +145,8 @@ class IndexReferenceInformation extends ProcessorPluginBase {
    */
   public static function supportsIndex(IndexInterface $index) {
     $supported_entity_types = $index->getProcessor('index_bibliographic_info')->types();
+    print_r($entities);
+    exit;
     foreach ($index->getDatasources() as $datasource) {
       if (in_array($datasource->getEntityTypeId(), $supported_entity_types)) {
         return TRUE;

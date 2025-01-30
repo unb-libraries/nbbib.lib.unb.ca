@@ -1164,7 +1164,7 @@ field_settings:
     label: Title
     datasource_id: 'entity:yabrm_conference'
     property_path: title
-    type: text
+    type: string
     dependencies:
       module:
         - yabrm

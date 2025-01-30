@@ -78,14 +78,14 @@ function template_preprocess_yabrm_contributor(array &$variables) {
             $img_item = $reference->get('cover_image')->getIterator()[0];
           }
           // Escape all 3 loops if image found.
-          if ($img_item->getValue()['target_id']) {
+          if ($img_item->getValue()['target_id'] != 0) {
             break 3;
           }
         }
       }
     }
 
-    if ($img_item) {
+    if ($img_item->getValue()['target_id'] != 0) {
       $iid = $img_item->get('target_id')->getValue();
       $file = File::load($iid);
 

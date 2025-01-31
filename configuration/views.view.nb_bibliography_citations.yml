@@ -3635,7 +3635,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ bibliographic_citation|replace({ ''[ thesis ]'': ""})|raw }}'
+            text: '{{ bibliographic_citation|replace({ ''[ conference ]'': ""})|raw }}'
             make_link: false
             path: ''
             absolute: false

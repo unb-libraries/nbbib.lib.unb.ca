@@ -69,15 +69,15 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
   /**
    * {@inheritdoc}
    */
-  public function getName() {
-    return $this->get('name')->value;
+  public function getConferenceName() {
+    return $this->get('conference_name')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setName($name) {
-    $this->set('name', $name);
+  public function setConferenceName($conference_name) {
+    $this->set('conference_name', $conference_name);
     return $this;
   }
 
@@ -159,8 +159,8 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Name'))
+    $fields['conference_name'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Conference Name'))
       ->setDescription(t('Name of the conference.'))
       ->setRevisionable(TRUE)
       ->setSettings([

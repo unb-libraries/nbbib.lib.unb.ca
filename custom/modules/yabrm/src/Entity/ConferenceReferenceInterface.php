@@ -39,18 +39,18 @@ interface ConferenceReferenceInterface extends ContentEntityInterface, RevisionL
    * @return string
    *   The name of the conference.
    */
-  public function getName();
+  public function getConferenceName();
 
   /**
    * Sets the name of the conference.
    *
-   * @param string $name
+   * @param string $conference_name
    *   The name of the conference.
    *
    * @return \Drupal\yabrm\Entity\ConferenceReferenceInterface
    *   The called Conference Reference entity.
    */
-  public function setName($name);
+  public function setConferenceName($conference_name);
 
   /**
    * Gets the format of the conference.

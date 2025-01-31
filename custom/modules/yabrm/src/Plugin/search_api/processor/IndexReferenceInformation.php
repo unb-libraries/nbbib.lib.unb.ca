@@ -126,12 +126,13 @@ class IndexReferenceInformation extends ProcessorPluginBase {
     // Load reference types from configuration.
     $config = $this->configFactory->get('nbbib_core.settings');
     $types = $config->get('nbbib_types');
-    $labels = array_column($types, 'singular');
+    $entities = array_column($types, 'entity');
     $map['Drupal\yabrm\Entity\BibliographicReference'] = 'Reference';
     
-    foreach ($labels as $label) {
-      $class = str_replace(' ', '', $label);
+    foreach ($types as $type) {
+      $class = str_replace(' ', '', ucwords(str_replace('_', ' ', str_replace('yabrm_', '', $type['entity']))));
       $path = "Drupal\\yabrm\\Entity\\{$class}Reference";
+      $label = $type['singular'];
       $map[$path] = $label; 
     }
     

@@ -53,6 +53,14 @@ content:
       match_operator: CONTAINS
       match_limit: 10
     third_party_settings: {  }
+  conference_name:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   contributors:
     type: paragraphs
     weight: 1

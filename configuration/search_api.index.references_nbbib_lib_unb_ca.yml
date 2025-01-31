@@ -290,6 +290,14 @@ field_settings:
     label: 'Collection(s) - String'
     property_path: collections_string
     type: string
+  conference_name:
+    label: 'Conference Name'
+    datasource_id: 'entity:yabrm_conference'
+    property_path: conference_name
+    type: text
+    dependencies:
+      module:
+        - yabrm
   contributors:
     label: Contributor(s)
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -679,14 +687,6 @@ field_settings:
       module:
         - paragraphs
         - taxonomy
-        - yabrm
-  name_5:
-    label: Name
-    datasource_id: 'entity:yabrm_conference'
-    property_path: name
-    type: text
-    dependencies:
-      module:
         - yabrm
   num_pages:
     label: 'Number of Pages'

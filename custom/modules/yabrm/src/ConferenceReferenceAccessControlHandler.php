@@ -22,15 +22,15 @@ class ConferenceReferenceAccessControlHandler extends EntityAccessControlHandler
     switch ($operation) {
       case 'view':
         if (!$entity->isPublished()) {
-          return AccessResult::allowedIfHasPermission($account, 'view unpublished conference reference entities');
+          return AccessResult::allowedIfHasPermission($account, 'view unpublished conference proceeding reference entities');
         }
-        return AccessResult::allowedIfHasPermission($account, 'view published conference reference entities');
+        return AccessResult::allowedIfHasPermission($account, 'view published conference proceeding reference entities');
 
       case 'update':
-        return AccessResult::allowedIfHasPermission($account, 'edit conference reference entities');
+        return AccessResult::allowedIfHasPermission($account, 'edit conference proceeding reference entities');
 
       case 'delete':
-        return AccessResult::allowedIfHasPermission($account, 'delete conference reference entities');
+        return AccessResult::allowedIfHasPermission($account, 'delete conference proceeding reference entities');
     }
 
     // Unknown operation, no opinion.
@@ -41,7 +41,7 @@ class ConferenceReferenceAccessControlHandler extends EntityAccessControlHandler
    * {@inheritdoc}
    */
   protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
-    return AccessResult::allowedIfHasPermission($account, 'add conference reference entities');
+    return AccessResult::allowedIfHasPermission($account, 'add conference proceeding reference entities');
   }
 
 }

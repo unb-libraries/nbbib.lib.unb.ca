@@ -3767,7 +3767,7 @@ display:
           value:
             min: ''
             max: ''
-            value: Conference
+            value: 'Conference Proceeding'
           group: 1
           exposed: false
           expose:

@@ -84,21 +84,6 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
   /**
    * {@inheritdoc}
    */
-  public function getConferenceType() {
-    return $this->get('conference_type')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setConferenceType($conference_type) {
-    $this->set('conference_type', $conference_type);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getFormat() {
     return $this->get('format')->value;
   }
@@ -154,8 +139,8 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['format'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Format'))
-      ->setDescription(t('Format of the conference.'))
+      ->setLabel(t('Conference Type'))
+      ->setDescription(t('Type of conference.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
@@ -177,27 +162,6 @@ class ConferenceReference extends BibliographicReference implements ConferenceRe
     $fields['conference_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Conference Name'))
       ->setDescription(t('Name of the conference.'))
-      ->setRevisionable(TRUE)
-      ->setSettings([
-        'max_length' => 512,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['conference_type'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Conference Type'))
-      ->setDescription(t('Type of conference.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,

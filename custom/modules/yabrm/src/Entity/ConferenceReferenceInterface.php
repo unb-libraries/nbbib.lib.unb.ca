@@ -53,25 +53,6 @@ interface ConferenceReferenceInterface extends ContentEntityInterface, RevisionL
   public function setConferenceName($conference_name);
 
   /**
-   * Gets the type of the conference.
-   *
-   * @return string
-   *   The type of the conference.
-   */
-  public function getConferenceType();
-
-  /**
-   * Sets the type of the conference.
-   *
-   * @param string $conference_type
-   *   The type of the conference.
-   *
-   * @return \Drupal\yabrm\Entity\ConferenceReferenceInterface
-   *   The called Conference Reference entity.
-   */
-  public function setConferenceType($conference_type);
-
-  /**
    * Gets the format of the conference.
    *
    * @return string

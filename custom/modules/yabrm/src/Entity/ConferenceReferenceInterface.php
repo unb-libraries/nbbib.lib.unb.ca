@@ -53,6 +53,25 @@ interface ConferenceReferenceInterface extends ContentEntityInterface, RevisionL
   public function setConferenceName($conference_name);
 
   /**
+   * Gets the date of the conference.
+   *
+   * @return string
+   *   The date of the conference.
+   */
+  public function getConferenceDate();
+
+  /**
+   * Sets the date of the conference.
+   *
+   * @param string $conference_date
+   *   The date of the conference.
+   *
+   * @return \Drupal\yabrm\Entity\ConferenceReferenceInterface
+   *   The called Conference Reference entity.
+   */
+  public function setConferenceDate($conference_date);
+
+  /**
    * Gets the format of the conference.
    *
    * @return string

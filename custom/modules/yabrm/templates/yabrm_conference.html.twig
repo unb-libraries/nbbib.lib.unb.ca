@@ -44,22 +44,22 @@
               <div class="col-sm-6">Item Type</div>
               <div class="col-sm-6">Conference Proceeding</div>
             </div>
-            {% if content.conference_name|field_value %}
-              <div id="ref-name" class="row">
-                <div class="col-sm-6">Conference Name</div>
-                <div class="col-sm-6">{{ content.name|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.place|field_value %}
-              <div id="ref-place" class="row">
-                <div class="col-sm-6">Conference Location</div>
-                <div class="col-sm-6">{{ content.place|field_value }}</div>
-              </div>
-            {% endif %}
             {% if content.format|field_value %}
               <div id="ref-format" class="row">
                 <div class="col-sm-6">Conference Type</div>
                 <div class="col-sm-6">{{ content.format|field_value }}</div>
+              </div>
+            {% endif %}
+            {% if content.conference_name|field_value %}
+              <div id="ref-name" class="row">
+                <div class="col-sm-6">Conference Name</div>
+                <div class="col-sm-6">{{ content.conference_name|field_value }}</div>
+              </div>
+            {% endif %}
+            {% if content.conference_date|field_value %}
+              <div id="ref-format" class="row">
+                <div class="col-sm-6">Conference Date</div>
+                <div class="col-sm-6">{{ content.conference_date|field_value }}</div>
               </div>
             {% endif %}
             {% if content.series|field_value %}

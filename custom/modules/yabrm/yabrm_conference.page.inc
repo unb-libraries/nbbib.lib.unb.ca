@@ -165,8 +165,12 @@ function template_preprocess_yabrm_conference(array &$variables) {
     ?? NULL;
 
   // Specific to Conference.
-  $pages = $variables['content']['num_pages']['0']['#context']['value']
-    ?? NULL;
+  $conference_name = $variables['content']['conference_name']['0']['#context']['value'] ?? 
+    NULL;
+  $conference_date = $variables['content']['conference_date']['0']['#context']['value'] ??
+    NULL;
+  $place = $variables['content']['place']['0']['#context']['value'] ??
+    NULL;
 
   // Prepare fragment containers.
   $title_wad = '';
@@ -183,6 +187,24 @@ function template_preprocess_yabrm_conference(array &$variables) {
     if (!preg_match("/[.!?,;:]$/", $title_wad)) {
       $title_wad .= '.';
     }
+    
+    if (!empty($conference_name)) {
+      $title_wad = "$title_wad $conference_name";
+      
+      if (!empty($place)) {
+        $title_wad = "$title_wad, $place";
+        
+        if (!empty($conference_date)) {
+          $title_wad = "$title_wad, $conference_date";
+        }
+      }
+    }
+    
+    // Only add period if last character is not punctuation.
+    if (!preg_match("/[.!?,;:]$/", $title_wad)) {
+      $title_wad .= '.';
+    }
+
     $variables['content']['title_wad'] = '<em>' . $title_wad . '</em>';
   }
 
@@ -237,26 +259,12 @@ function template_preprocess_yabrm_conference(array &$variables) {
   $variables['content']['contribs_wad'] = $contribs_wad;
 
   // Publication.
-  if ($place) {
-    $pub_wad .= ' ' . trim($place);
-
-    if ($publisher) {
-      $pub_wad .= ': ' . trim($publisher);
-    }
-  }
-  else {
-    if ($publisher) {
-      $pub_wad .= ' ' . trim($publisher);
-    }
+  if ($publisher) {
+    $pub_wad .= ' ' . trim($publisher);
   }
 
   if ($publication_year) {
     $pub_wad .= ', ' . trim($publication_year);
-  }
-
-  if ($pages) {
-    $pub_wad .= ', ' . trim($pages);
-    $pub_wad = trim($pages) == 'n. pag.' ? $pub_wad : $pub_wad . ' pp.';
   }
 
   $pub_wad = substr($pub_wad, -1) == '.' ? $pub_wad : "$pub_wad.";

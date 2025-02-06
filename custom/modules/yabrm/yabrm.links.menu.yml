@@ -111,6 +111,20 @@ yabrm_conference.admin.structure.settings:
   route_name: yabrm_conference.settings
   parent: system.admin_structure
 
+# Report reference menu items definition
+entity.yabrm_report.collection:
+  title: 'Report reference list'
+  route_name: entity.yabrm_report.collection
+  description: 'List Report reference entities'
+  parent: system.admin_structure
+  weight: 100
+
+yabrm_report.admin.structure.settings:
+  title: 'Report reference settings'
+  description: 'Configure Report reference entities'
+  route_name: yabrm_report.settings
+  parent: system.admin_structure
+
 # Contrib Archival menu items definition
 entity.yabrm_contrib_archival.collection:
   title: 'Contrib Archival list'

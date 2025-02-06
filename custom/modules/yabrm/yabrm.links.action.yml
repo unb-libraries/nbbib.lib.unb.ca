@@ -38,6 +38,11 @@ entity.yabrm_conference.add_form:
   title: 'Add Conference Proceeding reference'
   appears_on:
     - entity.yabrm_conference.collection
+entity.yabrm_conference.add_form:
+  route_name: entity.yabrm_report.add_form
+  title: 'Add Report reference'
+  appears_on:
+    - entity.yabrm_report.collection
 entity.yabrm_contrib_archival.add_form:
   route_name: entity.yabrm_contrib_archival.add_form
   title: 'Add Contrib Archival'

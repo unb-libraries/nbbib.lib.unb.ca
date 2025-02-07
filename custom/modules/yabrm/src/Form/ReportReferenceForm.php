@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup yabrm
  */
-class ThesisReferenceForm extends ContentEntityForm {
+class ReportReferenceForm extends ContentEntityForm {
 
   /**
    * For services dependency injection.

@@ -23,5 +23,6 @@ permissions:
   - 'view published conference proceeding reference entities'
   - 'view published contrib archival entities'
   - 'view published journal article reference entities'
+  - 'view published report reference entities'
   - 'view published thesis reference entities'
   - 'view sp metadata'

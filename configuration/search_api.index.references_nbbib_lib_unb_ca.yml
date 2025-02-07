@@ -112,6 +112,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  abstract_note_6:
+    label: 'Abstract Note'
+    datasource_id: 'entity:yabrm_report'
+    property_path: abstract_note
+    type: text
+    dependencies:
+      module:
+        - yabrm
   archive:
     label: Archive
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -157,6 +165,14 @@ field_settings:
     datasource_id: 'entity:yabrm_conference'
     property_path: archive
     type: text
+    dependencies:
+      module:
+        - yabrm
+  archive_6:
+    label: Archive(s)
+    datasource_id: 'entity:yabrm_report'
+    property_path: archive
+    type: integer
     dependencies:
       module:
         - yabrm
@@ -286,6 +302,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  collections_7:
+    label: Collection(s)
+    datasource_id: 'entity:yabrm_report'
+    property_path: collections
+    type: integer
+    dependencies:
+      module:
+        - yabrm
   collections_string:
     label: 'Collection(s) - String'
     property_path: collections_string
@@ -343,6 +367,14 @@ field_settings:
     datasource_id: 'entity:yabrm_conference'
     property_path: contributors
     type: text
+    dependencies:
+      module:
+        - yabrm
+  contributors_6:
+    label: Contributor(s)
+    datasource_id: 'entity:yabrm_report'
+    property_path: contributors
+    type: integer
     dependencies:
       module:
         - yabrm
@@ -418,6 +450,25 @@ field_settings:
     type: integer
     dependencies:
       module:
+        - yabrm
+  id_12:
+    label: 'Collection(s) » Bibliographic Collection » ID'
+    datasource_id: 'entity:yabrm_report'
+    property_path: 'collections:entity:id'
+    type: integer
+    dependencies:
+      module:
+        - yabrm
+  id_13:
+    label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
+    datasource_id: 'entity:yabrm_report'
+    property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
         - yabrm
   id_2:
     label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
@@ -576,6 +627,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  language_6:
+    label: Language(s)
+    datasource_id: 'entity:yabrm_report'
+    property_path: language
+    type: string
+    dependencies:
+      module:
+        - yabrm
   languages:
     label: 'General Languages'
     property_path: languages
@@ -625,6 +684,14 @@ field_settings:
     datasource_id: 'entity:yabrm_conference'
     property_path: library_catalog
     type: text
+    dependencies:
+      module:
+        - yabrm
+  library_catalog_6:
+    label: 'Library Catalog'
+    datasource_id: 'entity:yabrm_report'
+    property_path: library_catalog
+    type: string
     dependencies:
       module:
         - yabrm
@@ -688,6 +755,18 @@ field_settings:
         - paragraphs
         - taxonomy
         - yabrm
+  name_5:
+    label: 'Contributor(s) » Paragraph » Role » Taxonomy term » Name'
+    datasource_id: 'entity:yabrm_report'
+    property_path: 'contributors:entity:field_yabrm_contributor_role:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_role
+      module:
+        - paragraphs
+        - taxonomy
+        - yabrm
   num_pages:
     label: 'Number of Pages'
     datasource_id: 'entity:yabrm_thesis'
@@ -699,6 +778,14 @@ field_settings:
   num_pages_1:
     label: 'Number of Pages'
     datasource_id: 'entity:yabrm_book'
+    property_path: num_pages
+    type: string
+    dependencies:
+      module:
+        - yabrm
+  num_pages_2:
+    label: 'Number of Pages'
+    datasource_id: 'entity:yabrm_report'
     property_path: num_pages
     type: string
     dependencies:
@@ -780,6 +867,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  place_6:
+    label: Place
+    datasource_id: 'entity:yabrm_report'
+    property_path: place
+    type: string
+    dependencies:
+      module:
+        - yabrm
   publication_day:
     label: 'Publication Day'
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -825,6 +920,14 @@ field_settings:
     datasource_id: 'entity:yabrm_conference'
     property_path: publication_day
     type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_day_6:
+    label: 'Publication Day'
+    datasource_id: 'entity:yabrm_report'
+    property_path: publication_day
+    type: integer
     dependencies:
       module:
         - yabrm
@@ -876,6 +979,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  publication_month_6:
+    label: 'Publication Month'
+    datasource_id: 'entity:yabrm_report'
+    property_path: publication_month
+    type: integer
+    dependencies:
+      module:
+        - yabrm
   publication_title:
     label: 'Publication Title'
     datasource_id: 'entity:yabrm_book_section'
@@ -917,7 +1028,7 @@ field_settings:
       module:
         - yabrm
   publication_year_3:
-    label: 'Book Publication Year'
+    label: 'Journal Article Publication Year'
     datasource_id: 'entity:yabrm_journal_article'
     property_path: publication_year
     type: text
@@ -944,6 +1055,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  publication_year_7:
+    label: 'Publication Year'
+    datasource_id: 'entity:yabrm_report'
+    property_path: publication_year
+    type: integer
+    dependencies:
+      module:
+        - yabrm
   publication_year_slider:
     label: 'Publication Year Slider'
     property_path: publication_year_slider
@@ -960,6 +1079,14 @@ field_settings:
     label: 'General Publisher - String'
     property_path: publisher
     type: string
+  report_type:
+    label: 'Report Type'
+    datasource_id: 'entity:yabrm_report'
+    property_path: report_type
+    type: string
+    dependencies:
+      module:
+        - yabrm
   rights:
     label: Rights
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -1008,6 +1135,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  rights_6:
+    label: Rights
+    datasource_id: 'entity:yabrm_report'
+    property_path: rights
+    type: string
+    dependencies:
+      module:
+        - yabrm
   series:
     label: Series
     datasource_id: 'entity:yabrm_book'
@@ -1029,6 +1164,14 @@ field_settings:
     datasource_id: 'entity:yabrm_journal_article'
     property_path: series
     type: text
+    dependencies:
+      module:
+        - yabrm
+  series_3:
+    label: Series
+    datasource_id: 'entity:yabrm_report'
+    property_path: series
+    type: string
     dependencies:
       module:
         - yabrm
@@ -1112,6 +1255,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  short_title_6:
+    label: 'Short Title'
+    datasource_id: 'entity:yabrm_report'
+    property_path: short_title
+    type: string
+    dependencies:
+      module:
+        - yabrm
   thesis_type:
     label: 'Thesis Type'
     datasource_id: 'entity:yabrm_thesis'
@@ -1163,6 +1314,14 @@ field_settings:
   title_5:
     label: Title
     datasource_id: 'entity:yabrm_conference'
+    property_path: title
+    type: string
+    dependencies:
+      module:
+        - yabrm
+  title_6:
+    label: Title
+    datasource_id: 'entity:yabrm_report'
     property_path: title
     type: string
     dependencies:
@@ -1230,6 +1389,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  url_6:
+    label: URL
+    datasource_id: 'entity:yabrm_report'
+    property_path: url
+    type: string
+    dependencies:
+      module:
+        - yabrm
   volume:
     label: Volume
     datasource_id: 'entity:yabrm_book_section'
@@ -1260,6 +1427,7 @@ datasource_settings:
   'entity:yabrm_book_section': {  }
   'entity:yabrm_conference': {  }
   'entity:yabrm_journal_article': {  }
+  'entity:yabrm_report': {  }
   'entity:yabrm_thesis': {  }
 processor_settings:
   add_url: {  }

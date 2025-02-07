@@ -163,7 +163,7 @@ class ReportReference extends BibliographicReference implements ReportReferenceI
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['institution'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('INSTITUTION'))
+      ->setLabel(t('Institution'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,
@@ -223,7 +223,7 @@ class ReportReference extends BibliographicReference implements ReportReferenceI
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['report_type'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Series Number'))
+      ->setLabel(t('Report Type'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,

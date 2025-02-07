@@ -9,7 +9,7 @@ use Drupal\Core\Entity\ContentEntityDeleteForm;
  *
  * @ingroup yabrm
  */
-class ThesisReferenceDeleteForm extends ContentEntityDeleteForm {
+class ReportReferenceDeleteForm extends ContentEntityDeleteForm {
 
 
 }

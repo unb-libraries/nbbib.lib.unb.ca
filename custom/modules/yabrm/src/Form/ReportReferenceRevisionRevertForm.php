@@ -8,7 +8,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\yabrm\Entity\ThesisReferenceInterface;
+use Drupal\yabrm\Entity\ReportReferenceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -16,13 +16,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup yabrm
  */
-class ThesisReferenceRevisionRevertForm extends ConfirmFormBase {
+class ReportReferenceRevisionRevertForm extends ConfirmFormBase {
 
 
   /**
    * The Thesis reference revision.
    *
-   * @var \Drupal\yabrm\Entity\ThesisReferenceInterface
+   * @var \Drupal\yabrm\Entity\ReportReferenceInterface
    */
   protected $revision;
 
@@ -31,7 +31,7 @@ class ThesisReferenceRevisionRevertForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $thesisReferenceStorage;
+  protected $ReportReferenceStorage;
 
   /**
    * The date formatter service.
@@ -48,7 +48,7 @@ class ThesisReferenceRevisionRevertForm extends ConfirmFormBase {
   protected $time;
 
   /**
-   * Constructs a new ThesisReferenceRevisionRevertForm.
+   * Constructs a new ReportReferenceRevisionRevertForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The Thesis reference storage.
@@ -61,7 +61,7 @@ class ThesisReferenceRevisionRevertForm extends ConfirmFormBase {
     EntityStorageInterface $entity_storage,
     DateFormatterInterface $date_formatter,
     Time $time) {
-    $this->thesisReferenceStorage = $entity_storage;
+    $this->ReportReferenceStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
     $this->time = $time;
   }
@@ -116,7 +116,7 @@ class ThesisReferenceRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_thesis_revision = NULL) {
-    $this->revision = $this->thesisReferenceStorage->loadRevision($yabrm_thesis_revision);
+    $this->revision = $this->ReportReferenceStorage->loadRevision($yabrm_thesis_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -151,15 +151,15 @@ class ThesisReferenceRevisionRevertForm extends ConfirmFormBase {
   /**
    * Prepares a revision to be reverted.
    *
-   * @param \Drupal\yabrm\Entity\ThesisReferenceInterface $revision
+   * @param \Drupal\yabrm\Entity\ReportReferenceInterface $revision
    *   The revision to be reverted.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    *
-   * @return \Drupal\yabrm\Entity\ThesisReferenceInterface
+   * @return \Drupal\yabrm\Entity\ReportReferenceInterface
    *   The prepared revision ready to be stored.
    */
-  protected function prepareRevertedRevision(ThesisReferenceInterface $revision, FormStateInterface $form_state) {
+  protected function prepareRevertedRevision(ReportReferenceInterface $revision, FormStateInterface $form_state) {
     $revision->setNewRevision();
     $revision->isDefaultRevision(TRUE);
     $revision->setRevisionCreationTime($this->time->getRequestTime());

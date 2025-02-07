@@ -7,7 +7,7 @@ use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\yabrm\Entity\ThesisReferenceInterface;
+use Drupal\yabrm\Entity\ReportReferenceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup yabrm
  */
-class ThesisReferenceRevisionRevertTranslationForm extends ThesisReferenceRevisionRevertForm {
+class ReportReferenceRevisionRevertTranslationForm extends ReportReferenceRevisionRevertForm {
 
 
   /**
@@ -40,7 +40,7 @@ class ThesisReferenceRevisionRevertTranslationForm extends ThesisReferenceRevisi
   protected $time;
 
   /**
-   * Constructs a new ThesisReferenceRevisionRevertTranslationForm.
+   * Constructs a new ReportReferenceRevisionRevertTranslationForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The Thesis reference storage.
@@ -109,11 +109,11 @@ class ThesisReferenceRevisionRevertTranslationForm extends ThesisReferenceRevisi
   /**
    * {@inheritdoc}
    */
-  protected function prepareRevertedRevision(ThesisReferenceInterface $revision, FormStateInterface $form_state) {
+  protected function prepareRevertedRevision(ReportReferenceInterface $revision, FormStateInterface $form_state) {
     $revert_untranslated_fields = $form_state->getValue('revert_untranslated_fields');
 
-    /** @var \Drupal\yabrm\Entity\ThesisReferenceInterface $default_revision */
-    $latest_revision = $this->thesisReferenceStorage->load($revision->id());
+    /** @var \Drupal\yabrm\Entity\ReportReferenceInterface $default_revision */
+    $latest_revision = $this->ReportReferenceStorage->load($revision->id());
     $latest_revision_translation = $latest_revision->getTranslation($this->langcode);
 
     $revision_translation = $revision->getTranslation($this->langcode);

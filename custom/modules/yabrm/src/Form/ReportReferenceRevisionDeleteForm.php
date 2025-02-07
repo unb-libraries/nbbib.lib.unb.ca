@@ -15,13 +15,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup yabrm
  */
-class ThesisReferenceRevisionDeleteForm extends ConfirmFormBase {
+class ReportReferenceRevisionDeleteForm extends ConfirmFormBase {
 
 
   /**
    * The Thesis reference revision.
    *
-   * @var \Drupal\yabrm\Entity\ThesisReferenceInterface
+   * @var \Drupal\yabrm\Entity\ReportReferenceInterface
    */
   protected $revision;
 
@@ -30,7 +30,7 @@ class ThesisReferenceRevisionDeleteForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $thesisReferenceStorage;
+  protected $ReportReferenceStorage;
 
   /**
    * The database connection.
@@ -47,7 +47,7 @@ class ThesisReferenceRevisionDeleteForm extends ConfirmFormBase {
   protected $dateFormatter;
 
   /**
-   * Constructs a new ThesisReferenceRevisionDeleteForm.
+   * Constructs a new ReportReferenceRevisionDeleteForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
    *   The entity storage.
@@ -60,7 +60,7 @@ class ThesisReferenceRevisionDeleteForm extends ConfirmFormBase {
     EntityStorageInterface $entity_storage,
     Connection $connection,
     DateFormatterInterface $date_formatter) {
-    $this->thesisReferenceStorage = $entity_storage;
+    $this->ReportReferenceStorage = $entity_storage;
     $this->connection = $connection;
     $this->dateFormatter = $date_formatter;
   }
@@ -109,7 +109,7 @@ class ThesisReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_thesis_revision = NULL) {
-    $this->revision = $this->thesisReferenceStorage->loadRevision($yabrm_thesis_revision);
+    $this->revision = $this->ReportReferenceStorage->loadRevision($yabrm_thesis_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -119,7 +119,7 @@ class ThesisReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->thesisReferenceStorage->deleteRevision($this->revision->getRevisionId());
+    $this->ReportReferenceStorage->deleteRevision($this->revision->getRevisionId());
 
     $this->logger('content')->notice('Thesis reference: deleted %title revision %revision.', [
       '%title' => $this->revision->label(),

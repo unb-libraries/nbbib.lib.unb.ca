@@ -6,11 +6,11 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class ThesisReferenceSettingsForm.
+ * Class ReportReferenceSettingsForm.
  *
  * @ingroup yabrm
  */
-class ThesisReferenceSettingsForm extends FormBase {
+class ReportReferenceSettingsForm extends FormBase {
 
   /**
    * Returns a unique string identifying the form.
@@ -19,7 +19,7 @@ class ThesisReferenceSettingsForm extends FormBase {
    *   The unique string identifying the form.
    */
   public function getFormId() {
-    return 'thesisreference_settings';
+    return 'ReportReference_settings';
   }
 
   /**
@@ -46,7 +46,7 @@ class ThesisReferenceSettingsForm extends FormBase {
    *   Form definition array.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['thesisreference_settings']['#markup'] = 'Settings form for Thesis reference entities. Manage field settings here.';
+    $form['ReportReference_settings']['#markup'] = 'Settings form for Thesis reference entities. Manage field settings here.';
     return $form;
   }
 

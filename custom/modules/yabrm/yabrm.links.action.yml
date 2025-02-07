@@ -38,7 +38,7 @@ entity.yabrm_conference.add_form:
   title: 'Add Conference Proceeding reference'
   appears_on:
     - entity.yabrm_conference.collection
-entity.yabrm_conference.add_form:
+entity.yabrm_report.add_form:
   route_name: entity.yabrm_report.add_form
   title: 'Add Report reference'
   appears_on:

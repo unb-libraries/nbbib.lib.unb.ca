@@ -1,0 +1,14 @@
+uuid: f032b000-f19c-4357-a4d0-69c2ae1e8127
+langcode: en
+status: true
+dependencies:
+  module:
+    - yabrm
+id: report_pattern
+label: 'Report Pattern'
+type: 'canonical_entities:yabrm_report'
+pattern: 'reports/[yabrm_report:title]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

@@ -197,7 +197,7 @@ nbbib_core.editor.new-conference:
 nbbib_core.editor.new-report:
   title: 'Add New Report'
   description: 'Add new report reference.'
-  url: internal:/yabrm/yabrmreport/add
+  url: internal:/yabrm/yabrm_report/add
   parent: nbbib_core.editor
   weight: 62
 nbbib_core.editor.new-essay:

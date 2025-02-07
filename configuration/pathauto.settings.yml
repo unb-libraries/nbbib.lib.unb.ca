@@ -1,11 +1,12 @@
 enabled_entity_types:
-  - yabrm_journal_article
   - yabrm_book_section
-  - yabrm_collection
-  - yabrm_contributor
-  - yabrm_conference
-  - yabrm_book
   - yabrm_thesis
+  - yabrm_report
+  - yabrm_collection
+  - yabrm_book
+  - yabrm_journal_article
+  - yabrm_conference
+  - yabrm_contributor
 punctuation:
   double_quotes: 0
   quotes: 0

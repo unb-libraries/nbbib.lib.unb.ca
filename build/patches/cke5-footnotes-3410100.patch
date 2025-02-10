@@ -1,0 +1,26 @@
+diff --git a/core/modules/ckeditor5/src/Plugin/CKEditor5PluginManager.php b/core/modules/ckeditor5/src/Plugin/CKEditor5PluginManager.php
+index 745e1cfc5f2..e40563d6567 100644
+--- a/core/modules/ckeditor5/src/Plugin/CKEditor5PluginManager.php
++++ b/core/modules/ckeditor5/src/Plugin/CKEditor5PluginManager.php
+@@ -366,7 +366,7 @@ public function getProvidedElements(array $plugin_ids = [], ?EditorInterface $ed
+       }
+ 
+       $defined_elements = $definition->getElements();
+-      if (is_a($definition->getClass(), CKEditor5PluginElementsSubsetInterface::class, TRUE)) {
++      if (is_a($definition->getClass(), CKEditor5PluginElementsSubsetInterface::class, TRUE) or $id === 'footnotes_footnotes') {
+         // ckeditor5_sourceEditing is the edge case here: it is the only plugin
+         // that is allowed to return a superset. It's a special case because it
+         // is through configuring this particular plugin that additional HTML
+@@ -376,6 +376,12 @@ public function getProvidedElements(array $plugin_ids = [], ?EditorInterface $ed
+         if ($id === 'ckeditor5_sourceEditing') {
+           $defined_elements = !isset($editor) ? [] : $this->getPlugin($id, $editor)->getElementsSubset();
+         }
++        elseif ($id === 'ckeditor5_style') {
++          $defined_elements = [];
++        }
++        elseif ($id === 'footnotes_footnotes') {
++          $defined_elements = [];
++        }
+         // The default case: all other plugins that implement this interface are
+         // explicitly checked for compliance: only subsets are allowed. This is
+         // essential for \Drupal\ckeditor5\SmartDefaultSettings to be able to

@@ -52,6 +52,7 @@ settings:
         - '<h4 class id>'
         - '<h5 class id>'
         - '<h6 class id>'
+        - '<a class>'
     media_media:
       allow_view_mode_override: false
 image_upload:

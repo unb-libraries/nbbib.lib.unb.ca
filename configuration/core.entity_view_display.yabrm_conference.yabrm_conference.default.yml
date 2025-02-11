@@ -7,7 +7,8 @@ dependencies:
     - image
     - link
     - options
-    - search_api_solr
+    - taxonomy
+    - text
     - yabrm
 id: yabrm_conference.yabrm_conference.default
 targetEntityType: yabrm_conference
@@ -15,20 +16,16 @@ bundle: yabrm_conference
 mode: default
 content:
   abstract_note:
-    type: solr_highlighted_text_default
+    type: text_default
     label: above
-    settings:
-      prefix: '<strong>'
-      suffix: '</strong>'
-      strict: false
+    settings: {  }
     third_party_settings: {  }
     weight: 21
     region: content
   archive:
-    type: entity_reference_label
+    type: entity_reference_rss_category
     label: above
-    settings:
-      link: true
+    settings: {  }
     third_party_settings: {  }
     weight: 17
     region: content
@@ -93,12 +90,9 @@ content:
     weight: 9
     region: content
   extra:
-    type: solr_highlighted_text_default
+    type: text_default
     label: above
-    settings:
-      prefix: '<strong>'
-      suffix: '</strong>'
-      strict: false
+    settings: {  }
     third_party_settings: {  }
     weight: 22
     region: content
@@ -144,32 +138,23 @@ content:
     weight: 14
     region: content
   notes:
-    type: solr_highlighted_text_default
+    type: text_default
     label: above
-    settings:
-      prefix: '<strong>'
-      suffix: '</strong>'
-      strict: false
+    settings: {  }
     third_party_settings: {  }
     weight: 24
     region: content
   notes_private:
-    type: solr_highlighted_text_default
+    type: text_default
     label: above
-    settings:
-      prefix: '<strong>'
-      suffix: '</strong>'
-      strict: false
+    settings: {  }
     third_party_settings: {  }
     weight: 23
     region: content
   physical_description:
-    type: solr_highlighted_text_default
+    type: text_default
     label: above
-    settings:
-      prefix: '<strong>'
-      suffix: '</strong>'
-      strict: false
+    settings: {  }
     third_party_settings: {  }
     weight: 18
     region: content

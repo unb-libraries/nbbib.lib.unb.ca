@@ -433,7 +433,7 @@ field_settings:
         - paragraphs
         - yabrm
   id_10:
-    label: 'Contributor(s) » Paragraph » Person/Institution » Bibliographic Contributor » ID'
+    label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
     datasource_id: 'entity:yabrm_conference'
     property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
     type: integer

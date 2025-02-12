@@ -163,6 +163,8 @@ function template_preprocess_yabrm_conference(array &$variables) {
   $title = $variables['content']['title']['0']['#context']['value'] ?? NULL;
   $publisher = $variables['content']['publisher']['0']['#context']['value']
     ?? NULL;
+  $url = !empty($variables['content']['url']['0']['#url']) ? $variables['content']['url']['0']['#url']->getUri()
+    : NULL;
 
   // Specific to Conference.
   $conference_name = $variables['content']['conference_name']['0']['#context']['value'] ?? 
@@ -267,11 +269,16 @@ function template_preprocess_yabrm_conference(array &$variables) {
     $pub_wad .= ', ' . trim($publication_year);
   }
 
+  if ($url) {
+    $pub_wad .= ', ' . trim($url);
+  }
+
   // Only add period if last character is not punctuation.
   if (!preg_match("/[.!?,;:]$/", $pub_wad)) {
     $pub_wad .= '.';
   }
-  
+
   $pub_wad = substr($pub_wad, -1) == '.' ? $pub_wad : "$pub_wad.";
+  $pub_wad = $url ? substr($pub_wad, 0, -1) : $pub_wad;
   $variables['content']['pub_wad'] = $pub_wad . ' <em class="cite-type">[ conference proceeding ]</em>';
 }

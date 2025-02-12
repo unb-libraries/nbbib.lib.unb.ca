@@ -160,8 +160,8 @@ function template_preprocess_yabrm_report(array &$variables) {
   $title = $variables['content']['title']['0']['#context']['value'] ?? NULL;
   $publisher = $variables['content']['publisher']['0']['#context']['value']
     ?? NULL;
-  $url = $variables['content']['url']['0']['#context']['value']
-    ?? NULL;
+  $url = !empty($variables['content']['url']['0']['#url']) ? $variables['content']['url']['0']['#url']->getUri()
+  : NULL;
 
   // Specific to Report.
   $report_type = $variables['content']['report_type']['0']['#context']['value']
@@ -234,17 +234,17 @@ function template_preprocess_yabrm_report(array &$variables) {
 
   $variables['content']['contribs_wad'] = $contribs_wad;
 
-  // Publication.
-  if ($publication_year) {
-    $pub_wad .= trim($publication_year);
-  }
-  
+  // Publication.  
   if ($publisher) {
-    $pub_wad .= '. ' . trim($publisher);
+    $pub_wad .= ' ' . trim($publisher);
+  }
+
+  if ($publication_year) {
+    $pub_wad .= ', ' . trim($publication_year);
   }
   
   if ($url) {
-    $pub_wad .= trim($url);
+    $pub_wad .= ', ' . trim($url);
   }
 
   // Only add period if last character is not punctuation.
@@ -253,5 +253,6 @@ function template_preprocess_yabrm_report(array &$variables) {
   }
 
   $pub_wad = substr($pub_wad, -1) == '.' ? $pub_wad : "$pub_wad.";
+  $pub_wad = $url ? substr($pub_wad, 0, -1) : $pub_wad;
   $variables['content']['pub_wad'] = $pub_wad . ' <em class="cite-type">[ report ]</em>';
 }

@@ -9,6 +9,8 @@ if ($timestamp) {
   pub_entities('yabrm_book_section', $timestamp);
   pub_entities('yabrm_journal_article', $timestamp);
   pub_entities('yabrm_thesis', $timestamp);
+  pub_entities('yabrm_conference', $timestamp);
+  pub_entities('yabrm_report', $timestamp);
   pub_entities('yabrm_collection', $timestamp);
   pub_entities('yabrm_contributor', $timestamp);
   pub_entities('paragraph', $timestamp);

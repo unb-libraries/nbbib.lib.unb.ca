@@ -309,7 +309,7 @@ process:
 
 
 destination:
-  plugin: entity:yabrm_journal_article
+  plugin: entity:yabrm_report
 
 dependencies:
   module:

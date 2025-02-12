@@ -6,6 +6,7 @@ pub_entities('yabrm_book_section');
 pub_entities('yabrm_journal_article');
 pub_entities('yabrm_thesis');
 pub_entities('yabrm_conference');
+pub_entities('yabrm_report');
 
 function pub_entities($type) {
   $handler = \Drupal::entityTypeManager()->getStorage($type);

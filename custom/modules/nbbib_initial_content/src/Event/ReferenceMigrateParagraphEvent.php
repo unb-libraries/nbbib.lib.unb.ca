@@ -81,6 +81,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
       // Nbbib and update reference.
       $item_type = $row->getSourceProperty('item_type');
+      $this->tdump('item type', $item_type);
       $entity_type = self::getZoteroTypeMappings()[$item_type];
 
       $reference = $this->typeManager
@@ -164,6 +165,8 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           'nbbib_16_business_unb_2_books',
           'nbbib_16_business_unb_3_book_sections',
           'nbbib_16_business_unb_4_theses',
+          'nbbib_16_business_unb_5_conference_papers',
+          'nbbib_16_business_unb_6_reports',
         ];
         
         if (in_array($migration_id, $biz_unb)) {

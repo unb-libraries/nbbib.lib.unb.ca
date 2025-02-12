@@ -35,7 +35,7 @@ class ReportReferenceSettingsForm extends FormBase {
   }
 
   /**
-   * Defines the settings form for Thesis reference entities.
+   * Defines the settings form for Report reference entities.
    *
    * @param array $form
    *   An associative array containing the structure of the form.
@@ -46,7 +46,7 @@ class ReportReferenceSettingsForm extends FormBase {
    *   Form definition array.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['ReportReference_settings']['#markup'] = 'Settings form for Thesis reference entities. Manage field settings here.';
+    $form['ReportReference_settings']['#markup'] = 'Settings form for Report reference entities. Manage field settings here.';
     return $form;
   }
 

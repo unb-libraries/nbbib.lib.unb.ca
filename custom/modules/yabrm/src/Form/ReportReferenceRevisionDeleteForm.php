@@ -11,7 +11,7 @@ use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a form for deleting a Thesis reference revision.
+ * Provides a form for deleting a Report reference revision.
  *
  * @ingroup yabrm
  */
@@ -19,14 +19,14 @@ class ReportReferenceRevisionDeleteForm extends ConfirmFormBase {
 
 
   /**
-   * The Thesis reference revision.
+   * The Report reference revision.
    *
    * @var \Drupal\yabrm\Entity\ReportReferenceInterface
    */
   protected $revision;
 
   /**
-   * The Thesis reference storage.
+   * The Report reference storage.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
@@ -71,7 +71,7 @@ class ReportReferenceRevisionDeleteForm extends ConfirmFormBase {
   public static function create(ContainerInterface $container) {
     $entity_manager = $container->get('entity_type.manager');
     return new static(
-      $entity_manager->getStorage('yabrm_thesis'),
+      $entity_manager->getStorage('yabrm_report'),
       $container->get('database'),
       $container->get('date.formatter')
     );
@@ -81,7 +81,7 @@ class ReportReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'yabrm_thesis_revision_delete_confirm';
+    return 'yabrm_report_revision_delete_confirm';
   }
 
   /**
@@ -95,7 +95,7 @@ class ReportReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('entity.yabrm_thesis.version_history', ['yabrm_thesis' => $this->revision->id()]);
+    return new Url('entity.yabrm_report.version_history', ['yabrm_report' => $this->revision->id()]);
   }
 
   /**
@@ -108,8 +108,8 @@ class ReportReferenceRevisionDeleteForm extends ConfirmFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $yabrm_thesis_revision = NULL) {
-    $this->revision = $this->ReportReferenceStorage->loadRevision($yabrm_thesis_revision);
+  public function buildForm(array $form, FormStateInterface $form_state, $yabrm_report_revision = NULL) {
+    $this->revision = $this->ReportReferenceStorage->loadRevision($yabrm_report_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -121,22 +121,22 @@ class ReportReferenceRevisionDeleteForm extends ConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->ReportReferenceStorage->deleteRevision($this->revision->getRevisionId());
 
-    $this->logger('content')->notice('Thesis reference: deleted %title revision %revision.', [
+    $this->logger('content')->notice('Report reference: deleted %title revision %revision.', [
       '%title' => $this->revision->label(),
       '%revision' => $this->revision->getRevisionId(),
     ]);
-    $this->messenger()->addMessage($this->t('Revision from %revision-date of Thesis reference %title has been deleted.', [
+    $this->messenger()->addMessage($this->t('Revision from %revision-date of Report reference %title has been deleted.', [
       '%revision-date' => $this->dateFormatter->format($this->revision->getRevisionCreationTime()),
       '%title' => $this->revision->label(),
     ]));
     $form_state->setRedirect(
-      'entity.yabrm_thesis.canonical',
-       ['yabrm_thesis' => $this->revision->id()]
+      'entity.yabrm_report.canonical',
+       ['yabrm_report' => $this->revision->id()]
     );
-    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {yabrm_thesis_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
+    if ($this->connection->query('SELECT COUNT(DISTINCT vid) FROM {yabrm_report_revision} WHERE id = :id', [':id' => $this->revision->id()])->fetchField() > 1) {
       $form_state->setRedirect(
-        'entity.yabrm_thesis.version_history',
-         ['yabrm_thesis' => $this->revision->id()]
+        'entity.yabrm_report.version_history',
+         ['yabrm_report' => $this->revision->id()]
       );
     }
   }

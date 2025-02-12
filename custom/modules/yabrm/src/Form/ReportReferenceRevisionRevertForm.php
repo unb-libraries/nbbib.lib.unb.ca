@@ -12,7 +12,7 @@ use Drupal\yabrm\Entity\ReportReferenceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a form for reverting a Thesis reference revision.
+ * Provides a form for reverting a Report reference revision.
  *
  * @ingroup yabrm
  */
@@ -20,14 +20,14 @@ class ReportReferenceRevisionRevertForm extends ConfirmFormBase {
 
 
   /**
-   * The Thesis reference revision.
+   * The Report reference revision.
    *
    * @var \Drupal\yabrm\Entity\ReportReferenceInterface
    */
   protected $revision;
 
   /**
-   * The Thesis reference storage.
+   * The Report reference storage.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
@@ -51,7 +51,7 @@ class ReportReferenceRevisionRevertForm extends ConfirmFormBase {
    * Constructs a new ReportReferenceRevisionRevertForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
-   *   The Thesis reference storage.
+   *   The Report reference storage.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
    * @param Drupal\Component\Datetime\Time $time
@@ -71,7 +71,7 @@ class ReportReferenceRevisionRevertForm extends ConfirmFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity_type.manager')->getStorage('yabrm_thesis'),
+      $container->get('entity_type.manager')->getStorage('yabrm_report'),
       $container->get('date.formatter'),
       $container->get('datetime.time')
     );
@@ -81,7 +81,7 @@ class ReportReferenceRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'yabrm_thesis_revision_revert_confirm';
+    return 'yabrm_report_revision_revert_confirm';
   }
 
   /**
@@ -95,7 +95,7 @@ class ReportReferenceRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('entity.yabrm_thesis.version_history', ['yabrm_thesis' => $this->revision->id()]);
+    return new Url('entity.yabrm_report.version_history', ['yabrm_report' => $this->revision->id()]);
   }
 
   /**
@@ -115,8 +115,8 @@ class ReportReferenceRevisionRevertForm extends ConfirmFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $yabrm_thesis_revision = NULL) {
-    $this->revision = $this->ReportReferenceStorage->loadRevision($yabrm_thesis_revision);
+  public function buildForm(array $form, FormStateInterface $form_state, $yabrm_report_revision = NULL) {
+    $this->revision = $this->ReportReferenceStorage->loadRevision($yabrm_report_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -134,17 +134,17 @@ class ReportReferenceRevisionRevertForm extends ConfirmFormBase {
     $this->revision->revision_log = $this->t('Copy of the revision from %date.', ['%date' => $this->dateFormatter->format($original_revision_timestamp)]);
     $this->revision->save();
 
-    $this->logger('content')->notice('Thesis reference: reverted %title revision %revision.', [
+    $this->logger('content')->notice('Report reference: reverted %title revision %revision.', [
       '%title' => $this->revision->label(),
       '%revision' => $this->revision->getRevisionId(),
     ]);
-    $this->messenger()->addMessage($this->t('Thesis reference %title has been reverted to the revision from %revision-date.', [
+    $this->messenger()->addMessage($this->t('Report reference %title has been reverted to the revision from %revision-date.', [
       '%title' => $this->revision->label(),
       '%revision-date' => $this->dateFormatter->format($original_revision_timestamp),
     ]));
     $form_state->setRedirect(
-      'entity.yabrm_thesis.version_history',
-      ['yabrm_thesis' => $this->revision->id()]
+      'entity.yabrm_report.version_history',
+      ['yabrm_report' => $this->revision->id()]
     );
   }
 

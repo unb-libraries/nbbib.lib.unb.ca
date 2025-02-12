@@ -11,7 +11,7 @@ use Drupal\Core\Session\AccountProxy;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Form controller for Thesis reference edit forms.
+ * Form controller for Report reference edit forms.
  *
  * @ingroup yabrm
  */
@@ -88,17 +88,17 @@ class ReportReferenceForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        $this->messenger()->addMessage($this->t('Created the %label Thesis reference.', [
+        $this->messenger()->addMessage($this->t('Created the %label Report reference.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        $this->messenger()->addMessage($this->t('Saved the %label Thesis reference.', [
+        $this->messenger()->addMessage($this->t('Saved the %label Report reference.', [
           '%label' => $entity->label(),
         ]));
     }
-    $form_state->setRedirect('entity.yabrm_thesis.canonical', ['yabrm_thesis' => $entity->id()]);
+    $form_state->setRedirect('entity.yabrm_report.canonical', ['yabrm_report' => $entity->id()]);
   }
 
 }

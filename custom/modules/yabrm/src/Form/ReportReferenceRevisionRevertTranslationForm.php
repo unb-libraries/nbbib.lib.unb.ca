@@ -11,7 +11,7 @@ use Drupal\yabrm\Entity\ReportReferenceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Form for reverting Thesis reference revision - single translation.
+ * Form for reverting Report reference revision - single translation.
  *
  * @ingroup yabrm
  */
@@ -43,7 +43,7 @@ class ReportReferenceRevisionRevertTranslationForm extends ReportReferenceRevisi
    * Constructs a new ReportReferenceRevisionRevertTranslationForm.
    *
    * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
-   *   The Thesis reference storage.
+   *   The Report reference storage.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
@@ -66,7 +66,7 @@ class ReportReferenceRevisionRevertTranslationForm extends ReportReferenceRevisi
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity_type.manager')->getStorage('yabrm_thesis'),
+      $container->get('entity_type.manager')->getStorage('yabrm_report'),
       $container->get('date.formatter'),
       $container->get('language_manager'),
       $container->get('datetime.time')
@@ -77,7 +77,7 @@ class ReportReferenceRevisionRevertTranslationForm extends ReportReferenceRevisi
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'yabrm_thesis_revision_revert_translation_confirm';
+    return 'yabrm_report_revision_revert_translation_confirm';
   }
 
   /**
@@ -93,9 +93,9 @@ class ReportReferenceRevisionRevertTranslationForm extends ReportReferenceRevisi
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $yabrm_thesis_revision = NULL, $langcode = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state, $yabrm_report_revision = NULL, $langcode = NULL) {
     $this->langcode = $langcode;
-    $form = parent::buildForm($form, $form_state, $yabrm_thesis_revision);
+    $form = parent::buildForm($form, $form_state, $yabrm_report_revision);
 
     $form['revert_untranslated_fields'] = [
       '#type' => 'checkbox',

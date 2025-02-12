@@ -5,7 +5,7 @@ namespace Drupal\yabrm\Form;
 use Drupal\Core\Entity\ContentEntityDeleteForm;
 
 /**
- * Provides a form for deleting Thesis reference entities.
+ * Provides a form for deleting Report reference entities.
  *
  * @ingroup yabrm
  */

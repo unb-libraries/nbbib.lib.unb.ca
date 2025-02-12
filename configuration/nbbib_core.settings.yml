@@ -28,5 +28,9 @@ nbbib_types:
     entity: yabrm_conference
     singular: 'Conference Proceeding'
     plural: 'Conference Proceedings'
+  -
+    entity: yabrm_report
+    singular: 'Report'
+    plural: 'Reports'
 view_headers:
   nbbib_essays: 'Enter custom view header text here.'

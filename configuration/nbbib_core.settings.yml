@@ -14,23 +14,23 @@ nbbib_types:
     plural: Books
   -
     entity: yabrm_book_section
-    singular: 'Book Section'
-    plural: 'Book Sections'
+    singular: Book Section
+    plural: Book Sections
   -
     entity: yabrm_journal_article
-    singular: 'Journal Article'
-    plural: 'Journal Articles'
+    singular: Journal Article
+    plural: Journal Articles
   -
     entity: yabrm_thesis
     singular: Thesis
     plural: Theses
   -
     entity: yabrm_conference
-    singular: 'Conference Proceeding'
-    plural: 'Conference Proceedings'
+    singular: Conference Proceeding
+    plural: Conference Proceedings
   -
     entity: yabrm_report
-    singular: 'Report'
-    plural: 'Reports'
+    singular: Report
+    plural: Reports
 view_headers:
-  nbbib_essays: 'Enter custom view header text here.'
+  nbbib_essays: Enter custom view header text here.

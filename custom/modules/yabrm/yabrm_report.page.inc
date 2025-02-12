@@ -160,6 +160,8 @@ function template_preprocess_yabrm_report(array &$variables) {
   $title = $variables['content']['title']['0']['#context']['value'] ?? NULL;
   $publisher = $variables['content']['publisher']['0']['#context']['value']
     ?? NULL;
+  $url = $variables['content']['url']['0']['#context']['value']
+    ?? NULL;
 
   // Specific to Report.
   $report_type = $variables['content']['report_type']['0']['#context']['value']
@@ -236,13 +238,13 @@ function template_preprocess_yabrm_report(array &$variables) {
   if ($publication_year) {
     $pub_wad .= trim($publication_year);
   }
-
+  
   if ($publisher) {
     $pub_wad .= '. ' . trim($publisher);
   }
-
-  if ($report_type) {
-    $pub_wad .= '. ' . trim($report_type);
+  
+  if ($url) {
+    $pub_wad .= trim($url);
   }
 
   // Only add period if last character is not punctuation.

@@ -267,6 +267,11 @@ function template_preprocess_yabrm_conference(array &$variables) {
     $pub_wad .= ', ' . trim($publication_year);
   }
 
+  // Only add period if last character is not punctuation.
+  if (!preg_match("/[.!?,;:]$/", $pub_wad)) {
+    $pub_wad .= '.';
+  }
+  
   $pub_wad = substr($pub_wad, -1) == '.' ? $pub_wad : "$pub_wad.";
   $variables['content']['pub_wad'] = $pub_wad . ' <em class="cite-type">[ conference proceeding ]</em>';
 }

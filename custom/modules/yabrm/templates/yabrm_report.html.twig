@@ -56,6 +56,12 @@
                 <div class="col-sm-6">{{ content.series|field_value }}</div>
               </div>
             {% endif %}
+            {% if content.report_number|field_value %}
+              <div id="ref-series" class="row">
+                <div class="col-sm-6">Report Number</div>
+                <div class="col-sm-6">{{ content.report_number|field_value }}</div>
+              </div>
+            {% endif %}
             {% if content.institution|field_value %}
               <div id="ref-series" class="row">
                 <div class="col-sm-6">Institution</div>

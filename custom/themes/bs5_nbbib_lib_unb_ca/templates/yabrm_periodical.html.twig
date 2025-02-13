@@ -1,21 +1,21 @@
 {#
 /**
- * @file yabrm_report.html.twig
- * Default theme implementation to present Report reference data.
+ * @file yabrm_periodical.html.twig
+ * Default theme implementation to present Periodical reference data.
  *
- * This template is used when viewing Report reference pages.
+ * This template is used when viewing Periodical reference pages.
  *
  *
  * Available variables:
  * - content: A list of content items. Use 'content' to print all content, or
  * - attributes: HTML attributes for the container element.
  *
- * @see template_preprocess_yabrm_report()
+ * @see template_preprocess_yabrm_periodical()
  *
  * @ingroup themeable
  */
 #}
-<div{{ attributes.addClass('yabrm-reference', 'yabrm-report', 'contrib-layout') }}>
+<div{{ attributes.addClass('yabrm-reference', 'yabrm-periodical', 'contrib-layout') }}>
   {% if content %}
     <div class="container">
       <div class="row">
@@ -42,42 +42,18 @@
           <div id="ref-details" class="container">
             <div id="ref-type" class="row">
               <div class="col-sm-6">Item Type</div>
-              <div class="col-sm-6">Report</div>
+              <div class="col-sm-6">Periodical</div>
             </div>
-            {% if content.report_type|field_value %}
-              <div id="ref-series" class="row">
-                <div class="col-sm-6">Report Type</div>
-                <div class="col-sm-6">{{ content.report_type|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.series|field_value %}
-              <div id="ref-series" class="row">
-                <div class="col-sm-6">Series</div>
-                <div class="col-sm-6">{{ content.series|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.report_number|field_value %}
-              <div id="ref-series" class="row">
-                <div class="col-sm-6">Report Number</div>
-                <div class="col-sm-6">{{ content.report_number|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.institution|field_value %}
-              <div id="ref-series" class="row">
-                <div class="col-sm-6">Institution</div>
-                <div class="col-sm-6">{{ content.institution|field_value }}</div>
-              </div>
-            {% endif %}
             {% if content.publisher|field_value %}
               <div id="ref-publisher" class="row">
                 <div class="col-sm-6">Publisher</div>
                 <div class="col-sm-6">{{ content.publisher|field_value }}</div>
               </div>
             {% endif %}
-            <div id="ref-pub-date" class="row">
-              <div class="col-sm-6">Publication Date</div>
-              {% if content.publication_year|field_value %}
-                <div class="col-sm-6">{{ content.publication_year|field_value }}</div>
+            <div id="ref-first-year" class="row">
+              <div class="col-sm-6">Year of First Issue</div>
+              {% if content.first_year|field_value %}
+                <div class="col-sm-6">{{ content.first_year|field_value }}</div>
               {% else %}
                 <div class="col-sm-6">n.d.</div>
               {% endif %}
@@ -104,10 +80,22 @@
                 </div>
               </div>
             {% endif %}
-            {% if content.isbn|field_value %}
-              <div id="ref-isbn-issn" class="row">
-                <div class="col-sm-6">ISBN/ISSN</div>
-                <div class="col-sm-6">{{ content.isbn|field_value }}</div>
+            {% if content.issn|field_value %}
+              <div id="ref-issn" class="row">
+                <div class="col-sm-6">ISSN</div>
+                <div class="col-sm-6">{{ content.issn|field_value }}</div>
+              </div>
+            {% endif %}
+            {% if content.organization|field_value %}
+              <div id="ref-organization" class="row">
+                <div class="col-sm-6">Organization</div>
+                <div class="col-sm-6">{{ content.organization|field_value }}</div>
+              </div>
+            {% endif %}
+            {% if content.place|field_value %}
+              <div id="ref-place" class="row">
+                <div class="col-sm-6">Place of Publication</div>
+                <div class="col-sm-6">{{ content.place|field_value }}</div>
               </div>
             {% endif %}
           </div>
@@ -151,7 +139,6 @@
           {% else %}
             <div id="ref-description"></div>
           {% endif %}
-
           {% if content.notes|field_value %}
             <div id="ref-notes">
               <b>Notes</b>
@@ -181,7 +168,6 @@
                   </a>
                 {%- endfor -%}
               </span>
-
             </div>
           {%- endif -%}
 
@@ -195,13 +181,13 @@
               </ul>
 
             </div>
-          {%- endif -%}
+          {%- endif -%}        
         </div>
 
         <div id="ref-picture" class="col-sm-4">
           <div id="ref-cite">
-            <a data-dialog-options="{&quot;width&quot;:500}" data-dialog-type="modal" href="/cite/report/{{ content.id }}" id="cite-open" class="use-ajax btn btn-secondary btn-sm fw-normal lh-lg float-end">
-              Cite this report
+            <a data-dialog-options="{&quot;width&quot;:500}" data-dialog-type="modal" href="/cite/periodical/{{ content.id }}" id="cite-open" class="use-ajax btn btn-secondary btn-sm fw-normal lh-lg float-end">
+              Cite this periodical
             </a>
           </div>
           {% if content.cover_image|field_value %}

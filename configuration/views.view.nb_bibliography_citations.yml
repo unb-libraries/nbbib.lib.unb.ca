@@ -989,7 +989,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ bibliographic_citation|replace({ ''[ conference ]'': ""})|raw }}'
+            text: '{{ bibliographic_citation|replace({ ''[ report ]'': ""})|raw }}'
             make_link: false
             path: ''
             absolute: false
@@ -3990,7 +3990,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ bibliographic_citation|replace({ ''[ conference ]'': ""})|raw }}'
+            text: '{{ bibliographic_citation|replace({ ''[ conference proceeding ]'': ""})|raw }}'
             make_link: false
             path: ''
             absolute: false

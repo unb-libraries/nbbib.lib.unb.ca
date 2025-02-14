@@ -241,6 +241,33 @@ entity.yabrm_report.delete_form:
   title: Delete
   weight: 11
 
+# Periodical reference routing definition
+yabrm_periodical.settings_tab:
+  route_name: yabrm_periodical.settings
+  title: 'Settings'
+  base_route: yabrm_periodical.settings
+
+entity.yabrm_periodical.canonical:
+  route_name: entity.yabrm_periodical.canonical
+  base_route: entity.yabrm_periodical.canonical
+  title: 'View'
+
+entity.yabrm_periodical.edit_form:
+  route_name: entity.yabrm_periodical.edit_form
+  base_route: entity.yabrm_periodical.canonical
+  title: 'Edit'
+
+entity.yabrm_periodical.version_history:
+  route_name: entity.yabrm_periodical.version_history
+  base_route: entity.yabrm_periodical.canonical
+  title: 'Revisions'
+
+entity.yabrm_periodical.delete_form:
+  route_name:  entity.yabrm_periodical.delete_form
+  base_route:  entity.yabrm_periodical.canonical
+  title: Delete
+  weight: 11
+
 # Contrib Archival routing definition
 yabrm_contrib_archival.settings_tab:
   route_name: yabrm_contrib_archival.settings

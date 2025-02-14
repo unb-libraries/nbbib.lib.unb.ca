@@ -125,6 +125,20 @@ yabrm_report.admin.structure.settings:
   route_name: yabrm_report.settings
   parent: system.admin_structure
 
+# Periodical reference menu items definition
+entity.yabrm_periodical.collection:
+  title: 'Periodical reference list'
+  route_name: entity.yabrm_periodical.collection
+  description: 'List Periodical reference entities'
+  parent: system.admin_structure
+  weight: 100
+
+yabrm_periodical.admin.structure.settings:
+  title: 'Periodical reference settings'
+  description: 'Configure Periodical reference entities'
+  route_name: yabrm_periodical.settings
+  parent: system.admin_structure
+
 # Contrib Archival menu items definition
 entity.yabrm_contrib_archival.collection:
   title: 'Contrib Archival list'

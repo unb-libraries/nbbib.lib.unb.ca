@@ -43,6 +43,11 @@ entity.yabrm_report.add_form:
   title: 'Add Report reference'
   appears_on:
     - entity.yabrm_report.collection
+entity.yabrm_periodical.add_form:
+  route_name: entity.yabrm_periodical.add_form
+  title: 'Add Periodical reference'
+  appears_on:
+    - entity.yabrm_periodical.collection
 entity.yabrm_contrib_archival.add_form:
   route_name: entity.yabrm_contrib_archival.add_form
   title: 'Add Contrib Archival'

@@ -26,6 +26,14 @@ nbbib_types:
     enttity: yabrm_conference
     label: Conference Proceeding
     plural: Conference Proceedings
+  -
+    entity: yabrm_report
+    singular: Report
+    plural: Reports
+  -
+    entity: yabrm_periodical
+    singular: Periodical
+    plural: Periodicals
 view_headers:
   nbbib_essays:
     'Enter custom view header text here.'

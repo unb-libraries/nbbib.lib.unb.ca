@@ -200,6 +200,12 @@ nbbib_core.editor.new-report:
   url: internal:/yabrm/yabrm_report/add
   parent: nbbib_core.editor
   weight: 62
+nbbib_core.editor.new-periodical:
+  title: 'Add New Periodical'
+  description: 'Add new periodical reference.'
+  url: internal:/yabrm/yabrm_periodical/add
+  parent: nbbib_core.editor
+  weight: 63
 nbbib_core.editor.new-essay:
   title: 'Add New Essay'
   description: 'Add a new Essay.'

@@ -15,40 +15,40 @@ use Drupal\user\EntityOwnerInterface;
 interface PeriodicalReferenceInterface extends ContentEntityInterface, RevisionLogInterface, EntityChangedInterface, EntityOwnerInterface {
 
   /**
-   * Gets the number of pages in the book.
+   * Gets the number of pages in the periodical.
    *
    * @return string
-   *   The number of pages in the book.
+   *   The number of pages in the periodical.
    */
   public function getOrganization();
 
   /**
-   * Sets the number of pages in the book.
+   * Sets the number of pages in the periodical.
    *
    * @param string $organization
-   *   The number of pages in the book.
+   *   The number of pages in the periodical.
    *
-   * @return \Drupal\yabrm\Entity\BookReferenceInterface
-   *   The called Book Reference entity.
+   * @return \Drupal\yabrm\Entity\PeriodicalReferenceInterface
+   *   The called Periodical Reference entity.
    */
   public function setOrganization($organization);
 
   /**
-   * Gets the place of the book.
+   * Gets the place of the periodical.
    *
    * @return string
-   *   The place of the book.
+   *   The place of the periodical.
    */
   public function getPlace();
 
   /**
-   * Sets the place of the book.
+   * Sets the place of the periodical.
    *
    * @param string $place
-   *   The place of the book.
+   *   The place of the periodical.
    *
-   * @return \Drupal\yabrm\Entity\BookReferenceInterface
-   *   The called Book Reference entity.
+   * @return \Drupal\yabrm\Entity\PeriodicalReferenceInterface
+   *   The called Periodical Reference entity.
    */
   public function setPlace($place);
 

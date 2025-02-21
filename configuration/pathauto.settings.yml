@@ -7,6 +7,7 @@ enabled_entity_types:
   - yabrm_journal_article
   - yabrm_conference
   - yabrm_contributor
+  - yabrm_periodical
 punctuation:
   double_quotes: 0
   quotes: 0

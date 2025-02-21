@@ -1,0 +1,14 @@
+uuid: 363dba5a-8814-49aa-951b-1c92dd9080fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - yabrm
+id: periodical_pattern
+label: 'Periodical Pattern'
+type: 'canonical_entities:yabrm_periodical'
+pattern: 'periodical/[yabrm_periodical:title]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

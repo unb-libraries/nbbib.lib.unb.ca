@@ -272,6 +272,37 @@ delete all report reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Report reference revisions</em> and <em>delete rights</em> for report reference entities in question or <em>administer report reference entities</em>.'
 
+add periodical reference entities:
+  title: 'Create new Periodical reference entities'
+
+administer periodical reference entities:
+  title: 'Administer Periodical reference entities'
+  description: 'Allow to access the administration form to configure Periodical reference entities.'
+  restrict access: true
+
+delete periodical reference entities:
+  title: 'Delete Periodical reference entities'
+
+edit periodical reference entities:
+  title: 'Edit Periodical reference entities'
+
+view published periodical reference entities:
+  title: 'View published Periodical reference entities'
+
+view unpublished periodical reference entities:
+  title: 'View unpublished Periodical reference entities'
+
+view all periodical reference revisions:
+  title: 'View all Periodical reference revisions'
+
+revert all periodical reference revisions:
+  title: 'Revert all Periodical reference revisions'
+  description: 'Role requires permission <em>view Periodical reference revisions</em> and <em>edit rights</em> for periodical reference entities in question or <em>administer periodical reference entities</em>.'
+
+delete all periodical reference revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Periodical reference revisions</em> and <em>delete rights</em> for periodical reference entities in question or <em>administer periodical reference entities</em>.'
+
 add contrib archival entities:
   title: 'Create new Contrib Archival entities'
 

@@ -133,7 +133,7 @@ class PeriodicalReference extends BibliographicReference implements PeriodicalRe
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['organization'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Number of Pages'))
+      ->setLabel(t('Organization'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,

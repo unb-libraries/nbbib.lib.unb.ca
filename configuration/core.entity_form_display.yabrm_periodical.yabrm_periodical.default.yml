@@ -8,6 +8,7 @@ dependencies:
     - image
     - link
     - paragraphs
+    - select2
     - text
     - yabrm
 id: yabrm_periodical.yabrm_periodical.default
@@ -25,14 +26,14 @@ content:
     third_party_settings: {  }
     text_processing: 0
   archive:
-    type: entity_reference_autocomplete
+    type: select2_entity_reference
     weight: 18
     region: content
     settings:
+      width: 100%
+      autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-      size: 10
-      placeholder: ''
     third_party_settings: {  }
   call_number:
     type: string_textfield
@@ -43,14 +44,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   collections:
-    type: entity_reference_autocomplete
+    type: select2_entity_reference
     weight: 14
     region: content
     settings:
+      width: 100%
+      autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   contributors:
     type: paragraphs
@@ -102,12 +103,11 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  langcode:
-    type: language_select
+  language:
+    type: options_buttons
     weight: 11
     region: content
-    settings:
-      include_locked: true
+    settings: {  }
     third_party_settings: {  }
   library_catalog:
     type: string_textfield
@@ -228,14 +228,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   topics:
-    type: entity_reference_autocomplete
+    type: select2_entity_reference
     weight: 12
     region: content
     settings:
+      width: 100%
+      autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-      size: 10
-      placeholder: ''
     third_party_settings: {  }
   url:
     type: link_default
@@ -248,6 +248,6 @@ content:
 hidden:
   archive_location: true
   external_key_ref: true
-  language: true
+  langcode: true
   path: true
   user_id: true

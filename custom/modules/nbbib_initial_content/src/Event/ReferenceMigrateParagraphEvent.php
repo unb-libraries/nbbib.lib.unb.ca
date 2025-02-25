@@ -81,7 +81,6 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
 
       // Nbbib and update reference.
       $item_type = $row->getSourceProperty('item_type');
-      $this->tdump('item type', $item_type);
       $entity_type = self::getZoteroTypeMappings()[$item_type];
 
       $reference = $this->typeManager

@@ -164,6 +164,8 @@ function template_preprocess_yabrm_periodical(array &$variables) {
   // Specific to Periodical.
   $periodical_type = $variables['content']['periodical_type']['0']['#context']['value']
     ?? NULL;
+  $place = $variables['content']['place']['0']['#context']['value']
+    ?? NULL;
 
   $title_wad = '';
   $contribs_wad = '';
@@ -233,16 +235,14 @@ function template_preprocess_yabrm_periodical(array &$variables) {
   $variables['content']['contribs_wad'] = $contribs_wad;
 
   // Publication.
-  if ($publication_year) {
-    $pub_wad .= trim($publication_year);
-  }
 
   if ($publisher) {
-    $pub_wad .= '. ' . trim($publisher);
+    $pub_wad .=  ' ' . trim($publisher);
   }
 
-  if ($periodical_type) {
-    $pub_wad .= '. ' . trim($periodical_type);
+  if ($place) {
+    $pub_wad = $publisher ? $pub_wad .= ', ' : $pub_wad .= ' '; 
+    $pub_wad .= trim($place);
   }
 
   // Only add period if last character is not punctuation.

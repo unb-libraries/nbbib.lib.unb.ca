@@ -57,10 +57,11 @@ content:
     weight: 0
     region: content
   contributors:
-    type: entity_reference_revisions_label
+    type: entity_reference_revisions_entity_view
     label: above
     settings:
-      link: true
+      view_mode: default
+      link: '1'
     third_party_settings: {  }
     weight: -1
     region: content

@@ -1218,7 +1218,7 @@ display:
     display_plugin: page
     position: 10
     display_options:
-      title: 'Cite this report'
+      title: 'Cite this periodical'
       fields:
         bibliographic_citation:
           id: bibliographic_citation
@@ -1364,7 +1364,7 @@ display:
           value:
             min: ''
             max: ''
-            value: Report
+            value: Periodical
           group: 1
           exposed: false
           expose:
@@ -1446,7 +1446,7 @@ display:
           tokenize: false
       exposed_block: false
       display_extenders: {  }
-      path: cite/report/%id
+      path: cite/periodical/%id
     cache_metadata:
       max-age: -1
       contexts:

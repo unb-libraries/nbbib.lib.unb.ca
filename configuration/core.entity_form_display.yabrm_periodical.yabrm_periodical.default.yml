@@ -18,7 +18,7 @@ mode: default
 content:
   abstract_note:
     type: text_textarea
-    weight: 22
+    weight: 23
     region: content
     settings:
       rows: 5
@@ -27,7 +27,7 @@ content:
     text_processing: 0
   archive:
     type: select2_entity_reference
-    weight: 18
+    weight: 19
     region: content
     settings:
       width: 100%
@@ -37,7 +37,7 @@ content:
     third_party_settings: {  }
   call_number:
     type: string_textfield
-    weight: 16
+    weight: 17
     region: content
     settings:
       size: 60
@@ -45,7 +45,7 @@ content:
     third_party_settings: {  }
   collections:
     type: select2_entity_reference
-    weight: 14
+    weight: 15
     region: content
     settings:
       width: 100%
@@ -81,7 +81,7 @@ content:
     third_party_settings: {  }
   extra:
     type: text_textarea
-    weight: 24
+    weight: 25
     region: content
     settings:
       rows: 5
@@ -90,7 +90,7 @@ content:
     text_processing: 0
   first_year:
     type: number
-    weight: 6
+    weight: 7
     region: content
     settings:
       placeholder: ''
@@ -105,13 +105,13 @@ content:
     third_party_settings: {  }
   language:
     type: options_buttons
-    weight: 11
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   library_catalog:
     type: string_textfield
-    weight: 17
+    weight: 18
     region: content
     settings:
       size: 60
@@ -119,14 +119,14 @@ content:
     third_party_settings: {  }
   nb_imprint:
     type: boolean_checkbox
-    weight: 15
+    weight: 16
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   notes:
     type: text_textarea
-    weight: 23
+    weight: 24
     region: content
     settings:
       rows: 5
@@ -135,7 +135,7 @@ content:
     text_processing: 0
   notes_private:
     type: text_textarea
-    weight: 25
+    weight: 26
     region: content
     settings:
       rows: 5
@@ -143,6 +143,14 @@ content:
     third_party_settings: {  }
     text_processing: 0
   organization:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  periodical_type:
     type: string_textfield
     weight: 5
     region: content
@@ -152,7 +160,7 @@ content:
     third_party_settings: {  }
   physical_description:
     type: text_textarea
-    weight: 19
+    weight: 20
     region: content
     settings:
       rows: 5
@@ -161,7 +169,7 @@ content:
     text_processing: 0
   place:
     type: string_textfield
-    weight: 7
+    weight: 8
     region: content
     settings:
       size: 60
@@ -169,21 +177,21 @@ content:
     third_party_settings: {  }
   publication_day:
     type: number
-    weight: 8
+    weight: 9
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   publication_month:
     type: number
-    weight: 9
+    weight: 10
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   publication_year:
     type: number
-    weight: 10
+    weight: 11
     region: content
     settings:
       placeholder: ''
@@ -198,7 +206,7 @@ content:
     third_party_settings: {  }
   rights:
     type: string_textfield
-    weight: 21
+    weight: 22
     region: content
     settings:
       size: 60
@@ -206,7 +214,7 @@ content:
     third_party_settings: {  }
   short_title:
     type: string_textfield
-    weight: 13
+    weight: 14
     region: content
     settings:
       size: 60
@@ -214,7 +222,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 26
+    weight: 27
     region: content
     settings:
       display_label: true
@@ -229,7 +237,7 @@ content:
     third_party_settings: {  }
   topics:
     type: select2_entity_reference
-    weight: 12
+    weight: 13
     region: content
     settings:
       width: 100%
@@ -239,7 +247,7 @@ content:
     third_party_settings: {  }
   url:
     type: link_default
-    weight: 20
+    weight: 21
     region: content
     settings:
       placeholder_url: ''

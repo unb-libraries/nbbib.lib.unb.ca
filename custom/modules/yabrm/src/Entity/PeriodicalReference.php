@@ -99,6 +99,21 @@ class PeriodicalReference extends BibliographicReference implements PeriodicalRe
   /**
    * {@inheritdoc}
    */
+  public function getPeriodicalType() {
+    return $this->get('periodical_type')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPeriodicalType($periodical_type) {
+    $this->set('issn', $issn);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getIssn() {
     return $this->get('issn')->value;
   }
@@ -173,8 +188,28 @@ class PeriodicalReference extends BibliographicReference implements PeriodicalRe
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['issn'] = BaseFieldDefinition::create('string')
+    $fields['periodical_type'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Periodical Type'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 512,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['issn'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('ISSN'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,

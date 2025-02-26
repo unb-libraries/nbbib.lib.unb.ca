@@ -58,13 +58,32 @@ interface PeriodicalReferenceInterface extends ContentEntityInterface, RevisionL
    * @return string
    *   The type of periodical.
    */
-  public function getIssn();
+  public function getPeriodicalType();
 
   /**
    * Sets the type of periodical.
    *
-   * @param string $issn
+   * @param string $periodical_type
    *   The type of periodical.
+   *
+   * @return \Drupal\yabrm\Entity\PeriodicalReferenceInterface
+   *   The called Periodical Reference entity.
+   */
+  public function setPeriodicalType($periodical_type);
+
+  /**
+   * Gets the ISSN.
+   *
+   * @return string
+   *   The ISSN.
+   */
+  public function getIssn();
+
+  /**
+   * Sets the ISSN.
+   *
+   * @param string $issn
+   *   The ISSN.
    *
    * @return \Drupal\yabrm\Entity\PeriodicalReferenceInterface
    *   The called Periodical Reference entity.

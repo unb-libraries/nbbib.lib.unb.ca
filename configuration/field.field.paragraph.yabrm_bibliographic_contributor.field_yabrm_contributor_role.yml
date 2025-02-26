@@ -6,6 +6,8 @@ dependencies:
     - field.storage.paragraph.field_yabrm_contributor_role
     - paragraphs.paragraphs_type.yabrm_bibliographic_contributor
     - taxonomy.vocabulary.yabrm_contributor_roles
+  content:
+    - 'taxonomy_term:yabrm_contributor_roles:40e07c44-561f-43f3-8e45-56aa64e7f5f5'
 id: paragraph.yabrm_bibliographic_contributor.field_yabrm_contributor_role
 field_name: field_yabrm_contributor_role
 entity_type: paragraph
@@ -14,7 +16,9 @@ label: Role
 description: ''
 required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_uuid: 40e07c44-561f-43f3-8e45-56aa64e7f5f5
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'

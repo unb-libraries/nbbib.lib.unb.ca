@@ -183,7 +183,7 @@ function template_preprocess_yabrm_journal_article(array &$variables) {
     if (!preg_match("/[.!?,;:]$/", $title_wad)) {
       $title_wad .= '.';
     }
-    $variables['content']['title_wad'] = "\"$title_wad\"";
+    $variables['content']['title_wad'] = '<em>' . $title_wad . '</em>';
   }
 
   // Contributors.

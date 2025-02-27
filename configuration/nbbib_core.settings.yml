@@ -36,5 +36,9 @@ nbbib_types:
     entity: yabrm_periodical
     singular: Periodical
     plural: Periodicals
+  -
+    entity: yabrm_film
+    singular: Film
+    plural: Films
 view_headers:
   nbbib_essays: 'Enter custom view header text here.'

@@ -139,6 +139,20 @@ yabrm_periodical.admin.structure.settings:
   route_name: yabrm_periodical.settings
   parent: system.admin_structure
 
+# Film reference menu items definition
+entity.yabrm_film.collection:
+  title: 'Film reference list'
+  route_name: entity.yabrm_film.collection
+  description: 'List Film reference entities'
+  parent: system.admin_structure
+  weight: 100
+
+yabrm_film.admin.structure.settings:
+  title: 'Film reference settings'
+  description: 'Configure Film reference entities'
+  route_name: yabrm_film.settings
+  parent: system.admin_structure
+
 # Contrib Archival menu items definition
 entity.yabrm_contrib_archival.collection:
   title: 'Contrib Archival list'

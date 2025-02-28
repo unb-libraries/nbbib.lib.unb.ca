@@ -1,0 +1,14 @@
+uuid: 88722d24-43d5-4f0d-b7a1-093b20e70e87
+langcode: en
+status: true
+dependencies:
+  module:
+    - yabrm
+id: film_pattern
+label: 'Film Pattern'
+type: 'canonical_entities:yabrm_film'
+pattern: 'films/[yabrm_film:title]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

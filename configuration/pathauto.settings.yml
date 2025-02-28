@@ -3,6 +3,7 @@ enabled_entity_types:
   - yabrm_thesis
   - yabrm_report
   - yabrm_collection
+  - yabrm_film
   - yabrm_book
   - yabrm_journal_article
   - yabrm_conference

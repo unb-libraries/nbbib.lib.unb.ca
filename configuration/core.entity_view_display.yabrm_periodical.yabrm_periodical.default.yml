@@ -67,7 +67,7 @@ content:
     region: content
   cover_image:
     type: image
-    label: above
+    label: visually_hidden
     settings:
       image_link: ''
       image_style: ''

@@ -303,6 +303,37 @@ delete all periodical reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Periodical reference revisions</em> and <em>delete rights</em> for periodical reference entities in question or <em>administer periodical reference entities</em>.'
 
+add film reference entities:
+  title: 'Create new Film reference entities'
+
+administer film reference entities:
+  title: 'Administer Film reference entities'
+  description: 'Allow to access the administration form to configure Film reference entities.'
+  restrict access: true
+
+delete film reference entities:
+  title: 'Delete Film reference entities'
+
+edit film reference entities:
+  title: 'Edit Film reference entities'
+
+view published film reference entities:
+  title: 'View published Film reference entities'
+
+view unpublished film reference entities:
+  title: 'View unpublished Film reference entities'
+
+view all film reference revisions:
+  title: 'View all Film reference revisions'
+
+revert all film reference revisions:
+  title: 'Revert all Film reference revisions'
+  description: 'Role requires permission <em>view Film reference revisions</em> and <em>edit rights</em> for film reference entities in question or <em>administer film reference entities</em>.'
+
+delete all film reference revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Film reference revisions</em> and <em>delete rights</em> for film reference entities in question or <em>administer film reference entities</em>.'
+
 add contrib archival entities:
   title: 'Create new Contrib Archival entities'
 

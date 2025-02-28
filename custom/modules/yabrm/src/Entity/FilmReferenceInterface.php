@@ -53,6 +53,25 @@ interface FilmReferenceInterface extends ContentEntityInterface, RevisionLogInte
   public function setReleased($released);
 
   /**
+   * Gets the genre of the film.
+   *
+   * @return string
+   *   The genre of the film.
+   */
+  public function getGenre();
+
+  /**
+   * Sets the genre of the film.
+   *
+   * @param string $genre
+   *   The genre of the film.
+   *
+   * @return \Drupal\yabrm\Entity\FilmReferenceInterface
+   *   The called Film Reference entity.
+   */
+  public function setGenre($genre);
+
+  /**
    * Gets the series of the film.
    *
    * @return string

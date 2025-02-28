@@ -164,6 +164,14 @@ content:
     third_party_settings: {  }
     weight: -4
     region: content
+  periodical_type:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
   physical_description:
     type: solr_highlighted_text_default
     label: above

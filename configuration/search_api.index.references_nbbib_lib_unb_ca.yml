@@ -128,6 +128,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  abstract_note_8:
+    label: 'Abstract Note'
+    datasource_id: 'entity:yabrm_film'
+    property_path: abstract_note
+    type: text
+    dependencies:
+      module:
+        - yabrm
   archive:
     label: Archive
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -189,6 +197,14 @@ field_settings:
     datasource_id: 'entity:yabrm_periodical'
     property_path: archive
     type: text
+    dependencies:
+      module:
+        - yabrm
+  archive_8:
+    label: Archive(s)
+    datasource_id: 'entity:yabrm_film'
+    property_path: archive
+    type: integer
     dependencies:
       module:
         - yabrm
@@ -262,6 +278,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  call_number_6:
+    label: 'Call Number'
+    datasource_id: 'entity:yabrm_film'
+    property_path: call_number
+    type: string
+    dependencies:
+      module:
+        - yabrm
   changed:
     label: 'Last Updated'
     property_path: changed
@@ -331,6 +355,14 @@ field_settings:
     datasource_id: 'entity:yabrm_periodical'
     property_path: collections
     type: text
+    dependencies:
+      module:
+        - yabrm
+  collections_9:
+    label: Collection(s)
+    datasource_id: 'entity:yabrm_film'
+    property_path: collections
+    type: integer
     dependencies:
       module:
         - yabrm
@@ -410,6 +442,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  contributors_8:
+    label: Contributor(s)
+    datasource_id: 'entity:yabrm_film'
+    property_path: contributors
+    type: integer
+    dependencies:
+      module:
+        - yabrm
   date_display:
     label: 'Reference Date'
     property_path: date_display
@@ -418,6 +458,14 @@ field_settings:
     label: 'Sortable Date'
     property_path: date_sort
     type: integer
+  distributor:
+    label: Distributor
+    datasource_id: 'entity:yabrm_film'
+    property_path: distributor
+    type: text
+    dependencies:
+      module:
+        - yabrm
   doi:
     label: DOI
     datasource_id: 'entity:yabrm_journal_article'
@@ -442,10 +490,26 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  film_format:
+    label: 'Film Format'
+    datasource_id: 'entity:yabrm_film'
+    property_path: film_format
+    type: text
+    dependencies:
+      module:
+        - yabrm
   first_year:
     label: 'First Publication Year'
     datasource_id: 'entity:yabrm_periodical'
     property_path: first_year
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  genre:
+    label: Genre
+    datasource_id: 'entity:yabrm_film'
+    property_path: genre
     type: text
     dependencies:
       module:
@@ -521,6 +585,25 @@ field_settings:
   id_15:
     label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
     datasource_id: 'entity:yabrm_periodical'
+    property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
+  id_16:
+    label: 'Collection(s) » Bibliographic Collection » ID'
+    datasource_id: 'entity:yabrm_film'
+    property_path: 'collections:entity:id'
+    type: integer
+    dependencies:
+      module:
+        - yabrm
+  id_17:
+    label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
+    datasource_id: 'entity:yabrm_film'
     property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
     type: integer
     dependencies:
@@ -710,6 +793,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  language_8:
+    label: Language(s)
+    datasource_id: 'entity:yabrm_film'
+    property_path: language
+    type: string
+    dependencies:
+      module:
+        - yabrm
   languages:
     label: 'General Languages'
     property_path: languages
@@ -775,6 +866,14 @@ field_settings:
     datasource_id: 'entity:yabrm_periodical'
     property_path: library_catalog
     type: text
+    dependencies:
+      module:
+        - yabrm
+  library_catalog_8:
+    label: 'Library Catalog'
+    datasource_id: 'entity:yabrm_film'
+    property_path: library_catalog
+    type: string
     dependencies:
       module:
         - yabrm
@@ -862,6 +961,18 @@ field_settings:
         - paragraphs
         - taxonomy
         - yabrm
+  name_7:
+    label: 'Contributor(s) » Paragraph » Role » Taxonomy term » Name'
+    datasource_id: 'entity:yabrm_film'
+    property_path: 'contributors:entity:field_yabrm_contributor_role:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_role
+      module:
+        - paragraphs
+        - taxonomy
+        - yabrm
   num_pages:
     label: 'Number of Pages'
     datasource_id: 'entity:yabrm_thesis'
@@ -922,6 +1033,14 @@ field_settings:
     label: Pages
     datasource_id: 'entity:yabrm_journal_article'
     property_path: pages
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  performers:
+    label: Performers
+    datasource_id: 'entity:yabrm_film'
+    property_path: performers
     type: text
     dependencies:
       module:
@@ -1114,6 +1233,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  publication_month_8:
+    label: 'Publication Month'
+    datasource_id: 'entity:yabrm_film'
+    property_path: publication_month
+    type: integer
+    dependencies:
+      module:
+        - yabrm
   publication_title:
     label: 'Publication Title'
     datasource_id: 'entity:yabrm_book_section'
@@ -1143,6 +1270,14 @@ field_settings:
     datasource_id: 'entity:yabrm_book'
     property_path: publication_year
     type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_year_10:
+    label: 'Publication Year'
+    datasource_id: 'entity:yabrm_film'
+    property_path: publication_year
+    type: integer
     dependencies:
       module:
         - yabrm
@@ -1195,6 +1330,14 @@ field_settings:
     datasource_id: 'entity:yabrm_periodical'
     property_path: publication_year
     type: text
+    dependencies:
+      module:
+        - yabrm
+  publication_year_9:
+    label: 'Publication Year'
+    datasource_id: 'entity:yabrm_film'
+    property_path: publication_year
+    type: integer
     dependencies:
       module:
         - yabrm
@@ -1281,6 +1424,14 @@ field_settings:
   rights_7:
     label: Rights
     datasource_id: 'entity:yabrm_periodical'
+    property_path: rights
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  rights_8:
+    label: Rights
+    datasource_id: 'entity:yabrm_film'
     property_path: rights
     type: text
     dependencies:
@@ -1414,6 +1565,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  short_title_8:
+    label: 'Short Title'
+    datasource_id: 'entity:yabrm_film'
+    property_path: short_title
+    type: text
+    dependencies:
+      module:
+        - yabrm
   thesis_type:
     label: 'Thesis Type'
     datasource_id: 'entity:yabrm_thesis'
@@ -1481,6 +1640,14 @@ field_settings:
   title_7:
     label: Title
     datasource_id: 'entity:yabrm_periodical'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - yabrm
+  title_8:
+    label: Title
+    datasource_id: 'entity:yabrm_film'
     property_path: title
     type: text
     dependencies:
@@ -1564,6 +1731,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  url_8:
+    label: URL
+    datasource_id: 'entity:yabrm_film'
+    property_path: url
+    type: text
+    dependencies:
+      module:
+        - yabrm
   volume:
     label: Volume
     datasource_id: 'entity:yabrm_book_section'
@@ -1593,6 +1768,7 @@ datasource_settings:
   'entity:yabrm_book': {  }
   'entity:yabrm_book_section': {  }
   'entity:yabrm_conference': {  }
+  'entity:yabrm_film': {  }
   'entity:yabrm_journal_article': {  }
   'entity:yabrm_periodical': {  }
   'entity:yabrm_report': {  }

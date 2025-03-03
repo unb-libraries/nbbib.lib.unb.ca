@@ -390,7 +390,9 @@ function nbbib_core_form_views_exposed_form_alter(&$form, $form_state, $form_id)
         'Journal Article' => 'Journal Article', 
         'Thesis' => 'Thesis',
         'Conference Proceeding' => 'Conference Proceeding',
+        'Report' => 'Report',
         'Periodical' => 'Periodical',
+        'Film' => 'Film',
       ],
       '#default_value' => '',
     ];

@@ -8,6 +8,9 @@ if ($timestamp) {
   rm_entities('yabrm_book_section', $timestamp);
   rm_entities('yabrm_journal_article', $timestamp);
   rm_entities('yabrm_thesis', $timestamp);
+  rm_entities('yabrm_conference', $timestamp);
+  rm_entities('yabrm_report', $timestamp);
+  rm_entities('yabrm_film', $timestamp);
   rm_entities('yabrm_collection', $timestamp);
   rm_entities('yabrm_contributor', $timestamp);
   rm_entities('paragraph', $timestamp);

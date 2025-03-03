@@ -85,6 +85,7 @@ trait NbBibMigrationTrait {
       'nbbib_16_business_unb_4_theses' => 'Business and Industry',
       'nbbib_16_business_unb_5_conference_papers' => 'Business and Industry',
       'nbbib_16_business_unb_6_reports' => 'Business and Industry',
+      'nbbib_16_business_unb_7_films' => 'Business and Industry',
     ];
   }
 
@@ -96,12 +97,13 @@ trait NbBibMigrationTrait {
    */
   public function getZoteroTypeMappings() {
     return [
-      'journalArticle' => 'yabrm_journal_article',
-      'conferencePaper' => 'yabrm_conference',
-      'report' => 'yabrm_report',
       'book' => 'yabrm_book',
       'bookSection' => 'yabrm_book_section',
+      'journalArticle' => 'yabrm_journal_article',
       'thesis' => 'yabrm_thesis',
+      'conferencePaper' => 'yabrm_conference',
+      'film' => 'yabrm_film',
+      'report' => 'yabrm_report',
     ];
   }
 

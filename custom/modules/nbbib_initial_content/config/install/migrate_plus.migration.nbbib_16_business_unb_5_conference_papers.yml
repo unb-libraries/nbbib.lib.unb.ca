@@ -10,7 +10,7 @@ source:
   path: '/app/html/modules/custom/nbbib_initial_content/data/csv/nbbib_16_business_unb.csv'
   header_row_count: 1
   ids: [key]
-
+  
   fields:
     0:
       name: key
@@ -147,6 +147,9 @@ source:
     44:
       name: contributor
       label: Contributor
+    45:
+      name: attorney_agent
+      label: Attorney Agent
     46:
       name: book_author
       label: Book Author
@@ -296,7 +299,7 @@ process:
   notes: notes
   notes_private: notes_private
   publisher: publisher
-  name: conference_name
+  conference_name: conference_name
   place: place
   format: conference_type
 

@@ -147,6 +147,9 @@ source:
     44:
       name: contributor
       label: Contributor
+    45:
+      name: attorney_agent
+      label: Attorney Agent
     46:
       name: book_author
       label: Book Author

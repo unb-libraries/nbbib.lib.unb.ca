@@ -90,7 +90,7 @@ function template_preprocess_yabrm_film(array &$variables) {
         $first_name = $c_fname;
 
         // Pass names for different roles.
-        if (strtolower($role) == 'author') {
+        if (strtolower($role) == 'director') {
           $variables['content']['authors'][] = [
             'name' => $c_name,
             'first_name' => $first_name,
@@ -160,6 +160,8 @@ function template_preprocess_yabrm_film(array &$variables) {
   $title = $variables['content']['title']['0']['#context']['value'] ?? NULL;
   $publisher = $variables['content']['publisher']['0']['#context']['value']
     ?? NULL;
+  $url = !empty($variables['content']['url']['0']['#url']) ? $variables['content']['url']['0']['#url']->getUri()
+    : NULL;
 
   // Specific to Film.
   $film_type = $variables['content']['film_type']['0']['#context']['value']
@@ -185,6 +187,7 @@ function template_preprocess_yabrm_film(array &$variables) {
   }
 
   // Contributors.
+  $au_wad = '';
   // If there are authors...
   if (!empty($authors)) {
     // Build formatted list.
@@ -232,7 +235,7 @@ function template_preprocess_yabrm_film(array &$variables) {
     $contribs_wad .= '.';
   }
 
-  $variables['content']['contribs_wad'] = $contribs_wad;
+  $variables['content']['contribs_wad'] = $au_wad ? "Directed by $contribs_wad" : $contribs_wad;
 
   // Publication.
 

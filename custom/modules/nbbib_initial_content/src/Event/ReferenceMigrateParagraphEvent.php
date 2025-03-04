@@ -59,13 +59,16 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       $row = $event->getRow();
       $destination_ids = $event->getDestinationIdValues();
       $reference_id = $destination_ids[0];
+      $item_type = $row->getSourceProperty('item_type');
+      $entity_type = self::getZoteroTypeMappings()[$item_type];
 
       // Contributors.
-      $authors = $this->createContributors($row, 'author');
+      $authors = ($entity_type == 'yabrm_film') ? $this->createContributors($row, 'director') :
+        $this->createContributors($row, 'author');
       $editors = $this->createContributors($row, 'editor');
       $series_editors = $this->createContributors($row, 'series_editor');
       $translators = $this->createContributors($row, 'translator');
-      $src_contributors = $this->createContributors($row, 'contributor');
+      $src_contributors = ($migration_id == 'nbbib_16_business_unb_7_films') ? [] : $this->createContributors($row, 'contributor');
       $book_authors = $this->createContributors($row, 'book_author');
       $reviewed_authors = $this->createContributors($row, 'reviewed_author');
 
@@ -80,9 +83,6 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       );
 
       // Nbbib and update reference.
-      $item_type = $row->getSourceProperty('item_type');
-      $entity_type = self::getZoteroTypeMappings()[$item_type];
-
       $reference = $this->typeManager
         ->getStorage($entity_type)
         ->load($reference_id);
@@ -166,6 +166,7 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
           'nbbib_16_business_unb_4_theses',
           'nbbib_16_business_unb_5_conference_papers',
           'nbbib_16_business_unb_6_reports',
+          'nbbib_16_business_unb_7_films',
         ];
         
         if (in_array($migration_id, $biz_unb)) {
@@ -239,7 +240,8 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
   public function createContributors(Row $row, $contrib_role) {
     // Contributors.
     $contrib_ids = [];
-    $contrib_names = explode(";", $row->getSourceProperty($contrib_role));
+    $contrib_names = ($contrib_role == 'director') ? explode(";", $row->getSourceProperty('author')) :
+      explode(";", $row->getSourceProperty($contrib_role));
 
     // Create contrib.
     foreach ($contrib_names as $contrib_name) {

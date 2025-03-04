@@ -183,7 +183,7 @@ class FilmReference extends BibliographicReference implements FilmReferenceInter
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['released'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Originally Released'))
+      ->setLabel(t('Release Year'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,

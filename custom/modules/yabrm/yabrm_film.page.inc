@@ -240,9 +240,12 @@ function template_preprocess_yabrm_film(array &$variables) {
     $pub_wad .=  ' ' . trim($publisher);
   }
 
-  if ($place) {
-    $pub_wad = $publisher ? $pub_wad .= ', ' : $pub_wad .= ' '; 
-    $pub_wad .= trim($place);
+  if ($publication_year) {
+    $pub_wad .= ', ' . trim($publication_year);
+  }
+  
+  if ($url) {
+    $pub_wad .= ', ' . trim($url);
   }
 
   // Only add period if last character is not punctuation.

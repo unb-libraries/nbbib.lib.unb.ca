@@ -215,6 +215,14 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
         $reference->setUrl($url);
       }
 
+      // Place (film only).
+      if ($item_type == 'film') {
+        $place = $row->getSourceProperty('extra');
+        $place = str_replace('Place: ', '', $place);
+        $place = $this->text_trim($place, TRUE, [], ['.']);
+        $reference->setPlace($place);
+      }
+
       $reference->setContributors($contributors);
       $reference->setPublicationYear($pub_year);
       $reference->setCollections($collections);
@@ -408,6 +416,41 @@ class ReferenceMigrateParagraphEvent implements EventSubscriberInterface {
       }
     }
     return FALSE;
+  }
+
+  /**
+   * Trim spaces and special characters from text.
+   *
+   * @param string $text
+   *   The text to process.
+   * @param bool $sentence
+   *   Is the text a sentence?
+   * @param string $starters
+   *   Starter special characters to ignore for sentences.
+   * @param string $enders
+   *   Ender special characters to ignore for sentences.
+   */
+  public function text_trim(
+    string $text, 
+    bool $sentence = FALSE, 
+    array $starters = ["'", '"', '(', '['], 
+    array $enders = ['.', '!', '?' , "'", '"', ')', ']']) {
+    $first = substr($text, 0, 1);
+    $last = substr($text, -1);
+    $starters = !$sentence ? [] : $starters;
+    $enders = !$sentence ? [] : $enders;
+    
+    while (!ctype_alnum($first) and (!in_array($first, $starters) or substr($text, 1, 1) == ' ')) {
+      $text = substr($text, 1);
+      $first = substr($text, 0, 1);
+    }
+    
+    while (!ctype_alnum($last) and (!in_array($last, $enders) or substr($text, -2) == ' ')) {
+      $text = substr($text, 0, -1);
+      $last = substr($text, -1);
+    }
+    
+    return $text;
   }
   
   /**

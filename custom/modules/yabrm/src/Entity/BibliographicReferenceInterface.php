@@ -264,6 +264,25 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   public function setTitle($title);
 
   /**
+   * Gets the Bibliographic Reference oclc.
+   *
+   * @return string
+   *   Oclc of the Bibliographic Reference.
+   */
+  public function getOclc();
+
+  /**
+   * Sets the Bibliographic Reference oclc.
+   *
+   * @param string $oclc
+   *   The Bibliographic Reference oclc.
+   *
+   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
+   *   The called Bibliographic Reference entity.
+   */
+  public function setOclc($oclc);
+
+  /**
    * Gets the Bibliographic Reference short title.
    *
    * @return string

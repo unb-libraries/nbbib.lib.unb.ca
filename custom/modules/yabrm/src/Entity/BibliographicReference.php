@@ -482,6 +482,26 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['oclc'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('OCLC'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 512,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['extra'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Extra (private/Zotero)'))
       ->setDescription(t('Corresponds to Extra field in Zotero.'))
@@ -1117,6 +1137,21 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    */
   public function setCallNumber($call_number) {
     $this->set('call_number', $call_number);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOclc() {
+    return $this->get('oclc')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setOclc($oclc) {
+    $this->set('oclc', $oclc);
     return $this;
   }
 

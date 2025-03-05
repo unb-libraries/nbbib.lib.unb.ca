@@ -189,4 +189,56 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
     }
   }
 
+  /**
+   * Trim spaces and special characters from text.
+   *
+   * @param string $text
+   *   The text to process.
+   * @param bool $sentence
+   *   Is the text a sentence?
+   * @param string $starters
+   *   Starter special characters to ignore for sentences.
+   * @param string $enders
+   *   Ender special characters to ignore for sentences.
+   */
+  public function text_trim(
+    string $text, 
+    bool $sentence = FALSE, 
+    array $starters = ["'", '"', '(', '['], 
+    array $enders = ['.', '!', '?' , "'", '"', ')', ']']) {
+  $first = substr($text, 0, 1);
+  $last = substr($text, -1);
+  $starters = !$sentence ? [] : $starters;
+  $enders = !$sentence ? [] : $enders;
+  
+  while (!ctype_alnum($first) and (!in_array($first, $starters) or substr($text, 1, 1) == ' ')) {
+    $text = substr($text, 1);
+    $first = substr($text, 0, 1);
+  }
+  
+  while (!ctype_alnum($last) and (!in_array($last, $enders) or substr($text, -2) == ' ')) {
+    $text = substr($text, 0, -1);
+    $last = substr($text, -1);
+  }
+  
+  return $text;
+  }
+
+  /**
+   * Dump item to terminal
+   *
+   * @param string $label
+   *   A label for identification.
+   * @param mixed $item
+   *   The item to dump.
+   */
+  public function tdump($label, $item) {
+    $label = strtoupper($label);
+    echo "\n";
+    echo "***$label***\n";
+    echo var_dump($item);
+    echo "***$label***";
+    echo "\n\n";
+  }
+
 }

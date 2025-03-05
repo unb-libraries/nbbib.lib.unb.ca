@@ -128,4 +128,23 @@ interface FilmReferenceInterface extends ContentEntityInterface, RevisionLogInte
    */
   public function setPerformers($performers);
 
+  /**
+   * Gets the place of the film.
+   *
+   * @return string
+   *   The place of the film.
+   */
+  public function getPlace();
+
+  /**
+   * Sets the place of the film.
+   *
+   * @param string $place
+   *   The place of the film.
+   *
+   * @return \Drupal\yabrm\Entity\FilmReferenceInterface
+   *   The called Film Reference entity.
+   */
+  public function setPlace($place);
+
 }

@@ -65,6 +65,20 @@ use Drupal\yabrm\Entity\BibliographicReference;
  * )
  */
 class FilmReference extends BibliographicReference implements FilmReferenceInterface {
+  /**
+   * {@inheritdoc}
+   */
+  public function getPlace() {
+    return $this->get('place')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPlace($place) {
+    $this->set('place', $place);
+    return $this;
+  }
 
   /**
    * {@inheritdoc}
@@ -265,6 +279,26 @@ class FilmReference extends BibliographicReference implements FilmReferenceInter
 
     $fields['performers'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Performers'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'max_length' => 512,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+      $fields['place'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Place'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,

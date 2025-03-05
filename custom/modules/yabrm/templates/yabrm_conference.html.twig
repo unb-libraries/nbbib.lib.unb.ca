@@ -238,7 +238,7 @@
             {{ content.cover_image|field_value }}
           {% endif %}
 
-          {% if content.archives|field_value or content.url|field_value %}
+          {% if content.archives or content.url|field_value %}
             <div id="ref-copies">
               <b>Copies</b>
               <div>

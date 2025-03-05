@@ -42,10 +42,10 @@
               <div class="col-sm-6">Item Type</div>
               <div class="col-sm-6">Film</div>
             </div>
-            {% if content.publisher|field_value %}
-              <div id="ref-publisher" class="row">
-                <div class="col-sm-6">Publisher</div>
-                <div class="col-sm-6">{{ content.publisher|field_value }}</div>
+            {% if content.distributor|field_value %}
+              <div id="ref-distributor" class="row">
+                <div class="col-sm-6">Distributor</div>
+                <div class="col-sm-6">{{ content.distributor|field_value }}</div>
               </div>
             {% endif %}
             {% if content.nb_imprint|field_value %}
@@ -74,12 +74,6 @@
               <div id="ref-running-time" class="row">
                 <div class="col-sm-6">Running Time</div>
                 <div class="col-sm-6">{{ content.running_time|field_value }}</div>
-              </div>
-            {% endif %}
-            {% if content.distributor|field_value %}
-              <div id="ref-distributor" class="row">
-                <div class="col-sm-6">Distributor</div>
-                <div class="col-sm-6">{{ content.distributor|field_value }}</div>
               </div>
             {% endif %}
             {% if content.performers|field_value %}
@@ -202,7 +196,7 @@
             {{ content.cover_image|field_value }}
           {% endif %}
 
-          {% if content.archives|field_value or content.url|field_value %}
+          {% if content.archives or content.url|field_value %}
             <div id="ref-copies">
               <b>Copies</b>
               <div>

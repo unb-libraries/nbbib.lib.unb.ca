@@ -18,7 +18,7 @@ mode: default
 content:
   abstract_note:
     type: text_textarea
-    weight: 24
+    weight: 25
     region: content
     settings:
       rows: 5
@@ -27,7 +27,7 @@ content:
     text_processing: 0
   archive:
     type: select2_entity_reference
-    weight: 20
+    weight: 21
     region: content
     settings:
       width: 100%
@@ -37,7 +37,7 @@ content:
     third_party_settings: {  }
   call_number:
     type: string_textfield
-    weight: 18
+    weight: 19
     region: content
     settings:
       size: 60
@@ -81,7 +81,7 @@ content:
     third_party_settings: {  }
   extra:
     type: text_textarea
-    weight: 26
+    weight: 27
     region: content
     settings:
       rows: 5
@@ -104,7 +104,7 @@ content:
     third_party_settings: {  }
   library_catalog:
     type: string_textfield
-    weight: 19
+    weight: 20
     region: content
     settings:
       size: 60
@@ -119,7 +119,7 @@ content:
     third_party_settings: {  }
   notes:
     type: text_textarea
-    weight: 25
+    weight: 26
     region: content
     settings:
       rows: 5
@@ -128,7 +128,7 @@ content:
     text_processing: 0
   notes_private:
     type: text_textarea
-    weight: 27
+    weight: 28
     region: content
     settings:
       rows: 5
@@ -143,9 +143,17 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  oclc:
+    type: string_textfield
+    weight: 18
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   physical_description:
     type: text_textarea
-    weight: 21
+    weight: 22
     region: content
     settings:
       rows: 5
@@ -207,7 +215,7 @@ content:
     third_party_settings: {  }
   rights:
     type: string_textfield
-    weight: 23
+    weight: 24
     region: content
     settings:
       size: 60
@@ -231,7 +239,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 28
+    weight: 29
     region: content
     settings:
       display_label: true
@@ -256,7 +264,7 @@ content:
     third_party_settings: {  }
   url:
     type: link_default
-    weight: 22
+    weight: 23
     region: content
     settings:
       placeholder_url: ''

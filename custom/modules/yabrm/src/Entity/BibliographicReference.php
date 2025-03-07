@@ -483,7 +483,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['oclc'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('OCLC'))
+      ->setLabel(t('OCLC Number'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 512,

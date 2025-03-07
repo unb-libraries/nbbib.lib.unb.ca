@@ -954,87 +954,6 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
       $archives_new = array_column($entity->archive->getValue(), 'target_id');
       $archives_xdif = array_diff($archives_new, $archives_old);
       
-      // If the published status changed or contributors/topics/archives were added...
-      if ($pub_old != $pub_new or !empty($contribs_xdif) or !empty($topics_xdif) or !empty($archives_xdif)) {
-        // Get referenced contributor paragraphs.
-        $paragraphs = $entity->contributors->getValue();
-        
-        // Iterate through paragraphs.
-        foreach ($paragraphs as $paragraph) {
-          // Load paragraph object.
-          $pid = $paragraph['target_id'];
-          $p_obj = Paragraph::load($pid);
-          // If valid object...
-          if ($p_obj) {
-            // Update paragraph published status to reflect reference.
-            $p_obj->set('status', $pub_new);
-            // Save paragraph.
-            $p_obj->save();
-            
-            // Get contributor id.
-            $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'] ?? NULL;
-            // Load contributor object.
-            $c_obj = BibliographicContributor::load($cid) ?? NULL;
-            
-            // If valid object...
-            if ($c_obj) {
-              // If the reference was unpublished...
-              if (!$pub_new) {
-                // Check if contributor id is present in any published paragraphs.
-                $par_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
-                $pids = $par_storage->getQuery()
-                  ->condition('field_yabrm_contributor_person', $cid)
-                  ->condition('status', TRUE)
-                  ->accessCheck(FALSE)
-                  ->execute();
-                  
-                  // If none found...
-                  if (!count($pids)) {
-                    // Unpublish contributor and save.
-                    $c_obj->set('status', FALSE);
-                    $c_obj->save();
-                  }
-              } else {
-                // Publish contributor and save.
-                $c_obj->set('status', TRUE);
-                $c_obj->save();
-              }
-            }
-          }
-        }
-        // Get referenced topics.
-        $topics = $entity->topics->getValue();
-        
-        // Iterate through topics.
-        foreach ($topics as $topic) {
-          // Load term object.
-          $tid = $topic['target_id'];
-          $t_obj = Term::load($tid);
-          // If valid object...
-          if ($t_obj) {
-            // Update term published status to reflect reference.
-            $t_obj->set('status', $pub_new);
-            // Save topic.
-            $t_obj->save();
-          }
-        }
-        // Get referenced archives.
-        $archives = $entity->archive->getValue();
-        
-        // Iterate through archives.
-        foreach ($archives as $archive) {
-          // Load term object.
-          $tid = $archive['target_id'];
-          $t_obj = Term::load($tid);
-          // If valid object...
-          if ($t_obj) {
-            // Update term published status to reflect reference.
-            $t_obj->set('status', $pub_new);
-            // Save archive.
-            $t_obj->save();
-          }
-        }
-      }
       // If the publication year changed...
       $year_new = $entity->publication_year->getValue()[0]['value'] ?? NULL;
       if ($year_new != 0 and $year_new != $year_old) {
@@ -1057,7 +976,6 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
           $p_obj = Paragraph::load($pid);
           $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'] ?? NULL;
           $p_obj->delete();
-
 
           if ($cid) {
             // Fetch all references that point to the target contributor.

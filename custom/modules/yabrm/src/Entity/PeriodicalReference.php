@@ -107,7 +107,7 @@ class PeriodicalReference extends BibliographicReference implements PeriodicalRe
    * {@inheritdoc}
    */
   public function setPeriodicalType($periodical_type) {
-    $this->set('issn', $issn);
+    $this->set('periodical_type', $periodical_type);
     return $this;
   }
 

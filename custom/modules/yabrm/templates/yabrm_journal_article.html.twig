@@ -171,11 +171,19 @@
             {{ content.cover_image|field_value }}
           {% endif %}
 
-          {% if content.archives or content.url|field_value %}
+          {% if content.oclc or content.archives or content.url|field_value %}
             <div id="ref-copies">
               <b>Copies</b>
               <div>
                 <ul>
+                  {% if content.oclc %}
+                    <li>
+                      <a href="https://unb.on.worldcat.org/oclc/{{ content.oclc|field_value }}">
+                        Worldcat Discovery
+                      </a>
+                    </li>
+                  {% endif %}
+
                   {% for archive in content.archives %}
                     <li>{{ archive }}</li>
                   {% endfor %}

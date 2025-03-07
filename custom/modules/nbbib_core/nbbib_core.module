@@ -976,7 +976,7 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
           $p_obj = Paragraph::load($pid);
           $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'] ?? NULL;
           $p_obj->delete();
-
+ 
           if ($cid) {
             // Fetch all references that point to the target contributor.
             // Load reference types from configuration.

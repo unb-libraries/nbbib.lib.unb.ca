@@ -374,8 +374,13 @@ html {
           img {
             margin-top: 2.4rem;
           }
-          #ref-copies b {
-            margin-top: 3.05rem;
+          #ref-copies {
+            b {
+              margin-top: 3.05rem;
+            }
+            ul {
+              list-style-type: disc !important;
+            }
           }
         }
         div[id] {

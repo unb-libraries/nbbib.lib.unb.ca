@@ -34,8 +34,7 @@ function yabrm_theme_suggestions_alter(array &$suggestions, array $variables, $h
   ];
 
   // Load reference types from configuration.
-  $ref_types = $ref_types ? array_column($ref_types, 'entity') : NULL;
-
+  $config = \Drupal::config('nbbib_core.settings');
   $ref_types = $config->get('nbbib_types');
   $ref_types = $ref_types ? array_column($ref_types, 'entity') : NULL;
   // Add them to entity types array.
@@ -90,7 +89,7 @@ function yabrm_theme() {
   ];
 
   // Load reference types from configuration.
-  $config = $this->configFactory->get('nbbib_core.settings');
+  $config = \Drupal::config('nbbib_core.settings');
   $ref_types = $config->get('nbbib_types');
   $ref_types = $ref_types ? array_column($ref_types, 'entity') : NULL;
   

@@ -25,6 +25,7 @@ dependencies:
     - quickedit
     - system
     - taxonomy
+    - taxonomy_access_fix
     - toolbar
     - yabrm
 id: nb_bibliography_contributor
@@ -125,6 +126,8 @@ permissions:
   - 'view all periodical reference revisions'
   - 'view all report reference revisions'
   - 'view all thesis reference revisions'
+  - 'view any term'
+  - 'view any term name'
   - 'view nbbib_essay revisions'
   - 'view own unpublished content'
   - 'view own unpublished media'

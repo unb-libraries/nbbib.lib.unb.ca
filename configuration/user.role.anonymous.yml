@@ -6,6 +6,7 @@ dependencies:
     - media
     - samlauth
     - system
+    - taxonomy_access_fix
     - yabrm
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
@@ -15,6 +16,7 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'view any term'
   - 'view media'
   - 'view published bibliographic collection entities'
   - 'view published bibliographic contributor entities'

@@ -129,6 +129,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     text_processing: 0
+  oclc:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   physical_description:
     type: text_textarea
     weight: 15

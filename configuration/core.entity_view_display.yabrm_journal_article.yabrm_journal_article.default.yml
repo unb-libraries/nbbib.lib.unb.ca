@@ -143,6 +143,14 @@ content:
     third_party_settings: {  }
     weight: 29
     region: content
+  oclc:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
   pages:
     type: string
     label: above

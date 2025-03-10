@@ -147,6 +147,14 @@ content:
     third_party_settings: {  }
     weight: 22
     region: content
+  oclc:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
   performers:
     type: string
     label: above
@@ -164,6 +172,14 @@ content:
       strict: false
     third_party_settings: {  }
     weight: 21
+    region: content
+  place:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
     region: content
   publication_day:
     type: number_integer

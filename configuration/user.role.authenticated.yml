@@ -7,6 +7,7 @@ dependencies:
     - google_analytics
     - media
     - system
+    - taxonomy_access_fix
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
 id: authenticated
@@ -16,5 +17,14 @@ is_admin: false
 permissions:
   - 'access content'
   - 'access fontawesome additional settings'
+  - 'create any term'
+  - 'delete any term'
   - 'opt-in or out of google analytics tracking'
+  - 'select any term'
+  - 'select any unpublished term'
+  - 'view any term'
+  - 'view any term name'
+  - 'view any unpublished term'
+  - 'view any unpublished term name'
+  - 'view any vocabulary name'
   - 'view media'

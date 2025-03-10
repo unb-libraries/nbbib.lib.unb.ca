@@ -953,6 +953,39 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
       $archives_old = array_column($entity->original->archive->getValue(), 'target_id');
       $archives_new = array_column($entity->archive->getValue(), 'target_id');
       $archives_xdif = array_diff($archives_new, $archives_old);
+
+      // Get referenced topics.
+      $topics = $entity->topics->getValue();
+
+      // Iterate through topics.
+      foreach ($topics as $topic) {
+        // Load term object.
+        $tid = $topic['target_id'];
+        $t_obj = Term::load($tid);
+        // If valid object and published item...
+        if ($t_obj and $pub_new) {
+          // Update term published status to reflect reference.
+          $t_obj->set('status', TRUE);
+          // Save topic.
+          $t_obj->save();
+        }
+      }
+      // Get referenced archives.
+      $archives = $entity->archive->getValue();
+      
+      // Iterate through archives.
+      foreach ($archives as $archive) {
+        // Load term object.
+        $tid = $archive['target_id'];
+        $t_obj = Term::load($tid);
+        // If valid object and published item...
+        if ($t_obj and $pub_new) {
+          // Update term published status to reflect reference.
+          $t_obj->set('status', TRUE);
+          // Save archive.
+          $t_obj->save();
+        }
+      }
       
       // If the publication year changed...
       $year_new = $entity->publication_year->getValue()[0]['value'] ?? NULL;

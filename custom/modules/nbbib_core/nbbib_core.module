@@ -1106,7 +1106,7 @@ function nbbib_core_entity_delete(EntityInterface $entity) {
   $types = $types ? array_column($types, 'entity') : NULL;
 
   // If deleted entity has a bibliographic reference type...
-  if (in_array($entity->bundle(), $types)) {
+  if ($types and (in_array($entity->bundle(), $types))) {
     // Get contributors/roles (paragraphs).
     $contribs = $entity->contributors->getValue();
 

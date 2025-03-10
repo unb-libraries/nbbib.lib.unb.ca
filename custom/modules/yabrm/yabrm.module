@@ -90,7 +90,7 @@ function yabrm_theme() {
   ];
 
   // Load reference types from configuration.
-  $ref_types = $ref_types ? array_column($ref_types, 'entity') : NULL;
+  $config = $this->configFactory->get('nbbib_core.settings');
   $ref_types = $config->get('nbbib_types');
   $ref_types = $ref_types ? array_column($ref_types, 'entity') : NULL;
   

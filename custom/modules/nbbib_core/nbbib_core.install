@@ -17,7 +17,7 @@ function nbbib_core_install() {
   // Load reference types from configuration.
   $config = \Drupal::config('nbbib_core.settings');
   $types = $config->get('nbbib_types');
-  $types = array_column($types, 'entity');
+  $types = $types ? array_column($types, 'entity') : NULL;
   $del_redirs = [];
   $works = [];
 

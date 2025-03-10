@@ -42,7 +42,7 @@ function nbbib_core_cron() {
     // Load reference types from configuration.
     $config = \Drupal::config('nbbib_core.settings');
     $types = $config->get('nbbib_types');
-    $types = array_column($types, 'entity');
+    $types = $types ? array_column($types, 'entity') : NULL;
     $refs = '';
     $i = 1;
     
@@ -625,7 +625,7 @@ function nbbib_core_form_alter(&$form, FormStateInterface $form_state, $form_id)
   // Load reference types from configuration.
   $config = \Drupal::config('nbbib_core.settings');
   $type_ids = $config->get('nbbib_types');
-  $type_ids = array_column($type_ids, 'entity');
+  $type_ids = $type_ids ? array_column($type_ids, 'entity') : NULL;
   $ref_forms = [];
 
   foreach ($type_ids as $type) {
@@ -932,7 +932,7 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
   // Load reference types from configuration.
   $config = \Drupal::config('nbbib_core.settings');
   $types = $config->get('nbbib_types');
-  $types = array_column($types, 'entity');
+  $types = $types ? array_column($types, 'entity') : NULL;
   
   // If updated entity has a bibliographic reference type...
   if (in_array($entity->bundle(), $types)) {
@@ -1015,7 +1015,7 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
             // Load reference types from configuration.
             $config = \Drupal::config('nbbib_core.settings');
             $type_ids = $config->get('nbbib_types');
-            $type_ids = array_column($type_ids, 'entity');
+            $type_ids = $type_ids ? array_column($type_ids, 'entity') : NULL;
             $matches = [];
 
             foreach ($type_ids as $type) {
@@ -1103,7 +1103,7 @@ function nbbib_core_entity_delete(EntityInterface $entity) {
   // Load reference types from configuration.
   $config = \Drupal::config('nbbib_core.settings');
   $types = $config->get('nbbib_types');
-  $types = array_column($types, 'entity');
+  $types = $types ? array_column($types, 'entity') : NULL;
 
   // If deleted entity has a bibliographic reference type...
   if (in_array($entity->bundle(), $types)) {
@@ -1146,7 +1146,7 @@ function reindex_contrib_refs($cid) {
   // Load reference types from configuration.
   $config = \Drupal::config('nbbib_core.settings');
   $type_ids = $config->get('nbbib_types');
-  $type_ids = array_column($type_ids, 'entity');
+  $type_ids = $type_ids ? array_column($type_ids, 'entity') : NULL;
   $reindex = [];
   
   // Fetch all references that point to the target contributor.
@@ -1187,7 +1187,7 @@ function reindex_collection_refs($cid) {
   // Load reference types from configuration.
   $config = \Drupal::config('nbbib_core.settings');
   $type_ids = $config->get('nbbib_types');
-  $type_ids = array_column($type_ids, 'entity');
+  $type_ids = $type_ids ? array_column($type_ids, 'entity') : NULL;
   $reindex = [];
   
   // Fetch all references that point to the target collection.

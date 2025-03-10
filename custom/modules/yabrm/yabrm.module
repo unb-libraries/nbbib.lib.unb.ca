@@ -34,9 +34,10 @@ function yabrm_theme_suggestions_alter(array &$suggestions, array $variables, $h
   ];
 
   // Load reference types from configuration.
-  $config = \Drupal::config('nbbib_core.settings');
+  $ref_types = $ref_types ? array_column($ref_types, 'entity') : NULL;
+
   $ref_types = $config->get('nbbib_types');
-  $ref_types = array_column($ref_types, 'entity');
+  $ref_types = $ref_types ? array_column($ref_types, 'entity') : NULL;
   // Add them to entity types array.
   $entity_types = array_merge($entity_types, $ref_types);
   
@@ -89,9 +90,9 @@ function yabrm_theme() {
   ];
 
   // Load reference types from configuration.
-  $config = \Drupal::config('nbbib_core.settings');
+  $ref_types = $ref_types ? array_column($ref_types, 'entity') : NULL;
   $ref_types = $config->get('nbbib_types');
-  $ref_types = array_column($ref_types, 'entity');
+  $ref_types = $ref_types ? array_column($ref_types, 'entity') : NULL;
   
   // Build template suggestions for reference types.
   foreach($ref_types as $ref_type) {

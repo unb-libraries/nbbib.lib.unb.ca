@@ -51,9 +51,10 @@ function template_preprocess_yabrm_contributor(array &$variables) {
       ->execute();
     
     // Load reference types from configuration.
-    $config = \Drupal::config('nbbib_core.settings');
+    $ref_types = $ref_types ? array_column($ref_types, 'entity') : NULL;
+
     $types = $config->get('nbbib_types');
-    $types = array_column($types, 'entity');
+    $types = $types ? array_column($types, 'entity') : NULL;
 
     // Iterate through contributor paragraph ids.
     foreach ($pids as $pid) {

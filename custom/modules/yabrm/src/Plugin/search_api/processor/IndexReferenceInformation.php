@@ -113,7 +113,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
     // Load reference types from configuration.
     $config = $this->configFactory->get('nbbib_core.settings');
     $types = $config->get('nbbib_types');
-    $entities = $entities ? array_column($types, 'entity') : NULL;
+    $entities = $types ? array_column($types, 'entity') : NULL;
     $entities[] = 'yabrm_biblio_reference';
     return $entities;    
   }
@@ -126,7 +126,7 @@ class IndexReferenceInformation extends ProcessorPluginBase {
     // Load reference types from configuration.
     $config = $this->configFactory->get('nbbib_core.settings');
     $types = $config->get('nbbib_types');
-    $entities = $entities ? array_column($types, 'entity') : NULL;
+    $entities = $types ? array_column($types, 'entity') : NULL;
     $map['Drupal\yabrm\Entity\BibliographicReference'] = 'Reference';
     
     foreach ($types as $type) {

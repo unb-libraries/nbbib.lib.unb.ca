@@ -53,6 +53,11 @@ entity.yabrm_film.add_form:
   title: 'Add Film reference'
   appears_on:
     - entity.yabrm_film.collection
+entity.yabrm_website.add_form:
+  route_name: entity.yabrm_website.add_form
+  title: 'Add Website reference'
+  appears_on:
+    - entity.yabrm_website.collection
 entity.yabrm_contrib_archival.add_form:
   route_name: entity.yabrm_contrib_archival.add_form
   title: 'Add Contrib Archival'

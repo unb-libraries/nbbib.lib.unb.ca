@@ -239,7 +239,7 @@ entity.yabrm_report.delete_form:
   route_name:  entity.yabrm_report.delete_form
   base_route:  entity.yabrm_report.canonical
   title: Delete
-  weight: 11
+  weight: 12
 
 # Periodical reference routing definition
 yabrm_periodical.settings_tab:
@@ -266,7 +266,7 @@ entity.yabrm_periodical.delete_form:
   route_name:  entity.yabrm_periodical.delete_form
   base_route:  entity.yabrm_periodical.canonical
   title: Delete
-  weight: 11
+  weight: 13
 
 # Film reference routing definition
 yabrm_film.settings_tab:
@@ -293,7 +293,34 @@ entity.yabrm_film.delete_form:
   route_name:  entity.yabrm_film.delete_form
   base_route:  entity.yabrm_film.canonical
   title: Delete
-  weight: 11
+  weight: 14
+
+# Website reference routing definition
+yabrm_website.settings_tab:
+  route_name: yabrm_website.settings
+  title: 'Settings'
+  base_route: yabrm_website.settings
+
+entity.yabrm_website.canonical:
+  route_name: entity.yabrm_website.canonical
+  base_route: entity.yabrm_website.canonical
+  title: 'View'
+
+entity.yabrm_website.edit_form:
+  route_name: entity.yabrm_website.edit_form
+  base_route: entity.yabrm_website.canonical
+  title: 'Edit'
+
+entity.yabrm_website.version_history:
+  route_name: entity.yabrm_website.version_history
+  base_route: entity.yabrm_website.canonical
+  title: 'Revisions'
+
+entity.yabrm_website.delete_form:
+  route_name:  entity.yabrm_website.delete_form
+  base_route:  entity.yabrm_website.canonical
+  title: Delete
+  weight: 15
 
 # Contrib Archival routing definition
 yabrm_contrib_archival.settings_tab:

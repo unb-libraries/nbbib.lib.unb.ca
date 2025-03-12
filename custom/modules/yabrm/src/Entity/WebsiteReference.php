@@ -77,7 +77,7 @@ class WebsiteReference extends BibliographicReference implements WebsiteReferenc
    * {@inheritdoc}
    */
   public function setSiteUrl($site_url) {
-    $this->set('place', $site_url);
+    $this->set('site_url', $site_url);
     return $this;
   }
 

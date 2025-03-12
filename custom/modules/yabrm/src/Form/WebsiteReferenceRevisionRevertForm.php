@@ -31,7 +31,7 @@ class WebsiteReferenceRevisionRevertForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $websiteReferenceStorage;
+  protected $WebsiteReferenceStorage;
 
   /**
    * The date formatter service.
@@ -61,7 +61,7 @@ class WebsiteReferenceRevisionRevertForm extends ConfirmFormBase {
     EntityStorageInterface $entity_storage,
     DateFormatterInterface $date_formatter,
     Time $time) {
-    $this->websiteReferenceStorage = $entity_storage;
+    $this->WebsiteReferenceStorage = $entity_storage;
     $this->dateFormatter = $date_formatter;
     $this->time = $time;
   }
@@ -116,7 +116,7 @@ class WebsiteReferenceRevisionRevertForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_website_revision = NULL) {
-    $this->revision = $this->websiteReferenceStorage->loadRevision($yabrm_website_revision);
+    $this->revision = $this->WebsiteReferenceStorage->loadRevision($yabrm_website_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;

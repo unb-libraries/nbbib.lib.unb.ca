@@ -5,7 +5,7 @@ namespace Drupal\yabrm;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\yabrm\Entity\websiteReferenceInterface;
+use Drupal\yabrm\Entity\WebsiteReferenceInterface;
 
 /**
  * Defines the storage handler class for website reference entities.
@@ -15,12 +15,12 @@ use Drupal\yabrm\Entity\websiteReferenceInterface;
  *
  * @ingroup yabrm
  */
-class websiteReferenceStorage extends SqlContentEntityStorage implements websiteReferenceStorageInterface {
+class WebsiteReferenceStorage extends SqlContentEntityStorage implements WebsiteReferenceStorageInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function revisionIds(websiteReferenceInterface $entity) {
+  public function revisionIds(WebsiteReferenceInterface $entity) {
     return $this->database->query(
       'SELECT vid FROM {yabrm_website_revision} WHERE id=:id ORDER BY vid',
       [':id' => $entity->id()]
@@ -40,7 +40,7 @@ class websiteReferenceStorage extends SqlContentEntityStorage implements website
   /**
    * {@inheritdoc}
    */
-  public function countDefaultLanguageRevisions(websiteReferenceInterface $entity) {
+  public function countDefaultLanguageRevisions(WebsiteReferenceInterface $entity) {
     return $this->database->query('SELECT COUNT(*) FROM {yabrm_website_field_revision} WHERE id = :id AND default_langcode = 1', [':id' => $entity->id()])
       ->fetchField();
   }

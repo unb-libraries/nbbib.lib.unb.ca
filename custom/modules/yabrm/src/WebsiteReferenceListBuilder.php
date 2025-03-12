@@ -11,7 +11,7 @@ use Drupal\Core\Link;
  *
  * @ingroup yabrm
  */
-class websiteReferenceListBuilder extends EntityListBuilder {
+class WebsiteReferenceListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}
@@ -26,7 +26,7 @@ class websiteReferenceListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var $entity \Drupal\yabrm\Entity\websiteReference */
+    /* @var $entity \Drupal\yabrm\Entity\WebsiteReference */
     $row['id'] = $entity->id();
     $row['name'] = Link::createFromRoute(
       $entity->label(),

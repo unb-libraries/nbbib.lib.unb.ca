@@ -30,7 +30,7 @@ class WebsiteReferenceRevisionDeleteForm extends ConfirmFormBase {
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $websiteReferenceStorage;
+  protected $WebsiteReferenceStorage;
 
   /**
    * The database connection.
@@ -60,7 +60,7 @@ class WebsiteReferenceRevisionDeleteForm extends ConfirmFormBase {
     EntityStorageInterface $entity_storage,
     Connection $connection,
     DateFormatterInterface $date_formatter) {
-    $this->websiteReferenceStorage = $entity_storage;
+    $this->WebsiteReferenceStorage = $entity_storage;
     $this->connection = $connection;
     $this->dateFormatter = $date_formatter;
   }
@@ -109,7 +109,7 @@ class WebsiteReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $yabrm_website_revision = NULL) {
-    $this->revision = $this->websiteReferenceStorage->loadRevision($yabrm_website_revision);
+    $this->revision = $this->WebsiteReferenceStorage->loadRevision($yabrm_website_revision);
     $form = parent::buildForm($form, $form_state);
 
     return $form;
@@ -119,7 +119,7 @@ class WebsiteReferenceRevisionDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->websiteReferenceStorage->deleteRevision($this->revision->getRevisionId());
+    $this->WebsiteReferenceStorage->deleteRevision($this->revision->getRevisionId());
 
     $this->logger('content')->notice('Website reference: deleted %title revision %revision.', [
       '%title' => $this->revision->label(),

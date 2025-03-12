@@ -113,7 +113,7 @@ class WebsiteReferenceRevisionRevertTranslationForm extends WebsiteReferenceRevi
     $revert_untranslated_fields = $form_state->getValue('revert_untranslated_fields');
 
     /** @var \Drupal\yabrm\Entity\WebsiteReferenceInterface $default_revision */
-    $latest_revision = $this->websiteReferenceStorage->load($revision->id());
+    $latest_revision = $this->WebsiteReferenceStorage->load($revision->id());
     $latest_revision_translation = $latest_revision->getTranslation($this->langcode);
 
     $revision_translation = $revision->getTranslation($this->langcode);

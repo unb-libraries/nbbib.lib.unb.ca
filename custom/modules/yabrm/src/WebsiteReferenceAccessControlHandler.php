@@ -10,15 +10,15 @@ use Drupal\Core\Session\AccountInterface;
 /**
  * Access controller for the website reference entity.
  *
- * @see \Drupal\yabrm\Entity\websiteReference.
+ * @see \Drupal\yabrm\Entity\WebsiteReference.
  */
-class websiteReferenceAccessControlHandler extends EntityAccessControlHandler {
+class WebsiteReferenceAccessControlHandler extends EntityAccessControlHandler {
 
   /**
    * {@inheritdoc}
    */
   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
-    /** @var \Drupal\yabrm\Entity\websiteReferenceInterface $entity */
+    /** @var \Drupal\yabrm\Entity\WebsiteReferenceInterface $entity */
     switch ($operation) {
       case 'view':
         if (!$entity->isPublished()) {

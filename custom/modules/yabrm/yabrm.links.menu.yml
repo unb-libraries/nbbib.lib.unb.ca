@@ -153,6 +153,20 @@ yabrm_film.admin.structure.settings:
   route_name: yabrm_film.settings
   parent: system.admin_structure
 
+# Website reference menu items definition
+entity.yabrm_website.collection:
+  title: 'Website reference list'
+  route_name: entity.yabrm_website.collection
+  description: 'List Website reference entities'
+  parent: system.admin_structure
+  weight: 100
+
+yabrm_website.admin.structure.settings:
+  title: 'Website reference settings'
+  description: 'Configure Website reference entities'
+  route_name: yabrm_website.settings
+  parent: system.admin_structure
+
 # Contrib Archival menu items definition
 entity.yabrm_contrib_archival.collection:
   title: 'Contrib Archival list'

@@ -7,17 +7,17 @@ use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Link;
 
 /**
- * Defines a class to build a listing of Report reference entities.
+ * Defines a class to build a listing of website reference entities.
  *
  * @ingroup yabrm
  */
-class ReportReferenceListBuilder extends EntityListBuilder {
+class websiteReferenceListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['id'] = $this->t('Report reference ID');
+    $header['id'] = $this->t('website reference ID');
     $header['name'] = $this->t('Name');
     return $header + parent::buildHeader();
   }
@@ -26,12 +26,12 @@ class ReportReferenceListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var $entity \Drupal\yabrm\Entity\ReportReference */
+    /* @var $entity \Drupal\yabrm\Entity\websiteReference */
     $row['id'] = $entity->id();
     $row['name'] = Link::createFromRoute(
       $entity->label(),
-      'entity.yabrm_report.edit_form',
-      ['yabrm_report' => $entity->id()]
+      'entity.yabrm_website.edit_form',
+      ['yabrm_website' => $entity->id()]
     );
     return $row + parent::buildRow($entity);
   }

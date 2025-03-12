@@ -5,24 +5,24 @@ namespace Drupal\yabrm;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\yabrm\Entity\ReportReferenceInterface;
+use Drupal\yabrm\Entity\websiteReferenceInterface;
 
 /**
- * Defines the storage handler class for Report reference entities.
+ * Defines the storage handler class for website reference entities.
  *
  * This extends the base storage class, adding required special handling for
- * Report reference entities.
+ * website reference entities.
  *
  * @ingroup yabrm
  */
-class ReportReferenceStorage extends SqlContentEntityStorage implements ReportReferenceStorageInterface {
+class websiteReferenceStorage extends SqlContentEntityStorage implements websiteReferenceStorageInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function revisionIds(ReportReferenceInterface $entity) {
+  public function revisionIds(websiteReferenceInterface $entity) {
     return $this->database->query(
-      'SELECT vid FROM {yabrm_report_revision} WHERE id=:id ORDER BY vid',
+      'SELECT vid FROM {yabrm_website_revision} WHERE id=:id ORDER BY vid',
       [':id' => $entity->id()]
     )->fetchCol();
   }
@@ -32,7 +32,7 @@ class ReportReferenceStorage extends SqlContentEntityStorage implements ReportRe
    */
   public function userRevisionIds(AccountInterface $account) {
     return $this->database->query(
-      'SELECT vid FROM {yabrm_report_field_revision} WHERE uid = :uid ORDER BY vid',
+      'SELECT vid FROM {yabrm_website_field_revision} WHERE uid = :uid ORDER BY vid',
       [':uid' => $account->id()]
     )->fetchCol();
   }
@@ -40,8 +40,8 @@ class ReportReferenceStorage extends SqlContentEntityStorage implements ReportRe
   /**
    * {@inheritdoc}
    */
-  public function countDefaultLanguageRevisions(ReportReferenceInterface $entity) {
-    return $this->database->query('SELECT COUNT(*) FROM {yabrm_report_field_revision} WHERE id = :id AND default_langcode = 1', [':id' => $entity->id()])
+  public function countDefaultLanguageRevisions(websiteReferenceInterface $entity) {
+    return $this->database->query('SELECT COUNT(*) FROM {yabrm_website_field_revision} WHERE id = :id AND default_langcode = 1', [':id' => $entity->id()])
       ->fetchField();
   }
 
@@ -49,7 +49,7 @@ class ReportReferenceStorage extends SqlContentEntityStorage implements ReportRe
    * {@inheritdoc}
    */
   public function clearRevisionsLanguage(LanguageInterface $language) {
-    return $this->database->update('yabrm_report_revision')
+    return $this->database->update('yabrm_website_revision')
       ->fields(['langcode' => LanguageInterface::LANGCODE_NOT_SPECIFIED])
       ->condition('langcode', $language->getId())
       ->accessCheck(FALSE)

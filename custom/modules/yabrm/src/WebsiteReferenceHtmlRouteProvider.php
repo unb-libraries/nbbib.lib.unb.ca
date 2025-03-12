@@ -7,12 +7,12 @@ use Drupal\Core\Entity\Routing\AdminHtmlRouteProvider;
 use Symfony\Component\Routing\Route;
 
 /**
- * Provides routes for Report reference entities.
+ * Provides routes for website reference entities.
  *
  * @see \Drupal\Core\Entity\Routing\AdminHtmlRouteProvider
  * @see \Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider
  */
-class ReportReferenceHtmlRouteProvider extends AdminHtmlRouteProvider {
+class websiteReferenceHtmlRouteProvider extends AdminHtmlRouteProvider {
 
   /**
    * {@inheritdoc}
@@ -60,7 +60,7 @@ class ReportReferenceHtmlRouteProvider extends AdminHtmlRouteProvider {
       $route
         ->setDefaults([
           '_title' => "{$entity_type->getLabel()} revisions",
-          '_controller' => '\Drupal\yabrm\Controller\ReportReferenceController::revisionOverview',
+          '_controller' => '\Drupal\yabrm\Controller\websiteReferenceController::revisionOverview',
         ])
         ->setRequirement('_role', 'nb_bibliography_contributor')
         ->setOption('_admin_route', TRUE);
@@ -83,8 +83,8 @@ class ReportReferenceHtmlRouteProvider extends AdminHtmlRouteProvider {
       $route = new Route($entity_type->getLinkTemplate('revision'));
       $route
         ->setDefaults([
-          '_controller' => '\Drupal\yabrm\Controller\ReportReferenceController::revisionShow',
-          '_title_callback' => '\Drupal\yabrm\Controller\ReportReferenceController::revisionPageTitle',
+          '_controller' => '\Drupal\yabrm\Controller\websiteReferenceController::revisionShow',
+          '_title_callback' => '\Drupal\yabrm\Controller\websiteReferenceController::revisionPageTitle',
         ])
         ->setRequirement('_role', 'nb_bibliography_contributor')
         ->setOption('_admin_route', TRUE);
@@ -107,10 +107,10 @@ class ReportReferenceHtmlRouteProvider extends AdminHtmlRouteProvider {
       $route = new Route($entity_type->getLinkTemplate('revision_revert'));
       $route
         ->setDefaults([
-          '_form' => '\Drupal\yabrm\Form\ReportReferenceRevisionRevertForm',
+          '_form' => '\Drupal\yabrm\Form\websiteReferenceRevisionRevertForm',
           '_title' => 'Revert to earlier revision',
         ])
-        ->setRequirement('_permission', 'revert all report reference revisions')
+        ->setRequirement('_permission', 'revert all website reference revisions')
         ->setOption('_admin_route', TRUE);
 
       return $route;
@@ -131,10 +131,10 @@ class ReportReferenceHtmlRouteProvider extends AdminHtmlRouteProvider {
       $route = new Route($entity_type->getLinkTemplate('revision_delete'));
       $route
         ->setDefaults([
-          '_form' => '\Drupal\yabrm\Form\ReportReferenceRevisionDeleteForm',
+          '_form' => '\Drupal\yabrm\Form\websiteReferenceRevisionDeleteForm',
           '_title' => 'Delete earlier revision',
         ])
-        ->setRequirement('_permission', 'delete all report reference revisions')
+        ->setRequirement('_permission', 'delete all website reference revisions')
         ->setOption('_admin_route', TRUE);
 
       return $route;
@@ -155,7 +155,7 @@ class ReportReferenceHtmlRouteProvider extends AdminHtmlRouteProvider {
       $route = new Route("/admin/structure/{$entity_type->id()}/settings");
       $route
         ->setDefaults([
-          '_form' => 'Drupal\yabrm\Form\ReportReferenceSettingsForm',
+          '_form' => 'Drupal\yabrm\Form\websiteReferenceSettingsForm',
           '_title' => "{$entity_type->getLabel()} settings",
         ])
         ->setRequirement('_permission', $entity_type->getAdminPermission())

@@ -27,13 +27,13 @@ nbbib_core.collections.bibliographies:
   menu_name: main
   url: internal:/collections/bibliographies
   weight: 20
-nbbib_core.collections.business:
-  title: 'Business and Industry'
-  description: 'Business and Industry'
-  parent: nbbib_core.collections
-  menu_name: main
-  url: internal:/collections/business-and-industry
-  weight: 21
+# nbbib_core.collections.business:
+#  title: 'Business and Industry'
+#  description: 'Business and Industry'
+#  parent: nbbib_core.collections
+#  menu_name: main
+#  url: internal:/collections/business-and-industry
+#  weight: 21
 nbbib_core.collections.cbbp:
   title: 'Children’s Books of Brunswick Press'
   description: 'Children’s Books of Brunswick Press'
@@ -62,7 +62,6 @@ nbbib_core.collections.religion:
   menu_name: main
   url: internal:/collections/religion
   weight: 50
-
 nbbib_core.contributors:
   title: 'Contributors'
   description: 'Contributors'
@@ -212,6 +211,12 @@ nbbib_core.editor.new-film:
   url: internal:/yabrm/yabrm_film/add
   parent: nbbib_core.editor
   weight: 64
+nbbib_core.editor.new-website:
+  title: 'Add New Website'
+  description: 'Add new website reference.'
+  url: internal:/yabrm/yabrm_website/add
+  parent: nbbib_core.editor
+  weight: 65
 nbbib_core.editor.new-essay:
   title: 'Add New Essay'
   description: 'Add a new Essay.'

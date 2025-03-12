@@ -53,25 +53,6 @@ interface WebsiteReferenceInterface extends ContentEntityInterface, RevisionLogI
   public function setSiteUrl($site_url);
 
   /**
-   * Gets the type of website.
-   *
-   * @return string
-   *   The type of website.
-   */
-  public function getWebsiteType();
-
-  /**
-   * Sets the type of website.
-   *
-   * @param string $website_type
-   *   The type of website.
-   *
-   * @return \Drupal\yabrm\Entity\WebsiteReferenceInterface
-   *   The called Website Reference entity.
-   */
-  public function setWebsiteType($website_type);
-
-  /**
    * Gets the last revision date.
    *
    * @return string

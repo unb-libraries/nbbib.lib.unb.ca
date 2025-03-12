@@ -71,23 +71,4 @@ interface WebsiteReferenceInterface extends ContentEntityInterface, RevisionLogI
    */
   public function setRevised($revision);
 
-  /**
-   * Gets the first publication year of the reference.
-   *
-   * @return int
-   *   The publication year of the reference.
-   */
-  public function getFirstYear();
-
-  /**
-   * Sets the first publication year of the reference.
-   *
-   * @param int $first_year
-   *   Integer first publication year.
-   *
-   * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
-   *   The called Bibliographic Reference entity.
-   */
-  public function setFirstYear($first_year);
-
 }

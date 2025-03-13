@@ -136,6 +136,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  abstract_note_9:
+    label: 'Abstract Note'
+    datasource_id: 'entity:yabrm_website'
+    property_path: abstract_note
+    type: text
+    dependencies:
+      module:
+        - yabrm
   archive:
     label: Archive
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -203,6 +211,14 @@ field_settings:
   archive_8:
     label: Archive(s)
     datasource_id: 'entity:yabrm_film'
+    property_path: archive
+    type: integer
+    dependencies:
+      module:
+        - yabrm
+  archive_9:
+    label: Archive(s)
+    datasource_id: 'entity:yabrm_website'
     property_path: archive
     type: integer
     dependencies:
@@ -303,6 +319,14 @@ field_settings:
     datasource_id: 'entity:yabrm_book'
     property_path: collections
     type: text
+    dependencies:
+      module:
+        - yabrm
+  collections_10:
+    label: Collection(s)
+    datasource_id: 'entity:yabrm_website'
+    property_path: collections
+    type: integer
     dependencies:
       module:
         - yabrm
@@ -445,6 +469,14 @@ field_settings:
   contributors_8:
     label: Contributor(s)
     datasource_id: 'entity:yabrm_film'
+    property_path: contributors
+    type: integer
+    dependencies:
+      module:
+        - yabrm
+  contributors_9:
+    label: Contributor(s)
+    datasource_id: 'entity:yabrm_website'
     property_path: contributors
     type: integer
     dependencies:
@@ -612,6 +644,25 @@ field_settings:
       module:
         - paragraphs
         - yabrm
+  id_18:
+    label: 'Collection(s) » Bibliographic Collection » ID'
+    datasource_id: 'entity:yabrm_website'
+    property_path: 'collections:entity:id'
+    type: integer
+    dependencies:
+      module:
+        - yabrm
+  id_19:
+    label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
+    datasource_id: 'entity:yabrm_website'
+    property_path: 'contributors:entity:field_yabrm_contributor_person:entity:id'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_person
+      module:
+        - paragraphs
+        - yabrm
   id_2:
     label: 'Contributor(s) » Paragraph » Person » Bibliographic Contributor » ID'
     datasource_id: 'entity:yabrm_book_section'
@@ -728,6 +779,18 @@ field_settings:
     type: text
     dependencies:
       module:
+        - yabrm
+  langcode:
+    label: 'Contributor(s) » Paragraph » Role » Taxonomy term » Language'
+    datasource_id: 'entity:yabrm_website'
+    property_path: 'contributors:entity:field_yabrm_contributor_role:entity:langcode'
+    type: string
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_role
+      module:
+        - paragraphs
+        - taxonomy
         - yabrm
   language:
     label: Language
@@ -973,6 +1036,18 @@ field_settings:
         - paragraphs
         - taxonomy
         - yabrm
+  name_8:
+    label: 'Contributor(s) » Paragraph » Role » Taxonomy term » Name'
+    datasource_id: 'entity:yabrm_website'
+    property_path: 'contributors:entity:field_yabrm_contributor_role:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.paragraph.field_yabrm_contributor_role
+      module:
+        - paragraphs
+        - taxonomy
+        - yabrm
   num_pages:
     label: 'Number of Pages'
     datasource_id: 'entity:yabrm_thesis'
@@ -1016,6 +1091,14 @@ field_settings:
   organization:
     label: 'Number of Pages'
     datasource_id: 'entity:yabrm_periodical'
+    property_path: organization
+    type: string
+    dependencies:
+      module:
+        - yabrm
+  organization_1:
+    label: Organization
+    datasource_id: 'entity:yabrm_website'
     property_path: organization
     type: string
     dependencies:
@@ -1169,6 +1252,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  publication_day_8:
+    label: 'Publication Day'
+    datasource_id: 'entity:yabrm_website'
+    property_path: publication_day
+    type: integer
+    dependencies:
+      module:
+        - yabrm
   publication_month:
     label: 'Publication Month'
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -1241,6 +1332,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  publication_month_9:
+    label: 'Publication Month'
+    datasource_id: 'entity:yabrm_website'
+    property_path: publication_month
+    type: integer
+    dependencies:
+      module:
+        - yabrm
   publication_title:
     label: 'Publication Title'
     datasource_id: 'entity:yabrm_book_section'
@@ -1276,6 +1375,14 @@ field_settings:
   publication_year_10:
     label: 'Publication Year'
     datasource_id: 'entity:yabrm_film'
+    property_path: publication_year
+    type: integer
+    dependencies:
+      module:
+        - yabrm
+  publication_year_11:
+    label: 'Publication Year'
+    datasource_id: 'entity:yabrm_website'
     property_path: publication_year
     type: integer
     dependencies:
@@ -1365,6 +1472,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  revised:
+    label: 'Last Revision Date'
+    datasource_id: 'entity:yabrm_website'
+    property_path: revised
+    type: date
+    dependencies:
+      module:
+        - yabrm
   rights:
     label: Rights
     datasource_id: 'entity:yabrm_biblio_reference'
@@ -1434,6 +1549,14 @@ field_settings:
     datasource_id: 'entity:yabrm_film'
     property_path: rights
     type: text
+    dependencies:
+      module:
+        - yabrm
+  rights_9:
+    label: Rights
+    datasource_id: 'entity:yabrm_website'
+    property_path: rights
+    type: string
     dependencies:
       module:
         - yabrm
@@ -1573,6 +1696,22 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  short_title_9:
+    label: 'Short Title'
+    datasource_id: 'entity:yabrm_website'
+    property_path: short_title
+    type: string
+    dependencies:
+      module:
+        - yabrm
+  site_url:
+    label: 'Site URL'
+    datasource_id: 'entity:yabrm_website'
+    property_path: site_url
+    type: string
+    dependencies:
+      module:
+        - yabrm
   thesis_type:
     label: 'Thesis Type'
     datasource_id: 'entity:yabrm_thesis'
@@ -1650,6 +1789,14 @@ field_settings:
     datasource_id: 'entity:yabrm_film'
     property_path: title
     type: text
+    dependencies:
+      module:
+        - yabrm
+  title_9:
+    label: Title
+    datasource_id: 'entity:yabrm_website'
+    property_path: title
+    type: string
     dependencies:
       module:
         - yabrm
@@ -1739,6 +1886,14 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  url_9:
+    label: URL
+    datasource_id: 'entity:yabrm_website'
+    property_path: url
+    type: string
+    dependencies:
+      module:
+        - yabrm
   volume:
     label: Volume
     datasource_id: 'entity:yabrm_book_section'
@@ -1773,6 +1928,7 @@ datasource_settings:
   'entity:yabrm_periodical': {  }
   'entity:yabrm_report': {  }
   'entity:yabrm_thesis': {  }
+  'entity:yabrm_website': {  }
 processor_settings:
   add_url: {  }
   aggregated_field: {  }

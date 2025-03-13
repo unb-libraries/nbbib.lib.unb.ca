@@ -162,9 +162,9 @@ function template_preprocess_yabrm_website(array &$variables) {
     ?? NULL;
 
   // Specific to Website.
-  $website_type = $variables['content']['website_type']['0']['#context']['value']
+  $organization = $variables['content']['organization']['0']['#context']['value']
     ?? NULL;
-  $place = $variables['content']['place']['0']['#context']['value']
+  $revised = $variables['content']['revised']['0']['#text']
     ?? NULL;
 
   $title_wad = '';
@@ -236,18 +236,13 @@ function template_preprocess_yabrm_website(array &$variables) {
 
   // Publication.
 
-  if ($publisher) {
+  if ($organization) {
     $pub_wad .=  ' ' . trim($publisher);
   }
 
-  if ($place) {
-    $pub_wad = $publisher ? $pub_wad .= ', ' : $pub_wad .= ' '; 
-    $pub_wad .= trim($place);
-  }
-
-  // Only add period if last character is not punctuation.
-  if (!preg_match("/[.!?,;:]$/", $pub_wad)) {
-    $pub_wad .= '.';
+  if ($revised) {
+    $pub_wad = $organization ? $pub_wad .= ', ' : $pub_wad .= ' '; 
+    $pub_wad .= trim($revised);
   }
 
   $pub_wad = substr($pub_wad, -1) == '.' ? $pub_wad : "$pub_wad.";

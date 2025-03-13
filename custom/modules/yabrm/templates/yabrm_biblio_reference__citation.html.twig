@@ -22,6 +22,10 @@
         <a href="{{ content.url_alias }}">{{ content.title_wad|raw }}</a>
         {{ content.contribs_wad ~ ' ' }}
         {{ content.pub_wad|raw }}
+      {% elseif content.type_name|raw == 'yabrm_website' %}
+        {{ content.contribs_wad ~ ' ' }}
+        <a href="{{ content.url_alias }}">"{{ content.title_wad|raw }}"</a>
+        {{ content.pub_wad|raw }}
       {% else %}
         {{ content.contribs_wad ~ ' ' }}
         <a href="{{ content.url_alias }}">{{ content.title_wad|raw }}</a>

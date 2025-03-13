@@ -40,5 +40,9 @@ nbbib_types:
     entity: yabrm_film
     singular: Film
     plural: Films
+  -
+    entity: yabrm_website
+    singular: Website
+    plural: Websites
 view_headers:
   nbbib_essays: 'Enter custom view header text here.'

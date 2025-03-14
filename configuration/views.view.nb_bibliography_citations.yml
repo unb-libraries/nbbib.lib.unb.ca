@@ -1698,7 +1698,7 @@ display:
           value:
             min: ''
             max: ''
-            value: Film
+            value: Website
           group: 1
           exposed: false
           expose:

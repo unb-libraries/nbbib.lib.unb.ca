@@ -242,8 +242,11 @@ function template_preprocess_yabrm_website(array &$variables) {
   }
 
   if ($revised) {
-    $pub_wad = $organization ? $pub_wad .= ', ' : $pub_wad .= ' '; 
     $pub_wad .= trim($revised);
+  }
+  else {
+    $pub_wad = $organization ? $pub_wad .= ', ' : $pub_wad .= ' '; 
+    $revised = 'Ongoing';
   }
 
   $pub_wad = substr($pub_wad, -1) == '.' ? $pub_wad : "$pub_wad.";

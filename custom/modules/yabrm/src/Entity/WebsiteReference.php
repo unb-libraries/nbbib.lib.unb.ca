@@ -163,7 +163,6 @@ class WebsiteReference extends BibliographicReference implements WebsiteReferenc
 
       $fields['revised'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Last Revision Date'))
-      ->setRequired(TRUE)
       ->setSettings([
         'datetime_type' => 'datetime',
       ])

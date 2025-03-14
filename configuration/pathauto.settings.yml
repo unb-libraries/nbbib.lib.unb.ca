@@ -5,6 +5,7 @@ enabled_entity_types:
   - yabrm_collection
   - yabrm_film
   - yabrm_book
+  - yabrm_website
   - yabrm_journal_article
   - yabrm_conference
   - yabrm_contributor

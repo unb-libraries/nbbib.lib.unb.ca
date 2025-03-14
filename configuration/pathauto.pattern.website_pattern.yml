@@ -1,0 +1,14 @@
+uuid: 10b2cd57-36f0-4b74-a5b2-d494a543e678
+langcode: en
+status: true
+dependencies:
+  module:
+    - yabrm
+id: website_pattern
+label: 'Website Pattern'
+type: 'canonical_entities:yabrm_website'
+pattern: 'websites/[yabrm_website:title]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

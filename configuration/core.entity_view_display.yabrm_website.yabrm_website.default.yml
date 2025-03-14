@@ -58,10 +58,11 @@ content:
     weight: 0
     region: content
   contributors:
-    type: entity_reference_revisions_label
+    type: entity_reference_revisions_entity_view
     label: above
     settings:
-      link: true
+      view_mode: default
+      link: '1'
     third_party_settings: {  }
     weight: -1
     region: content
@@ -95,7 +96,7 @@ content:
     weight: -3
     region: content
   language:
-    type: list_default
+    type: list_key
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -205,7 +206,7 @@ content:
     label: above
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: olivero_medium
     third_party_settings: {  }
     weight: 0
     region: content

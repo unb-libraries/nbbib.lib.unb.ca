@@ -166,6 +166,7 @@ function template_preprocess_yabrm_website(array &$variables) {
     ?? NULL;
   $revised = $variables['content']['revised']['0']['#text']
     ?? NULL;
+  //dump($variables['content']['revised']);
 
   $title_wad = '';
   $contribs_wad = '';
@@ -237,7 +238,7 @@ function template_preprocess_yabrm_website(array &$variables) {
   // Publication.
 
   if ($organization) {
-    $pub_wad .=  ' ' . trim($publisher);
+    $pub_wad .=  ' ' . trim($organization);
   }
 
   if ($revised) {

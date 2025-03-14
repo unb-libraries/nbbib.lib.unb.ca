@@ -334,6 +334,37 @@ delete all film reference revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Film reference revisions</em> and <em>delete rights</em> for film reference entities in question or <em>administer film reference entities</em>.'
 
+add website reference entities:
+  title: 'Create new Website reference entities'
+
+administer website reference entities:
+  title: 'Administer Website reference entities'
+  description: 'Allow to access the administration form to configure Website reference entities.'
+  restrict access: true
+
+delete website reference entities:
+  title: 'Delete Website reference entities'
+
+edit website reference entities:
+  title: 'Edit Website reference entities'
+
+view published website reference entities:
+  title: 'View published Website reference entities'
+
+view unpublished website reference entities:
+  title: 'View unpublished Website reference entities'
+
+view all website reference revisions:
+  title: 'View all Website reference revisions'
+
+revert all website reference revisions:
+  title: 'Revert all Website reference revisions'
+  description: 'Role requires permission <em>view Website reference revisions</em> and <em>edit rights</em> for website reference entities in question or <em>administer website reference entities</em>.'
+
+delete all website reference revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Website reference revisions</em> and <em>delete rights</em> for website reference entities in question or <em>administer website reference entities</em>.'
+
 add contrib archival entities:
   title: 'Create new Contrib Archival entities'
 

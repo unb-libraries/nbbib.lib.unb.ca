@@ -85,7 +85,7 @@ function template_preprocess_yabrm_contributor(array &$variables) {
       }
     }
 
-    if ($img_item->getValue()['target_id'] != 0) {
+    if ($img_item and ($img_item->getValue()['target_id'] != 0)) {
       $iid = $img_item->get('target_id')->getValue();
       $file = File::load($iid);
 

@@ -10,6 +10,9 @@ source:
   path: '/app/html/modules/custom/nbbib_initial_content/data/csv/nbbib_1_religion_anglican.csv'
   header_row_count: 1
   ids: [key]
+  constants:
+    oclc_regex: /[^0-9]/
+    nullstring: ''
 
   fields:
     0:
@@ -303,7 +306,18 @@ process:
   archive_location: archive_location
   library_catalog: library_catalog
   call_number: call_number
-  extra: extra
+  extra: 
+    plugin: callback
+    callable: trim
+    source: extra
+  oclc: 
+    plugin: callback
+    callable: preg_replace
+    unpack_source: true
+    source: 
+      - constants/oclc_regex
+      - constants/nullstring
+      - extra
   notes: notes
   notes_private: notes_private
   editor: editor

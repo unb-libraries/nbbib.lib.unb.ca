@@ -10,6 +10,9 @@ source:
   path: '/app/html/modules/custom/nbbib_initial_content/data/csv/nbbib_0_new_brunswickana.csv'
   header_row_count: 1
   ids: [key]
+  constants:
+    oclc_regex: /[^0-9]/
+    nullstring: ''
 
   fields:
     0:
@@ -373,6 +376,14 @@ process:
     plugin: callback
     callable: trim
     source: extra
+  oclc: 
+    plugin: callback
+    callable: preg_replace
+    unpack_source: true
+    source: 
+      - constants/oclc_regex
+      - constants/nullstring
+      - extra
   notes: 
     plugin: callback
     callable: trim

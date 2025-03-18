@@ -22,6 +22,7 @@ function extra_oclc($type, $update) {
 
     if (str_contains(strtolower($extraval), 'oclc')) { 
       $oclc = preg_replace("/[^0-9]/", '', $extraval);
+      $update = TRUE;
       echo "Retrieved OCLC number [$oclc] from Extra field value [$extraval] in $type [$id].\n";
     }
     else {

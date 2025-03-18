@@ -18,10 +18,10 @@ function extra_oclc($type, $update) {
 
   foreach ($entities as $entity) {
     $id = $entity->id();
-    $extraval = $entity->extra ? $entity->extra->getValue()[0]['value'] : NULL;
-    $oclc = str_contains(strtolower($extraval), 'oclc') ?? preg_replace("/[^0-9]/", '', $extraval);
+    $extraval = ($entity->extra->getValue()[0]['value']) ?? $entity->extra->getValue()[0]['value'];
 
-    if ($oclc != '') {
+    if (str_contains(strtolower($extraval), 'oclc')) { 
+      $oclc = preg_replace("/[^0-9]/", '', $extraval);
       echo "Retrieved OCLC number [$oclc] from Extra field value [$extraval] in $type [$id].\n";
     }
     else {
@@ -29,7 +29,7 @@ function extra_oclc($type, $update) {
     }
     
     if ($update) {
-      $entity->extra = $oclc;
+      $entity->oclc = $oclc;
       $entity->save();
       echo "Updated OCLC field to value [$oclc] in $type [$id].\n";
     }

@@ -10,7 +10,8 @@ extra_oclc('yabrm_conference', $arg1);
 extra_oclc('yabrm_report', $arg1);
 extra_oclc('yabrm_film', $arg1);
 
-function extra_oclc($type, $update) {
+function extra_oclc($type, $arg1) {
+  $update = TRUE;
   $handler = \Drupal::entityTypeManager()->getStorage($type);
   $entities = $handler->loadMultiple(\Drupal::entityQuery($type)
     ->accessCheck(FALSE)
@@ -29,7 +30,7 @@ function extra_oclc($type, $update) {
       $update = FALSE;
     }
     
-    if ($update) {
+    if ($arg1 and $update) {
       $entity->oclc = $oclc;
       $entity->save();
       echo "Updated OCLC field to value [$oclc] in $type [$id].\n";

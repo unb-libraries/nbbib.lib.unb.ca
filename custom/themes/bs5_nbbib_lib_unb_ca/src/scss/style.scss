@@ -379,8 +379,11 @@ html {
               margin-top: 3.05rem;
             }
             ul {
+              margin-left: 1rem;
               list-style-type: disc !important;
-              list-style-position: inside;
+              li {
+                word-break: break-all;
+              }
             }
           }
         }

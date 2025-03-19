@@ -114,6 +114,20 @@ nbbib_core.about.symposia:
   menu_name: main
   url: internal:/symposia
   weight: 30
+nbbib_core.about.newspapers:
+  title: 'New Brunswick Historical Newspapers Project'
+  description: 'New Brunswick Historical Newspapers Project'
+  parent: nbbib_core.about
+  menu_name: main
+  url: https://newspapers.lib.unb.ca
+  weight: 31
+nbbib_core.about.nble:
+  title: 'New Brunswick Literary Encyclopedia'
+  description: 'New Brunswick Literary Encyclopedia'
+  parent: nbbib_core.about
+  menu_name: main
+  url: https://nble.lib.unb.ca/new-brunswick-literary-encyclopedia
+  weight: 32
 nbbib_core.about.contact:
   title: 'Contact Us'
   description: 'Contact Us'

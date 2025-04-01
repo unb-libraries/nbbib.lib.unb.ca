@@ -684,6 +684,11 @@ html {
           .region-nav-main {
             .nav-item {
               padding-left: 1.4rem;
+              .fa-arrow-up-right-from-square {
+                margin-left: .2rem;
+                transform: scale(.7);
+                transform-origin: center;
+              }  
               .nav-link {
                 font-weight: 600;
                 font-size: 21px;
@@ -732,7 +737,7 @@ html {
               }
               &:last-child {
                 ul {
-                  left: -16rem;
+                  left: -20rem;
                 }
               }
             }

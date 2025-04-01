@@ -16,6 +16,7 @@ use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\search_api\Entity\Index;
@@ -1276,4 +1277,3 @@ function nbbib_core_menu_local_tasks_alter(&$data, $route_name, RefinableCacheab
     array_shift($data['tabs'][0]);
   }
 }
-

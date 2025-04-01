@@ -123,7 +123,7 @@ nbbib_core.about.newspapers:
   weight: 31
 nbbib_core.about.nble:
   title: 'New Brunswick Literary Encyclopedia'
-  description: 'New Brunswick Literary Encyclopedia'
+  description: 'New Brunswick Literary Encyclopedia '
   parent: nbbib_core.about
   menu_name: main
   url: https://nble.lib.unb.ca/new-brunswick-literary-encyclopedia

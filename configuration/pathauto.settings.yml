@@ -1,15 +1,15 @@
 enabled_entity_types:
   - yabrm_book_section
-  - yabrm_thesis
-  - yabrm_report
-  - yabrm_collection
   - yabrm_film
-  - yabrm_book
-  - yabrm_website
-  - yabrm_journal_article
   - yabrm_conference
-  - yabrm_contributor
   - yabrm_periodical
+  - yabrm_contributor
+  - yabrm_report
+  - yabrm_journal_article
+  - yabrm_website
+  - yabrm_thesis
+  - yabrm_book
+  - yabrm_collection
 punctuation:
   double_quotes: 0
   quotes: 0
@@ -51,5 +51,5 @@ transliterate: true
 reduce_ascii: true
 case: true
 ignore_words: ''
-update_action: 2
+update_action: 1
 safe_tokens: {  }

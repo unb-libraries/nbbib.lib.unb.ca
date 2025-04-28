@@ -53,6 +53,10 @@ settings:
         - '<h5 class id>'
         - '<h6 class id>'
         - '<a class>'
+        - '<footnotes data-value data-text>'
+        - '<cite>'
+        - '<figure data-align>'
+        - '<figcaption>'
     media_media:
       allow_view_mode_override: false
 image_upload:

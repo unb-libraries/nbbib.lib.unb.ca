@@ -17,6 +17,7 @@ is_admin: false
 permissions:
   - 'access content'
   - 'view any term'
+  - 'view any term name'
   - 'view media'
   - 'view published bibliographic collection entities'
   - 'view published bibliographic contributor entities'

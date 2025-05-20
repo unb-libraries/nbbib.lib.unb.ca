@@ -18,49 +18,49 @@ nbbib_core.collections.architecture:
   description: 'Architecture'
   parent: nbbib_core.collections
   menu_name: main
-  url: internal:/collections/architecture
+  url: internal:/architecture
   weight: 10
 nbbib_core.collections.bibliographies:
   title: 'Bibliographies'
   description: 'Bibliographies'
   parent: nbbib_core.collections
   menu_name: main
-  url: internal:/collections/bibliographies
+  url: internal:/bibliographies
   weight: 20
 # nbbib_core.collections.business:
 #  title: 'Business and Industry'
 #  description: 'Business and Industry'
 #  parent: nbbib_core.collections
 #  menu_name: main
-#  url: internal:/collections/business-and-industry
+#  url: internal:/business-and-industry
 #  weight: 21
 nbbib_core.collections.cbbp:
   title: 'Children’s Books of Brunswick Press'
   description: 'Children’s Books of Brunswick Press'
   parent: nbbib_core.collections
   menu_name: main
-  url: internal:/collections/childrens-books-of-brunswick-press
+  url: internal:/childrens-books-of-brunswick-press
   weight: 22
 nbbib_core.collections.nbapp:
   title: "NB Authors' Archival Papers"
   description: "NB Authors' Archival Papers Project"
   parent: nbbib_core.collections
   menu_name: main
-  url: internal:/collections/nb-authors-archival-papers-project
+  url: internal:/nb-authors-archival-papers-project
   weight: 30
 nbbib_core.collections.nb_imprints:
   title: 'New Brunswick Imprints'
   description: 'New Brunswick Imprints'
   parent: nbbib_core.collections
   menu_name: main
-  url: internal:/collections/new-brunswick-imprints
+  url: internal:/new-brunswick-imprints
   weight: 40
 nbbib_core.collections.religion:
   title: 'Religion'
   description: 'Religion'
   parent: nbbib_core.collections
   menu_name: main
-  url: internal:/collections/religion
+  url: internal:/religion
   weight: 50
 nbbib_core.contributors:
   title: 'Contributors'

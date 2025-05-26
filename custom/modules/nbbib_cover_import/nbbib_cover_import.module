@@ -1,13 +1,62 @@
 <?php
 
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\file\Entity\File;
+use Drupal\media\Entity\Media;
+
 /**
  * @file
  * Contains nbbib_cover_import.module.php
  */
 
 /**
- * {@inheritdoc}
+ * Implements hook_node_view().
  */
-function nbbib_cover_import_yabrm_biblio_reference_load($entities) {
-  kint($entities);
+function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) {
+  // Add or alter data for display only.
+  if ($view_mode == 'full') {
+    // Load reference types from configuration.
+    $config = \Drupal::config('nbbib_core.settings');
+    $types = $config->get('nbbib_types');
+    $types = $types ? array_column($types, 'entity') : NULL;
+    
+    // If entity has a bibliographic reference type...
+    if ($types and (in_array($entity->bundle(), $types)) and $entity->getIsbn()) {
+      // Configuration: Set your ISBN and cover URL.
+      preg_match('/\d{13}/', $entity->getIsbn(), $matches);
+      $isbn = $matches[0];
+      $cover_url = "https://covers.openlibrary.org/b/isbn/{$isbn}-L.jpg";
+
+      // 1. Download the image.
+      $image_contents = file_get_contents($cover_url);
+
+      if (strlen($image_contents) < 1000) {
+        // Log an error.
+        \Drupal::logger('nbbib_cover_import')->notice(
+          'Failed to fetch cover image for ISBN: @isbn from URL: @url',
+          ['@isbn' => $isbn, '@url' => $cover_url]
+        );
+      }
+      else {
+        // 2. Prepare the directory.
+        $directory = 'public://openlibrary_covers';
+        \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+
+        // 3. Build the file URI and filename.
+        $filename = "openlibrary_cover_{$isbn}.jpg";
+        $uri = "{$directory}/{$filename}";
+
+        // 4. Write the file contents FIRST.
+        \Drupal::service('file_system')->saveData($image_contents, $uri, FileSystemInterface::EXISTS_REPLACE);
+
+        // 5. THEN create and save the File entity.
+        $file = File::create([
+          'uri' => $uri,
+        ]);
+        $file->setPermanent();
+        $file->save();    
+      }
+    }
+  }
 }

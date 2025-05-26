@@ -23,9 +23,9 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     
     // If entity has a bibliographic reference type...
     if ($types and (in_array($entity->bundle(), $types)) and $entity->getIsbn()) {
-      // Configuration: Set your ISBN and cover URL.
+      // Configuration: Remove dashes and capture first 13-digit sequence for ISBN.
       preg_match('/\d{13}/', $entity->getIsbn(), $matches);
-      $isbn = $matches[0];
+      $isbn = str_replace('-', '', $matches[0]);
       $cover_url = "https://covers.openlibrary.org/b/isbn/{$isbn}-L.jpg";
 
       // 1. Download the image.

@@ -11,52 +11,97 @@ use Drupal\media\Entity\Media;
  */
 
 /**
- * Implements hook_node_view().
+ * Implements hook_entity_view().
  */
 function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) {
-  // Add or alter data for display only.
-  if ($view_mode == 'full') {
-    // Load reference types from configuration.
-    $config = \Drupal::config('nbbib_core.settings');
-    $types = $config->get('nbbib_types');
-    $types = $types ? array_column($types, 'entity') : NULL;
+  $config = \Drupal::config('nbbib_core.settings');
+  $types = $config->get('nbbib_types');
+  $types = $types ? array_column($types, 'entity') : NULL;
+  
+  if ($view_mode == 'full' and is_array($types) and in_array($entity->bundle(), $types)) {
+    $cover_id = $entity->getCover()[0]['target_id'] ?? 0;
     
-    // If entity has a bibliographic reference type...
-    if ($types and (in_array($entity->bundle(), $types)) and $entity->getIsbn()) {
-      // Configuration: Remove dashes and capture first 13-digit sequence for ISBN.
-      preg_match('/\d{13}/', $entity->getIsbn(), $matches);
-      $isbn = str_replace('-', '', $matches[0]);
+    // If existing cover, return.
+    if ($cover_id > 0) {
+      return;
+    }
+    
+    // Otherwise, get ISBN.
+    $isbn_in = str_replace('-', '', $entity->getIsbn());
+    preg_match('/\d{13}/', $isbn_in, $matches);
+    $isbn = $matches[0] ?? NULL;
+
+    // If a valid ISBN is found...
+    if ($isbn) {
+      // Prepare import URL, directory, file, and URI.  
       $cover_url = "https://covers.openlibrary.org/b/isbn/{$isbn}-L.jpg";
+      $directory = 'public://openlibrary_covers';
+      \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+      $filename = "openlibrary_cover_{$isbn}.jpg";
+      $uri = "{$directory}/{$filename}";
+      
+      if (file_exists($uri)) {
+        // File exists, load it by URI.
+        $files = \Drupal::entityTypeManager()
+        ->getStorage('file')
+        ->loadByProperties(['uri' => $uri]);
+        $file = reset($files);
+        
+        if ($file) {
+          // Reference the existing file in the cover_image field.
+          $entity->set('cover_image', [
+            'target_id' => $file->id(),
+            'alt' => 'Cover image for ISBN ' . $isbn,
+          ]);
 
-      // 1. Download the image.
-      $image_contents = file_get_contents($cover_url);
-
-      if (strlen($image_contents) < 1000) {
-        // Log an error.
-        \Drupal::logger('nbbib_cover_import')->notice(
-          'Failed to fetch cover image for ISBN: @isbn from URL: @url',
-          ['@isbn' => $isbn, '@url' => $cover_url]
-        );
+          save_reference($entity, $build);
+        }
       }
       else {
-        // 2. Prepare the directory.
-        $directory = 'public://openlibrary_covers';
-        \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+        // Download the image.
+        $image_contents = file_get_contents($cover_url);
+        
+        if (strlen($image_contents) < 1000) {
+          no_cover($isbn, $cover_url);
+        }
+        else {
+          // Save the image file.
+          \Drupal::service('file_system')->saveData($image_contents, $uri, FileSystemInterface::EXISTS_REPLACE);
+          
+          // Create and save the File entity.
+          $file = File::create(['uri' => $uri]);
+          $file->setPermanent();
+          $file->save();
+          
+          // Reference the file in the cover_image field.
+          $entity->set('cover_image', [
+            'target_id' => $file->id(),
+            'alt' => 'Cover image for ISBN ' . $isbn,
+          ]);          
 
-        // 3. Build the file URI and filename.
-        $filename = "openlibrary_cover_{$isbn}.jpg";
-        $uri = "{$directory}/{$filename}";
-
-        // 4. Write the file contents FIRST.
-        \Drupal::service('file_system')->saveData($image_contents, $uri, FileSystemInterface::EXISTS_REPLACE);
-
-        // 5. THEN create and save the File entity.
-        $file = File::create([
-          'uri' => $uri,
-        ]);
-        $file->setPermanent();
-        $file->save();    
+          save_reference($entity, $build);
+        }
       }
     }
+    else {
+      no_cover('No ISBN', 'N/A');
+    }
   }
+}
+
+function no_cover($isbn, $cover_url) {
+  \Drupal::logger('nbbib_cover_import')->notice(
+    'Failed to fetch cover image for ISBN: @isbn from URL: @url',
+    ['@isbn' => $isbn, '@url' => $cover_url]
+  );
+}
+
+function save_reference(&$entity, &$build) {
+  // Save reference entity.
+  $entity->save();
+  // Force-clear render array cache.
+  $build['#cache']['max-age'] = 0;
+  \Drupal::service('page_cache_kill_switch')->trigger();
+  // Reload page to update image on entity view.
+  header("Refresh:0");    
 }

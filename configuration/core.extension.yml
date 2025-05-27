@@ -45,6 +45,7 @@ module:
   menu_ui: 0
   mysql: 0
   nbbib_core: 0
+  nbbib_cover_import: 0
   node: 0
   options: 0
   override_node_options: 0

@@ -19,8 +19,9 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
   $types = $types ? array_column($types, 'entity') : NULL;
   
   if ($view_mode == 'full' and is_array($types) and in_array($entity->bundle(), $types)) {
+    dump($entity->getCoverMissing());
+    exit;
     $cover_id = $entity->getCover()[0]['target_id'] ?? 0;
-    
     // If existing cover, return.
     if ($cover_id > 0) {
       return;
@@ -31,7 +32,7 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     preg_match_all('/\d{13}/', $isbn_in, $matches);
     $matches = $matches[0] ?? $matches[0];
     
-    // If a valid ISBN is found...
+    // If valid ISBNs found...
     if (!empty($matches)) {
       foreach ($matches as $isbn) {
         // Prepare import URL, directory, file, and URI.  

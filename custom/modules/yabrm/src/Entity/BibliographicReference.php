@@ -714,16 +714,25 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
           'type'    => 'image',
           'weight'  => 0,
         ],
-      )
-      ->setDisplayOptions(
-        'form',
-        [
-          'type'    => 'image_image',
-          'weight'  => 0,
-        ],
-      )
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+        )
+        ->setDisplayOptions(
+          'form',
+          [
+            'type'    => 'image_image',
+            'weight'  => 0,
+          ],
+          )
+          ->setDisplayConfigurable('form', TRUE)
+          ->setDisplayConfigurable('view', TRUE);
+          
+    $fields['ol_cover_missing'] = BaseFieldDefinition::create('datetime')
+      ->setLabel(t('Cover Missing Date'))
+      ->setDescription(t('The date when cover is missing.'))
+      ->setSettings([
+        'datetime_type' => 'date',
+        ])
+      ->setRequired(FALSE)
+      ->setRevisionable(FALSE);
 
     return $fields;
   }
@@ -1272,6 +1281,20 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    */
   public function setCover($values) {
     return $this->set('cover_image', $values);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCoverMissing() {
+    return $this->get('ol_cover_missing')->getValue();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCoverMissing($date) {
+    return $this->set('ol_cover_missing', $date);
   }
 
   /**

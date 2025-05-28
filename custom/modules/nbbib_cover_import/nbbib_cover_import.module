@@ -28,63 +28,70 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     
     // Otherwise, get ISBN.
     $isbn_in = str_replace('-', '', $entity->getIsbn());
-    preg_match('/\d{13}/', $isbn_in, $matches);
-    $isbn = $matches[0] ?? NULL;
-
+    preg_match_all('/\d{13}/', $isbn_in, $matches);
+    $matches = $matches[0] ?? $matches[0];
+    
     // If a valid ISBN is found...
-    if ($isbn) {
-      // Prepare import URL, directory, file, and URI.  
-      $cover_url = "https://covers.openlibrary.org/b/isbn/{$isbn}-L.jpg";
-      $directory = 'public://openlibrary_covers';
-      \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
-      $filename = "openlibrary_cover_{$isbn}.jpg";
-      $uri = "{$directory}/{$filename}";
-      
-      if (file_exists($uri)) {
-        // File exists, load it by URI.
-        $files = \Drupal::entityTypeManager()
-        ->getStorage('file')
-        ->loadByProperties(['uri' => $uri]);
-        $file = reset($files);
+    if (!empty($matches)) {
+      foreach ($matches as $isbn) {
+        // Prepare import URL, directory, file, and URI.  
+        $cover_url = "https://covers.openlibrary.org/b/isbn/{$isbn}-L.jpg";
+        $directory = 'public://openlibrary_covers';
+        \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+        $filename = "openlibrary_cover_{$isbn}.jpg";
+        $uri = "{$directory}/{$filename}";
         
-        if ($file) {
-          // Reference the existing file in the cover_image field.
-          $entity->set('cover_image', [
-            'target_id' => $file->id(),
-            'alt' => 'Cover image for ISBN ' . $isbn,
-          ]);
+        if (file_exists($uri)) {
+          // File exists, load it by URI.
+          $files = \Drupal::entityTypeManager()
+          ->getStorage('file')
+          ->loadByProperties(['uri' => $uri]);
+          $file = reset($files);
+          
+          if ($file) {
+            // Reference the existing file in the cover_image field.
+            $entity->set('cover_image', [
+              'target_id' => $file->id(),
+              'alt' => 'Cover image for ISBN ' . $isbn,
+            ]);
 
-          save_reference($entity, $build);
-        }
-      }
-      else {
-        // Download the image.
-        $image_contents = file_get_contents($cover_url);
-        
-        if (strlen($image_contents) < 1000) {
-          no_cover($isbn, $cover_url);
+            save_reference($entity, $build);
+          }
         }
         else {
-          // Save the image file.
-          \Drupal::service('file_system')->saveData($image_contents, $uri, FileSystemInterface::EXISTS_REPLACE);
+          // Download the image from Open Library URL.
+          $image_contents = file_get_contents($cover_url);
           
-          // Create and save the File entity.
-          $file = File::create(['uri' => $uri]);
-          $file->setPermanent();
-          $file->save();
-          
-          // Reference the file in the cover_image field.
-          $entity->set('cover_image', [
-            'target_id' => $file->id(),
-            'alt' => 'Cover image for ISBN ' . $isbn,
-          ]);          
+          if (strlen($image_contents) < 1000) {
+            no_cover($isbn, $cover_url);
+          }
+          else {
+            // Save the image file.
+            \Drupal::service('file_system')->saveData($image_contents, $uri, FileSystemInterface::EXISTS_REPLACE);
+            
+            // Create and save the File entity.
+            $file = File::create(['uri' => $uri]);
+            $file->setPermanent();
+            $file->save();
+            
+            // Reference the file in the cover_image field.
+            $entity->set('cover_image', [
+              'target_id' => $file->id(),
+              'alt' => 'Cover image for ISBN ' . $isbn,
+            ]);          
 
-          save_reference($entity, $build);
+            save_reference($entity, $build);
+          }
+        }
+        
+        if (isset($file)) {
+          exit;
         }
       }
     }
-    else {
-      no_cover('No ISBN', 'N/A');
+    
+    if (!isset($file)) {
+      no_cover('No matching ISBN', 'N/A');
     }
   }
 }

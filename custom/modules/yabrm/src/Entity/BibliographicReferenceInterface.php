@@ -627,20 +627,20 @@ interface BibliographicReferenceInterface extends ContentEntityInterface, Revisi
   /**
    * Gets the Bibliographic Reference last missing cover date.
    *
-   * @return string
-   *   The last missing cover date.
+   * @return int
+   *   The last missing cover month number.
    */
   public function getCoverMissing();
 
   /**
    * Sets the Bibliographic Reference last missing cover date.
    *
-   * @param string $date
-   *   The last missing cover date.
+   * @param int $month
+   *   The last missing cover month number.
    *
    * @return \Drupal\yabrm\Entity\BibliographicReferenceInterface
    *   The called Bibliographic Reference entity.
    */
-  public function setCoverMissing(string $values);
+  public function setCoverMissing(int $month);
 
 }

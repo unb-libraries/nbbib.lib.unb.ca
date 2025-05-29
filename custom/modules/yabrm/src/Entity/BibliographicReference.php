@@ -725,14 +725,15 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
           ->setDisplayConfigurable('form', TRUE)
           ->setDisplayConfigurable('view', TRUE);
           
-    $fields['ol_cover_missing'] = BaseFieldDefinition::create('datetime')
+    $fields['ol_cover_missing'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Cover Missing Date'))
-      ->setDescription(t('The date when cover is missing.'))
-      ->setSettings([
-        'datetime_type' => 'date',
-        ])
-      ->setRequired(FALSE)
-      ->setRevisionable(FALSE);
+      ->setRevisionable(FALSE)
+      ->addPropertyConstraints('value', [
+        'Range' => [
+          'min' => 1,
+          'max' => 12,
+        ],
+      ]);
 
     return $fields;
   }
@@ -1287,14 +1288,14 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    * {@inheritdoc}
    */
   public function getCoverMissing() {
-    return $this->get('ol_cover_missing')->getValue();
+    return $this->get('ol_cover_missing')->getValue()[0]['value'];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setCoverMissing($date) {
-    return $this->set('ol_cover_missing', $date);
+  public function setCoverMissing($month) {
+    return $this->set('ol_cover_missing', $month);
   }
 
   /**

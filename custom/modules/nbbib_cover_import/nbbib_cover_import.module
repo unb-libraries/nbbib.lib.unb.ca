@@ -19,10 +19,12 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
   $types = $types ? array_column($types, 'entity') : NULL;
   
   if ($view_mode == 'full' and is_array($types) and in_array($entity->bundle(), $types)) {
-    dump($entity->getCoverMissing());
     $cover_id = $entity->getCover()[0]['target_id'] ?? 0;
-    // If existing cover, return.
-    if ($cover_id > 0) {
+    $entity->setCoverMissing(1);
+    $missing = $entity->getCoverMissing();
+    $month = intval(date('m'));
+    // If existing cover or missing cover known for less than a month, return.
+    if ($cover_id > 0 or ($missing and ($month == $missing))) {;
       return;
     }
     
@@ -84,7 +86,13 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
         }
         
         if (isset($file)) {
+          $entity->setCoverMissing(NULL);
+          $entity->save();
           exit;
+        }
+        else {
+          $entity->setCoverMissing($month);
+          $entity->save();
         }
       }
     }
@@ -113,12 +121,12 @@ function save_reference(&$entity, &$build) {
 }
 
 function filter_isbn($isbn_in) {
-    // Split the string on commas and trim whitespace
+    // Split the string on commas and trim whitespace.
     $parts = array_map('trim', explode(',', $isbn_in));
-    // Filter for 10 or 13 digit numbers only
+    // Filter for 10 or 13 digit numbers only.
     $filtered = array_filter($parts, function($item) {
         return preg_match('/^\d{10}$|^\d{13}$/', $item);
     });
-    // Reindex array and return
+    // Reindex array and return.
     return array_values($filtered);
 }

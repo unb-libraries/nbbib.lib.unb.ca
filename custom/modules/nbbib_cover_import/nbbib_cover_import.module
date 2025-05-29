@@ -20,7 +20,6 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
   
   if ($view_mode == 'full' and is_array($types) and in_array($entity->bundle(), $types)) {
     dump($entity->getCoverMissing());
-    exit;
     $cover_id = $entity->getCover()[0]['target_id'] ?? 0;
     // If existing cover, return.
     if ($cover_id > 0) {
@@ -29,8 +28,7 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     
     // Otherwise, get ISBN.
     $isbn_in = str_replace('-', '', $entity->getIsbn());
-    preg_match_all('/\d{13}/', $isbn_in, $matches);
-    $matches = $matches[0] ?? $matches[0];
+    $matches = filter_isbn($isbn_in);
     
     // If valid ISBNs found...
     if (!empty($matches)) {
@@ -112,4 +110,15 @@ function save_reference(&$entity, &$build) {
   \Drupal::service('page_cache_kill_switch')->trigger();
   // Reload page to update image on entity view.
   header("Refresh:0");    
+}
+
+function filter_isbn($isbn_in) {
+    // Split the string on commas and trim whitespace
+    $parts = array_map('trim', explode(',', $isbn_in));
+    // Filter for 10 or 13 digit numbers only
+    $filtered = array_filter($parts, function($item) {
+        return preg_match('/^\d{10}$|^\d{13}$/', $item);
+    });
+    // Reindex array and return
+    return array_values($filtered);
 }

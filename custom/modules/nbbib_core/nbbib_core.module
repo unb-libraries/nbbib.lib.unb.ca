@@ -1008,7 +1008,9 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
         foreach ($contribs_diff as $pid) {
           // Get contributor entity ID.
           $p_obj = Paragraph::load($pid);
-          $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'] ?? NULL;
+          if ($p_obj) {
+            $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'] ?? NULL;
+          }
           $p_obj->delete();
  
           if ($cid) {

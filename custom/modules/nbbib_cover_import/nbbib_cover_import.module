@@ -25,8 +25,8 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     $isbn_in = $entity->getIsbn() ?? NULL;
 
     // If no ISBN, existing cover or missing cover known for less than a month, return.
-    if ((!$isbn_in) or ($cover_id > 0) or ($missing and ($month == $missing))) {;
-      return;
+    if ((!$isbn_in) or ($cover_id > 0) or ($missing and ($month == $missing))) {
+      exit;
     }
     
     // Otherwise, process ISBN.
@@ -133,18 +133,15 @@ function filter_isbn($isbn_in) {
 }
 
 /**
- * Dump item.
+ * Dump item to screen.
  *
  * @param string $label
  *   A label for identification.
  * @param mixed $item
  *   The item to dump.
  */
-function tdump($label, $item) {
+function sd($label = '', $item = NULL) {
   $label = strtoupper($label);
-  echo "\n";
-  echo "***$label***\n";
-  echo var_dump($item);
-  echo "***$label***";
-  echo "\n\n";
+  dump($label);
+  dump($item);
 }

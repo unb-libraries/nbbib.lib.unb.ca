@@ -166,7 +166,6 @@ function template_preprocess_yabrm_website(array &$variables) {
     ?? NULL;
   $revised = $variables['content']['revised']['0']['#text']
     ?? NULL;
-  //dump($variables['content']['revised']);
 
   $title_wad = '';
   $contribs_wad = '';

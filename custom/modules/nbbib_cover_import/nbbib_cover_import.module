@@ -20,9 +20,10 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
   
   if ($view_mode == 'full' and is_array($types) and in_array($entity->bundle(), $types)) {
     $cover_id = $entity->getCover()[0]['target_id'] ?? 0;
-    $entity->setCoverMissing(1);
     $missing = $entity->getCoverMissing();
     $month = intval(date('m'));
+
+
     // If existing cover or missing cover known for less than a month, return.
     if ($cover_id > 0 or ($missing and ($month == $missing))) {;
       return;
@@ -35,7 +36,6 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     // If valid ISBNs found...
     if (!empty($matches)) {
       foreach ($matches as $isbn) {
-        dump("TEST");
         // Prepare import URL, directory, file, and URI.  
         $cover_url = "https://covers.openlibrary.org/b/isbn/{$isbn}-L.jpg";
         $directory = 'public://openlibrary_covers';
@@ -130,4 +130,21 @@ function filter_isbn($isbn_in) {
     });
     // Reindex array and return.
     return array_values($filtered);
+}
+
+/**
+ * Dump item.
+ *
+ * @param string $label
+ *   A label for identification.
+ * @param mixed $item
+ *   The item to dump.
+ */
+function tdump($label, $item) {
+  $label = strtoupper($label);
+  echo "\n";
+  echo "***$label***\n";
+  echo var_dump($item);
+  echo "***$label***";
+  echo "\n\n";
 }

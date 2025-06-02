@@ -22,15 +22,15 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     $cover_id = $entity->getCover()[0]['target_id'] ?? 0;
     $missing = $entity->getCoverMissing();
     $month = intval(date('m'));
+    $isbn_in = $entity->getIsbn() ?? NULL;
 
-
-    // If existing cover or missing cover known for less than a month, return.
-    if ($cover_id > 0 or ($missing and ($month == $missing))) {;
+    // If no ISBN, existing cover or missing cover known for less than a month, return.
+    if ((!$isbn_in) or ($cover_id > 0) or ($missing and ($month == $missing))) {;
       return;
     }
     
-    // Otherwise, get ISBN.
-    $isbn_in = str_replace('-', '', $entity->getIsbn());
+    // Otherwise, process ISBN.
+    $isbn_in = str_replace('-', '', $isbn_in);
     $matches = filter_isbn($isbn_in);
     
     // If valid ISBNs found...

@@ -90,7 +90,7 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
           $entity->setCoverMissing(NULL);
           $entity->save();
           dump('CHECK');
-          exit;
+          break;
         }
         else {
           $entity->setCoverMissing($month);

@@ -26,7 +26,7 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
 
     // If no ISBN, existing cover or missing cover known for less than a month, return.
     if ((!$isbn_in) or ($cover_id > 0) or ($missing and ($month == $missing))) {
-      exit;
+      return;
     }
     
     // Otherwise, process ISBN.

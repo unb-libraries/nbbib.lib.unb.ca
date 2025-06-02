@@ -1288,7 +1288,10 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    * {@inheritdoc}
    */
   public function getCoverMissing() {
-    return $this->get('ol_cover_missing')->getValue()[0]['value'];
+    $cover_missing = $this->get('ol_cover_missing')->getValue() ?
+      $this->get('ol_cover_missing')->getValue()[0]['value'] :
+      NULL;
+    return $cover_missing;
   }
 
   /**

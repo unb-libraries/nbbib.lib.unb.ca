@@ -89,7 +89,6 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
         if (isset($file)) {
           $entity->setCoverMissing(NULL);
           $entity->save();
-          dump('CHECK');
           break;
         }
         else {

@@ -14,11 +14,8 @@ use Drupal\media\Entity\Media;
  * Implements hook_entity_view().
  */
 function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) {
-  $config = \Drupal::config('nbbib_core.settings');
-  $types = $config->get('nbbib_types');
-  $types = $types ? array_column($types, 'entity') : NULL;
-  
-  if ($view_mode == 'full' and is_array($types) and in_array($entity->bundle(), $types)) {
+
+  if ($entity->bundle() == 'yabrm_book') {
     $cover_id = $entity->getCover()[0]['target_id'] ?? 0;
     $missing = $entity->getCoverMissing();
     $month = intval(date('m'));

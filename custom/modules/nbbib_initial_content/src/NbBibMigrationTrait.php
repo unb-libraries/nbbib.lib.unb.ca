@@ -86,6 +86,12 @@ trait NbBibMigrationTrait {
       'nbbib_16_business_unb_5_conference_papers' => 'Business and Industry',
       'nbbib_16_business_unb_6_reports' => 'Business and Industry',
       'nbbib_16_business_unb_7_films' => 'Business and Industry',
+      'nbbib_17_archaeology_1_journal_articles' => 'Archaeology',
+      'nbbib_17_archaeology_2_books' => 'Archaeology',
+      'nbbib_17_archaeology_3_book_sections' => 'Archaeology',
+      'nbbib_17_archaeology_4_theses' => 'Archaeology',
+      'nbbib_17_archaeology_5_conference_papers' => 'Archaeology',
+      'nbbib_17_archaeology_6_reports' => 'Archaeology',
     ];
   }
 

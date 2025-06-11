@@ -33,18 +33,47 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     // If valid ISBNs found...
     if (!empty($matches)) {
       foreach ($matches as $isbn) {
-        // Prepare import URL, directory, file, and URI.  
-        $cover_url = "https://covers.openlibrary.org/b/isbn/{$isbn}-L.jpg";
-        $directory = 'public://openlibrary_covers';
+        // Google Books:
+        // Query the Google Books API
+        $api_url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" . urlencode($isbn);
+        $response = file_get_contents($api_url);
+        
+        if ($response === FALSE) {
+          \Drupal::logger('nbbib_cover_import')->notice("Error fetching data from Google Books API");
+          die("Error fetching data from Google Books API");
+        }
+        
+        $data = json_decode($response, true);
+        
+        // Check if a book was found
+        if (empty($data['items'][0]['volumeInfo']['imageLinks'])) {
+          $cover_url = null;
+        } 
+        else {
+          $images = $data['items'][0]['volumeInfo']['imageLinks'];
+          // Order of preference, from largest to smallest
+          $sizes = ['extraLarge', 'large', 'medium', 'small', 'thumbnail', 'smallThumbnail'];
+          $cover_url = null;
+          
+          foreach ($sizes as $size) {
+            if (!empty($images[$size])) {
+              $cover_url = $images[$size];
+              break;
+            }
+          }
+        }
+        // Prepare import URL, directory, file, and URI. Use Open Library as fallback.
+        $cover_url = $cover_url ? $cover_url : "https://covers.openlibrary.org/b/isbn/{$isbn}-L.jpg";
+        $directory = 'public://book_covers';
         \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
-        $filename = "openlibrary_cover_{$isbn}.jpg";
+        $filename = "book_cover_{$isbn}.jpg";
         $uri = "{$directory}/{$filename}";
         
         if (file_exists($uri)) {
           // File exists, load it by URI.
           $files = \Drupal::entityTypeManager()
-          ->getStorage('file')
-          ->loadByProperties(['uri' => $uri]);
+            ->getStorage('file')
+            ->loadByProperties(['uri' => $uri]);
           $file = reset($files);
           
           if ($file) {

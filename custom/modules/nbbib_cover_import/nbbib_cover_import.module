@@ -28,11 +28,13 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     
     // Otherwise, process ISBN.
     $isbn_in = str_replace('-', '', $isbn_in);
+    $isnb_found = '';
     $matches = filter_isbn($isbn_in);
     
     // If valid ISBNs found...
     if (!empty($matches)) {
       foreach ($matches as $isbn) {
+        $isbn_found = $isbn;
         // Google Books:
         // Query the Google Books API
         $api_url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" . urlencode($isbn);
@@ -47,23 +49,25 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
         
         // Check if a book was found
         if (empty($data['items'][0]['volumeInfo']['imageLinks'])) {
-          $cover_url = null;
+          $gb_url = null;
         } 
         else {
           $images = $data['items'][0]['volumeInfo']['imageLinks'];
           // Order of preference, from largest to smallest
-          $sizes = ['extraLarge', 'large', 'medium', 'small', 'thumbnail', 'smallThumbnail'];
-          $cover_url = null;
+          $sizes = ['extraLarge', 'large', 'medium', 'small', 'thumbnail'];
+          $gb_url = null;
           
           foreach ($sizes as $size) {
             if (!empty($images[$size])) {
-              $cover_url = $images[$size];
+              $gb_url = $images[$size];
+              \Drupal::logger('nbbib_cover_import')->notice("Retrieved cover URL from Google Books API: $gb_url");
               break;
             }
           }
         }
-        // Prepare import URL, directory, file, and URI. Use Open Library as fallback.
-        $cover_url = $cover_url ? $cover_url : "https://covers.openlibrary.org/b/isbn/{$isbn}-L.jpg";
+        // Prepare import URL, directory, file, and URI. Use Google Books as fallback.
+        $ol_url = "https://covers.openlibrary.org/b/isbn/{$isbn}-L.jpg";
+        \Drupal::logger('nbbib_cover_import')->notice("Generated cover URL for Open Library API: $ol_url");
         $directory = 'public://book_covers';
         \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
         $filename = "book_cover_{$isbn}.jpg";
@@ -87,8 +91,12 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
           }
         }
         else {
-          // Download the image from Open Library URL.
-          $image_contents = file_get_contents($cover_url);
+          // Download the image.
+          $ol_contents = file_get_contents($ol_url);
+          $gb_contents = $gb_url ? file_get_contents($gb_url) : '';
+          $image_contents = (strlen($ol_contents) < 1000) ? $gb_contents : $ol_contents;
+          $cover_url = ($image_contents == $gb_contents) ? $gb_url : $ol_url;
+          $cover_url = $cover_url ?? 'N/A';
           
           if (strlen($image_contents) < 1000) {
             no_cover($isbn, $cover_url);
@@ -109,6 +117,7 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
             ]);          
 
             save_reference($entity, $build);
+            \Drupal::logger('nbbib_cover_import')->notice("Fetched cover image from: $cover_url");
           }
         }
         
@@ -125,7 +134,8 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     }
     
     if (!isset($file)) {
-      no_cover('No matching ISBN', 'N/A');
+      $isbn = $matches ? $isbn : 'N/A';
+      no_cover('N/A', 'N/A');
     }
   }
 }

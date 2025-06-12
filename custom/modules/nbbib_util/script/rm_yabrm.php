@@ -1,7 +1,7 @@
 <?php
 
 $arg1 = isset($extra[0]) ? $extra[0] : NULL;
-$timestamp = strtotime($arg1);
+$timestamp = $arg1 ? strtotime($arg1) : time() - 7200;
 
 if ($timestamp) {
   rm_entities('yabrm_book', $timestamp);
@@ -13,20 +13,22 @@ if ($timestamp) {
   rm_entities('yabrm_film', $timestamp);
   rm_entities('yabrm_collection', $timestamp);
   rm_entities('yabrm_contributor', $timestamp);
-  rm_entities('paragraph', $timestamp);
+  rm_entities('file', $timestamp);
   rm_terms($timestamp);
 }
 
 function rm_entities($type, $timestamp) {
   $readable = date(DATE_ATOM, $timestamp);
   $handler = \Drupal::entityTypeManager()->getStorage($type);
+  $changed = ($type == 'file') ? 'created' : 'changed';
+  
   $entities = $handler->loadMultiple(\Drupal::entityQuery($type)
     ->accessCheck(FALSE)
-    ->condition('changed', $timestamp, '>')
+    ->condition($changed, $timestamp, '>')
     ->execute());
 
   $handler->delete($entities);
-  echo "All entities of type [$type] changed after [$readable] removed.\n";
+  echo "All entities of type [$type] $changed after [$readable] removed.\n";
 }
 
 function rm_terms($timestamp) {

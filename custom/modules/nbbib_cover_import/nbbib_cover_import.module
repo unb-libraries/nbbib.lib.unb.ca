@@ -149,8 +149,10 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     }
     
     if (!isset($file)) {
+      $entity->setCoverMissing($month);
+      $entity->save();
       $isbn = $matches ? $isbn : 'N/A';
-      no_cover('N/A', 'N/A');
+      no_cover($isbn, 'N/A');
     }
   }
 }

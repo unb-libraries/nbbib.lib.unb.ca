@@ -35,37 +35,6 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     if (!empty($matches)) {
       foreach ($matches as $isbn) {
         $isbn_found = $isbn;
-        // ISBNdb
-        $api_key = '62031_769285a17d22522fa0cda5d7f6e92873';
-        // Prepare the API endpoint
-        $url = "https://api.isbndb.com/book/$isbn";
-
-        // Set up the HTTP headers with the API key
-        $options = [
-          'http' => [
-            'header' => "Authorization: $api_key\r\n"
-          ]
-        ];
-        $context = stream_context_create($options);
-
-        // Perform the HTTP GET request
-        $response = file_get_contents($url, false, $context);
-
-        // Check for a successful response
-        if ($response === FALSE) {
-          \Drupal::logger('nbbib_cover_import')->notice("Error fetching data from Google Books API");
-        }
-
-        // Decode the JSON response
-        $data = json_decode($response, true);
-
-        // Extract the cover URL
-        $idb_url = $data['book']['image'] ?? null;
-
-        if ($idb_url) {
-          \Drupal::logger('nbbib_cover_import')->notice("Retrieved cover URL from ISBNdb API: $idb_url");
-        }
-
         // Google Books:
         // Query the Google Books API
         $api_url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" . urlencode($isbn);
@@ -122,12 +91,10 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
         }
         else {
           // Download the image.
-          $idb_contents = $idb_url ? file_get_contents($idb_url) : '';
           $gb_contents = $gb_url ? file_get_contents($gb_url) : '';
           $ol_contents = file_get_contents($ol_url);
         
           $contents = [
-            'idb' => strlen($idb_contents), 
             'gb' => strlen($gb_contents), 
             'ol' => strlen($ol_contents),
           ];
@@ -139,16 +106,11 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
               $image_contents = $gb_contents;
               $cover_url = $gb_url;
             break;
-              
-              case 'ol':
-                $image_contents = $ol_contents;
-                $cover_url = $ol_url;
-              break;
                 
-              default:
-                $image_contents = $idb_contents;
-                $cover_url = $idb_url;
-              break;
+            default:
+              $image_contents = $ol_contents;
+              $cover_url = $ol_url;
+            break;
           }
           
           if (strlen($image_contents) < 1000) {

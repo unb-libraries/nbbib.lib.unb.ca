@@ -12,6 +12,7 @@ if ($timestamp) {
   pub_entities('yabrm_conference', $timestamp, $arg2);
   pub_entities('yabrm_report', $timestamp, $arg2);
   pub_entities('yabrm_film', $timestamp, $arg2);
+  pub_entities('yabrm_website', $timestamp, $arg2);
   pub_entities('yabrm_collection', $timestamp, $arg2);
   pub_entities('yabrm_contributor', $timestamp, $arg2);
   pub_entities('paragraph', $timestamp, $arg2);

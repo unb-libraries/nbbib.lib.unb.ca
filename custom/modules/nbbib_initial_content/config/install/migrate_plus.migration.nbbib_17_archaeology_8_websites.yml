@@ -1,5 +1,5 @@
-id: nbbib_14_religion_quaker_1_journal_articles
-label: Religion/Quaker Journal article references from Zotero for NBBIB
+id: nbbib_17_archaeology_8_websites
+label: Archaeology references from Zotero for NBBIB
 
 migration_tags:
   - CSV
@@ -7,7 +7,7 @@ migration_tags:
 
 source:
   plugin: csv
-  path: '/app/html/modules/custom/nbbib_initial_content/data/csv/nbbib_14_religion_quaker.csv'
+  path: '/app/html/modules/custom/nbbib_initial_content/data/csv/nbbib_17_archaeology.csv'
   header_row_count: 1
   ids: [key]
   constants:
@@ -282,12 +282,13 @@ process:
     plugin: skip_on_value
     method: row
     not_equals: true
-    value: journalArticle
+    value: webpage
     source: item_type
 
   external_key_ref: key
   title: title
   abstract_note: abstract_note
+  released: publication_year
   publication_year: publication_year
   publication_month: publication_month
   publication_day: publication_day
@@ -322,10 +323,13 @@ process:
   series: series
   series_text: series_text
   series_title: series_title
+  distributor: publisher
   publisher: publisher
+  cast_member: performers
+  running_time: running_time
 
 destination:
-  plugin: entity:yabrm_journal_article
+  plugin: entity:yabrm_website
 
 dependencies:
   module:

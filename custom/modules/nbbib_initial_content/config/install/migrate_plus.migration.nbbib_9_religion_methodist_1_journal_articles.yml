@@ -324,7 +324,6 @@ process:
   series_title: series_title
   publisher: publisher
 
-
 destination:
   plugin: entity:yabrm_journal_article
 

@@ -92,6 +92,8 @@ trait NbBibMigrationTrait {
       'nbbib_17_archaeology_4_theses' => 'Archaeology',
       'nbbib_17_archaeology_5_conference_papers' => 'Archaeology',
       'nbbib_17_archaeology_6_reports' => 'Archaeology',
+      'nbbib_17_archaeology_7_films' => 'Archaeology',
+      'nbbib_17_archaeology_8_websites' => 'Archaeology',
     ];
   }
 
@@ -109,7 +111,9 @@ trait NbBibMigrationTrait {
       'thesis' => 'yabrm_thesis',
       'conferencePaper' => 'yabrm_conference',
       'film' => 'yabrm_film',
+      'videoRecording' => 'yabrm_film',
       'report' => 'yabrm_report',
+      'webpage' => 'yabrm_website',
     ];
   }
 

@@ -1079,7 +1079,7 @@ class BibliographicReference extends RevisionableContentEntityBase implements Bi
    * {@inheritdoc}
    */
   public function getRights() {
-    return $this->get('url')->value;
+    return $this->get('rights')->value;
   }
 
   /**

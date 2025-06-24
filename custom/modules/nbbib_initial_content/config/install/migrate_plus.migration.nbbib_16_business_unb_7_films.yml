@@ -328,7 +328,6 @@ process:
   cast_member: performers
   running_time: running_time
 
-
 destination:
   plugin: entity:yabrm_film
 

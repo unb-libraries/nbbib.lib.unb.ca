@@ -398,7 +398,6 @@ process:
     callable: trim
     source: publisher
 
-
 destination:
   plugin: entity:yabrm_journal_article
 

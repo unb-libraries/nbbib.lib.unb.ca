@@ -32,3 +32,10 @@
 .select2.select2-container.select2-container--default {
   max-width: 680px;
 }
+
+// Improve Book Covers exposed form display.
+#views-exposed-form-book-covers-page-1 {
+  .views-exposed-form__item {
+    display: inline-block;
+  }
+}

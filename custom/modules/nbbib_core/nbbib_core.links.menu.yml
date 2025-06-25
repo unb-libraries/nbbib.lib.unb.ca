@@ -34,6 +34,13 @@ nbbib_core.collections.bibliographies:
 #  menu_name: main
 #  url: internal:/business-and-industry
 #  weight: 21
+# nbbib_core.collections.archaeology:
+#  title: 'Archaeology'
+#  description: 'Archaeology'
+#  parent: nbbib_core.collections
+#  menu_name: main
+#  url: internal:/archaeology
+#  weight: 22
 nbbib_core.collections.cbbp:
   title: 'Children’s Books of Brunswick Press'
   description: 'Children’s Books of Brunswick Press'
@@ -171,6 +178,12 @@ nbbib_core.editor.content.other:
   url: internal:/admin/content
   parent: nbbib_core.editor.content
   weight: 20
+nbbib_core.editor.covers:
+  title: 'Book Covers'
+  description: 'Book covers overview.'
+  url: internal:/book-covers
+  parent: nbbib_core.editor
+  weight: 11
 nbbib_core.editor.new-contrib:
   title: 'Add New Contributor'
   description: 'Add new bibliographic contributor.'

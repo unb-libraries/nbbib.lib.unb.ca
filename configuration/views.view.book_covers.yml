@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - image.style.thumbnail
+    - user.role.nb_bibliography_contributor
   module:
     - image
     - user
@@ -24,6 +25,83 @@ display:
     display_options:
       title: 'Book Covers'
       fields:
+        changed:
+          id: changed
+          table: yabrm_book
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: yabrm_book
+          entity_field: changed
+          plugin_id: field
+          label: Changed
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: html_date
+            custom_date_format: ''
+            timezone: ''
+            tooltip:
+              date_format: long
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
+              description: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         isbn:
           id: isbn
           table: yabrm_book
@@ -74,7 +152,7 @@ display:
           empty: ''
           hide_empty: false
           empty_zero: false
-          hide_alter_empty: true
+          hide_alter_empty: false
           click_sort_column: value
           type: string
           settings:
@@ -232,7 +310,7 @@ display:
           entity_type: yabrm_book
           entity_field: ol_cover_missing
           plugin_id: field
-          label: 'Cover fetch attempt (month)'
+          label: 'Last cover check (month)'
           exclude: false
           alter:
             alter_text: false
@@ -321,72 +399,17 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
+        type: role
         options:
-          perm: 'administer views'
+          role:
+            nb_bibliography_contributor: nb_bibliography_contributor
       cache:
         type: tag
         options: {  }
       empty: {  }
-      sorts:
-        cover_image__target_id:
-          id: cover_image__target_id
-          table: yabrm_book
-          field: cover_image__target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: yabrm_book
-          entity_field: cover_image
-          plugin_id: standard
-          order: DESC
-          expose:
-            label: ''
-            field_identifier: ''
-          exposed: false
+      sorts: {  }
       arguments: {  }
       filters:
-        isbn:
-          id: isbn
-          table: yabrm_book
-          field: isbn
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: yabrm_book
-          entity_field: isbn
-          plugin_id: string
-          operator: longerthan
-          value: '10'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         isbn_1:
           id: isbn_1
           table: yabrm_book
@@ -403,7 +426,7 @@ display:
           exposed: true
           expose:
             operator_id: isbn_1_op
-            label: ISBN
+            label: 'Search by ISBN'
             description: ''
             use_operator: false
             operator: isbn_1_op
@@ -431,8 +454,65 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            changed: changed
+            isbn: isbn
+            title: title
+            cover_image__target_id: cover_image__target_id
+            ol_cover_missing: ol_cover_missing
+          default: changed
+          info:
+            changed:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            isbn:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            title:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            cover_image__target_id:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            ol_cover_missing:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: false
+          caption: ''
+          description: ''
       row:
         type: fields
       query:
@@ -445,7 +525,30 @@ display:
           query_tags: {  }
           contextual_filters_or: false
       relationships: {  }
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: '<em><strong>Note: </strong>This view displays book covers whether they have been imported automatically or set manually. Records with no valid ISBN are never checked for automatic cover import.</em><br><br>'
+            format: unb_libraries
+          tokenize: false
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: 'Displaying @start - @end of @total'
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -455,7 +558,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.permissions
+        - user.roles
       tags: {  }
   page_1:
     id: page_1
@@ -463,6 +566,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      exposed_block: true
       display_extenders: {  }
       path: book-covers
       use_admin_theme: true
@@ -473,5 +577,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.permissions
+        - user.roles
       tags: {  }

@@ -1,0 +1,28 @@
+uuid: afbe9640-c831-4d70-bae4-3806c12e0a2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.book_covers
+  module:
+    - system
+    - views
+  theme:
+    - nbbib_admin
+id: nbbib_admin_exposedformbook_coverspage_1
+theme: nbbib_admin
+region: content
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:book_covers-page_1'
+settings:
+  id: 'views_exposed_filter_block:book_covers-page_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /book-covers

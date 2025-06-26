@@ -96,7 +96,10 @@ class ReferenceMigrateEvent implements EventSubscriberInterface {
       $language = strtolower($row->getSourceProperty('language'));
 
       if (!empty($language)) {
-        if (strstr($language, 'arabic') || strstr('arabic', $language)) {
+        if ($language == 'en') {
+          $language = 'eng';
+        }
+        elseif (strstr($language, 'arabic') || strstr('arabic', $language)) {
           $language = 'ara';
         }
         elseif (strstr($language, 'german') || strstr('german', $language)) {

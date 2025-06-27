@@ -33,9 +33,14 @@
   max-width: 680px;
 }
 
-// Improve Book Covers exposed form display.
+// Book covers view.
 #views-exposed-form-book-covers-page-1 {
   .views-exposed-form__item {
     display: inline-block;
   }
 }
+
+.views-field-ol-cover-missing {
+  width: 10rem !important;
+}
+

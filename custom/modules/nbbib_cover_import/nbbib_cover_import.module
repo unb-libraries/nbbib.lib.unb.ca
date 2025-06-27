@@ -20,9 +20,11 @@ function nbbib_cover_import_entity_view(&$build, $entity, $display, $view_mode) 
     $missing = $entity->getCoverMissing();
     $month = intval(date('m'));
     $isbn_in = $entity->getIsbn() ?? NULL;
+    $changed = $entity->changed;
+    $now = time();
 
     // If no ISBN, existing cover or missing cover known for less than a month, return.
-    if ((!$isbn_in) or ($cover_id > 0) or ($missing and ($month == $missing))) {
+    if ((!$isbn_in) or ($cover_id > 0) or ($missing and ($now - $changed > 2592000))) {
       return;
     }
     

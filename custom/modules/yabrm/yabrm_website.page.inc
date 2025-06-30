@@ -166,6 +166,8 @@ function template_preprocess_yabrm_website(array &$variables) {
     ?? NULL;
   $revised = $variables['content']['revised']['0']['#text']
     ?? NULL;
+  $url = $variables['content']['url']['0']['#title']
+    ?? NULL;
 
   $title_wad = '';
   $contribs_wad = '';
@@ -235,7 +237,6 @@ function template_preprocess_yabrm_website(array &$variables) {
   $variables['content']['contribs_wad'] = $contribs_wad;
 
   // Publication.
-
   if ($organization) {
     $pub_wad .=  ' ' . trim($organization);
   }
@@ -244,10 +245,19 @@ function template_preprocess_yabrm_website(array &$variables) {
     $pub_wad = $organization ? $pub_wad .= ', ' : $pub_wad .= ' '; 
     $pub_wad .= trim($revised);
   }
+  elseif ($publication_year) {
+    $pub_wad = $organization ? $pub_wad .= ', ' : $pub_wad .= ' '; 
+    $pub_wad .= $publication_year;
+  }
   else {
     $pub_wad = $organization ? $pub_wad .= ', ' : $pub_wad .= ' '; 
     $pub_wad .= 'Ongoing';
   }
+
+  if ($url) {
+    $pub_wad .= ', ' . trim($url);
+  }
+
 
   $pub_wad = substr($pub_wad, -1) == '.' ? $pub_wad : "$pub_wad.";
   $variables['content']['pub_wad'] = $pub_wad . ' <em class="cite-type">[ website ]</em>';

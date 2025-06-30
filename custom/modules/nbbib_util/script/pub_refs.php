@@ -8,6 +8,7 @@ pub_entities('yabrm_thesis');
 pub_entities('yabrm_conference');
 pub_entities('yabrm_report');
 pub_entities('yabrm_film');
+pub_entities('yabrm_website');
 
 function pub_entities($type) {
   $handler = \Drupal::entityTypeManager()->getStorage($type);

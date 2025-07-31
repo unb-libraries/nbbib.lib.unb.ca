@@ -30,4 +30,5 @@ permissions:
   - 'view published periodical reference entities'
   - 'view published report reference entities'
   - 'view published thesis reference entities'
+  - 'view published website reference entities'
   - 'view sp metadata'

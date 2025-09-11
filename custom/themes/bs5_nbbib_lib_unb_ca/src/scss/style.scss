@@ -1446,7 +1446,7 @@ html {
     }
   }
 }
-
+ 
 @media screen and (max-width: 1428px) {
   form#views-exposed-form-nb-bibliography-citations-page-1 {
     width: 100% !important;
@@ -1672,6 +1672,11 @@ html {
       width: 100% !important;
     }
   }
+}
+@media screen and (min-width: 639px) {
+  header[role = "banner"] > nav {
+    padding-left: 1.6rem !important;
+  } 
 }
 @media screen and (max-width: 638px) {
   .breadcrumb {

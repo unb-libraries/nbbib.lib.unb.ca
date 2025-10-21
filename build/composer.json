@@ -185,7 +185,7 @@
     "drupal/footnotes": "4.0.0-beta6",
     "drupal/fontawesome": "^2",
     "drupal/google_analytics": "^4",
-    "drupal/health_check": "^1",
+    "drupal/health_check": "^3",
     "drupal/inline_entity_form": "^1",
     "drupal/jquery_ui": "^1",
     "drupal/jquery_ui_slider": "^2",

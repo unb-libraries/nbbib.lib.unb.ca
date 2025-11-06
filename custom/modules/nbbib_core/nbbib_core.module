@@ -1012,10 +1012,10 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
           $p_obj = Paragraph::load($pid);
           if ($p_obj) {
             $cid = $p_obj->field_yabrm_contributor_person->getValue()[0]['target_id'] ?? NULL;
+            $p_obj->delete();
           }
-          $p_obj->delete();
  
-          if ($cid) {
+          if (isset($cid) and $cid) {
             // Fetch all references that point to the target contributor.
             // Load reference types from configuration.
             $config = \Drupal::config('nbbib_core.settings');
@@ -1047,8 +1047,10 @@ function nbbib_core_entity_presave(EntityInterface $entity) {
               // Load contributor object.
               $c_obj = BibliographicContributor::load($cid) ?? NULL;
               // Unpublish contributor and save.
-              $c_obj->set('status', FALSE);
-              $c_obj->save();            
+              if ($c_obj) {
+                $c_obj->set('status', FALSE);
+                $c_obj->save();
+              }            
             }
           }
         }

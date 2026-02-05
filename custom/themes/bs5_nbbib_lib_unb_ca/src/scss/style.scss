@@ -75,12 +75,16 @@ html {
     padding-left: 1rem;
     border-left: 3px solid $primary;
   }
-  .btn:hover,
-  .btn:focus {
-    border-color: $link-hover !important;
-    background-color: $link-hover !important;
+  .btn {
+    border-color: $link;
+    background-color: $link;
     text-decoration: initial !important;
     color: $light !important;
+    &:hover,
+    &:focus {
+      border-color: $link-hover !important;
+      background-color: $link-hover !important;
+    }
   }
   .toolbar-tab a:focus, 
   .toolbar-tab a:hover, 

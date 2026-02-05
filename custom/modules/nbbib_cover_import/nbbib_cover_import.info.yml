@@ -2,5 +2,5 @@ name: NBBIB Cover Import
 type: module
 description: Imports Open Library book covers on demand
 core: 8.x
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 package: Custom

@@ -2,7 +2,7 @@ name: NBBIB Content Import
 type: module
 description: Import initial NBBIB content.
 core: 8.x
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 package: Migration
 dependencies:
   - migrate:migrate

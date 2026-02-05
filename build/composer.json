@@ -122,14 +122,14 @@
       "package": {
         "dist": {
           "type": "zip",
-          "url": "https://github.com/simeydotme/jQuery-ui-Slider-Pips/archive/v1.11.4.zip"
+          "url": "https://github.com/simeydotme/jQuery-ui-Slider-Pips/archive/refs/tags/2.0.0.zip"
         },
         "name": "simeydotme/jquery-ui-slider-pips",
         "require": {
           "composer/installers": "^2"
         },
         "type": "drupal-library",
-        "version": "1.11.4"
+        "version": "2.0.0"
       },
       "type": "package"
     },
@@ -214,7 +214,7 @@
     "pear/file_marc": "^1",
     "scriptotek/marc": "^3",
     "select2/select2": "^4",
-    "simeydotme/jquery-ui-slider-pips": "^1",
+    "simeydotme/jquery-ui-slider-pips": "^2",
     "unb-libraries/composer-drupal-scaffold": "^11.x-dev",
     "unb-libraries/saml_features": "dev-10.x-1.x"
   },

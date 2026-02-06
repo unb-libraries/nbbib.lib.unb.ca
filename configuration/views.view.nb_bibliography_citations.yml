@@ -286,7 +286,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -327,10 +326,7 @@ display:
             required: false
             remember: false
             multiple: false
-            remember_roles:
-              anonymous: '0'
-              authenticated: '0'
-              nb_bibliography_contributor: '0'
+            remember_roles: {  }
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -379,7 +375,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -424,8 +419,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -470,7 +463,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -515,7 +507,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -560,8 +551,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -606,8 +595,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -652,8 +639,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -887,9 +872,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
-              nbbib_archivals_editor: '0'
             expose_fields: false
             placeholder: ''
             searched_fields_id: ''
@@ -1871,9 +1853,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
-              nbbib_archivals_editor: '0'
             expose_fields: false
             placeholder: ' '
             searched_fields_id: ''

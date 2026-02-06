@@ -595,7 +595,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -641,8 +640,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -687,8 +684,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -730,8 +725,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              nb_bibliography_contributor: '0'
           is_grouped: false
           group_info:
             label: ''

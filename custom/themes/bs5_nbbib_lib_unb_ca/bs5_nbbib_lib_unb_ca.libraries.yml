@@ -8,8 +8,8 @@ global-scripts:
   js:
     dist/js/custom-scroll.js: {}
     dist/js/fancy-text-box.js: {}
-    dist/js/slideshow.js: {}
-    /libraries/owlcarousel2/dist/owl.carousel.min.js: {}
+    #dist/js/slideshow.js: {}
+    #/libraries/owlcarousel2/dist/owl.carousel.min.js: {}
   dependencies:
     - core/drupal
     - core/drupal.dialog.ajax

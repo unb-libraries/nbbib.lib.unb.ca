@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be515e7e9b91ea61f7f6dc5bfc44c8e9",
+    "content-hash": "c2a6387a5d62278dfac5c4b71dd1e15f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5176,6 +5176,33 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.7.0"
             },
             "time": "2025-12-06T11:56:16+00:00"
+        },
+        {
+            "name": "npm-asset/ssr-window",
+            "version": "4.0.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/ssr-window/-/ssr-window-4.0.2.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/swiper",
+            "version": "9.4.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/swiper/-/swiper-9.4.1.tgz"
+            },
+            "require": {
+                "npm-asset/ssr-window": ">=4.0.2,<5.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "onelogin/php-saml",

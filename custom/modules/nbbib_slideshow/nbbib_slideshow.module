@@ -7,7 +7,7 @@ use Drupal\views\ViewExecutable;
  */
 function nbbib_slideshow_views_pre_render(ViewExecutable $view) {
   // Target this particular view/display (replace with real ids).
-  if ($view->id() === 'slideshow' && $view->current_display === 'block_1') {
+  if ($view->id() === 'nbbib_slideshow' && $view->current_display === 'block_1') {
     if (isset($view->element) && is_array($view->element)) {
       // Attach the swiper library.
       $view->element['#attached']['library'][] = 'nbbib_slideshow/swiper';

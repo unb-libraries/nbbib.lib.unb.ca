@@ -30,17 +30,14 @@ function nbbib_slideshow_views_pre_render(ViewExecutable $view) {
         'speed' => 2000,
         // autoplay as an object with delay in ms.
         'autoplay' => [
-          'delay' => 7000,
+          'delay' => 0,
           'disableOnInteraction' => FALSE,
         ],
-        'effect' => 'fade',
+        'effect' => 'slide',
         // Show pagination? (boolean or object if you need a selector)
         'pagination' => FALSE,
-        // Enable navigation and scope to the container's buttons.
-        'navigation' => [
-          'nextEl' => '.nbbib-swiper .swiper-button-next',
-          'prevEl' => '.nbbib-swiper .swiper-button-prev',
-        ],
+        // Disable navigation.
+        'navigation' => FALSE,
       ];
       $view->element['#attributes']['data-swiper-options'] = json_encode($options);
     }

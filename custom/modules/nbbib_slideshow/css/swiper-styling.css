@@ -9,6 +9,10 @@
   opacity: 1;
 }
 
+.nbbib-swiper {
+  overflow: clip;
+}
+
 .swiper-slide img {
   max-width: 100%;
   height: auto;

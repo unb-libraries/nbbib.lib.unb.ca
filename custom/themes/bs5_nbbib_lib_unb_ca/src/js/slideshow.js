@@ -29,13 +29,13 @@
     // Randomize slide photo sizes.
     var mobile = window.matchMedia("(max-width: 991px)")
     var baseWidth = mobile.matches ? 50 : 60;
-    photos = $('.owl-item img');
+    photos = $('.swiper-slide img');
     photos.each( function() {
       randomWidth = Math.floor(Math.random() * baseWidth) + baseWidth * 3;
       $(this).attr('style', `width: ${randomWidth}px !important;`);
     });
     // Align slides in a wave and set to fit content width.
-    slides = $('.owl-item');
+    slides = $('.swiper-slide');
     slides.each( function(index) {
       // If odd, align center.
       if (index % 2) {

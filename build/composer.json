@@ -209,7 +209,7 @@
     "drupal/twig_tweak": "^3",
     "drupal/views_contextual_filters_or": "^1",
     "furf/jquery-ui-touch-punch": "dev-master",
-    "npm-asset/swiper": "^9",
+    "npm-asset/swiper": "^12",
     "oomphinc/composer-installers-extender": "^2",
     "owlcarousel2/owlcarousel2": "2.3.4",
     "pear/file_marc": "^1",

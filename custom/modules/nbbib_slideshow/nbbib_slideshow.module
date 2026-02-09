@@ -27,10 +27,10 @@ function nbbib_slideshow_views_pre_render(ViewExecutable $view) {
       // Options to pass to JS (enable fade and navigation).
       $options = [
         // transition speed in ms (integer).
-        'speed' => 2000,
+        'speed' => 40000,
         // autoplay as an object with delay in ms.
         'autoplay' => [
-          'delay' => 0,
+          'delay' => 1,
           'disableOnInteraction' => FALSE,
         ],
         'effect' => 'slide',
@@ -38,7 +38,14 @@ function nbbib_slideshow_views_pre_render(ViewExecutable $view) {
         'pagination' => FALSE,
         // Disable navigation.
         'navigation' => FALSE,
+        'slidesPerView' => 6,
+        'slidesPerGroup' => 12,
+        'spaceBetween' => 40,
+        // Loop.
+        'loop' => TRUE,
+        'loopAdditionalSlides' => 12,
       ];
+
       $view->element['#attributes']['data-swiper-options'] = json_encode($options);
     }
   }

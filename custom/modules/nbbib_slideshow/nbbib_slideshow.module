@@ -41,7 +41,7 @@ function nbbib_slideshow_views_pre_render(ViewExecutable $view) {
         // Disable navigation.
         'navigation' => FALSE,
         'slidesPerView' => 6,
-        'spaceBetween' => 40,
+        'spaceBetween' => 20,
         // Loop.
         'loop' => TRUE,
       ];

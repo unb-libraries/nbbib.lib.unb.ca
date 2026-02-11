@@ -296,7 +296,7 @@ display:
         type: default
         options:
           grouping: {  }
-          row_class: d-inline-block
+          row_class: ''
           default_row_class: true
       row:
         type: fields

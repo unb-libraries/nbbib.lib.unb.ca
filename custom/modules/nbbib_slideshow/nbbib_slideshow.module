@@ -33,6 +33,7 @@ function nbbib_slideshow_views_pre_render(ViewExecutable $view) {
           'delay' => 1,
           'disableOnInteraction' => FALSE,
           'stopOnLastSlide' => FALSE,
+          'pauseOnMouseEnter' => TRUE,
         ],
         'effect' => 'slide',
         // Show pagination? (boolean or object if you need a selector)

@@ -2,7 +2,7 @@
   $(document).ready(function() {
     // Randomize slide photo sizes.
     var mobile = window.matchMedia("(max-width: 991px)")
-    var baseWidth = mobile.matches ? 40 : 50;
+    var baseWidth = mobile.matches ? 44 : 54;
     photos = $('.swiper-slide img');
     photos.each( function() {
       randomWidth = Math.floor(Math.random() * baseWidth) + baseWidth * 3;

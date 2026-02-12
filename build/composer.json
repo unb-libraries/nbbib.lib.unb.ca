@@ -87,18 +87,6 @@
       "url": "https://packages.drupal.org/8"
     },
     {
-      "package": {
-        "dist": {
-          "type": "zip",
-          "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.7/chosen_v1.8.7.zip"
-        },
-        "name": "harvesthq/chosen",
-        "type": "drupal-library",
-        "version": "1.8.7"
-      },
-      "type": "package"
-    },
-    {
       "type": "composer",
       "url": "https://asset-packagist.org"
     },
@@ -150,23 +138,11 @@
       "package": {
         "dist": {
           "type": "zip",
-          "url": "https://github.com/OwlCarousel2/OwlCarousel2/archive/2.3.4.zip"
-        },
-        "name": "owlcarousel2/owlcarousel2",
-        "type": "drupal-library",
-        "version": "2.3.4"
-      },
-      "type": "package"
-    },
-    {
-      "package": {
-        "dist": {
-          "type": "zip",
-          "url": "https://github.com/select2/select2/archive/4.0.13.zip"
+          "url": "https://github.com/select2/select2/archive/refs/tags/4.1.0-rc.0.zip"
         },
         "name": "select2/select2",
         "type": "drupal-library",
-        "version": "4.0.13"
+        "version": "4.1.0-rc.0"
       },
       "type": "package"
     }
@@ -211,7 +187,6 @@
     "furf/jquery-ui-touch-punch": "dev-master",
     "npm-asset/swiper": "^12",
     "oomphinc/composer-installers-extender": "^2",
-    "owlcarousel2/owlcarousel2": "2.3.4",
     "pear/file_marc": "^1",
     "scriptotek/marc": "^3",
     "select2/select2": "^4",

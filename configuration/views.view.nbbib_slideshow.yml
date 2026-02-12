@@ -296,7 +296,7 @@ display:
         type: default
         options:
           grouping: {  }
-          row_class: ''
+          row_class: visually-hidden
           default_row_class: true
       row:
         type: fields

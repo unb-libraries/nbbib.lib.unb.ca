@@ -45,8 +45,8 @@ function generateFacetLink(facet_block_selector, facet_block_child_selector, url
     this.$ = jQuery;
     let widget = $(facet_block_selector + ' ' + facet_block_child_selector);
     $(widget).append(
-        '<a href="' + url +
-        '" class="btn btn-secondary btn-sm fw-normal lh-lg facet-complete-link float-end">' +
+        '<a href="' + url + '" id="complete-facet"' +
+        ' class="btn btn-secondary btn-sm fw-normal lh-lg facet-complete-link float-end">' +
         'Complete list</a>'
     );
 }

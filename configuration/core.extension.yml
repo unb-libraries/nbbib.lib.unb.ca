@@ -82,7 +82,6 @@ module:
 theme:
   stable9: 0
   olivero: 0
-  nbbib_lib_unb_ca: 0
   claro: 0
   bootstrap4: 0
   nbbib_admin: 0

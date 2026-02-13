@@ -7,23 +7,23 @@ description: 'Provides configuration options for nbbib_core'
 core: 10.x
 nbbib_types:
   -
-    enttity: yabrm_book
+    entity: yabrm_book
     label: Book
     plural: Books
   -
-    enttity: yabrm_book_section
+    entity: yabrm_book_section
     label: Book Section
     plural: Book Sections
   -
-    enttity: yabrm_journal_article
+    entity: yabrm_journal_article
     label: Journal Article
     plural: Journal Articles
   -
-    enttity: yabrm_thesis
+    entity: yabrm_thesis
     label: Thesis
     plural: Theses
   -
-    enttity: yabrm_conference
+    entity: yabrm_conference
     label: Conference Proceeding
     plural: Conference Proceedings
   -

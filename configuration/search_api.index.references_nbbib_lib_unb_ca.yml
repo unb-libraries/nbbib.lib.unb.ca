@@ -7,11 +7,10 @@ dependencies:
     - field.storage.paragraph.field_yabrm_contributor_role
     - search_api.server.drupal_solr_lib_unb_ca
   module:
-    - search_api_solr
-    - yabrm
     - paragraphs
+    - search_api_solr
     - taxonomy
-    - search_api
+    - yabrm
 third_party_settings:
   search_api_solr:
     finalize: false
@@ -1088,6 +1087,18 @@ field_settings:
     dependencies:
       module:
         - yabrm
+  oclc:
+    label: 'General OCLC'
+    property_path: oclc
+    type: string
+  oclc_1:
+    label: 'OCLC Number'
+    datasource_id: 'entity:yabrm_book'
+    property_path: oclc
+    type: string
+    dependencies:
+      module:
+        - yabrm
   organization:
     label: 'Number of Pages'
     datasource_id: 'entity:yabrm_periodical'
@@ -1946,6 +1957,7 @@ tracker_settings:
     indexing_order: lifo
 options:
   cron_limit: 100
+  delete_on_fail: true
   index_directly: true
   track_changes_in_references: true
 server: drupal_solr_lib_unb_ca

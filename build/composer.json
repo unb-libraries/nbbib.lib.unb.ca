@@ -184,6 +184,7 @@
     "drupal/twig_field_value": "^2",
     "drupal/twig_tweak": "^3",
     "drupal/views_contextual_filters_or": "^1",
+    "drupal/views_data_export": "^1",
     "furf/jquery-ui-touch-punch": "dev-master",
     "npm-asset/swiper": "^12",
     "oomphinc/composer-installers-extender": "^2",

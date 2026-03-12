@@ -12,6 +12,7 @@ module:
   contact: 0
   context_branding: 0
   contextual: 0
+  csv_serialization: 0
   datetime: 0
   dblog: 0
   dynamic_page_cache: 0
@@ -56,11 +57,13 @@ module:
   r4032login: 0
   redirect: 0
   redis: 0
+  rest: 0
   samlauth: 0
   search_api: 0
   search_api_autocomplete: 0
   search_api_solr: 0
   select2: 0
+  serialization: 0
   system: 0
   taxonomy: 0
   taxonomy_access_fix: 0
@@ -72,6 +75,7 @@ module:
   update: 0
   user: 0
   views_contextual_filters_or: 0
+  views_data_export: 0
   views_ui: 0
   yabrm: 0
   menu_link_content: 1

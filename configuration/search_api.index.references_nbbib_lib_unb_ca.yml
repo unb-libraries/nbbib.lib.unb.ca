@@ -1087,10 +1087,6 @@ field_settings:
     dependencies:
       module:
         - yabrm
-  oclc:
-    label: 'General OCLC'
-    property_path: oclc
-    type: string
   oclc_1:
     label: 'OCLC Number'
     datasource_id: 'entity:yabrm_book'

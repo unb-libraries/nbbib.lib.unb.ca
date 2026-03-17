@@ -1047,6 +1047,14 @@ field_settings:
         - paragraphs
         - taxonomy
         - yabrm
+  nb_imprint:
+    label: 'New Brunswick imprint'
+    datasource_id: 'entity:yabrm_book'
+    property_path: nb_imprint
+    type: boolean
+    dependencies:
+      module:
+        - yabrm
   num_pages:
     label: 'Number of Pages'
     datasource_id: 'entity:yabrm_thesis'

@@ -10,6 +10,9 @@ html {
     box-shadow: none !important;
   }
   h1, .site-title {
+    &.ui-dialog-title {
+      border: none;
+    }
     font-weight: 700;
     font-size: 30px !important;
     padding: 0 0 15px 0;

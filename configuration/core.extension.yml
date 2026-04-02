@@ -14,7 +14,6 @@ module:
   contextual: 0
   csv_serialization: 0
   datetime: 0
-  dblog: 0
   dynamic_page_cache: 0
   easy_breadcrumb: 0
   editor: 0
@@ -23,7 +22,6 @@ module:
   facets: 0
   facets_range_widget: 0
   field: 0
-  field_ui: 0
   file: 0
   filter: 0
   fontawesome: 0
@@ -76,7 +74,6 @@ module:
   user: 0
   views_contextual_filters_or: 0
   views_data_export: 0
-  views_ui: 0
   yabrm: 0
   menu_link_content: 1
   views: 10

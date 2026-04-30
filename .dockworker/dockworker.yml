@@ -1,5 +1,12 @@
 dockworker:
   version: '6'
+  drupal:
+    schemas:
+      ignore_enforcement:
+        - core.entity_form_display.*
+        - views.view.book_covers
+        - views.view.nb_bibliography_citations
+        - views.view.nb_imprint_csv
   application:
     name: New Brunswuck Bibliography
     uri: https://nbbib.lib.unb.ca

@@ -74,6 +74,9 @@
       "drupal/core": {
         "Fix error on entity reference creation with parentheses in name": "https://www.drupal.org/files/issues/2021-04-18/2924783-18.patch",
         "Fix 3410100 for Footnotes CKEditor 5 plugin": "/build/patches/cke5-footnotes-3410100.patch"
+      },
+      "drupal/search_api": {
+        "Drupal 11 schema fixes": "/build/patches/search_api_8.x-1.x_schema.patch"
       }
     }
   },

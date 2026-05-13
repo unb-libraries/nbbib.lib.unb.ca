@@ -1,9 +1,5 @@
 (function ($) {
   $(document).ready(function() {
-    // Hide slideshow block while slides get ready.
-    var block = $('.block-views-blocknbbib-slideshow-block-1');
-    block.classList.add('visually-hidden');
-
     setTimeout(() => {
       // Randomize slide photo sizes.
       var mobile = window.matchMedia("(max-width: 991px)")
@@ -30,9 +26,6 @@
         else {
           $(this).attr('style', `align-self: start !important;`);
         }
-        
-        // Display slideshow block.
-        block.classList.remove('visually-hidden');
       });
     }, 500);
   });

@@ -34,6 +34,6 @@
         // Display slideshow block.
         block.classList.remove('visually-hidden');
       });
-    }, 200);
+    }, 500);
   });
 })(jQuery);

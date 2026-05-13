@@ -5,7 +5,7 @@
       var mobile = window.matchMedia("(max-width: 991px)")
       var baseWidth = mobile.matches ? 46 : 56;
       var variation = 5;
-      photos = $('.swiper-slide img');
+      photos = $('.swiper-slide.swiper-ready img');
       photos.each( function() {
         randomWidth = Math.floor((Math.random() * baseWidth * 1.5) + baseWidth * 2.5);
         $(this).attr('style', `width: ${randomWidth}px !important;`);

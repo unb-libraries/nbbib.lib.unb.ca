@@ -27,6 +27,6 @@
           $(this).attr('style', `align-self: start !important;`);
         }
       });
-    }, 500);
+    }, 300);
   });
 })(jQuery);

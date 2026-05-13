@@ -1,11 +1,15 @@
 (function ($) {
   $(document).ready(function() {
+    // Hide slideshow block while slides get ready.
+    var block = $('.block-views-blocknbbib-slideshow-block-1');
+    block.classList.add('visually-hidden');
+
     setTimeout(() => {
       // Randomize slide photo sizes.
       var mobile = window.matchMedia("(max-width: 991px)")
       var baseWidth = mobile.matches ? 46 : 56;
       var variation = 5;
-      photos = $('.swiper-slide.swiper-ready img');
+      photos = $('.swiper-slide img');
       photos.each( function() {
         randomWidth = Math.floor((Math.random() * baseWidth * 1.5) + baseWidth * 2.5);
         $(this).attr('style', `width: ${randomWidth}px !important;`);
@@ -26,7 +30,10 @@
         else {
           $(this).attr('style', `align-self: start !important;`);
         }
+        
+        // Display slideshow block.
+        block.classList.remove('visually-hidden');
       });
-    }, 500);
+    }, 200);
   });
 })(jQuery);

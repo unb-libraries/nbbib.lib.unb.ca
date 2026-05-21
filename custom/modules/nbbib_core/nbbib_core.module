@@ -356,7 +356,7 @@ function nbbib_core_page_attachments(array &$attachments) {
  * Implements hook_entity_field_access().
  */
 
-function nbbib_core_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL) {
+function nbbib_core_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, ?FieldItemListInterface $items = NULL) {
   $result = AccessResult::neutral();
 
   // Prevent non-archival record editors from modifying BibliographicContributor.archival entity reference field.  

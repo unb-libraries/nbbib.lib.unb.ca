@@ -7,7 +7,7 @@ dependencies:
 id: contributor_roles_pattern
 label: 'Contributor Roles Pattern'
 type: 'canonical_entities:taxonomy_term'
-pattern: 'contributor-roles/[term:name]'
+pattern: '/contributor-roles/[term:name]'
 selection_criteria:
   332b35bd-3155-41e7-90cb-47e956259340:
     id: 'entity_bundle:taxonomy_term'

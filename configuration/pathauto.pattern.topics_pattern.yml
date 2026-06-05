@@ -7,7 +7,7 @@ dependencies:
 id: topics_pattern
 label: 'Topics Pattern'
 type: 'canonical_entities:taxonomy_term'
-pattern: 'topics/[term:name]'
+pattern: '/topics/[term:name]'
 selection_criteria:
   9692fe01-e62c-4fd7-80fd-b9337f9dc74b:
     id: 'entity_bundle:taxonomy_term'

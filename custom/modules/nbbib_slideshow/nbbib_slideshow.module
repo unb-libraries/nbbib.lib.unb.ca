@@ -40,9 +40,16 @@ function nbbib_slideshow_views_pre_render(ViewExecutable $view) {
         'pagination' => FALSE,
         // Disable navigation.
         'navigation' => FALSE,
-        'slidesPerView' => 6,
+        'slidesPerView' => 5,
         // Loop.
         'loop' => TRUE,
+        // Breakpoints.
+        'breakpoints' => [
+          // When window width is >= 991px
+          '991' => [
+            'slidesPerView' => 6,
+          ],
+        ],
       ];
 
       $view->element['#attributes']['data-swiper-options'] = json_encode($options);

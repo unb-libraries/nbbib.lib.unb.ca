@@ -1550,7 +1550,9 @@ html {
     }
   }
   .swiper-slide {
-    border-radius: 0 !important;
+    img {
+      border-radius: 0 !important;
+    }
   }
 }
 @media screen and (min-width: 639px) and (max-width: 1200px) {

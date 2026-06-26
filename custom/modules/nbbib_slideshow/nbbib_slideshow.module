@@ -40,7 +40,7 @@ function nbbib_slideshow_views_pre_render(ViewExecutable $view) {
         'pagination' => FALSE,
         // Disable navigation.
         'navigation' => FALSE,
-        'slidesPerView' => 3,
+        'slidesPerView' => 4,
         // Loop.
         'loop' => TRUE,
         // Breakpoints.

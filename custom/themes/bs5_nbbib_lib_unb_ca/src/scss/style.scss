@@ -1549,11 +1549,6 @@ html {
       }
     }
   }
-  .swiper-slide {
-    img {
-      border-radius: 0 !important;
-    }
-  }
 }
 @media screen and (min-width: 639px) and (max-width: 1200px) {
   .view-id-nb_bibliography_topics.view-display-id-page_1,
@@ -1592,6 +1587,11 @@ html {
         }
       }
     }  
+    .swiper-slide {
+      img {
+        border-radius: 0 !important;
+      }
+    }
   }
   #block-bs5-nbbib-lib-unb-ca-views-block-nbbib-slideshow-block-1 {
     

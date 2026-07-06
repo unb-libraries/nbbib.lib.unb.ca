@@ -19,6 +19,7 @@
       "phpstan/extension-installer": true,
       "oomphinc/composer-installers-extender": true,
       "php-http/discovery": true,
+      "symfony/runtime": true,
       "tbachert/spi": true
     },
     "discard-changes": true,

@@ -3,8 +3,8 @@
 namespace Drupal\context_branding\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Config\ConfigFactory;
-use Drupal\Core\Path\PathMatcher;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -18,70 +18,51 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class ContextBrandingBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
   /**
-   * For service dependency injection.
+   * Path matcher service.
    *
-   * @var Drupal\Core\Path\PathMatcher
+   * @var \Drupal\Core\Path\PathMatcherInterface
    */
   protected $pathMatcher;
 
   /**
-   * For service dependency injection.
+   * Config factory service.
    *
-   * @var Drupal\Core\Config\ConfigFactory
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
 
   /**
    * Class constructor.
-   *
-   * @param array $configuration
-   *   The block configuration.
-   * @param string $plugin_id
-   *   The plugin identifier.
-   * @param mixed $plugin_definition
-   *   The plugin definition.
-   * @param Drupal\Core\Path\PathMatcher $path_matcher
-   *   Path matcher service dependency injection.
-   * @param Drupal\Core\Config\ConfigFactory $config_factory
-   *   Config factory service dependency injection.
    */
   public function __construct(
     array $configuration,
     $plugin_id,
     $plugin_definition,
-    PathMatcher $path_matcher,
-    ConfigFactory $config_factory) {
+    PathMatcherInterface $path_matcher,
+    ConfigFactoryInterface $config_factory,
+  ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->pathMatcher = $path_matcher;
     $this->configFactory = $config_factory;
   }
 
   /**
-   * Object create function.
-   *
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-   *   Container interface.
-   * @param array $configuration
-   *   The block configuration.
-   * @param string $plugin_id
-   *   The plugin identifier.
-   * @param mixed $plugin_definition
-   *   The plugin definition.
-   *
-   * @return static
+   * {@inheritdoc}
    */
   public static function create(
     ContainerInterface $container,
     array $configuration,
     $plugin_id,
-    $plugin_definition) {
+    $plugin_definition,
+  ) {
     return new static(
       $configuration,
       $plugin_id,
       $plugin_definition,
       $container->get('path.matcher'),
-      $container->get('config.factory')
+      $container->get('config.factory'),
     );
   }
 
@@ -90,21 +71,9 @@ class ContextBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
    */
   public function build() {
     $is_front = $this->pathMatcher->isFrontPage();
-    $dom = new \DomDocument();
-    // Current php-dom supports <svg> tags, but mistakenly returns warnings. Error suppression used.  
-    @$logo = $dom->loadHTMLFile('modules/custom/context_branding/src/html/site-logo.html');
-    // If there is a logo file...
-    if ($logo) {
-      $site_logo = $dom->getElementById('site-logo');
-      $site_name = $dom->saveHTML($site_logo);
-      $slogan = $dom->getElementById('site-slogan');
-      $site_slogan = $dom->saveHTML($slogan);
-    }
-    else {
-      $site_config = $this->configFactory->get('system.site');
-      $site_name = $site_config->get('name'); 
-      $site_slogan = $site_config->get('slogan');
-    }
+    $site_config = $this->configFactory->get('system.site');
+    $site_name = $site_config->get('name');
+    $site_slogan = $site_config->get('slogan');
 
     if ($is_front) {
       $site_title = "
@@ -112,21 +81,11 @@ class ContextBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
           $site_name
         </h1>
       ";
-      $site_slogan = "
-        <div class='site-slogan'>
-          $site_slogan
-        </div>
-      ";
     }
     else {
       $site_title = "
         <a href='/' title='Home' rel='home' class='site-title'>
           $site_name
-        </a>
-      ";
-      $site_slogan = "
-        <a href='/' title='Home' rel='home' class='site-slogan' tabindex='-1'>
-          $site_slogan
         </a>
       ";
     }
@@ -136,14 +95,16 @@ class ContextBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
         <div class='navbar-brand d-flex align-items-center'>
           <div>
             $site_title
-            $site_slogan
+            <div class='site-slogan'>
+              $site_slogan
+            </div>
           </div>
         </div>
       </div>
     ";
 
     return [
-      '#markup' => $this->t($markup),
+      '#markup' => $markup,
     ];
   }
 
@@ -153,4 +114,5 @@ class ContextBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
   public function getCacheMaxAge() {
     return 0;
   }
+
 }

@@ -1,5 +1,4 @@
 FROM ghcr.io/unb-libraries/drupal:11.x-1.x-unblib
-MAINTAINER UNB Libraries <libsupport@unb.ca>
 
 # Install additional OS packages.
 ENV ADDITIONAL_OS_PACKAGES="postfix php84-ldap php84-xmlreader php84-zip php84-pecl-redis"
@@ -39,4 +38,5 @@ LABEL ca.unb.lib.generator="drupal11" \
   org.label-schema.vcs-url="https://github.com/unb-libraries/nbbib.lib.unb.ca" \
   org.label-schema.vendor="University of New Brunswick Libraries" \
   org.label-schema.version=$VERSION \
+  org.opencontainers.image.authors="UNB Libraries <libsupport@unb.ca>" \
   org.opencontainers.image.source="https://github.com/unb-libraries/nbbib.lib.unb.ca"

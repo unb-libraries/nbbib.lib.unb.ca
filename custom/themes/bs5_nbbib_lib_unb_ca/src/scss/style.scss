@@ -592,6 +592,12 @@ html {
     font-weight: 500;
     font-size: 18px;  
     background-color: $light !important;
+    // Fill the window so the footer's mt-auto keeps it at the bottom on short
+    // pages. The admin toolbar's offset is already taken as body padding.
+    .dialog-off-canvas-main-canvas {
+      min-height: calc(100vh - var(--drupal-displace-offset-top, 0px));
+      min-height: calc(100dvh - var(--drupal-displace-offset-top, 0px));
+    }
     a {
       text-decoration: none;
     }

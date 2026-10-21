@@ -1,5 +1,5 @@
 swiper:
-  version: 9.x
+  version: 12.x
   css:
     theme:
       /vendor/npm-asset/swiper/swiper-bundle.min.css: {}

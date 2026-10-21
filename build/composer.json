@@ -95,10 +95,6 @@
       "url": "https://asset-packagist.org"
     },
     {
-      "type": "composer",
-      "url": "https://packages.drupal.org/8"
-    },
-    {
       "package": {
         "dist": {
           "type": "zip",
@@ -109,34 +105,6 @@
         "version": "dev-master"
       },
       "type": "package"
-    },
-    {
-      "package": {
-        "dist": {
-          "type": "zip",
-          "url": "https://github.com/simeydotme/jQuery-ui-Slider-Pips/archive/refs/tags/2.0.0.zip"
-        },
-        "name": "simeydotme/jquery-ui-slider-pips",
-        "require": {
-          "composer/installers": "^2"
-        },
-        "type": "drupal-library",
-        "version": "2.0.0"
-      },
-      "type": "package"
-    },
-    {
-      "package": {
-        "name": "drupal/login_return_page",
-        "source": {
-          "reference": "8.x-1.x",
-          "type": "git",
-          "url": "https://git.drupalcode.org/sandbox/gnuget-2824414.git"
-        },
-        "type": "drupal-module",
-        "version": "1.x-dev"
-      },
-    "type": "package"
     },
     {
       "package": {
@@ -153,7 +121,6 @@
   ],
   "require": {
     "drupal/admin_toolbar": "^3",
-    "drupal/bootstrap4": "^3",
     "drupal/bootstrap5": "^4",
     "drupal/core": "^11",
     "drupal/core-composer-scaffold": "^11",
@@ -175,7 +142,7 @@
     "drupal/paragraphs": "^1",
     "drupal/pathauto": "^1",
     "drupal/quickedit": "^2",
-    "drupal/r4032login": "^2", 
+    "drupal/r4032login": "^2",
     "drupal/redirect": "^1",
     "drupal/redis": "^1",
     "drupal/samlauth": "^3",
@@ -195,7 +162,6 @@
     "pear/file_marc": "^1",
     "scriptotek/marc": "^3",
     "select2/select2": "^4",
-    "simeydotme/jquery-ui-slider-pips": "^2",
     "unb-libraries/composer-drupal-scaffold": "^11.x-dev",
     "unb-libraries/saml_features": "dev-10.x-1.x"
   },

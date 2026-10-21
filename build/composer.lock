@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc1e3fb260ccfd8608acb56a7a259c03",
+    "content-hash": "4fabe172b9f859931be68cb2aa19ca9a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1198,60 +1198,6 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/admin_toolbar",
                 "issues": "https://www.drupal.org/project/issues/admin_toolbar"
-            }
-        },
-        {
-            "name": "drupal/bootstrap4",
-            "version": "3.0.7",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/bootstrap4.git",
-                "reference": "3.0.7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bootstrap4-3.0.7.zip",
-                "reference": "3.0.7",
-                "shasum": "c4989d6fe4b0d33a07c47f4a7bad976a9ced30c3"
-            },
-            "require": {
-                "drupal/core": "^10.2 || ^11"
-            },
-            "type": "drupal-theme",
-            "extra": {
-                "drupal": {
-                    "version": "3.0.7",
-                    "datestamp": "1767794815",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Janna M (jannakha)",
-                    "homepage": "https://www.drupal.org/u/jannakha",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Vladimir Roudakov (vladimiraus)",
-                    "homepage": "https://www.drupal.org/u/vladimiraus",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Master theme using Bootstrap 4: powerful front-end framework for faster and easier web development.",
-            "homepage": "https://www.drupal.org/project/bootstrap4",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "https://git.drupalcode.org/project/bootstrap4",
-                "issues": "https://www.drupal.org/project/issues/bootstrap4"
             }
         },
         {
@@ -6879,18 +6825,6 @@
             "type": "drupal-library"
         },
         {
-            "name": "simeydotme/jquery-ui-slider-pips",
-            "version": "2.0.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/simeydotme/jQuery-ui-Slider-Pips/archive/refs/tags/2.0.0.zip"
-            },
-            "require": {
-                "composer/installers": "^2"
-            },
-            "type": "drupal-library"
-        },
-        {
             "name": "solarium/solarium",
             "version": "7.0.0",
             "source": {
@@ -10697,12 +10631,12 @@
     "stability-flags": {
         "furf/jquery-ui-touch-punch": 20,
         "unb-libraries/composer-drupal-scaffold": 20,
-        "unb-libraries/drupal-development-libraries": 20,
-        "unb-libraries/saml_features": 20
+        "unb-libraries/saml_features": 20,
+        "unb-libraries/drupal-development-libraries": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }

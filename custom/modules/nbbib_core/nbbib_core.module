@@ -321,20 +321,6 @@ function nbbib_core_cron() {
 }
 
 /**
- * Implements hook_theme().
- */
-function nbbib_core_theme($existing, $type, $theme, $path) {
-  return [
-    'nbbib_intro' => [
-      'variables' => [],
-    ],
-    'nbbib_about' => [
-      'variables' => [],
-    ],
-  ];
-}
-
-/**
  * Implements hook_page_attachments().
  */
 function nbbib_core_page_attachments(array &$attachments) {
@@ -792,37 +778,6 @@ function clr_blank_contribs(&$form, FormStateInterface $form_state) {
   }
 
   $form_state->setValue('contributors', $contribs);
-}
-
-/**
- * Custom validation handler for contributor sub-form.
- */
-function validate_contrib_subform($element, &$form_state) {
-  $i = 0;
-
-  // Get updated contributor values.
-  while (!empty($form_state->getCompleteForm()['contributors']['widget'][$i]['subform']['field_yabrm_contributor_person']['widget']['entities'][0])) {
-    $first_name = $form_state->getCompleteForm()['contributors']['widget'][$i]['subform']['field_yabrm_contributor_person']['widget']['entities'][0]['#entity']->getFirstName();
-    $last_name = $form_state->getCompleteForm()['contributors']['widget'][$i]['subform']['field_yabrm_contributor_person']['widget']['entities'][0]['#entity']->getLastName();
-    $institution_name = $form_state->getCompleteForm()['contributors']['widget'][$i]['subform']['field_yabrm_contributor_person']['widget']['entities'][0]['#entity']->getInstitutionName();
-    $i++;
-  }
-
-  // Validation rules and errors.
-  if (empty($institution_name)) {
-    if (empty($first_name) and empty($last_name)) {
-      $form_state->setErrorByName('contributors', t('Either institution or individual names are required for contributors.'));
-    }
-    elseif (empty($last_name)) {
-      $form_state->setErrorByName('contributors', t('Last names are required for individual contributors.'));
-    }
-  }
-  elseif (!empty($last_name)) {
-    $form_state->setErrorByName('contributors', t('Either institution or individual names are allowed for contributors. Not both.'));
-  }
-  elseif (!empty($first_name)) {
-    $form_state->setErrorByName('contributors', t('Either institution or individual names are allowed for contributors. Not both.'));
-  }
 }
 
 /**

@@ -21,3 +21,11 @@
 .swiper-wrapper {
   transition-timing-function: linear !important;
 }
+
+/* Matches the 991 breakpoint in nbbib_slideshow.module: slidesPerView 'auto'
+   sizes each slide to its photo, so Swiper's default 100% width must go. */
+@media (min-width: 991px) {
+  .nbbib-swiper .swiper-slide {
+    width: auto;
+  }
+}

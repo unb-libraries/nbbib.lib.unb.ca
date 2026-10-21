@@ -45,9 +45,11 @@ function nbbib_slideshow_views_pre_render(ViewExecutable $view) {
         'loop' => TRUE,
         // Breakpoints.
         'breakpoints' => [
-          // When window width is >= 991px
+          // When window width is >= 991px, size slides to their (randomly
+          // sized) photos and keep an even gap between them.
           '991' => [
-            'slidesPerView' => 6,
+            'slidesPerView' => 'auto',
+            'spaceBetween' => 48,
           ],
         ],
       ];

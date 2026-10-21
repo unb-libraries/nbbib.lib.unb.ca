@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4fabe172b9f859931be68cb2aa19ca9a",
+    "content-hash": "614c03273c06175118099370dfa1fb21",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3827,6 +3827,10 @@
                     "homepage": "https://www.drupal.org/user/3668491"
                 },
                 {
+                    "name": "smustgrave",
+                    "homepage": "https://www.drupal.org/user/3252890"
+                },
+                {
                     "name": "sutharsan",
                     "homepage": "https://www.drupal.org/user/73854"
                 },
@@ -6821,6 +6825,18 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/select2/select2/archive/refs/tags/4.1.0-rc.0.zip"
+            },
+            "type": "drupal-library"
+        },
+        {
+            "name": "simeydotme/jquery-ui-slider-pips",
+            "version": "2.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/simeydotme/jQuery-ui-Slider-Pips/archive/refs/tags/2.0.0.zip"
+            },
+            "require": {
+                "composer/installers": "^2"
             },
             "type": "drupal-library"
         },

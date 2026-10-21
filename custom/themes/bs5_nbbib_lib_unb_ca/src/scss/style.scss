@@ -87,6 +87,9 @@ html {
     &:focus {
       border-color: $link-hover !important;
       background-color: $link-hover !important;
+      // Keep the label as is when the button is a link (beats body a:hover).
+      color: $light !important;
+      text-decoration: none !important;
     }
   }
   #cite-open,

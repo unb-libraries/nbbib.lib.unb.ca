@@ -47,7 +47,8 @@
         "type:drupal-drush"
       ],
       "libraries/{$name}": [
-        "type:drupal-library"
+        "type:drupal-library",
+        "type:npm-asset"
       ],
       "modules/contrib/{$name}": [
         "type:drupal-module"
@@ -71,6 +72,9 @@
         "type:drupal-custom-theme"
       ]
     },
+    "installer-types": [
+      "npm-asset"
+    ],
     "patches": {
       "drupal/core": {
         "Fix error on entity reference creation with parentheses in name": "https://www.drupal.org/files/issues/2021-04-18/2924783-18.patch",
